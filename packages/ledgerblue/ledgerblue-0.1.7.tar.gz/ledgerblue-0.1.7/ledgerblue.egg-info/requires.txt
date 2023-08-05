@@ -1,0 +1,7 @@
+hidapi>=0.7.99
+pycrypto>=2.6.1
+future
+ecpy>=0.8.1
+
+[smartcard]
+python-pyscard>=1.6.12-4build1
