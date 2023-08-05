@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: TempestParser
+Version: 0.1
+Summary: Parser of tempest results.
+Home-page: https://github.com/osavatieiev/tempest-parser
+Author: Alex Savatieiev
+Author-email: a.savex@gmail.com
+License: Apache Licence, version 2
+Description: Tempest Parser tool used to generate trending reports out of various result formats openstack/tempest produces: CLI, JSON from Rally, XML from PyCharm, CSV
+Platform: UNKNOWN
