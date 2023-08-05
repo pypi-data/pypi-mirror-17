@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: dynamolock
+Version: 1.0.0
+Summary: A distributed lock system build on top of DynamoDB
+Home-page: UNKNOWN
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: BSD
+Download-URL: https://github.com/alphagov/dynamolock/tarball/1.0.0
+Description: A distributed lock system build on top of DynamoDB
+Keywords: python
+Platform: Linux
+Platform: Mac OS X
+Platform: Win
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python
+Classifier: Topic :: System :: Networking
+Classifier: Topic :: Utilities
