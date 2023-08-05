@@ -1,0 +1,139 @@
+Metadata-Version: 2.0
+Name: wsinfo
+Version: 1.2.0
+Summary: Python package for simply retrieving information about a specific website.
+Home-page: https://github.com/linusg/wsinfo
+Author: Linus Groh
+Author-email: mail@linusgroh.de
+License: MIT
+Download-URL: https://pypi.python.org/pypi/wsinfo
+Keywords: website,http,url,internet,online,information
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.1
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Internet
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+
+The wsinfo library
+==================
+
+.. image:: https://api.travis-ci.org/linusg/wsinfo.svg?branch=master
+   :target: https://travis-ci.org/linusg/wsinfo/
+   :alt: Travis CI test status
+
+.. image:: https://landscape.io/github/linusg/wsinfo/master/landscape.svg?style=flat
+   :target: https://landscape.io/github/linusg/wsinfo/master
+   :alt: Code health
+
+.. image:: https://img.shields.io/pypi/v/wsinfo.svg
+   :target: https://pypi.python.org/pypi/wsinfo
+   :alt: Version
+
+.. image:: https://img.shields.io/pypi/dm/wsinfo.svg
+   :target: https://pypi.python.org/pypi/wsinfo
+   :alt: Monthly downloads
+
+.. image:: https://img.shields.io/badge/docs-latest-blue.svg
+   :target: https://wsinfo.readthedocs.io/en/latest/
+   :alt: Documentation
+
+wsinfo (short for website information) is a Python package for getting some
+useful information about some website, without the need to write some
+complicated hackish Python code.
+
+Requirements
+------------
+
+The package is compatible with both Python 2 and 3, so everything you need is
+a recent Python installation.
+
+Installation
+------------
+
+The wsinfo library is available on `PyPI <http://pypi.python.org/pypi/wsinfo>`_,
+so you can install it using ``pip``::
+
+    pip install wsinfo
+
+Usage
+-----
+
+The usage of the wsinfo library is as easy as::
+
+    >>> import wsinfo
+    >>> w = wsinfo.Info("https://github.com")
+    >>> w.ip
+    '192.30.253.112'
+    >>> w.http_status_code
+    200
+    >>> w.title
+    'How people build software · GitHub'
+    >>> w.content
+    '<!DOCTYPE html>\n<html>\n[...]\n</html>'
+
+Documentation
+-------------
+
+The latest documentation is always available here: https://wsinfo.readthedocs.io/en/latest/
+
+Tested Platforms and Python Versions
+------------------------------------
+
+The code was tested on all major platforms using a wide range of Python
+versions.
+
+If you experience some issues, feel free to contact me or `open an issue on
+GitHub <https://github.com/linusg/wsinfo/issues/new>`_.
+
+Changes
+=======
+
+Todo
+----
+
+- Get web hoster
+- Get website owner
+
+**More ideas are always welcome!**
+
+1.2.0
+-----
+
+- Hosted docs on `readthedocs.io <http://wsinfo.readthedocs.io/en/latest/>`_
+- Minor documentation changes
+
+1.1.0
+-----
+
+- Added function to list a websites heading structure
+- Documentation improvements
+- Code formatting
+- Minor improvements
+- Added/extended project infrastructure:
+
+  - GitHub
+  - PyPI
+  - TravisCI
+  - Landscape
+
+1.0.0
+-----
+
+- Initial release
+
+
