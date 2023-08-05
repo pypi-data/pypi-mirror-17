@@ -1,0 +1,8 @@
+v0.1.0, 09/10/2016 21:31 -- Initial Release
+v0.1.1, 09/11/2016 08:09 -- Added test_basic_plot2.py in test/
+                            Added dummy.txt in docs/
+                            Modified print_basic_plot.py in bin/
+v0.1.2, 09/11/2016 08:14 -- Removed test_basic_plot.py in test/
+                            Renamed test_basic_plot2.py to
+                                test_basic_plot.py in test/
+                            Modified basic.py in plotit/
