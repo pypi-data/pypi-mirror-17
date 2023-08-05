@@ -1,0 +1,113 @@
+body {
+    background-color: #f1f1f1;
+}
+#charts-builder .item {
+    display: inline-block;
+    overflow: hidden;
+}
+
+/* Widgets */
+
+#charts-builder .widget {
+    clear: both;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-bottom-width: 2px;
+    border-bottom-color: #bbb;
+    position: relative;
+    overflow: hidden; /* the onus for correct sizing is on the user who configures each widget, so we always hide overlapping content. */
+}
+#charts-builder .widget:hover {
+    border-color: #85C785;
+}
+#charts-builder .widget iframe {
+    border: 0;
+}
+#charts-builder .widget .widget-edit {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 40px;
+    font-size: 11px;
+    background-color: #999;
+    padding: 0 0.8em;
+    border-radius: 0 0 3px 3px;
+    height: 20px;
+    line-height: 20px;
+    color: white;
+    border-bottom: 2px solid #777;
+}
+#charts-builder .widget .icon {
+    margin-left: 0.5em;
+}
+#charts-builder .widget .icon:last-of-type {
+    margin-left: 0;
+}
+#charts-builder .widget .icon:hover {
+    -webkit-transition: all .25s ease-in-out;
+    -moz-transition: all .25s ease-in-out;
+    -ms-transition: all .25s ease-in-out;
+    -o-transition: all .25s ease-in-out;
+    transition: all .25s ease-in-out;
+    cursor: pointer;
+}
+#charts-builder .widget:hover .widget-edit {
+    display: block;
+}
+#charts-builder .widget .widget-refresh:hover {
+    transform: rotate(60deg);
+}
+#charts-builder .widget .widget-loader,
+#charts-builder .widget .loadfail {
+    position: absolute;
+    font-size: 30px;
+    color: #333;
+    top: 50%;
+    right: 50%;
+    margin-left: -50%;
+}
+#charts-builder [data-failed="true"] {
+    opacity: 0.5 !important;
+}
+#charts-builder [data-failed="true"]:hover {
+    opacity: 1 !important;
+}
+#charts-builder .widget .loadfail {
+    font-size: 12px;
+}
+#charts-builder .widget .widget-title {
+    display: block;
+    font-weight: 200;
+    font-size: 0.9em;
+    border-bottom: 1px solid #ccc;
+    padding: 0.6em 1.2em;
+    height: 35px !important;
+    overflow: hidden;
+}
+#charts-builder #view-builder.editing {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    min-width: 800px;
+    min-height: 800px;
+    /*http://www.patternify.com/*/
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAALUlEQVQYV2M8fvz4fwYiACNIoaWlJSMhtaMK8YYQOHgsLCxMQKoYGRnP4lINANSKKF9X4C8fAAAAAElFTkSuQmCC);
+}
+#charts-builder .widget iframe,
+#charts-builder .widget svg,
+#charts-builder .widget .chart-centered {
+    margin: 0 auto;
+    display: block;
+}
+#api-output {
+    max-height: 600px;
+    overflow: scroll;
+    display: block;
+}
+#charts-builder .form-inline {
+    display: inline-block !important;
+}
+#charts-builder .form-inline input,
+#charts-builder .form-inline button {
+    display: inline-block;
+}
