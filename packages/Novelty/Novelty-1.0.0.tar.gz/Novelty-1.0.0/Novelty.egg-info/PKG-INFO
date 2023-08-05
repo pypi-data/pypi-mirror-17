@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: Novelty
+Version: 1.0.0
+Summary: Python 3 Aiohttp Novelupdates Scraper
+Home-page: https://github.com/Fuzen-py/Novelty
+Author: Fuzen.py
+Author-email: UNKNOWN
+License: MIT
+Description: Based on Raitonoberu, Novelty is a Novelupdates scraper to provide a convenient access
+Keywords: NovelUpdates asyncio aiohttp scraping Novelty
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Software Development :: Libraries
