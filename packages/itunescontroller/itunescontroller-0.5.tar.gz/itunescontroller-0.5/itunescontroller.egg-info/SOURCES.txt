@@ -1,0 +1,10 @@
+MANIFEST.in
+setup.cfg
+setup.py
+itunescontroller/__init__.py
+itunescontroller.egg-info/PKG-INFO
+itunescontroller.egg-info/SOURCES.txt
+itunescontroller.egg-info/dependency_links.txt
+itunescontroller.egg-info/entry_points.txt
+itunescontroller.egg-info/top_level.txt
+itunescontroller/data/haarcascade_frontalface_default.xml
