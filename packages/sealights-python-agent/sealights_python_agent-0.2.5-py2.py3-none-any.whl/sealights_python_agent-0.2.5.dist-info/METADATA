@@ -1,0 +1,51 @@
+Metadata-Version: 2.0
+Name: sealights-python-agent
+Version: 0.2.5
+Summary: Python Agent
+Home-page: https://github.com/Sealights/SL.OnPremise.Agents.Python
+Author: Shai Cantor
+Author-email: shai@sealights.io
+License: Other/Proprietary License
+Keywords: sealights python agent setuptools development
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 2.7
+Requires-Dist: selenium (==2.53.6)
+Provides-Extra: dev
+Requires-Dist: check-manifest; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: coverage; extra == 'test'
+
+sealights-python-agent
+================
+
+sealights-python-agent is a plugin for py.test that integrates with the Sealights platform.
+
+
+Requirements
+------------
+
+You will need the following prerequisites in order to use sealights-python-agent:
+
+- pytest
+
+
+Installation
+------------
+
+To install sealights-python-agent::
+
+    $ pip install sealights-python-agent
+
+Then run your tests with::
+
+    $ py.test --customer_id <customer_id> --app_name <app_name> --server https://prod-sealights-gw.sealights.co/api
+
+
+If you would like to run tests without sealights-python-agent, use::
+
+    $ py.test -p no:sealights-python-agent
+
