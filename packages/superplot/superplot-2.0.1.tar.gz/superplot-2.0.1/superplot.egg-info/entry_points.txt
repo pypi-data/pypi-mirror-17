@@ -1,0 +1,5 @@
+[gui_scripts]
+superplot_cli = superplot.super_command:main
+superplot_gui = superplot.super_gui:main
+superplot_summary = superplot.summary:main
+
