@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: configutil
+Version: 0.0.1.dev2
+Summary: Arguments, configuration, and environment resolver
+Home-page: https://github.com/silverfernsys/configutil
+Author: Silver Fern Systems
+Author-email: dev@silverfern.io
+License: BSD
+Description: configutil
+        ==========
+        
+        A simple way to declare and resolve command line arguments,
+        configuration files, and environment variables.
+        
+        Please see unit tests on library usage.
+Keywords: config configuration arguments
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 2.7
