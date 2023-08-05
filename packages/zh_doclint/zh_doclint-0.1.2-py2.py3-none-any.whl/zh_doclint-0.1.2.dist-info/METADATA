@@ -1,0 +1,99 @@
+Metadata-Version: 2.0
+Name: zh-doclint
+Version: 0.1.2
+Summary: automated checker of chinese document.
+Home-page: UNKNOWN
+Author: huntzhan
+Author-email: programmer.zhx@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: click
+Requires-Dist: future
+Requires-Dist: mistune (==0.7.3)
+
+# zh-doclint
+
+Note: This project is highly related to Chinese, so the document is writtern in Chinese.
+
+## 简介
+
+一个检查文档风格的工具。
+
+## 安装
+
+```
+pip install zh-doclint
+```
+
+## 使用
+
+```shell
+$ zh-doclint --help
+Usage: zh-doclint [OPTIONS] FPATH
+
+Options:
+  --version  Show the version and exit.
+  --help     Show this message and exit.
+
+$ ccat doc.md 
+我跟你讲，这里有问题. 这个
+ case一看就是“药丸”
+
+$ zh-doclint doc.md 
+==========================================
+E101: 英文与非标点的中文之间需要有一个空格
+==========================================
+LINE: 2
+ case一看就是“
+    -－
+...............
+
+==================================================
+E201: 只有中文或中英文混排中，一律使用中文全角标点
+==================================================
+LINE: 1
+里有问题.
+　　　　-
+.........
+
+==========================================================
+E204: 中文文案中使用中文引号「」和『』，其中「」为外层引号
+==========================================================
+LINE: 2
+一看就是“药丸
+　　　　－
+..............
+LINE: 2
+是“药丸”
+　　　　－
+..........
+```
+
+## 支持的检查项目
+
+| 错误码 | 检查范围 | 描述                                                                           |
+| ----   | -------- | ------------------------------------------------------------------------------ |
+| E101   | 段落     | 英文与非标点的中文之间需要有一个空格                                           |
+| E102   | 段落     | 数字与非标点的中文之间需要有一个空格                                           |
+| E103   | 段落     | 除了「％」、「℃」、以及倍数单位（如 2x、3n）之外，其余数字与单位之间需要加空格 |
+| E104   | 段落     | 书写时括号中全为数字，则括号用半角括号且首括号前要空一格                       |
+| E201   | 句子     | 只有中文或中英文混排中，一律使用中文全角标点                                   |
+| E202   | 句子     | 如果出现整句英文，则在这句英文中使用英文、半角标点                             |
+| E203   | 段落     | 中文标点与其他字符间一律不加空格                                               |
+| E204   | 句子     | 中文文案中使用中文引号「」和『』，其中「」为外层引号                           |
+| E205   | 段落     | 省略号请使用「……」标准用法                                                     |
+| E206   | 段落     | 感叹号请使用「！」标准用法                                                     |
+| E207   | 段落     | 请勿在文章内使用「~」                                                          |
+| E301   | 段落     | 常用名词错误                                                                   |
+
+详情见 [写作规范和格式规范，DaoCloud 文档](http://docs-static.daocloud.io/write-docs/format)。
+
+
