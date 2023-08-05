@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: showast
+Version: 0.1.0
+Summary: IPython notebook plugin for visualizing abstract syntax trees.
+Home-page: https://github.com/hchasestevens/show_ast
+Author: H. Chase Stevens
+Author-email: chase@chasestevens.com
+License: MIT
+Description: UNKNOWN
+Keywords: ipython jupyter notebook ast asts
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Topic :: Software Development :: Code Generators
