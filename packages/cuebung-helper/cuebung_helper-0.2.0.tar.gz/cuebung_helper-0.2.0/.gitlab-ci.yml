@@ -1,0 +1,25 @@
+image: python:3.4
+test:
+  script:
+  - pip3 install -r requirements.txt
+  - pip3 install -U codecov
+  - python3 setup.py test
+  - codecov --token=670509ce-d24c-4ea8-94f3-20ad9a88436a
+
+pep8:
+  script:
+  - pip3 install -r test-requirements.txt
+  - pip3 install -e .
+  - py.test -c .pytest-pep8.ini
+
+pylint:
+  script:
+  - pip3 install -r test-requirements.txt
+  - pip3 install -e .
+  - py.test -c .pytest-pylint.ini
+
+fileencoding:
+  script:
+  - pip3 install -r test-requirements.txt
+  - pip3 install -e .
+  - py.test -c .pytest-checkencodint.ini
