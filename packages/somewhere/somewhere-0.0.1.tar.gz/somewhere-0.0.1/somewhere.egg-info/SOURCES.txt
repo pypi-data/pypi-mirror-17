@@ -1,0 +1,11 @@
+setup.cfg
+setup.py
+somewhere/__init__.py
+somewhere/main.py
+somewhere/where.py
+somewhere/which.py
+somewhere.egg-info/PKG-INFO
+somewhere.egg-info/SOURCES.txt
+somewhere.egg-info/dependency_links.txt
+somewhere.egg-info/entry_points.txt
+somewhere.egg-info/top_level.txt
