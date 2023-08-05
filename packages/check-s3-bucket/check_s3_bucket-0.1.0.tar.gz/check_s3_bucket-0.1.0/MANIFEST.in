@@ -1,0 +1,5 @@
+recursive-include check_s3_bucket *.py
+exclude .pre-commit-config.yaml
+include *.rst
+include VERSION
+include *.txt

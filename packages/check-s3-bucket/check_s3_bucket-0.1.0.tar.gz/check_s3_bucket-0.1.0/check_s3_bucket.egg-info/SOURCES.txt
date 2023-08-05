@@ -1,0 +1,13 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+VERSION
+setup.cfg
+setup.py
+check_s3_bucket/__init__.py
+check_s3_bucket.egg-info/PKG-INFO
+check_s3_bucket.egg-info/SOURCES.txt
+check_s3_bucket.egg-info/dependency_links.txt
+check_s3_bucket.egg-info/entry_points.txt
+check_s3_bucket.egg-info/requires.txt
+check_s3_bucket.egg-info/top_level.txt
