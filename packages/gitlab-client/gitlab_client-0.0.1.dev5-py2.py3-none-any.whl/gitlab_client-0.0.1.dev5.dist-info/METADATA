@@ -1,0 +1,54 @@
+Metadata-Version: 2.0
+Name: gitlab-client
+Version: 0.0.1.dev5
+Summary: Simple GitLab client
+Home-page: http://gbraad.nl/
+Author: Gerard Braad
+Author-email: me@gbraad.nl
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: pbr
+Requires-Dist: pyapi-gitlab
+Requires-Dist: PrettyTable
+
+Simple GitLab client 
+====================
+
+.. WIP ..
+
+Installation
+------------
+
+
+```
+$ sudo pip install -r requirements.txt --allow-all-external && sudo python setup.py install
+```
+
+Create a `~/.gitlab.cfg` file with the following content:
+
+```
+[default]
+host=https://gitlab.com
+token=
+project=gbraad/gitlab-client
+```
+
+
+Authors
+-------
+
+| [!["Gerard Braad"](http://gravatar.com/avatar/e466994eea3c2a1672564e45aca844d0.png?s=60)](http://gbraad.nl "Gerard Braad <me@gbraad.nl>") |
+|---|
+| [@gbraad](https://twitter.com/gbraad)  |
+
+
+
