@@ -1,0 +1,13 @@
+webob
+six>=1.9,<2
+
+[flask]
+flask
+blinker
+
+[tests]
+flask
+blinker
+webtest
+nose
+flake8
