@@ -1,0 +1,26 @@
+Metadata-Version: 2.0
+Name: pluvo
+Version: 0.1.0b1
+Summary: Python library to access the Pluvo REST API.
+Home-page: https://github.com/wendbv/pluv-python
+Author: Daan Porru (Wend)
+Author-email: daan@wend.nl
+License: MIT
+Keywords: REST,API,Pluvo
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: coverage
+Requires-Dist: flake8 (==2.6.2)
+Requires-Dist: pytest (>=2.7)
+Requires-Dist: pytest-cov
+Requires-Dist: pytest-flake8 (==0.2)
+Requires-Dist: pytest-mock
+Requires-Dist: requests
+
+UNKNOWN
+
+
