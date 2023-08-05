@@ -1,0 +1,36 @@
+Metadata-Version: 1.1
+Name: bennu
+Version: 0.4.1a10
+Summary: muchu's utility module
+Home-page: https://github.com/muchu1983/bennu
+Author: MuChu Hsu
+Author-email: muchu1983@gmail.com
+License: BSD 3-Clause License
+Download-URL: https://pypi.python.org/pypi/bennu
+Description: == Install:
+        
+        $pip install bennu
+        
+        == Useage:
+        
+        $bennu
+        
+        == Uninstall:
+        
+        $pip uninstall bennu
+        
+        
+Platform: python 3.4
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Win32 (MS Windows)
+Classifier: Environment :: X11 Applications :: GTK
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: Chinese (Traditional)
+Classifier: Natural Language :: Chinese (Simplified)
+Classifier: Natural Language :: English
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Topic :: Internet :: WWW/HTTP
