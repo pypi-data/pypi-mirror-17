@@ -1,0 +1,11 @@
+README
+setup.py
+board-sim/__init__.py
+board-sim/core/__init__.py
+board-sim/core/base.py
+board-sim/core/exceptions.py
+board-sim/core/utils.py
+board_sim.egg-info/PKG-INFO
+board_sim.egg-info/SOURCES.txt
+board_sim.egg-info/dependency_links.txt
+board_sim.egg-info/top_level.txt
