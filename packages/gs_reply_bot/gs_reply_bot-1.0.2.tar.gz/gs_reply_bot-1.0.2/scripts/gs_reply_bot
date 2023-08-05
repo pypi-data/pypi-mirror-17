@@ -1,0 +1,110 @@
+#!/usr/bin/env python3
+# pylint: disable=missing-docstring
+from os.path import join, isfile
+from argparse import ArgumentParser
+from typing import List
+from random import choice
+from time import sleep
+from json import dump
+from xdg.BaseDirectory import save_config_path
+from config_parser.parser import ConfigParser
+from gnusocial.timelines import mentions
+from gnusocial.statuses import update
+from gnusocial.accounts import verify_credentials
+
+
+CONFIG_PATH = join(save_config_path('gs_reply_bot'), 'config.json')
+LAST_ID_PATH = join(save_config_path('gs_reply_bot'), 'last_status')
+
+if not isfile(CONFIG_PATH):
+    dump(
+        {
+            'server_url': 'https://gs.server.net',
+            'username': 'username',
+            'password': 'password',
+            'users': {
+                "user@gs.server.net" : ['message']
+            },
+            'interval': 120
+        },
+        open(CONFIG_PATH, 'w'),
+        indent=4,
+        sort_keys=True
+    )
+
+if not isfile(LAST_ID_PATH):
+    open(LAST_ID_PATH, 'w').write('1')
+
+
+PARSER = ArgumentParser(description='Automatic reply bot for GNU Social.')
+PARSER.add_argument(
+    '-c', '--config_file',
+    help='''config file to use instead of
+$XDG_CONFIG_HOME/gs_reply_bot/config.json''',
+    default=CONFIG_PATH
+)
+PARSER.add_argument(
+    '-l', '--last-id-file',
+    help='file with last status ID to use instead of $XDG_CONFIG_HOME/gs_reply_bot/last_status',
+    default=LAST_ID_PATH
+)
+
+def server(server_url: str) -> str:
+    if server_url.startswith('https://'):
+        return server_url.split('https://')[1]
+    else:
+        return server_url.split('http://')[1]
+
+
+def handle(profile_url: str) -> str:
+    server_url, screen_name = profile_url.rsplit('/', maxsplit=1)
+    return screen_name + '@' + server(server_url)
+
+
+def get_mentions(credentials: dict, last_id: int) -> List[dict]:
+    return mentions(**credentials, count=200, since_id=last_id)
+
+
+def reply(credentials: dict, users: List[dict], last_id: int) -> int:
+    statuses = get_mentions(credentials, last_id)
+    for status in statuses:
+        status_id = status['id']
+        user = handle(status['user']['statusnet_profile_url'])
+        if user in users and last_id < status_id:
+            message = '@' + user + ' ' + choice(users[user])
+            print('Replying with "%s" to %s\'s status with ID %d' %
+                  (message, user, status_id))
+            update(**credentials,
+                   status=message,
+                   in_reply_to_status_id=status['id'],
+                   source='gs_reply_bot')
+            sleep(1)
+    try:
+        last_id = max((s['id'] for s in statuses))
+    except ValueError:
+        pass
+    return last_id
+
+
+def main():
+    args = PARSER.parse_args()
+    config = ConfigParser(args.config_file)
+    credentials = {
+        'server_url': config.get('server_url'),
+        'username': config.get('username'),
+        'password': config.get('password')
+    }
+    interval = config.get('interval', 120)
+    last_id = int(open(args.last_id_file).read())
+    users = config.get('users', [])
+    verify_credentials(**credentials)
+
+    while True:
+        print('Last ID:', last_id)
+        last_id = reply(credentials, users, last_id)
+        open(args.last_id_file, 'w').write(str(last_id))
+        sleep(interval)
+
+
+if __name__ == '__main__':
+    main()
