@@ -1,0 +1,16 @@
+{% extends "layout/default.html" %}
+{% block body %}
+	<h1>Applications Raspberry</h1>
+	{% if getOS == 'Linux' %}
+		<a href="{{ url_for('reveil') }}" class="btn-floating btn-large {{ buttonColor }}">
+		    <i class="large material-icons">alarm_on</i>
+		</a>
+		<br><br>
+		<a href="{{ url_for('music') }}" class="btn-floating btn-large {{ buttonColor }}">
+      		<i class="large material-icons">queue_music</i>
+    	</a>
+	{% else %}
+		<h3>Désoler votre Ordinateur n'est pas compatible avec ses applications (Réveil , Musique ... ) Pour plus d'info rendez vous sur <a href="http://onyxlabs.fr/forum">http://onyxlabs.fr/forum</a></h3>
+	{% endif %}
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "layout/default.html" %}
+{% block body %}	
+
+       
+		<h3>Ajoutez des musiques</h3>
+  <form action="" method="post" enctype="multipart/form-data">
+    <div class="file-field input-field">
+      <div class="btn {{ buttonColor }}">
+        <span>File</span>
+        <input id="musicfile" type="file" name="musicfile">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+    <input id="btsub" type="submit" class="btn {{ buttonColor }}" value="Envoyer" />
+  </form>
+
+  </br>
+
+  <h3>Supprimer des musiques</h3>
+
+		<table  class="table table-striped">	
+				 <tbody>
+				<tr>
+					<th>Fichier</th>
+					<th>Supprimer</th>
+				</tr>
+				<tr>
+		
+					<td>{% for tab in music %}{{ tab }}</br>{% endfor %}</td>
+					<td>
+					{% for tab in music %}
+					<a href="{{ url_for('delete_music' , music_delete=tab) }}"><i class="fa fa-times" aria-hidden="true"></i></a></br>
+					{% endfor %}
+					</td>
+				
+				</tr>
+			</tbody>
+			</table>
+			<a href="{{ url_for("previous") }}"><img style="width: 50px;" src="{{url_for('static' , filename='images/music/previous_icon.png')}}"></a>
+		<a href="{{ url_for("pause") }}" ><img style="width: 50px;" src="{{url_for('static' , filename='images/music/pause_icon.png')}}"></a>
+		<a href="{{ url_for("play") }}" ><img style="width: 50px;" src="{{url_for('static' , filename='images/music/play_icon.png')}}"></a>
+		<a href="{{ url_for("next") }}" ><img style="width: 50px;" src="{{url_for('static' , filename='images/music/next_icon.png')}}"></a>
+		<a href="{{ url_for("stop") }}" ><img style="width: 50px;" src="{{url_for('static' , filename='images/music/stop_icon.png')}}"></a>
+      </div>
+   
+	
+
+{% endblock %}
+
