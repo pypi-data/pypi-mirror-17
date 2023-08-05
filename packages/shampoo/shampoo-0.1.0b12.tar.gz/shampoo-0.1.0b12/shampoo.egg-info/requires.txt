@@ -1,0 +1,9 @@
+schemavalidator==0.1.0b11
+autobahn==0.14.1
+
+[test]
+pytest
+pytest-cov
+coverage
+pytest-mock
+coveralls

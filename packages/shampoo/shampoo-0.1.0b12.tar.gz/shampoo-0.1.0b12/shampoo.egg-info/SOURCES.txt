@@ -1,0 +1,13 @@
+MANIFEST.in
+setup.cfg
+setup.py
+shampoo/__init__.py
+shampoo/shampoo.py
+shampoo.egg-info/PKG-INFO
+shampoo.egg-info/SOURCES.txt
+shampoo.egg-info/dependency_links.txt
+shampoo.egg-info/requires.txt
+shampoo.egg-info/top_level.txt
+shampoo/schemas/push_message.json
+shampoo/schemas/request.json
+shampoo/schemas/response.json
