@@ -1,0 +1,33 @@
+Metadata-Version: 2.0
+Name: knotr
+Version: 0.3.0
+Summary: Reproducible report generation tool.
+Home-page: https://github.com/tomaugspurger/stitch
+Author: Tom Augspurger
+Author-email: tom.augspurger88@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Requires-Dist: click
+Requires-Dist: ipython
+Requires-Dist: jupyter-client
+Requires-Dist: jupyter-core
+Requires-Dist: nbconvert
+Requires-Dist: pandocfilters
+Requires-Dist: pypandoc
+Requires-Dist: traitlets
+Provides-Extra: dev
+Requires-Dist: pytest; extra == 'dev'
+Requires-Dist: pytest-cov; extra == 'dev'
+Requires-Dist: sphinx; extra == 'dev'
+
+UNKNOWN
+
+
