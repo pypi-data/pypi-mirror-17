@@ -1,0 +1,9 @@
+smallshapes>=0.6
+smallvectors>=0.6
+colortools>=0.1.1
+pygame
+
+[dev]
+cython
+pytest
+python-boilerplate
