@@ -1,0 +1,13 @@
+Metadata-Version: 2.0
+Name: ctip
+Version: 0.1.0
+Summary: Extendible configuration testing in parallel.
+Home-page: https://github.com/becketta/ctip.git
+Author: Aaron Beckett
+Author-email: aminor65ii@gmail.com
+License: MIT
+Requires-Dist: pyparsing
+
+# CTIP (Configuration Testing In Parallel)
+
+
