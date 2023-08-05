@@ -1,0 +1,10 @@
+MANIFEST.in
+README.rst
+setup.py
+nominat/__init__.py
+nominat/words.txt
+nominat.egg-info/PKG-INFO
+nominat.egg-info/SOURCES.txt
+nominat.egg-info/dependency_links.txt
+nominat.egg-info/not-zip-safe
+nominat.egg-info/top_level.txt
