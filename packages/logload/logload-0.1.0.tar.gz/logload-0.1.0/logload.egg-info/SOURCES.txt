@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+setup.cfg
+setup.py
+logload/__init__.py
+logload/logload.py
+logload/words.txt
+logload.egg-info/PKG-INFO
+logload.egg-info/SOURCES.txt
+logload.egg-info/dependency_links.txt
+logload.egg-info/entry_points.txt
+logload.egg-info/requires.txt
+logload.egg-info/top_level.txt

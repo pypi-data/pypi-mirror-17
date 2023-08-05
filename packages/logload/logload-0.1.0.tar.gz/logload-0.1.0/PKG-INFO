@@ -1,0 +1,30 @@
+Metadata-Version: 1.1
+Name: logload
+Version: 0.1.0
+Summary: create syslog load
+Home-page: https://github.com/ofosos/logload/
+Author: Mark Meyer
+Author-email: mark@ofosos.org
+License: GPLv3
+Description: # logload
+        
+        A syslog network load generator
+        
+        Requires funcparserlib and a bunch of the standard lib. Tested on Python 3.
+        
+        I try to maintain an up to date post here: http://ofosos.org/generating-syslog-network-load/
+        
+        See the LICENSE file for license information.
+        
+        ![Landscape widget](https://landscape.io/github/ofosos/logload/master/landscape.svg?style=flat)
+        ![Travis build status](https://api.travis-ci.org/ofosos/logload.svg)
+        [![Coverage Status](https://coveralls.io/repos/github/ofosos/logload/badge.svg?branch=master)](https://coveralls.io/github/ofosos/logload?branch=master)
+        
+Keywords: network syslog testing load
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Topic :: System :: Logging
+Classifier: Topic :: Software Development :: Testing :: Traffic Generation
