@@ -1,0 +1,4 @@
+recursive-include showast *.py
+include setup.py
+include setup.cfg
+include README.md
