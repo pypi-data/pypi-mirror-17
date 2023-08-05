@@ -1,0 +1,24 @@
+Metadata-Version: 1.1
+Name: dal-admin-filters
+Version: 0.1.1
+Summary: Django autocomplete light filters for django admin
+Home-page: https://github.com/shamanu4/dal_admin_filters
+Author: Maxim Musayev
+Author-email: shamanu4@gmail.com
+License: MIT
+Description: dal_admin_filters
+        =================
+        Django autocomplete light filters for django admin
+Keywords: django autocomplete admin filters
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
