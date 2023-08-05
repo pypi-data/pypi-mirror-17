@@ -1,0 +1,94 @@
+package:
+  name: shot_detector
+  version: "{{ environ['GIT_DESCRIBE_TAG'] }}.post{{ environ['GIT_DESCRIBE_NUMBER'] }}"
+
+source:
+  git_url: ../
+
+build:
+  string: {{ environ.get('GIT_BUILD_STR', '') }}_py{{ py }}
+  detect_binary_files_with_prefix: 1
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - backports_abc
+    - bokeh
+    - cairo
+    - chest
+    - cloudpickle
+    - cycler
+    - ffmpeg
+    - pyav
+    - x264
+    - dask
+    - decorator
+    - dill
+    - fontconfig
+    - freetype
+    - gevent
+    - glib
+    - greenlet
+    - harfbuzz
+    - heapdict
+    - jbig
+    - jinja2
+    - jpeg
+    - libffi
+    - libgfortran
+    - libpng
+    - libtiff
+    - libxml2
+    - locket
+    - markupsafe
+    - matplotlib
+    - mkl
+    - networkx
+    - numpy
+    - openssl
+    - pandas
+    - pango
+    - partd
+    - pillow
+    - pip
+    - pixman
+    - pyparsing
+    - pyqt
+    - python
+    - python-dateutil
+    - pytz
+    - pyyaml
+    - qt
+    - readline
+    - requests
+    - scikit-image
+    - scikit-learn
+    - scipy
+    - setuptools
+    - sip
+    - six
+    - sqlite
+    - tk
+    - toolz
+    - tornado
+    - typing
+    - wheel
+    - xz
+    - yaml
+    - zlib
+    - pymp-pypi
+    - pillow
+    - future
+    - configargparse
+
+  run:
+    - ffmpeg
+    - python
+
+
+
+about:
+  home:
+  license: BSD
+  license_file: LICENSE.txt
