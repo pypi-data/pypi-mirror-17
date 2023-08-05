@@ -1,0 +1,4 @@
+
+      [rasterio.rio_plugins]
+      pansharpen=rio_pansharpen.scripts.cli:pansharpen
+      
