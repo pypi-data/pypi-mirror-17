@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+whatever/__init__.py
+whatever/callables.py
+whatever/chain.py
+whatever_forever.egg-info/PKG-INFO
+whatever_forever.egg-info/SOURCES.txt
+whatever_forever.egg-info/dependency_links.txt
+whatever_forever.egg-info/requires.txt
+whatever_forever.egg-info/top_level.txt
