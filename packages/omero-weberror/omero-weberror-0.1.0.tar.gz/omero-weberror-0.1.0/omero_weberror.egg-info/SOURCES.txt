@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+omero_weberror.egg-info/PKG-INFO
+omero_weberror.egg-info/SOURCES.txt
+omero_weberror.egg-info/dependency_links.txt
+omero_weberror.egg-info/not-zip-safe
+omero_weberror.egg-info/top_level.txt
+weberror/__init__.py
+weberror/urls.py
+weberror/views.py
+weberror/templates/weberror/.DS_Store
+weberror/templates/weberror/404.html
