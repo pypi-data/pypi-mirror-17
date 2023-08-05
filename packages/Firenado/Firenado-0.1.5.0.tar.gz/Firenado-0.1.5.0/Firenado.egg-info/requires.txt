@@ -1,0 +1,9 @@
+pyyaml==3.11
+tornado==4.4.1
+six==1.10.0
+
+[redis]
+redis==2.10.5
+
+[sqlalchemy]
+sqlalchemy==1.0.14
