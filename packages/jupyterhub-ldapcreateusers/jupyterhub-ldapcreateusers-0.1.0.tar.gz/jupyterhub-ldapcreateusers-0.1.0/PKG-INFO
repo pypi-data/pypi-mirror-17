@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: jupyterhub-ldapcreateusers
+Version: 0.1.0
+Summary: Add on for the jupyterhub-ldapauthenticator to create system users
+Home-page: https://github.com/benhosmer/jupyterhub-ldapcreateusers
+Author: Ben Hosmer
+Author-email: ben@radarearth.com
+License: Apache 2
+Description: This module requires the jupyterhub-ldapauthenticator module and does nothing                       by itself. jupyterhub-ldapcreateusers allows jupyterhub to create system                       accounts for LDAP authenticated users.
+Platform: UNKNOWN
