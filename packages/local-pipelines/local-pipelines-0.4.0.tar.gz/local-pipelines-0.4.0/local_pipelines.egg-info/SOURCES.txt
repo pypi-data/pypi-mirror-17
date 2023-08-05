@@ -1,0 +1,16 @@
+MANIFEST.in
+requirements.txt
+setup.py
+local_pipelines.egg-info/PKG-INFO
+local_pipelines.egg-info/SOURCES.txt
+local_pipelines.egg-info/dependency_links.txt
+local_pipelines.egg-info/entry_points.txt
+local_pipelines.egg-info/requires.txt
+local_pipelines.egg-info/top_level.txt
+local_pipelines.egg-info/zip-safe
+pipelines/__init__.py
+pipelines/__main__.py
+pipelines/core.py
+pipelines/pipeline.py
+pipelines/step.py
+pipelines/vcs.py
