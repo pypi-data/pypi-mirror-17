@@ -1,0 +1,9 @@
+[console_scripts]
+baseline.py = bob.paper.btas_c2016.baseline:main
+baseline_test.py = bob.paper.btas_c2016.baseline_test:main
+derandomize_test_scores.py = bob.paper.btas_c2016.test_scores_derandomize:main
+plot_det_from_sets.py = bob.paper.btas_c2016.plot_det_from_sets:main
+plot_far_frr_pad.py = bob.paper.btas_c2016.plot_far_frr_pad:main
+plot_pad_results.py = bob.paper.btas_c2016.plot_pad_results:main
+split_dev_scores.py = bob.paper.btas_c2016.split_dev_scores:main
+
