@@ -1,0 +1,36 @@
+Metadata-Version: 2.0
+Name: whitespace
+Version: 1.0.0b1
+Summary: A Whitespace interpreter
+Home-page: https://github.com/dwayne/whitespace-python
+Author: Dwayne Crooks
+Author-email: me@dwaynecrooks.com
+License: MIT
+Keywords: whitespace
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Software Development :: Interpreters
+
+Whitespace
+==========
+
+An interpreter written in `Python <https://www.python.org/>`_ for the imperative, stack based language called `Whitespace <https://en.wikipedia.org/wiki/Whitespace_(programming_language)>`_.
+
+References
+----------
+
+- `Whitespace tutorial <http://compsoc.dur.ac.uk/whitespace/tutorial.html>`_
+
+Copyright
+---------
+
+Copyright (c) 2016 Dwayne Crooks. See `LICENSE </LICENSE.txt>`_ for further details.
+
+
