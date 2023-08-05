@@ -1,0 +1,192 @@
+{% extends 'datafreezer/base.html' %}
+  {% block title %}
+    {% if fileUploadForm.instance.pk %}Edit{% else %}Upload{% endif %} Dataset
+  {% endblock title %}
+
+
+{% block content %}
+<div class="form-horizontal">
+    {% csrf_token %}
+    <fieldset>
+        {% with fileUploadForm as form %}
+            {% include 'datafreezer/datadict_field_form.html' %}
+        {% endwith %}
+    </fieldset>
+</div>
+{% endblock %}
+
+{% block pre_main_content %}
+<form action="" role="form" method="post" data-toggle="validator" enctype="multipart/form-data">
+    <div class="edit-bar">
+        <div class="button-holder">
+            {% comment %}<div class="primary-action save-trigger button flat-button click-init"><span>Save</span></div>{% endcomment %}
+            <button type="submit" class="btn btn-default save-button">Save</button>
+            <button type="submit_continue" class="btn btn-default save-button save-continue-button">Save &amp; continue editing</button>
+            <div class="clearer"></div>
+        </div>
+    </div>
+{% endblock pre_main_content %}
+
+{% block post_main_content %}
+</form>
+{% endblock post_main_content %}
+
+{% block scripts %}
+<script>
+    // var tag = $('.id_tags').val();
+
+    function split(val){
+      return val.split(/,\s*/);
+    }
+
+    function extractLast(term){
+      return split(term).pop();
+    }
+
+
+    var tagField = $( "#id_tags" )
+          // don't navigate away from the field on tab when selecting an item
+          .on( "input change", $.debounce(500, false, function( event ) {
+            if ( event.keyCode === $.ui.keyCode.TAB &&
+                $( this ).autocomplete( "instance" ).menu.active ) {
+              event.preventDefault();
+            }
+
+          }))
+            .autocomplete({
+            source: function( request, response ) {
+              $.getJSON( "/datafreezer/taglookup/", {
+                tag: extractLast(request.term)
+              }, response );
+            },
+            search: function() {
+              // custom minLength
+              var term = extractLast( this.value );
+              if ( term.length < 2 ) {
+                return false;
+              }
+            },
+            focus: function() {
+              // prevent value inserted on focus
+              return false;
+            },
+            select: function( event, ui ) {
+              var terms = split( this.value );
+              // remove the current input
+              terms.pop();
+              // add the selected item
+              terms.push( ui.item.value );
+              // add placeholder to get the comma-and-space at the end
+              terms.push( "" );
+              this.value = terms.join( ", " );
+              return false;
+            }
+
+          });
+
+					var tagField = $( "#id_tags" )
+								// don't navigate away from the field on tab when selecting an item
+								.on( "input change", $.debounce(500, false, function( event ) {
+									if ( event.keyCode === $.ui.keyCode.TAB &&
+											$( this ).autocomplete( "instance" ).menu.active ) {
+										event.preventDefault();
+									}
+
+								}))
+									.autocomplete({
+									source: function( request, response ) {
+										$.getJSON( "/datafreezer/taglookup/", {
+											tag: extractLast(request.term)
+										}, response );
+									},
+									search: function() {
+										// custom minLength
+										var term = extractLast( this.value );
+										if ( term.length < 1 ) {
+											return false;
+										}
+									},
+									focus: function() {
+										// prevent value inserted on focus
+										return false;
+									},
+									select: function( event, ui ) {
+										var terms = split( this.value );
+										// remove the current input
+										terms.pop();
+										// add the selected item
+										terms.push( ui.item.value );
+										// add placeholder to get the comma-and-space at the end
+										terms.push( "" );
+										this.value = terms.join( ", " );
+										return false;
+									}
+
+								});
+
+								var sourceField = $( "#id_source" )
+											// don't navigate away from the field on tab when selecting an item
+											.on( "input change", $.debounce(500, false, function( event ) {
+												if ( event.keyCode === $.ui.keyCode.TAB &&
+														$( this ).autocomplete( "instance" ).menu.active ) {
+													event.preventDefault();
+												}
+
+											}))
+												.autocomplete({
+												source: function( request, response ) {
+													$.getJSON( "/datafreezer/sourcelookup/", {
+														source: extractLast(request.term)
+													}, response );
+												},
+												search: function() {
+													// custom minLength
+													var term = extractLast( this.value );
+													if ( term.length < 1 ) {
+														return false;
+													}
+												},
+												focus: function() {
+													// prevent value inserted on focus
+													return false;
+												},
+												select: function( event, ui ) {
+													var terms = split( this.value );
+													// remove the current input
+													terms.pop();
+													// add the selected item
+													terms.push( ui.item.value );
+													// add placeholder to get the comma-and-space at the end
+													terms.push( "" );
+													this.value = terms.join( ", " );
+													return false;
+												}
+
+											});
+
+          $(document).on({
+            ajaxStart: function() { tagField.addClass('loading');
+					  												sourceField.addClass('loading');
+																	},
+            ajaxStop: function() { tagField.removeClass('loading');
+					 													sourceField.removeClass('loading');
+																	}
+
+
+
+          })
+
+					// html5 chrome "required" attr issue on edit
+					$(document).ready(function(){
+						{% if fileUploadForm.instance.pk %}
+							var pk = {{ fileUploadForm.instance.pk }}
+						{% else %}
+							var pk = null;
+						{% endif %}
+						if(pk){
+							$('#id_dataset_file').removeAttr('required');
+						}
+					});
+
+</script>
+{% endblock %}
