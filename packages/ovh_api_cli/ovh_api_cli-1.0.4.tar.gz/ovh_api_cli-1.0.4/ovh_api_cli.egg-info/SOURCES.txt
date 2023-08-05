@@ -1,0 +1,12 @@
+MANIFEST.in
+README.rst
+ovhcli_complete.sh
+setup.cfg
+setup.py
+ovh_api_cli/__init__.py
+ovh_api_cli/__main__.py
+ovh_api_cli.egg-info/PKG-INFO
+ovh_api_cli.egg-info/SOURCES.txt
+ovh_api_cli.egg-info/dependency_links.txt
+ovh_api_cli.egg-info/entry_points.txt
+ovh_api_cli.egg-info/top_level.txt

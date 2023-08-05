@@ -1,0 +1,3 @@
+[console_scripts]
+ovhcli = ovh_api_cli:main
+
