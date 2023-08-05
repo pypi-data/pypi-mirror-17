@@ -1,0 +1,144 @@
+body {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: 300;
+}
+
+.fixed-width {
+  font-family: monospace;
+}
+
+
+/* select2 */
+
+.input-group .select2-container .select2-choice {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+
+/* Bootstrap tweaks */
+
+.navbar-brand {
+  padding: 10px 15px;
+}
+
+.form-control {
+  box-shadow: none;
+}
+.search-lg {
+  border-radius: 46px;
+}
+.btn-group-vertical-justified {
+  width: 100%;
+}
+.dropdown-item-button {
+  padding: 3px 20px;
+  border: none;
+  background: none;
+  text-align: left;
+}
+.dropdown-item-button:hover, .dropdown-item-button:focus {
+  color: #262626;
+  background-color: #F5F5F5;
+}
+
+.panel-heading-button {
+  clear: both;
+}
+.panel-heading-button .panel-title {
+  line-height: 30px;
+}
+
+.panel-heading-checkbox {
+  margin-top: 1px !important;
+  float: right;
+}
+
+.btn-blank {
+  padding-right: 0;
+  padding-left: 0;
+  border-color: none;
+  background-color: transparent;
+  color: inherit;
+}
+
+.btn-blank:hover {
+  background-color: transparent;
+  color: inherit;
+}
+
+nav .btn-blank {
+  color: #777;
+}
+
+.navbar-form-snug {
+  border: none;
+}
+
+
+/* Bootstrap Overrides */
+
+.dl-condensed {
+  margin-bottom: 8px;
+}
+@media(min-width: 768px) {
+  .dl-header {
+    width: 160px;
+    text-align: right !important;
+  }
+}
+
+a.ajax-modal-button {
+  cursor: pointer;
+}
+
+/* DataTable tweaks */
+.panel .dataTables_wrapper .dataTables_length,
+.panel .dataTables_wrapper .dataTables_info {
+  padding-left: 15px;
+}
+.panel .dataTables_wrapper .dataTables_filter,
+.panel .dataTables_wrapper .dataTables_paginate {
+  padding-right: 15px;
+}
+
+/* Font Awesome additions */
+
+.fa-spin-fast {
+  animation-duration: 1.5s;
+}
+
+
+/* Loading overlay & spinner */
+
+#ajax-form-loading {
+  text-align: center;
+}
+#ajax-form-loading > i.fa {
+  font-size: 30px;
+}
+
+/* Alerts */
+#alert-placeholder {
+  top: 20px;
+  z-index: 2000;
+}
+
+@media(min-width: 768px) {
+  #alert-placeholder.affix {
+    right: 20px;
+    max-width: 80%;
+  }
+}
+
+/* Dropzone */
+.dropzone { border: 2px dashed #0087F7; margin-bottom: 20px; border-radius: 5px; background: white; }
+.dropzone .dz-message { font-size: 20px; font-weight: 400; }
+.dropzone .dz-message .note { font-size: 0.8em; font-weight: 200; display: block; margin-top: 1.4rem; }
+
+
+/* Custom styling */
+.dataTables_filter, .dataTables_info { display: none; }

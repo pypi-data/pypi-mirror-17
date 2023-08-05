@@ -1,0 +1,425 @@
+{% extends 'veriport_dashboard/base.html' %}
+{% load i18n static %}
+{% load veriport_dashboard_tags %}
+
+{% block title %}{% trans 'Reports' %}{% endblock %}
+
+{% block reports_active %}active{% endblock %}
+
+{% block extra_sidebar %}
+    
+      
+      <!-- /.form group -->
+    <ul class="sidebar-menu">
+        <li class="header">{% trans 'Quick Reports' %}</li>
+    </ul>
+    <div class="clearfix">&nbsp;</div>
+    <!-- Date and time range -->
+    <div class="form-group">
+        <div class="input-group">
+          <button type="button" class="btn btn-default pull-right" id="daterange-btn">
+            <span>
+              <i class="fa fa-calendar"></i> {% trans 'Date Range Selector' %}
+            </span>
+            <i class="fa fa-caret-down"></i>
+          </button>
+        </div>
+      </div>
+    <ul class="sidebar-menu">
+        <li class="header">{% trans 'My Reports' %}</li>
+        {% for filter in report_filters %}
+            <li class="treeview">
+                <a href="{% url 'dashboard:reports' %}?filters={{ filter.id }}" style="position: initial">
+                    {{ filter.name }}
+                    
+                </a>
+                <a href="" class="remove-filter" data-filter-id="{{ filter.id }}" style="position: initial; padding: 0">
+                    <span class="pull-right" style="top: 43% !important">
+                        <i class="fa fa-edit"></i>
+                        <i class="fa fa-remove"></i>
+                    </span>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+
+{% block content %}
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">{% trans 'Reports' %}</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="report-table" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="regulated-test">{% trans 'Regulated Test' %}</th>
+                                    <th>{% trans 'Account' %}</th>
+                                    <th>{% trans 'MRO Verification' %}</th>
+                                    <th>{% trans 'CCF Matched Date' %}</th>
+                                    <th>{% trans 'Date Released' %}</th>
+                                    <th class="account-type">{% trans 'Account Type' %}</th>
+                                    <th class="datetime-imported">{% trans 'Datetime Imported' %}</th>
+                                    {% if duration_type %}
+                                        <th>{{ duration_type }}</th>
+                                    {% endif %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>{% trans 'Regulated Test' %}</th>
+                                    <th>{% trans 'Account' %}</th>
+                                    <th>{% trans 'MRO Verification' %}</th>
+                                    <th>{% trans 'CCF Matched Date' %}</th>
+                                    <th>{% trans 'Date Released' %}</th>
+                                    <th>{% trans 'Account Type' %}</th>
+                                    <th>{% trans 'Datetime Imported' %}</th>
+                                    {% if duration_type %}
+                                        <th>{{ duration_type }}</th>
+                                    {% endif %}
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <div class="clearfix">&nbsp;</div>
+                        <div class="pull-right">
+                            <a href="" class="btn btn-primary export-pdf">{% trans 'Export to PDF' %}</a>
+                            <a href="" class="btn btn-primary export-csv">{% trans 'Export to CSV' %}</a>
+                        </div>
+                        
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">{% trans 'Filters' %}</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <!-- search form -->
+                        <form method="POST" class="saveFilterForm">
+                            {% csrf_token %}
+                            {{ form.start_date }}
+                            {{ form.end_date }}
+                            <div class="col-xs-3">
+                                {{ form.search_text }}
+
+                            </div>
+                            <div class="col-xs-3">
+                                {{ form.account_type }}
+                            </div>
+                            <div class="clearfix">&nbsp;</div>
+                            <div class="col-xs-6">
+                                <h4>{% trans 'Toggle Report Columns' %}</h4>
+                                <div class="checkbox">
+                                    <label>
+                                        {{ form.account }}
+                                        {{ form.account.label }}
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        {{ form.mro_verification }}
+                                        {{ form.mro_verification.label }}
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        {{ form.date_ccf_matched }}
+                                        {{ form.date_ccf_matched.label }}
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        {{ form.date_released }}
+                                        {{ form.date_released.label }}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 regulatedTest-div report-types">
+                                <h4 class="box-title">{% trans 'Regulated Testing' %}</h4>
+                                <div class="form-group">
+                                    {% for test_option in form.regulated_testing %}
+                                        <div class="radio">
+                                            {{ test_option }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-xs-6 tpaReport-div report-types">
+                                <h4 class="box-title">{% trans 'TPA Reports' %}</h4>
+                                <div class="form-group">
+                                    {% for test_option in form.tpa_reports %}
+                                        <div class="radio">
+                                            {{ test_option }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-xs-6 mroReport-div report-types">
+                                <h4 class="box-title">{% trans 'MRO Reports' %}</h4>
+                                <div class="form-group">
+                                    {% for test_option in form.mro_reports %}
+                                        <div class="radio">
+                                            {{ test_option }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="clearfix">&nbsp;</div>
+                            <div class="col-xs-12">
+                                <input type="button" class="btn btn-primary save-report" value="{% trans 'Save Report' %}" />
+                            </div>
+                        </form>
+                        <!-- /.search form -->
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <!-- /.row -->
+  </section>
+  <!-- /.content -->
+
+<div class="modal fade save-filter-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{% trans 'Filter Form' %}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    {{ form.filter_name }}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary save-filter">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{% endblock %}
+
+{% block extra_js %}
+    <!-- DataTables -->
+    <script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'plugins/datatables/dataTables.bootstrap.min.js' %}"></script>
+    <script type="text/javascript">
+
+        function checkRegulatedTests(data) {
+            var regulatedTest = $(".regulatedTest:checked").val();
+            if(regulatedTest != undefined && regulatedTest === "all")
+                return true;
+            else if(regulatedTest != undefined && regulatedTest != data[0].toLowerCase())
+                return false;
+            return true;
+        }
+
+        function checkDateRange(data) {
+            var currentDate = moment(data[6], "MM/DD/YYYY");
+            if(currentDate.isBetween(startDate.format("YYYY-MM-DD"), endDate.format("YYYY-MM-DD")))
+                return true;
+            else
+                return false;
+        }
+
+        function checkAccountType(data) {
+            var accountType = $(".accountType").val();
+            if(accountType != undefined && accountType === "all")
+                return true;
+            else if(accountType != undefined && accountType != data[5].toLowerCase())
+                return false;
+            return true;
+        }
+
+        // $.fn.dataTable.ext.search.push(
+        //     function( settings, data, dataIndex ) {
+        //         if(checkRegulatedTests(data) && checkAccountType(data) && checkDateRange(data))
+        //             return true;
+        //         return false;
+        //     }
+        // );
+
+        function processFilters(reportTable) {
+            var uncheckedColumns = $(".toggle-column:not(:checked)");
+            $.each(uncheckedColumns, function(index, element) {
+                // Get the column API object
+                var column = reportTable.column($(element).attr('data-column'));   
+                // Toggle the visibility
+                column.visible(!column.visible());
+            });
+
+            var searchText = $(".text-search").val();
+            if(searchText)
+                reportTable.search(searchText).draw();
+        }
+
+        function displayReportTypes() {
+            if($(".accountType").val().toLowerCase() === "mro") {
+                $(".report-types").hide();
+                $(".mroReport-div").show();
+            }
+            else if($(".accountType").val().toLowerCase() === "tpa") {
+                $(".report-types").hide();
+                $(".tpaReport-div").show();
+            }
+            else {
+                $(".report-types").hide();
+                $(".regulatedTest-div").show();
+            }
+        }
+
+        function filterColumns(reportTable) {
+            var regulatedTest = $(".regulatedTest:checked").val();
+            reportTable.column(0).search(regulatedTest);
+            reportTable.column(6).search(startDate.format("MM/DD/YYYY") + "---" + endDate.format("MM/DD/YYYY"));
+            reportTable.draw();
+        }
+
+        $(function() {
+            {% if current_filter %}
+                window.startDate = moment("{{ current_filter.start_date }}", "MM-DD-YYYY");
+                window.endDate = moment("{{ current_filter.end_date }}", "MM-DD-YYYY");
+            {% else %}
+                window.startDate = moment().subtract(29, 'days');
+                window.endDate = moment();
+            {% endif %}
+            
+            var reportTable = $('#report-table').DataTable({
+                "columnDefs": [
+                    {
+                        "targets": [
+                            "regulated-test",
+                            "account-type",
+                            "datetime-imported",
+                        ],
+                        "visible": false,
+                        "searchable": true
+                    }
+                ],
+                "processing": true,
+                "serverSide": true,
+                "ajaxSource": "{% url 'dashboard:reports-ajax' %}",
+                {% if duration_type %}
+                    "fnServerParams": function ( aoData ) {
+                        aoData.push( { "name": "duration", "value": "{{ request.GET.duration }}" } );
+                    },
+                {% endif %}
+                // "ajax": {
+                //     "url": "{% url 'dashboard:reports-ajax' %}",
+                //     "type": "GET"
+                // },
+
+            });
+
+            displayReportTypes();
+
+            processFilters(reportTable);
+            filterColumns(reportTable);
+
+            //Date range as a button
+            $('#daterange-btn').daterangepicker(
+                {
+                  ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                  },
+                  startDate: startDate,
+                  endDate: endDate
+                },
+                function (start, end) {
+                  $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                }
+            );
+
+            $('#daterange-btn').on('apply.daterangepicker', function(ev, picker) {
+                startDate = picker.startDate;
+                endDate = picker.endDate;
+
+                filterColumns(reportTable);
+            });
+
+            $(".regulatedTest").on("change", function() {
+                filterColumns(reportTable);
+            });
+
+            $(".accountType").on("change", function() {
+                var accountType = $(".accountType").val();
+                displayReportTypes();
+                reportTable.column(5).search(accountType).draw();
+            });
+
+            $('.text-search').on('keyup', function() {
+                reportTable.search($(this).val()).draw();
+            });
+
+            $('.toggle-column').on('change', function() {
+                // Get the column API object
+                var column = reportTable.column($(this).attr('data-column'));
+         
+                // Toggle the visibility
+                column.visible(!column.visible());
+            });
+
+            $(".save-report").on("click", function(e) {
+                e.preventDefault();
+                $(".save-filter-modal").modal("show");
+            });
+
+            $(".save-filter").on("click", function(e) {
+                $("#id_start_date").val(startDate.format("MM/DD/YYYY"));
+                $("#id_end_date").val(endDate.format("MM/DD/YYYY"));
+
+                var filterForm = $(".saveFilterForm");
+                $(".filter-name").appendTo(filterForm);
+                filterForm.submit();
+            });
+
+            $(".remove-filter").on("click", function(e) {
+                e.preventDefault();
+
+                var filterId = $(this).data("filter-id");
+                window.location = "/veriport-dashboard/filters/remove/" + filterId + "/";
+            });
+
+            $(".export-pdf").on("click", function(e) {
+                e.preventDefault();
+                $("#id_start_date").val(startDate.format("MM/DD/YYYY"));
+                $("#id_end_date").val(endDate.format("MM/DD/YYYY"));
+                var formClone = $(".saveFilterForm").clone();
+                formClone.attr("action", "{% url 'dashboard:reports-export' 'pdf' %}");
+                formClone.submit();
+            });
+
+            $(".export-csv").on("click", function(e) {
+                e.preventDefault();
+                $("#id_start_date").val(startDate.format("MM/DD/YYYY"));
+                $("#id_end_date").val(endDate.format("MM/DD/YYYY"));
+                var formClone = $(".saveFilterForm").clone();
+                formClone.attr("action", "{% url 'dashboard:reports-export' 'csv' %}");
+                formClone.submit();
+            });
+        });
+    </script>
+{% endblock %}
