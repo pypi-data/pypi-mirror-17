@@ -1,0 +1,13 @@
+setup.py
+bin/cmsync
+cmsync/__init__.py
+cmsync/__main__.py
+cmsync/cmsync.py
+cmsync/color.py
+cmsync/transport.py
+cmsync.egg-info/PKG-INFO
+cmsync.egg-info/SOURCES.txt
+cmsync.egg-info/dependency_links.txt
+cmsync.egg-info/entry_points.txt
+cmsync.egg-info/requires.txt
+cmsync.egg-info/top_level.txt
