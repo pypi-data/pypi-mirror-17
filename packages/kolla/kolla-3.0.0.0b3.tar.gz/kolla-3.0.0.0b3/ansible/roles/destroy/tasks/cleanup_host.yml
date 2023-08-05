@@ -1,0 +1,8 @@
+---
+- name: Destroying Kolla host configuration
+  command: /tmp/kolla-cleanup/tools/cleanup-host
+
+- name: Destroying kolla-cleanup folder
+  file:
+    path: /tmp/kolla-cleanup
+    state: absent

@@ -1,0 +1,30 @@
+FROM {{ namespace }}/{{ image_prefix }}openstack-base:{{ tag }}
+MAINTAINER {{ maintainer }}
+
+{% import "macros.j2" as macros with context %}
+
+{% if install_type == 'binary' %}
+
+{% if base_distro in ['centos', 'fedora', 'oraclelinux', 'rhel'] %}
+    {% set sahara_base_packages = ['openstack-sahara-common'] %}
+{% elif base_distro in ['ubuntu'] %}
+    {% set sahara_base_packages = ['sahara-common'] %}
+{% endif %}
+{{ macros.install_packages(sahara_base_packages | customizable("packages")) }}
+
+{% elif install_type == 'source' %}
+
+ADD sahara-base-archive /sahara-base-source
+RUN ln -s sahara-base-source/* sahara \
+    && useradd --user-group sahara \
+    && /var/lib/kolla/venv/bin/pip --no-cache-dir install --upgrade -c requirements/upper-constraints.txt /sahara \
+    && mkdir -p /etc/sahara /var/log/sahara /home/sahara \
+    && cp -r /sahara/etc/* /etc/sahara/ \
+    && chown -R sahara: /etc/sahara /var/log/sahara /home/sahara
+
+{% endif %}
+
+RUN usermod -a -G kolla sahara
+
+{% block sahara_base_footer %}{% endblock %}
+{% block footer %}{% endblock %}
