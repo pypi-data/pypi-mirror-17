@@ -1,0 +1,9 @@
+include HISTORY.rst
+include LICENSE
+include README.rst
+include requirements.txt
+include dev-requirements.txt
+
+recursive-include tests *
+
+recursive-include docs *.rst conf.py Makefile 
