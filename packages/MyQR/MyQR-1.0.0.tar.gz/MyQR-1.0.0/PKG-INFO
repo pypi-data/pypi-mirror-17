@@ -1,0 +1,40 @@
+Metadata-Version: 1.1
+Name: MyQR
+Version: 1.0.0
+Summary: Generater for amazing qr codes. Including Common, Artistic and Animated qr codes.
+Home-page: https://github.com/sylnsfar/qrcode
+Author: sylnsfar
+Author-email: sylnsfar@gmail.com
+License: GPLv3
+Download-URL: https://github.com/sylnsfar/qrcode
+Description: 
+                Overview
+                ===============
+                It can generate common qr-code, artistic qr-code (black & white or colorized), animated qr-code (black & white or colorized).
+        
+                Usage
+                ===============
+                myqr words
+                     [-h]
+                     [-v {1,2,3,...,40}]
+                     [-l {L, M, Q, H}]
+                     [-p image_filename]
+                     [-c]
+                     [-con contrast_value]
+                     [-bri brightness_value]
+        
+                More
+                ===============
+                Please visit 'Home Page' blow for examples and details.
+         
+         
+         
+         
+            
+Keywords: qr,qrcode,qr code,artistic,animated,gif
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
