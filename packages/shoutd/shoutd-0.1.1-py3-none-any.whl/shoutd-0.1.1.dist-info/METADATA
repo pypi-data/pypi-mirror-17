@@ -1,0 +1,19 @@
+Metadata-Version: 2.0
+Name: shoutd
+Version: 0.1.1
+Summary: shoutd
+Home-page: https://github.com/xhs/shoutd
+Author: xhs
+Author-email: chef@dark.kitchen
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: docopt
+Requires-Dist: pyroute2
+Requires-Dist: raftkit
+Requires-Dist: requests
+Requires-Dist: structlog
+
+UNKNOWN
+
+
