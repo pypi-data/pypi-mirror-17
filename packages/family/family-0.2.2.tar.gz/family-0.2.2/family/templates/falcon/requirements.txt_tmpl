@@ -1,0 +1,11 @@
+cython
+falcon
+requests
+simplejson
+PasteScript
+gunicorn
+raven==5.3.1
+ipython
+SQLAlchemy
+alembic
+gevent
