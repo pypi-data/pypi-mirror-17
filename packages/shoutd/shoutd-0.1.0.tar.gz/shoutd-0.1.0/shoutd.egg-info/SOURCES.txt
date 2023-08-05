@@ -1,0 +1,10 @@
+setup.py
+bin/shoutd
+bin/shoutdctl
+shoutd/__init__.py
+shoutd/shoutd.py
+shoutd.egg-info/PKG-INFO
+shoutd.egg-info/SOURCES.txt
+shoutd.egg-info/dependency_links.txt
+shoutd.egg-info/requires.txt
+shoutd.egg-info/top_level.txt
