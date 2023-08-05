@@ -1,0 +1,5 @@
+Scrapy>=1.0.5
+statsd==3.2.1
+
+[test]
+mock==2.0.0
