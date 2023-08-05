@@ -1,0 +1,16 @@
+setup.py
+tests/__init__.py
+tests/test_menu.py
+tests/test_requestutil.py
+tests/test_wechat_basicapi.py
+wechatkit/__init__.py
+wechatkit/consts.py
+wechatkit/exceptions.py
+wechatkit/menu.py
+wechatkit/utils.py
+wechatkit.egg-info/PKG-INFO
+wechatkit.egg-info/SOURCES.txt
+wechatkit.egg-info/dependency_links.txt
+wechatkit.egg-info/not-zip-safe
+wechatkit.egg-info/requires.txt
+wechatkit.egg-info/top_level.txt
