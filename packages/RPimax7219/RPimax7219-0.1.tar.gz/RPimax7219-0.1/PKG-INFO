@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: RPimax7219
+Version: 0.1
+Summary: A small library to drive a MAX7219 LED serializer using hardware spidev
+Home-page: https://github.com/Acidhub/RPimax7219
+Author: Fernando Manfredi
+Author-email: contact@acidhub.click
+License: MIT
+Description: UNKNOWN
+Keywords: raspberry pi rpi led max7219 matrix seven segment
+Platform: UNKNOWN
