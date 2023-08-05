@@ -1,0 +1,12 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.py
+gback/__init__.py
+gback/gback.py
+gback/readme.py
+gback.egg-info/PKG-INFO
+gback.egg-info/SOURCES.txt
+gback.egg-info/dependency_links.txt
+gback.egg-info/requires.txt
+gback.egg-info/top_level.txt
