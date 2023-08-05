@@ -1,0 +1,7 @@
+selenium==2.53.6
+
+[dev]
+check-manifest
+
+[test]
+coverage
