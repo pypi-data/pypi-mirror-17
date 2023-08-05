@@ -1,0 +1,40 @@
+CHANGES
+=======
+
+* Add disk formats
+* Add attribute description to jsonschema
+* Add attribute description to jsonschema
+* Add AllowedValues validator
+* Add several missed options in Glare opt list
+* Add images to Glare artifacts
+* Move meta-artifact code to separate folder
+* Add TOSCA template to Glare
+* Add Murano package to Glare artifacts
+* Add heat artifacts to Glare
+* Implement 'latest' filter
+* Change lock id column size up to 255 symbols
+* Fix that deleted artifacts were shown in list output
+* Add retries for sql database
+* Set temporary name for package
+* Add external urls as soft links
+* Git rid of webob's MultiDict in Base type
+* Update tox.ini
+* Fix tests that fail on python 3.5
+* Additional code cleanup
+* Make Glare to catch TypeErrors in coerce wrapper
+* [WIP] Add functional tests for updates
+* Cleanup policy file for tests
+* Add external urls as soft links
+* Do some cleanup on Glare
+* Show dict value when validating required keys
+* Fix docs and remove bandit check for translation
+* Clean requirements and update README
+* Evacuate the remaining code from glance
+* Add functional tests
+* Fix setup.cfg
+* Remove legacy code from wsgi
+* Add alembic migrations
+* Small fixes
+* Run of glare-api server
+* Glare Code
+* Initial commit
