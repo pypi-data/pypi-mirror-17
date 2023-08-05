@@ -1,0 +1,19 @@
+Metadata-Version: 1.0
+Name: opsutils
+Version: 0.2.9
+Summary: that thing you need
+Home-page: https://github.com/minskmaz/opsutils
+Author: Nona Yerbiz
+Author-email: jonah.crawford@protonmail.com
+License: LICENSE.txt
+Description: opsutils
+        --------
+        
+        To use (with caution), simply do::
+        
+            >>> from opsutils import *
+        
+        
+        
+Keywords: aws docker hover cloud
+Platform: UNKNOWN

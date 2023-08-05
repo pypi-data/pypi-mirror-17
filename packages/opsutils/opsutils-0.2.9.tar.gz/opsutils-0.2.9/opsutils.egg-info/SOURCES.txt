@@ -1,0 +1,16 @@
+MANIFEST.in
+README.rst
+setup.py
+opsutils/__init__.py
+opsutils/aws.py
+opsutils/command_line.py
+opsutils/dckr.py
+opsutils/hover.py
+opsutils/interfaces.py
+opsutils.egg-info/PKG-INFO
+opsutils.egg-info/SOURCES.txt
+opsutils.egg-info/dependency_links.txt
+opsutils.egg-info/entry_points.txt
+opsutils.egg-info/not-zip-safe
+opsutils.egg-info/requires.txt
+opsutils.egg-info/top_level.txt
