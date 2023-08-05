@@ -1,0 +1,21 @@
+CHANGES
+=======
+
+* Add external urls as soft links
+* Additional code cleanup
+* Make Glare to catch TypeErrors in coerce wrapper
+* [WIP] Add functional tests for updates
+* Cleanup policy file for tests
+* Do some cleanup on Glare
+* Show dict value when validating required keys
+* Fix docs and remove bandit check for translation
+* Clean requirements and update README
+* Evacuate the remaining code from glance
+* Add functional tests
+* Fix setup.cfg
+* Remove legacy code from wsgi
+* Add alembic migrations
+* Small fixes
+* Run of glare-api server
+* Glare Code
+* Initial commit

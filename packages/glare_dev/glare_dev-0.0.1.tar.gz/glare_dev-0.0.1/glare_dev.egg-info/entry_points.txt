@@ -1,0 +1,7 @@
+[console_scripts]
+glare-api = glare.cmd.api:main
+glare-db-manage = glare.cmd.db_manage:main
+
+[oslo.config.opts]
+glare = glare.opts:list_artifacts_opts
+
