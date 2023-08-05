@@ -1,0 +1,24 @@
+Metadata-Version: 2.0
+Name: git-archive-all
+Version: 1.14
+Summary: Archive git repository with its submodules.
+Home-page: https://github.com/Kentzo/git-archive-all
+Author: Ilya Kulakov
+Author-email: kulakov.ilya@gmail.com
+License: MIT License
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Version Control
+Classifier: Topic :: System :: Archiving
+
+UNKNOWN
+
+
