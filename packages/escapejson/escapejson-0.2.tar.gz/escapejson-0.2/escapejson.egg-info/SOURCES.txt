@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+escapejson/__init__.py
+escapejson/apps.py
+escapejson/escapejson.py
+escapejson/models.py
+escapejson/tests.py
+escapejson.egg-info/PKG-INFO
+escapejson.egg-info/SOURCES.txt
+escapejson.egg-info/dependency_links.txt
+escapejson.egg-info/top_level.txt
+escapejson/templatetags/__init__.py
+escapejson/templatetags/escapejson.py
