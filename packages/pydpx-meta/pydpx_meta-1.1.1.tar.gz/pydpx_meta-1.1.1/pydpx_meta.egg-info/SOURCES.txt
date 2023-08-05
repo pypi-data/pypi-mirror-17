@@ -1,0 +1,10 @@
+setup.py
+pydpx_meta/__init__.py
+pydpx_meta/header.py
+pydpx_meta/header_ex.py
+pydpx_meta/low_header_big_endian.py
+pydpx_meta/low_header_little_endian.py
+pydpx_meta.egg-info/PKG-INFO
+pydpx_meta.egg-info/SOURCES.txt
+pydpx_meta.egg-info/dependency_links.txt
+pydpx_meta.egg-info/top_level.txt
