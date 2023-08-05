@@ -1,0 +1,6 @@
+include README.md
+include LICENSE
+graft django_sendgrid_parse
+prune django_sendgrid
+prune django_sendgrid_repo
+prune media
