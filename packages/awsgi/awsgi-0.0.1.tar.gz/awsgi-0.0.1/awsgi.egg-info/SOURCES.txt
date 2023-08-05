@@ -1,0 +1,12 @@
+setup.py
+awsgi/__init__.py
+awsgi/server.py
+awsgi/websocket.py
+awsgi.egg-info/PKG-INFO
+awsgi.egg-info/SOURCES.txt
+awsgi.egg-info/dependency_links.txt
+awsgi.egg-info/top_level.txt
+sample/__init__.py
+sample/asyncapp.py
+sample/websocketapp.py
+sample/wsgiapp.py
