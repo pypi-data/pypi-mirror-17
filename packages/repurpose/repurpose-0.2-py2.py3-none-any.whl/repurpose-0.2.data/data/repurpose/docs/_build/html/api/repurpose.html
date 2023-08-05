@@ -1,0 +1,467 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>repurpose package &mdash; imgtsimg 0.1.post0.dev15+g4937be2.dirty documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="imgtsimg 0.1.post0.dev15+g4937be2.dirty documentation" href="../index.html"/>
+        <link rel="up" title="Modules" href="modules.html"/>
+        <link rel="next" title="tests package" href="tests.html"/>
+        <link rel="prev" title="Modules" href="modules.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> imgtsimg</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ts2img.html">Thinking behind ts2img</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ts2img.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ts2img.html#possible-steps-involved-in-the-conversion">Possible steps involved in the conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ts2img.html#solution">Solution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Module Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">repurpose package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html">tests package</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">imgtsimg</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="modules.html">Modules</a> &raquo;</li>
+      
+    <li>repurpose package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/api/repurpose.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="repurpose-package">
+<h1>repurpose package<a class="headerlink" href="#repurpose-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-repurpose.img2ts">
+<span id="repurpose-img2ts-module"></span><h2>repurpose.img2ts module<a class="headerlink" href="#module-repurpose.img2ts" title="Permalink to this headline">¶</a></h2>
+<p>Created on Mar 17, 2014</p>
+<p>&#64;author: Christoph Paulik <a class="reference external" href="mailto:christoph&#46;paulik&#37;&#52;&#48;geo&#46;tuwien&#46;ac&#46;at">christoph<span>&#46;</span>paulik<span>&#64;</span>geo<span>&#46;</span>tuwien<span>&#46;</span>ac<span>&#46;</span>at</a></p>
+<dl class="class">
+<dt id="repurpose.img2ts.Img2Ts">
+<em class="property">class </em><code class="descclassname">repurpose.img2ts.</code><code class="descname">Img2Ts</code><span class="sig-paren">(</span><em>input_dataset</em>, <em>outputpath</em>, <em>startdate</em>, <em>enddate</em>, <em>input_kwargs={}</em>, <em>target_grid=None</em>, <em>imgbuffer=100</em>, <em>variable_rename=None</em>, <em>unlim_chunksize=100</em>, <em>cellsize_lat=180.0</em>, <em>cellsize_lon=360.0</em>, <em>r_methods='nn'</em>, <em>r_weightf=None</em>, <em>r_min_n=1</em>, <em>r_radius=18000</em>, <em>r_neigh=8</em>, <em>r_fill_values=None</em>, <em>filename_templ='%04d.nc'</em>, <em>gridname='grid.nc'</em>, <em>global_attr=None</em>, <em>ts_attributes=None</em>, <em>ts_dtypes=None</em>, <em>time_units='days since 1858-11-17 00:00:00'</em>, <em>zlib=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/repurpose/img2ts.html#Img2Ts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#repurpose.img2ts.Img2Ts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>class that uses the read_img iterator of the input_data dataset
+to read all images between startdate and enddate and saves them
+in netCDF time series files according to the given netCDF class
+and the cell structure of the outputgrid</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>input_dataset</strong> (<em>DatasetImgBase like class instance</em>) &#8211; <p>must implement a daily_images iterator that yields
+data : dict</p>
+<blockquote>
+<div>dictionary of numpy arrays that hold the image data for each variable
+of the dataset</div></blockquote>
+<p>timestamp : exact timestamp of the image
+lon : numpy.array or None</p>
+<blockquote>
+<div>array of longitudes, if None self.grid will be assumed</div></blockquote>
+<dl class="docutils">
+<dt>lat <span class="classifier-delimiter">:</span> <span class="classifier">numpy.array or None</span></dt>
+<dd>array of latitudes, if None self.grid will be assumed</dd>
+<dt>jd <span class="classifier-delimiter">:</span> <span class="classifier">numpy.array or None</span></dt>
+<dd>array of observation times in julian days, if None all
+observations have the same timestamp</dd>
+</dl>
+</li>
+<li><strong>outputpath</strong> (<a class="reference external" href="http://docs.python.org/2.7/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; path where to save the time series to</li>
+<li><strong>startdate</strong> (<em>date</em>) &#8211; date from which the time series should start. Of course images
+have to be available from this date onwards.</li>
+<li><strong>enddate</strong> (<em>date</em>) &#8211; date when the time series should end. Images should be availabe
+up until this date</li>
+<li><strong>input_kwargs</strong> (<em>dict, optional</em>) &#8211; keyword arguments which should be used in the read_img method of the
+input_dataset</li>
+<li><strong>target_grid</strong> (grid instance as defined in <a href="#id1"><span class="problematic" id="id2">:module:`pytesmo.grids.grid`</span></a>, optional) &#8211; the grid on which the time series will be stored.
+If not given then the grid of the input dataset will be used</li>
+<li><strong>imgbuffer</strong> (<em>int, optional</em>) &#8211; number of days worth of images that should be read into memory before
+a time series is written. This parameter should be chosen so that
+the memory of your machine is utilized. It depends on the daily data
+volume of the input dataset</li>
+<li><strong>variable_rename</strong> (<em>dict, optional</em>) &#8211; if the variables should have other names than the names that are
+returned as keys in the dict by the daily_images iterator. A dictionary
+can be provided that changes these names for the time series.</li>
+<li><strong>unlim_chunksize</strong> (<em>int, optional</em>) &#8211; netCDF chunksize for unlimited variables.</li>
+<li><strong>cellsize_lat</strong> (<em>float, optional</em>) &#8211; if outgrid or input_data.grid are not cell grids then the cellsize
+in latitude direction can be specified here. Default is 1 global cell.</li>
+<li><strong>cellsize_lon</strong> (<em>float, optional</em>) &#8211; if outgrid or input_data.grid are not cell grids then the cellsize
+in longitude direction can be specified here. Default is 1 global cell.</li>
+<li><strong>r_methods</strong> (<em>string or dict, optional</em>) &#8211; resample methods to use if resampling is necessary, either &#8216;nn&#8217; for nearest
+neighbour or &#8216;custom&#8217; for custom weight function. Can also be a dictionary
+in which the method is specified for each variable</li>
+<li><strong>r_weightf</strong> (<em>function or dict, optional</em>) &#8211; if r_methods is custom this function will be used to calculate the weights
+depending on distance. This can also be a dict with a separate weight function
+for each variable.</li>
+<li><strong>r_min_n</strong> (<em>int, optional</em>) &#8211; Minimum number of neighbours on the target_grid that are required for a point to be resampled.</li>
+<li><strong>r_radius</strong> (<em>float, optional</em>) &#8211; resample radius in which neighbours should be searched given in meters</li>
+<li><strong>r_neigh</strong> (<em>int, optional</em>) &#8211; maximum number of neighbours found inside r_radius to use during resampling. If more are found
+the r_neigh closest neighbours will be used.</li>
+<li><strong>r_fill_values</strong> (<em>number or dict, optional</em>) &#8211; if given the resampled output array will be filled with this value if no valid
+resampled value could be computed, if not a masked array will be returned
+can also be a dict with a fill value for each variable</li>
+<li><strong>filename_templ</strong> (<em>string, optional</em>) &#8211; filename template must be a string with a string formatter for the cell number.
+e.g. &#8216;%04d.nc&#8217; will translate to the filename &#8216;0001.nc&#8217; for cell number 1.</li>
+<li><strong>gridname</strong> (<em>string, optional</em>) &#8211; filename of the grid which will be saved as netCDF</li>
+<li><strong>global_attr</strong> (<em>dict, optional</em>) &#8211; global attributes for each file</li>
+<li><strong>ts_attributes</strong> (<em>dict, optional</em>) &#8211; dictionary of attributes that should be set for the netCDF time series.
+Can be either a dictionary of attributes that will be set for all variables in input_data
+or a dictionary of dictionaries. In the second case the first dictionary has to have a key
+for each variable returned by input_data and the second level dictionary will be the dictionary of
+attributes for this time series.</li>
+<li><strong>ts_dtype</strong> (<em>numpy.dtype or dict of numpy.dtypes</em>) &#8211; data type to use for the time series, if it is a dict then a key must exist for each
+variable returned by input_data.
+Default : None, no change from input data</li>
+<li><strong>time_units</strong> (<em>string, optional</em>) &#8211; units the time axis is given in.
+Default: &#8220;days since  1858-11-17 00:00:00&#8221; which is modified julian date
+for regular images this can be set freely since the conversion is done
+automatically, for images with irregular timestamp this will be ignored for now</li>
+<li><strong>zlib</strong> (<em>boolean, optional</em>) &#8211; if True the saved netCDF files will be compressed
+Default: False</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="repurpose.img2ts.Img2Ts.calc">
+<code class="descname">calc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/repurpose/img2ts.html#Img2Ts.calc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#repurpose.img2ts.Img2Ts.calc" title="Permalink to this definition">¶</a></dt>
+<dd><p>go through all images and retrieve a stack of them
+then go through all grid points in cell order and write to netCDF file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="repurpose.img2ts.Img2Ts.img_bulk">
+<code class="descname">img_bulk</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/repurpose/img2ts.html#Img2Ts.img_bulk"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#repurpose.img2ts.Img2Ts.img_bulk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Yields numpy array of self.const.imgbuffer images,
+start and enddate until all dates have been read</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><strong>img_stack_dict</strong> (<em>dict of numpy.array</em>) &#8211;
+stack of daily images for each variable</li>
+<li><strong>startdate</strong> (<em>date</em>) &#8211;
+date of first image in stack</li>
+<li><strong>enddate</strong> (<em>date</em>) &#8211;
+date of last image in stack</li>
+<li><strong>datetimestack</strong> (<em>np.array</em>) &#8211;
+array of the timestamps of each image</li>
+<li><strong>jd_stack</strong> (<em>np.array or None</em>) &#8211;
+if None all observations in an image have the same
+observation timestamp. Otherwise it gives the julian date
+of each observation in img_stack_dict</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="repurpose.img2ts.Img2TsError">
+<em class="property">exception </em><code class="descclassname">repurpose.img2ts.</code><code class="descname">Img2TsError</code><a class="reference internal" href="../_modules/repurpose/img2ts.html#Img2TsError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#repurpose.img2ts.Img2TsError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/2.7/library/exceptions.html#exceptions.Exception" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-repurpose.skeleton">
+<span id="repurpose-skeleton-module"></span><h2>repurpose.skeleton module<a class="headerlink" href="#module-repurpose.skeleton" title="Permalink to this headline">¶</a></h2>
+<p>This is a skeleton file that can serve as a starting point for a Python
+console script. To run this script uncomment the following line in the
+console_scripts section in setup.cfg:</p>
+<blockquote>
+<div>hello_world = repurpose.skeleton:run</div></blockquote>
+<p>Then run <cite>python setup.py install</cite> which will install the command <cite>hello_world</cite>
+inside your current environment.
+Besides console scripts, the header (i.e. until _logger...) of this file can
+also be used as template for Python modules.</p>
+<p>Note: This skeleton file can be safely removed if not needed!</p>
+<dl class="function">
+<dt id="repurpose.skeleton.main">
+<code class="descclassname">repurpose.skeleton.</code><code class="descname">main</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/repurpose/skeleton.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#repurpose.skeleton.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="repurpose.skeleton.parse_args">
+<code class="descclassname">repurpose.skeleton.</code><code class="descname">parse_args</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/repurpose/skeleton.html#parse_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#repurpose.skeleton.parse_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse command line parameters</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>args</strong> &#8211; command line parameters as list of strings</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">command line parameters as <a class="reference external" href="http://docs.python.org/2.7/library/argparse.html#argparse.Namespace" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">argparse.Namespace</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="repurpose.skeleton.run">
+<code class="descclassname">repurpose.skeleton.</code><code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/repurpose/skeleton.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#repurpose.skeleton.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-repurpose.ts2img">
+<span id="repurpose-ts2img-module"></span><h2>repurpose.ts2img module<a class="headerlink" href="#module-repurpose.ts2img" title="Permalink to this headline">¶</a></h2>
+<p>module for conversion of time series data to image data
+Created on Mon Apr 20 11:08:58 2015</p>
+<p>&#64;author: <a class="reference external" href="mailto:christoph&#46;paulik&#37;&#52;&#48;geo&#46;tuwien&#46;ac&#46;at">christoph<span>&#46;</span>paulik<span>&#64;</span>geo<span>&#46;</span>tuwien<span>&#46;</span>ac<span>&#46;</span>at</a></p>
+<dl class="class">
+<dt id="repurpose.ts2img.Ts2Img">
+<em class="property">class </em><code class="descclassname">repurpose.ts2img.</code><code class="descname">Ts2Img</code><span class="sig-paren">(</span><em>tsreader</em>, <em>imgwriter</em>, <em>agg_func=None</em>, <em>ts_buffer=1000</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/repurpose/ts2img.html#Ts2Img"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#repurpose.ts2img.Ts2Img" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Takes a time series dataset and converts it
+into an image dataset.
+A custom aggregate function should be given otherwise
+a daily mean will be used</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>tsreader</strong> (<a class="reference external" href="http://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><em>object</em></a>) &#8211; object that implements a iter_ts method which iterates over
+pandas time series and has a grid attribute that is a pytesmo
+BasicGrid or CellGrid</li>
+<li><strong>imgwriter</strong> (<a class="reference external" href="http://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><em>object</em></a>) &#8211; writer object that implements a write_ts method that takes
+a list of grid point indices and a 2D array containing the time series data</li>
+<li><strong>agg_func</strong> (<em>function</em>) &#8211; function that takes a pandas DataFrame and returns
+an aggregated pandas DataFrame</li>
+<li><strong>ts_buffer</strong> (<a class="reference external" href="http://docs.python.org/2.7/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; how many time series to read before writing to disk,
+constrained by the working memory the process should use.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="repurpose.ts2img.Ts2Img.calc">
+<code class="descname">calc</code><span class="sig-paren">(</span><em>**tsaggkw</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/repurpose/ts2img.html#Ts2Img.calc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#repurpose.ts2img.Ts2Img.calc" title="Permalink to this definition">¶</a></dt>
+<dd><p>does the conversion from time series to images</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="repurpose.ts2img.Ts2Img.tsbulk">
+<code class="descname">tsbulk</code><span class="sig-paren">(</span><em>gpis=None</em>, <em>**tsaggkw</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/repurpose/ts2img.html#Ts2Img.tsbulk"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#repurpose.ts2img.Ts2Img.tsbulk" title="Permalink to this definition">¶</a></dt>
+<dd><p>iterator over gpi and time series arrays of size self.ts_buffer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>gpis</strong> (<em>iterable, optional</em>) &#8211; if given these gpis will be used, can be practical
+if the gpis are managed by an external class e.g. for parallel
+processing</li>
+<li><strong>tsaggkw</strong> (<a class="reference external" href="http://docs.python.org/2.7/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; Keywords to give to the time series aggregation function</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>gpi_array</strong> (<em>numpy.array</em>) &#8211;
+numpy array of gpis in this batch</li>
+<li><strong>ts_bulk</strong> (<em>dict of numpy arrays</em>) &#8211;
+for each variable one numpy array of shape
+(len(gpi_array), len(ts_aggregated))</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="repurpose.ts2img.agg_tsmonthly">
+<code class="descclassname">repurpose.ts2img.</code><code class="descname">agg_tsmonthly</code><span class="sig-paren">(</span><em>ts</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/repurpose/ts2img.html#agg_tsmonthly"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#repurpose.ts2img.agg_tsmonthly" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ts</strong> (<a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.18.1)"><em>pandas.DataFrame</em></a>) &#8211; time series of a point</li>
+<li><strong>kwargs</strong> (<a class="reference external" href="http://docs.python.org/2.7/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; any additional keyword arguments that are given to the ts2img object
+during initialization</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>ts_agg</strong> &#8211;
+aggregated time series, they all must have the same length
+otherwise it can not work
+each column of this DataFrame will be a layer in the image</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.18.1)">pandas.DataFrame</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-repurpose">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-repurpose" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tests.html" class="btn btn-neutral float-right" title="tests package">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="modules.html" class="btn btn-neutral" title="Modules"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Christoph Paulik.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.post0.dev15+g4937be2.dirty',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

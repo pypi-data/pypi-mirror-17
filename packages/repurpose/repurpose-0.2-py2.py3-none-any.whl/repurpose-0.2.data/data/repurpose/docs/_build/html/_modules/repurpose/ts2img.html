@@ -1,0 +1,343 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>repurpose.ts2img &mdash; imgtsimg 0.1.post0.dev15+g4937be2.dirty documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="imgtsimg 0.1.post0.dev15+g4937be2.dirty documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> imgtsimg</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../ts2img.html">Thinking behind ts2img</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ts2img.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ts2img.html#possible-steps-involved-in-the-conversion">Possible steps involved in the conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ts2img.html#solution">Solution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">Module Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/repurpose.html">repurpose package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/tests.html">tests package</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">imgtsimg</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>repurpose.ts2img</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for repurpose.ts2img</h1><div class="highlight"><pre>
+<span class="c"># Copyright (c) 2015,Vienna University of Technology,</span>
+<span class="c"># Department of Geodesy and Geoinformation</span>
+<span class="c"># All rights reserved.</span>
+
+<span class="c"># Redistribution and use in source and binary forms, with or without</span>
+<span class="c"># modification, are permitted provided that the following conditions are met:</span>
+<span class="c">#   * Redistributions of source code must retain the above copyright</span>
+<span class="c">#     notice, this list of conditions and the following disclaimer.</span>
+<span class="c">#    * Redistributions in binary form must reproduce the above copyright</span>
+<span class="c">#      notice, this list of conditions and the following disclaimer in the</span>
+<span class="c">#      documentation and/or other materials provided with the distribution.</span>
+<span class="c">#    * Neither the name of the Vienna University of Technology,</span>
+<span class="c">#      Department of Geodesy and Geoinformation nor the</span>
+<span class="c">#      names of its contributors may be used to endorse or promote products</span>
+<span class="c">#      derived from this software without specific prior written permission.</span>
+
+<span class="c"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;</span>
+<span class="c"># AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span>
+<span class="c"># IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE</span>
+<span class="c"># ARE DISCLAIMED. IN NO EVENT SHALL VIENNA UNIVERSITY OF TECHNOLOGY,</span>
+<span class="c"># DEPARTMENT OF GEODESY AND GEOINFORMATION BE LIABLE FOR ANY</span>
+<span class="c"># DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span>
+<span class="c"># (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span>
+<span class="c"># LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND</span>
+<span class="c"># ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span>
+<span class="c"># (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span>
+<span class="c"># SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">module for conversion of time series data to image data</span>
+<span class="sd">Created on Mon Apr 20 11:08:58 2015</span>
+
+<span class="sd">@author: christoph.paulik@geo.tuwien.ac.at</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="agg_tsmonthly"><a class="viewcode-back" href="../../api/repurpose.html#repurpose.ts2img.agg_tsmonthly">[docs]</a><span class="k">def</span> <span class="nf">agg_tsmonthly</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ts : pandas.DataFrame</span>
+<span class="sd">        time series of a point</span>
+<span class="sd">    kwargs : dict</span>
+<span class="sd">        any additional keyword arguments that are given to the ts2img object</span>
+<span class="sd">        during initialization</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ts_agg : pandas.DataFrame</span>
+<span class="sd">        aggregated time series, they all must have the same length</span>
+<span class="sd">        otherwise it can not work</span>
+<span class="sd">        each column of this DataFrame will be a layer in the image</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c"># very simple example</span>
+    <span class="c"># aggregate to monthly timestamp</span>
+    <span class="c"># should also make sure that the output has a certain length</span>
+    <span class="k">return</span> <span class="n">ts</span><span class="o">.</span><span class="n">asfreq</span><span class="p">(</span><span class="s">&quot;M&quot;</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="Ts2Img"><a class="viewcode-back" href="../../api/repurpose.html#repurpose.ts2img.Ts2Img">[docs]</a><span class="k">class</span> <span class="nc">Ts2Img</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes a time series dataset and converts it</span>
+<span class="sd">    into an image dataset.</span>
+<span class="sd">    A custom aggregate function should be given otherwise</span>
+<span class="sd">    a daily mean will be used</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    tsreader: object</span>
+<span class="sd">        object that implements a iter_ts method which iterates over</span>
+<span class="sd">        pandas time series and has a grid attribute that is a pytesmo</span>
+<span class="sd">        BasicGrid or CellGrid</span>
+<span class="sd">    imgwriter: object</span>
+<span class="sd">        writer object that implements a write_ts method that takes</span>
+<span class="sd">        a list of grid point indices and a 2D array containing the time series data</span>
+<span class="sd">    agg_func: function</span>
+<span class="sd">        function that takes a pandas DataFrame and returns</span>
+<span class="sd">        an aggregated pandas DataFrame</span>
+<span class="sd">    ts_buffer: int</span>
+<span class="sd">        how many time series to read before writing to disk,</span>
+<span class="sd">        constrained by the working memory the process should use.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tsreader</span><span class="p">,</span> <span class="n">imgwriter</span><span class="p">,</span>
+                 <span class="n">agg_func</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">ts_buffer</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">agg_func</span> <span class="o">=</span> <span class="n">agg_func</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">agg_func</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">agg_func</span> <span class="o">=</span> <span class="n">tsreader</span><span class="o">.</span><span class="n">agg_ts2img</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">agg_func</span> <span class="o">=</span> <span class="n">agg_tsmonthly</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tsreader</span> <span class="o">=</span> <span class="n">tsreader</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imgwriter</span> <span class="o">=</span> <span class="n">imgwriter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ts_buffer</span> <span class="o">=</span> <span class="n">ts_buffer</span>
+
+<div class="viewcode-block" id="Ts2Img.calc"><a class="viewcode-back" href="../../api/repurpose.html#repurpose.ts2img.Ts2Img.calc">[docs]</a>    <span class="k">def</span> <span class="nf">calc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">tsaggkw</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        does the conversion from time series to images</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">gpis</span><span class="p">,</span> <span class="n">ts</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tsbulk</span><span class="p">(</span><span class="o">**</span><span class="n">tsaggkw</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">imgwriter</span><span class="o">.</span><span class="n">write_ts</span><span class="p">(</span><span class="n">gpis</span><span class="p">,</span> <span class="n">ts</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Ts2Img.tsbulk"><a class="viewcode-back" href="../../api/repurpose.html#repurpose.ts2img.Ts2Img.tsbulk">[docs]</a>    <span class="k">def</span> <span class="nf">tsbulk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gpis</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">tsaggkw</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        iterator over gpi and time series arrays of size self.ts_buffer</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        gpis: iterable, optional</span>
+<span class="sd">            if given these gpis will be used, can be practical</span>
+<span class="sd">            if the gpis are managed by an external class e.g. for parallel</span>
+<span class="sd">            processing</span>
+<span class="sd">        tsaggkw: dict</span>
+<span class="sd">            Keywords to give to the time series aggregation function</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        gpi_array: numpy.array</span>
+<span class="sd">            numpy array of gpis in this batch</span>
+<span class="sd">        ts_bulk: dict of numpy arrays</span>
+<span class="sd">            for each variable one numpy array of shape</span>
+<span class="sd">            (len(gpi_array), len(ts_aggregated))</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># have to use the grid iteration as long as iter_ts only returns</span>
+        <span class="c"># data frame and no time series object including relevant metadata</span>
+        <span class="c"># of the time series</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">gpi_bulk</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">ts_bulk</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">ts_index</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="n">gpis</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c"># get grid points can return either 3 or 4 values</span>
+            <span class="c"># depending on the grid type, gpis is the first in both cases</span>
+            <span class="n">gpi_info</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tsreader</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">grid_points</span><span class="p">())</span>
+            <span class="n">gpis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">gpi_info</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">gpi</span> <span class="ow">in</span> <span class="n">gpis</span><span class="p">:</span>
+            <span class="n">gpi_bulk</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gpi</span><span class="p">)</span>
+            <span class="n">ts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tsreader</span><span class="o">.</span><span class="n">read_ts</span><span class="p">(</span><span class="n">gpi</span><span class="p">)</span>
+            <span class="n">ts_agg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">agg_func</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="o">**</span><span class="n">tsaggkw</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">ts_agg</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">ts_bulk</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ts_agg</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                    <span class="n">ts_bulk</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="n">ts_bulk</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ts_agg</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">ts_index</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">ts_index</span> <span class="o">=</span> <span class="n">ts_agg</span><span class="o">.</span><span class="n">index</span>
+
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts_buffer</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">ts_bulk</span><span class="p">:</span>
+                    <span class="n">ts_bulk</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">ts_bulk</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+                <span class="n">gpi_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">gpi_bulk</span><span class="p">)</span>
+                <span class="k">yield</span> <span class="n">gpi_array</span><span class="p">,</span> <span class="n">ts_bulk</span>
+                <span class="n">ts_bulk</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="n">gpi_bulk</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">ts_bulk</span><span class="p">:</span>
+                <span class="n">ts_bulk</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">ts_bulk</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+            <span class="n">gpi_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">gpi_bulk</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="n">gpi_array</span><span class="p">,</span> <span class="n">ts_bulk</span></div></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Christoph Paulik.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.post0.dev15+g4937be2.dirty',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,766 @@
+.\" Man page generated from reStructuredText.
+.
+.TH "IMGTSIMG" "1" "August 31, 2016" "0.1.post0.dev15+g4937be2.dirty" "imgtsimg"
+.SH NAME
+imgtsimg \- imgtsimg 0.1.post0.dev15+g4937be2.dirty
+.
+.nr rst2man-indent-level 0
+.
+.de1 rstReportMargin
+\\$1 \\n[an-margin]
+level \\n[rst2man-indent-level]
+level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
+-
+\\n[rst2man-indent0]
+\\n[rst2man-indent1]
+\\n[rst2man-indent2]
+..
+.de1 INDENT
+.\" .rstReportMargin pre:
+. RS \\$1
+. nr rst2man-indent\\n[rst2man-indent-level] \\n[an-margin]
+. nr rst2man-indent-level +1
+.\" .rstReportMargin post:
+..
+.de UNINDENT
+. RE
+.\" indent \\n[an-margin]
+.\" old: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.nr rst2man-indent-level -1
+.\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.in \\n[rst2man-indent\\n[rst2man-indent-level]]u
+..
+\fI\%\fP\fI\%\fP\fI\%\fP\fI\%\fP
+.sp
+This package provides routines for the conversion of image formats to time
+series and vice versa. It is part of the \fI\%poets° project\fP and works best with the readers and writers
+supported there. The main use case is for data that is sampled irregularly in
+space or time. If you have data that is sampled in regular intervals then there
+are alternatives to this package which might be better for your use case. See
+\fI\%Alternatives\fP for more detail.
+.sp
+The readers and writers have to conform to the API specifications of the base
+classes defined in \fI\%pygeobase\fP to work
+without adpation.
+.SH MODULES
+.sp
+It includes two main modules:
+.INDENT 0.0
+.IP \(bu 2
+\fBimg2ts\fP for image/swath to time series conversion, including support for
+spatial resampling.
+.IP \(bu 2
+\fBts2img\fP for time series to image conversion, including support for temporal
+resampling. This module is very experimental at the moment.
+.UNINDENT
+.SH DOCUMENTATION
+.sp
+\fI\%Documentation Status\fP
+.SH ALTERNATIVES
+.sp
+If you have data that can be represented as a 3D datacube then these projects
+might be better suited to your needs.
+.INDENT 0.0
+.IP \(bu 2
+\fI\%PyReshaper\fP is a package that works
+with NetCDF input and output and converts time slices into a time series
+representation.
+.IP \(bu 2
+\fI\%Climate Data Operators (CDO)\fP can work with
+several input formats, stack them and change the chunking to allow time series
+optimized access. It assumes regular sampling in space and time as far as we
+know.
+.IP \(bu 2
+\fI\%netCDF Operators (NCO)\fP are similar
+to CDO with a stronger focus on netCDF.
+.UNINDENT
+.SH NOTE
+.sp
+This project has been set up using PyScaffold 2.4.4. For details and usage
+information on PyScaffold see \fI\%http://pyscaffold.readthedocs.org/\fP\&.
+.SH CONTENTS
+.SS ts2img
+.SS Introduction
+.sp
+Conversion of time series data to images (ts2img) is a general problem
+that we have to deal with often for all kinds of datasets. Although most
+of the external datasets we use come in image format most of them are
+converted into a time series format for analysis. This is fairly
+straightforward for image stacks but gets more complicated for orbit
+data.
+.sp
+Orbit data mostly comes as several data values accompanied by latitude,
+longitude information and must often be resampled to fit on a grid that
+lends itself for time series analysis. A more or less general solution
+for this already exists in the img2ts module.
+.SS Possible steps involved in the conversion
+.sp
+The steps that a ts2img program might have to perform are:
+.INDENT 0.0
+.IP 1. 3
+Read time series in a geographic region \- constrained by memory
+.IP 2. 3
+Aggregate time series in time
+.INDENT 3.0
+.IP \(bu 2
+methods for doing this aggregation can vary for each dataset so
+the method is best specified by the user
+.IP \(bu 2
+resolution in time has to be chosen and is probably also best
+specified by the user
+.IP \(bu 2
+after aggregation every point in time and in space must have a
+value which can of course be NaN
+.IP \(bu 2
+time series might have to be split into separate images during
+conversion, e.g. ASCAT time series are routinely split into images
+for ascending and descending satellite overpasses. \fBThis means
+that we can not assume that the output dataset has the same number
+or names of variables as the input dataset.\fP
+.UNINDENT
+.IP 3. 3
+Put the now uniform time series of equal length into a 2D array per
+variable
+.IP 4. 3
+A resampling step could be performed here but since only a part of
+the dataset is available edge cases would not be resolved correctly.
+A better solution would be to develop a good resampling tool which
+might already exist in pyresample and pytesmo functions that use it.
+.IP 5. 3
+write this data into a file
+.INDENT 3.0
+.IP \(bu 2
+this can be a netCDF file with dimensions of the grid into which
+the data is written
+.IP \(bu 2
+this could be any other file format, the interface to this format
+just has to make sure that in the end a consistent image dataset
+is built out of the parts that are written.
+.UNINDENT
+.UNINDENT
+.SS Solution
+.sp
+The chosen first solution uses netCDF as an output format. The output
+will be a stack of images in netCDF format. This format can easily be
+converted into substacks or single images if that is needed for a
+certain user or project.
+.sp
+The chosen solution will \fBnot\fP do resampling since this is better and
+easier done using the whole converted dataset. This also means that if
+the input dataset is e.g. a dataset defined over land only then the
+resulting "image" will also not contain land points. I think it is best
+to let this be decided by the input dataset.
+.sp
+The output of the resulting netCDF can have one of two possible
+"shapes":
+.INDENT 0.0
+.IP \(bu 2
+2D variables with time on one axis and gpi on the other. This is kind
+of how SWI time series are stored already.
+.IP \(bu 2
+3D variables with latitude, longitude and time as the three
+dimensions.
+.UNINDENT
+.sp
+The decision of which it will be is dependent on the grid on which the
+input data is stored. If the grid has a 2D shape then the 3D solution
+will be chosen. If the input grid has only a 1D shape then only the 2D
+solution is possible.
+.SS Time Series aggregation
+.sp
+The chosen solution will use a custom function for each dataset to
+perform the aggregation if necessary. A simple example of a function
+that gets a time time series and aggregates it to a monthly time series
+could look like \fIagg_tsmonthly\fP
+.sp
+Simple example of a aggregation function
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+def agg_tsmonthly(ts, **kwargs):
+    """
+    Parameters
+    \-\-\-\-\-\-\-\-\-\-
+    ts : pandas.DataFrame
+        time series of a point
+    kwargs : dict
+        any additional keyword arguments that are given to the ts2img object
+        during initialization
+
+    Returns
+    \-\-\-\-\-\-\-
+    ts_agg : pandas.DataFrame
+        aggregated time series, they all must have the same length
+        otherwise it can not work
+        each column of this DataFrame will be a layer in the image
+    """
+    # very simple example
+    # aggregate to monthly timestamp
+    # should also make sure that the output has a certain length
+    return ts\&.asfreq("M")
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.SS Time series iteration
+.sp
+The function \fBagg_tsmonthly\fP will be called for every time series in
+the input dataset. The input dataset must have a \fBiter_ts\fP
+iterator that iterates over the grid points in a sensible order.
+.SS Interface to the netCDF writer
+.sp
+The netCDF writer will be initialized outside the \fIts2img\fP class with a
+filename and other attributes it needs. So the \fIts2img\fP class only gets
+a writer object. This writer object already knows about the start and
+end date of the time series as well as the target grid and has
+initialized the correct dimensions in the netCDF file. This object must
+have a method \fBwrite_ts\fP which takes a array of gpi\(aqs and a 2D array
+containing the time series for these gpis. This should be enough to
+write the gpi\(aqs into the correct position of the netCDF file.
+.sp
+This approach should also work if another output format is supposed to
+be used.
+.SS Implementation of the main ts2img class
+.sp
+The ts2img class will automatically use a the function given in
+\fBagg_ts2img\fP if no custom \fBagg_ts2img\fP function is provided. If
+the tsreader implements a method called \fBagg_ts2img\fP this function
+will be used instead.
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+class Ts2Img(object):
+
+    """
+    Takes a time series dataset and converts it
+    into an image dataset.
+    A custom aggregate function should be given otherwise
+    a daily mean will be used
+
+    Parameters
+    \-\-\-\-\-\-\-\-\-\-
+    tsreader: object
+        object that implements a iter_ts method which iterates over
+        pandas time series and has a grid attribute that is a pytesmo
+        BasicGrid or CellGrid
+    imgwriter: object
+        writer object that implements a write_ts method that takes
+        a list of grid point indices and a 2D array containing the time series data
+    agg_func: function
+        function that takes a pandas DataFrame and returns
+        an aggregated pandas DataFrame
+    ts_buffer: int
+        how many time series to read before writing to disk,
+        constrained by the working memory the process should use.
+
+    """
+
+    def __init__(self, tsreader, imgwriter,
+                 agg_func=None,
+                 ts_buffer=1000):
+
+        self\&.agg_func = agg_func
+        if self\&.agg_func is None:
+            try:
+                self\&.agg_func = tsreader\&.agg_ts2img
+            except AttributeError:
+                self\&.agg_func = agg_tsmonthly
+        self\&.tsreader = tsreader
+        self\&.imgwriter = imgwriter
+        self\&.ts_buffer = ts_buffer
+
+    def calc(self, **tsaggkw):
+        """
+        does the conversion from time series to images
+        """
+        for gpis, ts in self\&.tsbulk(**tsaggkw):
+            self\&.imgwriter\&.write_ts(gpis, ts)
+
+    def tsbulk(self, gpis=None, **tsaggkw):
+        """
+        iterator over gpi and time series arrays of size self.ts_buffer
+
+        Parameters
+        \-\-\-\-\-\-\-\-\-\-
+        gpis: iterable, optional
+            if given these gpis will be used, can be practical
+            if the gpis are managed by an external class e.g. for parallel
+            processing
+        tsaggkw: dict
+            Keywords to give to the time series aggregation function
+
+
+        Returns
+        \-\-\-\-\-\-\-
+        gpi_array: numpy.array
+            numpy array of gpis in this batch
+        ts_bulk: dict of numpy arrays
+            for each variable one numpy array of shape
+            (len(gpi_array), len(ts_aggregated))
+        """
+        # have to use the grid iteration as long as iter_ts only returns
+        # data frame and no time series object including relevant metadata
+        # of the time series
+        i = 0
+        gpi_bulk = []
+        ts_bulk = {}
+        ts_index = None
+        if gpis is None:
+            gpis, _, _, _ = self\&.tsreader\&.grid\&.grid_points()
+        for gpi in gpis:
+            gpi_bulk\&.append(gpi)
+            ts = self\&.tsreader\&.read_ts(gpi)
+            ts_agg = self\&.agg_func(ts, **tsaggkw)
+            for column in ts_agg\&.columns:
+                try:
+                    ts_bulk[column]\&.append(ts_agg[column]\&.values)
+                except KeyError:
+                    ts_bulk[column] = []
+                    ts_bulk[column]\&.append(ts_agg[column]\&.values)
+
+            if ts_index is None:
+                ts_index = ts_agg\&.index
+
+            i += 1
+            if i >= self\&.ts_buffer:
+                for key in ts_bulk:
+                    ts_bulk[key] = np\&.vstack(ts_bulk[key])
+                gpi_array = np\&.hstack(gpi_bulk)
+                yield gpi_array, ts_bulk
+                ts_bulk = {}
+                gpi_bulk = []
+                i = 0
+        if i > 0:
+            for key in ts_bulk:
+                ts_bulk[key] = np\&.vstack(ts_bulk[key])
+            gpi_array = np\&.hstack(gpi_bulk)
+            yield gpi_array, ts_bulk
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.SS License
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+Copyright (c) 2015, Christoph Paulik
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of repurpose nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.SS Developers
+.INDENT 0.0
+.IP \(bu 2
+Christoph Paulik <\fI\%christoph.paulik@geo.tuwien.ac.at\fP>
+.UNINDENT
+.SS Modules
+.SS repurpose package
+.SS Submodules
+.SS repurpose.img2ts module
+.sp
+Created on Mar 17, 2014
+.sp
+@author: Christoph Paulik \fI\%christoph.paulik@geo.tuwien.ac.at\fP
+.INDENT 0.0
+.TP
+.B class repurpose.img2ts.Img2Ts(input_dataset, outputpath, startdate, enddate, input_kwargs={}, target_grid=None, imgbuffer=100, variable_rename=None, unlim_chunksize=100, cellsize_lat=180.0, cellsize_lon=360.0, r_methods=\(aqnn\(aq, r_weightf=None, r_min_n=1, r_radius=18000, r_neigh=8, r_fill_values=None, filename_templ=\(aq%04d.nc\(aq, gridname=\(aqgrid.nc\(aq, global_attr=None, ts_attributes=None, ts_dtypes=None, time_units=\(aqdays since 1858\-11\-17 00:00:00\(aq, zlib=False)
+Bases: \fI\%object\fP
+.sp
+class that uses the read_img iterator of the input_data dataset
+to read all images between startdate and enddate and saves them
+in netCDF time series files according to the given netCDF class
+and the cell structure of the outputgrid
+.INDENT 7.0
+.TP
+.B Parameters
+.INDENT 7.0
+.IP \(bu 2
+\fBinput_dataset\fP (\fIDatasetImgBase like class instance\fP) \-\- 
+.sp
+must implement a daily_images iterator that yields
+data : dict
+.INDENT 2.0
+.INDENT 3.5
+dictionary of numpy arrays that hold the image data for each variable
+of the dataset
+.UNINDENT
+.UNINDENT
+.sp
+timestamp : exact timestamp of the image
+lon : numpy.array or None
+.INDENT 2.0
+.INDENT 3.5
+array of longitudes, if None self.grid will be assumed
+.UNINDENT
+.UNINDENT
+.INDENT 2.0
+.TP
+.B lat
+numpy.array or None
+array of latitudes, if None self.grid will be assumed
+.TP
+.B jd
+numpy.array or None
+array of observation times in julian days, if None all
+observations have the same timestamp
+.UNINDENT
+
+.IP \(bu 2
+\fBoutputpath\fP (\fI\%string\fP) \-\- path where to save the time series to
+.IP \(bu 2
+\fBstartdate\fP (\fIdate\fP) \-\- date from which the time series should start. Of course images
+have to be available from this date onwards.
+.IP \(bu 2
+\fBenddate\fP (\fIdate\fP) \-\- date when the time series should end. Images should be availabe
+up until this date
+.IP \(bu 2
+\fBinput_kwargs\fP (\fIdict, optional\fP) \-\- keyword arguments which should be used in the read_img method of the
+input_dataset
+.IP \(bu 2
+\fBtarget_grid\fP (grid instance as defined in 
+.nf
+:module:\(gapytesmo.grids.grid\(ga
+.fi
+, optional) \-\- the grid on which the time series will be stored.
+If not given then the grid of the input dataset will be used
+.IP \(bu 2
+\fBimgbuffer\fP (\fIint, optional\fP) \-\- number of days worth of images that should be read into memory before
+a time series is written. This parameter should be chosen so that
+the memory of your machine is utilized. It depends on the daily data
+volume of the input dataset
+.IP \(bu 2
+\fBvariable_rename\fP (\fIdict, optional\fP) \-\- if the variables should have other names than the names that are
+returned as keys in the dict by the daily_images iterator. A dictionary
+can be provided that changes these names for the time series.
+.IP \(bu 2
+\fBunlim_chunksize\fP (\fIint, optional\fP) \-\- netCDF chunksize for unlimited variables.
+.IP \(bu 2
+\fBcellsize_lat\fP (\fIfloat, optional\fP) \-\- if outgrid or input_data.grid are not cell grids then the cellsize
+in latitude direction can be specified here. Default is 1 global cell.
+.IP \(bu 2
+\fBcellsize_lon\fP (\fIfloat, optional\fP) \-\- if outgrid or input_data.grid are not cell grids then the cellsize
+in longitude direction can be specified here. Default is 1 global cell.
+.IP \(bu 2
+\fBr_methods\fP (\fIstring or dict, optional\fP) \-\- resample methods to use if resampling is necessary, either \(aqnn\(aq for nearest
+neighbour or \(aqcustom\(aq for custom weight function. Can also be a dictionary
+in which the method is specified for each variable
+.IP \(bu 2
+\fBr_weightf\fP (\fIfunction or dict, optional\fP) \-\- if r_methods is custom this function will be used to calculate the weights
+depending on distance. This can also be a dict with a separate weight function
+for each variable.
+.IP \(bu 2
+\fBr_min_n\fP (\fIint, optional\fP) \-\- Minimum number of neighbours on the target_grid that are required for a point to be resampled.
+.IP \(bu 2
+\fBr_radius\fP (\fIfloat, optional\fP) \-\- resample radius in which neighbours should be searched given in meters
+.IP \(bu 2
+\fBr_neigh\fP (\fIint, optional\fP) \-\- maximum number of neighbours found inside r_radius to use during resampling. If more are found
+the r_neigh closest neighbours will be used.
+.IP \(bu 2
+\fBr_fill_values\fP (\fInumber or dict, optional\fP) \-\- if given the resampled output array will be filled with this value if no valid
+resampled value could be computed, if not a masked array will be returned
+can also be a dict with a fill value for each variable
+.IP \(bu 2
+\fBfilename_templ\fP (\fIstring, optional\fP) \-\- filename template must be a string with a string formatter for the cell number.
+e.g. \(aq%04d.nc\(aq will translate to the filename \(aq0001.nc\(aq for cell number 1.
+.IP \(bu 2
+\fBgridname\fP (\fIstring, optional\fP) \-\- filename of the grid which will be saved as netCDF
+.IP \(bu 2
+\fBglobal_attr\fP (\fIdict, optional\fP) \-\- global attributes for each file
+.IP \(bu 2
+\fBts_attributes\fP (\fIdict, optional\fP) \-\- dictionary of attributes that should be set for the netCDF time series.
+Can be either a dictionary of attributes that will be set for all variables in input_data
+or a dictionary of dictionaries. In the second case the first dictionary has to have a key
+for each variable returned by input_data and the second level dictionary will be the dictionary of
+attributes for this time series.
+.IP \(bu 2
+\fBts_dtype\fP (\fInumpy.dtype or dict of numpy.dtypes\fP) \-\- data type to use for the time series, if it is a dict then a key must exist for each
+variable returned by input_data.
+Default : None, no change from input data
+.IP \(bu 2
+\fBtime_units\fP (\fIstring, optional\fP) \-\- units the time axis is given in.
+Default: "days since  1858\-11\-17 00:00:00" which is modified julian date
+for regular images this can be set freely since the conversion is done
+automatically, for images with irregular timestamp this will be ignored for now
+.IP \(bu 2
+\fBzlib\fP (\fIboolean, optional\fP) \-\- if True the saved netCDF files will be compressed
+Default: False
+.UNINDENT
+.UNINDENT
+.INDENT 7.0
+.TP
+.B calc()
+go through all images and retrieve a stack of them
+then go through all grid points in cell order and write to netCDF file
+.UNINDENT
+.INDENT 7.0
+.TP
+.B img_bulk()
+Yields numpy array of self.const.imgbuffer images,
+start and enddate until all dates have been read
+.INDENT 7.0
+.TP
+.B Returns
+.INDENT 7.0
+.IP \(bu 2
+\fBimg_stack_dict\fP (\fIdict of numpy.array\fP) \-\-
+stack of daily images for each variable
+.IP \(bu 2
+\fBstartdate\fP (\fIdate\fP) \-\-
+date of first image in stack
+.IP \(bu 2
+\fBenddate\fP (\fIdate\fP) \-\-
+date of last image in stack
+.IP \(bu 2
+\fBdatetimestack\fP (\fInp.array\fP) \-\-
+array of the timestamps of each image
+.IP \(bu 2
+\fBjd_stack\fP (\fInp.array or None\fP) \-\-
+if None all observations in an image have the same
+observation timestamp. Otherwise it gives the julian date
+of each observation in img_stack_dict
+.UNINDENT
+
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B exception repurpose.img2ts.Img2TsError
+Bases: \fI\%exceptions.Exception\fP
+.UNINDENT
+.SS repurpose.skeleton module
+.sp
+This is a skeleton file that can serve as a starting point for a Python
+console script. To run this script uncomment the following line in the
+console_scripts section in setup.cfg:
+.INDENT 0.0
+.INDENT 3.5
+hello_world = repurpose.skeleton:run
+.UNINDENT
+.UNINDENT
+.sp
+Then run \fIpython setup.py install\fP which will install the command \fIhello_world\fP
+inside your current environment.
+Besides console scripts, the header (i.e. until _logger...) of this file can
+also be used as template for Python modules.
+.sp
+Note: This skeleton file can be safely removed if not needed!
+.INDENT 0.0
+.TP
+.B repurpose.skeleton.main(args)
+.UNINDENT
+.INDENT 0.0
+.TP
+.B repurpose.skeleton.parse_args(args)
+Parse command line parameters
+.INDENT 7.0
+.TP
+.B Parameters
+\fBargs\fP \-\- command line parameters as list of strings
+.TP
+.B Returns
+command line parameters as \fI\%argparse.Namespace\fP
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B repurpose.skeleton.run()
+.UNINDENT
+.SS repurpose.ts2img module
+.sp
+module for conversion of time series data to image data
+Created on Mon Apr 20 11:08:58 2015
+.sp
+@author: \fI\%christoph.paulik@geo.tuwien.ac.at\fP
+.INDENT 0.0
+.TP
+.B class repurpose.ts2img.Ts2Img(tsreader, imgwriter, agg_func=None, ts_buffer=1000)
+Bases: \fI\%object\fP
+.sp
+Takes a time series dataset and converts it
+into an image dataset.
+A custom aggregate function should be given otherwise
+a daily mean will be used
+.INDENT 7.0
+.TP
+.B Parameters
+.INDENT 7.0
+.IP \(bu 2
+\fBtsreader\fP (\fI\%object\fP) \-\- object that implements a iter_ts method which iterates over
+pandas time series and has a grid attribute that is a pytesmo
+BasicGrid or CellGrid
+.IP \(bu 2
+\fBimgwriter\fP (\fI\%object\fP) \-\- writer object that implements a write_ts method that takes
+a list of grid point indices and a 2D array containing the time series data
+.IP \(bu 2
+\fBagg_func\fP (\fIfunction\fP) \-\- function that takes a pandas DataFrame and returns
+an aggregated pandas DataFrame
+.IP \(bu 2
+\fBts_buffer\fP (\fI\%int\fP) \-\- how many time series to read before writing to disk,
+constrained by the working memory the process should use.
+.UNINDENT
+.UNINDENT
+.INDENT 7.0
+.TP
+.B calc(**tsaggkw)
+does the conversion from time series to images
+.UNINDENT
+.INDENT 7.0
+.TP
+.B tsbulk(gpis=None, **tsaggkw)
+iterator over gpi and time series arrays of size self.ts_buffer
+.INDENT 7.0
+.TP
+.B Parameters
+.INDENT 7.0
+.IP \(bu 2
+\fBgpis\fP (\fIiterable, optional\fP) \-\- if given these gpis will be used, can be practical
+if the gpis are managed by an external class e.g. for parallel
+processing
+.IP \(bu 2
+\fBtsaggkw\fP (\fI\%dict\fP) \-\- Keywords to give to the time series aggregation function
+.UNINDENT
+.TP
+.B Returns
+.INDENT 7.0
+.IP \(bu 2
+\fBgpi_array\fP (\fInumpy.array\fP) \-\-
+numpy array of gpis in this batch
+.IP \(bu 2
+\fBts_bulk\fP (\fIdict of numpy arrays\fP) \-\-
+for each variable one numpy array of shape
+(len(gpi_array), len(ts_aggregated))
+.UNINDENT
+
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B repurpose.ts2img.agg_tsmonthly(ts, **kwargs)
+.INDENT 7.0
+.TP
+.B Parameters
+.INDENT 7.0
+.IP \(bu 2
+\fBts\fP (\fI\%pandas.DataFrame\fP) \-\- time series of a point
+.IP \(bu 2
+\fBkwargs\fP (\fI\%dict\fP) \-\- any additional keyword arguments that are given to the ts2img object
+during initialization
+.UNINDENT
+.TP
+.B Returns
+\fBts_agg\fP \-\-
+aggregated time series, they all must have the same length
+otherwise it can not work
+each column of this DataFrame will be a layer in the image
+.TP
+.B Return type
+\fI\%pandas.DataFrame\fP
+.UNINDENT
+.UNINDENT
+.SS Module contents
+.SS tests package
+.SS Submodules
+.SS tests.conftest module
+.sp
+Dummy conftest.py for repurpose.
+.sp
+If you don\(aqt know what this is for, just leave it empty.
+Read more about conftest.py under:
+\fI\%https://pytest.org/latest/plugins.html\fP
+.SS tests.test_ts2img module
+.sp
+Module for testing time series to image conversion
+.sp
+Created on Tue Apr 14 17:00:24 2015
+.sp
+@author: \fI\%christoph.paulik@geo.tuwien.ac.at\fP
+.INDENT 0.0
+.TP
+.B class tests.test_ts2img.MockGrid
+Bases: \fI\%object\fP
+.sp
+FakeGrid
+.INDENT 7.0
+.TP
+.B grid_points()
+return 10 grid points
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B class tests.test_ts2img.MockReader(grid)
+Bases: \fI\%object\fP
+.sp
+Fake Dataset
+.INDENT 7.0
+.TP
+.B read_ts(gpi)
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B class tests.test_ts2img.MockWriter
+Bases: \fI\%object\fP
+.sp
+FakeWriter
+.INDENT 7.0
+.TP
+.B write_ts(gpis, ts)
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B tests.test_ts2img.test_ts2img_mock_datasets()
+test the basic programatic logic of the ts2img
+class by using mock datasets that only pass a pandas dataframe
+through
+.UNINDENT
+.SS Module contents
+.SH INDICES AND TABLES
+.INDENT 0.0
+.IP \(bu 2
+genindex
+.IP \(bu 2
+modindex
+.IP \(bu 2
+search
+.UNINDENT
+.SH COPYRIGHT
+2015, Christoph Paulik
+.\" Generated by docutils manpage writer.
+.

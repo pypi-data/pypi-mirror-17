@@ -1,0 +1,668 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>repurpose.img2ts &mdash; imgtsimg 0.1.post0.dev15+g4937be2.dirty documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="imgtsimg 0.1.post0.dev15+g4937be2.dirty documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> imgtsimg</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../ts2img.html">Thinking behind ts2img</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ts2img.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ts2img.html#possible-steps-involved-in-the-conversion">Possible steps involved in the conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ts2img.html#solution">Solution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">Module Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/repurpose.html">repurpose package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/tests.html">tests package</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">imgtsimg</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>repurpose.img2ts</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for repurpose.img2ts</h1><div class="highlight"><pre>
+<span class="c"># Copyright (c) 2014,Vienna University of Technology, Department of Geodesy</span>
+<span class="c"># and Geoinformation</span>
+<span class="c"># All rights reserved.</span>
+
+<span class="c"># Redistribution and use in source and binary forms, with or without</span>
+<span class="c"># modification, are permitted provided that the following conditions are met:</span>
+<span class="c">#   * Redistributions of source code must retain the above copyright</span>
+<span class="c">#     notice, this list of conditions and the following disclaimer.</span>
+<span class="c">#    * Redistributions in binary form must reproduce the above copyright</span>
+<span class="c">#      notice, this list of conditions and the following disclaimer in the</span>
+<span class="c">#      documentation and/or other materials provided with the distribution.</span>
+<span class="c">#    * Neither the name of the Vienna University of Technology, Department of</span>
+<span class="c">#      Geodesy and Geoinformation nor the names of its contributors may be</span>
+<span class="c">#      used to endorse or promote products derived from this software without</span>
+<span class="c">#      specific prior written permission.</span>
+
+<span class="c"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND</span>
+<span class="c"># ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED</span>
+<span class="c"># WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span>
+<span class="c"># DISCLAIMED. IN NO EVENT SHALL VIENNA UNIVERSITY OF TECHNOLOGY,</span>
+<span class="c"># DEPARTMENT OF GEODESY AND GEOINFORMATION BE LIABLE FOR ANY</span>
+<span class="c"># DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span>
+<span class="c"># (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span>
+<span class="c"># LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND</span>
+<span class="c"># ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span>
+<span class="c"># (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span>
+<span class="c"># SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Created on Mar 17, 2014</span>
+
+<span class="sd">@author: Christoph Paulik christoph.paulik@geo.tuwien.ac.at</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+
+<span class="kn">import</span> <span class="nn">pynetcf.time_series</span> <span class="kn">as</span> <span class="nn">nc</span>
+<span class="kn">import</span> <span class="nn">pygeogrids.grids</span> <span class="kn">as</span> <span class="nn">grids</span>
+<span class="kn">import</span> <span class="nn">pytesmo.grid.resample</span> <span class="kn">as</span> <span class="nn">resamp</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span><span class="p">,</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">pygeogrids</span>
+<span class="kn">import</span> <span class="nn">pygeogrids.netcdf</span> <span class="kn">as</span> <span class="nn">grid2nc</span>
+
+
+<div class="viewcode-block" id="Img2TsError"><a class="viewcode-back" href="../../api/repurpose.html#repurpose.img2ts.Img2TsError">[docs]</a><span class="k">class</span> <span class="nc">Img2TsError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="Img2Ts"><a class="viewcode-back" href="../../api/repurpose.html#repurpose.img2ts.Img2Ts">[docs]</a><span class="k">class</span> <span class="nc">Img2Ts</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    class that uses the read_img iterator of the input_data dataset</span>
+<span class="sd">    to read all images between startdate and enddate and saves them</span>
+<span class="sd">    in netCDF time series files according to the given netCDF class</span>
+<span class="sd">    and the cell structure of the outputgrid</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    input_dataset : DatasetImgBase like class instance</span>
+<span class="sd">        must implement a daily_images iterator that yields</span>
+<span class="sd">        data : dict</span>
+<span class="sd">            dictionary of numpy arrays that hold the image data for each variable</span>
+<span class="sd">            of the dataset</span>
+<span class="sd">        timestamp : exact timestamp of the image</span>
+<span class="sd">        lon : numpy.array or None</span>
+<span class="sd">            array of longitudes, if None self.grid will be assumed</span>
+<span class="sd">        lat : numpy.array or None</span>
+<span class="sd">            array of latitudes, if None self.grid will be assumed</span>
+<span class="sd">        jd : numpy.array or None</span>
+<span class="sd">            array of observation times in julian days, if None all</span>
+<span class="sd">            observations have the same timestamp</span>
+<span class="sd">    outputpath : string</span>
+<span class="sd">        path where to save the time series to</span>
+<span class="sd">    startdate : date</span>
+<span class="sd">        date from which the time series should start. Of course images</span>
+<span class="sd">        have to be available from this date onwards.</span>
+<span class="sd">    enddate : date</span>
+<span class="sd">        date when the time series should end. Images should be availabe</span>
+<span class="sd">        up until this date</span>
+<span class="sd">    input_kwargs : dict, optional</span>
+<span class="sd">        keyword arguments which should be used in the read_img method of the</span>
+<span class="sd">        input_dataset</span>
+<span class="sd">    target_grid : grid instance as defined in :module:`pytesmo.grids.grid`, optional</span>
+<span class="sd">        the grid on which the time series will be stored.</span>
+<span class="sd">        If not given then the grid of the input dataset will be used</span>
+<span class="sd">    imgbuffer : int, optional</span>
+<span class="sd">        number of days worth of images that should be read into memory before</span>
+<span class="sd">        a time series is written. This parameter should be chosen so that</span>
+<span class="sd">        the memory of your machine is utilized. It depends on the daily data</span>
+<span class="sd">        volume of the input dataset</span>
+<span class="sd">    variable_rename : dict, optional</span>
+<span class="sd">        if the variables should have other names than the names that are</span>
+<span class="sd">        returned as keys in the dict by the daily_images iterator. A dictionary</span>
+<span class="sd">        can be provided that changes these names for the time series.</span>
+<span class="sd">    unlim_chunksize : int, optional</span>
+<span class="sd">        netCDF chunksize for unlimited variables.</span>
+<span class="sd">    cellsize_lat : float, optional</span>
+<span class="sd">        if outgrid or input_data.grid are not cell grids then the cellsize</span>
+<span class="sd">        in latitude direction can be specified here. Default is 1 global cell.</span>
+<span class="sd">    cellsize_lon : float, optional</span>
+<span class="sd">        if outgrid or input_data.grid are not cell grids then the cellsize</span>
+<span class="sd">        in longitude direction can be specified here. Default is 1 global cell.</span>
+<span class="sd">    r_methods : string or dict, optional</span>
+<span class="sd">        resample methods to use if resampling is necessary, either &#39;nn&#39; for nearest</span>
+<span class="sd">        neighbour or &#39;custom&#39; for custom weight function. Can also be a dictionary</span>
+<span class="sd">        in which the method is specified for each variable</span>
+<span class="sd">    r_weightf : function or dict, optional</span>
+<span class="sd">        if r_methods is custom this function will be used to calculate the weights</span>
+<span class="sd">        depending on distance. This can also be a dict with a separate weight function</span>
+<span class="sd">        for each variable.</span>
+<span class="sd">    r_min_n : int, optional</span>
+<span class="sd">        Minimum number of neighbours on the target_grid that are required for a point to be resampled.</span>
+<span class="sd">    r_radius : float, optional</span>
+<span class="sd">        resample radius in which neighbours should be searched given in meters</span>
+<span class="sd">    r_neigh : int, optional</span>
+<span class="sd">        maximum number of neighbours found inside r_radius to use during resampling. If more are found</span>
+<span class="sd">        the r_neigh closest neighbours will be used.</span>
+<span class="sd">    r_fill_values : number or dict, optional</span>
+<span class="sd">        if given the resampled output array will be filled with this value if no valid</span>
+<span class="sd">        resampled value could be computed, if not a masked array will be returned</span>
+<span class="sd">        can also be a dict with a fill value for each variable</span>
+<span class="sd">    filename_templ : string, optional</span>
+<span class="sd">        filename template must be a string with a string formatter for the cell number.</span>
+<span class="sd">        e.g. &#39;%04d.nc&#39; will translate to the filename &#39;0001.nc&#39; for cell number 1.</span>
+<span class="sd">    gridname : string, optional</span>
+<span class="sd">        filename of the grid which will be saved as netCDF</span>
+<span class="sd">    global_attr : dict, optional</span>
+<span class="sd">        global attributes for each file</span>
+<span class="sd">    ts_attributes : dict, optional</span>
+<span class="sd">        dictionary of attributes that should be set for the netCDF time series.</span>
+<span class="sd">        Can be either a dictionary of attributes that will be set for all variables in input_data</span>
+<span class="sd">        or a dictionary of dictionaries. In the second case the first dictionary has to have a key</span>
+<span class="sd">        for each variable returned by input_data and the second level dictionary will be the dictionary of</span>
+<span class="sd">        attributes for this time series.</span>
+<span class="sd">    ts_dtype : numpy.dtype or dict of numpy.dtypes</span>
+<span class="sd">        data type to use for the time series, if it is a dict then a key must exist for each</span>
+<span class="sd">        variable returned by input_data.</span>
+<span class="sd">        Default : None, no change from input data</span>
+<span class="sd">    time_units : string, optional</span>
+<span class="sd">        units the time axis is given in.</span>
+<span class="sd">        Default: &quot;days since  1858-11-17 00:00:00&quot; which is modified julian date</span>
+<span class="sd">        for regular images this can be set freely since the conversion is done</span>
+<span class="sd">        automatically, for images with irregular timestamp this will be ignored for now</span>
+<span class="sd">    zlib: boolean, optional</span>
+<span class="sd">        if True the saved netCDF files will be compressed</span>
+<span class="sd">        Default: False</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_dataset</span><span class="p">,</span> <span class="n">outputpath</span><span class="p">,</span> <span class="n">startdate</span><span class="p">,</span> <span class="n">enddate</span><span class="p">,</span>
+                 <span class="n">input_kwargs</span><span class="o">=</span><span class="p">{},</span> <span class="n">target_grid</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">imgbuffer</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">variable_rename</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">unlim_chunksize</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">cellsize_lat</span><span class="o">=</span><span class="mf">180.0</span><span class="p">,</span> <span class="n">cellsize_lon</span><span class="o">=</span><span class="mf">360.0</span><span class="p">,</span>
+                 <span class="n">r_methods</span><span class="o">=</span><span class="s">&#39;nn&#39;</span><span class="p">,</span> <span class="n">r_weightf</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">r_min_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">r_radius</span><span class="o">=</span><span class="mi">18000</span><span class="p">,</span>
+                 <span class="n">r_neigh</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">r_fill_values</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">filename_templ</span><span class="o">=</span><span class="s">&#39;</span><span class="si">%04d</span><span class="s">.nc&#39;</span><span class="p">,</span>
+                 <span class="n">gridname</span><span class="o">=</span><span class="s">&#39;grid.nc&#39;</span><span class="p">,</span> <span class="n">global_attr</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ts_attributes</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">ts_dtypes</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">time_units</span><span class="o">=</span><span class="s">&quot;days since 1858-11-17 00:00:00&quot;</span><span class="p">,</span> <span class="n">zlib</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">imgin</span> <span class="o">=</span> <span class="n">input_dataset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zlib</span> <span class="o">=</span> <span class="n">zlib</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">imgin</span><span class="o">.</span><span class="n">grid</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">target_grid</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Either the input dataset has to have a grid or &quot;</span>
+                             <span class="s">&quot;outgrid has to be set&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_kwargs</span> <span class="o">=</span> <span class="n">input_kwargs</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_grid</span> <span class="o">=</span> <span class="n">target_grid</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_grid</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">target_grid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">imgin</span><span class="o">.</span><span class="n">grid</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">resample</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c"># if input and target grid are not equal resampling is required</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">imgin</span><span class="o">.</span><span class="n">grid</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_grid</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">resample</span> <span class="o">=</span> <span class="bp">True</span>
+
+        <span class="c"># if the target grid is not a cell grid make it one</span>
+        <span class="c"># default is just one cell for the</span>
+        <span class="c"># this is just a dirty hack until grids have a method</span>
+        <span class="c"># to check their grid type</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_grid</span><span class="p">)</span> <span class="o">==</span> <span class="n">grids</span><span class="o">.</span><span class="n">BasicGrid</span> <span class="ow">or</span>
+            <span class="p">(</span><span class="n">pygeogrids</span><span class="o">.</span><span class="n">grids</span><span class="o">.</span><span class="n">BasicGrid</span> <span class="ow">in</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_grid</span><span class="p">)</span><span class="o">.</span><span class="n">__bases__</span> <span class="ow">and</span>
+             <span class="nb">len</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_grid</span><span class="p">)</span><span class="o">.</span><span class="n">__bases__</span><span class="p">)))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">target_grid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_grid</span><span class="o">.</span><span class="n">to_cell_grid</span><span class="p">(</span><span class="n">cellsize_lat</span><span class="o">=</span><span class="n">cellsize_lat</span><span class="p">,</span>
+                                                             <span class="n">cellsize_lon</span><span class="o">=</span><span class="n">cellsize_lon</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">currentdate</span> <span class="o">=</span> <span class="n">startdate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">startdate</span> <span class="o">=</span> <span class="n">startdate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enddate</span> <span class="o">=</span> <span class="n">enddate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imgbuffer</span> <span class="o">=</span> <span class="n">imgbuffer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">outputpath</span> <span class="o">=</span> <span class="n">outputpath</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">variable_rename</span> <span class="o">=</span> <span class="n">variable_rename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unlim_chunksize</span> <span class="o">=</span> <span class="n">unlim_chunksize</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridname</span> <span class="o">=</span> <span class="n">gridname</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">r_methods</span> <span class="o">=</span> <span class="n">r_methods</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r_weightf</span> <span class="o">=</span> <span class="n">r_weightf</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r_min_n</span> <span class="o">=</span> <span class="n">r_min_n</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r_radius</span> <span class="o">=</span> <span class="n">r_radius</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r_neigh</span> <span class="o">=</span> <span class="n">r_neigh</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r_fill_values</span> <span class="o">=</span> <span class="n">r_fill_values</span>
+
+        <span class="c"># if each image has only one timestamp then we are handling</span>
+        <span class="c"># time series of type Orthogonal multidimensional array representation</span>
+        <span class="c"># according to the CF conventions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orthogonal</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename_templ</span> <span class="o">=</span> <span class="n">filename_templ</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">global_attr</span> <span class="o">=</span> <span class="n">global_attr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ts_attributes</span> <span class="o">=</span> <span class="n">ts_attributes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ts_dtypes</span> <span class="o">=</span> <span class="n">ts_dtypes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_units</span> <span class="o">=</span> <span class="n">time_units</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">non_ortho_time_units</span> <span class="o">=</span> <span class="s">&quot;days since  1858-11-17 00:00:00&quot;</span>
+
+<div class="viewcode-block" id="Img2Ts.calc"><a class="viewcode-back" href="../../api/repurpose.html#repurpose.img2ts.Img2Ts.calc">[docs]</a>    <span class="k">def</span> <span class="nf">calc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        go through all images and retrieve a stack of them</span>
+<span class="sd">        then go through all grid points in cell order and write to netCDF file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># save grid information in file</span>
+        <span class="n">grid2nc</span><span class="o">.</span><span class="n">save_grid</span><span class="p">(</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">outputpath</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gridname</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_grid</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">img_stack_dict</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">dates</span><span class="p">,</span> <span class="n">jd_stack</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_bulk</span><span class="p">():</span>
+            <span class="c">#==================================================================</span>
+            <span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+
+            <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_grid</span><span class="o">.</span><span class="n">get_cells</span><span class="p">():</span>
+
+                <span class="n">cell_gpis</span><span class="p">,</span> <span class="n">cell_lons</span><span class="p">,</span> <span class="n">cell_lats</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_grid</span><span class="o">.</span><span class="n">grid_points_for_cell</span><span class="p">(</span>
+                    <span class="n">cell</span><span class="p">)</span>
+
+                <span class="c"># look where in the subset the data is</span>
+                <span class="n">cell_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+                    <span class="n">cell</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_grid</span><span class="o">.</span><span class="n">activearrcell</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+                <span class="k">if</span> <span class="n">cell_index</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">Img2TsError</span><span class="p">(</span><span class="s">&#39;cell not found in grid subset&#39;</span><span class="p">)</span>
+
+                <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+
+                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">img_stack_dict</span><span class="p">:</span>
+                    <span class="c"># rename variable in output dataset</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">variable_rename</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                        <span class="n">var_new_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">var_new_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">variable_rename</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+                    <span class="n">output_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span>
+                        <span class="n">img_stack_dict</span><span class="p">[</span><span class="n">key</span><span class="p">][:,</span> <span class="n">cell_index</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+                    <span class="c"># change dtypes of output time series</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts_dtypes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ts_dtypes</span><span class="p">)</span> <span class="o">==</span> <span class="nb">dict</span><span class="p">:</span>
+                            <span class="n">output_dtype</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts_dtypes</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">output_dtype</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts_dtypes</span>
+                        <span class="n">output_array</span> <span class="o">=</span> <span class="n">output_array</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">output_dtype</span><span class="p">)</span>
+
+                    <span class="n">data</span><span class="p">[</span><span class="n">var_new_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">output_array</span>
+
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">orthogonal</span><span class="p">:</span>
+
+                    <span class="k">with</span> <span class="n">nc</span><span class="o">.</span><span class="n">OrthoMultiTs</span><span class="p">(</span>
+                        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">outputpath</span><span class="p">,</span>
+                                     <span class="bp">self</span><span class="o">.</span><span class="n">filename_templ</span> <span class="o">%</span> <span class="n">cell</span><span class="p">),</span>
+                            <span class="n">n_loc</span><span class="o">=</span><span class="n">cell_gpis</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;a&#39;</span><span class="p">,</span>
+                            <span class="n">zlib</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">zlib</span><span class="p">,</span>
+                            <span class="n">unlim_chunksize</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">unlim_chunksize</span><span class="p">,</span>
+                            <span class="n">time_units</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">time_units</span><span class="p">)</span> <span class="k">as</span> <span class="n">dataout</span><span class="p">:</span>
+
+                        <span class="c"># add global attributes to file</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">global_attr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                            <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">global_attr</span><span class="p">:</span>
+                                <span class="n">dataout</span><span class="o">.</span><span class="n">add_global_attr</span><span class="p">(</span>
+                                    <span class="n">attr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">global_attr</span><span class="p">[</span><span class="n">attr</span><span class="p">])</span>
+
+                        <span class="n">dataout</span><span class="o">.</span><span class="n">add_global_attr</span><span class="p">(</span>
+                            <span class="s">&#39;geospatial_lat_min&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">cell_lats</span><span class="p">))</span>
+                        <span class="n">dataout</span><span class="o">.</span><span class="n">add_global_attr</span><span class="p">(</span>
+                            <span class="s">&#39;geospatial_lat_max&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">cell_lats</span><span class="p">))</span>
+                        <span class="n">dataout</span><span class="o">.</span><span class="n">add_global_attr</span><span class="p">(</span>
+                            <span class="s">&#39;geospatial_lon_min&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">cell_lons</span><span class="p">))</span>
+                        <span class="n">dataout</span><span class="o">.</span><span class="n">add_global_attr</span><span class="p">(</span>
+                            <span class="s">&#39;geospatial_lon_max&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">cell_lons</span><span class="p">))</span>
+
+                        <span class="n">dataout</span><span class="o">.</span><span class="n">write_ts_all_loc</span><span class="p">(</span><span class="n">cell_gpis</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">dates</span><span class="p">,</span>
+                                                 <span class="n">lons</span><span class="o">=</span><span class="n">cell_lons</span><span class="p">,</span>
+                                                 <span class="n">lats</span><span class="o">=</span><span class="n">cell_lats</span><span class="p">,</span>
+                                                 <span class="n">attributes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ts_attributes</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">orthogonal</span><span class="p">:</span>
+
+                    <span class="k">with</span> <span class="n">nc</span><span class="o">.</span><span class="n">IndexedRaggedTs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">outputpath</span><span class="p">,</span>
+                                                         <span class="bp">self</span><span class="o">.</span><span class="n">filename_templ</span> <span class="o">%</span>
+                                                         <span class="n">cell</span><span class="p">),</span>
+                                            <span class="n">n_loc</span><span class="o">=</span><span class="n">cell_gpis</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;a&#39;</span><span class="p">,</span>
+                                            <span class="n">zlib</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">zlib</span><span class="p">,</span>
+                                            <span class="n">unlim_chunksize</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">unlim_chunksize</span><span class="p">,</span>
+                                            <span class="n">time_units</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">non_ortho_time_units</span><span class="p">)</span> <span class="k">as</span> <span class="n">dataout</span><span class="p">:</span>
+
+                        <span class="c"># add global attributes to file</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">global_attr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                            <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">global_attr</span><span class="p">:</span>
+                                <span class="n">dataout</span><span class="o">.</span><span class="n">add_global_attr</span><span class="p">(</span>
+                                    <span class="n">attr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">global_attr</span><span class="p">[</span><span class="n">attr</span><span class="p">])</span>
+
+                        <span class="n">dataout</span><span class="o">.</span><span class="n">add_global_attr</span><span class="p">(</span>
+                            <span class="s">&#39;geospatial_lat_min&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">cell_lats</span><span class="p">))</span>
+                        <span class="n">dataout</span><span class="o">.</span><span class="n">add_global_attr</span><span class="p">(</span>
+                            <span class="s">&#39;geospatial_lat_max&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">cell_lats</span><span class="p">))</span>
+                        <span class="n">dataout</span><span class="o">.</span><span class="n">add_global_attr</span><span class="p">(</span>
+                            <span class="s">&#39;geospatial_lon_min&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">cell_lons</span><span class="p">))</span>
+                        <span class="n">dataout</span><span class="o">.</span><span class="n">add_global_attr</span><span class="p">(</span>
+                            <span class="s">&#39;geospatial_lon_max&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">cell_lons</span><span class="p">))</span>
+
+                        <span class="c"># for this dataset we have to loop through the gpis since each time series</span>
+                        <span class="c"># can be different in length</span>
+                        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">gpi</span><span class="p">,</span> <span class="n">gpi_lon</span><span class="p">,</span> <span class="n">gpi_lat</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">cell_gpis</span><span class="p">,</span> <span class="n">cell_lons</span><span class="p">,</span> <span class="n">cell_lats</span><span class="p">)):</span>
+                            <span class="n">gpi_data</span> <span class="o">=</span> <span class="p">{}</span>
+                            <span class="c"># convert to modified julian date</span>
+                            <span class="n">gpi_jd</span> <span class="o">=</span> <span class="n">jd_stack</span><span class="p">[:,</span> <span class="n">cell_index</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">-</span> <span class="mf">2400000.5</span>
+                            <span class="c"># remove measurements that were filled with the fill value</span>
+                            <span class="c"># during resampling</span>
+                            <span class="c"># doing this on the basis of the time variable should</span>
+                            <span class="c"># be enought since without time -&gt; no valid</span>
+                            <span class="c"># observations</span>
+                            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">resample</span><span class="p">:</span>
+                                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">r_fill_values</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                                    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">r_fill_values</span><span class="p">)</span> <span class="o">==</span> <span class="nb">dict</span><span class="p">:</span>
+                                        <span class="n">time_fill_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">r_fill_values</span><span class="p">[</span>
+                                            <span class="bp">self</span><span class="o">.</span><span class="n">time_var</span><span class="p">]</span>
+                                    <span class="k">else</span><span class="p">:</span>
+                                        <span class="n">time_fill_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">r_fill_values</span>
+
+                                    <span class="n">valid_mask</span> <span class="o">=</span> <span class="n">gpi_jd</span> <span class="o">!=</span> <span class="n">time_fill_value</span>
+                                <span class="k">else</span><span class="p">:</span>
+                                    <span class="n">valid_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">gpi_jd</span><span class="o">.</span><span class="n">mask</span><span class="p">)</span>
+                                <span class="n">gpi_jd</span> <span class="o">=</span> <span class="n">gpi_jd</span><span class="p">[</span><span class="n">valid_mask</span><span class="p">]</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="c"># all are valid if no resampling took place</span>
+                                <span class="n">valid_mask</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+                            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                                <span class="n">gpi_data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="n">valid_mask</span><span class="p">]</span>
+
+                            <span class="k">if</span> <span class="n">gpi_jd</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                                <span class="n">dataout</span><span class="o">.</span><span class="n">write_ts</span><span class="p">(</span><span class="n">gpi</span><span class="p">,</span> <span class="n">gpi_data</span><span class="p">,</span> <span class="n">gpi_jd</span><span class="p">,</span>
+                                                 <span class="n">lon</span><span class="o">=</span><span class="n">gpi_lon</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="n">gpi_lat</span><span class="p">,</span>
+                                                 <span class="n">attributes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ts_attributes</span><span class="p">,</span>
+                                                 <span class="n">dates_direct</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">output_array</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">print</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+</div>
+<div class="viewcode-block" id="Img2Ts.img_bulk"><a class="viewcode-back" href="../../api/repurpose.html#repurpose.img2ts.Img2Ts.img_bulk">[docs]</a>    <span class="k">def</span> <span class="nf">img_bulk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Yields numpy array of self.const.imgbuffer images,</span>
+<span class="sd">        start and enddate until all dates have been read</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        img_stack_dict : dict of numpy.array</span>
+<span class="sd">            stack of daily images for each variable</span>
+<span class="sd">        startdate : date</span>
+<span class="sd">            date of first image in stack</span>
+<span class="sd">        enddate : date</span>
+<span class="sd">            date of last image in stack</span>
+<span class="sd">        datetimestack : np.array</span>
+<span class="sd">            array of the timestamps of each image</span>
+<span class="sd">        jd_stack : np.array or None</span>
+<span class="sd">            if None all observations in an image have the same</span>
+<span class="sd">            observation timestamp. Otherwise it gives the julian date</span>
+<span class="sd">            of each observation in img_stack_dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">img_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">datetimes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">jd_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c"># set start of current imgbulk to startdate</span>
+        <span class="n">bulkstart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">startdate</span>
+        <span class="c"># image counter</span>
+        <span class="n">read_images</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c"># call the img_iterator in a infinite loop so that we are able</span>
+        <span class="c"># to catch exceptions properly</span>
+        <span class="c"># if an exception bubbles up the iterator stops and</span>
+        <span class="c"># we must read the next image.</span>
+        <span class="n">img_generator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">imgin</span><span class="o">.</span><span class="n">iter_images</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">startdate</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">enddate</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">input_kwargs</span><span class="p">)</span>
+        <span class="n">img_iterator</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">img_generator</span><span class="p">)</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="p">(</span><span class="n">input_img</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span>
+                 <span class="n">image_datetime</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span>
+                 <span class="n">lat</span><span class="p">,</span> <span class="n">time_arr</span><span class="p">)</span> <span class="o">=</span> <span class="n">img_iterator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">IOError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">print</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span>
+                <span class="k">continue</span>
+            <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">read_images</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">print</span> <span class="s">&quot;read&quot;</span><span class="p">,</span> <span class="n">image_datetime</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">resample</span><span class="p">:</span>
+
+                <span class="k">if</span> <span class="n">time_arr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="n">input_img</span><span class="p">[</span><span class="s">&#39;jd&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">time_arr</span>
+                <span class="n">input_img</span> <span class="o">=</span> <span class="n">resamp</span><span class="o">.</span><span class="n">resample_to_grid</span><span class="p">(</span><span class="n">input_img</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span>
+                                                    <span class="bp">self</span><span class="o">.</span><span class="n">target_grid</span><span class="o">.</span><span class="n">activearrlon</span><span class="p">,</span>
+                                                    <span class="bp">self</span><span class="o">.</span><span class="n">target_grid</span><span class="o">.</span><span class="n">activearrlat</span><span class="p">,</span>
+                                                    <span class="n">methods</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">r_methods</span><span class="p">,</span>
+                                                    <span class="n">weight_funcs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">r_weightf</span><span class="p">,</span>
+                                                    <span class="n">min_neighbours</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">r_min_n</span><span class="p">,</span>
+                                                    <span class="n">search_rad</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">r_radius</span><span class="p">,</span>
+                                                    <span class="n">neighbours</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">r_neigh</span><span class="p">,</span>
+                                                    <span class="n">fill_values</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">r_fill_values</span><span class="p">)</span>
+                <span class="n">time_arr</span> <span class="o">=</span> <span class="n">input_img</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;jd&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">time_arr</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">time_var</span> <span class="o">=</span> <span class="bp">None</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">time_var</span> <span class="o">=</span> <span class="s">&#39;jd&#39;</span>
+            <span class="k">if</span> <span class="n">time_arr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="c"># if time_var is not None means that each observation of the</span>
+                <span class="c"># image has its own observation time</span>
+                <span class="c"># this means that the resulting time series is not</span>
+                <span class="c"># regularly spaced in time</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">orthogonal</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">orthogonal</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">orthogonal</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">Img2TsError</span><span class="p">(</span><span class="s">&quot;Images can not switch between a fixed image &quot;</span>
+                                      <span class="s">&quot;timestamp and individual timestamps for each observation&quot;</span><span class="p">)</span>
+                <span class="n">jd_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_arr</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">time_arr</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">orthogonal</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">orthogonal</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">orthogonal</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">Img2TsError</span><span class="p">(</span>
+                        <span class="s">&quot;Images can not switch between a fixed image &quot;</span>
+                        <span class="s">&quot;timestamp and individual timestamps for each observation&quot;</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">input_img</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">img_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="n">img_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">img_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">input_img</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+
+            <span class="n">datetimes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">image_datetime</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">read_images</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">imgbuffer</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">img_stack_dict</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">jd_list</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">jd_stack</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">jd_list</span><span class="p">)</span>
+                    <span class="n">jd_list</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">jd_stack</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">img_dict</span><span class="p">:</span>
+                    <span class="n">img_stack_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">img_dict</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+                    <span class="n">img_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="n">datetimestack</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">datetimes</span><span class="p">)</span>
+                <span class="n">img_dict</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="n">datetimes</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">jd_list</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">yield</span> <span class="p">(</span><span class="n">img_stack_dict</span><span class="p">,</span> <span class="n">bulkstart</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">currentdate</span><span class="p">,</span>
+                       <span class="n">datetimestack</span><span class="p">,</span> <span class="n">jd_stack</span><span class="p">)</span>
+                <span class="c"># reset image counter</span>
+                <span class="n">read_images</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">datetimes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">img_stack_dict</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">jd_list</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">jd_stack</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">jd_list</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">jd_stack</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">img_dict</span><span class="p">:</span>
+                <span class="n">img_stack_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">img_dict</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+                <span class="n">img_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="n">datetimestack</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">datetimes</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="p">(</span><span class="n">img_stack_dict</span><span class="p">,</span> <span class="n">bulkstart</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">currentdate</span><span class="p">,</span> <span class="n">datetimestack</span><span class="p">,</span>
+                   <span class="n">jd_stack</span><span class="p">)</span>
+
+</div></div>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">rsdata.GLDAS_NOAH.interface</span> <span class="kn">as</span> <span class="nn">GLDAS</span>
+    <span class="kn">import</span> <span class="nn">rsdata.root_path</span> <span class="kn">as</span> <span class="nn">root</span>
+
+    <span class="c"># outputpath = os.path.join(root.d, &#39;GIO GL&#39;, &#39;Evolution&#39;, &#39;SWI_NRT_validation&#39;, &#39;GLDAS&#39;,</span>
+    <span class="c">#                           &#39;raw&#39;)</span>
+    <span class="n">outputpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">d</span><span class="p">,</span> <span class="s">&#39;img2ts_test&#39;</span><span class="p">)</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+
+    <span class="n">img2ts</span> <span class="o">=</span> <span class="n">Img2Ts</span><span class="p">(</span><span class="n">GLDAS</span><span class="o">.</span><span class="n">GLDAS025Img</span><span class="p">(</span><span class="n">parameter</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;086_L1&#39;</span><span class="p">,</span> <span class="s">&#39;086_L2&#39;</span><span class="p">,</span>
+                                                 <span class="s">&#39;086_L3&#39;</span><span class="p">,</span> <span class="s">&#39;086_L4&#39;</span><span class="p">,</span> <span class="s">&#39;131&#39;</span><span class="p">,</span>
+                                                 <span class="s">&#39;132&#39;</span><span class="p">,</span> <span class="s">&#39;138&#39;</span><span class="p">,</span> <span class="s">&#39;085_L1&#39;</span><span class="p">,</span>
+                                                 <span class="s">&#39;065&#39;</span><span class="p">,</span> <span class="s">&#39;057&#39;</span><span class="p">]),</span>
+                    <span class="n">outputpath</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">imgbuffer</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">img2ts</span><span class="o">.</span><span class="n">calc</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Christoph Paulik.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.post0.dev15+g4937be2.dirty',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
