@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: pwntools
+Version: 3.0.2
+Summary: CTF framework and exploit development library.
+Home-page: https://pwntools.com
+Author: Gallopsled et al.
+Author-email: #pwntools @ freenode.net
+License: Mostly MIT, some GPL/BSD, see LICENSE-pwntools.txt
+Download-URL: https://github.com/Gallopsled/pwntools/releases
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Topic :: Security
+Classifier: Environment :: Console
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Intended Audience :: Developers
