@@ -1,0 +1,11 @@
+setup.py
+egi/__init__.py
+egi/fwhelper.py
+egi/simple.py
+egi/socket_wrapper.py
+egi/threaded.py
+egi/threaded_alt.py
+egi.egg-info/PKG-INFO
+egi.egg-info/SOURCES.txt
+egi.egg-info/dependency_links.txt
+egi.egg-info/top_level.txt
