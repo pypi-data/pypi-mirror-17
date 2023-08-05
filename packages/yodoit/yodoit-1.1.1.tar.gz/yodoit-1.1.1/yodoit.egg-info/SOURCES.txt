@@ -1,0 +1,9 @@
+setup.py
+bin/yodoit
+yodoit/__init__.py
+yodoit/cli.py
+yodoit.egg-info/PKG-INFO
+yodoit.egg-info/SOURCES.txt
+yodoit.egg-info/dependency_links.txt
+yodoit.egg-info/pbr.json
+yodoit.egg-info/top_level.txt
