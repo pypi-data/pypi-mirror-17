@@ -1,0 +1,6 @@
+from django.http.response import HttpResponse
+
+{% for method in model.methods %}
+def {{method.name}}(request):
+    return 1
+{% endfor %}

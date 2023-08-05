@@ -1,0 +1,30 @@
+{% raw %}
+
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block content %}
+
+{% endraw %}
+<h3>Classes</h3>
+<table class="table">
+{% for definition in model.classes %}
+<tr>
+    {{ '{%' }} if '{{model.name}}.view_{{definition.name.lower()}}' in user.get_all_permissions {{ '%}' }}
+    <td>
+        <a href="/{{model.name}}/{{definition.name.lower()}}_list">{{definition.name}}</a>
+    </td>
+    {{ '{%' }} endif {{ '%}' }}
+</tr>
+{% endfor %}
+{% for method in model.methods %}
+	 {{ '{%' }} if user.is_authenticated{{ '%}' }}
+<tr>
+	<td> <a href="/{{model.name}}/{{method.name.lower()}}">{{method.name}}</a> </td>
+	  {{ '{%' }} endif {{ '%}' }}
+</tr>
+{% endfor %}
+{% raw %}
+{% endblock %}
+
+{% endraw %}
