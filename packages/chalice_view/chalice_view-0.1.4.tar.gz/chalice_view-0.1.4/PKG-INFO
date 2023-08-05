@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: chalice_view
+Version: 0.1.4
+Summary: Chalice utils for developing views
+Home-page: https://github.com/green-latte/chalice-view
+Author: Kousuke Takeuchi
+Author-email: k.takeuchi@warrantee.co.jp
+License: Apache License 2.0
+Description: Chalice utils for developing views
+Keywords: chalice-view
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
