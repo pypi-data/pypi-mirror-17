@@ -1,0 +1,17 @@
+hydrofunctions/__init__.py,sha256=s7T9K_hXMaGtiXvhLC9IAkKCUWuCg-WS_OCMUB_AxNs,116
+hydrofunctions/exceptions.py,sha256=lT1Sl9xrIO6DqU_1hsX7OY0PGj8Fon2SxoaDdAUkQoI,1170
+hydrofunctions/hydrofunctions.py,sha256=4TwVQSLRpOjzE1bLclHIRi2vRs7p9PmPKuHA4NaBpMw,2608
+hydrofunctions/station.py,sha256=azT_nJet2Zbp4ESq9G7R35LUfPxfvm4NGh0frVsq8Q4,1022
+hydrofunctions/typing.py,sha256=ViTPsupguld4kUrSfSZFdDxLc-IaGUWdQh0-Iw_srYI,1099
+hydrofunctions-0.1.2.dist-info/DESCRIPTION.rst,sha256=to8cQLw1F6dou4PL8ntXllo1KdIiBBQFciTDPvmS4h0,1263
+hydrofunctions-0.1.2.dist-info/METADATA,sha256=VYfjKWaNkqVjhx7yd9CtCA9uC7DRqdzwLg-EAfPaZzo,2135
+hydrofunctions-0.1.2.dist-info/RECORD,,
+hydrofunctions-0.1.2.dist-info/WHEEL,sha256=o2k-Qa-RMNIJmUdIc7KU6VWR_ErNRbWNlxDIpl7lm34,110
+hydrofunctions-0.1.2.dist-info/metadata.json,sha256=9wFCHfn-nlp4MWwJmUN5dpNw3T3EfXa7Ekkaqn9YgIo,1075
+hydrofunctions-0.1.2.dist-info/top_level.txt,sha256=H7QdfwpU6xaM23OViZi0lz0dS0GcUsGBWXWkJXdqUf4,21
+tests/__init__.py,sha256=iwhKnzeBJLKxpRVjvzwiRE63_zNpIBfaKLITauVph-0,24
+tests/test_exceptions.py,sha256=V5pOxLVYPuemEwR5DCxJUaP2uz4SibzndU4FDzONVAM,454
+tests/test_hydrofunctions.py,sha256=3RTBV14M8e3j9OEjLNajz4ULQK1MXgRSsqjXUYqlfqk,1922
+tests/test_online_resources.py,sha256=cLorlsgkjAQRUi0XZnZBtCkU5zM6bXBL1GNs2_JbhEE,900
+tests/test_station.py,sha256=Ff0rrHzegQaeu9btAasxZdHFM38RQrnJlK6jubApqG4,2344
+tests/test_typing.py,sha256=blsSnrAghYXZcB8Mn3yjHszoVhGKv5fzgV5sRrosjKg,1390
