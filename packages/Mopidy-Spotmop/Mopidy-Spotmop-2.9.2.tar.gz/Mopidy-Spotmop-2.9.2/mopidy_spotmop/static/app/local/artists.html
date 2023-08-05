@@ -1,0 +1,69 @@
+<div class="page">
+	<div class="inner">
+		
+        <div class="page-header">
+		
+            <div class="utilities">
+				<dropdownfield options="sortOptions" settingname="local.sortField" togglesettingname="local.sortReverse"  iconclass="fa-sort"></dropdownfield>
+				<dropdownfield options="viewOptions" settingname="local.view" iconclass="fa-eye"></dropdownfield>
+                <input class="list-filter" type="text" ng-model="filterTerm" placeholder="Start typing to filter..." />
+            </div>
+        
+			<span class="menu-reveal-trigger mobile-show" ng-click="showMenu()"><i class="fa fa-bars"></i></span>
+            
+            <h1>
+                <span class="si folder mobile-hide"></span>
+                <span class="path-item">
+                    Artists
+                </span>
+            </h1>
+            
+        </div>
+        
+        <!-- GRID VIEW -->
+        
+        <div class="artist-items square-panels" ng-if="!settings.local.view || settings.local.view == 'grid'">
+            <div class="item-container" ng-repeat="artist in artists | orderBy:settings.local.sortField:settings.local.sortReverse | limitTo:limit track by artist.uri">
+                <a ui-sref="browse.artist.overview({ uri: artist.uri })" class="square-panel artist"
+                    candrag
+                    dragobj="artist"
+                    draggable="false">
+                        <div class="image-container">
+                            <thumbnail size="medium" images="artist.images"></thumbnail>
+                        </div>
+                        <div class="info smaller animate">
+                            <div class="name" ng-bind="artist.name"></div>
+                        </div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- LIST VIEW -->
+		
+		<div class="artist-items list" ng-if="settings.local.view == 'list'">
+            <div class="list-item header">
+                <div class="col w100">
+                    Name
+                    <span ng-show="settings.local.sortField == 'name'">
+                        <i ng-show="!settings.local.sortReverse" class="fa fa-caret-down"></i>
+                        <i ng-show="settings.local.sortReverse" class="fa fa-caret-up"></i>
+                    </span>
+                </div>
+                <div class="clear-both"></div>
+            </div>
+			<div class="item-container" ng-repeat="artist in artists | orderBy:settings.local.sortField:settings.local.sortReverse | limitTo:limit track by artist.uri">
+				<a ui-sref="browse.artist.overview({ uri: artist.uri })" class="list-item">
+                    <div class="col w100 name">
+                        <span ng-bind="artist.name"></span>
+                    </div>
+                    <div class="clear-both"></div>
+				</a>
+			</div>	
+		</div>
+		
+		<div ng-hide="artists.length" class="no-items">
+			No items. Have you installed the SQLite local library?
+		</div>	
+		
+	</div>
+</div>
