@@ -1,0 +1,17 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.cfg
+setup.py
+github_email_explorer/__init__.py
+github_email_explorer/api_url.py
+github_email_explorer/cli_explore.py
+github_email_explorer/cli_sendgrid.py
+github_email_explorer/email_handler.py
+github_email_explorer/github_email.py
+github_email_explorer.egg-info/PKG-INFO
+github_email_explorer.egg-info/SOURCES.txt
+github_email_explorer.egg-info/dependency_links.txt
+github_email_explorer.egg-info/entry_points.txt
+github_email_explorer.egg-info/requires.txt
+github_email_explorer.egg-info/top_level.txt
