@@ -1,0 +1,19 @@
+Metadata-Version: 2.0
+Name: classwerk
+Version: 0.0.1
+Summary: Github automation tools for classrooms
+Home-page: UNKNOWN
+Author: Keshav Varma
+Author-email: keshavdv@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Provides: classwerk
+Requires-Dist: gitpython (>=2.0.8)
+Requires-Dist: pyyaml (>=3.0)
+Requires-Dist: github3.py (>=0.9.5)
+Requires-Dist: travispy (>=0.3.5)
+Requires-Dist: selenium (>=2.0.0)
+
+UNKNOWN
+
+
