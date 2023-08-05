@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: radicale-timerange-indexed-storage
+Version: 1.5.2
+Summary: A time range indexed radicale storage
+Home-page: UNKNOWN
+Author: Florian Mounier - Kozea
+Author-email: florian.mounier@kozea.fr
+License: BSD
+Description: 
+        Radicale Time Range Indexed Storage
+        
+Platform: Any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
