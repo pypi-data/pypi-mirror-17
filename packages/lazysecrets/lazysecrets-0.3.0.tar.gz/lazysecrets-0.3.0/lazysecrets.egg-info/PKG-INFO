@@ -1,0 +1,72 @@
+Metadata-Version: 1.1
+Name: lazysecrets
+Version: 0.3.0
+Summary: Short description here
+Home-page: https://github.com/rev112/lazysecrets
+Author: Anton Ovchinnikov
+Author-email: anton.ovchi2nikov@gmail.com
+License: MIT license
+Description: ===============================
+        lazysecrets
+        ===============================
+        
+        
+        .. image:: https://img.shields.io/pypi/v/lazysecrets.svg
+                :target: https://pypi.python.org/pypi/lazysecrets
+        
+        .. image:: https://img.shields.io/travis/rev112/lazysecrets.svg
+                :target: https://travis-ci.org/rev112/lazysecrets
+        
+        .. image:: https://readthedocs.org/projects/lazysecrets/badge/?version=latest
+                :target: https://lazysecrets.readthedocs.io/en/latest/?badge=latest
+                :alt: Documentation Status
+        
+        .. image:: https://pyup.io/repos/github/rev112/lazysecrets/shield.svg
+             :target: https://pyup.io/repos/github/rev112/lazysecrets/
+             :alt: Updates
+        
+        
+        Short description here
+        
+        
+        * Free software: MIT license
+        * Documentation: https://lazysecrets.readthedocs.io.
+        
+        
+        Features
+        --------
+        
+        * TODO
+        
+        Credits
+        ---------
+        
+        This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+        
+        
+        
+        =======
+        History
+        =======
+        
+        0.1.0 (2016-08-28)
+        ------------------
+        
+        * First release on PyPI.
+        
+Keywords: lazysecrets
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
