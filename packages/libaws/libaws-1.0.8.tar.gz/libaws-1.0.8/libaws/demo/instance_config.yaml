@@ -1,0 +1,34 @@
+
+- instance:
+    input:
+        name: genetalk_db_machine 
+        image_id: ami-34e4cf57 
+        keyname: ap-southeast-2_default_test_access_key 
+        subnet_id:
+            value: subnet-3d2e377b 
+        number: 1
+        instance_type: i2.2xlarge 
+        security_group_ids:
+            value: [sg-70bd2e14]
+        tags:
+            - tag:
+                key: Name
+                value: genetalk_test_instance 
+
+        spot:
+            price: 2.035 
+            #           availability_zone_group: ggg
+            #duration: 10 
+
+#    vpc:
+#       from_config: ./libaws/demo/vpc_config.yaml
+#    
+#    keypair:
+#        key: genetalk_access_key   
+#        delete_exists: True
+#
+# volumes:
+#       - volume:
+#           size: 20
+#           name: /dev/sda1
+
