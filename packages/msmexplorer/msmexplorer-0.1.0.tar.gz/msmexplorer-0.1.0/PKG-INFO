@@ -1,0 +1,25 @@
+Metadata-Version: 1.1
+Name: msmexplorer
+Version: 0.1.0
+Summary: b'MSMExplorer: data visualizations for biomolecular dynamics\n=========================================================='
+Home-page: https://github.com/msmexplorer/msmexplorer
+Author: Carlos Xavier Hernandez
+Author-email: cxh@stanford.edu
+License: MIT
+Download-URL: https://github.com/msmexplorer/msmexplorer/tarball/master
+Description: b'MSMExplorer: data visualizations for biomolecular dynamics\n==========================================================\n\n[|Build Status|] (https://travis-ci.org/msmexplorer/msmexplorer)\n|Coverage Status| [|License|] (https://opensource.org/licenses/MIT)\n[|Documentation|] (http://msmbuilder.org/msmexplorer/)\n\n.. raw:: html\n\n   <div class="row">\n\n.. raw:: html\n\n   </div>\n\nMSMExplorer is a Python visualization library for statistical models of\nbiomolecular dynamics. It provides a high-level interface for drawing\nattractive statistical graphics with\n`MSMBuilder <http://msmbuilder.org>`__.\n\nDocumentation\n-------------\n\nOnline documentation is available\n`here <http://msmbuilder.org/msmexplorer/>`__. It includes IPython\nnotebooks, detailed API documentation, and other useful info.\n\nThere are docs for the development version\n`here <http://msmbuilder.org/msmexplorer/development>`__. These should\nmore or less correspond with the github master branch, but they\'re not\nbuilt automatically and thus may fall out of sync at times.\n\nExamples\n--------\n\n.. code:: python\n\n    from msmbuilder.example_datasets import FsPeptide\n    from msmbuilder.featurizer import RMSDFeaturizer\n\n    import msmexplorer as msme\n\n    # Load Fs Peptide Data\n    traj = FsPeptide().get().trajectories\n\n    # Calculate RMSD\n    featurizer = RMSDFeaturizer(reference_traj=traj[0][0])\n    rmsd = featurizer.transform(traj)\n\n    # Plot Trace\n    msme.plot_trace(rmsd[0].flatten(), label=\'traj0\', xlabel=\'Timestep\', ylabel=\'RMSD (nm)\')\n\n.. figure:: http://msmbuilder.org/msmexplorer/development/_images/plot_trace.png\n   :alt: \n\nThe documentation has an `example\ngallery <http://msmbuilder.org/msmexplorer/development/examples/>`__\nwith short scripts showing how to use different parts of the package.\n\nDependencies\n------------\n\n-  Python 3.4+\n\nMandatory\n~~~~~~~~~\n\n-  `numpy <http://www.numpy.org/>`__\n\n-  `scipy <http://www.scipy.org/>`__\n\n-  `matplotlib <matplotlib.sourceforge.net>`__\n\n-  `networkx <https://networkx.github.io/>`__\n\n-  `pandas <http://pandas.pydata.org/>`__\n\n-  `seaborn <https://stanford.edu/~mwaskom/software/seaborn/>`__\n\n-  `statsmodels <http://statsmodels.sourceforge.net/devel/>`__\n\n-  `corner <http://corner.readthedocs.io/en/latest/>`__\n\n-  `mdtraj <https://mdtraj.org/>`__\n\n-  `msmbuilder <https://msmbuilder.org>`__\n\nInstallation\n------------\n\nThe preferred installation mechanism for ``msmexplorer`` is with\n``conda``:\n\n.. code:: bash\n\n    $ conda install -c omnia msmexplorer\n\nIf you don\'t have conda, or are new to scientific python, we recommend\nthat you download the `Anaconda scientific python\ndistribution <https://store.continuum.io/cshop/anaconda/>`__.\n\nTo install from PyPI, just do:\n\n::\n\n    pip install msmexplorer\n\nYou may instead want to use the development version from Github, by\nrunning\n\n::\n\n    pip install git+git://github.com/msmexplorer/msmexplorer.git#egg=msmexplorer\n\nDevelopment\n-----------\n\nhttps://github.com/msmexplorer/msmexplorer\n\nPlease\n`submit <https://github.com/msmexplorer/msmexplorer/issues/new>`__ any\nbugs you encounter to the Github issue tracker.\n\nLicense\n-------\n\nReleased under a MIT license\n\n.. |Build Status| image:: https://travis-ci.org/msmexplorer/msmexplorer.svg?branch=master\n.. |Coverage Status| image:: https://coveralls.io/repos/github/msmexplorer/msmexplorer/badge.svg?branch=master\n   :target: https://coveralls.io/github/msmexplorer/msmexplorer?branch=master\n.. |License| image:: https://img.shields.io/badge/license-MIT-red.svg?style=flat\n.. |Documentation| image:: https://img.shields.io/badge/docs-latest-blue.svg?style=flat\n'
+Keywords: visualizations,biomolecular,simulations,markov state models
+Platform: Windows
+Platform: Linux
+Platform: Mac OS-X
+Platform: Unix
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Topic :: Scientific/Engineering
