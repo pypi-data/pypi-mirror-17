@@ -1,0 +1,14 @@
+setup.cfg
+setup.py
+testworksappium/__init__.py
+testworksappium/appiumdriver.py
+testworksappium/element.py
+testworksappium/elements.py
+testworksappium/exceptions.py
+testworksappium/page.py
+testworksappium/testcase.py
+testworksappium.egg-info/PKG-INFO
+testworksappium.egg-info/SOURCES.txt
+testworksappium.egg-info/dependency_links.txt
+testworksappium.egg-info/requires.txt
+testworksappium.egg-info/top_level.txt
