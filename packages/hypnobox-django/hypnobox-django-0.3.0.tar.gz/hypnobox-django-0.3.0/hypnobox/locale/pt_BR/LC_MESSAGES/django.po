@@ -1,0 +1,59 @@
+# Translation to pt-br.
+# Copyright (C) 2016
+# This file is distributed under the same license as the hypnobox-django package.
+# Fernando Macedo <fgmacedo@gmail.com>, 2016.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-09 11:55-0300\n"
+"PO-Revision-Date: 2016-09-09 11:55-0300\n"
+"Last-Translator: Fernando Macedo <fgmacedo@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: pt_BR \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: hypnobox/models.py:11
+msgid "name"
+msgstr "nome"
+
+#: hypnobox/models.py:12
+msgid "email"
+msgstr "email"
+
+#: hypnobox/models.py:14
+msgid "phone prefix"
+msgstr "prefixo do telefone"
+
+#: hypnobox/models.py:16 hypnobox/models.py:20
+msgid "Only numbers."
+msgstr "Somente números"
+
+#: hypnobox/models.py:19
+msgid "phone number"
+msgstr "número do telefone"
+
+#: hypnobox/models.py:21
+msgid "product id"
+msgstr "id do produto"
+
+#: hypnobox/models.py:22
+msgid "media"
+msgstr "mídia"
+
+#: hypnobox/models.py:24
+msgid "created on"
+msgstr "criado em"
+
+#: hypnobox/models.py:28
+msgid "lead"
+msgstr "lead"
+
+#: hypnobox/models.py:29
+msgid "leads"
+msgstr "leads"
