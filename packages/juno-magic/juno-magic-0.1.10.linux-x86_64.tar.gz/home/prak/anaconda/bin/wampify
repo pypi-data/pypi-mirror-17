@@ -1,0 +1,10 @@
+#!/home/prak/anaconda/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'juno-magic==0.1.10','console_scripts','wampify'
+__requires__ = 'juno-magic==0.1.10'
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.exit(
+        load_entry_point('juno-magic==0.1.10', 'console_scripts', 'wampify')()
+    )
