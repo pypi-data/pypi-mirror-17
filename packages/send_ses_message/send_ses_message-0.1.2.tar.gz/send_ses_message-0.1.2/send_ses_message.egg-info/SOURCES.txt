@@ -1,0 +1,10 @@
+ses_smtp_mailer.py
+setup.cfg
+setup.py
+send_ses_message/__init__.py
+send_ses_message/send_smtp_ses_email.py
+send_ses_message.egg-info/PKG-INFO
+send_ses_message.egg-info/SOURCES.txt
+send_ses_message.egg-info/dependency_links.txt
+send_ses_message.egg-info/top_level.txt
+send_ses_message/examples/smtp_credentials.cfg
