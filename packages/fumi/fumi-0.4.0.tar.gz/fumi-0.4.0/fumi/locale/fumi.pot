@@ -1,0 +1,405 @@
+# Translations template for fumi.
+# Copyright (C) 2016 ORGANIZATION
+# This file is distributed under the same license as the fumi project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: fumi 0.4.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2016-09-07 21:46+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: fumi/messages.py:32
+msgid "Command execution"
+msgstr ""
+
+#: fumi/messages.py:33
+#, python-format
+msgid "Running local command: %s"
+msgstr ""
+
+#: fumi/messages.py:34
+#, python-format
+msgid "Running remote command: %s"
+msgstr ""
+
+#: fumi/messages.py:35
+#, python-format
+msgid "Skipping unknown command type \"%s\""
+msgstr ""
+
+#: fumi/messages.py:38
+#, python-format
+msgid "Configuration \"%s\" already exists"
+msgstr ""
+
+#: fumi/messages.py:40
+#, python-format
+msgid "Configuration \"%s\" does not exist"
+msgstr ""
+
+#: fumi/messages.py:41
+msgid "That configuration does not exist!"
+msgstr ""
+
+#: fumi/messages.py:43
+#, python-format
+msgid "Removed configuration: %s"
+msgstr ""
+
+#: fumi/messages.py:45
+msgid "Which one do you want to set as default?: "
+msgstr ""
+
+#: fumi/messages.py:47
+msgid "I found the following configurations:"
+msgstr ""
+
+#: fumi/messages.py:49
+msgid "Authentication failed"
+msgstr ""
+
+#: fumi/messages.py:50
+msgid "Could not connect, please check your credentials"
+msgstr ""
+
+#: fumi/messages.py:51
+msgid "Connection needs a password"
+msgstr ""
+
+#: fumi/messages.py:52
+msgid "Password needed to unlock private key file"
+msgstr ""
+
+#: fumi/messages.py:54
+msgid "Password: "
+msgstr ""
+
+#: fumi/messages.py:55
+msgid "Trying to connect using public key"
+msgstr ""
+
+#: fumi/messages.py:56
+msgid "Trying to connect using provided password"
+msgstr ""
+
+#: fumi/messages.py:58
+msgid "Correct!"
+msgstr ""
+
+#: fumi/messages.py:61
+#, python-format
+msgid "Created blank configuration: %s"
+msgstr ""
+
+#: fumi/messages.py:63
+msgid "Deployment complete!"
+msgstr ""
+
+#: fumi/messages.py:64
+msgid "Checking remote directories..."
+msgstr ""
+
+#: fumi/messages.py:65
+msgid "Connected!"
+msgstr ""
+
+#: fumi/messages.py:66
+#, python-format
+msgid "Connecting to %s as %s..."
+msgstr ""
+
+#: fumi/messages.py:67
+msgid "Creating remote directory tree..."
+msgstr ""
+
+#: fumi/messages.py:68
+msgid "Performing a \"git\" deployment"
+msgstr ""
+
+#: fumi/messages.py:69
+msgid "Cloning repository..."
+msgstr ""
+
+#: fumi/messages.py:70
+msgid "git command not found in remote server"
+msgstr ""
+
+#: fumi/messages.py:71
+msgid "Performing a \"local\"deployment"
+msgstr ""
+
+#: fumi/messages.py:72
+msgid "Cleaning temporary files..."
+msgstr ""
+
+#: fumi/messages.py:73
+#, python-format
+msgid "Compressing source to %s"
+msgstr ""
+
+#: fumi/messages.py:74
+msgid "Error: some files differ"
+msgstr ""
+
+#: fumi/messages.py:75
+msgid "Error: tar command not found in remote host"
+msgstr ""
+
+#: fumi/messages.py:76
+msgid "Fatal error when extracting remote file"
+msgstr ""
+
+#: fumi/messages.py:77
+#, python-format
+msgid "Path \"%s\" does not exist, ignoring"
+msgstr ""
+
+#: fumi/messages.py:78
+msgid "Failed to initiate SCP, check configuration"
+msgstr ""
+
+#: fumi/messages.py:79
+msgid "Uncompressing remote file..."
+msgstr ""
+
+#: fumi/messages.py:80
+#, python-format
+msgid "Uploading %s..."
+msgstr ""
+
+#: fumi/messages.py:81
+#, python-format
+msgid "Error uploading to server: %s"
+msgstr ""
+
+#: fumi/messages.py:82
+#, python-format
+msgid "Missing required parameter: %s"
+msgstr ""
+
+#: fumi/messages.py:83
+msgid "Preparation complete!"
+msgstr ""
+
+#: fumi/messages.py:84
+#, python-format
+msgid "Preparing revision %s"
+msgstr ""
+
+#: fumi/messages.py:85
+msgid "Make sure to upload shared files before deploying"
+msgstr ""
+
+#: fumi/messages.py:86
+#, python-format
+msgid "Unknown deployment type: %s"
+msgstr ""
+
+#: fumi/messages.py:88
+msgid "Done!"
+msgstr ""
+
+#: fumi/messages.py:91
+msgid "commands"
+msgstr ""
+
+#: fumi/messages.py:92
+msgid "configuration"
+msgstr ""
+
+#: fumi/messages.py:93
+msgid "configuration to use"
+msgstr ""
+
+#: fumi/messages.py:94
+msgid "deploy using given configuration"
+msgstr ""
+
+#: fumi/messages.py:95
+msgid "Simple deployment tool"
+msgstr ""
+
+#: fumi/messages.py:96
+msgid "list all the available deployment configurations"
+msgstr ""
+
+#: fumi/messages.py:97
+msgid "name"
+msgstr ""
+
+#: fumi/messages.py:98
+msgid "name for the new configuration"
+msgstr ""
+
+#: fumi/messages.py:99
+msgid "create new deployment configuration"
+msgstr ""
+
+#: fumi/messages.py:100
+msgid "test connection and prepare remote directories"
+msgstr ""
+
+#: fumi/messages.py:101
+msgid "remove a configuration from the deployment file"
+msgstr ""
+
+#: fumi/messages.py:103
+msgid "Unknown action"
+msgstr ""
+
+#: fumi/messages.py:105
+msgid "Linking directory..."
+msgstr ""
+
+#: fumi/messages.py:106
+msgid "Linking shared files..."
+msgstr ""
+
+#: fumi/messages.py:107
+#, python-format
+msgid "Linking: %s"
+msgstr ""
+
+#: fumi/messages.py:110
+#, python-format
+msgid "- %s (default)"
+msgstr ""
+
+#: fumi/messages.py:111
+msgid "There are no configurations available"
+msgstr ""
+
+#: fumi/messages.py:112
+msgid "There is no fumi.yml file"
+msgstr ""
+
+#: fumi/messages.py:114
+#, python-format
+msgid "Path \"%s\" does not exist"
+msgstr ""
+
+#: fumi/messages.py:116
+msgid "Cannot create remote deployment directory"
+msgstr ""
+
+#: fumi/messages.py:117
+msgid "Remote deployment directory does not exist"
+msgstr ""
+
+#: fumi/messages.py:118
+#, python-format
+msgid "Remote file \"%s\" does not exist"
+msgstr ""
+
+#: fumi/messages.py:119
+msgid "Cannot create remote revisions directory"
+msgstr ""
+
+#: fumi/messages.py:120
+msgid "Remote revisions directory does not exist"
+msgstr ""
+
+#: fumi/messages.py:121
+msgid "Cannot create remote shared directory"
+msgstr ""
+
+#: fumi/messages.py:122
+msgid "Remote shared directory does not exist"
+msgstr ""
+
+#: fumi/messages.py:123
+msgid "Cannot create remote temporary directory"
+msgstr ""
+
+#: fumi/messages.py:124
+msgid "Remote temporary directory does not exist"
+msgstr ""
+
+#: fumi/messages.py:126
+msgid "Checking old revisions..."
+msgstr ""
+
+#: fumi/messages.py:127
+#, python-format
+msgid "Linking previous revision (%s) ..."
+msgstr ""
+
+#: fumi/messages.py:128
+msgid "Error obtaining list of revisions"
+msgstr ""
+
+#: fumi/messages.py:129
+msgid "No previous revision to link"
+msgstr ""
+
+#: fumi/messages.py:131
+#, python-format
+msgid "Removing revision %s"
+msgstr ""
+
+#: fumi/messages.py:132
+#, python-format
+msgid "Removing remote revision %s ..."
+msgstr ""
+
+#: fumi/messages.py:135
+#, python-format
+msgid "Could not remove \"%s\": %s"
+msgstr ""
+
+#: fumi/messages.py:137
+msgid "Remote error, could not remove directory:"
+msgstr ""
+
+#: fumi/messages.py:139
+msgid "Remote error, could not remove file:"
+msgstr ""
+
+#: fumi/messages.py:141
+#, python-format
+msgid "Failed to remove file: %s"
+msgstr ""
+
+#: fumi/messages.py:143
+#, python-format
+msgid "Removing %s ..."
+msgstr ""
+
+#: fumi/messages.py:144
+#, python-format
+msgid "Removing remote file %s ..."
+msgstr ""
+
+#: fumi/messages.py:146
+msgid "Beginning rollback..."
+msgstr ""
+
+#: fumi/messages.py:149
+#, python-format
+msgid "Unexpected error: %s"
+msgstr ""
+
+#: fumi/messages.py:152
+#, python-format
+msgid "Using default configuration: %s"
+msgstr ""
+
+#: fumi/messages.py:155
+#, python-format
+msgid "Error in deployment file: %s"
+msgstr ""
+
+#: fumi/messages.py:157
+#, python-format
+msgid "Error writing yaml to deployment file: %s"
+msgstr ""
+
