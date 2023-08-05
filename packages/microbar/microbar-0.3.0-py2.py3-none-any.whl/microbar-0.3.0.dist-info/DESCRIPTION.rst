@@ -1,0 +1,76 @@
+========
+Overview
+========
+
+Low-pressure bar graphs for Python.
+
+Features
+========
+
+* Safe: Object is thread-safe and parameters are type-checked.
+* Friendly: Raises human-readable errors.
+* Tested: Package has good test coverage.
+* Customizable: Constructor takes custom bar characters.
+* Free software: Published under a OSI-compatible license.
+* Compatible: Runs on multiple versions of CPython and PyPy.
+* Convenient: Package installable from PyPI via pip.
+
+Status
+======
+
+
+
+Installation
+============
+
+::
+
+    pip install microbar
+
+Documentation
+=============
+
+https://microbar.readthedocs.io/en/latest/
+
+Development
+===========
+
+To run the all tests run::
+
+    tox
+
+Note, to combine the coverage data from all the tox environments run:
+
+.. list-table::
+    :widths: 10 90
+    :stub-columns: 1
+
+    - - Windows
+      - ::
+
+            set PYTEST_ADDOPTS=--cov-append
+            tox
+
+    - - Other
+      - ::
+
+            PYTEST_ADDOPTS=--cov-append tox
+
+Releasing
+=========
+
+::
+
+    bumpversion --new-version 0.2.0 minor
+    python setup.py sdist bdist_wheel upload
+
+
+Changelog
+=========
+
+0.1.0 (2016-09-02)
+-----------------------------------------
+
+* First release on PyPI.
+
+
