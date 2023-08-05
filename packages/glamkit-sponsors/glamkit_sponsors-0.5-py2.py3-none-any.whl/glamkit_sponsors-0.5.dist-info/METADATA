@@ -1,0 +1,23 @@
+Metadata-Version: 2.0
+Name: glamkit-sponsors
+Version: 0.5
+Summary: A simple app to implement sponsors in GLAMkit projects.
+Home-page: https://github.com/ic-labs/glamkit-sponsors
+Author: Interaction Consortium
+Author-email: studio@interaction.net.au
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: coverage
+Requires-Dist: django-icekit
+Provides-Extra: dev
+Requires-Dist: ipdb; extra == 'dev'
+Requires-Dist: ipython; extra == 'dev'
+Provides-Extra: postgres
+Requires-Dist: psycopg2; extra == 'postgres'
+Provides-Extra: testing
+Requires-Dist: requests; extra == 'testing'
+Requires-Dist: mock; extra == 'testing'
+
+UNKNOWN
+
+
