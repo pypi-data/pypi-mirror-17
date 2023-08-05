@@ -1,0 +1,5 @@
+[console_scripts]
+onyx_install = onyx:install
+onyx_maj = onyx:maj
+onyx_start = onyx:run
+

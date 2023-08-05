@@ -1,0 +1,20 @@
+{% extends "layout/default.html" %}
+
+{% block body %}
+
+  <div class="card-panel blue-grey lighten-4">
+<META HTTP-EQUIV="Refresh" CONTENT="30" > 
+<br>
+		<div class="panel panel-info">
+			<div class="panel-heading">Résultat</div>
+			<div class="panel-body"> 
+				<strong><p id="station">{{ result.name1 }} :  </p></strong><p id="horaire">{{ result.horaire1 }}</p><br>
+				<br><strong><p id="station">{{ result.name2 }} :  </p></strong><p id="horaire">{{ result.horaire2 }}</p><br>
+				<br><strong><p id="station">{{ result.name3 }} :  </p></strong><p id="horaire">{{ result.horaire3 }}</p><br>
+				<br><strong><p id="station">{{ result.name4 }} :  </p></strong><p id="horaire">{{ result.horaire4 }}</p><br>
+			</div>
+		</div>
+</META>
+</div>
+
+{% endblock %}

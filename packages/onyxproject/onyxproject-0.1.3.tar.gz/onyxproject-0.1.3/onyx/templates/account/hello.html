@@ -1,0 +1,28 @@
+{% extends 'layout/login.html' %}
+{% block body %}
+
+    <style type="text/css">
+        .content{
+            text-align: center;
+            margin-top: 25%;
+        }
+    </style>
+
+
+
+
+	<h1 style="color: white;">Welcome to Onyx</h1>
+    <form action="http://www.google.com/search" target="_blank" METHOD="GET">
+        <input  type="text" name="q" VALUE SIZE="31" MAXLENGTH="255" placeholder="Recherche Google">
+        <input type="submit" class="btn " value="Recherche Google">
+    </form> 
+    </br>
+	<a href="{{ url_for('login') }}" class="btn " >Se Connecter</a>
+	<a href="{{ url_for('register') }}" class="btn " >Ajouter un compte</a>
+
+	
+
+ 
+
+
+{% endblock %}

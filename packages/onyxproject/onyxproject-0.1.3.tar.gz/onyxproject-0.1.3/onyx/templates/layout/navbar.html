@@ -1,0 +1,128 @@
+
+
+
+<ul class="right hide-on-med-and-down">
+
+
+<div class="fixed-action-btn" style="height: 50px; top: 70px; right: 8%;">
+     <a href="{{ url_for('accountManage') }}" class="btn-floating btn-large {{ buttonColor }}">
+      <i class="large fa fa-user" aria-hidden="true"></i>
+    </a>
+</div>
+
+<div class="fixed-action-btn" style="height: 50px; top: 70px; right: 13%;">
+    <a href="{{ url_for('map') }}" class="btn-floating btn-large {{ buttonColor }}">
+      <i class="large material-icons">navigation</i>
+    </a>
+</div>
+
+<div class="fixed-action-btn" style="height: 50px; top: 70px; right: 24%;">
+    <a href="{{ url_for('rasp') }}" class="btn-floating btn-large {{ buttonColor }}">
+      <i class="large material-icons">laptop</i>
+    </a>
+</div>
+
+<div class="fixed-action-btn" style="height: 50px; top: 70px; right: 29%;">
+       <a href="{{ url_for('utilities') }}" class="btn-floating btn-large {{ buttonColor }}">
+      <i class="large material-icons">language</i>
+    </a>
+</div>
+
+<div class="fixed-action-btn" style="height: 50px; top: 70px; right: 34%;">
+    <a href="{{ url_for('calendar') }}" class="btn-floating btn-large {{ buttonColor }}">
+      <i class="large fa fa-calendar-o" aria-hidden="true"></i>
+    </a>
+</div>
+
+<div class="fixed-action-btn" style="height: 50px; top: 70px; right: 62%;">
+    <a href="{{ url_for('task') }}" class="btn-floating btn-large {{ buttonColor }}">
+      <i class="large fa fa-tasks" aria-hidden="true"></i>
+    </a>
+</div>
+
+<div class="fixed-action-btn" style="height: 50px; top: 70px; right: 67%;">
+    <a href="{{ url_for('weather') }}" class="btn-floating btn-large {{ buttonColor }}">
+      <i class="large fa fa-sun-o" aria-hidden="true"></i>
+    </a>
+</div>
+
+<div class="fixed-action-btn" style="height: 50px; top: 70px; right: 72%;">
+    <a href="{{ url_for('info') }}" class="btn-floating btn-large {{ buttonColor }}">
+      <i class="large fa fa-info" aria-hidden="true"></i>
+    </a>
+</div>
+
+<div class="fixed-action-btn" style="height: 50px; top: 70px; right: 83%;">
+    <a href="{{ url_for('help') }}" class="btn-floating btn-large {{ buttonColor }}">
+      <i class="large fa fa-question-circle" aria-hidden="true"></i>
+    </a>
+</div>
+
+<div class="fixed-action-btn" style="height: 50px; top: 70px; right: 88%;">
+    <a href="{{ url_for('options') }}" class="btn-floating btn-large {{ buttonColor }}">
+      <i class="large fa fa-wrench" aria-hidden="true"></i>
+    </a>
+</div>
+
+<div class="fixed-action-btn" style="height: 50px; top: 70px; right: 93%;">
+    <a href="{{ url_for('app') }}" class="btn-floating btn-large {{ buttonColor }}">
+      <i class="large material-icons">widgets</i>
+    </a>
+ </div>
+
+</ul>
+<ul id="nav-mobile" class="side-nav">
+<li><a href="{{url_for('app')}}">App</a></li>
+<li><a href="{{url_for('utilities')}}">Utilitaires</a></li>
+<li><a href="{{ url_for('map') }}">Map</a></li>
+<li><a href="{{ url_for('calendar') }}">Calendrier</a></li>
+<li><a href="{{ url_for('task') }}">Taches</a></li>
+<li><a href="{{ url_for('weather') }}">Météo</a></li>
+<li><a href="{{ url_for('info') }}">Informations</a></li>
+<li><a href="{{ url_for('help') }}">Aide</a></li>
+<li><a href="{{ url_for('options') }}">Options</a></li>
+                </ul>
+                <div class="fixed-action-btn" style="height: 50px; top: 70px; right: 3%;">
+                  <a href="{{ url_for('reveil') }}" data-activates="nav-mobile" class=" button-collapse btn-floating btn-large {{ buttonColor }}">
+                    <i class="large material-icons">reorder</i>
+                  </a>
+                </div>
+                
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="main">   
+        <a href="{{ url_for('index') }}">
+        <img   style="max-width: 100%; height:250px; " class="responsive-img" src="{{ url_for('static', filename='images/logo.png') }}" alt="LOGO"/>
+        </a>  
+</div>
+
+
+ 
+
+
+ <ul id="slide-out" class="side-nav">
+    <li> <div class="userView">
+      <img src="{{ url_for('static', filename='images/nav.png') }}" alt="" class="background">
+      <a href="{{ url_for('accountManage') }}"><img class="circle" src="{{ urlAvatar }}"></a>
+      <span class="white-text name">{{ currentUser }}</span>
+      <span class="white-text email">{{ currentEmail }}</span>
+    </div></li>
+    <li><a href="{{ url_for('accountManage') }}">Mon compte</a></li>
+    <li><div class="divider"></div></li>
+    <li><a href="{{ url_for('lock') }}">Bloquer ma session</a></li>
+    <li><a href="{{ url_for('logout') }}">Déconnexion</a></li>
+
+  </ul>
+
+
+
+
+
+ <div class="fixed-action-btn" style="bottom: 100px; right: 3%;">
+    <a href="{{ url_for('accountManage') }}" class="button-collapse" data-activates="slide-out"><img class="circle" src="{{ urlAvatar }}"></a>
+  </div>
+
+
