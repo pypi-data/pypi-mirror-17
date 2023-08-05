@@ -1,0 +1,31 @@
+Metadata-Version: 2.0
+Name: pando
+Version: 0.44
+Summary: Pando is a Python web framework. Simplates are the main attraction.
+Home-page: http://aspen.io/
+Author: Chad Whitacre et al.
+Author-email: team@aspen.io
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application
+Requires-Dist: algorithm (>=1.2.0)
+Requires-Dist: aspen (>=1.0rc1)
+Requires-Dist: dependency-injection (>=1.1.0)
+Requires-Dist: filesystem-tree (>=1.0.1)
+Requires-Dist: first (>=2.0.1)
+Requires-Dist: python-mimeparse (>=0.1.4)
+Requires-Dist: six
+Provides-Extra: fcgi
+Requires-Dist: flup; extra == 'fcgi'
+
+UNKNOWN
+
+
