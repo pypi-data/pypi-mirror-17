@@ -1,0 +1,3 @@
+[console_scripts]
+ecmwf_download = ecmwf_models.download:run
+
