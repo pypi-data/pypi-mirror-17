@@ -1,0 +1,15 @@
+python_scciclient-0.3.1.dist-info/DESCRIPTION.rst,sha256=8Pskd6g2grgII5iWFiJdCcK4xXxN8L_XJMMmI8cYCCo,322
+python_scciclient-0.3.1.dist-info/METADATA,sha256=zgKkkZBfTiLNV8Ns_gJ8AppBczpcPDjv-jQEJ_FYL_U,1322
+python_scciclient-0.3.1.dist-info/RECORD,,
+python_scciclient-0.3.1.dist-info/WHEEL,sha256=bee59qcPjkyXfMaxNWjl2CGotqfumWx9pC1hlVLr2mM,92
+python_scciclient-0.3.1.dist-info/metadata.json,sha256=t6GETr0uKVAJ1ETSj75JfluK_4VSQZTQcgGBrS3-Am8,1440
+python_scciclient-0.3.1.dist-info/pbr.json,sha256=9fYZL5MeE5QyTEA22T31VaIjSX0DZhmL1dnekOulPF8,46
+python_scciclient-0.3.1.dist-info/top_level.txt,sha256=fJL3mFJXnXed0TdBvKtlr9g0xFWbXOsdUjr8KB-pyZU,11
+scciclient/__init__.py,sha256=woFeHnLMPOkrxePfWfk7VSSVI6ESxMog__c2dlS9Dv8,673
+scciclient/irmc/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+scciclient/irmc/scci.py,sha256=PNgiy8KcYzg1dcxP5bwr9ZTa199AScWrHMM7Ku003dc,16858
+scciclient/tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+scciclient/tests/irmc/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+scciclient/tests/irmc/test_scci.py,sha256=nsYTzzHd8GGq3EAVm2yrijjfMUU83gnbijaUHx-_b3I,31099
+scciclient/tests/irmc/fixtures/irmc_report_ng.xml,sha256=U7_vtNm1tCyrVRm1DQ7513SpKy-C-njpEFY5rsgN9l0,30772
+scciclient/tests/irmc/fixtures/irmc_report_ok.xml,sha256=QPJypS4WkC0nq_PaDaZBlR6zpL1yYlAzvDvH6jke--c,48064
