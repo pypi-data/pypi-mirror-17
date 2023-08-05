@@ -1,0 +1,10 @@
+{% extends "layout/default.html" %}
+{% block body %}
+	    <div class="card-panel grey lighten-3">
+	  		<h1>Meteo</h1>
+	  		<img style="width: 60px" src="{{ url_for('static', filename='images/weather/' + imgurl) }}">
+	  		<h1>{{ day }} °</h1>
+	  		<h3>{{ city }}</h3>
+	  		<iframe id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" src="http://forecast.io/embed/#lat={{ lat }}&lon={{ lon }}&name={{ city }}&units=ca"> </iframe> 
+	  </div>
+{% endblock %}
