@@ -1,0 +1,15 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.py
+scraps/ESL_tools.py
+scraps/__init__.py
+scraps/plot_tools.py
+scraps/process_file.py
+scraps/resonator.py
+scraps/resonator_sweep.py
+scraps.egg-info/PKG-INFO
+scraps.egg-info/SOURCES.txt
+scraps.egg-info/dependency_links.txt
+scraps.egg-info/requires.txt
+scraps.egg-info/top_level.txt
