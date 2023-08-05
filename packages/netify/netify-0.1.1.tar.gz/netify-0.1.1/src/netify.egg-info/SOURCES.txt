@@ -1,0 +1,16 @@
+LICENSE.rst
+MANIFEST.in
+README.rst
+setup.py
+src/netify/__init__.py
+src/netify/app.py
+src/netify/config.py
+src/netify/template.py
+src/netify/view.py
+src/netify.egg-info/PKG-INFO
+src/netify.egg-info/SOURCES.txt
+src/netify.egg-info/dependency_links.txt
+src/netify.egg-info/entry_points.txt
+src/netify.egg-info/requires.txt
+src/netify.egg-info/top_level.txt
+src/netify.egg-info/zip-safe
