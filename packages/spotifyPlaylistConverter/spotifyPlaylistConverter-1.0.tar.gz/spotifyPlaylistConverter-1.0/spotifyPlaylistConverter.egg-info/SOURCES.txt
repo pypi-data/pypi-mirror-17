@@ -1,0 +1,15 @@
+README.rst
+setup.py
+spotifyPlaylistConverter.egg-info/PKG-INFO
+spotifyPlaylistConverter.egg-info/SOURCES.txt
+spotifyPlaylistConverter.egg-info/dependency_links.txt
+spotifyPlaylistConverter.egg-info/entry_points.txt
+spotifyPlaylistConverter.egg-info/requires.txt
+spotifyPlaylistConverter.egg-info/top_level.txt
+spotifyconverter/__init__.py
+spotifyconverter/google.py
+spotifyconverter/models.py
+spotifyconverter/spotify.py
+tests/__init__.py
+tests/test_google.py
+tests/test_models.py
