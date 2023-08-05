@@ -1,0 +1,14 @@
+README.rst
+setup.py
+channels_panel/__init__.py
+channels_panel/apps.py
+channels_panel/panel.py
+channels_panel/routes.py
+channels_panel/settings.py
+channels_panel/utils.py
+django_channels_panel.egg-info/PKG-INFO
+django_channels_panel.egg-info/SOURCES.txt
+django_channels_panel.egg-info/dependency_links.txt
+django_channels_panel.egg-info/not-zip-safe
+django_channels_panel.egg-info/requires.txt
+django_channels_panel.egg-info/top_level.txt
