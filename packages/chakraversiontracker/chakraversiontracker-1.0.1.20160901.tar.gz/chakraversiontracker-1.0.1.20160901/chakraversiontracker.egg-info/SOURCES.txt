@@ -1,0 +1,14 @@
+setup.py
+chakraversiontracker/__init__.py
+chakraversiontracker/__main__.py
+chakraversiontracker/data.json
+chakraversiontracker.egg-info/PKG-INFO
+chakraversiontracker.egg-info/SOURCES.txt
+chakraversiontracker.egg-info/dependency_links.txt
+chakraversiontracker.egg-info/entry_points.txt
+chakraversiontracker.egg-info/requires.txt
+chakraversiontracker.egg-info/top_level.txt
+chakraversiontracker/templates/packages.cli
+chakraversiontracker/templates/packages.txt
+chakraversiontracker/templates/repositories.cli
+chakraversiontracker/templates/repositories.txt
