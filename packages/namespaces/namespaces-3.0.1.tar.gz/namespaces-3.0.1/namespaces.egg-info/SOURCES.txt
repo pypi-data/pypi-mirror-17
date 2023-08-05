@@ -1,0 +1,10 @@
+setup.cfg
+setup.py
+namespaces/__init__.py
+namespaces/frozennamespace.py
+namespaces/namespace.py
+namespaces.egg-info/PKG-INFO
+namespaces.egg-info/SOURCES.txt
+namespaces.egg-info/dependency_links.txt
+namespaces.egg-info/requires.txt
+namespaces.egg-info/top_level.txt
