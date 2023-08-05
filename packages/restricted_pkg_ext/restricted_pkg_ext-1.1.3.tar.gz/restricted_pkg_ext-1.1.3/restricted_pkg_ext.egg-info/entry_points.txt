@@ -1,0 +1,4 @@
+[distutils.setup_keywords]
+custom_headers = restricted_pkg.validators:validate_custom_headers
+private_repository = restricted_pkg.validators:validate_private_repo
+
