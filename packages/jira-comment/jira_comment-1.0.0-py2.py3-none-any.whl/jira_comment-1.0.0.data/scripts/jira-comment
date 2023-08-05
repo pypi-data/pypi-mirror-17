@@ -1,0 +1,56 @@
+#!python
+
+"""
+Add comment to JIRA
+
+Usage:
+  jira-comment --bug-id=BUG_ID [options] ([-] | --comment_file=<comment_file>)
+  jira-comment (-h | --help)
+  jira-comment (-v | --version)
+
+Options:
+  -f --comment-file=<comment_file>  File with comment text [default: /dev/stdin]
+  -s --server=<server>              Server URI for Jira [default: JIRA_SERVER] (environment variable)
+  -u --username=<username>          Username for Jira [default: JIRA_USERNAME] (environment variable)
+  -p --password=<password>          Password for Jira [default: JIRA_PASSWORD] (environment variable)
+  -d --debug                        Enable debug output
+  -h --help                         Show this screen.
+  -v --version                      Show version.
+
+Examples:
+  echo "my comment" | jira-comment --bug-id=JIRA-271
+  jira-comment --bug-id=JIRA-271 --comment-file=comment.txt
+"""
+
+__version__ = '1.0.0'
+
+from docopt import docopt
+from jira import JIRA
+from os import sys, getenv
+import logging
+import requests
+requests.packages.urllib3.disable_warnings()
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(stream=sys.stdout)
+
+if __name__ == '__main__':
+    args = docopt(__doc__, version=__version__)
+    if args['--debug']:
+        logger.setLevel(logging.DEBUG)
+    for k, arg in args.items():
+        try:
+            if 'JIRA_' in arg:
+                args[k] = getenv(arg)
+        except TypeError:
+            pass
+
+    logger.debug("Reading comment text from: %s" % args['--comment-file'])
+    with open(args['--comment-file'], 'r') as f:
+        comment = f.read()
+
+    logger.debug("Logging in to Jira")
+    jira_options = {'verify': False, 'server': args['--server']}
+    jira = JIRA(options=jira_options, basic_auth=(args['--username'], args['--password']))
+    logger.info("Adding comment to Jira")
+    comment = jira.add_comment(args['--bug-id'], comment)
