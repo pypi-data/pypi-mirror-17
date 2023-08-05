@@ -1,0 +1,24 @@
+Metadata-Version: 1.1
+Name: uniRW
+Version: 0.5.3
+Summary: A universal reader and writer for stateful data file processing
+Home-page: https://github.com/law-liet/uniRW
+Author: Langxuan Su
+Author-email: lawliet@orion.codes
+License: UNKNOWN
+Download-URL: https://github.com/law-liet/uniRW/tarball/v0.5.3
+Description: UNKNOWN
+Keywords: declarative,functional,reusable,universal,stateful,data,file,processing,csv,reader,writer,map,reduce,filter
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Text Processing
+Classifier: Topic :: Utilities
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
