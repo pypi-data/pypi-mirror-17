@@ -1,0 +1,13 @@
+setup.py
+bin/openiotgw.py
+bin/smartscript.py
+openiot/__init__.py
+openiot/getip2.py
+openiot/ir.py
+openiot/myeval.py
+openiot.egg-info/PKG-INFO
+openiot.egg-info/SOURCES.txt
+openiot.egg-info/dependency_links.txt
+openiot.egg-info/not-zip-safe
+openiot.egg-info/requires.txt
+openiot.egg-info/top_level.txt
