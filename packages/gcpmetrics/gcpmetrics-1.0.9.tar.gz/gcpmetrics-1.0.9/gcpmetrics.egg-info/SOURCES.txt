@@ -1,0 +1,16 @@
+MANIFEST.in
+VERSION
+requirements.txt
+setup.py
+gcpmetrics/__init__.py
+gcpmetrics/config-template.yaml
+gcpmetrics/gcpmetrics.py
+gcpmetrics/global.yaml
+gcpmetrics/keyfile-template.json
+gcpmetrics.egg-info/PKG-INFO
+gcpmetrics.egg-info/SOURCES.txt
+gcpmetrics.egg-info/dependency_links.txt
+gcpmetrics.egg-info/entry_points.txt
+gcpmetrics.egg-info/not-zip-safe
+gcpmetrics.egg-info/requires.txt
+gcpmetrics.egg-info/top_level.txt
