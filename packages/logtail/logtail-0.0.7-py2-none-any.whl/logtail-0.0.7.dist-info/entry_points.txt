@@ -1,0 +1,4 @@
+[console_scripts]
+editlatest = logtail.logtail:editlatest
+logtail = logtail.logtail:main
+
