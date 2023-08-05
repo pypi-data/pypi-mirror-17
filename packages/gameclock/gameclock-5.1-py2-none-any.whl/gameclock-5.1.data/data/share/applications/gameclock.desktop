@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Gameclock
+GenericName=Turn-based space strategy game
+Comment=simple chess clock to track time in real life games
+Exec=gameclock
+TryExec=gameclock
+Icon=gameclock
+Terminal=false
+Categories=Game;BoardGame;
+Keywords=turn-based;chess;go;table;meta;boardgame;fischer;clock;

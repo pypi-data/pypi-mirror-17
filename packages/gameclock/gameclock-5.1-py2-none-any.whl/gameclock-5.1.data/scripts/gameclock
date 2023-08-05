@@ -1,0 +1,61 @@
+#!python
+#
+# gameclock - a simple chess/game clock
+
+import getopt
+import sys
+import os
+
+# crude hack to support running from the source directory
+d = os.path.dirname(os.path.abspath(os.path.realpath(__file__)))
+d, s = os.path.split(d)
+if s == 'scripts':
+    sys.path.insert(0, d)
+import gameclock
+
+# 0 means not verbose, higher numbers show more information, see
+# ui.debug for more info
+verbose = 0
+
+
+def usage():
+    """gameclock v%s %s
+Usage:
+  %s [ -h | -v ... | -f ]
+
+  -h --help: display this help
+  -v --verbose: display progress information to stdout, can be repeated
+  -f --fullscreen: start in fullscreen mode
+
+See the manpage for more information."""
+    print usage.__doc__ % (gameclock.__version__,
+                           gameclock.__copyright__,
+                           sys.argv[0])
+
+if __name__ == "__main__":
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], "hvf",
+                                   ["help", "verbose", "fullscreen"])
+    except getopt.GetoptError, err:
+        # print help information and exit:
+        usage()
+        # will print something like "option -a not recognized"
+        print "\nError: %s" % err
+        sys.exit(2)
+
+    settings = {}
+    for o, a in opts:
+        if o in ("-v", "--verbose"):
+            if 'verbose' not in settings:
+                settings['verbose'] = 0
+            settings['verbose'] += 1
+        elif o in ("-h", "--help"):
+            usage()
+            sys.exit()
+        elif o in ("-f", "--fullscreen"):
+            settings['fullscreen'] = True
+        else:
+            assert False, "unhandled option"
+    from gameclock.gtkui import GameclockUI
+    clock = GameclockUI(**settings)
+    clock.main()
