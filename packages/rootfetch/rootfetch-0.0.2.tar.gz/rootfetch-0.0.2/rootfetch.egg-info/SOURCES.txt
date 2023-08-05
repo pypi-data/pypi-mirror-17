@@ -1,0 +1,15 @@
+setup.py
+rootfetch/__init__.py
+rootfetch/__main__.py
+rootfetch/apple.py
+rootfetch/base.py
+rootfetch/ct.py
+rootfetch/java.py
+rootfetch/mozilla.py
+rootfetch/windows.py
+rootfetch.egg-info/PKG-INFO
+rootfetch.egg-info/SOURCES.txt
+rootfetch.egg-info/dependency_links.txt
+rootfetch.egg-info/entry_points.txt
+rootfetch.egg-info/requires.txt
+rootfetch.egg-info/top_level.txt
