@@ -1,0 +1,48 @@
+CHANGES
+=======
+
+1.1.0
+-----
+
+* Updated from global requirements
+* Manual update from global-requirements for solum-dashboard
+* Fix pep8 error
+* Remove unused requirement
+* Add the languagepack create functionality to the dashboard
+* Fix the applications list functionality in the dashboard
+* Add the languagepack delete functionality to the dashboard
+* Add the languagepack show and log functionality to the dashboard
+* Add the languagepack list functionality to the dashboard
+* Remove discover from test-requirements
+* Resolve pep8 import issues
+* python-solumclient to requirements
+* Fix pep8 error
+* [workaround]Make solum-dashboard running
+
+1.0.1
+-----
+
+* Cleanup Oslo Incubator Code
+* Updating Django version
+* Deprecated tox -downloadcache option removed
+* Replace deprecated LOG.warn with LOG.warning
+* Removing version from setup.cfg
+
+1.0.0
+-----
+
+* Remove py26 from tox.ini and setup.cfg
+* Update .gitreview for project rename
+* Remove docutils pin
+* Stop using intersphinx
+* Work toward Python 3.4 support and testing
+* Updated from global requirements
+* Mistral DSL and Heat template parsers
+* Remove unused logging imports
+* Add the ability to create an assembly from an application
+* Add some basic install instructions
+* Add assemblies table
+* Add support for applications
+* Add importutils from oslo-incubator
+* Add basic files
+* Initial commit
