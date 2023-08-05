@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: django-simple-quiz
+Version: 0.1.0
+Summary: Django Quiz App
+Home-page: UNKNOWN
+Author: Mike Dingjan
+Author-email: mike@mikedingjan.nl
+License: Apache License
+Description: Django Quiz App
+        ===============
+        
+Keywords: django,quiz
+Platform: osx
+Platform: linux
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.10
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
