@@ -1,0 +1,8 @@
+# documentation
+include README.rst
+include CITATION
+include LICENSE
+include requirements.txt
+include doc/*
+include bin/_preamble.py
+
