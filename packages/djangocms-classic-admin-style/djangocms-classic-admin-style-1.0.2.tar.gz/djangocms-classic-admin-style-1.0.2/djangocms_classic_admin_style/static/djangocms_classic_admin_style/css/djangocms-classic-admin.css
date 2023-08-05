@@ -1,0 +1,151 @@
+.hide-in-modal{
+    display: none;
+}
+
+/* Header */
+.cms-admin-modal #header,
+.cms-admin-sideframe #header{
+    display:none;
+}
+.dashboard.cms-admin-modal h1,
+.dashboard.cms-admin-sideframe h1{
+    margin: 60px 7px 20px;
+    font-size: 20px;
+    font-weight: 300;
+}
+.dashboard[class*='app-'] h1{
+    margin:15px 7px 30px;
+}
+.cms-admin-sideframe .breadcrumbs{
+    display: block;
+    margin-top: 46px;
+    padding: 13px 40px;
+    margin-bottom:0px!important;
+}
+#container .cms-pagetree-breadcrumbs{
+    margin-bottom: 0!important;
+}
+ul.messagelist li.error{
+    padding:14px 10px 14px 65px;
+    background-position: 40px 16px;
+}
+
+
+/* Page Structure */
+#container{
+    min-width:auto;
+}
+.colMS{
+    margin-right:0;
+}
+.cms-admin-modal #content{
+    padding: 30px 40px 0!important;
+}
+.cms-admin-modal .object-tools{
+    margin-top: -62px!important;
+}
+
+
+/* Filer */
+.filebrowser.cms-admin-modal #content{
+    padding:0!important;
+}
+.filebrowser #container .breadcrumbs+#content{
+    margin: 30px 40px!important;
+}
+.filebrowser.cms-admin-sideframe #container .breadcrumbs+#content{
+    margin:0px!important;
+}
+
+
+/* Form tabs */
+#page_form_lang_tabs, 
+.parler-language-tabs{
+    border-bottom: 1px solid #eee;
+    margin-bottom: 25px;
+}
+#page_form_lang_tabs input,
+.parler-language-tabs span{
+    border-radius:0;
+    background:none;
+    color:inherit;
+    margin:0;
+    border: solid 1px #ccc;
+    border-bottom:none;  
+    display: inline-block;
+    position: relative;
+    left: 0;
+    top: 1px;  
+    opacity: 0.7;
+}
+#page_form_lang_tabs input.selected,
+.parler-language-tabs span.current{
+    font-weight:bold;
+    border-bottom:solid 1px #fff;
+    opacity: 1;
+}
+#page_form_lang_tabs input:focus,
+#page_form_lang_tabs input:hover,
+.parler-language-tabs span:focus,
+.parler-language-tabs span:hover {
+    color:inherit;
+    text-decoration:underline;
+    outline:0;
+}
+
+
+/* Delete page  */
+.cms-admin-modal.delete-confirmation .colM > p,
+.cms_modal-window.delete-confirmation .colM > p,
+.popup.delete-confirmation .colM > p{
+    font-size: 16px;
+    border-bottom: 1px #eee solid;
+    padding-bottom:20px;
+}
+.cms-admin-modal.delete-confirmation .colM ul,
+.cms_modal-window.delete-confirmation .colM ul{
+    margin-top:0;
+}
+.cms-admin-modal.delete-confirmation .cancel-link,
+.cms_modal-window.delete-confirmation .cancel-link,
+.popup.delete-confirmation .cancel-link {
+    display: none
+}
+
+
+/* Responsiveness */
+@media (max-width:1200px){
+    .cms-admin-modal.dashboard #content,
+    .cms-admin-sideframe.dashboard #content{
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .cms-admin-modal #content-main,
+    .cms-admin-sideframe #content-main{
+        width: 65%;
+        float: left;
+    }
+    .cms-admin-modal[class*='app-'] #content-main,
+    .cms-admin-sideframe[class*='app-'] #content-main{
+        width: 100%;
+    }
+    .cms-admin-modal #content-related,
+    .cms-admin-sideframe #content-related{
+        width:35%;
+        width: calc(35% - 30px);
+        margin-right: 0px;
+        margin-left: 30px;
+        float: left;
+    }
+}
+
+@media (max-width:768px){
+    .cms-admin-modal #content-main,
+    .cms-admin-sideframe #content-main{
+        width:100%;
+    }
+    .cms-admin-modal #content-related,
+    .cms-admin-sideframe #content-related{
+        display:none;
+    }
+}

@@ -1,0 +1,11 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+djangocms_classic_admin_style/__init__.py
+djangocms_classic_admin_style.egg-info/PKG-INFO
+djangocms_classic_admin_style.egg-info/SOURCES.txt
+djangocms_classic_admin_style.egg-info/dependency_links.txt
+djangocms_classic_admin_style.egg-info/top_level.txt
+djangocms_classic_admin_style/static/djangocms_classic_admin_style/css/djangocms-classic-admin.css
+djangocms_classic_admin_style/templates/admin/base_site.html
