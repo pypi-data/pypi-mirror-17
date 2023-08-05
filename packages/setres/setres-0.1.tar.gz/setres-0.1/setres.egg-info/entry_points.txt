@@ -1,0 +1,3 @@
+[console_scripts]
+setres = setres.__main__:main
+
