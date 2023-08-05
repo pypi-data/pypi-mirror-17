@@ -1,0 +1,32 @@
+Metadata-Version: 2.0
+Name: aio-tinder
+Version: 0.1.2
+Summary: Tinder API library with asyncio
+Home-page: https://github.com/faruken/aio-tinder
+Author: faruken
+Author-email: UNKNOWN
+License: MIT
+Keywords: tinder api asyncio
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Requires-Dist: aiohttp (==0.22.5)
+Requires-Dist: cchardet (==1.0.0)
+Requires-Dist: chardet (==2.3.0)
+Requires-Dist: multidict (==1.2.2)
+Requires-Dist: ujson (==1.35)
+Provides-Extra: test
+Requires-Dist: Logbook (==1.0.0); extra == 'test'
+Requires-Dist: coverage (==4.2); extra == 'test'
+Requires-Dist: pytest (==3.0.0); extra == 'test'
+Requires-Dist: pytest-asyncio (==0.4.1); extra == 'test'
+Requires-Dist: pytest-cov (==2.3.1); extra == 'test'
+
+UNKNOWN
+
+
