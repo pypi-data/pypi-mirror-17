@@ -1,0 +1,23 @@
+{
+  "default_stage": "staging",
+  "stages": {
+    "staging": {
+      "host": "127.0.0.1",
+      "port": "8080"
+    },
+    "production": {
+      "host": "127.0.0.1",
+      "port": "8080"
+    }
+  },
+  "shared_paths": [
+    ".env",
+    "public/data",
+    "data",
+    "application/logs",
+    "application/cache"
+  ],
+  "deploy_to": "/data/www/support.qq.com/",
+  "build_command": "git archive -o latest.zip HEAD",
+  "package_filename": "latest.zip"
+}
