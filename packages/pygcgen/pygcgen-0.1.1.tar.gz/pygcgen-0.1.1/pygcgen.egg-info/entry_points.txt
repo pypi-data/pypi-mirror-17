@@ -1,0 +1,6 @@
+[console_scripts]
+pygcgen = pygcgen.__main__:run
+
+[gui_scripts]
+pygcgenw = pygcgen.__main__:run_gui
+
