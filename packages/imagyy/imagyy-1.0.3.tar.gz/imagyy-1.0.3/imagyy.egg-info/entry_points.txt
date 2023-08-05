@@ -1,0 +1,3 @@
+[console_scripts]
+imagyy = image_search.main_search:command_line_runner
+
