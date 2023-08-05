@@ -1,0 +1,155 @@
+CHANGES
+=======
+
+0.2.0
+-----
+
+* Generic Services, external ip & nodeport
+* Make libvirt over tcp an option
+* PS cleans up nova scheduler container from left over command
+* Script generating kubernetes secrets from passwords.yml
+* Update the quickstart
+* Add a script that will get the latest kubectl
+* Update the kubernetes aio guide
+* Switch to crudini for easier readability
+* Deployment, Readiness, Safe Shutdown, & Scaling for glance
+* Getting NOVA pieces together to launch VM
+* Cleanup tox.ini constraints
+* openvswitch service hookup/rename
+* neutron openvswitch agent ip
+* Introduces new approach in starting OVS in Kube
+* Modifying Keystone bootstrap to use secrets
+* Adding NOTE for Kubernetes Secret Generator
+* Neutron bootstrap to create service/project/role
+* Glance bootstrap to create service/project/role
+* Adding Mariadb shutdown command to POD delete event
+* Add persistent volumes to Rabbitmq
+* Jinja2 pvc template error because of imcomplete if else
+* Fix bad merge of ceph mariadb
+* Add Ceph support for Mariadb
+* Start using common PV/PVC templates in mariadb and glance
+* Adding common PV and PVC scripts to ./service/common folder
+* Introducing DaemonSet for Neutron Openvswitch components
+* Remove hostnetworking for Nova control plane and convert to RC
+* Add persistent volume to Glance
+* Moving mariadb-disk.sh.j2 script to become common/common-disk.sh.j2
+* Added support for template variables
+* Register Nova with Keystone
+* Fix Nova bootstrap
+* Add doc for configuring private docker registry
+* Add min filter to Jinja2
+* 3/4 of the Neutron Compute services start correctly
+* TrivialFix missing dependency python-openstackclient
+* Neutron-network services split out into discrete pods
+* Neutron control bootstraps and runs without host network
+* Enhance CLI service commands args validation w/ help
+* Spec - Deploy kolla-kubernetes with Ansible
+* KubeUtils get_api_url fix
+* Fixing labels for glance's service and pod resources
+* Add resource status command for Workflow Engine
+* Git mv'd all bootstrap dir files into services dir
+* Renamed/Moved files, Split some files, Renamed few classes
+* Adding DNS deployment documentation
+* Remove Interactive Shell, Simplify CLI arg parsing
+* Kolla-Kubernetes multi-node persistence for Mariadb
+* Adding dns service to kolla-kubernetes service list
+
+0.1.1
+-----
+
+* Order kolla-kubernetes bootstrap/run/kill commands
+* Separate CLI commands into discrete bits (smaller CLI commands)
+* Added details on exactly how to do documentation patches, addressing comments
+* Refactored service_definition.py into service_resources.yaml
+* Split RabbitMQ management and service ports
+* Refactor, speed up, and fix bugs in jinja template dict generation
+* Clarify installtion instructions to use the quickstart guide
+* updated hyperkube version to 1.3
+* Update kolla-kubernetes installation instructions
+* Document briefly how services in k8s work and why 0.0.0.0 is OK
+* Fix keystone bootstrap failure
+* Use pbr to get version instead of hard coding in CLI
+* Allow kubectl to use its own configured endpoint for kube API
+* Builds ansible directory structure for kolla-kubernetes
+* Updated quickstart doc dependencies section
+* Adding debugging documentation for Keystone
+* Glance works without host network
+* Adding documentation for services with multiple server types
+* Simplify DNS docs, removing need for user decisions
+* Consolidating path resolution and searching for program files
+* Adding debugging documentation for Memcached
+* Fix docs for Ansible 2.1 support, remove some of the notes
+* Fix Docker version in quickstart
+* Added some debugging operations to the MariaDB docs, wrapped lines
+* Fix Horizon's configmap to work with underscores
+* Create ConfigMaps with dashes instead of underscores
+* Remove code redundancy within service.py
+* Fixing Kubernetes DNS root and adding some debugging instructions
+* Add documentation for setting up a local SkyDNS + Kube2Sky
+* Switching Horizon over to work via Kubernetes network
+* Convert Keystone to HostNetwork=False, Fix bootstrap
+* Check for a local kolla directory
+* Look in kolla-kubernetes directory instead of kolla
+* Accidently added a file on keystone merge
+* Add the KOLLA_KUBERNETES flag to containers
+* The Keystone bootstrap job need to run a db sync
+* Use the Kube endpoint to dictate state instead of etcd
+* Added kolla-kubernetes specific instructions for Docs
+* Convert Memcached to work without HostNetwork=True
+* Convert MariaDB to work without HostNetwork=True
+* Convert RabbitMQ to work without HostNetwork=True
+* Adding documentation for labels
+* Replication controllers for Keystone, Memcached, RabbitMQ
+* Add docs around bootstrapping and using the 'all' flag
+* Allow an operator to run an action on all services
+* Add some hints for working with MariaDB
+* Add bootstrap method to the quickstart doc
+* Added documentation for building Kolla containers
+
+0.1.0
+-----
+
+* [doc] change Ansible version to exactly 2.0.x in quickstart
+* Replacing the bare pod with a replication controller
+* Break deployment procedure into two steps
+* Regression: Kubernetes was rejecting the YAML we were generating
+* Adding the password generation step to the docs
+* Adds --resolv-conf="" keyword to kubelet command line
+* Add more details to the quickstart and usage guide
+* Register keystone endpoints
+* Template addresses for etcd
+* Adding kuebctl setup task to point to local hyperkube
+* Add bootstrap directory to usr/local/share/kolla-kubernetes
+* Implement swift pods and serivces
+* Fix documentation for Ubuntu and some rst formatting issues
+* Implement Keystone Bootstrap Job
+* Changes Glance bootstrap to use kolla-toolbox
+* Implement a Job for Mariadb Bootstrap
+* Implement neutron pods and service
+* Render the common role in the CLI
+* Add a kolla-kubernetes quickstart guide
+* Document a kubernetes allinone setup
+* Add Horizon's kubernetes objects
+* Mount /var/lib/mysql into the Mariadb container
+* Mount /var/lib/rabbitmq into the Rabbitmq container
+* CLI support for services with more complex pods
+* Fix Glance configmap reference
+* Implement Nova pods and services
+* Add missing rabbitmq cookie
+* rename kolla_kubernetes back to shell to avoid import error
+* Set mariadb password at bootstrap
+* Minor fix on the error cause by renaming
+* Allow for CLI to work from kolla-kubernetes dir
+* Add RabbitMQ service
+* Add Mariadb service
+* Add a memcached service
+* Switch Keystone to use ConfigMap
+* Major Cleanup - Get command line working
+* Add Glance's kubernetes objects
+* Switch on warnerrors and universal wheel
+* Implement a command line to start/stop keystone services
+* Keystone Service and Pod
+* Support for release notes
+* Update for successful pep8
+* Initialize README
+* Initial Cookiecutter Commit

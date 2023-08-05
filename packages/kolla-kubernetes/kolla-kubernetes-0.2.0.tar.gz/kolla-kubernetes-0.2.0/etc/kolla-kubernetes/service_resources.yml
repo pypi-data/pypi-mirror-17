@@ -1,0 +1,377 @@
+# YAML mapping of service->pods->containers
+# This structure leaves room for adding configuration parameters.
+# ORDER MATTERS: Kolla-Kubernetes will evaluate these list-item
+#   resources in order.
+# The (configmap) resources are not defined here, since they come
+#   directly from kolla.
+# The (disk, pv, pvc, and svc) resources hold volume or network state,
+#   and are more dangerous to delete.  These resources are stateful.
+#   Deleting a disk, pv, or pvc will lose data on a volume. Deleting
+#   a svc will lose a load-balancer IP.
+# The (bootstrap) resources should be run only once, to setup
+#   persistent state.
+# The (pod) resources may be destroyed willy-nilly, since they hold no
+#   state.
+# Template.vars are additional vars in the form of a dict passed to
+#   the jinja templating engine. Templates may access this dict with
+#   "kolla_kubernetes.template.vars.<subkey>".  This enables arguments
+#   to be passed to templates so that they may be re-used or
+#   configured.  These template.vars may not contain any other nested
+#   jinja references, and are passed unmodified directly to the
+#   template.
+
+kolla-kubernetes:
+  services:
+  - name: ceph
+    pods:
+    resources:
+      secret:
+      - name: ceph-secret
+        template: services/ceph/ceph-secret.yml.j2
+      disk:
+      pv:
+      pvc:
+      svc:
+      bootstrap:
+      pod:
+  - name: mariadb
+    pods:
+    - name: mariadb
+      containers:
+      - name: mariadb
+    resources:
+      secret:
+      disk:
+      - name: mariadb-disk
+        template: services/common/common-disk.sh.j2
+        vars:
+          size_in_gb: 10
+      pv:
+      - name: mariadb-pv
+        template: services/common/common-pv.yml.j2
+        vars:
+          size_in_gb: 10
+      pvc:
+      - name: mariadb-pvc
+        template: services/common/common-pvc.yml.j2
+        vars:
+          size_in_gb: 10
+      svc:
+      - name: mariadb-service
+        template: services/mariadb/mariadb-service.yml.j2
+      bootstrap:
+      - name: mariadb-bootstrap-job
+        template: services/mariadb/mariadb-bootstrap-job.yml.j2
+      pod:
+      - name: mariadb-pod
+        template: services/mariadb/mariadb-pod.yml.j2
+  - name: memcached
+    pods:
+    - name: memcached
+      containers:
+      - name: memcached
+    resources:
+      secret:
+      disk:
+      pv:
+      pvc:
+      svc:
+      - name: memcached-service
+        template: services/memcached/memcached-service.yml.j2
+      bootstrap:
+      pod:
+      - name: memcached-pod
+        template: services/memcached/memcached-pod.yml.j2
+  - name: keystone
+    pods:
+    - name: keystone
+      containers:
+      - name: keystone
+    resources:
+      secret:
+      disk:
+      pv:
+      pvc:
+      svc:
+      - name: keystone-service-admin
+        template: services/keystone/keystone-service-admin.yml.j2
+      - name: keystone-service-public
+        template: services/keystone/keystone-service-public.yml.j2
+      bootstrap:
+      - name: keystone-bootstrap-job
+        template: services/keystone/keystone-bootstrap-job.yml.j2
+      pod:
+      - name: keystone-pod
+        template: services/keystone/keystone-pod.yml.j2
+  - name: horizon
+    pods:
+    - name: horizon
+      containers:
+      - name: horizon
+    resources:
+      secret:
+      disk:
+      pv:
+      pvc:
+      svc:
+      - name: horizon-service
+        template: services/horizon/horizon-service.yml.j2
+      bootstrap:
+      pod:
+      - name: horizon-pod
+        template: services/horizon/horizon-pod.yml.j2
+  - name: rabbitmq
+    pods:
+    - name: rabbitmq
+      containers:
+      - name: rabbitmq
+    resources:
+      secret:
+      disk:
+      - name: rabbitmq-disk
+        template: services/common/common-disk.sh.j2
+        vars:
+          size_in_gb: 10
+      pv:
+      - name: rabbitmq-pv
+        template: services/common/common-pv.yml.j2
+        vars:
+          size_in_gb: 10
+      pvc:
+      - name: rabbitmq-pvc
+        template: services/common/common-pvc.yml.j2
+        vars:
+          size_in_gb: 10
+      svc:
+      - name: rabbitmq-service-management
+        template: services/rabbitmq/rabbitmq-service-management.yml.j2
+      - name: rabbitmq-service
+        template: services/rabbitmq/rabbitmq-service.yml.j2
+      bootstrap:
+      - name: rabbitmq-bootstrap-job
+        template: services/rabbitmq/rabbitmq-bootstrap-job.yml.j2
+      pod:
+      - name: rabbitmq-pod
+        template: services/rabbitmq/rabbitmq-pod.yml.j2
+  - name: glance
+    pods:
+    - name: glance
+      containers:
+      - name: glance-api
+      - name: glance-registry
+    resources:
+      secret:
+      disk:
+      - name: glance-disk
+        template: services/common/common-disk.sh.j2
+        vars:
+          size_in_gb: 10
+      pv:
+      - name: glance-pv
+        template: services/common/common-pv.yml.j2
+        vars:
+          size_in_gb: 10
+      pvc:
+      - name: glance-pvc
+        template: services/common/common-pvc.yml.j2
+        vars:
+          size_in_gb: 10
+      svc:
+      - name: glance-api-service
+        template: services/glance/glance-api-service.yml.j2
+      - name: glance-registry-service
+        template: services/glance/glance-registry-service.yml.j2
+      bootstrap:
+      - name: glance-bootstrap-job
+        template: services/glance/glance-bootstrap-job.yml.j2
+      pod:
+      - name: glance-api-haproxy-configmap
+        template: services/common/api-haproxy-configmap.yml.j2
+        vars:
+          configmap_name: glance-api-haproxy
+          port_name: glance_api_port
+      - name: glance-api-pod
+        template: services/glance/glance-api-pod.yml.j2
+      - name: glance-registry-haproxy-configmap
+        template: services/common/api-haproxy-configmap.yml.j2
+        vars:
+          configmap_name: glance-registry-haproxy
+          port_name: glance_registry_port
+      - name: glance-registry-pod
+        template: services/glance/glance-registry-pod.yml.j2
+  - name: nova
+    pods:
+    - name: nova-compute
+      containers:
+      - name: nova-compute
+      - name: nova-libvirt
+    - name: nova-control
+      containers:
+      - name: nova-api
+      - name: nova-scheduler
+      - name: nova-conductor
+    resources:
+      secret:
+      disk:
+      pv:
+      pvc:
+      svc:
+      - name: nova-api
+        template: services/common/generic-service.yml.j2
+        vars:
+          port_name: nova_api_port
+          service: nova
+          type: api
+          name: nova-api
+      - name: nova-metadata
+        template: services/common/generic-service.yml.j2
+        vars:
+          port_name: nova_metadata_port
+          service: nova
+          type: metadata
+          name: nova-metadata
+      bootstrap:
+      - name: nova-compute-bootstrap-job
+        template: services/nova/nova-compute-bootstrap-job.yml.j2
+      - name: nova-control-bootstrap-job
+        template: services/nova/nova-control-bootstrap-job.yml.j2
+      pod:
+      - name: nova-compute-pod
+        template: services/nova/nova-compute-pod.yml.j2
+      - name: nova-api-pod
+        template: services/nova/nova-control-api-pod.yml.j2
+      - name: nova-conductor-pod
+        template: services/nova/nova-control-conductor-pod.yml.j2
+      - name: nova-scheduler-pod
+        template: services/nova/nova-control-scheduler-pod.yml.j2
+  - name: openvswitch
+    pods:
+    - name: openvswitch-db
+      containers:
+      - name: openvswitch-db
+    - name: openvswitch-vswitchd
+      containers:
+      - name: openvswitch-vswitchd
+    resources:
+      secret:
+      disk:
+      pv:
+      pvc:
+      svc:
+      bootstrap:
+      pod:
+      - name: openvswitch-db
+        template: services/openvswitch/ovsdb-daemonset.yml.j2
+      - name: openvswitch-vswitchd
+        template: services/openvswitch/vswitchd-daemonset.yml.j2
+  - name: neutron
+    pods:
+    - name: neutron-compute
+      containers:
+      - name: openvswitch-db-server
+      - name: openvswitch-vswitchd
+      - name: neutron-openvswitch-agent
+      - name: neutron-linuxbridge-agent
+    - name: neutron-network
+      containers:
+      - name: neutron-l3-agent
+      - name: neutron-dhcp-agent
+      - name: neutron-metadata-agent
+    - name: neutron-control
+      containers:
+      - name: neutron-server
+    resources:
+      secret:
+      disk:
+      pv:
+      pvc:
+      svc:
+      - name: neutron-server-service
+        template: services/neutron/neutron-server-service.yml.j2
+      bootstrap:
+      - name: neutron-bootstrap-job
+        template: services/neutron/neutron-bootstrap-job.yml.j2
+      pod:
+      - name: neutron-openvswitch-agent-daemonset
+        template: services/neutron/neutron-openvswitch-agent-daemonset.yml.j2
+      - name: neutron-control-pod
+        template: services/neutron/neutron-control-pod.yml.j2
+      - name: neutron-dhcp-agent-pod
+        template: services/neutron/neutron-dhcp-agent-pod.yml.j2
+      - name: neutron-l3-agent-pod
+        template: services/neutron/neutron-l3-agent-pod.yml.j2
+      - name: neutron-metadata-agent-pod
+        template: services/neutron/neutron-metadata-agent-pod.yml.j2
+  - name: swift
+    pods:
+    - name: swift-account
+      containers:
+      - name: swift-rsyncd
+      - name: swift-account-server
+      - name: swift-account-auditor
+      - name: swift-account-replicator
+      - name: swift-account-reaper'
+    - name: swift-container
+      containers:
+      - name: swift-rsyncd
+      - name: swift-container-server
+      - name: swift-container-auditor
+      - name: swift-container-replicator
+      - name: swift-container-updater
+    - name: swift-object
+      containers:
+      - name: swift-rsyncd
+      - name: swift-object-server
+      - name: swift-object-auditor
+      - name: swift-object-replicator
+      - name: swift-object-updater
+      - name: swift-object-expirer
+    - name: swift-proxy
+      containers:
+      - name: swift-proxy-server
+    resources:
+      secret:
+      disk:
+      pv:
+      pvc:
+      svc:
+      - name: swift-account-service
+        template: services/swift/swift-account-service.yml.j2
+      - name: swift-container-service
+        template: services/swift/swift-container-service.yml.j2
+      - name: swift-object-service
+        template: services/swift/swift-object-service.yml.j2
+      - name: swift-proxy-service
+        template: services/swift/swift-proxy-service.yml.j2
+      - name: swift-rsync-service
+        template: services/swift/swift-rsync-service.yml.j2
+      bootstrap:
+      pod:
+      - name: swift-account-pod
+        template: services/swift/swift-account-pod.yml.j2
+      - name: swift-container-pod
+        template: services/swift/swift-container-pod.yml.j2
+      - name: swift-object-pod
+        template: services/swift/swift-object-pod.yml.j2
+      - name: swift-proxy-pod
+        template: services/swift/swift-proxy-pod.yml.j2
+  - name: skydns
+    pods:
+    - name: skydns
+      containers:
+      - name: etcd
+      - name: kube2sky
+      - name: skydns
+      - name: healthz
+    resources:
+      secret:
+      disk:
+      pv:
+      pvc:
+      svc:
+      - name: skydns-service
+        template: services/skydns/skydns-service.yml.j2
+      bootstrap:
+      pod:
+      - name: skydns-pod
+        template: services/skydns/skydns-pod.yml.j2

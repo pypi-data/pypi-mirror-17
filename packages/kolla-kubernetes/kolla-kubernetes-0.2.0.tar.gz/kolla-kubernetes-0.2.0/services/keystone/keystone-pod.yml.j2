@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ReplicationController
+spec:
+  replicas: {{ keystone_replicas }}
+  selector:
+      service: keystone
+  template:
+    metadata:
+      labels:
+        service: keystone
+    spec:
+      containers:
+        - image: "{{ keystone_image_full }}"
+          name: keystone
+          volumeMounts:
+            - mountPath: {{ container_config_directory }}
+              name: keystone-config
+            - mountPath: /var/log/kolla/keystone
+              name: kolla-logs
+          env:
+            - name: KOLLA_KUBERNETES
+              value: ""
+            - name: KOLLA_CONFIG_STRATEGY
+              value: "{{ config_strategy }}"
+          ports:
+            - containerPort: {{ keystone_admin_port }}
+              name: keystone-admin
+            - containerPort: {{ keystone_public_port }}
+              name: keystone-public
+      volumes:
+        - name: keystone-config
+          configMap:
+            name: keystone-configmap
+        - name: kolla-logs
+          emptyDir: {}
+metadata:
+   name: keystone

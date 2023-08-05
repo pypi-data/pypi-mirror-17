@@ -1,0 +1,71 @@
+apiVersion: apps/v1alpha1
+kind: PetSet
+spec:
+  serviceName: "nova"
+  replicas: {{ nova_conductor_replicas }}
+  template:
+    metadata:
+      labels:
+        service: nova
+        type: conductor
+      annotations:
+        pod.alpha.kubernetes.io/initialized: "true"
+        pod.alpha.kubernetes.io/init-containers: '[
+          {
+             "name": "initialize-nova-conductor",
+             "image": "{{ kolla_toolbox_image_full }}",
+             "command": [
+                 "sh",
+                 "-c",
+                 "cp -a /config/..data/* /nova/;
+                  IP=$(ip addr show dev {{ tunnel_interface }} | grep -G ''inet '' | awk ''{print $2}'' | sed ''s@/.*@@'');
+                  crudini --set /nova/nova.conf DEFAULT my_ip $IP;
+                  crudini --set /nova/nova.conf vnc novncproxy_host $IP;
+                  crudini --set /nova/nova.conf vnc vncserver_listen $IP;
+                  crudini --set /nova/nova.conf vnc vncserver_proxyclient_address $IP;
+                  crudini --set /nova/nova.conf vnc novncproxy_base_url $IP;
+                  crudini --set /nova/nova.conf vnc connection_uri ''qemu+tcp://''$IP"],
+             "volumeMounts": [
+                {
+                   "name": "nova-conductor-config",
+                   "mountPath": "/config/"
+                },
+                {
+                   "name": "nova-config",
+                   "mountPath": "/nova/"
+                }
+             ]
+          }
+        ]'
+    spec:
+      containers:
+        - name: nova-conductor
+          image: "{{ nova_conductor_image_full }}"
+          volumeMounts:
+            - mountPath: {{ container_config_directory }}
+              name: nova-config
+            - mountPath: /etc/localtime
+              name: etc-localtime
+            - mountPath: /nova
+              name: nova-config
+            - mountPath: /var/log/kolla
+              name: kolla-logs
+          env:
+            - name: KOLLA_CONFIG_STRATEGY
+              value: {{ config_strategy }}
+      volumes:
+        - name: nova-conductor-config
+          configMap:
+            name: nova-conductor-configmap
+        - name: etc-localtime
+          hostPath:
+            path: /etc/localtime
+        - name: lib-modules
+          hostPath:
+            path: /lib/modules
+        - name: nova-config
+          emptyDir: {}
+        - name: kolla-logs
+          emptyDir: {}
+metadata:
+   name: nova-conductor
