@@ -1,0 +1,15 @@
+MANIFEST.in
+setup.py
+hblock/__init__.py
+hblock/appindicator_replacement.py
+hblock.egg-info/PKG-INFO
+hblock.egg-info/SOURCES.txt
+hblock.egg-info/dependency_links.txt
+hblock.egg-info/entry_points.txt
+hblock.egg-info/not-zip-safe
+hblock.egg-info/requires.txt
+hblock.egg-info/top_level.txt
+hblock/data/__init__.py
+hblock/data/hblock-disabled.png
+hblock/data/hblock-enabled.png
+hblock/data/hblock.png
