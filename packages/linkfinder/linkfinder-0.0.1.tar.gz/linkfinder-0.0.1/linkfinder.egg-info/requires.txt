@@ -1,0 +1,10 @@
+gevent==1.1.2
+greenlet==0.4.10
+requests==2.11.1
+
+[dev]
+pep8==1.7.0
+pylint==1.6.4
+
+[test]
+coverage==4.2
