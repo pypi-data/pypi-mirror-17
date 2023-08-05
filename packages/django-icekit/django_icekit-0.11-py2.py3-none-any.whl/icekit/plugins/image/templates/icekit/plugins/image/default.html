@@ -1,0 +1,13 @@
+<figure class="image">
+	<div class="image-container">
+		<img
+			src="{{ instance.image.image.url }}"
+			alt="{{ instance.image.image.alt_text }}"
+		/>
+	</div>
+	{% if instance.image.caption %}
+		<figcaption class="image-caption">
+			{{ instance.caption }}
+		</figcaption>
+	{% endif %}
+</figure>

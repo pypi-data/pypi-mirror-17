@@ -1,0 +1,6 @@
+<div class="oembed">
+	<div class="oembed-html">{{ instance.html|safe }}</div>
+	{% if instance.caption %}
+		<div class="oembed-caption">{{ instance.caption }}</div>
+	{% endif %}
+</div>
