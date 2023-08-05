@@ -1,0 +1,9 @@
+tilematrix
+fiona
+pyyaml
+flask
+Pillow
+scipy
+psycopg2
+rasterio>=0.36.0
+matplotlib
