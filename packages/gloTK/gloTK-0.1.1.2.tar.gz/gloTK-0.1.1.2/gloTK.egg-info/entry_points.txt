@@ -1,0 +1,3 @@
+[console_scripts]
+glotk-sweep = gloTK.scripts.glotk_sweep:main
+
