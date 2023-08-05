@@ -1,0 +1,29 @@
+CHANGES
+=======
+
+0.1.2
+-----
+
+* Fix message latency
+* README: fetch key with https
+* README: Fix link for debian/unstable branch
+* README: Add installation notes and pd patch example
+
+0.1.1
+-----
+
+* Avoid 100% cpu usage
+
+0.1.0
+-----
+
+* add gitignore
+* add travis config
+* Add tests and tox config
+* Fix py3 tests
+* log udp stream host and port
+* Fix OSC encoder
+* update README
+* New implementation using amidi
+* add LICENSE
+* first commit
