@@ -1,0 +1,33 @@
+CHANGES
+=======
+
+0.0.2
+-----
+
+* Updated README.md with new demo and gif. Fixed typo in setup.cfg
+* Fixed bug in test_dom.py
+* Very rudimentary (and buggy) todo app example
+* Removed @component decorator as it is not really needed in Python due to keyword args
+* Added @component decorator for functional components
+* Simplified DOM event notation
+* Added composable DOM. Added tests for callbacks and composable DOMs
+* Removed a few debugging statements
+* Added graceful exit in timer app
+* Fixed bug related to bound methods. DOM click event now working
+* DOM event working but triggering wrong callbacks
+* Rudimentary buggy implmentation of DOM events
+* Added set_interval helper function. Pending task error still exists
+* Removed extra heading from README.md
+* Added badges to README.md
+* Removed Enum from dom.py
+* Updated .travis.yml to update setuptools and pip
+* Added .travis.yml
+* Generated AUTHORS and ChangeLog using pbr
+* Switched to setup.cfg for use with pbr
+* Added dom module for easy construction of DOM trees
+* Counter working from python. Weird issues when multiple clients open
+* Updated dom over websocket
+* Added rough shutdown command
+* Made server persistent and two-way communication verified
+* Got vdom counter running in pure JS
+* Initial commit
