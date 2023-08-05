@@ -1,0 +1,18 @@
+Metadata-Version: 2.0
+Name: mapclient
+Version: 0.13.2
+Summary: A framework for managing and sharing workflows.
+Home-page: https://github.com/MusculoskeletalAtlasProject
+Author: MAP Client Developers
+Author-email: mapclient-devs@physiomeproject.org
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: PySide
+Requires-Dist: pmr2.client
+Requires-Dist: python-dateutil
+Requires-Dist: rdflib
+Requires-Dist: virtualenv
+
+UNKNOWN
+
+
