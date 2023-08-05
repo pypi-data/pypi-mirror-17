@@ -1,0 +1,14 @@
+coverage
+ddt==1.0.0
+dnspython
+fixtures
+hacking
+mock
+nose
+openstack.nose_plugin
+oslotest>=1.9.0
+requests-mock
+testrepository
+testtools
+beautifulsoup4
+hypothesis

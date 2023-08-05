@@ -1,0 +1,940 @@
+CHANGES
+=======
+
+1.0.12
+------
+
+* Reordering the caching rules
+* Add last item in links tuple during migration
+* Verify domain before requesting property updates
+* fix: adding domain causes loss of log_delivery
+* Adds a security test to make sure paging links only use https
+* Ground work for unit testing transport controller
+* Enforce schema for admin endpoints
+
+1.0.11
+------
+
+* Mark san mapping items to mark progress
+* DNS updates for http to https+san upgrade
+* fix: deserialize details before get cert status
+* fix: enqueue failure value must be byte string
+* Make project_id optional for background job
+* bugfix: delete certificates on service deletion
+* Mailgun driver unit tests
+* bugfix: hostname fix for call to ssl cert utils
+* Enforce san cert hostname limit on cert create
+* Add missing hostname separator
+* bugfix: remove duplicate lines of code
+* Fix sans lookup by adding access url suffix
+* Removed redundant mapping of costa rica in geo zone code mapping
+* Trim user inputs as whitespaces causes discrepencies in caching rules
+* Add unit tests for manager default background jobs
+* Discard invalid items when exec retry list
+* Add cassandra script to sync cert_status table
+* Add tests for rackspace dns services controller
+* Remove duplicate save sps id logic
+* Add unit tests for akamai services controller
+* Insert cert status during domain migration
+* Delete certs for deleted domains on service update
+* Delete san certs when deleting a service
+* Check latest version status before changes
+* 1. update ex_setup.py and get-pip.py with official link, the original link is out off date, can't access now. 2. pip install testrepository. The CMD sudo pip install -e /home/poppy/. reports error, for the missing of this testrepository package
+* Append to run_list, ignore_list during task exec
+* Add unit tests for cassandra storage services
+* bugfix: Set difference logic for deleted_domains
+* Add unit tests for services manager
+* Workaround allow certs of type dedicated
+* Check configured san cert cnames for domain name
+* Sync up provider url domain mapping
+* Allows admin to patch the certificate status
+* Execute san mapping queue and report summary
+* Allows functional tests to run individually
+* Load akamai driver during functional tests
+* Run retry list and report errors in summary
+* Fix refactored call to get_certs_by_domain
+* Fix all calls to refactored services methods
+* Add unit tests for dns drivers
+* Add unit tests for manager ssl_cert controller
+* Update patching method to use a patcher object
+* Use san mapping queue to run background jobs
+* Fix coverage for distributed task driver
+* Add unit tests to improve coverage
+
+1.0.10
+------
+
+* Fixes the 500 response code error when provider details dosent contain the access urls
+* Refactor storage layer to separate cert controller
+* Fix deprecated call to task_notifier
+* Update deprecated items from taskflow driver
+* Log error details when retrieving analytics
+* Save cert object to san mapping queue
+* Added config option to skip hypothesis tests
+* Delete in progress services removed from quota
+* Fixes to get the tests passing
+* Changed the 'raise validate_email_address' to 'raise ValueError' Closes-Bug:1578643 Change-Id: I15c937cf21829042e0ee725f45bb74b8084d9d41
+* Add failure message for services limits
+* API tests for analytics endpoint
+* Unpin python-mock
+* Fixed the date format in the error message
+* Add certificates controller to provider drivers
+* Fixes an issue where httpResponseCode metrics did not return
+* Sorts the metrics results by timestamp and changes the format
+* Fixes the bucket naming when retrieving metrics
+* Update status during domain migration
+* Fixes duplicate mailgun section in poppy.conf Readd retry_send=5, as it wasn't in the top section
+* Poppy metrics api and unit tests bugs fixed
+* Fix failing cassandra driver unit tests
+* Fix skipped tests while running tox
+* Add project_id field to ssl_cert GET response
+* White spaces in the region names removed, Unit tests updated
+* Use the driver supplied config object
+* Fix function call to change config options
+* fix: register log options to allow context in logs
+* Re queue failed jobs when creating ssl certificate
+* bugfix: dump data to string before enqueue
+* bugfix: update all references to san_info_storage
+
+1.0.9
+-----
+
+* bugfix: access to nonexistant object property
+* Refactor san_info akamai storage
+* Update test requirements
+
+1.0.8
+-----
+
+* bugfix: email notifications are duplicated
+* Removes unused function _pick_san_edgename
+* feat: updates to spsId will fetch updated jobId
+* fix: update service when missing provider details
+* Add ability to authenticate with an account password
+* bugfix: reuse session object for health check
+* Fix typo across project modules
+
+1.0.7
+-----
+
+* feat: admin endpoint to query domains by provider_url
+* feat: Submit a group of customer-domain:san_cert_cname for Akamai background job
+* feat: Allow disabling/enabling san cert
+* feat: add endpoints to put/get san_mapping_list
+* Updates to API tests README file
+* Remove use of Oslo Incubator local
+* Graduate from Oslo Incubator to oslo.i18n
+* Oslo Incubator cleanup
+* feat: allow querying for domains based on certificate status
+* bugfix: fix cert_details setter for ssl cert model
+* Replace deprecated LOG.warn with LOG.warning
+* fix: Fixing add-domain api tests introduced by sub-customer-id
+* bugfix: repeated ping checks cause memory leak
+* fix: missing LC_ALL causing python file containing unicode to fail
+* fix: log akamai purge response
+* fix: enqueue all user san cert requests
+* feat: add more teeth to the ping endpoint
+* feat: Update san cert config endpoint
+* Remove unused pngmath Sphinx extension
+
+1.0.6
+-----
+
+* Added validation for caching rule duplicate paths and referrer path
+* fix: Add Akamai product info
+* feat: add subcustomer id to akamai provider driver
+* feat: allow querying for services and project_ids based on status
+* feat: distributed task health check endpoint
+* feat: View the backend san cert config info
+* fix: allow access_url to be shown before a cert goes to deployed
+* fix: cassanndra v3 driver fix
+* fix: uwsgi retry-list connection fails
+* fixing validation on empty project id Closes-Bug: 1541455
+* feat: admin endpoint to set status of a particular service
+* fix: add context_dict to kwarg dict
+* change PUT retry-list return key name Partially Implements: blueprint san-retry-list
+* feat: addition of the BlueFlood Client
+* feat: Post retry-list endpoint Partially Implements: blueprint san-retry-list
+* rm: remove openstack.common.context
+* feat: PUT Retry-list endpoint Partially Implements: blueprint san-retry-list
+* feat: Admin Akamai GET SAN retry-list endpoint Partially Implements: blueprint san-retry-list
+* feat: Driver for Metrics
+* feat: move to oslo.log
+* fix: Add extra fix to akamai papi job for san cert cnames Closes-Bug: 1533776
+* fix: Disallow a service with same domain on different protocols Closes-Bug: 1535431
+
+1.0.5
+-----
+
+* Updates to make end to end tests green
+* Provider get metrics function added
+* fix: Duplicated country code when country code is missing
+* Analytics Rest API code stub
+
+1.0.4
+-----
+
+* fix: null provider_service_id when DNS failed
+* Fixing Guyana's country code
+* Add extra config file env variable option
+* fix: Eluded message when blacklist and whitelist on geography
+* remove python 2.6 trove classifier
+* Put py34 first in the env order of tox
+* fix: Change status to pending when all SAN certs are taken up, disable root-domain ssl-cert provisioning for now
+* Deprecated tox -downloadcache option removed
+
+1.0.3
+-----
+
+* fix: available cert status and correct background job status
+* fix: default get_cert_status to create_in_progress when cert_details empty dict
+* fix: add additional logging around notification driver
+* fix: extra logging with providers, and dns drivers
+* dependency: add netifaces
+* fix: remove un-needed params from delete_ssl_cert task
+* fix: Incorrect certificate status after cert has been provisioned
+
+1.0.2
+-----
+
+* fix: enable certificate status
+* fix: requirements - cassandra v3 or greater
+* fix: cassandra-driver v3.0.0 fixes
+* bugfix: look for domains within domains dict for set comparison
+* fix: Log exceptions from akamai providers
+* Remove dead branch of akamai driver service code
+
+1.0.1
+-----
+
+* unskip: flaky api tests - cassandra
+* fix: reorder cassandra queries
+
+1.0.0
+-----
+
+* End To End tests for multiple origin
+* fix: randomize the list of shared ssl shards, then iterate
+* Implements: Health check with UUIDs
+* fix: Add more usable status for SPS status check
+* fix: cert_detail field mismatch when update existing san cert service before running empty patch script this fix has to be inplace
+* Suppress urllib3 warning messages
+* fix: IPv6 CIDR matching /10x
+
+2015.11.0b3
+-----------
+
+* Version Bump for Liberty Release
+* Disable certificate-status for now
+* Fixing cert_obj attribut when SPS failed
+* Change repositories from stackforge to openstack
+* fix: get ssl certificate
+* Add spsId when upserting SAN info
+* fix: test_negative_get_by_non_existing_domain/create cert api test
+* feat: Add akamai background job admin endpoint
+* feat: GET certificate endpoint
+* feat: Delete SSL Cert endpoint
+* fix: check for a cert_status for san migration
+* fix: POST /ssl_certificate
+* Add validation for certificate status
+* Fix: a) san_cert_name from service controller b) certificate status on san domain in create_in_progress after service creation
+* encode SPS posting data
+* Remove request[security] requirement
+* fix: LOG exceptions from trying to create a cert through akamai
+* fix: model helpers defaults
+* Fix san migrate domain with LogDelivery
+* fix: response model for Service
+* Fixing Admin Migrate San Domain failure
+* Fixing CIDR IP regex
+* Associate an ssl-cert to a service domain
+* Update .gitreview for new namespace
+* Fixing test_perform_action errors
+* fix: api config
+* Allow IPv4 and IPv6 CIDR range in IP restriction
+* fix: service limit api tests
+* feat: default automatic C* schema migration to false in request
+* Unskip SSL API tests
+* fix: retry on shared ssl shards sequentially
+* feat: admin api - action on services by domain
+* fix: change schema version 6->7
+* feat: admin api - limit no. of services/project_id
+* Adds ipv6 & cidr to ip restrictions end to end tests
+* Adjusting conf for cassandra san info storage config
+* Randomize the shared ssl domain during API test
+* Fix symantec spelling error for san info
+* Add cassandra akamai san info storage
+* fix: ssl_certificate postive api tests
+* Add additional tests for ssl cert creation
+* Fixing upsert_san_cert_info scripts
+* Fixing shared ssl domain in create service, and patch service validation
+* Fixing new multi-protocol API test
+* skip: test_add_duplicate_domain patch
+* Refactor akamai provider and taskflow config
+* Fixes negative test
+* Adds troubleshooting info
+* ssl-cert-provision endpoint.This allows user to create a certificate with akamai driver. Should be letting user assoicate a certificate with ta domain. Implements blueprint: ssl-certificates Implements blueprint: akamai-ssl-driver
+* rm: un-pin python-novaclient
+* Implement: Add on domain level certifictate status To implement ssl certification automation we need to add domain level certificate status. Right now the certificate status only applies to ssl domains
+* fix: retry interval & retry timeouts from tests conf
+* fix: cleanup api tests
+* Add additional test for service with multi protocol domains
+* fix: add DNS retry logic for admin endpoint
+* fix: json formatting of data_create_service.json
+* add: logging for cassandra domain existence check
+* fix: Removing domain protocol same type validation. domains can have different protocol now, and does not have to be the same protocol as origin's protocol.Provider will go to origin and match the correct protocol/port
+* Update E2E tests
+* fix: update service state to failed, after exhausting DNS retries
+* fix: cache invalidate functional test - check different spellings of bool
+* Fixing ipv4 address validation regex
+* Fixing Australia/NZ region
+* Add missing validation for log delivery
+* Fixed validation messages to be clearer
+* Added some context to the log messages from the akamai provider
+* E2E tests for geo restrictions
+* Stabilize E2E Tests
+* Added logging to the DNS driver for better debugging
+* fixme (soon): pin certifi to (2015.4.28) for now
+* Return the project id in the service
+* fix: add requests security extras
+* Adds the project id to the service object
+* Fix api test with missing caching lists
+* Fixing api test
+* Fixes an issue where uniqueness is not enforced for rules
+* Allow ip restriction on ipv6 addresses
+* Pin python-novaclient to fix API test
+* fix: change default for `hard` querystring
+* Check domain uniqueness after whole shared ssl domain is generated
+* Skip: Get by Domain Admin Api tests
+* Fixes an issue where the access type is not defaulted
+* retry_sleep_time could be None after worker restart, we check that
+* Fixed issue where referrer domains were not validated
+* Geo restriciton implementation Implements blueprint: geo-restrictions
+* Added script to get policy history for a policy
+* End to End test for cache invalidation
+* Add E2E test for blacklisting referers
+* feat: add location header to purges
+* Adds end to end tests for IP restrictions
+* fix: flaky admin api tests
+* Add referrer restriction blacklist test
+* fix: add more logging for DNS Tasks
+* fix: set query consistency level, while retrieving service details
+* fix: skip test test_get_service_by_domain
+* fix: schema & schema validation for restrictions
+* fix: add www prefix for domains due to root domain validation
+* Fix Auth tests
+* restriction type change to access in add_restrictions test case, and in python code
+* bugfix: Add '/' to url, if not present for invalidation
+* feat: Invalidate cache functionality for Akamai Driver
+* fix: just check for equality of exception classes
+* Fixing api test (restriction with field access as oppose to type)
+* Change type of restriction to access
+* Skip Get By Domain API tests
+* Cleanup E2E tests
+* Added optional port to flasksite
+* Add disabled as a valid service state
+* E2E Test: Docker image for E2E Test
+* Notification driver implementation Implements blueprint: notification-driver
+* Adds root domain validation
+* Adds baseline performance test for poppy
+* Adds API tests for purge API
+* API test for list flavors
+* Pin pbr to 0.11.0: Jenkins build process will install pbr first and then build wheel file. The working version is 0.11.0
+* Added Docker Files to mimic third party API's
+* Adds a security test to check for Command Injection vulnerabilities
+* Fixing conflict blacklist-ip
+
+2015.1.0b2
+----------
+
+* fix: Negative API test for get_service_by_domain using a very long domain name
+* IP restriction Implements blueprint: ip-restrictions
+* E2E tests for caching
+* Adds a security test to check for authorization vulnerabilities
+* E2E test for origin headers
+* Migrate Docker from fig to docker-compose
+* fix: create a default caching rule with ttl
+* fix: Validate length of domain in get_service_by_domain
+* feat: akamai driver cache setting on zero TTL
+* fix: akamai url wildcard - (origin rules and restriction rules)
+* feat: Admin API to search service by domain name
+* Fixing api test PathWithLogdelievery restriction response mismatch
+* Change oslo package names according to the latest oslo release 2.0.0
+* Adds end to end tests for host header validation
+* Fixes API test for migrating domain
+* Add a missing comma
+* fix: add exception classes on which retry operations need to be done
+* Fixing api test with default missing restriction type
+* Fixes API tests with hostheadervalue as IP address
+* Fixing API test for new restriction model change
+* Adds API tests for admin endpoint to migrate SAN domain
+* feat: testing framework for testing taskflow flows
+* Added argument requestslib_kwargs to the following methods in class PoppyClient: get_service, list_services, delete_service, get_flavor, delete_flavor
+* Change restriction model
+* fix: only retry on appropriate dns exceptions per dns driver
+* fix: pin mock to 1.0.1
+* Adds a security test to check for SQL injection vulnerabilities
+* Fix end to end tests
+* Add validation for domain specified in HostHeaderValue
+* Fix tests
+* Fix test data json
+* Fix API tests
+* Removes the cls. prefix for alt_auth_token and alt_project_id
+
+2015.1.0b1
+----------
+
+* Fix API tests
+* Script to query akamai property for list of edge hostnames
+* Fix failing API tests
+* Fixes Akamai's wildcard rules
+* Added support for HostHeaderType and HostHeaderValue while creating the service
+* XSS Security fix
+* Fix API tests for list services
+* Fix bug in test
+* Add API tests for POST action on service
+* service_action admin endpoint impelmentation
+* Pick a san cert based on the day of the week
+* Update patch to services immediately
+* Adds an admin endpoint to update service state
+* Fixes a url formatting bug in tests
+* Fix: allow shared ssl dns chain enable/disable
+* Adds support for operator status
+* Updates README.rst
+* Removes dead code in cassandra driver
+* feat: add log delivery pig script
+* Add missing API tests for domain validation
+* fix: better logging if health check fails for providers
+* Adds origin validation
+* fix: update to install kazoo from Pypi
+* Changes test runner from testr to nose
+* Remove XSS tests from create tests
+* Add invalid origin tests
+* Allow HTTP traffic on SSL service
+* remove domain(s) when log delivery enabled raises key error
+
+2015.1.b3
+---------
+
+* Large Integer validation for TTL
+* fix: conductor naming convention
+* CGI escape random erroring message
+* Updated README with additional dependencies
+* Changes from nose to testr
+* Makes sure that origin and domain cannot be same
+* Fixes broken ssl domain validation
+* Only allow deployed service to be purged
+* fix: reduce memory consumption on poppy-workers
+* Reduce smoke tests to a smaller subset
+* Validates domain names
+* Adds timeout to make sure Cassandra is consistent
+* Updates pbr version to 2015.1
+* fix: add reverts to all Taskflow tasks that create cassandra connections
+* fix: change cassandra schema migration consistency level: LOCAL_QUORUM
+* Change the cache rules tests
+* fix: more logging around swift
+* Fixes so referrer restriction end-to-end tests pass
+* Fixes an issue where 'certificate' field does not exist in the database
+* fix: openstack swift operations use either internalURL or publicURL
+* Fixing potential 500 vulnerability on cgi.escape
+* Patching existing HTTPS service not working
+* fix: correct config option `preferred_dcs` in poppy.conf
+* rm: disable api tests requests warnings
+* Add a configurable timeout for calls to Cloud DNS API
+* fix: add log_delivery under links for json schema validation
+* Fixing 500 eror continued
+* Added credentials for CCU api
+* Added a script to loop through a URI to test cdn response
+* Change akamai driver to use url-wildcard instead of url-path
+* fix: showcase only publicURL log_delivery href
+* Fixing shared ssl cnaming
+* fix: log_delivery href link
+* Separate Shared, SAN, and Custom property numbers
+* fix: Make sure that we have an index on `log_delivery`
+* Add API tests for custom & SAN cert services
+* Fix deleting service leave list 500
+* Enables creating container for log_delivery
+* Several end-to-end test improvements
+* Add cache rules and purge test
+* Manual SSL initial Check in
+* Adds a security test to check for Cross Site Scripting vulnerabilities
+* Add API tests for ssl cert feature
+* fix: migration commands must have consistency set to ALL
+* Fixes the Default Value tests and the referer request path bug
+* Shared SSL POST not working
+* Fixes broken API tests due to missing rules field
+* Implements log delivery part of services API
+* Fixes a formatting bug in taskflow
+* Allow the caching name "default" to be used
+* Fixes bug syntax error in CQL in delete service
+* Fixes broken API tests due to invalid referer restrictions
+* Add end-to-end test case for referrer restrictions
+* Added script to list dns shards
+* Fixes issue with Referrer Restrictions applying to whole site
+* End to End tests for shared cert SSL
+* Only show marker if there are more records to show
+* fix: add NotifyingConductor Class
+* shared ssl domain implmentation
+* Adds Akamai purge status script
+* Adds purge script
+* End to end test for origin rule ordering
+* Multi Domain Test
+* End to end test for multiple origins
+* End To End Test Updates
+* Changed the cachekey for Akamai properties
+* Added Zookeeper to fig config
+* Fixes bugs in Cassandra delete nulls script
+* Fixes bug where if https protocol was set, an exception occurred
+* fix: DNS retries
+* Fixed bug with setting up caching rules with akamai
+* Adds response timeout and delay options to Rackspace DNS
+* Implements blueprint: update home doc
+* Disable SSL tests, until SSL is fully implemented
+* Add xml security test case
+* Fixes invalid port error
+* Removes trailing / from origin name, if any
+* Lowers the default num of shards for Rackspace DNS from 500 to 400
+* Fixes bug Poppy creates too many threads
+* Add certificate property to domain object
+* Removes unused queries in Cassandra
+* Add pylintrc options for better pylint reporting
+* Fixes bug: PATCH endpoint allows duplicate domains
+* Lowercasing domain names Closes-Bug: 1429261
+* Adds PYTHONDONTWRITEBYTECODE option to tox.ini
+* Fixes bug in Cassandra health test
+* fix: change conductor engine type to serial
+* Fixes bug domains list not updated in PATCH
+
+2015.1.0b3
+----------
+
+* fix: exponentially backoff at different rates
+* api-test-fixes
+* - Getting the current file's path and join with the migrations
+* Add cassandra schema migration framework Implements: blueprint cassandra-schema-versioning
+* Adds script to delete service_name nulls from cassandra
+* fix: Taskflow tasks for Update, Delete and Create
+* feat: Break down async tasks with TaskFlow
+* Implemented TaskFlow distributed task driver to replace subprocess
+* Fixes race condition in POST and PATCH
+* Makes running api tests via tox simpler
+* Removed unecessary builds in tox
+* Updated maxcdn references
+* Fixes bug caused by BeautifulSoup interface update
+* Fixes broken provider details serialization
+* Fixes race condition in DELETE endpoint
+* Fixes issue where validation failing on ascii domains and origins
+* Removed the empty list jsonpatch negative test which is now valid
+* Fixes issue where duplicate domains and origins were allowed
+* Fixes issue added multiple origin rules with akamai driver
+* Update API tests to accomodate for upserts
+* Added Akamai scripts to interact directly with Akamai API
+* Fixes bug: service gets stuck in update_in_progress
+* Adds UPSERT functionality to Akamai's PATCH endpoint
+* fix: akamai health endpoint
+* fix: providers's service update signature
+* fix(cassandra): remove unreachable code when checking exisiting services
+* fix docstring for class
+* fix: typo on service_controller property for designate driver
+* Fix list services API test
+* fix: Poppy's README
+* Corrects docstring in Cassandra storage driver
+* Added tests for port testing
+* Fixed project_id not in headers
+* Reduces the min length for rules to 1 character
+* Fixes failing API Tests
+* do not include .idea project folder
+
+2015.1.b2
+---------
+
+* Cassandra max wait for schema agreement option
+* Fixing purge url incorrect ness
+* Reverts patch: GET and LIST return some empty fields
+* Adds tests for Rackspace DNS Create, Update and Delete
+* Add support for multiple users
+* Add cassandra consistency level Closes-Bug: 1409782
+* Refactoring akamai driver code
+* Update docker configuration for api tests
+* Fixes bug: GET and LIST return some empty fields
+* Fixes bug: PATCH returns with 202 for replace origin with {}
+* User should be able to pass Accept: application/json header on 204
+* Enforces a max number of domains and origins
+* Should copy caching rules before processing Closes-Bug: 1408065
+* Updates to flavor tests
+* Added a test for replacing a restrictions property
+* Update PATCH api tests
+* Fixes bug: old style class declaration is breaking unit tests
+* Fixes bug: Unable to update a failed service
+* Updates to PATCH Api tests
+* Fixes invalid protocol in PATCH
+* Fixes bug: Missing domain property in PATCH
+* Add rules for restrictions
+* Fixes bug: PATCH to add origin fails
+* Fixes restrictions serialization/deserialization bug
+* Removes py26 environment from tox.ini
+* Fixes caching rule serialization/deserialization bug
+* Make the flavor provider used in api tests configurable
+* Set restrictions on field lengths
+* Ensure the TTL is a positive integer
+* Implements PATCH using RFC semantics
+* Keeps the error responses as json
+* Origins is now a required property
+* Get correct protocol for domain Closes-Bug: 1406377
+* Fixes bug where poppy throws a 500 on blank marker
+* Handle XSS attacks using various service fields
+* Fix failing tests
+* Switch service urls to use UUID instead of service name
+* Fixes validation of caching rules
+* Validates the domain protocol field passed in during Create
+* Fixes Bug where 500 responses show messages
+* uwsgi hack fix Closes-Bug: 1406379
+* Add support for multiple urls, one per domain, for Akamai
+* Updates to API tests
+* Using subprocess module to replace multiprocessing Closes-Bug: 1404988
+* Added new akamai config options to docker configs
+* Fixing response model url Closes-Bug: 1401628
+* https domains for akamai driver Closes-Bug: 1403621
+* Fixes update_in_progress bug due to missing links field
+* Reducing the "unreaped" processes Closes-Bug: 1404988
+* Fixes bugs missing session keyword and cassandra ordered dict
+* digital property scheme fix Closes-Bug: 1403621
+* Conditional delete of flavor in test tearDown
+* Adds health endpoint for Rackspace DNS Closes-Bug: 1402805
+* Fixes issue where values missing from caching/restriction rules
+* User can now get services where the service name has an extension
+* Add protocol field to domain allowing https domain
+* Exposing the failure message to the user
+* Modified delete to archive services instead of hard delete
+* Akamai config adjustment
+* Fixes bug 1382155: Cassandra health test
+* Add project_id to rax-identity base url Closes-Bug: 1401628
+* Fixed issue with running apidocker
+* Updates to API tests
+* Added sample of loading logging.conf to poppy.conf sample
+* Fixes bug: Failed Provider Service causes DNS create failure
+* Adds End To End Tests
+* Update tests to use default flavor
+* Adds auth_endpoint configutation option for pyrax
+* Added init script to inject credentials for DNS and Providers
+* Human friendly DNS shard indexes
+* Fixed invalid credentials bug in Rackspace DNS Driver
+* flavor_ref -> flavor_id
+* Log detailed exceptions before error hook
+* Workflow documentation is now in infra-manual
+
+2015.1.b1
+---------
+
+* Fixed the Fastly endpoint health check
+* Implement Akamai caching rules
+* Adds Rackspace DNS Driver
+* Fixes many of the Service API Tests
+* Add mimic support for docker api
+* Implement Akamai driver referrer-restrction
+* Impelment Akamai purge functionality by CCU
+* Implementing Akamai Driver
+* Making links required so error message is improved
+* Added tox environment for running api tests using docker
+* Made the X-Project_ID header mandatory in Poppy
+* Clarifying development setup
+* Fastly caching rules Implements: blueprint caching-rules
+* Fixed Create Flavor Tests
+* Adds delete domains script for Rackspace DNS
+* Fixes bug: empty domain object in update service
+* Implement set referer restriction (on Fastly first)
+* Patch service endpoint
+* Fixes failing API tests for create service
+* Removed entry points for drivers that no longer exist
+* Fixes spelling mistake in scripts folder name
+* Fixes bug: empty domain object in create service
+* Fixes bug in fastly delete services
+* Replace hard coded fastly urls with config values
+* Correctly populate flavor ID in flavor_ref
+* Make GET /flavors response structure consistent
+* Enable local development using fig/docker setup
+* Update fig documentation
+* Add purge content functionality to poppy
+* fixing deadlock on cassdandra driver
+* Adds commonly used scripts to poppy
+* blueprint: add Docstrings to all things, part2 and part3
+* Add API tests for PATCH service endpoint
+* Enhanceing debugging information for provider responsers
+* Fixes failing API tests for flavors
+* Renaming flavorRef to flavor_ref
+* Use 201 instead of 204 for flavor creation success code
+* Handle firewall issues for ubuntu keystore
+* Skip failing API tests
+* Peg cassandra to 2.0.*
+* Fixes invalid limit error
+* Remove the MongoDB Storage Driver
+* Added Fig configuration to create linked docker containers
+* Made the provider URI not accept empty strings
+* Made the provider list mandatory
+* Added Repose Docker File
+* Adding command to import schema
+* Cleaned up error messages for Flavor storage
+* Service status fix
+* CDN-256 Asynchronously create service on providers side
+* Verify provider is valid before adding to a flavor
+* Delete service (delete endpoint)
+* Fix URL for Fastly
+* HTTP response json body fix
+* Fix the functional tests
+* Cloud DNS Driver
+* Added new DNS driver stub
+* Modify cassandra deployment strategy
+* blueprint: add Docstrings to all things
+* Remove poppy server from api tests base
+* Add API Tests for flavors
+* Use NamedExtension to load a list of poppy CDN providers
+* Create Service - Additional API Tests
+* Add purge interface for each provider
+* Adds list endpoint
+* API tests for list services endpoint
+* Create C* Cluster configuration
+* Renamed project to poppycdn for pypi server
+* API tests for delete service endpoint
+* Add API tests for get service endpoint
+* CDN-250 and 252 bug fixes
+* Move provider details into concepts
+* Adds provider details
+* Get Service (get one endpoint)
+* API Tests for Create Service endpoint
+* Create Service
+* Stop using intersphinx
+* Adds health endpoint
+* Adding flavorRef to Service
+* 1. Add service request model 2. Add service response model
+* Add API tests for health & ping endpoints
+* Work toward Python 3.4 support and testing
+* Add MaxCDN driver && unittest
+* Add provider_details information
+* Adds support for CloudFront provider
+* adding docs
+* Make API tests run via tox
+* Adds ping endpoint
+* Removed unnecessary requirements.txt file
+* Added status field to Service Model
+* Change responder to return meaningful response message
+* delete falcon transport
+* Add service validation for Fastly
+* Moved Sphinx requirements from test-requirements to requirements.txt
+* Fixing Gerrit Gating issues with Pep8 and Docs
+* Add .gitreview file
+* Update setup.cfg
+* made tox pylint checking optional
+* added pylint and cleaned up test-requirements
+* capitalize Poppy
+* renamed conf file to poppy, and shortened summary
+* rename to poppy
+* rename to poppy
+* updated tests to use poppy
+* renamed cdn references in code to poppy
+* renamed import statements from cdn. to poppy
+* renamed cdn folder to poppy
+* added basic doc settings for sphinx
+* test post rather than put
+* update Readme.rst
+* update Readme.rst
+* Delete apiary.apib
+* Transferring blueprint from apiary.io
+* abstract/refactor rule for validating json schema
+* Incorporate latest review comment
+* Models and unittests for models
+* Add JSON validation to pecan transport driver
+* added pypy to tox
+* Covering up bootstrap.py
+* [CDN-153] Avoid passing args to cdn server
+* Add code coverage for mock and mockdb && unittest base
+* Update README.rst
+* Latest review comments && Removing extra unittest
+* Remove depency on falcon, update default transport driver to pecan
+* Add fastly api key holder in conf
+* Use the latest basse-testcase
+* Remove dory reference
+* removed unused environ var
+* added etc folder for tests
+* pep8 style fix
+* Incorporate review comments
+* removed unrequired method
+* removed unused method in test/base.py
+* Fixes per review comments, increased timeout period
+* Pep8 fix
+* More pecan driver code && unittest
+* Update setup.cfg
+* Address review comments
+* Add test configuartion && modify manager file
+* Add pecan transport driver and tests
+* initialize the cdn_tests_config_dir value
+* new style transport
+* added code coverage over decorators and removed unneeded functions
+* added code coverage over decorators and removed unneeded functions
+* Made setup.py PEP8 compatible
+* merge from upstream
+* ensure all inherit from base
+* changed import order
+* merge conflict resolution
+* reordered imports
+* removed extra space
+* making py33 compatible
+* making py33 compatible
+* changed assert to better way"
+* changed assert to better way"
+* merge changes from manager_driver
+* removed datafile that wasnt actually being used
+* no longer importing non modules for ddt
+* Created Wheels package
+* added marker/limit to list() calls
+* made mockdb/services.py consistent with the other drivers
+* added base inheritance to all tests
+* added base classes for tests
+* need the decorators file
+* added unit tests over manager
+* updated openstack/common files
+* ignore openstack/common files for coverage checks
+* working on tests for manager
+* removed pyc file
+* renamed driver property for clarity
+* [CDN-124] Make API Tests tox compatible
+* merging upstream commits plus merge issues
+* merging upstream commits plus merge issues
+* Import fix 2
+* DRY the calls in manager services, and removed print stmts
+* removed obsolete file
+* added missing file
+* making the existing unit tests pass
+* Made CDNProvider.client() a property
+* refactoring provider names in provider drivers
+* update to upstream
+* fixing refactor changes so tests pass
+* Fix pep8 issues
+* Import && Style change for review comments
+* added provider base classes
+* resolved merge conflict
+* Readme file for the Cassandra Docker setup
+* Readme file for the Cassandra Docker setup
+* Better assertions
+* Import fix
+* re-organizing validator test folder
+* removed legacy base class
+* removed unnessary docstring
+* resolved some bugs with the manager provider
+* added manager driver, and base drivers
+* Update Hacking.rst
+* Move/rename test_validator
+* Add new line
+* PEP8 and py33 compatibility, import modules only
+* refactoring using github.com/rackerlabs/finding_dory manager concepts and base drivers
+* Tow lines style fix
+* New line fix
+* kw style fix
+* More import style change
+* Import style change
+* Update base.py for API tests
+* Add new line
+* Update base.py
+* Exclude API tests from tox
+* Following openstack standard: [H302] Do not import objects, only modules (*)
+* Fixing company copyrights && commit message
+* Coverage 100% fix and More PEP8 Style fixes
+* Openstack PEP8 style fix
+* Style && Python 3 compatibility change
+* provider.fastly unit tests
+* Fixing some types and shorthanded function-names
+* Missing an app file
+* 1. Incorporate review comments. 2. Update pecan unittest case with pecan.testing
+* Remove version reference
+* Minor style fix, as well as stop light check in
+* updated Authors list
+* Remove unused tags
+* Copyright 2014
+* 1. Add JSON Validation framework for pecan/falcon, incoroporate review comment from: https://github.com/rackerlabs/cdn/pull/28
+* modified import statements to match openstack guidelines
+* py26 compatibility
+* Address REview Comments
+* removed memcache ref that was not used and breaking py33
+* renamed data files
+* renamed data files
+* Add test cleanup
+* Add API Test Structure
+* Add API Test Structure
+* Update README.rst test HTTP request
+* cassandra unit tests
+* cassandra unit tests
+* most unit code coverage added
+* 100% code coverage over cassandra driver class
+* 100% code coverage over cassandra driver class
+* added unit test for cassandra connection
+* added unit test for cassandra connection
+* added basic unit test for get
+* get service unit test (in progress)
+* added git ignore to ignore test result files and logs etc
+* added coverage requirement to run code coverage: tox -e cover
+* tox compatable
+* flake8 compatibility
+* Removed print statements
+* Added unit testing framework
+* Changed DockerFile to pull from master again
+* Added Cassandra Schema and related CQL queries
+* added cassandra schema design and queries
+* added projectid to routes
+* added projectid to routes
+* added projectid to routes
+* added projectid to routes
+* fixed Docker File repo reference to rackerlabs, and fastly client reference
+* change cassandra-cdn
+* Change repo back to rackerlab
+* Incorporate latest PR comments: 1. Move fastly-python requirements to fastly requirement, as well as httplib2. 2. Removed virtualenv creation 3. Add newline in cdn.conf
+* Update git repo location: cloning from rackerlab, not my branch
+* Update Readme since we are having a different structure of requirements files now
+* Finishing up cloud cdn dockerfile. Note: You will need to modify cdn.conf with the correct storage type in case you want to use cassandra, and specify the host under cassandra to be the host linked to your container too. Format to run this docker container: docker run --name="<your-container-cdn-server-name>" -p 80:80 -d --link <your-cassandra-server-container>:<your-cassandra-server-alias> <docker-image>
+* docker goodness
+* Add selectively pip install requirements
+* removed conf files, reference from etc instead
+* moved api docker file to its own folder and added conf files
+* Add lossing scripts for cassandra cdn
+* corrected docker file
+* Add cassandra-cdn docker file
+* added docker file
+* created a mock db to remove relience on cassandra for testing
+* created a mock db to remove relience on cassandra for testing
+* reverting change
+* use specific client hash that works
+* modified default log location
+* cleaned readme formatting
+* fixed merge conflicts
+* moved fastly requirements to own file
+* moved fastly requirements to own file
+* Moving unittests folder upper a layer
+* Update README.rst
+* Fixing readme with more accurate setup instructions
+* updated readme
+* updated readme
+* prototyped delete to delete from fastly as well as from cassandra
+* fixed the readme file and sample conf
+* renamed hosts to services
+* added cassandra driver that connects to configured instance
+* improved readme
+* improved readme
+* improved readme
+* corrected the home doc
+* fixed some bugs surrounding establishing a new service
+* update
+* added put method for creating new host
+* added Fastly extension driver
+* added sample cdn provider extensions
+* added stubbed cassandra driver
+* added mongo to conf
+* added mongo driver with stubbed host controller
+* added mongo storage driver
+* removed queue reference in hacking file
+* corrected Readme file and conf files
+* Working transport drivers
+* fixing references
+* removed venv
+* renamed readme.md to readme.rst
+* renamed readme.md to readme.rst
+* renamed readme.md to readme.rst
+* Added Readme file
+* Initial Commit
+* Initial commit
