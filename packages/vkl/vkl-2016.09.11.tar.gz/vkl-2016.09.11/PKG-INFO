@@ -1,0 +1,27 @@
+Metadata-Version: 1.1
+Name: vkl
+Version: 2016.09.11
+Summary: vkl - a better ls-experience
+Home-page: https://github.com/novoid/vkl
+Author: Karl Voit
+Author-email: tools@Karl-Voit.at
+License: UNKNOWN
+Download-URL: https://github.com/novoid/vkl/zipball/master
+Description: vkl
+        -----------------------------
+        This tool lists the current directory content in various metric
+        GNU ls does not provide.
+        
+        Options:
+          -h, --help         show this help message and exit
+          -l, --log          displays directory content by a pseudo logarithmic time
+                             (default option)
+          -m, --mtime        sort items using modification time (default option)
+          -c, --ctime        sort items using change time
+          -a, --atime        sort items using access time
+          -p, --primitivels  use primitive output of directory rather than using GNU
+                             ls
+          --debug            enable (senseless) debug output
+        
+Keywords: file managing,file management,files,shell
+Platform: UNKNOWN
