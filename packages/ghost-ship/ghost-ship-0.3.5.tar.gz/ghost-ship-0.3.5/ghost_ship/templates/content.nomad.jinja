@@ -1,0 +1,58 @@
+count = {{ count }}
+
+restart {
+  # The number of attempts to run the job within the specified interval.
+  attempts = 10
+  interval = "5m"
+
+  # A delay between a task failing and a restart occurring.
+  delay = "25s"
+
+  # Mode controls what happens when a task has restarted "attempts"
+  # times within the interval. "delay" mode delays the next restart
+  # till the next interval. "fail" mode does not restart the task if
+  # "attempts" has been hit within the interval.
+  mode = "delay"
+}
+
+# Define a task to run
+task "redis" {
+  # Use Docker to run the task.
+  driver = "docker"
+
+  # Configure Docker driver with the image
+  config {
+    image = "redis:{{ version }}"
+
+    port_map {
+      http = 3000
+    }
+  }
+
+  service {
+    name = "${TASKGROUP}-api"
+    tags = ["${TASKGROUP}", "api"]
+    port = "http"
+
+    check {
+      type     = "http"
+      path     = "/health/"
+      interval = "10s"
+      timeout  = "2s"
+    }
+  }
+
+  # We must specify the resources
+  resources {
+    cpu    = 500 # 500 Mhz
+    memory = 256 # 256MB
+
+    network {
+      mbits = 10
+      port  "db"  {}
+    }
+  }
+
+  # end resource
+}
+
