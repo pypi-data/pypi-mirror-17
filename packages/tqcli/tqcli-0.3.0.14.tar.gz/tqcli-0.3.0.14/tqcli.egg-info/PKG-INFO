@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: tqcli
+Version: 0.3.0.14
+Summary: TQCLI is the client application for using TranQuant services
+TranQuant is a data marketplace that delivers real-time or batch data at a large scale from suppliers to end-users.
+Home-page: http://github.com/tranquant/tqcli
+Author: Mehrdad Pazooki, Sean Glover, Rodrigo Abreu
+Author-email: mehrdad@tranquant.com
+License: Apache 2.0
+Description: UNKNOWN
+Keywords: dataset,data,apache spark,data science,big data,data marketplace,tranquant
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: Apache Software License
