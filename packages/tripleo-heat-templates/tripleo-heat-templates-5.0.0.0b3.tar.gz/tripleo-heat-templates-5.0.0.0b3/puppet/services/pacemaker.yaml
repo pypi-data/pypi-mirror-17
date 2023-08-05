@@ -1,0 +1,44 @@
+heat_template_version: 2016-04-08
+
+description: >
+  Pacemaker service configured with Puppet
+
+parameters:
+  ServiceNetMap:
+    default: {}
+    description: Mapping of service_name -> network name. Typically set
+                 via parameter_defaults in the resource registry.  This
+                 mapping overrides those in ServiceNetMapDefaults.
+    type: json
+  DefaultPasswords:
+    default: {}
+    type: json
+  EndpointMap:
+    default: {}
+    description: Mapping of service endpoint -> protocol. Typically set
+                 via parameter_defaults in the resource registry.
+    type: json
+
+outputs:
+  role_data:
+    description: Role data for the Pacemaker role.
+    value:
+      service_name: pacemaker
+      config_settings:
+        pacemaker::corosync::cluster_name: 'tripleo_cluster'
+        pacemaker::corosync::manage_fw: false
+        pacemaker::resource_defaults::defaults:
+          resource-stickiness: { value: INFINITY }
+        corosync_token_timeout: 10000
+        tripleo.pacemaker.firewall_rules:
+          '130 pacemaker tcp':
+            proto: 'tcp'
+            dport:
+              - 2224
+              - 3121
+              - 21064
+          '131 pacemaker udp':
+            proto: 'udp'
+            dport: 5405
+      step_config: |
+        include ::tripleo::profile::base::pacemaker

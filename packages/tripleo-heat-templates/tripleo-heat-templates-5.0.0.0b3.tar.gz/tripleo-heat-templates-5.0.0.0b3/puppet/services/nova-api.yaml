@@ -1,0 +1,79 @@
+heat_template_version: 2016-04-08
+
+description: >
+  OpenStack Nova API service configured with Puppet
+
+parameters:
+  ServiceNetMap:
+    default: {}
+    description: Mapping of service_name -> network name. Typically set
+                 via parameter_defaults in the resource registry.  This
+                 mapping overrides those in ServiceNetMapDefaults.
+    type: json
+  DefaultPasswords:
+    default: {}
+    type: json
+  EndpointMap:
+    default: {}
+    description: Mapping of service endpoint -> protocol. Typically set
+                 via parameter_defaults in the resource registry.
+    type: json
+  NovaWorkers:
+    default: 0
+    description: Number of workers for Nova API service.
+    type: number
+  NovaPassword:
+    description: The password for the nova service and db account, used by nova-api.
+    type: string
+    hidden: true
+  KeystoneRegion:
+    type: string
+    default: 'regionOne'
+    description: Keystone region for endpoint
+
+resources:
+  NovaBase:
+    type: ./nova-base.yaml
+    properties:
+      ServiceNetMap: {get_param: ServiceNetMap}
+      DefaultPasswords: {get_param: DefaultPasswords}
+      EndpointMap: {get_param: EndpointMap}
+
+outputs:
+  role_data:
+    description: Role data for the Nova API service.
+    value:
+      service_name: nova_api
+      config_settings:
+        map_merge:
+          - get_attr: [NovaBase, role_data, config_settings]
+          - nova::api::osapi_compute_workers: {get_param: NovaWorkers}
+            nova::api::metadata_workers: {get_param: NovaWorkers}
+            nova::cron::archive_deleted_rows::hour: '"*/12"'
+            nova::cron::archive_deleted_rows::destination: '"/dev/null"'
+            tripleo.nova_api.firewall_rules:
+              '113 nova_api':
+                dport:
+                  - 6080
+                  - 13080
+                  - 8773
+                  - 3773
+                  - 8774
+                  - 13774
+                  - 8775
+            nova::keystone::authtoken::project_name: 'service'
+            nova::keystone::authtoken::password: {get_param: NovaPassword}
+            nova::keystone::authtoken::auth_uri: {get_param: [EndpointMap, KeystoneInternal, uri] }
+            nova::keystone::authtoken::auth_url: {get_param: [EndpointMap, KeystoneAdmin, uri_no_suffix]}
+            nova::api::enabled: true
+            nova::api::default_floating_pool: 'public'
+            nova::api::sync_db_api: true
+            nova::api::enable_proxy_headers_parsing: true
+            nova::keystone::auth::tenant: 'service'
+            nova::keystone::auth::public_url: {get_param: [EndpointMap, NovaPublic, uri]}
+            nova::keystone::auth::internal_url: {get_param: [EndpointMap, NovaInternal, uri]}
+            nova::keystone::auth::admin_url: {get_param: [EndpointMap, NovaAdmin, uri]}
+            nova::keystone::auth::password: {get_param: NovaPassword}
+            nova::keystone::auth::region: {get_param: KeystoneRegion}
+      step_config: |
+        include tripleo::profile::base::nova::api
