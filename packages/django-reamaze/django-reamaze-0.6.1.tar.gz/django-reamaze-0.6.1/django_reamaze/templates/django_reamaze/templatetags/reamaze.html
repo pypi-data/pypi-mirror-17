@@ -1,0 +1,52 @@
+{%  if display_reamaze %}
+    <script type="text/javascript">
+      (function() {
+        function async_load() {
+          var s = document.createElement('script');
+          s.type = 'text/javascript'; s.async = true;
+          s.src = '{{ reamaze_js_url }}';
+          var x = document.getElementsByTagName('script')[0];
+          x.parentNode.insertBefore(s, x);
+        }
+        if (window.attachEvent) {
+          window.attachEvent('onload', async_load);
+        } else {
+          window.addEventListener('load', async_load, false);
+        }
+      })();
+    </script>
+
+    <script type="text/javascript">
+      var _support = _support || {};
+      _support['account'] = '{{ reamaze_account }}';
+      _support['id'] = '{{ user_id }}';
+      _support['name'] = '{{ request.user.username }}';
+      _support['email'] = '{{ request.user.email }}';
+
+      {%  if reamaze_auth_key %}
+          _support['authkey'] = '{{ reamaze_auth_key }}';
+      {% endif %}
+
+
+      _support['custom_fields'] = {
+          current_page: {
+          type: "hidden",
+          value: "{{ request.build_absolute_uri }}"
+        },
+    USER_AGENT: {
+          type: "hidden",
+          value: "{{ user_agent }}"
+        },
+    url_referer: {
+          type: "hidden",
+          value: "{{ http_referer }}"
+        },
+      }
+      _support['ui'] = {
+        widget: true,
+      {%  if reamaze_channel %}
+        mailbox: '{{ reamaze_channel }}'
+      {% endif %}
+      };
+    </script>
+{%  endif %}
