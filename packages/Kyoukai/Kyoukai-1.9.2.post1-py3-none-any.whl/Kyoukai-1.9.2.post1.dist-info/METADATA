@@ -1,0 +1,27 @@
+Metadata-Version: 2.0
+Name: Kyoukai
+Version: 1.9.2.post1
+Summary: A fast, asynchronous web framework for Python 3.5+
+Home-page: https://mirai.veriny.tf
+Author: Isaac Dickinson
+Author-email: sun@veriny.tf
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Internet
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Requires-Dist: Mako (>=1.0.4)
+Requires-Dist: PyYAML (==3.11)
+Requires-Dist: asphalt (>=2.0.0)
+Requires-Dist: httptools (>=0.0.9)
+Requires-Dist: python-magic
+Requires-Dist: typeguard (>=1.2.1)
+Requires-Dist: werkzeug (>=0.11.10)
+
+UNKNOWN
+
+
