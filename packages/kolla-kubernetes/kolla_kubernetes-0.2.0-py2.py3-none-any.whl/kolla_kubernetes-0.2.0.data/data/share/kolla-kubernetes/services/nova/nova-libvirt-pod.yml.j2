@@ -1,0 +1,108 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: nova-libvirt
+  labels:
+    component: nova
+    system: nova-libvirt
+  namespace: default
+spec:
+  template:
+    metadata:
+      name: nova-libvirt
+      labels:
+        component: nova
+        system: nova-libvirt
+      namespace: default
+      annotations:
+        pod.alpha.kubernetes.io/init-containers: '[
+          {
+             "name": "initialize-nova-libvirt",
+             "image": "{{ nova_libvirt_image_full }}",
+             "command": [
+                 "sh",
+                 "-c",
+                 "cp -a /config/..data/* /nova/;
+                  ip=$(ip addr show dev {{ tunnel_interface }} | grep -G ''inet '' | awk ''{print $2}'');
+{%- if enable_libvirt_tcp == "yes" %}
+                  sed -i ''s|^listen_addr.*=.*|listen_addr=\"''${ip%/*}''\"|g'' /nova/libvirtd.conf;
+{%- endif %}
+             "],
+             "volumeMounts": [
+                {
+                   "name": "nova-libvirt-config",
+                   "mountPath": "/config/"
+                },
+                {
+                   "name": "nova-config",
+                   "mountPath": "/nova/"
+                }
+             ]
+          }
+        ]'
+    spec:
+      hostNetwork: True
+      hostPID: True
+{%- if enable_libvirt_tcp != "yes" %}
+      hostIPC: True
+{%- endif %}
+      containers:
+        - name: nova-libvirt
+          image: "{{ nova_libvirt_image_full }}"
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - mountPath: {{ container_config_directory }}
+              name: nova-config
+            - mountPath: /var/lib/libvirt
+              name: nova-libvirt-persistent-storage
+            - mountPath: /var/lib/nova
+              name: nova-compute-persistent-storage
+            - mountPath: /etc/localtime
+              name: etc-localtime
+            - mountPath: /lib/modules
+              name: lib-modules
+            - mountPath: /run
+              name: run
+            - mountPath: /dev
+              name: dev
+            - mountPath: /sys/fs/cgroup
+              name: sys-fs-cgroup
+            - mountPath: /nova
+              name: nova-config
+            - mountPath: /var/log/kolla
+              name: kolla-logs
+          env:
+            - name: KOLLA_CONFIG_STRATEGY
+              value: {{ config_strategy }}
+      volumes:
+        - name: nova-compute-persistent-storage
+          hostPath:
+            path: /var/lib/nova
+        - name: nova-libvirt-config
+          configMap:
+            name: nova-libvirt-configmap
+        - name: nova-libvirt-persistent-storage
+          hostPath:
+            path: /var/lib/libvirt
+        - name: etc-localtime
+          hostPath:
+            path: /etc/localtime
+        - name: lib-modules
+          hostPath:
+            path: /lib/modules
+        - name: run
+          hostPath:
+            path: /run
+        - name: dev
+          hostPath:
+            path: /dev
+        - name: sys-fs-cgroup
+          hostPath:
+            path: /sys/fs/cgroup
+        - name: nova-config
+          emptyDir: {}
+        - name: kolla-logs
+          emptyDir: {}
+metadata:
+   name: nova-libvirt

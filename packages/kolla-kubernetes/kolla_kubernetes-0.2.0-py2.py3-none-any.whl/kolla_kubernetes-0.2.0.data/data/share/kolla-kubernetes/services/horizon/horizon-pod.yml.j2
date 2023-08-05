@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ReplicationController
+spec:
+  replicas: {{ horizon_replicas }}
+  selector:
+      service: horizon
+  template:
+    metadata:
+      labels:
+        service: horizon
+    spec:
+      containers:
+        - name: horizon
+          image: "{{ horizon_image_full }}"
+          volumeMounts:
+            - mountPath: {{ container_config_directory }}
+              name: horizon-configmap
+          env:
+            - name: KOLLA_CONFIG_STRATEGY
+              value: {{ config_strategy }}
+          ports:
+            - containerPort: 80
+              name: http
+            - containerPort: 443
+              name: https
+      volumes:
+        - name: horizon-configmap
+          configMap:
+            name: horizon-configmap
+            items:
+            - key: horizon.conf
+              path: horizon.conf
+            - key: config.json
+              path: config.json
+            - key: local-settings
+              path: local_settings
+metadata:
+   name: horizon

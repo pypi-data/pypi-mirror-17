@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+spec:
+  ports:
+    - port: {{ memcached_port }}
+      name: memcached
+  selector:
+    service: memcached
+metadata:
+   name: memcached

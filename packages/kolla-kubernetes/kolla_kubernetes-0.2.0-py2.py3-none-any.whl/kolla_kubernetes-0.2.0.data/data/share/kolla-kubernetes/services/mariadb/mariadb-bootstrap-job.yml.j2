@@ -1,0 +1,39 @@
+{%- set resourceName = kolla_kubernetes.cli.args.service_name %}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mariadb-bootstrap
+spec:
+  template:
+    metadata:
+      name: mariadb-bootstrap
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - image: "{{ mariadb_image_full }}"
+          name: mariadb-bootstrap
+          volumeMounts:
+            - mountPath: {{ container_config_directory }}
+              name: mariadb-config
+            - mountPath: /var/lib/mysql
+              name: mariadb-persistent-storage
+            - mountPath: /var/log/kolla
+              name: kolla-logs
+          env:
+            - name: KOLLA_KUBERNETES
+              value: ""
+            - name: KOLLA_BOOTSTRAP
+              value: ""
+            - name: KOLLA_CONFIG_STRATEGY
+              value: "{{ config_strategy }}"
+            - name: DB_ROOT_PASSWORD
+              value: "{{ database_password }}"
+      volumes:
+        - name: mariadb-config
+          configMap:
+            name: mariadb-configmap
+        - name: mariadb-persistent-storage
+          persistentVolumeClaim:
+            claimName: {{ resourceName }}
+        - name: kolla-logs
+          emptyDir: {}
