@@ -1,0 +1,16 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+qiidly/__init__.py
+qiidly/command_line.py
+qiidly/feedly.py
+qiidly/main.py
+qiidly/qiita.py
+qiidly.egg-info/PKG-INFO
+qiidly.egg-info/SOURCES.txt
+qiidly.egg-info/dependency_links.txt
+qiidly.egg-info/entry_points.txt
+qiidly.egg-info/requires.txt
+qiidly.egg-info/top_level.txt

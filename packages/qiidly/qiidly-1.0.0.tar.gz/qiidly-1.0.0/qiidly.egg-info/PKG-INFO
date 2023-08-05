@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: qiidly
+Version: 1.0.0
+Summary: Sync Qiita feeds for followees and following tags to Feedly. -> Qiitaでフォロー中のタグとユーザーをFeedlyに同期。
+Home-page: https://github.com/uraxy/qiidly
+Author: uraxy
+Author-email: uraxy123@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: Qiita,Feedly,feed,rss,atom
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Utilities

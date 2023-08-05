@@ -1,0 +1,3 @@
+[console_scripts]
+qiidly = qiidly.command_line:main
+
