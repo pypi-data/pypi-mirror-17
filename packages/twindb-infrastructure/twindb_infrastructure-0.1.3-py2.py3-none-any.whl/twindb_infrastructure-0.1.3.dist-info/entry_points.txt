@@ -1,0 +1,3 @@
+[console_scripts]
+twindb_aws = twindb_infrastructure.twindb_aws:main
+
