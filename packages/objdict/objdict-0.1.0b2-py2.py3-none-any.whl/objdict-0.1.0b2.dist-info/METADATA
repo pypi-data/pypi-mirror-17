@@ -1,0 +1,568 @@
+Metadata-Version: 2.0
+Name: objdict
+Version: 0.1.0b2
+Summary: The ObjDict class has many uses including: as a tool for processing and generating json information, for ad-hoc classes and mutable named tuples, or just as dictionaries that allow dot notation access.
+Home-page: https://bitbucket.org/objdict/objdict
+Author: Ian Ogilvy
+Author-email: ian.ogilvy@saltmobile.com
+License: LGPL
+Keywords: object dictionary tuples namedtuples namedlists JSON custom classes
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+
+=======
+ObjDict
+=======
+
+Uses.
+-----
+Why an 'ObjDict'?  The reasons include:
+    - The structure/ad-hoc object 'swiss army knife' class.
+    - Support for json message encoding and decoding.
+    - ObjDict in place of dictionaries as convenient ad-hoc data structures.
+    - Mutable equivalent to nametuple (or namedlist).
+    - Adding json serialization to classes.
+
+Background.
+-----------
+    - History and Acknowledgements.
+    - jsonweb alternative to ObjDict JSON processing.
+    - Multiple Uses of Dictionaries.
+    - Introducing the ObjDict.
+    - Multiple modes of Dictionary Use and JSON.
+    - ObjDict json general.
+    - ObjDict json load tools.
+    - ObjDict json dump tools.
+
+Instructions.
+-------------
+    - General Notes and Restrictions.
+    - Instancing and json load.
+    - str representation and json dumps.
+
+Uses.
+-----
+The structure/ad-hoc object 'swiss army knife' class.
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+As described in this 'uses' sections, the ObjDict class has many uses, and can
+be used in place of namedtuples, namedlists, OrderedDict objects as well as
+for processing Json data.  One single import gives this flexibility.
+
+The one trade-off for this flexibility, compared to using the individual specialised
+classes is performance. If you have performance critical code that is used in
+massively iterative loops then, for example, namedtuples are far better as long
+namedtuples provide all the functionality you require.  But every last nanosecond
+is not of the essence and flexibility to adapt and simply code is desired, then
+'ObjDict' can be a replacement for several other classes, plus provide best tools
+for working with json data.
+
+Support for json message encoding and decoding.
++++++++++++++++++++++++++++++++++++++++++++++++
+
+Where an application has the need to build json data to save or transmit, or
+to decode and process json data loaded or received, the ObjDict structure provides all
+the tools to achieve this, with clear Object oriented code.  This usage has different
+requirements than json serialisation (as discussed below), as it is necessary
+to be able to produce not just a json representation of an object,  but create
+objects that can describe any required possible
+arbitrary json data to produce or decode specific messages.
+For example, the order of fields may be significant in a
+json message, although field order may not be significant for object
+serialisation. The ObjDict class has
+the tools to produce exactly the json data required by any application, and to decode
+any possible incoming json messages for processing.  It was for this usage that
+ObjDict was initially developed.
+
+ObjDict in place of dictionaries as convenient ad-hoc data structures.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+See the text below on 'multiple uses of dictionaries' for background.
+There is a significant amount of code where dictionaries have been used for
+ad-hoc structures. The use case often arises where it can become useful if
+these data structure can have elements accessed in the simpler are many.
+
+Mutable Equivalent To NamedTuple.
++++++++++++++++++++++++++++++++++
+There are occasions where a 'namedtuple' cannot be used due to the need for
+mutable objects.  The ObjDict also fulfills this need and can be initialised
+from list data.  There are many other classes that also fill this need, but
+the ObjDict combines this functionality with json processing, with dictionary
+access to data and other functions.
+
+Json Serializable Objects.
+++++++++++++++++++++++++++
+Applications that have a need to serialise objects in order to restore those
+objects either within the same application, or in an application connected
+through a data link, may desire json as the format for object storage or object
+message format.  The ObjDict class and module provides the tools for this,
+serialising the state of an object in order for that state to be later
+loaded, either by an identical class, or a different class which has use
+for some or all of the same 'object state' information.
+
+OrderedDict alternative.
+++++++++++++++++++++++++
+OrderedDicts do everything dictionaries can, and in some applications it can
+be useful to simply move to OrderedDict classes for all dictionaries.  'ObjDict'
+is another alternative, with a shorter name, even more flexibility and power,
+and a much more readable 'str' representation that can also be used for clearer
+initialisation. See instructions for details on 'str' and initialisation
+flexibility.
+
+Background.
+-----------
+History and Acknowledgements.
++++++++++++++++++++++++++++++
+The project was emerged from a need for code to generate and decode json
+messages. Originally the package `jsonweb <http://www.jsonweb.net/>`.  was
+selected for the task, but it became clear the use case differed. 'jsonweb' is
+ideal for representing classes as json, and reloading classes from that json
+and provides validation and tests and schema that are not reproduced in ObjDict.
+However ObjDict provides specifically for classes created to generate or process
+json as data, as
+opposed to json as a representation of the class, and now the ObjDict
+class with a wider range of uses. The whole issue of json data which ambiguously
+may correspond to either a dictionary collection, or an object, arises from
+general processing of json data and gives rise to the ObjDict. The ObjDict
+project started out to add more control
+over json as a fork of jsonweb, but evolved over time to the different use cases.
+
+jsonweb alternative to ObjDict JSON processing.
++++++++++++++++++++++++++++++++++++++++++++++++
+The project 'jsonweb' overlaps is use cases with this project.  The focus of
+'jsonweb' is to provide for serializing python object structures and instancing
+python objects from the serialized form.  ObjDict can be used for this role also,
+but currently lacks the validation logic used by 'jsonweb' to ensure JSON data
+matches exactly the required format.
+
+In fact, rather than an emphasis on validation, the original primary use-case of
+ObjDict is to allow maximum flexibility
+for the JSON data representing an object. The ObjDict object itself is a generic
+object to enable working with free format data objects.  Beyond the ObjDict
+class, the entire JSON processing philosophy is to provide for information sent
+between
+computer systems where , the message specification will tend to evolve from version to
+version.  This requires flexible interpretation of data, and the ability to
+easily ignore additional data that may have been added in later versions,
+providing easy backward compatibility.
+
+The structure for JSON dump and load is a very flexible framework, and any feature
+including more rigid validation could easily be added.
+
+Multiple Uses of Dictionaries.
+++++++++++++++++++++++++++++++
+In python, dictionaries are designed as 'collections' but are often used as
+ad-hoc structures or objects.  In a true collection, the key for an entry does
+not indicate properties
+of the value associated with the key. For example, a collection of people,
+keyed by names,
+would not normally infer the significance or type of data for each entry
+(or in this case person) by the key.  The data has the same implications regardless
+of whether the key is 'bob' or 'jane'. The data associate with 'bob' or 'jane'
+is of the same type and is interpreted the same way.
+For an 'ad-hoc' structure the keys **do** signal both the nature of the data and
+even the type of data.
+Consider for each entry for a person we have a full name,  and age.
+A dictionary could be used to hold this information, but this time it is an
+ad-hoc structure.  As a dictionary we always expect the same two keys, and each
+is specific to the information and different keys even have different types of data.
+This is not a dictionary as a collection, but as an ad-hoc structure. These are two
+very different uses of a dictionary, the collection the dictionary was designed for,
+and the ad-hoc structure or ad-hoc object as a second use.
+
+Introducing the ObjDict.
+++++++++++++++++++++++++
+An ObjDict is a subclass of dictionary designed to support this second
+'ad-hoc object' mode of use. An ObjDict supports all normal dict operations, but
+add support for accessing and setting entries as attributes.
+So::
+
+    bob['full_name']= 'Robert Roberts'
+        is equivalent to
+    bob.full_name = 'Robert Roberts'
+
+Either form can be used. ObjDicts also have further uses.
+
+Multiple modes of Dictionary Use and JSON.
+++++++++++++++++++++++++++++++++++++++++++
+The standard json dump and load map json 'objects' to python dictionaries.
+JSON objects even look like python dictionaries (using {}
+braces and a ':'). In javascript, objects can also
+be treated as similar to dictionaries in python.  The reality is some json
+objects are best represented in python as objects,  yet others are best
+represented as dictionaries.
+
+Consider::
+
+    { "name": {"first":"fred", "last":"blogs"}
+     "colour_codes":{"red":100,"green":010, "yellow":110, "white":111 }
+    }
+
+In this data, the 'name' is really an object but the 'color_codes' is a
+true dictionary. Name is not a true dictionary because it is not a collection
+of similar objects, but rather something with two specific properties.
+Iterating through name does not really make sense, however iterating through
+our colours does make sense. Adding to the collection of colours and their
+being a variable number of colours in the collection is all consistent.
+Treating 'name' is not ideal as the 'keys' rather than being entries in a collections
+each have specific meaning.  Keys should not really have meaning, and these keys
+are really 'attributes' of name, and name better represented as an object.
+
+So two types of information are represented in the same way in json.
+
+Another limitation of working with python dictionaries and JSON is that in messages
+order can be significant and but dictionaries are not ordered.
+
+The solution provided here is to map JSON 'objects' to a new python ObjDict
+(Object Dictionaries).  These act like OrderedDictionaries, but can also be treated
+as python objects.
+
+So 'dump' or '__json__()' or 'str() / __str__()' of the 'names' and
+'colour_codes' example above produces an
+outer ObjDict containing two inner 'ObjDict's,  'name' and 'colour_codes'.
+Assume the outer ObjDict is assigned to a variable 'data'
+Each obj dict can be treated as either an object or a dictionay, so all the code
+below is valid::
+
+    data= ObjDict(string_from_above)
+    name = data['name'] #works, but as 'data' is not a real 'dict' not ideal
+    name = data.name  #better
+    first_name = data.name.first
+    first_name = data["name"]["first"]  #works but again not ideal
+
+    red_code = data.colour_codes["red"]
+    #as colour codes is a true collection it will be unlikely to set
+    #members to individual variables, but the code is valid
+
+ObjDict items also 'str' or 'dump' back to the original JSON as above.
+However if the original string was changed to::
+
+    { "name": {"first":"fred", "last":"blogs", "__type__": "Name"}
+     "colour_codes":{"red":100,"green":010, "yellow":110, "white":111 }
+    }
+
+The json 'load' used to load or initialise ObjDict uses an object_pairs_hook
+that checks a table of registered class names and corresponding classes.
+
+If there is an entry in the table, then that class will be used for embedded objects.
+Entries with no __type__ result in ObjDict objects, and if the 'DefaultType' is
+set then a class derived from the default type, with the name from the value
+of '__type__' will be returned.  If 'DefaultType' is None, then an exception will
+be generated.
+See the instructions section for further information.
+
+ObjDict json general.
++++++++++++++++++++++
+Consider loading an object properties from json. A simple loop to use each json field
+to set each attribute, and the class to be set is simply one class. However, what if
+some of those fields are themselves objects, and possibly fields within those
+again objects?  Within the single 'top-level' object, there may be many embedded
+objects and identifying and processing these embedded objects is the actual challenge.
+
+In general, handling embedded objects is achieved through the '__from_json__' class method
+within each class for the 'json.load', or the '__json__' method within each
+object for the 'json.dump'.
+
+Standard routines to perform these methods are available, together with the tools
+to easily decorate classes and other utilities.
+
+ObjDict json load tools.
+++++++++++++++++++++++++
+The three main tools for loading json objects are an 'object_pairs_hook' method to
+be passed to the standard 'json.load' function, the '__from_json__' class method that
+can be added to any class to control instancing the class from json and
+the 'from_json' decorator.
+
+The philosophy is the use of simple, flexible building blocks.
+
+object_pairs_hook.
+~~~~~~~~~~~~~~~~~~
+A class within the objdict module, 'ObjPairHook', is a wrapper tool to provide
+a function for the standard library json.load() function. Simply instance an ObjPairHook
+and pass the 'from_json' method to json_load(). eg::
+    hook=ObjPairHook().from_json
+    json.load(object_pairs_hook=hook)
+
+    class ObjPairsHook()
+        def __init__(classes_list=[],BaseHook=None,BaseType=None):
+
+The 'from_json' method will check all json objects for a '__type__' entry, or use
+'default' processing. For objects with a '__type__', both the entries in the
+'classes_list' parameter, and the default_classes_list maintained within
+the objdict module and added to through
+the 'from_json' decorator, can be instanced if there is a name match.
+
+For objects with __type__ entries but no name match with either source of classes
+then the a dynamic class based on 'BaseClass' is generated and selected as the 'class'.
+
+For objects with no __type__  entry, then the 'BaseHook' is selected as the
+'class' (although in practice is it also
+possible to use a method rather than a class).
+
+Once a class is selected, then if this class has a __from_json__ attribute, then
+this class method is called to instance an object, otherwise the normal init methods
+for the class is called.
+
+"__from_json__" class method.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Providing a __from_json__ class method is called to instance an the object
+by the 'object_pairs_hook' if an attribute of this name is present.
+
+from_json decorator.
+~~~~~~~~~~~~~~~~~~~~
+the from_json decorator, when used to decorate a class, adds the class to
+default_class list used by the object_pairs_hook
+
+ObjDict json dump tools.
+++++++++++++++++++++++++
+The __json__ method, JsonEncoder class, the @to_json decorator and the
+json_encoder_table of
+to_json converters are the main
+tools for encoding json. Whereas jsonweb takes an approach of decorating classes
+with configuration information to allow the encoder class to produce the json
+output,  ObjDict uses a JsonEncoder that delegates the encoding to __json__
+method within each object, or from a table of class/converter pairs.
+
+JsonEncoder class.
+~~~~~~~~~~~~~~~~~~
+The json_encoder class does the actual encoding, and for each object it first
+checks for a __json__ method and class that method if present.  For objects
+defined outside of scope (eg. Decimal() ), the encoder checks the encoder_table
+for a matching entry and if present calls that encoder.
+
+to_json decorator.
+~~~~~~~~~~~~~~~~~~
+this decorator checks if the class has a __json__ method, and if not decorates
+the class with a default __json__ method.  The __json__ method itself is then
+decorated with any configuration data
+
+"__json__" method.
+~~~~~~~~~~~~~~~~~~
+For any object this is either a function or a bound method to be called with
+the object to be encoded as a parameter.  The method should return either a
+string or a dictionary to be included included in the json output.
+
+json_encoder_table.
+~~~~~~~~~~~~~~~~~~~
+this is an object which can be imported from the objdict module to access the
+'add' method (json_encoder.add(<class>,<method/function>).  By default, the
+table contains entries for Decimal, date and time.
+
+
+.. _Instructions:
+
+Instructions.
+-------------
+ - General Notes and Restrictions.
+ - Initialisation and json load.
+ - str and json dumps.
+ - Custom classes and json.
+
+
+General Notes and Restrictions.
++++++++++++++++++++++++++++++++
+Since ObjDict keys do not have to be valid attribute names (for example an
+integer can be a dictionary key but not an attribute name, and dictionary keys
+can contain spaces), so not all
+key entries can be accessed as attributes. Similarly, there are attributes
+which are not considered to be key data, and these attributes have an underscore
+preceding the name.  Some attributes are part of the scaffolding of the ObjDict
+class and these all have a leading underscore, as well as a trailing underscore.
+It is recommenced to use a leading underscore for all class 'scaffolding' added as
+extensions to the ObjDict class or to derived classes, where this scaffolding
+is not to be included as also dictionary data.
+
+
+Initialisation and json load.
++++++++++++++++++++++++++++++
+ObjDict can be initialised from lists, from json strings, from dictionaries,
+from parameter lists or from keyword parameter lists.
+
+Initialisation From Lists or Parameter Lists.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Initialisation from a list of key value pairs, as with OrderedDict class is
+supported.  Beyond key value pairs, there is also support for direct initialisation
+from lists. The _keys parameter must be included for initialisation from lists.
+Also, Classes
+derived from ObjDict can have _keys as a class attribute, providing an similar
+use pattern to the 'namedtuple'.  '_keys' can be either
+a list of strings, or a string with space or comma separated values. When
+initialising from a list or parameter list, the list size must match the number
+of keys created through '_keys',  however other items can be added after
+initialisation.
+
+So this code produces True::
+
+    class XY(ObjDict):
+        _keys='x y'
+
+    sample = XY(1,3)
+    sample.x,sample.y == 1,3
+
+Alternatively form to produce a similar result but with the SubClass would be::
+
+    sample= ObjDict(1,3,_keys='x y')
+    sample= ObjDict([1,3],_keys='x y')
+
+Initialisation from Json Strings.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+For more complex initialisation, json strings can provide an ideal solution.
+This allows for complex structures with nested embedded 'ObjDict' or other objects
+
+The background section ``
+
+Initialisation from dict, OrderedDict, or key word arguments.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+str and json dumps.
++++++++++++++++++++
+A limitation with OrderDict objects is that 'str' representation can be clumsy
+when the structure is nested.
+
+Both the 'str' and 'json' methods of the ObjDict class produce json output which
+remains clear regardless of nested structures.
+
+Custom classes.
++++++++++++++++
+Custom classes allow for json data to result in instantiating objects other
+than ObjDict from json data.  These custom classes can be sub-classed from ObjDict
+or built from first principles.
+
+
+Reading data directly into a class with appropriate
+methods to manipulate data, and can also customise how data is written back as JSON.
+
+Such classes can be sub-classed from ObjDict but do not need to be.
+
+For a 'dummy' class which is just a dict use::
+
+    @decode.from_object()
+    class Sample(ObjDict):
+      pass
+
+A simple introduction/migration is to leave 'combiParse' still treating
+objects as dictionaries by using the  no__type__=True parameter.
+This allows an app to use its own code to convert dictionaries into object,
+but still benefit from unParse being able to generate JSON directly from objects.
+
+E.g. if you have::
+
+    { "name":{
+            "first": "joe",
+            "last": "foo"
+        }
+    }
+    #now code
+    @objdict.from_json()
+    class Name:
+        def __init__(self,first=None,last=None,**kwargs):
+            self.first=first
+            self.last=last
+
+
+Read with::
+
+    combiParse(string)
+
+then convert the name
+dictionary into an object and put that object back in the original tree::
+
+    tree=combiParse(string)
+    tree['name'] = Name(**tree['name'])  # kwargs!!! i.e. "**" required :-)
+
+The result would be 'unParsed' ::
+
+    { "name":{
+            __type__: "Name"
+            "first": "joe",
+            "last": "foo"
+        }
+    }
+
+
+Decoding automatically to objects can then be added at a later time.
+
+Note: using '@decode.from_object()' instead of '@decode.from_object()'
+results in all of the json being passed as a single dict parameter,
+not just parameters listed in the 'init',
+being in the call to instance the object.
+This means the 'JSONSimpleHandler' needs a \*args in the signature.  We also
+need the same solution when decoding manually as in the migration example.
+
+Maintaining Order With Custom Classes and Defaults.
++++++++++++++++++++++++++++++++++++++++++++++++++++
+ObjDict classes and automatically created classes currently maintain key order,
+but of course cannot provide for default values for attributes.
+
+Custom classes can specify default values for attributes, but currently custom
+classes do not automatically maintain order, even if based on ObjDict classes.
+
+Maintaining order and supporting default values are available with an __init__
+method.  Note, the order attributes are set will be their order in a message.
+Classes subclasses from ObjDict will have '__type__' at the end of json output.
+
+If a custom class is decorated with @decode.from_object(JSONSimpleHandler),
+then all fields in the raw JSON will be sent in a single dict. Of course, as
+a dict order is lost and also there are no default values.
+The recommended code for the init is something like this::
+
+     @objdict.from_json()
+     class Custom(ObjDict):
+        def __init__(self,*args,**kwargs):
+            super(Custom,self).__init__()
+            if args:
+                arg0=args[0]
+                assert len(args)==0, "unexpected argument"
+                self.arg1=arg0.pop('arg1',default)
+                self.arg2=arg0.pop('arg2',default)
+                ........
+                self.update(arg0)
+            self.update(**kwargs)
+
+Life is much simpler with @decode.from_object(), but at the expense of ignoring
+any unexpected arguments.  Currently \*\*kwargs will always be empty in this case
+but a future update will likely address this.  Example::
+
+    @decode.from_object()
+    class Custom(ObjDict):
+       def __init__(self,arg1=None,arg2=None ....,**kwargs):
+           super(Custom,self).__init__()
+           self.arg1=arg1
+           self.arg2=arg1
+           ........
+           self.update(**kwargs) #currently kwargs will be empty
+
+
+All that is needed as imports is above.
+
+This system supports both 'ObjDict's and custom classes.  In JSON representation
+a __type__ field is used to indicate actual type.  For your own classes use::
+
+    @encode.to_object()
+    @decode.from_object()
+    class Sample:
+        def __init(self,p1,p2,...):
+            self.p1=p1
+            self.p2=p2
+            ....
+
+to map between::
+
+    { "p1": 1, "p2":2, "__type__": "Sample"}
+        and
+    Sample(1,2)
+
+However simple examples such as this could also use the default 'ObjDict' objects.
+
+
