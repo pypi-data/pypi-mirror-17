@@ -1,0 +1,37 @@
+{ "actionOrder":[
+  "showText",
+  "alert",
+  "teleport",
+  "teleportInPlace",
+  "addItem",
+  "subtractItem",
+  "changeTile",
+  "rain",
+  "fadeIn",
+  "fadeOut",
+  "setVar",
+  "varPlusOne",
+  "IF",
+  "ELSE",
+  "END",
+  "noEffect"
+],
+  "actionList": {
+    "setVar":["varname","value"],
+    "varPlusOne":["varname"],
+    "IF":["var1","oper","var2"],
+    "END":[""],
+    "ELSE":[""],
+    "alert":["linetext"],
+    "showText":["text"],
+    "fadeIn":["effect","keepEffect"],
+    "fadeOut":["effect","keepEffect"],
+    "noEffect":[""],
+    "teleportInPlace":["level"],
+    "teleport":["positionx","positiony","level"],
+    "changeTile":["tileType","layer",["positionx","positiony","level"],["current"]],
+    "rain":["state"],
+    "addItem":["item"],
+    "subtractItem":["item"]
+    }
+}
