@@ -1,0 +1,3 @@
+#!python
+from yodoit import cli
+cli.main()
