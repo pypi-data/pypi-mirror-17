@@ -1,0 +1,198 @@
+Model: 
+	name = STRING
+	("css" "=" css=STRING)?
+	(user = SuperUser) ?
+	classes*= Definition
+	methods*= Method
+;
+
+Definition:
+	name = STRING "{"
+	attributes*= Attribute
+	"}"
+;
+
+Method:
+	name = STRING "("parameters*=Parameter[","]")"
+;
+
+Parameter:
+	value = STRING
+;
+
+SuperUser:
+	"username" "=" username=STRING
+	"emailAdress" "=" email=STRING
+	"password" "=" password=STRING
+;
+
+Attribute:
+	type = FieldType name = STRING ("(" arguments *= Arguments[","] ")")? 
+;
+
+FieldType: "bigInteger" | "binary" | "boolean" | "char" | "commaSeparatedInteger" | "Date" | "dateTime" | "decimal" | "duration" | "email" | "file" | "filePath" | "float" | "image" | "int" | "nullBoolean" | "positiveInteger" | "positiveSmallInteger" | "slug" | "smallInteger" | "text" | "time" | "URL" | "UUID" | "foreignKey"| "manyToMany" | "oneToOne"
+;
+
+Arguments:
+	Null | Blank | Choices | DBColumn | DBIndex | Default | Description | Editable | ErrorMessages | HelpText | PrimaryKey | Unique | VerboseName | Validators | Match | Recursive | AllowFiles | AllowFolders | Max_lenght | Height | Width | OnDelete | LimitChoices | RelatedName | RelatedQueryName | DBTable | DBConstraint | Swappable | ParentLink | Key | DecimalPlaces | MaxDigits | Path | UploadTo | Storage | DBTableSpace | To
+;
+
+Null:
+	name="null" "=" value=BOOL
+;
+
+Blank:
+	name="blank" "=" value=BOOL
+;
+
+Choices:
+	name="choices" "=" "(" fields*=Field[","] ")"
+;
+
+Field:
+	"(" value=STRING "," name=STRING ")"
+;
+
+DBColumn:
+	name="db_column" "=" name=STRING
+;
+
+DBIndex:
+	name="db_index" "=" value=BOOL (DBTableSpace)?
+;
+
+DBTableSpace:
+	name="db_tablepace" "=" value=STRING
+;
+
+Default:
+	name="default" "=" value=StringOrInt
+;
+
+StringOrInt:
+	INT | STRING
+;
+
+Editable:
+	name="editable" "=" value=BOOL
+;
+
+ErrorMessages:
+	name="error_messages" "=" value=Messages
+;
+
+Messages:
+	"unique" | "null" | "blank" | "invalid" | "invalid_choice" 
+;
+
+HelpText:
+	name="help_text" "=" value=STRING
+;
+
+PrimaryKey:
+	name="primary_key" "=" value=BOOL
+;
+
+Unique:
+	name="unique" "=" value=BOOL
+;
+
+VerboseName:
+	name="verbose_name" "=" value=STRING
+;
+
+Validators:
+	name="validators" "=" value=STRING
+;
+
+Description:
+	name="description" "=" value=STRING
+;
+
+Max_lenght:
+	name="max_length" "=" value=StringOrInt
+;
+
+UploadTo:
+	name="upload_to" "=" value=STRING
+;
+
+Storage:
+	name="storage" "=" value=STRING
+;
+
+MaxDigits:
+	name="max_digits" "=" value=INT 
+;
+
+DecimalPlaces:
+	name="decimal_places" "=" value=INT
+;
+
+Path:
+	name="path" "=" value="STRING"
+;
+
+Match:
+	name="match" "=" value=STRING
+;
+
+Recursive:
+	name="recursive" "=" value=BOOL
+;
+
+AllowFolders:
+	name="allow_folders" "=" value=BOOL
+;
+
+AllowFiles:
+	name="allow_files" "=" value=BOOL
+;
+
+Height:
+	name="height" "=" value=INT
+;
+
+Width:
+	name="width" "=" value=INT
+;
+
+Key:
+	name="key" "=" value=STRING
+;
+
+OnDelete:
+	name="on_delete" "=" value=STRING
+;
+
+LimitChoices:
+	name="limit_choises_to" "=" value=STRING
+;
+
+RelatedName:
+	name="related_name" "=" value=STRING
+;
+
+RelatedQueryName:
+	name="related_query_name" "=" value=STRING
+;
+
+DBConstraint:
+	name="db_constraint" "=" value=BOOL
+;
+
+Swappable:
+	name="swappable" "=" value=BOOL
+;
+
+DBTable:
+	name="db_table" "=" value=STRING
+;
+
+ParentLink:
+	name="parent_link" "=" value=BOOL
+;
+
+To:
+	name="to" "=" value=STRING
+;

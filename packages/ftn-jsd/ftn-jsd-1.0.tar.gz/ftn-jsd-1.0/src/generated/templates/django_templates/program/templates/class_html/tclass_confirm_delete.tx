@@ -1,0 +1,15 @@
+{% raw %}
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block breadcrumb-page %} <li><a href="{% url '{% endraw %}{{model.name}}:{{definition.name.lower()}}_list' {{'%}">'}}{{definition.name}} List {% raw %}</a> <span class="divider">/</span></li> {{form_type}}{% endblock breadcrumb-page %}
+{% block content %}
+<form method="post">{% csrf_token %}
+    Are you sure you want to delete "{{ object }}" ?
+    {% buttons %}
+    <button type="submit"  class="btn btn-primary" >
+    {% bootstrap_icon "remove" %} Delete
+    </button>
+    {% endbuttons %}
+</form>
+{% endblock %}
+{% endraw %}

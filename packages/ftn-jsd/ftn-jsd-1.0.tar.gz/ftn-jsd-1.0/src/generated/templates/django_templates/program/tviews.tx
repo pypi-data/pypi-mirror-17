@@ -1,0 +1,57 @@
+{% for definition in model.classes %}
+from {{model.name}}.models import {{definition.name}}
+{% endfor %}
+from django.contrib.auth.decorators import login_required
+from django.forms import ModelForm
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import permission_required
+import test
+{% for definition in model.classes %}
+
+
+class {{definition.name}}Form(ModelForm):
+    class Meta:
+        model = {{definition.name}}
+        fields = [{% for attribute in definition.attributes %}'{{attribute.name}}'{% if not loop.last %}, {% endif %}{% endfor %}]
+
+
+@permission_required('{{model.name}}.view_{{definition.name.lower()}}')
+@login_required
+def {{definition.name.lower()}}_list(request, template_name='{{model.name}}/{{definition.name.lower()}}_list.html'):
+    {{definition.name.lower()}} = {{definition.name}}.objects.all()
+    data = {'object_list': {{definition.name.lower()}}}
+    return render(request, template_name, data)
+
+
+@permission_required('{{model.name}}.add_{{definition.name.lower()}}')
+@login_required
+def {{definition.name.lower()}}_create(request, template_name='{{model.name}}/{{definition.name.lower()}}_form.html'):
+    form = {{definition.name}}Form(request.POST or None)
+    if form.is_valid():
+        {{definition.name.lower()}} = form.save(commit=False)
+        {{definition.name.lower()}}.user = request.user
+        {{definition.name.lower()}}.save()
+        return redirect('{{model.name}}:{{definition.name.lower()}}_list')
+    return render(request, template_name, {'form': form, 'form_type': 'Create'})
+
+
+@permission_required('{{model.name}}.change_{{definition.name.lower()}}')
+@login_required
+def {{definition.name.lower()}}_update(request, pk, template_name='{{model.name}}/{{definition.name.lower()}}_form.html'):
+    {{definition.name.lower()}} = get_object_or_404({{definition.name}}, pk=pk)
+    form = {{definition.name}}Form(request.POST or None, instance={{definition.name.lower()}})
+    if form.is_valid():
+        form.save()
+        return redirect('{{model.name}}:{{definition.name.lower()}}_list')
+    return render(request, template_name, {'form': form, 'form_type': 'Update'})
+
+
+@permission_required('{{model.name}}.delete_{{definition.name.lower()}}')
+@login_required
+def {{definition.name.lower()}}_delete(request, pk, template_name='{{model.name}}/{{definition.name.lower()}}_confirm_delete.html'):
+    {{definition.name.lower()}} = get_object_or_404({{definition.name}}, pk=pk)
+    if request.method == 'POST':
+        {{definition.name.lower()}}.delete()
+        return redirect('{{model.name}}:{{definition.name.lower()}}_list')
+    return render(request, template_name, {'object': {{definition.name.lower()}}, 'form_type': 'Delete'})
+{% endfor %}
