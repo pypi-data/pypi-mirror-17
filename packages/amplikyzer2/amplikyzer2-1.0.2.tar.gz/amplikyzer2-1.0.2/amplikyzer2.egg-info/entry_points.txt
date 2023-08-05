@@ -1,0 +1,6 @@
+[console_scripts]
+amplikyzer2 = amplikyzer2:main
+
+[gui_scripts]
+amplikyzer2gui = amplikyzer2:gui
+
