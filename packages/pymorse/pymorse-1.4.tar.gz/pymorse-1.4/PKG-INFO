@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: pymorse
+Version: 1.4
+Summary: Python bindings for the Modular OpenRobots Simulation Engine (MORSE)
+Home-page: http://morse.openrobots.org
+Author: Séverin Lemaignan, Pierrick Koch
+Author-email: severin.lemaignan@plymouth.ac.uk, pierrick.koch@laas.fr
+License: BSD 3-clauses
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Scientific/Engineering
+Requires: futures
