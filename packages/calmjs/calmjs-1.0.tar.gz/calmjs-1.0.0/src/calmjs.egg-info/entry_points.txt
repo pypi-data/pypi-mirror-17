@@ -1,0 +1,28 @@
+[calmjs.runtime]
+npm = calmjs.npm:npm.runtime
+
+[distutils.commands]
+npm = calmjs.npm:npm
+
+[calmjs.extras_keys]
+node_modules = enabled
+
+[egg_info.writers]
+package.json = calmjs.npm:write_package_json
+extras_calmjs.json = calmjs.dist:write_extras_calmjs
+
+[console_scripts]
+calmjs = calmjs.runtime:main
+
+[distutils.setup_keywords]
+package_json = calmjs.dist:validate_json_field
+extras_calmjs = calmjs.dist:validate_json_field
+
+[calmjs.registry]
+calmjs.module = calmjs.module:ModuleRegistry
+calmjs.extras_keys = calmjs.module:ExtrasJsonKeysRegistry
+calmjs.module.pythonic = calmjs.module:PythonicModuleRegistry
+calmjs.registry = calmjs.registry:Registry
+calmjs.tests = calmjs.module:ModuleRegistry
+calmjs.tests.pythonic = calmjs.module:PythonicModuleRegistry
+
