@@ -1,0 +1,117 @@
+Metadata-Version: 2.0
+Name: microbar
+Version: 0.3.1
+Summary: Low-pressure bar graphs for Python.
+Home-page: https://github.com/bengt/microbar
+Author: Bengt Albert Lüers
+Author-email: bengt.lueers@gmail.com
+License: BSD
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Utilities
+
+========
+Overview
+========
+
+Low-pressure bar graphs for Python.
+
+Features
+========
+
+* Safe: Object is thread-safe and parameters are type-checked.
+* Friendly: Raises human-readable errors.
+* Tested: Package has good test coverage.
+* Customizable: Constructor takes custom bar characters.
+* Free software: Published under a OSI-compatible license.
+* Compatible: Runs on multiple versions of CPython and PyPy.
+* Convenient: Package installable from PyPI via pip.
+
+Status
+======
+
+
+
+Installation
+============
+
+::
+
+    pip install microbar
+
+Documentation
+=============
+
+https://microbar.readthedocs.io/en/latest/
+
+Testing
+=======
+
+To run the all tests run::
+
+    tox
+
+Note, to combine the coverage data from all the tox environments run:
+
+.. list-table::
+    :widths: 10 90
+    :stub-columns: 1
+
+    - - Windows
+      - ::
+
+            set PYTEST_ADDOPTS=--cov-append
+            tox
+
+    - - Other
+      - ::
+
+            PYTEST_ADDOPTS=--cov-append tox
+
+Releasing
+=========
+
+::
+
+    bumpversion --new-version 0.2.0 minor
+    python setup.py sdist bdist_wheel upload
+
+See Also
+========
+
+`canassa/minibar <https://github.com/canassa/minibar>`_ for a vertical (progress)
+bar.
+
+
+Changelog
+=========
+
+0.1.0 (2016-09-02)
+-----------------------------------------
+
+* First release on PyPI.
+
+0.2.0 (2016-09-02)
+-----------------------------------------
+
+* Integrations of CI services.
+
+0.3.0 (2016-09-03)
+-----------------------------------------
+
+* First usable version, full test suite.
+
+
