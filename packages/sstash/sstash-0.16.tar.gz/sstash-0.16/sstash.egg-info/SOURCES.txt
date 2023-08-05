@@ -1,0 +1,17 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+sstash/__init__.py
+sstash/crypto_stash.py
+sstash/encode_utils.py
+sstash/exceptions.py
+sstash/inner_stash.py
+sstash/schema.py
+sstash/sstash.py
+sstash.egg-info/PKG-INFO
+sstash.egg-info/SOURCES.txt
+sstash.egg-info/dependency_links.txt
+sstash.egg-info/not-zip-safe
+sstash.egg-info/requires.txt
+sstash.egg-info/top_level.txt
