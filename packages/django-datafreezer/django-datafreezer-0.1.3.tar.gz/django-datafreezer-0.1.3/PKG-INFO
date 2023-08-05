@@ -1,0 +1,50 @@
+Metadata-Version: 1.1
+Name: django-datafreezer
+Version: 0.1.3
+Summary: Data storage Django web application.
+Home-page: https://github.com/dallasmorningnews/django-datafreezer
+Author: Tyler Allyn Davis, The Dallas Morning News
+Author-email: tallyndavis@comcast.net
+License: MIT
+Download-URL: https://github.com/dallasmorningnews/django-datafreezer/tarball/0.1.3
+Description: # Datafreezer
+        
+        Datafreezer is a newsroom tool that enables reporters and editors to easily share datasets.
+        
+        ## Features
+        
+        #### Upload
+        
+        - With each upload, users complete a data dictionary, which describes pertinent fields within a dataset. This ensures that uploaded datasets are well documented.
+        	- Users can either upload a dataset that already has header information, or they can add and remove data dictionary fields.
+        - Users can include a URL in which the data was sourced and the app will scrape the page for a headline to save.
+        - Tag support (with autocomplete)
+        
+        #### Browse
+        
+        - Users can browse datasets by
+        	- Uploading user
+        	- Hub (desk)
+        	- Vertical (section)
+        	- Tag
+        	- Source
+        - The app uses a pluggable JSON endpoint to map email addresses to names and certain slugs to names.
+        	- This endpoint can be a static JSON or an API.
+        
+        ## Credits
+        Thanks to [Glyphicons](http://glyphicons.com/) for Bootstrap glyphs.
+        
+        Developed by [Tyler Davis](http://twitter.com/tylerallyndavis) for [The Dallas Morning News](http://dallasnews.com).
+        
+Keywords: django,csv,data,storage,journalism,javascript
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
