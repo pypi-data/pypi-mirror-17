@@ -1,0 +1,16 @@
+README.rst
+setup.py
+bin/debrepodiff
+debrepo/__init__.py
+debrepo/composes.py
+debrepo/diff.py
+debrepo/filters.py
+debrepo/packages.py
+debrepo/repos.py
+debrepo/utils.py
+debrepo.egg-info/PKG-INFO
+debrepo.egg-info/SOURCES.txt
+debrepo.egg-info/dependency_links.txt
+debrepo.egg-info/not-zip-safe
+debrepo.egg-info/requires.txt
+debrepo.egg-info/top_level.txt
