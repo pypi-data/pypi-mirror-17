@@ -1,0 +1,21 @@
+job "{{ job_name }}" {
+  datacenters = ["dc1"]
+
+  constraint {
+    attribute = "${attr.kernel.name}"
+    value     = "linux"
+  }
+
+  # Configure the job to do rolling updates
+  update {
+    # Stagger updates every 10 seconds
+    stagger = "10s"
+
+    # Update a single task at a time
+    max_parallel = 1
+  }
+
+  {{ green | indent(2)}}
+
+  {{ blue | indent(2) }}
+}
