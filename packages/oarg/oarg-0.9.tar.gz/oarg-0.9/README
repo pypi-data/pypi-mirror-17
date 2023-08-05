@@ -1,0 +1,86 @@
+oarg - omni arguments parser
+
+1. the class Oarg
+	arg = Oarg(tp, keywords, def_val, description, pos_n_found=-1, single=True)
+
+	arguments description:
+	-keywords: 
+			either a list of keywords (strings) or a single string with keywords separated by space.
+	-def_val: 
+			default value of the argument, will be used if it is not found in command line
+	-description: 
+			an descriptive text about the argument
+	-pos_n_found: 
+			position of argument to look for in command line in the case it is not found 
+		by it's keyword. if pos_n_found < 0, it will not be looked for in the case the 
+		keyword is not there.
+	-single: 
+			if single is False, you can pass multiple arguments (separated by space) at once to 
+	    one oarg. the values will be stored ass a tuple and the returned value of the ".val"
+	    method is the fist element.
+
+		You must specify keys(names) to represent your argument. For an integer value, for instance, 
+	it can be "-i" and "--integer". Note the dash at the beginning of the word. 
+	Every key with a single letter MUST be preceded by a SINGLE dash.
+	Every key with two or more letters MUST be preceded by TWO dashes.
+
+2. parsing
+
+	2.3. the parse() method
+		after instantiating all the oargs you want, you must call the parse() method to parse
+		arguments from command line and assign values to oargs:
+
+		parse(source=sys.argv[1:], delim=",", falses=["false", "no", "n", "not", "0"])
+		
+		arguments description:
+		-source:
+				the source from where to parse, must be a list of strings. by default, it is the 
+			list passed from command line, ignoring first argument (assuming it's caller program's
+			name).
+		-delim:
+				the delimiter to separate explicitly arguments in the case of ambiguity. it will be
+			covered later.
+		-falses:
+				list of strings which represent a false value in the case oarg has a bool value.	
+		
+	2.4. examples:
+	
+	simple parsing:
+		./program.py -i 43
+
+	you can also give multiple arguments at once:
+		./program.py --integer 23 1 232 3 -9
+	they must be separated by a space.
+
+		positional arguments are those that do not come after a dashed name. 
+	in "./program.py this 'is example' -i 34", for instance, the positional arguments are 
+	"this" and "is example".
+
+		you can mix positional with normal, positional with positional etc. 
+	To explicitly separate things, use delimiter (default: ,).
+
+	example:
+		./program.py this is an, "good example"
+
+		in the arguments above, "this is an" will be considered three positional arguments 
+	for one thing and "good example" will be for other thing. if the first thing has single=True,
+	then it will only take "this" to itself and then there will be 
+	two more things: "is", "an", "good example". You can also mix normal with 
+	positional just like:
+		./program.py -float 3.2 32.2 -0.32938, another,example man
+
+	in the above, there will be two sets of positional arguments. 
+	To escape a delimiter (i.e. not use it as a separator), use "\":
+		./program.py "i do not want it\, man"
+
+	To use boolean values you can do:
+		./program.py -b , "positional arg"
+	As well as:
+		./program.py -b -i 2 1 2
+	
+	if you have a bunch of boolean oargs which happen to have single=True and an one-letter keyword,
+	you can put them all together in parsing. thus, "-a", "-H" and "-f" can be passed as "-aHf".
+
+
+Creator:
+	Erik Perillo <erik.perillo@gmail.com>
