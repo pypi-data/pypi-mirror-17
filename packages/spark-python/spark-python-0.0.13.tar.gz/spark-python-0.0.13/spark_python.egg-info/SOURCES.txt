@@ -1,0 +1,15 @@
+setup.cfg
+setup.py
+spark/__about__.py
+spark/__init__.py
+spark/messages.py
+spark/people.py
+spark/rooms.py
+spark/session.py
+spark/teams.py
+spark/webhooks.py
+spark_python.egg-info/PKG-INFO
+spark_python.egg-info/SOURCES.txt
+spark_python.egg-info/dependency_links.txt
+spark_python.egg-info/requires.txt
+spark_python.egg-info/top_level.txt
