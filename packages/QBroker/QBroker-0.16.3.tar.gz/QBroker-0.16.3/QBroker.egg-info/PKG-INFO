@@ -1,0 +1,31 @@
+Metadata-Version: 1.1
+Name: QBroker
+Version: 0.16.3
+Summary: QBroker is a minimal async wrapper for RPC via AMQP
+Home-page: https://github.com/M-o-a-T/qbroker
+Author: Matthias Urlichs
+Author-email: matthias@urlichs.de
+License: GPLv3+
+Description: QBroker is short for Quick Access Broker.
+        
+        QBroker is a minimal wrapper for asynchronous, debuggable RPC via AMQP.
+        It uses Python 3.4 asyncio features and provides wrappers for use with
+        native threads or gevent tasks.
+        
+        Example scripts, including a monitor which can watch RPC calls and replies,
+        are provided.
+        
+        QBroker is written in Python. If you know JSON and AMQP, writing a server
+        or client in a different language is reasonably straightforward.
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
