@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        mibig_process_folder = mibig_tools.process_all_mibig:process_mibig_cluster_folder
+    

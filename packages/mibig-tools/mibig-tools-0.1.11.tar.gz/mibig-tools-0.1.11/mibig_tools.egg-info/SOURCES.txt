@@ -1,0 +1,14 @@
+setup.py
+mibig_tools/__init__.py
+mibig_tools/process_Krona.py
+mibig_tools/process_all_mibig.py
+mibig_tools/process_cluster.py
+mibig_tools/process_domains.py
+mibig_tools/process_nrps.py
+mibig_tools/process_pks.py
+mibig_tools.egg-info/PKG-INFO
+mibig_tools.egg-info/SOURCES.txt
+mibig_tools.egg-info/dependency_links.txt
+mibig_tools.egg-info/entry_points.txt
+mibig_tools.egg-info/requires.txt
+mibig_tools.egg-info/top_level.txt
