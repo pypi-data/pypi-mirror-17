@@ -1,0 +1,3 @@
+[console_scripts]
+typecraft_python = typecraft_python.cli:main
+
