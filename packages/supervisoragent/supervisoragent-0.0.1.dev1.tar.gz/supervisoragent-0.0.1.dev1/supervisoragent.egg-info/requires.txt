@@ -1,0 +1,9 @@
+configutil
+psutil
+setproctitle
+websocket-client
+
+[test]
+coverage
+pytest
+mock
