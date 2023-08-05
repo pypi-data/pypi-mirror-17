@@ -1,0 +1,16 @@
+MANIFEST.in
+README.rst
+setup.py
+whitespace/__init__.py
+whitespace/__main__.py
+whitespace/cli.py
+whitespace/console.py
+whitespace/error.py
+whitespace/memory.py
+whitespace/stack.py
+whitespace/vm.py
+whitespace.egg-info/PKG-INFO
+whitespace.egg-info/SOURCES.txt
+whitespace.egg-info/dependency_links.txt
+whitespace.egg-info/entry_points.txt
+whitespace.egg-info/top_level.txt
