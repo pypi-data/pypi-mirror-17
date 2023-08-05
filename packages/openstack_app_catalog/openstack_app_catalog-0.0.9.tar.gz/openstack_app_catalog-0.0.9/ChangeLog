@@ -1,0 +1,295 @@
+CHANGES
+=======
+
+* Fix code-blocks in INSTALL.rst
+* Add recently updated assets
+* Add "deactivate" button
+* Fix some pep8
+* Fix WSGI environment for LOCAL_SETTINS_PATH
+* Fix glare proxy
+* Add LOCAL_SETTINGS_PATH
+* [wip] Glare v1.0 API
+* Update Fedora Atomic image to latest F24 image
+* Remove openstack-common.conf
+* Updating ubuntu-docker image for murano
+* Add io.iron.IronWorker to catalog
+* Updating description of CI/CD application
+* Fix documentation and source code links
+* Update DockerStandaloneHost app
+* Fix link to outdated OpenShift logo url
+* Update k8s images with newer etcd version
+* Publish PaloAlto Murano application
+* Move other-requirements.txt to bindep.txt
+* Updated assets.yaml to include cloud_user for the distributions that are documented in the official OpenStack guides
+* [Plone] Fix grammar mistake in application name
+* [Plone] Publish Plone Murano application
+* Publish GoCD Murano application
+* [Murano][Docker] DockerNexus, DockerELK, DockerArtifactory added
+* Updating CI/CD apps
+* Adds Default Logins to Templates
+* Missing images.lst file added to packages
+* Update Zabbix Agent and Wordpress murano apps
+* privileged mode support for KubernetesPod and DockerStandaloneHost (valid filenames)
+* Adds Netwton and Ocata to Assets Schema YAML
+* Revert "privileged mode support for KubernetesPod and DockerStandaloneHost"
+* Update Clearwater demo application
+* Update package bundles
+* privileged mode support for KubernetesPod and DockerStandaloneHost
+* Add OS image dependencies for Clearwater and BIND applications
+* Add 'Changes' paragraph to descriptions of some murano packages
+* Fix package_name for Docker Interfaces Library
+* Update k8s cluster app due to fix in etcd script
+* Update murano apps
+* Update Docker Standalone Host
+* Remove discover from test-requirements
+* Update Docker Interfaces library due to new fqn
+* Update kubernetes cluster app
+* Update k8s pod app due to new FQN
+* Fix my name in assets file
+* Update simple dockerized apps
+* Update Kubernetes Cluster app
+* Publish RefStackClient Murano application
+* Add Debian 8 image with K8s pre-installed
+* Update K8s cluster app due to wrong images.lst
+* Updating CI/CD apps
+* Add Clearwater and BIND applications to catalog
+* Update Link to App Catalog Repository on Index Page
+* Updating K8s Cluster application to use latest k8s version
+* Updating k8s image
+* Update KloudBuster v6 image
+* List system dependencies for running common tests
+* Update Debian Jessie to 8.5.0
+* Add Heat Template to install Elasticsearch, Logstash & Kibana
+* Update Fedora Atomic Cloud 23 image to 2016-06-07
+* Opaas applications updated to latest upstream
+* Update ubuntu image with docker pre-istalled
+* Update Kubernetes Cluster murano app
+* Update k8s image
+* Update k8s image
+* Update image with k8s
+* Removed missing icon
+* Remove dot from end of F5 URIs
+* Add ubuntu image with docker pre-installed
+* Update images due to changes in murano-agent
+* Address Murano package_name suggestion
+* Update Docker/Kubernetes Murano packages
+* Opaas applications updated to latest versions
+* Add F5 Onboard and Deploy Heat Templates to Catalog Edit
+* Updated to Fedora 23 Atomic 20160420
+* Add io.murano.apps.docker.IronMQ to catalog
+* Add io.murano.apps.magnum.plugin.MagnumBayApp to catalog
+* io.murano.opaas.ProjectConfig added to app-catalog
+* io.murano.opaas.OpenLDAP added to app-catalog
+* io.murano.opaas.Jenkins added for app-catalog
+* io.murano.opaas.puppet.Puppet added to app-catalog
+* io.murano.opaas.Gerrit added for app-catalog
+* Detect dead links
+* Update to Fedora 23 Atomic 20160405 release
+* Add CSAR example and important assets for Wordpres and ELK stack
+* TOSCA web changes
+* Added Hyperglance app to the Marketplace
+* Update Debian 8 entry
+* Detect dead links
+* Detect dead links
+* Update KloudBuster image to v6
+* Update link to Murano documentation in index
+* Update Docker GuestBook murano app
+* Update info about releases for murano apps and bundles
+* Update Docker Interfaces Library murano package
+* Update Debian Jessie entry
+* Keep assets_merge.yaml
+* Detect dead links
+* Add TOSCA assets
+* Rotate recently added apps
+* Add last modified field to detail page
+* Fix the name of io.murano.apps.docker.Interfaces package
+* Updated to Fedora-Cloud-Atomic-23-20160223.x86_64
+* Detect dead links
+* Update F23 Atomic URL to match directory structure
+* Detect dead links
+* Remove unused import in settings.py
+* Remove Django template warning
+* Fix Django version in requirements.txt
+* Change the archive name for SqlDatabase murano package
+* Detect dead links
+* Fix standalone server
+* Fix django INSTALLED_APPS configuration
+* Fix django warning
+* App Pivotal Ops Manager to app-catalog
+* Define metadata for TOSCA assets
+* Specify glance v1 API in hint
+* Remove Fedora 21 (EOL), update Fedora 23 entries
+* Update ManageIQ release to Capablanca
+* Update link to AeroFS image
+* Update/add hashs and move field out of "attributes"
+* Update hash for five changed Murano assets
+* Include assets_dead.yaml in asset merge
+* Derive asset last modified date/time from git logs
+* Update link to CLI Reference
+* Add hash_url entry for debian-testing
+* Group everything under "assets" again
+* Update ubuntu image with pre-installed K8s
+* Add hash for two Murano packages
+* Update hash if hash_url is defined
+* Add dead-link test script to tools
+* Update app-catalog-ui information link
+* Replace github with git.openstack.org
+* remove python 2.6 trove classifier
+* Skip assets with active==false attribute
+* Update KloudBuster Image to v5
+* Update murano apps to be forward compatible with liberty
+* Cleanup - Remove js yaml, old index.html
+* Python Server
+* Updated OpenShift Origin v3 for Liberty
+* Add Fedora 23 assets
+* Image to be used with CloudBees PSE
+* Add Magnum Atomic image to glance
+* Add link and info for app-catalog-ui horizon plugin
+* Update KloudBuster Image to v4
+* Remove duplicate license attribute
+* Update JS links to https
+* Service Engine versioning
+* Support Heat Environments with the App Catalog
+* Change ignore-errors to ignore_errors
+* Update Debian Jessie link
+* Update repo references
+* Update .gitreview for project rename
+* Test icons
+* Add new glance image for the openstack/kloudbuster application
+* Break out the code to update assets
+* More CORS support
+* Cleanup text a little
+* Restore sorting by format for murano packages
+* Restore format sorting for glance/heat
+* Add more Ubuntu
+* Updated missing dependency status of murano Kubernetes app
+* Include missing direct links to murano apps
+* Initial stab at adding some icons to test the new ui with
+* Convert Murano assets to common format
+* Add a test server
+* Fixed up the formatting for Chef template
+* Adding HOT for Chef Standalone Server
+* Add tag to apps
+* Fix duplicate entry and add a check
+* Add CirrOS
+* Make glance and heat share a common schema
+* Switch all the yaml files to share the same root object type
+* Lint js and css files
+* Added eslint tox env
+* It's placed under images not glance-apps
+* Chef Server Link was wrong
+* Added the Chef logo for the main page
+* Adding Chef server to OpenStack Catalog
+* Minor change to test CORS hook
+* Updated Debian Glance images
+* Update OpenShift link on landing page
+* Add Heat template for OpenShift Origin 3
+* Add Rally application to apps.openstack.org
+* Fix Github links
+* Make License a required field
+* Replace ManageIQ Botvinnik RC image with stable image
+* Split direct and indirect glance image url's
+* Glance Format Switchover
+* Update AeroFS description in glance images catalog
+* Update GA tracking code
+* Image Properties and License
+* Add AeroFS to glance images catalog
+* Fix Debian link on landing page
+* Add deployment scripts for App Catalog CI
+* Update openshift heat entries
+* Remove RAX supported templates
+* Add Heat template for Lattice
+* Adds Debian testing
+* Add openSUSE 13.2 image
+* Update Bitnami images
+* Add Catalog Disclaimer
+* Updating recently added apps
+* Add Oracle Pluggable Database app
+* Add ManageIQ Stable
+* Add GuestBook app
+* Modifying/improving Murano descriptions
+* Fix some spelling errors
+* Use Ubuntu image for PostrgeSQL
+* Add ManageIQ Botvinnik RC3
+* Add Fedora 21 Atomic Cloud glance image
+* Update Stackato glance image URL
+* Add link to FAQ on landing page
+* Add link to Murano docs
+* Fix Fedora link on landing page
+* Add better descriptions and hrefs
+* Replace beta simple with word
+* Submitting CoreOS v681.0.0 (alpha) 2015-05-14 to app-catalog
+* Submitting CoreOS v668.3.0 (beta) 2015-05-12 to app-catalog
+* Submitting CoreOS v647.0.0 (stable) 2015-04-08 to app-catalog
+* Stackato Murano package
+* Add Sahara images to catalog
+* Update README
+* Add Stackato 3.4.2 image with murano agent    url: http://www.bigfastblog.com/wp-content/uploads/stackato-342-murano.qcow2    hash: 7a7baf53a90c1afd9bb375bf7b26af5b
+* Add image for Bitnami Django Stack
+* Add Bitnami Lamp Stack
+* Fix minor typos in landing page
+* Add Bitnami Gitlab Stack image
+* Sort applications by name in the yaml file
+* Update recently added apps and images
+* Improve wording in glance instructions
+* Correct/remove "supported_by" for images
+* Add Bitnami Wordpress Stack
+* Remove unicode chars from README.rst
+* Adds Apcera app catalog entries for glance and murano
+* Update hash for Kubernetes image
+* Add link to "add new content" to top menu bar
+* Add deployment clarification
+* Add OpenStack Foundation GA code
+* Add Cloud Foundry application
+* Use names instead on Murano Apps Repository
+* Add Murano bundles to the catalog
+* Rename Featured Apps to Recently Added Apps
+* Update Docker HTTPd Description
+* Update URI for CDN stored entries
+* Add Docker-based apps
+* State dependencies for Murano apps
+* Introduce dependencies for Murano apps
+* Add apps from openstack/murano-apps
+* Remove supported-by feature
+* Show visitor "add to glance" command for entries
+* Add and fix heat templates, remove one entry
+* Supress "supported by" if unsupported
+* Add missing format lines in glance
+* Fix selectors prepopulation for stubbed values
+* Add stub for missed fields
+* Remove mention of anti-virus scan
+* Add initial entries for several images
+* Fix selector for matchHeight
+* Fix height of first box in Mozila
+* Add favicon for the site
+* Updating index page
+* Updated murano app instalation/deployment instruction
+* Kubernetes/Docker bundle info
+* Heat hello_world template
+* docker/kubernetes glance images
+* Updating README file
+* Fix link of HEAT logo
+* Fix z-index for tables filters
+* Docker/Kubernetes apps definitions
+* Add images for landing page
+* Update design on landing page
+* Migrate from JSON to YAML for config files
+* Fixed asset usage descriptions on the main page
+* Fix the name of the image
+* Extend asset details page with the list of attributes and enclose into <a> tag all https? links
+* Implement validation schema for Glance images and Heat temaplates
+* Implement schema validation for murano_apps.json
+* Fixed top menu highlighting
+* Fixed navigation based on URL hash value
+* Fixed focused state for a link in the top of the page
+* Optimized page blink for Asset info page
+* Implemented landing page with featured applications
+* Implement details page as a plain page and supported navigation to it
+* Add google analytics tracker
+* Optimized tables re-rendering
+* CSS tweaks for details popups
+* Changed the link on the logo
+* Fixed name for git repo
+* Refactored HTML using Bootstrap
+* Initial commit of the web site
+* Initial Cookiecutter Commit
