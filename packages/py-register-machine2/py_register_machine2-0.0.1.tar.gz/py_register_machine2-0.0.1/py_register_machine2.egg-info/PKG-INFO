@@ -1,0 +1,28 @@
+Metadata-Version: 1.1
+Name: py-register-machine2
+Version: 0.0.1
+Summary: A Register Machine Package
+Home-page: https://github.com/daknuett/py_register_machine2
+Author: Daniel Knüttel
+Author-email: daknuett@gmail.com
+License: GPL v3
+Description: # py_register_machine2
+        A Register Machine package for Python3
+        
+        
+        You might take a look at the [docs](https://daknuett.github.io/py_register_machine2) for a lot information about design, usage and the complete code documentation.
+        
+Keywords: simulation virtualization processor registermachine
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Education
+Classifier: Topic :: Education :: Testing
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
