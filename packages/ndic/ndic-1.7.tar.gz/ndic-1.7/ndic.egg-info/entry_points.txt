@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        ndic=ndic.scripts.search:cli_search
+    
