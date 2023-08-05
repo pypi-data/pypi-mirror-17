@@ -1,0 +1,8 @@
+six
+sigtools >= 0.1b2
+
+[datetime]
+python-dateutil
+
+[:python_version in "2.6"]
+ordereddict
