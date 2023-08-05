@@ -1,0 +1,65 @@
+# TakeAway
+
+TakeAway is a command line interface for ordering food via:
+
+- AT: https://www.lieferservice.at
+- BE: https://www.pizza.be
+- CH: https://www.lieferservice.ch
+- FR: https://www.pizza.fr
+- LU: https://www.pizza.lu
+- NL: https://www.thuisbezorgd.nl
+- PT: https://www.pizza.pt
+- VT: https://www.vietnammm.com
+
+## Installation
+
+    pip install takeaway
+
+## Quick start
+
+    takeaway country postcode
+    
+Available countries: AT, BE, CH, FR, LU, NL, PT, VT.
+
+For Vietnam see [here](https://github.com/Ovvovy/TakeAway/wiki/Vietnam).
+    
+### Create the database
+
+    --db-make
+        
+### Search
+
+Search for meals in every restaurants:
+    
+    -m meal1 meal2 ...
+    
+Search for meals in restaurants:
+
+    -m meal1 meal2 ... -r restaurant1 restaurant2 ...
+    
+Add meals to your basket:
+    
+    -a index index ...
+
+### User    
+    
+Create an user:
+
+    --u-create username
+    
+Load an user:
+
+    -u username
+
+### Order
+
+    --checkout --confirm
+
+### All in one
+    
+    takeaway country postcode -m meal ... -r restaurant -a index -u username --checkout --confirm
+
+## Links
+
+- Github: https://github.com/Ovvovy/TakeAway
+- Pypi: https://pypi.python.org/pypi/takeaway
