@@ -1,0 +1,15 @@
+setup.cfg
+setup.py
+pdf417/__init__.py
+pdf417/codes.py
+pdf417/compaction.py
+pdf417/data.py
+pdf417/encoding.py
+pdf417/error_correction.py
+pdf417/rendering.py
+pdf417/util.py
+pdf417gen.egg-info/PKG-INFO
+pdf417gen.egg-info/SOURCES.txt
+pdf417gen.egg-info/dependency_links.txt
+pdf417gen.egg-info/requires.txt
+pdf417gen.egg-info/top_level.txt

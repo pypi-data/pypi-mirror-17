@@ -1,0 +1,27 @@
+Metadata-Version: 1.1
+Name: pdf417gen
+Version: 0.2.0
+Summary: PDF417 2D barcode generator for Python
+Home-page: https://github.com/ihabunek/pdf417-py/
+Author: Ivan Habunek
+Author-email: ivan.habunek@gmail.com
+License: MIT
+Description: 
+        Easily encode your data into a 2D barcode using the PDF417 format.
+        
+Keywords: pdf417 2d barcode generator
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.0
+Classifier: Programming Language :: Python :: 3.1
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
