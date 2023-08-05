@@ -1,0 +1,3 @@
+[console_scripts]
+ulka = ulka.cli:main
+
