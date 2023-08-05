@@ -1,0 +1,15 @@
+docopt
+markdown
+pyphen
+pygments
+
+[dev]
+check-manifest
+
+[lint]
+flake8
+pylint
+
+[test]
+coverage
+pytest
