@@ -1,0 +1,99 @@
+Metadata-Version: 1.1
+Name: adi.dropdownmenu
+Version: 0.7
+Summary: A dropdownmenu that is configurable for site administrators and mirrows your folderstructures.
+Home-page: http://svn.plone.org/svn/collective/adi.dropdownmenu
+Author: Ida Ebkes
+Author-email: contakt@ida-ebkes.eu
+License: GPL
+Description: Introduction
+        ============
+        
+        This product uses Products.ContentWellPortlets to place a sitemap-portlet
+        above the columns and gives the dropdown-effect via CSS.
+        
+        This way, your folder structure will be mirrowed in the dropdown.
+        
+        The depth and target-folder can be configured via the sitemap-portlets
+        web-user-interface, just like Plone's standard navigation-portlets.
+        
+        Includes responsive design for dektop-, tablet- and mobile-devices.
+        
+        
+        Installation
+        ============
+        
+        In your buildout.cfg's eggs-section add 'adi.dropdownmenu',
+        run builduot, restart instance.
+        
+        
+        Dependencies
+        ============
+        
+        - Products.ContentWellPortlets
+        
+        - collective.portlet.sitemap
+        
+        
+        Credits
+        =======
+        
+        Glued together by Ida Ebkes.
+        
+        In kind cooperation with Alterway, the creators of "collective.portlet.sitemap".
+        
+        The Weblion's crowd for developing "Products.ContentWellPortlets".
+        
+        And thanks to all of the friendly and helpful people of the Plone community.
+        
+        Changelog
+        =========
+        
+        0.7 (2016-09-04)
+        ----------------
+        
+        - Also add button in menu-head for toggling entire menu, for small screens.
+        
+        
+        0.6 (2016-09-04)
+        ----------------
+        
+        - Add layout for tablets and mobile-devices.
+        
+        - Note: Version '0.5' seems to have been a brown-bag-release, it
+        doesn't get pulled of PyPI when running buildout. We ignore version
+        '0.5' and continue with '0.6'.
+        
+        
+        0.4 (2012-02-01)
+        -------------------
+        
+        - really hide globalnav (forgot config in last release) [ida]
+        
+        
+        0.3 (2012-01-29)
+        -------------------
+        
+        - Deassign collective.portlet.sitemap in left column. [ida]
+        
+        - Hide default globalnav-viewlet. [ida] 
+        
+        - Unlimited css-sublevel-depth-support. [ida]
+        
+        - Styling for top-ul and visualize selected toplevel. [ida]
+        
+        
+        0.2 (2012-01-07)
+        -------------------
+        
+        - Extended CSS to support up to two sublevels instead of one.
+        
+        
+        0.1 (2012-01-05)
+        -------------------
+        
+        - Initial release
+        
+Platform: UNKNOWN
+Classifier: Framework :: Plone
+Classifier: Programming Language :: Python
