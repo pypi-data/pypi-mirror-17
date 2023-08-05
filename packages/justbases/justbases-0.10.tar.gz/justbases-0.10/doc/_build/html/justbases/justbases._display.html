@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>justbases._display module &mdash; justbases 0.09 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.09',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="justbases 0.09 documentation" href="../index.html" />
+    <link rel="up" title="justbases package" href="justbases.html" />
+    <link rel="next" title="justbases._division module" href="justbases._division.html" />
+    <link rel="prev" title="justbases._constants module" href="justbases._constants.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="justbases._division.html" title="justbases._division module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="justbases._constants.html" title="justbases._constants module"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">justbases 0.09 documentation</a> &raquo;</li>
+          <li><a href="modules.html" >justbases</a> &raquo;</li>
+          <li><a href="justbases.html" accesskey="U">justbases package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-justbases._display">
+<span id="justbases-display-module"></span><h1>justbases._display module<a class="headerlink" href="#module-justbases._display" title="Permalink to this headline">¶</a></h1>
+<p>Handling lists of digits.</p>
+<dl class="class">
+<dt id="justbases._display.Decorators">
+<em class="property">class </em><tt class="descclassname">justbases._display.</tt><tt class="descname">Decorators</tt><big>(</big><em>config</em>, <em>base</em><big>)</big><a class="headerlink" href="#justbases._display.Decorators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/library/functions.html#object" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></a></p>
+<p>Handle generic display stuff.</p>
+<p>Returns decorators for the value.</p>
+<dl class="method">
+<dt id="justbases._display.Decorators.decorators">
+<tt class="descname">decorators</tt><big>(</big><em>relation</em><big>)</big><a class="headerlink" href="#justbases._display.Decorators.decorators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return prefixes for tuple.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>relation</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; relation of string value to actual value</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="justbases._display.Decorators.relation_to_symbol">
+<em class="property">static </em><tt class="descname">relation_to_symbol</tt><big>(</big><em>relation</em><big>)</big><a class="headerlink" href="#justbases._display.Decorators.relation_to_symbol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change a numeric relation to a string symbol.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>relation</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; the relation</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a symbol with the right relation to <tt class="docutils literal"><span class="pre">relation</span></tt></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="justbases._display.Digits">
+<em class="property">class </em><tt class="descclassname">justbases._display.</tt><tt class="descname">Digits</tt><big>(</big><em>config</em>, <em>base</em><big>)</big><a class="headerlink" href="#justbases._display.Digits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/library/functions.html#object" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></a></p>
+<p>Transforms digits as ints to corresponding symbols.</p>
+<dl class="method">
+<dt id="justbases._display.Digits.xform">
+<tt class="descname">xform</tt><big>(</big><em>number</em>, <em>base</em><big>)</big><a class="headerlink" href="#justbases._display.Digits.xform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a number as a string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>number</strong> (<em>list of int</em>) &#8211; a number</li>
+<li><strong>base</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; the base in which this number is being represented</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Raises BasesValueError:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first last">if config is unsuitable for number</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="justbases._display.Number">
+<em class="property">class </em><tt class="descclassname">justbases._display.</tt><tt class="descname">Number</tt><big>(</big><em>config</em>, <em>base</em><big>)</big><a class="headerlink" href="#justbases._display.Number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/library/functions.html#object" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></a></p>
+<p>Handle generic number display stuff.</p>
+<p>Returns modifications to the number string.</p>
+<dl class="method">
+<dt id="justbases._display.Number.xform">
+<tt class="descname">xform</tt><big>(</big><em>left</em>, <em>right</em>, <em>repeating</em>, <em>base</em>, <em>sign</em><big>)</big><a class="headerlink" href="#justbases._display.Number.xform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return prefixes for tuple.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>left</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; left of the radix</li>
+<li><strong>right</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; right of the radix</li>
+<li><strong>repeating</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; repeating part</li>
+<li><strong>base</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; the base in which value is displayed</li>
+<li><strong>sign</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; -1, 0, 1 as appropriate</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the number string</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="justbases._display.String">
+<em class="property">class </em><tt class="descclassname">justbases._display.</tt><tt class="descname">String</tt><big>(</big><em>display</em>, <em>base</em><big>)</big><a class="headerlink" href="#justbases._display.String" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/library/functions.html#object" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></a></p>
+<p>Convert size components to string according to configuration.</p>
+<dl class="method">
+<dt id="justbases._display.String.xform">
+<tt class="descname">xform</tt><big>(</big><em>radix</em>, <em>relation</em><big>)</big><a class="headerlink" href="#justbases._display.String.xform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform a radix and some information to a str according to
+configurations.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>radix</strong> (<em>Radix</em>) &#8211; the radix</li>
+<li><strong>relation</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; relation of display value to actual value</li>
+<li><strong>units</strong> &#8211; element of UNITS()</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a string representing the value</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Raises BasesValueError:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first last">if configuration does not work with value</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="justbases._display.Strip">
+<em class="property">class </em><tt class="descclassname">justbases._display.</tt><tt class="descname">Strip</tt><big>(</big><em>config</em>, <em>base</em><big>)</big><a class="headerlink" href="#justbases._display.Strip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/library/functions.html#object" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></a></p>
+<p>Handle stripping digits.</p>
+<dl class="method">
+<dt id="justbases._display.Strip.xform">
+<tt class="descname">xform</tt><big>(</big><em>number</em>, <em>relation</em><big>)</big><a class="headerlink" href="#justbases._display.Strip.xform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Strip trailing zeros from a number according to config and relation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>number</strong> (<em>list of int</em>) &#8211; a number</li>
+<li><strong>relation</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; the relation of the display value to the actual</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="justbases._constants.html"
+                        title="previous chapter">justbases._constants module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="justbases._division.html"
+                        title="next chapter">justbases._division module</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/justbases/justbases._display.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="justbases._division.html" title="justbases._division module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="justbases._constants.html" title="justbases._constants module"
+             >previous</a> |</li>
+        <li><a href="../index.html">justbases 0.09 documentation</a> &raquo;</li>
+          <li><a href="modules.html" >justbases</a> &raquo;</li>
+          <li><a href="justbases.html" >justbases package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, mulhern.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
