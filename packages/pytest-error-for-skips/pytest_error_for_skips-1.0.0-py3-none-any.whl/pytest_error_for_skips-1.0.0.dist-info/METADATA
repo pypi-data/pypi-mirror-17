@@ -1,0 +1,13 @@
+Metadata-Version: 2.0
+Name: pytest-error-for-skips
+Version: 1.0.0
+Summary: Pytest plugin to treat skipped tests a test failure
+Home-page: https://github.com/janschulz/pytest-error-for-skips
+Author: Jan Schulz
+Author-email: jasc@gmx.net
+License: MIT
+Requires-Dist: pytest (>=2.9.2)
+
+pytest-error-for-skips
+
+
