@@ -1,0 +1,23 @@
+Metadata-Version: 1.0
+Name: python-container-openstack
+Version: 0.7b
+Summary: Python Distribution Utilities for Openstack and Containers
+Home-page: https://github.com/dperogil
+Author: Danilo Ferri Perogil
+Author-email: dperogil@gmail.com
+License: Creative Commons Attribution-Noncommercial-Share Alike license
+Description: ######################
+        #### REQUIREMENTS ####
+        ######################
+        # bash scripts/requirements.sh
+        # pip install -r requirements.txt
+        
+        #############
+        #### FAQ ####
+        #############
+        # Utilizando Python para automatização de Openstack, Kubernetes, Docker e demais necessidades.
+        # Api's para Python gerenciar o Openstack
+        # Api's para Python gerenciar Kubernetes e Dockers
+        # Bootstrap para validação das funções do Openstack, criação de cluster em Kubernetes ou Docker utilizando Openstack.
+        
+Platform: UNKNOWN
