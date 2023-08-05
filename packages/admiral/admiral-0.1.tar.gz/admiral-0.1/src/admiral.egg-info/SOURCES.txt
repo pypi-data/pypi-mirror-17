@@ -1,0 +1,14 @@
+README.rst
+setup.py
+src/admiral/__init__.py
+src/admiral/jobmanagers.py
+src/admiral/remote.py
+src/admiral/slurm.py
+src/admiral/support.py
+src/admiral.egg-info/PKG-INFO
+src/admiral.egg-info/SOURCES.txt
+src/admiral.egg-info/dependency_links.txt
+src/admiral.egg-info/requires.txt
+src/admiral.egg-info/top_level.txt
+test/test.py
+test/testmod.py
