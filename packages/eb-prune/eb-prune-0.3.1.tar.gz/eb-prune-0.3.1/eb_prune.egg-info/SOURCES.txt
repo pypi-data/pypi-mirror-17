@@ -1,0 +1,13 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+VERSION
+setup.cfg
+setup.py
+eb_prune/__init__.py
+eb_prune.egg-info/PKG-INFO
+eb_prune.egg-info/SOURCES.txt
+eb_prune.egg-info/dependency_links.txt
+eb_prune.egg-info/entry_points.txt
+eb_prune.egg-info/requires.txt
+eb_prune.egg-info/top_level.txt
