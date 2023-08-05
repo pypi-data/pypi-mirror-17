@@ -1,0 +1,5 @@
+requests>=2.0
+argparse
+Flask>=0.10
+Flask-SQLAlchemy>=2.0
+six>=1.4
