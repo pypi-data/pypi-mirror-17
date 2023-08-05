@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.rst
+requirements.txt
+setup.cfg
+setup.py
+dropman/__init__.py
+dropman/cli.py
+dropman/commands/__init__.py
+dropman/commands/base.py
+dropman/commands/list.py
+dropman/commands/powercycle.py
+dropman/commands/poweroff.py
+dropman/commands/poweron.py
+dropman/commands/reboot.py
+dropman/commands/shutdown.py
