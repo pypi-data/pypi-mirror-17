@@ -1,0 +1,5 @@
+exclude buildout.cfg
+global-exclude *.pyc
+include *.rst *.py
+recursive-include src *
+graft docs
