@@ -1,0 +1,14 @@
+setup.py
+voicetools/__init__.py
+voicetools/api.py
+voicetools/clients.py
+voicetools/constants.py
+voicetools/exceptions.py
+voicetools/utils.py
+voicetools.egg-info/PKG-INFO
+voicetools.egg-info/SOURCES.txt
+voicetools.egg-info/dependency_links.txt
+voicetools.egg-info/pbr.json
+voicetools.egg-info/requires.txt
+voicetools.egg-info/top_level.txt
+voicetools.egg-info/zip-safe
