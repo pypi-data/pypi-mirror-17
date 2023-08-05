@@ -1,0 +1,15 @@
+channels_panel/__init__.py,sha256=TeS24-a0rKD9ojeTWUlk2-89CvYFZIBl9p-80gZBinA,223
+channels_panel/apps.py,sha256=1GqlfQ9IuZOMSacpq_HFPYKVc68uxoSIer8jLC8mFGA,2795
+channels_panel/panel.py,sha256=ZNAJO4vJSKQMidlojhC-X8UMoNWvHLeh7I7p-GNGHuI,2270
+channels_panel/routes.py,sha256=KvimdsdZyid1GTB8n9mmZCgJ9zP6lWXhPDYEoycsZf0,583
+channels_panel/settings.py,sha256=LO6ZQqHGT0ORvplGSAVZ2IkvUS7mfIqizf_6l3WfP1Q,468
+channels_panel/utils.py,sha256=IhGxfVB-TyI9ZNiNhqbplay4FZ8mCuyguvciyCxe2E0,2362
+channels_panel/static/channels_panel/channels_panel.js,sha256=oY9qbP0kqGyWTsR8mvTr_fq32AkKrPKkpNHkB2Y42uo,2722
+channels_panel/static/channels_panel/reconnecting-websocket.min.js,sha256=A4JwlcDvqO4JXpvEtvWY1RH8JAEMu5W21wP8GUXLUNs,3100
+channels_panel/templates/channels_panel/channels_panel.html,sha256=T_Y0Vxr9bE9nxWD_7M1AMbi51HJRXAHXRtzXCOefOlU,1917
+django_channels_panel-0.0.4.dist-info/DESCRIPTION.rst,sha256=KWyOM25cnPY7_Pb70LHwAehZ-WmSJV0MFhCiqyp4a2s,898
+django_channels_panel-0.0.4.dist-info/METADATA,sha256=FKIdRUQS-9K8Bv0OmdUhdu58YFDGil4q490TtcnKlSw,1682
+django_channels_panel-0.0.4.dist-info/RECORD,,
+django_channels_panel-0.0.4.dist-info/WHEEL,sha256=rNo05PbNqwnXiIHFsYm0m22u4Zm6YJtugFG2THx4w3g,92
+django_channels_panel-0.0.4.dist-info/metadata.json,sha256=1vaElu_0K47hGOGMUc2uUhRhJwiJngKBkT8Oltd8cYY,921
+django_channels_panel-0.0.4.dist-info/top_level.txt,sha256=mduiXXYdSAOqjIgUvUn0pGg9tHcNyRPagT10WNSDrLE,15
