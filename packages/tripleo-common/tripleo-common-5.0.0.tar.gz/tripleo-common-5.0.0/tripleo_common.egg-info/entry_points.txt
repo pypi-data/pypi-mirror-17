@@ -1,0 +1,22 @@
+[mistral.actions]
+tripleo.baremetal.configure_boot = tripleo_common.actions.baremetal:ConfigureBootAction
+tripleo.baremetal.configure_root_device = tripleo_common.actions.baremetal:ConfigureRootDeviceAction
+tripleo.create_container = tripleo_common.actions.plan:CreateContainerAction
+tripleo.create_plan = tripleo_common.actions.plan:CreatePlanAction
+tripleo.delete_plan = tripleo_common.actions.plan:DeletePlanAction
+tripleo.deploy = tripleo_common.actions.deployment:DeployStackAction
+tripleo.deploy_config = tripleo_common.actions.deployment:OrchestrationDeployAction
+tripleo.get_capabilities = tripleo_common.actions.heat_capabilities:GetCapabilitiesAction
+tripleo.get_parameters = tripleo_common.actions.parameters:GetParametersAction
+tripleo.list_plans = tripleo_common.actions.plan:ListPlansAction
+tripleo.process_templates = tripleo_common.actions.templates:ProcessTemplatesAction
+tripleo.register_or_update_nodes = tripleo_common.actions.baremetal:RegisterOrUpdateNodes
+tripleo.reset_parameters = tripleo_common.actions.parameters:ResetParametersAction
+tripleo.update_capabilities = tripleo_common.actions.heat_capabilities:UpdateCapabilitiesAction
+tripleo.update_parameters = tripleo_common.actions.parameters:UpdateParametersAction
+tripleo.upload_default_templates = tripleo_common.actions.templates:UploadTemplatesAction
+tripleo.validations.get_pubkey = tripleo_common.actions.validations:GetPubkeyAction
+tripleo.validations.list_groups = tripleo_common.actions.validations:ListGroupsAction
+tripleo.validations.list_validations = tripleo_common.actions.validations:ListValidationsAction
+tripleo.validations.run_validation = tripleo_common.actions.validations:RunValidationAction
+
