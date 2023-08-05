@@ -1,0 +1,3 @@
+[console_scripts]
+atdcheck = atdcheck.__main__:main
+
