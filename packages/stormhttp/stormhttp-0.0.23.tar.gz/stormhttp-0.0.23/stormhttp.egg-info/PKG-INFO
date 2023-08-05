@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: stormhttp
+Version: 0.0.23
+Summary: Lightning-fast asynchronous web framework for Python 3.5+
+Home-page: https://github.com/SethMichaelLarson/stormhttp
+Author: Seth Michael Larson
+Author-email: sethmichaellarson@protonmail.com
+License: Apache 2
+Download-URL: https://github.com/SethMichaelLarson/stormhttp/tarball/0.0.23
+Description: UNKNOWN
+Keywords: web,async,framework
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Internet :: WWW/HTTP
