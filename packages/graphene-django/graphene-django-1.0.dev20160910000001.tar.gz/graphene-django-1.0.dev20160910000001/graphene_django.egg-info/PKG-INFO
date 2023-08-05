@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: graphene-django
+Version: 1.0.dev20160910000001
+Summary: Graphene Django integration
+Home-page: https://github.com/graphql-python/graphene-django
+Author: Syrus Akbary
+Author-email: me@syrusakbary.com
+License: MIT
+Description: UNKNOWN
+Keywords: api graphql protocol rest relay graphene
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: PyPy
