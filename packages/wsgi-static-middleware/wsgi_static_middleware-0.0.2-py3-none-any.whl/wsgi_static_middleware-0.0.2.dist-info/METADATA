@@ -1,0 +1,62 @@
+Metadata-Version: 2.0
+Name: wsgi-static-middleware
+Version: 0.0.2
+Summary: Basic static file serving middleware for WSGI
+Home-page: https://github.com/c-bata/wsgi-static-middleware
+Author: Masashi Shibata <contact@c-bata.link>
+Author-email: contact@c-bata.link
+License: MIT License
+Keywords: wsgi middleware staticfile
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Middleware
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+
+wsgi-static-middleware
+======================
+
+Basic static file serving middleware for WSGI.
+
+Usage
+-----
+
+.. code-block:: python
+
+   import os
+   from wsgiref.simple_server import make_server
+   from wsgi_static_middleware import StaticMiddleware
+
+   BASE_DIR = os.path.dirname(__name__)
+   STATIC_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+
+   def app(env, start_response):
+       start_response('200 OK', [('Conte-type', 'text/plain; charset=utf-8')])
+       return [b'Hello World']
+
+   app = StaticMiddleware(app, static_root='static', static_dirs=STATIC_DIRS)
+
+   if __name__ == '__main__':
+       httpd = make_server('', 8000, app)
+       httpd.serve_forever()
+
+
+.. code-block:: bash
+
+   $ curl localhost:8000/static/style.css
+   .foo {
+       font-size: 10px;
+   }
+
+
+LICENSE
+-------
+
+MIT License
+
+
