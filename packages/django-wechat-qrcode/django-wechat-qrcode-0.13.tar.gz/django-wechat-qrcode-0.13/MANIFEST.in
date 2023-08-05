@@ -1,0 +1,4 @@
+include LICENSE
+include README.rst
+recursive-include wechat/locale *
+recursive-include qrcode/templates *
