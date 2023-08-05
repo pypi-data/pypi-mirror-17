@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.rst
+VERSION
+setup.py
+testrail_reporter/__init__.py
+testrail_reporter/testrail_reporter.py
+testrail_reporter.egg-info/PKG-INFO
+testrail_reporter.egg-info/SOURCES.txt
+testrail_reporter.egg-info/dependency_links.txt
+testrail_reporter.egg-info/entry_points.txt
+testrail_reporter.egg-info/requires.txt
+testrail_reporter.egg-info/top_level.txt
