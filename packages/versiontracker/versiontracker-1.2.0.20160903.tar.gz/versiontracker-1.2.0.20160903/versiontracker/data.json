@@ -1,0 +1,4371 @@
+{
+    "0ad": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "zero-ad",
+            "path": "releases/${latest:0ad-(\\d+\\.\\d+\\.\\d+)-}"
+        }
+    },
+    "4kslideshowmaker": {
+        "seeker": {
+            "name": "4k"
+        }
+    },
+    "4kstogram": {
+        "seeker": {
+            "name": "4k"
+        }
+    },
+    "4kvideodownloader": {
+        "seeker": {
+            "name": "4k"
+        }
+    },
+    "4kvideotomp3": {
+        "seeker": {
+            "name": "4k"
+        }
+    },
+    "4kyoutubetomp3": {
+        "seeker": {
+            "name": "4k"
+        }
+    },
+    "6tunnel": {
+        "seeker": {
+            "name": "github",
+            "project": "wojtekka",
+            "tag": "^(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$"
+        }
+    },
+    "7zip": {
+        "modifier": {
+            "input_re": "^7z(?P<major>\\d{2})(?P<minor>\\d{2})",
+            "output_template": "{major}.{minor}"
+        },
+        "seeker": {
+            "name": "sourceforge",
+            "project": "sevenzip",
+            "path": "${latest:^7z\\d{4}}"
+        }
+    },
+    "abiword": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://www.abiword.org/downloads/abiword/latest/source/${latest:^abiword-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "accountsservice": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://www.freedesktop.org/software/accountsservice/${latest:accountsservice-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "acetoneiso": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "${latest}/${latest}/${latest:acetoneiso_(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ack": {
+        "seeker": {
+            "name": "github",
+            "project": "petdance",
+            "repository": "ack2",
+            "tag": "^(\\d+\\.\\d+)$"
+        }
+    },
+    "acpi-eeepc-generic": {
+        "seeker": {
+            "name": "github",
+            "project": "nbigaouette",
+            "tag": "^v(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)"
+        }
+    },
+    "acpiclient": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "${latest}/${latest}/"
+        }
+    },
+    "acpid": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "acpid2",
+            "path": "${latest:acpid-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "aften": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "aften/${latest}/${latest:aften-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "aircrack-ng": {
+        "seeker": {
+            "name": "github",
+            "tag": "^(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$"
+        }
+    },
+    "akonadi": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:akonadi-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "akonadi-calendar": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:akonadi-calendar-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "akonadi-contacts": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:akonadi-contacts-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "akonadi-mime": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:akonadi-mime-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "akonadi-notes": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:akonadi-notes-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "akonadi-search": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:akonadi-search-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "allegro": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.gna.org/allegro/allegro/${latest}/"
+        }
+    },
+    "allegro4": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "alleg",
+            "path": "allegro/${latest:^(4\\.\\d+(\\.\\d+(\\.\\d+)?)?)$}"
+        }
+    },
+    "amarok": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/amarok/${latest:^(\\d+\\.\\d+(\\.([0-5]\\d+|\\d)(\\.\\d+)?)?)$}/src/${latest:^amarok-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "analitza": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:analitza-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "android-file-transfer-linux": {
+        "seeker": {
+            "name": "github",
+            "project": "whoozle"
+        }
+    },
+    "anki": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://ankisrs.net/download/mirror/${latest:anki-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "apertium": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "apertium/${latest}/"
+        }
+    },
+    "appmenu-qt": {
+        "seeker": {
+            "name": "launchpad"
+        }
+    },
+    "apt": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "aqbanking": {
+        "seeker": {
+            "name": "aqbanking",
+            "package": "03"
+        }
+    },
+    "aqemu": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "ardentryst": {
+        "modifier": {
+            "input_re": "(?P<major>\\d)\\.(?P<minor>\\d)(?P<bugfix>\\d)",
+            "output_template": "{major}.{minor}.{bugfix}"
+        },
+        "seeker": {
+            "name": "sourceforge",
+            "path": "ardentryst/${latest}"
+        }
+    },
+    "arduino": {
+        "seeker": {
+            "name": "github",
+            "repository": "Arduino",
+            "tag": "^(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$",
+            "ignore-latest": true
+        }
+    },
+    "aria2": {
+        "seeker": {
+            "name": "github",
+            "tag": "^release-(.*)"
+        }
+    },
+    "ark": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ark-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "artikulate": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:artikulate-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "assaultcube": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "actiongame",
+            "path": "${latest:AssaultCube Version (\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "atlas_cpp": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "worldforge",
+            "path": "Atlas-C%2B%2B (protocol lib)"
+        }
+    },
+    "audacity": {
+        "seeker": {
+            "name": "github",
+            "tag": "^Audacity-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$"
+        }
+    },
+    "audex": {
+        "seeker": {
+            "name": "github",
+            "project": "KDE"
+        }
+    },
+    "audiere": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "audiere"
+        }
+    },
+    "audiocd-kio": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:audiocd-kio-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "autossh": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "autowikibrowser": {
+        "modifier": "DotBetweenDigits",
+        "seeker": {
+            "name": "sourceforge",
+            "path": "autowikibrowser/${latest}/${latest:^AutoWikiBrowser(\\d+)\\.zip$}"
+        }
+    },
+    "avidemux": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "avidemux/${latest:^\\d+\\.\\d+\\.\\d+(.\\d+)?$}/${latest:avidemux_(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "avogadro": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "avogadro/${latest}/${latest:avogadro-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "avoision": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "avsn",
+            "path": "${latest:avoision-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar}"
+        }
+    },
+    "awstats": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "AWStats/${latest}/${latest:awstats-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "backintime": {
+        "seeker": {
+            "name": "launchpad"
+        }
+    },
+    "baloo-widgets": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:baloo-widgets-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "bash": {
+        "modifier": {
+            "groups_as_ints": true,
+            "input_re": "^(?P<major>\\d)(?P<minor>\\d)-(?P<patch>\\d+)$",
+            "output_template": "{major}.{minor}.{patch}"
+        },
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://ftp.gnu.org/gnu/bash/${latest:bash-\\d.\\d-patches}/${highest:bash(\\d+-\\d+)}"
+        }
+    },
+    "bcg729": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download-mirror.savannah.gnu.org/releases/linphone/plugins/sources/${latest:bcg729-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "belle-sip": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download-mirror.savannah.gnu.org/releases/linphone/belle-sip/${latest:belle-sip-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "berry": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://aseman.co/downloads/berry/${latest}/${latest:berry-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "bibletime": {
+        "seeker": {
+            "name": "github",
+            "tag": "^v(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$"
+        }
+    },
+    "binary": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "bitcoin": {
+        "seeker": {
+            "name": "github",
+            "tag": "^v(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$"
+        }
+    },
+    "bitlbee": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://get.bitlbee.org/src/"
+        }
+    },
+    "blender": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.blender.org/source/${latest:blender-(\\d+\\.\\d+[a-z]*)\\.}"
+        }
+    },
+    "blinken": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:blinken-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "boinc": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "bomber": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:bomber-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "bomi": {
+        "seeker": {
+            "name": "github",
+            "project": "xylosper"
+        }
+    },
+    "boost-build": {
+        "seeker": {
+            "name": "github",
+            "project": "boostorg",
+            "repository": "build"
+        }
+    },
+    "bovo": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:bovo-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "box2d": {
+        "seeker": {
+            "name": "github",
+            "project": "erincatto",
+            "repository": "Box2D"
+        }
+    },
+    "brise": {
+        "seeker": {
+            "name": "github",
+            "project": "rime",
+            "tag": "^brise-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$"
+        }
+    },
+    "bullet": {
+        "seeker": {
+            "name": "github",
+            "project": "bulletphysics",
+            "repository": "bullet3"
+        }
+    },
+    "bup": {
+        "seeker": {
+            "name": "github",
+            "tag": "^(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$"
+        }
+    },
+    "bytestring-show": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "bzr-explorer": {
+        "seeker": {
+            "name": "launchpad"
+        }
+    },
+    "bzrtp": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download-mirror.savannah.gnu.org/releases/linphone/bzrtp/${latest:bzrtp-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "c-ares": {
+        "modifier": "UnderscoreToDot",
+        "seeker": {
+            "name": "github",
+            "tag": "^cares-(\\d+_\\d+(_\\d+(_\\d+)?)?)$"
+        }
+    },
+    "cabal-install": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "cal3d": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.gna.org/cal3d/sources/${latest:cal3d-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "calamares": {
+        "seeker": {
+            "name": "github"
+        }
+    },
+    "calendarsupport": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:calendarsupport-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "calf": {
+        "seeker": {
+            "name": "github",
+            "project": "calf-studio-gear",
+            "tag": "^(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$"
+        }
+    },
+    "calibre": {
+        "seeker": {
+            "name": "github",
+            "project": "kovidgoyal"
+        }
+    },
+    "calligra": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/${latest:calligra-\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?}/${latest:calligra-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "cantata": {
+        "seeker": {
+            "name": "github",
+            "project": "CDrummond"
+        }
+    },
+    "cantor": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:cantor-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "capicity": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "capitalism"
+        }
+    },
+    "cb2bib": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "ccid": {
+        "seeker": {
+            "name": "alioth",
+            "project": "pcsclite"
+        }
+    },
+    "cegui-0.7": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "crayzedsgui",
+            "path": "CEGUI Mk-2/${latest:(0\\.7\\.\\d+(\\.\\d+)?)}"
+        }
+    },
+    "cegui-0.8": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "crayzedsgui",
+            "path": "CEGUI Mk-2/0.8"
+        }
+    },
+    "celestia": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "ceph": {
+        "seeker": {
+            "name": "github",
+            "tag": "^v(\\d+\\.2\\.\\d+(\\.\\d+)?)$"
+        }
+    },
+    "cervisia": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:cervisia-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "cgal": {
+        "seeker": {
+            "name": "github",
+            "project": "CGAL",
+            "tag": "^releases/CGAL-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$"
+        }
+    },
+    "cgdb": {
+        "seeker": {
+            "name": "github"
+        }
+    },
+    "chaser": {
+        "seeker": {
+            "name": "github",
+            "project": "ccr-tools"
+        }
+    },
+    "check": {
+        "seeker": {
+            "name": "github",
+            "project": "libcheck"
+        }
+    },
+    "chemical-mime-data": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "chemical-mime",
+            "path": "chemical-mime-data/${latest}/${latest:chemical-mime-data-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "cherokee": {
+        "seeker": {
+            "name": "github",
+            "repository": "webserver"
+        }
+    },
+    "chkrootkit": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "ftp://ftp.pangeia.com.br/pub/seg/pac/${latest:chkrootkit-(\\d+\\.\\d+\\w+)}"
+        }
+    },
+    "chocolate-doom": {
+        "seeker": {
+            "name": "github"
+        }
+    },
+    "choqok": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "Choqok/${latest:choqok-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "chromium-bsu": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "Chromium B.S.U. source code/${latest:chromium-bsu-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "cipra": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "cirkuit": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "cksfv": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://zakalwe.fi/~shd/foss/cksfv/files/${latest:cksfv-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "clamav": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "clanlib": {
+        "seeker": {
+            "name": "github",
+            "project": "sphair",
+            "repository": "ClanLib"
+        }
+    },
+    "clementine": {
+        "seeker": {
+            "name": "github",
+            "project": "clementine-player",
+            "repository": "Clementine"
+        }
+    },
+    "clipgrab": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "colordiff": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://www.colordiff.org/archive/${latest:colordiff-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "conky": {
+        "seeker": {
+            "name": "github",
+            "project": "brndnmtthws"
+        }
+    },
+    "converseen": {
+        "seeker": {
+            "name": "github",
+            "project": "Faster3ck",
+            "repository": "Converseen"
+        }
+    },
+    "convertall": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "${latest}/${latest:^convertall-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar\\.gz$}"
+        }
+    },
+    "corsix-th": {
+        "seeker": {
+            "name": "github",
+            "project": "CorsixTH",
+            "repository": "CorsixTH",
+            "tag": "^v(\\d+\\.\\d+)$"
+        }
+    },
+    "cpptest": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "cpptest/${latest:cpptest-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "cppunit": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://dev-www.libreoffice.org/src/${latest:cppunit-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "crypto++": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "cryptopp",
+            "path": "cryptopp/${latest:(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ctags": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "ctags/${latest}/${latest:^ctags-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?).tar.gz$}"
+        }
+    },
+    "ctemplate": {
+        "seeker": {
+            "name": "github",
+            "project": "OlafvdSpek",
+            "tag": "^ctemplate-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$"
+        }
+    },
+    "cubosphere": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "${latest:cubosphere_\\w*(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "cuda": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "cuetools": {
+        "seeker": {
+            "name": "github",
+            "project": "svend"
+        }
+    },
+    "cuneiform": {
+        "seeker": {
+            "name": "launchpad",
+            "project": "cuneiform-linux"
+        }
+    },
+    "cutegram": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://aseman.co/downloads/cutegram/${latest}/${latest:cutegram-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "darcs": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://darcs.net/releases/${latest:darcs-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "dataenc": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "dblatex": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "dblatex/${latest}/"
+        }
+    },
+    "dc3dd": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "dc3dd/${latest:\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?}/${latest:dc3dd \\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?}/"
+        }
+    },
+    "dcaenc": {
+        "seeker": {
+            "name": "gitlab",
+            "project": "patrakov"
+        }
+    },
+    "ddclient": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "ddclient/${latest}/${latest:ddclient-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ddd": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://ftp.gnu.org/gnu/ddd/${latest:ddd-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "debian": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "debianutils": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://ftp.gul.uc3m.es/debian/pool/main/d/debianutils/${latest:debianutils_(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "deepseq": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "deutex-dev": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://www.teaser.fr/~amajorel/deutex/fungus/${latest:deutex-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "dev86": {
+        "seeker": {
+            "name": "github",
+            "project": "lkundrak"
+        }
+    },
+    "devil": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "openil",
+            "path": "DevIL"
+        }
+    },
+    "dianara": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.savannah.gnu.org/releases/dianara/${latest:dianara-v(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "digikam": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/digikam/${latest:digikam-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "dnetstats": {
+        "seeker": {
+            "name": "linuxapps",
+            "project": "1128334"
+        }
+    },
+    "dnt": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "dnt/current/${latest:(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "dolphin": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:dolphin-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "dolphin-plugins": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:dolphin-plugins-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "dos2unix": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "dosbox": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "dpic": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "dragon": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:dragon-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "dropbox-desktop-client": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "drumstick": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "dssi": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "dssi/${latest}/"
+        }
+    },
+    "dunelegacy": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "dunelegacy/${latest:^(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$}"
+        }
+    },
+    "dustrac": {
+        "seeker": {
+            "name": "github",
+            "project": "juzzlin",
+            "repository": "DustRacing2D"
+        }
+    },
+    "dvd-slideshow": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "dvd-slideshow/${latest}/"
+        }
+    },
+    "dvdauthor": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "eclipse": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "ed": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://ftp.gnu.org/gnu/ed"
+        }
+    },
+    "elinks": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://elinks.or.cz/download/${latest:elinks-(\\d+\\.\\d+\\.\\d+(\\.\\d+)?)}"
+        }
+    },
+    "emacs": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://ftp.gnu.org/gnu/emacs/${latest:emacs-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ember": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "worldforge",
+            "path": "Ember (OGRE client)/${latest}/${latest:ember-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ember-media": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "worldforge",
+            "path": "Ember (OGRE client)/${latest}/${latest:ember-media-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "emovix": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "movix",
+            "path": "eMoviX/${latest}/${latest:emovix-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "enet": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://enet.bespin.org/download/${latest:enet-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "entropy": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "epiar": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "${latest:epiar-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "epydoc": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "eris": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "worldforge",
+            "path": "Eris 1.4 (client lib)/${latest}/"
+        }
+    },
+    "eventviews": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:eventviews-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "everpad": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "extensible-exceptions": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "extremetuxracer": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "releases/${latest:(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "extundelete": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "fcitx": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.fcitx-im.org/fcitx/"
+        }
+    },
+    "fcitx-anthy": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.fcitx-im.org/fcitx-anthy/"
+        }
+    },
+    "fcitx-chewing": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.fcitx-im.org/fcitx-chewing/"
+        }
+    },
+    "fcitx-cloudpinyin": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.fcitx-im.org/fcitx-cloudpinyin/"
+        }
+    },
+    "fcitx-googlepinyin": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.fcitx-im.org/fcitx-googlepinyin/"
+        }
+    },
+    "fcitx-hangul": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.fcitx-im.org/fcitx-hangul/"
+        }
+    },
+    "fcitx-kkc": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.fcitx-im.org/fcitx-kkc/"
+        }
+    },
+    "fcitx-libpinyin": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.fcitx-im.org/fcitx-libpinyin/"
+        }
+    },
+    "fcitx-m17n": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.fcitx-im.org/fcitx-m17n/"
+        }
+    },
+    "fcitx-mozc": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.fcitx-im.org/fcitx-mozc/"
+        }
+    },
+    "fcitx-qt5": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.fcitx-im.org/fcitx-qt5/"
+        }
+    },
+    "fcitx-rime": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.fcitx-im.org/fcitx-rime/"
+        }
+    },
+    "fcitx-sayura": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.fcitx-im.org/fcitx-sayura/"
+        }
+    },
+    "fcitx-sunpinyin": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.fcitx-im.org/fcitx-sunpinyin/"
+        }
+    },
+    "fcitx-table-extra": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.fcitx-im.org/fcitx-table-extra/"
+        }
+    },
+    "fcitx-table-other": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.fcitx-im.org/fcitx-table-other/"
+        }
+    },
+    "fcitx-ui-light": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.fcitx-im.org/fcitx-ui-light/"
+        }
+    },
+    "fcitx-unikey": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.fcitx-im.org/fcitx-unikey/"
+        }
+    },
+    "fdesktoprecorder": {
+        "seeker": {
+            "name": "linuxapps",
+            "project": "1126753"
+        }
+    },
+    "fdupes": {
+        "seeker": {
+            "name": "github",
+            "project": "adrianlopezroche"
+        }
+    },
+    "feh": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "ffmpegthumbs": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ffmpegthumbs-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "fife": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "active/src/${latest:fife_(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "filelight": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:filelight-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "filezilla": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "FileZilla_Client/${latest}/"
+        }
+    },
+    "fingerprint-gui": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "flacon": {
+        "seeker": {
+            "name": "github"
+        }
+    },
+    "flare-engine": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "flare-game",
+            "path": "Linux/${latest:flare-engine\\.(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "flare-game": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "Linux/${latest:flare-game\\.(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "flightgear": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "${latest:release-\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?}/${latest:flightgear-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar\\.bz2}"
+        }
+    },
+    "focuswriter": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "fontforge": {
+        "seeker": {
+            "name": "github"
+        }
+    },
+    "fotowall": {
+        "seeker": {
+            "name": "github",
+            "project": "enricoros",
+            "tag": "^(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$"
+        }
+    },
+    "freebsd": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "ftp://ftp.freebsd.org/pub/FreeBSD/releases/amd64/amd64/ISO-IMAGES/${latest}/${latest:^FreeBSD-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)-RELEASE-amd64-disc1\\.iso$}"
+        }
+    },
+    "freecad": {
+        "seeker": {
+            "name": "github",
+            "project": "FreeCAD",
+            "repository": "FreeCAD"
+        }
+    },
+    "freeciv": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "${latest}/${latest}/${latest:freeciv-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar\\.bz2}"
+        }
+    },
+    "freecol": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "freecol/${latest:freecol-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "freedoom": {
+        "seeker": {
+            "name": "github"
+        }
+    },
+    "freedroid": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "freeimage": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "Source Distribution"
+        }
+    },
+    "freeorion": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "FreeOrion/${latest:FreeOrion Version (\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "freepascal": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "Source/${latest}/"
+        }
+    },
+    "freerdp": {
+        "seeker": {
+            "name": "github"
+        }
+    },
+    "freexl": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://www.gaia-gis.it/gaia-sins/freexl-sources/"
+        }
+    },
+    "fretsonfire": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "fretsonfire/${latest:(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "frogatto": {
+        "seeker": {
+            "name": "github"
+        }
+    },
+    "frostwire-desktop": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "frostwire",
+            "path": "${latest}/${latest}/"
+        }
+    },
+    "frozen-bubble": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "fsarchiver": {
+        "seeker": {
+            "name": "github",
+            "project": "fdupoux"
+        }
+    },
+    "ftjam": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "freetype",
+            "path": "ftjam"
+        }
+    },
+    "gammaray": {
+        "seeker": {
+            "name": "github",
+            "project": "KDAB",
+            "repository": "GammaRay"
+        }
+    },
+    "gammu": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://dl.cihar.com/gammu/releases/"
+        }
+    },
+    "gcompris": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://gcompris.net/download/qt/src/"
+        }
+    },
+    "gedit": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.gnome.org/sources/gedit/${latest:^\\d+\\.\\d*[02468]$}/${latest:^gedit-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar\\.xz$}"
+        }
+    },
+    "gendesk": {
+        "seeker": {
+            "name": "github",
+            "project": "xyproto"
+        }
+    },
+    "ghc": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://downloads.haskell.org/~ghc/latest/"
+        }
+    },
+    "gigi": {
+        "seeker": {
+            "name": "text",
+            "url": "https://raw.githubusercontent.com/freeorion/freeorion/master/GG/CMakeLists.txt",
+            "re": "GIGI_VERSION (?P<version>\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)"
+        }
+    },
+    "gimp": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.gimp.org/mirror/pub/gimp/stable/${latest:^gimp-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar\\.bz2$}"
+        }
+    },
+    "gimp-help": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.gimp.org/pub/gimp/help/${latest:^gimp-help-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar}"
+        }
+    },
+    "gist": {
+        "seeker": {
+            "name": "github",
+            "project": "defunkt"
+        }
+    },
+    "git": {
+        "seeker": {
+            "name": "github",
+            "tag": "^v(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$"
+        }
+    },
+    "glfw": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "glfw/${latest:(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "glfw2": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "glfw",
+            "path": "glfw/${latest:^(2\\.\\d+(\\.\\d+(\\.\\d+)?)?)$}"
+        }
+    },
+    "globulation2": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.savannah.gnu.org/releases/glob2/${latest}/${latest:glob2-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "glog": {
+        "seeker": {
+            "name": "github",
+            "project": "google"
+        }
+    },
+    "gloox": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://camaya.net/download/${latest:gloox-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "gluon": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/unstable/gluon/${latest}/src"
+        }
+    },
+    "glusterfs": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.gluster.org/pub/gluster/glusterfs/LATEST/"
+        }
+    },
+    "gnucap": {
+        "seeker": {
+            "name": "gitserver",
+            "url": "http://git.savannah.gnu.org/cgit/gnucap.git/"
+        }
+    },
+    "gnuchess": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://ftp.gnu.org/gnu/chess/${latest:gnuchess-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "go": {
+        "seeker": {
+            "name": "github",
+            "project": "golang",
+            "tag": "go(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)"
+        }
+    },
+    "goldendict": {
+        "seeker": {
+            "name": "github",
+            "tag": "^(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$"
+        }
+    },
+    "googletest": {
+        "seeker": {
+            "name": "github",
+            "project": "google",
+            "tag": "release-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)"
+        }
+    },
+    "gpgmepp": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:gpgmepp-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "gpsd": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download-mirror.savannah.gnu.org/releases/gpsd/"
+        }
+    },
+    "gr-lida": {
+        "seeker": {
+            "name": "github",
+            "project": "Monthy"
+        }
+    },
+    "granatier": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:granatier-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "grantlee": {
+        "seeker": {
+            "name": "github",
+            "project": "steveire"
+        }
+    },
+    "grantleetheme": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:grantleetheme-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "graphviz": {
+        "seeker": {
+            "name": "text",
+            "url": "https://raw.githubusercontent.com/ellson/graphviz/master/ChangeLog",
+            "re": "(^|\n)(?P<date>\\w+ \\d+, \\d{4})\n\\s+- Release (?P<version>.*)\n"
+        }
+    },
+    "grass": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "grub2-editor": {
+        "seeker": {
+            "name": "github",
+            "project": "maz-1"
+        }
+    },
+    "gsoap": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "gsoap2"
+        }
+    },
+    "gtk+": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.gnome.org/sources/gtk+/${latest:^\\d+\\.\\d*[02468]$}/${latest:^gtk\\+-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar\\.xz$}"
+        }
+    },
+    "gwenhywfar": {
+        "seeker": {
+            "name": "aqbanking",
+            "package": "01"
+        }
+    },
+    "gwenview": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:gwenview-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "hale": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "${latest:hale-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "handbrake": {
+        "seeker": {
+            "name": "github",
+            "project": "HandBrake",
+            "repository": "HandBrake"
+        }
+    },
+    "happy": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "hashed-storage": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "haskeline": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "hasktags": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "hedgewars": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.gna.org/hedgewars/${latest:hedgewars-src-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "higan": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "hslogger": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "html": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "htmlcxx": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "htop": {
+        "seeker": {
+            "name": "github",
+            "project": "hishamhm"
+        }
+    },
+    "http": {
+        "seeker": {
+            "name": "hackage",
+            "package": "HTTP"
+        }
+    },
+    "hummstrumm": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "Source/${latest:hummstrummengine-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "hupnp": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "hurd": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://ftp.gnu.org/gnu/hurd/${latest:^hurd-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar}"
+        }
+    },
+    "hydrogen": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "icc_examin": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "oyranos",
+            "path": "ICC Examin/${latest}/${latest:^icc_examin-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar}"
+        }
+    },
+    "icedtea-web": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://icedtea.wildebeest.org/download/source/${latest:^icedtea-web-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar}"
+        }
+    },
+    "icoutils": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.savannah.gnu.org/releases/icoutils/"
+        }
+    },
+    "ifuse": {
+        "seeker": {
+            "name": "github",
+            "project": "libimobiledevice"
+        }
+    },
+    "imagewriter": {
+        "seeker": {
+            "name": "text",
+            "url": "https://raw.githubusercontent.com/openSUSE/imagewriter/master/imagewriter.pro",
+            "re": "VERSION=(?P<version>\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)"
+        }
+    },
+    "incidenceeditor": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:incidenceeditor-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "injeqt": {
+        "seeker": {
+            "name": "github",
+            "project": "vogel"
+        }
+    },
+    "inkscape": {
+        "seeker": {
+            "name": "launchpad"
+        }
+    },
+    "inotify-tools": {
+        "seeker": {
+            "name": "github",
+            "project": "rvoicilas"
+        }
+    },
+    "inxi": {
+        "seeker": {
+            "name": "text",
+            "url": "https://raw.githubusercontent.com/smxi/inxi/master/inxi",
+            "re": [
+                "Version: (?P<version>\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)",
+                "Date: (?P<date>\\d{4}-\\d{2}-\\d{2})"
+            ]
+        }
+    },
+    "iotop": {
+        "seeker": {
+            "name": "gitserver",
+            "url": "http://repo.or.cz/iotop.git",
+            "tag": "^iotop-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)"
+        }
+    },
+    "ipython": {
+        "seeker": {
+            "name": "github",
+            "tag": "^(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$"
+        }
+    },
+    "irrlicht": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "Irrlicht SDK/${latest}/${latest:(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "irssi": {
+        "seeker": {
+            "name": "github"
+        }
+    },
+    "jhead": {
+        "seeker": {
+            "name": "text",
+            "url": "http://www.sentex.net/~mwandel/jhead/",
+            "re": "Current release version: (?P<version>[^ ]+) \\((?P<date>[^)]+)\\)"
+        }
+    },
+    "joomla": {
+        "seeker": {
+            "name": "github",
+            "repository": "joomla-cms"
+        }
+    },
+    "jovie": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:jovie-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "jreen": {
+        "seeker": {
+            "name": "github",
+            "project": "euroelessar"
+        }
+    },
+    "json": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "json-glib": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.gnome.org/sources/json-glib/${latest}/${latest:^json-glib-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar\\.xz$}"
+        }
+    },
+    "juk": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:juk-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "jupyter": {
+        "seeker": {
+            "name": "github",
+            "repository": "jupyter_core"
+        }
+    },
+    "jupyter-notebook": {
+        "seeker": {
+            "name": "github",
+            "project": "jupyter",
+            "repository": "notebook"
+        }
+    },
+    "k3b": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/k3b/${latest:k3b-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kaccessible": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kaccessible-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kaccounts-integration": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kaccounts-integration-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kaccounts-providers": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kaccounts-providers-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kadu": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kadu.im/stable/"
+        }
+    },
+    "kaffeine": {
+        "seeker": {
+            "name": "gitkde"
+        }
+    },
+    "kajongg": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kajongg-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kalarmcal": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kalarmcal-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kalgebra": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kalgebra-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kalzium": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kalzium-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kamera": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kamera-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kamerka": {
+        "seeker": {
+            "name": "github",
+            "project": "dos1"
+        }
+    },
+    "kamoso": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/kamoso/${latest}/src/"
+        }
+    },
+    "kanagram": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kanagram-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kapman": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kapman-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kapptemplate": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kapptemplate-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kastling": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "${latest:kastling-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kate": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kate-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "katomic": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:katomic-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kaudiocreator": {
+        "seeker": {
+            "name": "linuxapps",
+            "project": "1127508"
+        }
+    },
+    "kaya": {
+        "seeker": {
+            "name": "github",
+            "project": "pcapriotti"
+        }
+    },
+    "kbackgammon": {
+        "seeker": {
+            "name": "linuxapps",
+            "project": "1109441"
+        }
+    },
+    "kbackup": {
+        "seeker": {
+            "name": "linuxapps",
+            "project": "1131684"
+        }
+    },
+    "kblackbox": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kblackbox-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kblocks": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kblocks-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kblog": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kblog-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kbounce": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kbounce-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kbreakout": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kbreakout-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kbruch": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kbruch-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kcachegrind": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kcachegrind-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kcalc": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kcalc-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kcalcore": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kcalcore-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kcalutils": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kcalutils-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kcharselect": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kcharselect-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kchildlock": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "kchmviewer": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "kcm-fcitx": {
+        "seeker": {
+            "name": "github",
+            "project": "fcitx"
+        }
+    },
+    "kcm-pacman-repoeditor": {
+        "seeker": {
+            "name": "gitserver",
+            "url": "https://chakralinux.org/code/kcm-pacman-repoeditor.git/"
+        }
+    },
+    "kcolorchooser": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kcolorchooser-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kcontacts": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kcontacts-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kcron": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kcron-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdbg": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "kde-baseapps": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kde-baseapps-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-dev-scripts": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kde-dev-scripts-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-dev-utils": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kde-dev-utils-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-ar": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-ar-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-ast": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-ast-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-bg": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-bg-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-bs": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-bs-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-ca": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-ca-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-ca@valencia": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-ca@valencia-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-cs": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-cs-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-da": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-da-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-de": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-de-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-el": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-el-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-en_GB": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-en_GB-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-eo": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-eo-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-es": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-es-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-et": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-et-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-eu": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-eu-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-fa": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-fa-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-fi": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-fi-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-fr": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-fr-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-ga": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-ga-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-gl": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-gl-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-he": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-he-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-hi": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-hi-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-hr": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-hr-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-hu": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-hu-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-ia": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-ia-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-id": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-id-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-is": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-is-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-it": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-it-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-ja": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-ja-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-kk": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-kk-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-km": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-km-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-ko": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-ko-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-lt": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-lt-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-lv": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-lv-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-mr": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-mr-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-nb": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-nb-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-nds": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-nds-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-nl": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-nl-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-nn": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-nn-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-pa": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-pa-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-pl": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-pl-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-pt": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-pt-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-pt_BR": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-pt_BR-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-ro": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-ro-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-ru": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-ru-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-sk": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-sk-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-sl": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-sl-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-sr": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-sr-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-sv": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-sv-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-tr": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-tr-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-ug": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-ug-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-uk": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-uk-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-wa": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-wa-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-zh_CN": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-zh_CN-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-l10n-zh_TW": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/kde-l10n/${latest:kde-l10n-zh_TW-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kde-runtime": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kde-runtime-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdebugsettings": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kdebugsettings-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdeconnect": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/unstable/kdeconnect/${latest}/src/${latest:kdeconnect-kde-(\\d+\\.[\\da-z]+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdeedu-data": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kdeedu-data-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdegraphics-mobipocket": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kdegraphics-mobipocket-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdegraphics-strigi-analyzer": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kdegraphics-strigi-analyzer-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdegraphics-thumbnailers": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kdegraphics-thumbnailers-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdelibs": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kdelibs-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdenetwork-filesharing": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kdenetwork-filesharing-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdenetwork-strigi-analyzers": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kdenetwork-strigi-analyzers-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdenlive": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kdenlive-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdepim": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kdepim-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdepim-addons": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kdepim-addons-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdepim-apps-libs": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kdepim-apps-libs-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdepim-runtime": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kdepim-runtime-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdepimlibs": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kdepimlibs-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdesdk-kioslaves": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kdesdk-kioslaves-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdesdk-strigi-analyzers": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kdesdk-strigi-analyzers-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdesdk-thumbnailers": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kdesdk-thumbnailers-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdesvn": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/kdesvn/${latest}/"
+        }
+    },
+    "kdev-python": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/kdevelop/${latest:^\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?$}/src/${latest:kdev-python-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.}"
+        }
+    },
+    "kdev-python-py3": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/kdevelop/${latest:^\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?$}/src/${latest:kdev-python-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)-py3\\.}"
+        }
+    },
+    "kdevelop": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/kdevelop/${latest:^\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?$}/src/${latest:kdevelop-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.}"
+        }
+    },
+    "kdevelop-pg-qt": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/kdevelop-pg-qt/${latest}/src"
+        }
+    },
+    "kdevelop-php": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/kdevelop/${latest:^\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?$}/src/${latest:kdevelop-php-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdevplatform": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/kdevelop/${latest:^\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?$}/src/${latest:kdevplatform-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.}"
+        }
+    },
+    "kdewebdev": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kdewebdev-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdf": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kdf-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdgantt2": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kdgantt2-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdiamond": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kdiamond-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kdiff3": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "kdstatemachineeditor": {
+        "seeker": {
+            "name": "github",
+            "project": "KDAB",
+            "repository": "KDStateMachineEditor"
+        }
+    },
+    "keepassx": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://www.keepassx.org/releases/${latest}/"
+        }
+    },
+    "keyboardctl": {
+        "seeker": {
+            "name": "text",
+            "url": "https://raw.githubusercontent.com/manjaro/packages-community/master/keyboardctl/PKGBUILD",
+            "re": "pkgver=(?P<version>.*)"
+        }
+    },
+    "kfilebox": {
+        "seeker": {
+            "name": "github",
+            "project": "gtgt"
+        }
+    },
+    "kfloppy": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kfloppy-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kfoldersync": {
+        "seeker": {
+            "name": "linuxapps",
+            "project": "1127677"
+        }
+    },
+    "kfourinline": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kfourinline-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kgeography": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kgeography-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kget": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kget-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kgoldrunner": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kgoldrunner-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kgpg": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kgpg-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "khangman": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:khangman-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "khelpcenter": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:khelpcenter-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kholidays": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kholidays-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kid3": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "kid3/${latest:^\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?$}/"
+        }
+    },
+    "kidentitymanagement": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kidentitymanagement-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kig": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kig-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kigo": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kigo-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kile": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "stable/${latest}/"
+        }
+    },
+    "killbots": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:killbots-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kim": {
+        "modifier": {
+            "input_re": "(?P<version>\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)",
+            "output_template": "{version}"
+        },
+        "seeker": {
+            "name": "linuxapps",
+            "project": "1126887"
+        }
+    },
+    "kimap": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kimap-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kio-extras": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kio-extras-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kipi-plugins": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/kipi-plugins/"
+        }
+    },
+    "kiriki": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kiriki-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kiten": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kiten-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kiwix": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "kjots": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/kjots/${latest}/src"
+        }
+    },
+    "kjumpingcube": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kjumpingcube-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kldap": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kldap-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kleopatra": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kleopatra-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "klettres": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:klettres-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "klickety": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:klickety-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "klines": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:klines-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kmag": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kmag-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kmahjongg": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kmahjongg-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kmailtransport": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kmailtransport-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kmbox": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kmbox-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kmid2": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "kmime": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kmime-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kmines": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kmines-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kmix": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kmix-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kmousetool": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kmousetool-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kmouth": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kmouth-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kmplot": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kmplot-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kmymoney": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/kmymoney/${latest}/src"
+        }
+    },
+    "knavalbattle": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:knavalbattle-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "knemo": {
+        "seeker": {
+            "name": "linuxapps",
+            "project": "1128337"
+        }
+    },
+    "knetwalk": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:knetwalk-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "knights": {
+        "seeker": {
+            "name": "linuxapps",
+            "project": "1109460"
+        }
+    },
+    "knightsgame": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "knoppix": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://ftp.klid.dk/ftp/knoppix/"
+        }
+    },
+    "kodi": {
+        "seeker": {
+            "name": "github",
+            "project": "xbmc",
+            "repository": "xbmc",
+            "tag": "(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)"
+        }
+    },
+    "kolf": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kolf-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kollision": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kollision-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kolourpaint": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kolourpaint-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kompare": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kompare-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "konquest": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:konquest-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "konsole": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:konsole-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kontactinterface": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kontactinterface-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "konversation": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/konversation/${latest}/src"
+        }
+    },
+    "kopete": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kopete-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kpat": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kpat-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kpimtextedit": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kpimtextedit-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kpmcore": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/kpmcore/${latest}/src"
+        }
+    },
+    "kppp": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kppp-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kqtquickcharts": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kqtquickcharts-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kradio": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "kradio/${latest}/${latest:kradio\\d+-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar}"
+        }
+    },
+    "kraft": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": ""
+        }
+    },
+    "krdc": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:krdc-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "krecipes": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/krecipes/${latest}/src"
+        }
+    },
+    "kremotecontrol": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kremotecontrol-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "krename": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "kreversi": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kreversi-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "krfb": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:krfb-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "krita": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/krita/${latest}/${latest:krita-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kronometer": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/kronometer/${latest}/src"
+        }
+    },
+    "kross-interpreters": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kross-interpreters-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kruler": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kruler-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "krusader": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "krusader/${latest:^\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?$}/${latest:krusader-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar}"
+        }
+    },
+    "ksaneplugin": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ksaneplugin-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kscd": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kscd-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kshisen": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kshisen-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kshutdown": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "KShutdown/${latest:^\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?$}/${latest:kshutdown-source-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ksirk": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ksirk-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ksnakeduel": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ksnakeduel-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kspaceduel": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kspaceduel-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ksquares": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ksquares-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kstars": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kstars-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kstreamripper": {
+        "seeker": {
+            "name": "linuxapps",
+            "project": "1126631"
+        }
+    },
+    "ksudoku": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ksudoku-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ksuperkey": {
+        "seeker": {
+            "name": "github",
+            "project": "hanschen"
+        }
+    },
+    "ksvnupdater": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "ksystemlog": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ksystemlog-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kteatime": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kteatime-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ktimer": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ktimer-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ktnef": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ktnef-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ktoblzcheck": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "ktorrent": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/ktorrent/${latest}/${latest:^ktorrent-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar}"
+        }
+    },
+    "ktouch": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ktouch-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ktp-accounts-kcm": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ktp-accounts-kcm-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ktp-approver": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ktp-approver-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ktp-auth-handler": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ktp-auth-handler-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ktp-call-ui": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ktp-call-ui-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ktp-common-internals": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ktp-common-internals-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ktp-contact-list": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ktp-contact-list-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ktp-contact-runner": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ktp-contact-runner-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ktp-desktop-applets": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ktp-desktop-applets-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ktp-filetransfer-handler": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ktp-filetransfer-handler-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ktp-kded-module": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ktp-kded-module-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ktp-send-file": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ktp-send-file-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ktp-text-ui": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ktp-text-ui-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ktuberling": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:ktuberling-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kturtle": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kturtle-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kubrick": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kubrick-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kup": {
+        "seeker": {
+            "name": "github",
+            "project": "spersson",
+            "repository": "Kup",
+            "tag": "^kup-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$"
+        }
+    },
+    "kuser": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kuser-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kvirc": {
+        "seeker": {
+            "name": "github",
+            "repository": "KVIrc",
+            "tag": "^(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$"
+        }
+    },
+    "kwalletmanager": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kwalletmanager-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kwave": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "kwebkitpart": {
+        "seeker": {
+            "name": "github",
+            "project": "KDE"
+        }
+    },
+    "kwooty": {
+        "seeker": {
+            "name": "linuxapps",
+            "project": "1128174"
+        }
+    },
+    "kwordquiz": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:kwordquiz-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "kyotocabinet": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "labplot": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/labplot/${latest}/"
+        }
+    },
+    "lash": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.savannah.gnu.org/releases/lash/${latest:(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar}"
+        }
+    },
+    "lazarus": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "lcov": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "ltp",
+            "path": "Coverage Analysis/${latest:^LCOV-\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?$}/"
+        }
+    },
+    "lemonpos": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "real"
+        }
+    },
+    "leptonica": {
+        "seeker": {
+            "name": "github",
+            "project": "DanBloomberg"
+        }
+    },
+    "lesspipe": {
+        "seeker": {
+            "name": "github",
+            "project": "wofr06",
+            "tag": "^(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$"
+        }
+    },
+    "lftp": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://lftp.yar.ru/ftp/"
+        }
+    },
+    "libaccounts-glib": {
+        "seeker": {
+            "name": "gitlab",
+            "project": "accounts-sso",
+            "commit": "^Version (\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$"
+        }
+    },
+    "libaccounts-qt": {
+        "seeker": {
+            "name": "gitlab",
+            "project": "accounts-sso",
+            "commit": "^Version (\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$"
+        }
+    },
+    "libalkimia": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/alkimia/${latest}/src"
+        }
+    },
+    "libcacard": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://www.spice-space.org/download/libcacard"
+        }
+    },
+    "libcanberra": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "libcap-ng": {
+        "seeker": {
+            "name": "text",
+            "url": "http://people.redhat.com/sgrubb/libcap-ng/",
+            "re": "(?P<version>\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)<br>(?P<date>\\w+ \\d{1,2}, \\d{4})"
+        }
+    },
+    "libcdio-paranoia": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://ftp.gnu.org/gnu/libcdio/${latest:^libcdio-paranoia-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?\\+\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?(\\+\\d+)?)}"
+        }
+    },
+    "libcec": {
+        "seeker": {
+            "name": "github",
+            "project": "Pulse-Eight",
+            "tag": "^libcec-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$"
+        }
+    },
+    "libchardet": {
+        "seeker": {
+            "name": "github",
+            "project": "Joungkyun"
+        }
+    },
+    "libdbusmenu-qt": {
+        "seeker": {
+            "name": "launchpad"
+        }
+    },
+    "libdmtx": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "libechonest": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://files.lfranchi.com/${latest:^libechonest-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar}"
+        }
+    },
+    "libfastjson": {
+        "seeker": {
+            "name": "github",
+            "project": "rsyslog"
+        }
+    },
+    "libfprint": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://people.freedesktop.org/~hadess/${latest:^libfprint-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libgee": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.gnome.org/sources/libgee/${latest:^\\d+\\.\\d*[02468]$}/${latest:^libgee-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar\\.xz$}"
+        }
+    },
+    "libgravatar": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:libgravatar-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libguess": {
+        "seeker": {
+            "name": "github",
+            "project": "kaniini",
+            "commit": "(?i)version to (\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)"
+        }
+    },
+    "libicns": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "icns"
+        }
+    },
+    "libindi": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "libircclient": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "libircclient/${latest}/${latest:(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libiscsi": {
+        "seeker": {
+            "name": "github",
+            "project": "sahlberg"
+        }
+    },
+    "libkcddb": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:libkcddb-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libkcompactdisc": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:libkcompactdisc-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libkdcraw": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:libkdcraw-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libkdeedu": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:libkdeedu-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libkdegames": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:libkdegames-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libkdepim": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:libkdepim-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libkeduvocdocument": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:libkeduvocdocument-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libkexiv2": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:libkexiv2-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libkface": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:libkface-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libkfbapi": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/libkfbapi/${latest}/src/${latest:libkfbapi-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libkgapi": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/libkgapi/${latest}/src/"
+        }
+    },
+    "libkgeomap": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:libkgeomap-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libkipi": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:libkipi-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libkkc": {
+        "seeker": {
+            "name": "github",
+            "project": "ueno"
+        }
+    },
+    "libkleo": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:libkleo-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libkmahjongg": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:libkmahjongg-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libkolab": {
+        "seeker": {
+            "name": "gitserver",
+            "url": "http://cgit.kolab.org/libkolab"
+        }
+    },
+    "libkolabxml": {
+        "seeker": {
+            "name": "gitserver",
+            "url": "http://cgit.kolab.org/libkolabxml"
+        }
+    },
+    "libkomparediff2": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:libkomparediff2-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libksane": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:libksane-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libksieve": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:libksieve-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libktorrent": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/ktorrent/${latest}/${latest:ktorrent-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libkvkontakte": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/libkvkontakte/${latest}/src/"
+        }
+    },
+    "libmemcached": {
+        "seeker": {
+            "name": "launchpad"
+        }
+    },
+    "libmowgli": {
+        "seeker": {
+            "name": "github",
+            "project": "atheme",
+            "repository": "libmowgli-2"
+        }
+    },
+    "libmpdclient": {
+        "seeker": {
+            "name": "gitserver",
+            "url": "http://git.musicpd.org/cgit/master/libmpdclient.git/"
+        }
+    },
+    "libmusicbrainz": {
+        "seeker": {
+            "name": "github",
+            "project": "metabrainz",
+            "tag": "release-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)"
+        }
+    },
+    "libmygpo-qt": {
+        "seeker": {
+            "name": "github",
+            "project": "gpodder"
+        }
+    },
+    "libnfs": {
+        "seeker": {
+            "name": "github",
+            "project": "sahlberg"
+        }
+    },
+    "libofx": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "libpinyin": {
+        "seeker": {
+            "name": "github"
+        }
+    },
+    "libpwquality": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://fedorahosted.org/releases/l/i/libpwquality/"
+        }
+    },
+    "libqtelegram-aseman-edition": {
+        "seeker": {
+            "name": "github",
+            "project": "Aseman-Land",
+            "tag": "^v(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)(-stable)?$"
+        }
+    },
+    "librecad": {
+        "seeker": {
+            "name": "github",
+            "project": "LibreCAD",
+            "repository": "LibreCAD"
+        }
+    },
+    "librelp": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.rsyslog.com/librelp/"
+        }
+    },
+    "libreoffice": {
+        "seeker": {
+            "name": "gitserver",
+            "url": "https://cgit.freedesktop.org/libreoffice/core/",
+            "tag": "libreoffice-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)"
+        }
+    },
+    "librevenge": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "libwpd",
+            "path": "librevenge/"
+        }
+    },
+    "librime": {
+        "seeker": {
+            "name": "github",
+            "project": "rime",
+            "tag": "rime-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)"
+        }
+    },
+    "libsignon-glib": {
+        "seeker": {
+            "name": "gitlab",
+            "project": "accounts-sso"
+        }
+    },
+    "libspatialite": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://www.gaia-gis.it/gaia-sins/libspatialite-sources/${latest:libspatialite-(\\d+\\.\\d+(\\.\\d+(\\w+)?)?)\\.tar}"
+        }
+    },
+    "libspiro": {
+        "seeker": {
+            "name": "github",
+            "project": "fontforge"
+        }
+    },
+    "libsquish": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "libvisio": {
+        "seeker": {
+            "name": "github",
+            "project": "LibreOffice",
+            "tag": "libvisio-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)"
+        }
+    },
+    "libwebp": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://downloads.webmproject.org/releases/webp/${latest:libwebp-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar\\.gz}"
+        }
+    },
+    "libwfut": {
+        "seeker": {
+            "name": "github",
+            "project": "worldforge"
+        }
+    },
+    "libwww": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://www.w3.org/Library/Distribution/${latest:w3c-libwww-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "libxdg-basedir": {
+        "seeker": {
+            "name": "github",
+            "project": "devnev"
+        }
+    },
+    "lincity-ng": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "lincity-ng.berlios",
+            "path": "${latest:lincity-ng-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar\\.(bz2|xz)}"
+        }
+    },
+    "lipsofsuna": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "lipsofsuna/${latest}/${latest:(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "lockdev": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://ftp.debian.org/debian/pool/main/l/lockdev/${latest:lockdev_(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "lokalize": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:lokalize-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "lskat": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:lskat-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "luabind": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "luabind/${latest}/${latest:(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "luafilesystem": {
+        "modifier": "UnderscoreToDot",
+        "seeker": {
+            "name": "github",
+            "project": "keplerproject",
+            "tag": "v_(\\d+_\\d+(_\\d+(_\\d+)?)?)"
+        }
+    },
+    "lxde": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "lxde-common (default config)/${latest:^(lxde-common|LXDE Common) (\\d+\\.([0-5]\\d+|\\d)(\\.(\\d+|x))?)$}/${latest:(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "mailcommon": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:mailcommon-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "mailimporter": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:mailimporter-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "marble": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:marble-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "meandmyshadow": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "${latest}/${latest:(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "mercator": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "worldforge",
+            "path": "Mercator (terrain lib)/${latest}/${latest:(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "messagelib": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:messagelib-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "minix": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.minix3.org/iso/${latest:minix_R(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "minuet": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:minuet-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "mmap": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "moodle": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "mplayer": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://svn.mplayerhq.hu/MPlayer/releases/${latest:^MPlayer-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar}"
+        }
+    },
+    "mplayerthumbs": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:mplayerthumbs-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "mtl": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "mozjs": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "naev": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "${latest:naev-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "netbsd": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://ftp.netbsd.org/pub/NetBSD/images/${latest}/${latest:^NetBSD-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)-amd64\\.iso$}"
+        }
+    },
+    "netcat": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "nethack": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "nethack/${latest:(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "network": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "network-uri": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "neverball": {
+        "seeker": {
+            "name": "github",
+            "project": "Neverball"
+        }
+    },
+    "notepad++": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://notepad-plus-plus.org/repository/${latest}/${latest:^(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$}"
+        }
+    },
+    "nvidia-texture-tools": {
+        "seeker": {
+            "name": "github",
+            "project": "castano"
+        }
+    },
+    "octave": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://ftp.gnu.org/gnu/octave/${latest:^octave-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar}"
+        }
+    },
+    "odamex": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "Odamex/${latest}/${latest:(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "ode": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "opende",
+            "path": "ODE/${latest}/${latest:(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "okteta": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:okteta-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "okular": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:okular-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "old-locale": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "openarena": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "oarena",
+            "path": "${latest:openarena-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "openbsd": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "openmortal": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "openmortal/${latest}/${latest:(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "openoffice": {
+        "seeker": {
+            "name": "sourceforge",
+            "project": "openofficeorg.mirror",
+            "path": "${latest:\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?}/source/${latest:^apache-openoffice-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)-r\\d+-src\\.tar\\.gz$}"
+        }
+    },
+    "openscenegraph": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://trac.openscenegraph.org/downloads/developer_releases/${latest:OpenSceneGraph-(\\d+\\.[02468]+(\\.\\d+)?).zip}"
+        }
+    },
+    "opensuse": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.opensuse.org/distribution/openSUSE-current/iso/${latest:^openSUSE-Leap-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)-NET-x86_64\\.iso$}"
+        }
+    },
+    "openttd": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://fr.binaries.openttd.org/binaries/releases/${latest:(\\d+\\.\\d+(\\.\\d+)?)}"
+        }
+    },
+    "ortp": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download-mirror.savannah.gnu.org/releases/linphone/ortp/sources/${latest:ortp-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "palapeli": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:palapeli-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "parley": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:parley-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "parsec": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "phpbb": {
+        "seeker": {
+            "name": "github",
+            "tag": "^release-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$"
+        }
+    },
+    "picmi": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:picmi-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "pidgin": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "pimcommon": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:pimcommon-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "poxml": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:poxml-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "primitive": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "print-manager": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:print-manager-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "pykde4": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/${latest:^\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?$}/src/${latest:pykde4-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "python-bugzilla": {
+        "seeker": {
+            "name": "pypi"
+        }
+    },
+    "qt": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.qt.io/archive/qt/${highest:\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?}/${latest}/${latest:^qt-opensource-linux-x64-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.run$}"
+        }
+    },
+    "r": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://cran.cnr.berkeley.edu/src/base/${latest:^R-\\d+$}/"
+        }
+    },
+    "random": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "reactos": {
+        "seeker": {
+            "name": "sourceforge"
+        }
+    },
+    "regex-base": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "regex-compat": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "regex-posix": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "rocs": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:rocs-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "samba": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://download.samba.org/pub/samba/${latest:^LATEST-IS-SAMBA-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)$}"
+        }
+    },
+    "scribus": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "scribus/${latest}/${latest:^scribus-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.dmg}"
+        }
+    },
+    "sha": {
+        "seeker": {
+            "name": "hackage",
+            "package": "SHA"
+        }
+    },
+    "signon-kwallet-extension": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:signon-kwallet-extension-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "slackware": {
+        "seeker": {
+            "name": "text",
+            "url": "http://ftp.slackware.com/pub/slackware/slackware-current/RELEASE_NOTES",
+            "re": "Slackware (?P<version>\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?) release notes\\. (?P<date>.*)"
+        }
+    },
+    "spectacle": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:spectacle-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "step": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:step-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "stm": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "svgpart": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:svgpart-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "sweeper": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:sweeper-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "syb": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "syndication": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:syndication-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "systemd-kcm": {
+        "seeker": {
+            "name": "linuxapps",
+            "project": "1127873"
+        }
+    },
+    "tar": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "tbb": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "terminfo": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "text": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "thunderbird": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "tor": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "https://dist.torproject.org/${latest:^tor-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar}"
+        }
+    },
+    "transformers": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "ufw-kcm": {
+        "seeker": {
+            "name": "linuxapps",
+            "project": "1127851"
+        }
+    },
+    "umbrello": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:umbrello-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "userspace-rcu-0.8": {
+        "seeker": {
+            "name": "github",
+            "project": "urcu",
+            "repository": "userspace-rcu",
+            "tag": "^v(0\\.8\\.\\d+(\\.\\d+)?)$"
+        }
+    },
+    "utf8-string": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "vector": {
+        "seeker": {
+            "name": "hackage"
+        }
+    },
+    "vim": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "ftp://ftp.vim.org/pub/vim/unix/"
+        }
+    },
+    "vlc": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://get.videolan.org/vlc/"
+        }
+    },
+    "wesnoth": {
+        "seeker": {
+            "name": "sourceforge",
+            "path": "${latest:wesnoth-\\d+\\.\\d+}/${latest}/${latest:wesnoth-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar\\.bz2}"
+        }
+    },
+    "wine": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://dl.winehq.org/wine/source/${latest:\\d+\\.\\d*[02468]}/${latest:^wine-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)\\.tar}"
+        }
+    },
+    "wordpress": {
+        "seeker": {
+            "name": "custom"
+        }
+    },
+    "x11": {
+        "seeker": {
+            "name": "text",
+            "url": "https://www.x.org/releases/current/",
+            "re": [
+                "(?P<version>X11R\\d+\\.\\d+)",
+                "(?P<date>\\d{4}-\\d{2}-\\d{2})"
+            ]
+        }
+    },
+    "xchat": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://xchat.org/files/source/${latest}/"
+        }
+    },
+    "xfce": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://archive.xfce.org/xfce/${latest:^(\\d+\\.\\d*[02468](\\.\\d+(\\.\\d+)?)?)$}"
+        }
+    },
+    "zeroconf-ioslave": {
+        "seeker": {
+            "name": "fileserver",
+            "url": "http://download.kde.org/stable/applications/${latest}/src/${latest:zeroconf-ioslave-(\\d+\\.\\d+(\\.\\d+(\\.\\d+)?)?)}"
+        }
+    },
+    "zlib": {
+        "seeker": {
+            "name": "hackage"
+        }
+    }
+}
