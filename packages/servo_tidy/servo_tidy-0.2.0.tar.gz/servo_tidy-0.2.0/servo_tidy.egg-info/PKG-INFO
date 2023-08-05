@@ -1,0 +1,46 @@
+Metadata-Version: 1.0
+Name: servo-tidy
+Version: 0.2.0
+Summary: The servo-tidy is used to check licenses, line lengths, whitespace, flake8 on Python files, lock file versions, and more.
+Home-page: https://github.com/servo/servo
+Author: The Servo Project Developers
+Author-email: dev-servo@lists.mozilla.org
+License: UNKNOWN
+Description: servo_tidy
+        ==========
+        
+        Servo's code and license checker.
+        
+        Install from PyPI (coming soon) or
+        
+        ```
+        pip install -e git+https://github.com/servo/servo.git#egg=servo_tidy&subdirectory=python/tidy
+        ```
+        
+        
+        
+        
+        Release History
+        ---------------
+        
+        0.1.0 (2016-08-09)
+        ++++++++++++++++++
+        
+        - Improve license checking to disregard comments and line breaks
+        - License checking verifies that COPYRIGHT is specified when apache2 is used
+        
+        0.0.3 (2016-04-19)
+        ++++++++++++++++++
+        
+        - Add alternate wording of apache2 license
+        
+        0.0.2 (2016-04-17)
+        ++++++++++++++++++
+        - Cleanup Tidy to work on external deps
+        
+        0.0.1 (2016-04-12)
+        ++++++++++++++++++
+        - Package Tidy
+        
+Keywords: mozilla servo tidy
+Platform: UNKNOWN
