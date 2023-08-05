@@ -1,0 +1,15 @@
+MANIFEST.in
+README.md
+setup.py
+series_renamer/__init__.py
+series_renamer/__init__.pyc
+series_renamer/config.json
+series_renamer/logs.html
+series_renamer/series_renamer.py
+series_renamer/series_renamer.pyc
+series_renamer.egg-info/PKG-INFO
+series_renamer.egg-info/SOURCES.txt
+series_renamer.egg-info/dependency_links.txt
+series_renamer.egg-info/entry_points.txt
+series_renamer.egg-info/requires.txt
+series_renamer.egg-info/top_level.txt
