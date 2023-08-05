@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: pyptly
+Version: 1.0.0
+Summary: Python wrapper for the Aptly API
+Home-page: http://github.com/repelista/pyaptly
+Author: Nikolai Nozhenko
+Author-email: nik.nozhenko@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: aptly library
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Topic :: Software Development :: Libraries
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
