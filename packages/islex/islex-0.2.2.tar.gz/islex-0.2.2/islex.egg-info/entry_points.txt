@@ -1,0 +1,3 @@
+[console_scripts]
+islex-write-package = islex.load:write_package_data
+
