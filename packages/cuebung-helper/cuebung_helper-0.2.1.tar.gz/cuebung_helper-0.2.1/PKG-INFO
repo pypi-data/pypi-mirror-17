@@ -1,0 +1,38 @@
+Metadata-Version: 1.1
+Name: cuebung_helper
+Version: 0.2.1
+Summary: Helper function to test c code with pytest
+Home-page: https://gitlab.com/cuebung/cuebung_helper_functions
+Author: Sebastian Stigler
+Author-email: sebastian@sebastian-stigler.de
+License: mit
+Description: ==============
+        cuebung_helper
+        ==============
+        
+        
+        Helper function to test c code with pytest
+        
+        .. image:: https://codecov.io/gl/cuebung/cuebung_helper_functions/branch/master/graph/badge.svg?token=GNnCaLGieF
+          :target: https://codecov.io/gl/cuebung/cuebung_helper_functions
+          
+        .. image:: https://gitlab.com/cuebung/cuebung_helper_functions/badges/master/build.svg
+          :target: https://gitlab.com/cuebung/cuebung_helper_functions
+          
+        Description
+        ===========
+        
+        Helper function to test c code with pytest and provide an interface to present 
+        the results on the web frontend
+        
+        Note
+        ====
+        
+        This project has been set up using PyScaffold 2.5.6. For details and usage
+        information on PyScaffold see http://pyscaffold.readthedocs.org/.
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.4
