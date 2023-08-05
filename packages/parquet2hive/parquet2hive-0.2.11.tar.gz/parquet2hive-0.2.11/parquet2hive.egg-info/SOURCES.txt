@@ -1,0 +1,12 @@
+MANIFEST.in
+parquet2hive
+setup.cfg
+setup.py
+parquet2hive.egg-info/PKG-INFO
+parquet2hive.egg-info/SOURCES.txt
+parquet2hive.egg-info/dependency_links.txt
+parquet2hive.egg-info/requires.txt
+parquet2hive.egg-info/top_level.txt
+parquet2hivemodules/__init__.py
+parquet2hivemodules/parquet-tools.jar
+parquet2hivemodules/parquet2hivelib.py
