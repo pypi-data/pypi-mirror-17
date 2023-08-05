@@ -1,0 +1,35 @@
+CHANGES
+=======
+
+0.1.3 (30-08-2016)
+------------------
+
+- Set minimum required Python version to 3.4.2, the same as aiohttp 1.0.0
+
+- Made aiothrottle compatible with current aiohttp version again
+  (Now using aiohttp.StreamReader._buffer_size)
+
+- Catching RuntimeError when trying to pause a closing _SSLProtocolTransport
+
+0.1.2 (08-08-2015)
+------------------
+
+- Fixed resuming transport too often
+
+- Added 'rate_limit' and 'throttling' properties
+
+- Fixed buffer limit control
+
+0.1.1 (08-02-2015)
+------------------
+
+- Added limit_rate() and unlimit_rate() globally and response-wise
+
+- Raising ValueError on invalid rate limit
+
+- Cancelling _check_handle in Throttle's destructor
+
+0.1.0 (08-01-2015)
+------------------
+
+- Initial release with basic throttling functionality
