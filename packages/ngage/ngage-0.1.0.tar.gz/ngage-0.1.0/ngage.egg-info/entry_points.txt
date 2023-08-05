@@ -1,0 +1,3 @@
+[console_scripts]
+ngage = ngage.cli:cli
+
