@@ -1,0 +1,9 @@
+"TODO_name"
+css="http://bootswatch.com/lumen/bootstrap.min.css"
+
+"Department" {
+  char "departmentName" ( max_length = 20,  editable = true,  null = false ) 
+  char "address" ( max_length = 155,  null = false ) 
+}
+"reportOrders"("order","da")
+"reportO"()

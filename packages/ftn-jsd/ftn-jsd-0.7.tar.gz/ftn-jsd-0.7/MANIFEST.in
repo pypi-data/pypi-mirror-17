@@ -1,0 +1,14 @@
+include src/generated/templates/django_templates/apps/*
+include src/generated/templates/django_templates/apps/*
+include src/generated/templates/django_templates/assets/css/*
+include src/generated/templates/django_templates/assets/fonts/LigatureSymbols/*
+include src/generated/templates/django_templates/assets/img/*
+include src/generated/templates/django_templates/assets/js/vendor/*
+include src/generated/templates/django_templates/database/*
+include src/generated/templates/django_templates/necessary_files/*
+include src/generated/templates/django_templates/program/templates/class_html/*
+include src/generated/templates/django_templates/program/templates/registration/*
+include src/generated/templates/django_templates/program/templates/*.tx
+include src/generated/templates/django_templates/program/*.tx
+include src/generated/model/*.tx
+include src/generated/model/*.rbt
