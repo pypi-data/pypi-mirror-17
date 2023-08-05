@@ -1,0 +1,26 @@
+Metadata-Version: 2.0
+Name: dmf-device-ui
+Version: 0.2.post104
+Summary: Device user interface for Microdrop digital microfluidics (DMF) control software.
+Home-page: https://github.com/wheeler-microfluidics/dmf-device-ui
+Author: Christian Fobel
+Author-email: christian@fobel.net
+License: LGPLv2.1
+Platform: UNKNOWN
+Requires-Dist: microdrop (>=2.0.post22.dev158803465)
+Requires-Dist: microdrop-utility (>=0.4)
+Requires-Dist: networkx (>=1.10)
+Requires-Dist: opencv-python
+Requires-Dist: pandas (>=0.17.0)
+Requires-Dist: path-helpers (>=0.2)
+Requires-Dist: pycairo-gtk2-win
+Requires-Dist: pygst-0.10-win
+Requires-Dist: pygst-utils (>=0.3.post2)
+Requires-Dist: pygtk2-win
+Requires-Dist: svg-model (>=0.6)
+Requires-Dist: wheeler.pygtkhelpers (>=0.12.post4)
+Requires-Dist: zmq-plugin (>=0.2.post2)
+
+UNKNOWN
+
+
