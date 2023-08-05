@@ -1,0 +1,5 @@
+recursive-include eb-prune *.py
+exclude .pre-commit-config.yaml
+include *.rst
+include *.txt
+include VERSION
