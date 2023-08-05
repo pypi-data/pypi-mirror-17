@@ -1,0 +1,14 @@
+gym>=0.2.3
+docker-py
+Pillow
+autobahn
+twisted
+ujson
+boto3
+service_identity
+
+[atari]
+gym[atari]
+
+[go]
+go-vncdriver
