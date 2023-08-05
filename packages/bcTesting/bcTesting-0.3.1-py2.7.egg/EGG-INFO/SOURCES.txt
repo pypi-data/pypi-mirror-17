@@ -1,0 +1,12 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+bcTesting/__init__.py
+bcTesting/testBase.py
+bcTesting.egg-info/PKG-INFO
+bcTesting.egg-info/SOURCES.txt
+bcTesting.egg-info/dependency_links.txt
+bcTesting.egg-info/requires.txt
+bcTesting.egg-info/top_level.txt
