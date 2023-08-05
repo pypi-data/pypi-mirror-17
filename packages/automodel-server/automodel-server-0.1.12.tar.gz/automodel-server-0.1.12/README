@@ -1,0 +1,21 @@
+AutoModel Server
+----------------
+
+O que é?
+--------
+
+É o software do AutoModel responsável por aguardar as conexões de novos clientes do AutoModel e gerenciar suas modelagens.
+
+Iniciando o Servidor do AutoModel
+---------------------------------
+Para iniciar o Servidor do AutoModel basta entrar na pasta do AutoModel Server e executar o seguinte comando:
+
+user@automodel-server $  sh serverup.sh 
+
+logo após isso o Servidor esta pronto para receber as conexões dos clientes do AutoModel.
+
+Mais informações
+----------------
+Qualquer dúvida entre em contato com João Luiz pelo e-mail jlalmeidaf@hotmail.com.
+
+
