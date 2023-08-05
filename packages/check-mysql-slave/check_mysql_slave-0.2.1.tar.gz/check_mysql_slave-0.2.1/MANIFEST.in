@@ -1,0 +1,5 @@
+recursive-include check_mysql_slave *.py
+exclude .pre-commit-config.yaml
+include *.rst
+include VERSION
+include *.txt
