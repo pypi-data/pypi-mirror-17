@@ -1,0 +1,11 @@
+setup.py
+bin/jirit-deploy
+bin/jirit-show
+jirit/__init__.py
+jirit/jirit.py
+jirit.egg-info/PKG-INFO
+jirit.egg-info/SOURCES.txt
+jirit.egg-info/dependency_links.txt
+jirit.egg-info/not-zip-safe
+jirit.egg-info/requires.txt
+jirit.egg-info/top_level.txt
