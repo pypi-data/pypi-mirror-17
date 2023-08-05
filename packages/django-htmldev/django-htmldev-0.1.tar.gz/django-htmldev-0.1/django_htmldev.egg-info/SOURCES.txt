@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+django_htmldev.egg-info/PKG-INFO
+django_htmldev.egg-info/SOURCES.txt
+django_htmldev.egg-info/dependency_links.txt
+django_htmldev.egg-info/top_level.txt
+htmldev/__init__.py
+htmldev/admin.py
+htmldev/apps.py
+htmldev/models.py
+htmldev/tests.py
+htmldev/urls.py
+htmldev/views.py
+htmldev/migrations/__init__.py
