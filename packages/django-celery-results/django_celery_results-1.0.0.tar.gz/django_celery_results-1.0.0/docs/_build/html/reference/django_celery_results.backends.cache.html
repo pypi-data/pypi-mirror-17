@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>django_celery_results.backends.cache &mdash; django_celery_results 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/celery.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="django_celery_results 1.0.0 documentation" href="../index.html" />
+    <link rel="up" title="API Reference" href="index.html" />
+    <link rel="next" title="django_celery_results.models" href="django_celery_results.models.html" />
+    <link rel="prev" title="django_celery_results.backends.database" href="django_celery_results.backends.database.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="django_celery_results.models.html" title="django_celery_results.models"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="django_celery_results.backends.database.html" title="django_celery_results.backends.database"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">django_celery_results 1.0.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">API Reference</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="django-celery-results-backends-cache">
+<h1><code class="docutils literal"><span class="pre">django_celery_results.backends.cache</span></code><a class="headerlink" href="#django-celery-results-backends-cache" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-django_celery_results.backends.cache"></span><p>Celery cache backend using the Django Cache Framework.</p>
+<dl class="class">
+<dt id="django_celery_results.backends.cache.CacheBackend">
+<em class="property">class </em><code class="descclassname">django_celery_results.backends.cache.</code><code class="descname">CacheBackend</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/django_celery_results/backends/cache.html#CacheBackend"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django_celery_results.backends.cache.CacheBackend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Backend using the Django cache framework to store task metadata.</p>
+<dl class="attribute">
+<dt id="django_celery_results.backends.cache.CacheBackend.cache_backend">
+<code class="descname">cache_backend</code><a class="headerlink" href="#django_celery_results.backends.cache.CacheBackend.cache_backend" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="django_celery_results.backends.cache.CacheBackend.decode">
+<code class="descname">decode</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/django_celery_results/backends/cache.html#CacheBackend.decode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django_celery_results.backends.cache.CacheBackend.decode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="django_celery_results.backends.cache.CacheBackend.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/django_celery_results/backends/cache.html#CacheBackend.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django_celery_results.backends.cache.CacheBackend.delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="django_celery_results.backends.cache.CacheBackend.encode">
+<code class="descname">encode</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/django_celery_results/backends/cache.html#CacheBackend.encode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django_celery_results.backends.cache.CacheBackend.encode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="django_celery_results.backends.cache.CacheBackend.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/django_celery_results/backends/cache.html#CacheBackend.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django_celery_results.backends.cache.CacheBackend.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="django_celery_results.backends.cache.CacheBackend.set">
+<code class="descname">set</code><span class="sig-paren">(</span><em>key</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/django_celery_results/backends/cache.html#CacheBackend.set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django_celery_results.backends.cache.CacheBackend.set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="django_celery_results.backends.database.html"
+                        title="previous chapter"><code class="docutils literal"><span class="pre">django_celery_results.backends.database</span></code></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="django_celery_results.models.html"
+                        title="next chapter"><code class="docutils literal"><span class="pre">django_celery_results.models</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/reference/django_celery_results.backends.cache.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="django_celery_results.models.html" title="django_celery_results.models"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="django_celery_results.backends.database.html" title="django_celery_results.backends.database"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">django_celery_results 1.0.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; <a href="../copyright.html">Copyright</a> 2009-2016, Ask Solem.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>django_celery_results.managers &mdash; django_celery_results 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/celery.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="top" title="django_celery_results 1.0.0 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">django_celery_results 1.0.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for django_celery_results.managers</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">unicode_literals</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">wraps</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">count</span>
+
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="k">import</span> <span class="n">connections</span><span class="p">,</span> <span class="n">router</span><span class="p">,</span> <span class="n">transaction</span>
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="k">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">django.conf</span> <span class="k">import</span> <span class="n">settings</span>
+
+<span class="kn">from</span> <span class="nn">celery.five</span> <span class="k">import</span> <span class="n">items</span>
+<span class="kn">from</span> <span class="nn">celery.utils.timeutils</span> <span class="k">import</span> <span class="n">maybe_timedelta</span>
+
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="k">import</span> <span class="n">now</span>
+
+<span class="n">W_ISOLATION_REP</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Polling results with transaction isolation level &#39;repeatable-read&#39;</span>
+<span class="s2">within the same transaction may give outdated results.</span>
+
+<span class="s2">Be sure to commit the transaction for each poll iteration.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="TxIsolationWarning"><a class="viewcode-back" href="../../reference/django_celery_results.managers.html#django_celery_results.managers.TxIsolationWarning">[docs]</a><span class="k">class</span> <span class="nc">TxIsolationWarning</span><span class="p">(</span><span class="ne">UserWarning</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="transaction_retry"><a class="viewcode-back" href="../../reference/django_celery_results.managers.html#django_celery_results.managers.transaction_retry">[docs]</a><span class="k">def</span> <span class="nf">transaction_retry</span><span class="p">(</span><span class="n">max_retries</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Decorator for functions doing database operations, adding</span>
+<span class="sd">    retrying if the oepration fails.</span>
+
+<span class="sd">    Keyword Arguments:</span>
+<span class="sd">        max_retries (int): Maximum number of retries.  Default one retry.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_outer</span><span class="p">(</span><span class="n">fun</span><span class="p">):</span>
+
+        <span class="nd">@wraps</span><span class="p">(</span><span class="n">fun</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">_inner</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="n">_max_retries</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;exception_retry_count&#39;</span><span class="p">,</span> <span class="n">max_retries</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">retries</span> <span class="ow">in</span> <span class="n">count</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">fun</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>   <span class="c1"># pragma: no cover</span>
+                    <span class="c1"># Depending on the database backend used we can experience</span>
+                    <span class="c1"># various exceptions. E.g. psycopg2 raises an exception</span>
+                    <span class="c1"># if some operation breaks the transaction, so saving</span>
+                    <span class="c1"># the task result won&#39;t be possible until we rollback</span>
+                    <span class="c1"># the transaction.</span>
+                    <span class="k">if</span> <span class="n">retries</span> <span class="o">&gt;=</span> <span class="n">_max_retries</span><span class="p">:</span>
+                        <span class="k">raise</span>
+        <span class="k">return</span> <span class="n">_inner</span>
+
+    <span class="k">return</span> <span class="n">_outer</span></div>
+
+
+<div class="viewcode-block" id="TaskResultManager"><a class="viewcode-back" href="../../reference/django_celery_results.managers.html#django_celery_results.managers.TaskResultManager">[docs]</a><span class="k">class</span> <span class="nc">TaskResultManager</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Manager</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Manager for :class:`celery.models.TaskResult` models.&quot;&quot;&quot;</span>
+    <span class="n">_last_id</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="TaskResultManager.get_task"><a class="viewcode-back" href="../../reference/django_celery_results.managers.html#django_celery_results.managers.TaskResultManager.get_task">[docs]</a>    <span class="k">def</span> <span class="nf">get_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get result for task by ``task_id``.</span>
+
+<span class="sd">        Keyword Arguments:</span>
+<span class="sd">            exception_retry_count (int): How many times to retry by</span>
+<span class="sd">                transaction rollback on exception.  This could</span>
+<span class="sd">                happen in a race condition if another worker is trying to</span>
+<span class="sd">                create the same task.  The default is to retry once.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">task_id</span><span class="o">=</span><span class="n">task_id</span><span class="p">)</span>
+        <span class="k">except</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_id</span> <span class="o">==</span> <span class="n">task_id</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">warn_if_repeatable_read</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_last_id</span> <span class="o">=</span> <span class="n">task_id</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">task_id</span><span class="o">=</span><span class="n">task_id</span><span class="p">)</span></div>
+
+    <span class="nd">@transaction_retry</span><span class="p">(</span><span class="n">max_retries</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="viewcode-block" id="TaskResultManager.store_result"><a class="viewcode-back" href="../../reference/django_celery_results.managers.html#django_celery_results.managers.TaskResultManager.store_result">[docs]</a>    <span class="k">def</span> <span class="nf">store_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content_type</span><span class="p">,</span> <span class="n">content_encoding</span><span class="p">,</span>
+                     <span class="n">task_id</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span>
+                     <span class="n">traceback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">meta</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Store the result and status of a task.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            content_type (str): Mime-type of result and meta content.</span>
+<span class="sd">            content_encoding (str): Type of encoding (e.g. binary/utf-8).</span>
+<span class="sd">            task_id (str): Id of task.</span>
+<span class="sd">            result (str): The serialized return value of the task,</span>
+<span class="sd">                or an exception instance raised by the task.</span>
+<span class="sd">            status (str): Task status.  See :mod:`celery.states` for a list of</span>
+<span class="sd">                possible status values.</span>
+
+<span class="sd">        Keyword Arguments:</span>
+<span class="sd">            traceback (str): The traceback string taken at the point of</span>
+<span class="sd">                exception (only passed if the task failed).</span>
+<span class="sd">            meta (str): Serialized result meta data (this contains e.g.</span>
+<span class="sd">                children).</span>
+<span class="sd">            exception_retry_count (int): How many times to retry by</span>
+<span class="sd">                transaction rollback on exception.  This could</span>
+<span class="sd">                happen in a race condition if another worker is trying to</span>
+<span class="sd">                create the same task.  The default is to retry twice.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="n">status</span><span class="p">,</span>
+            <span class="s1">&#39;result&#39;</span><span class="p">:</span> <span class="n">result</span><span class="p">,</span>
+            <span class="s1">&#39;traceback&#39;</span><span class="p">:</span> <span class="n">traceback</span><span class="p">,</span>
+            <span class="s1">&#39;meta&#39;</span><span class="p">:</span> <span class="n">meta</span><span class="p">,</span>
+            <span class="s1">&#39;content_encoding&#39;</span><span class="p">:</span> <span class="n">content_encoding</span><span class="p">,</span>
+            <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="n">content_type</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">obj</span><span class="p">,</span> <span class="n">created</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="n">task_id</span><span class="o">=</span><span class="n">task_id</span><span class="p">,</span> <span class="n">defaults</span><span class="o">=</span><span class="n">fields</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">created</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">items</span><span class="p">(</span><span class="n">fields</span><span class="p">):</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">obj</span></div>
+
+<div class="viewcode-block" id="TaskResultManager.warn_if_repeatable_read"><a class="viewcode-back" href="../../reference/django_celery_results.managers.html#django_celery_results.managers.TaskResultManager.warn_if_repeatable_read">[docs]</a>    <span class="k">def</span> <span class="nf">warn_if_repeatable_read</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;mysql&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_engine</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_for_read</span><span class="p">()</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;SELECT @@tx_isolation&#39;</span><span class="p">):</span>
+                <span class="n">isolation</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">isolation</span> <span class="o">==</span> <span class="s1">&#39;REPEATABLE-READ&#39;</span><span class="p">:</span>
+                    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">TxIsolationWarning</span><span class="p">(</span><span class="n">W_ISOLATION_REP</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span></div>
+
+<div class="viewcode-block" id="TaskResultManager.connection_for_write"><a class="viewcode-back" href="../../reference/django_celery_results.managers.html#django_celery_results.managers.TaskResultManager.connection_for_write">[docs]</a>    <span class="k">def</span> <span class="nf">connection_for_write</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">connections</span><span class="p">[</span><span class="n">router</span><span class="o">.</span><span class="n">db_for_write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)]</span></div>
+
+<div class="viewcode-block" id="TaskResultManager.connection_for_read"><a class="viewcode-back" href="../../reference/django_celery_results.managers.html#django_celery_results.managers.TaskResultManager.connection_for_read">[docs]</a>    <span class="k">def</span> <span class="nf">connection_for_read</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">connections</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="TaskResultManager.current_engine"><a class="viewcode-back" href="../../reference/django_celery_results.managers.html#django_celery_results.managers.TaskResultManager.current_engine">[docs]</a>    <span class="k">def</span> <span class="nf">current_engine</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">settings</span><span class="o">.</span><span class="n">DATABASES</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">][</span><span class="s1">&#39;ENGINE&#39;</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">settings</span><span class="o">.</span><span class="n">DATABASE_ENGINE</span></div>
+
+<div class="viewcode-block" id="TaskResultManager.get_all_expired"><a class="viewcode-back" href="../../reference/django_celery_results.managers.html#django_celery_results.managers.TaskResultManager.get_all_expired">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_expired</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expires</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get all expired task results.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">date_done__lt</span><span class="o">=</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">maybe_timedelta</span><span class="p">(</span><span class="n">expires</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="TaskResultManager.delete_expired"><a class="viewcode-back" href="../../reference/django_celery_results.managers.html#django_celery_results.managers.TaskResultManager.delete_expired">[docs]</a>    <span class="k">def</span> <span class="nf">delete_expired</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expires</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Delete all expired results.&quot;&quot;&quot;</span>
+        <span class="n">meta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_meta</span>
+        <span class="k">with</span> <span class="n">transaction</span><span class="o">.</span><span class="n">atomic</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_all_expired</span><span class="p">(</span><span class="n">expires</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">hidden</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_for_write</span><span class="p">()</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                <span class="s1">&#39;DELETE FROM </span><span class="si">{0.db_table}</span><span class="s1"> WHERE hidden=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">meta</span><span class="p">),</span>
+                <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="p">),</span>
+            <span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">django_celery_results 1.0.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; <a href="../../copyright.html">Copyright</a> 2009-2016, Ask Solem.
+    </div>
+  </body>
+</html>

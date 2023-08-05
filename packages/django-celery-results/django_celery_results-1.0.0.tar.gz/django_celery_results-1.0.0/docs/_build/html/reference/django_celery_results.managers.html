@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>django_celery_results.managers &mdash; django_celery_results 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/celery.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="django_celery_results 1.0.0 documentation" href="../index.html" />
+    <link rel="up" title="API Reference" href="index.html" />
+    <link rel="next" title="django_celery_results.utils" href="django_celery_results.utils.html" />
+    <link rel="prev" title="django_celery_results.models" href="django_celery_results.models.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="django_celery_results.utils.html" title="django_celery_results.utils"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="django_celery_results.models.html" title="django_celery_results.models"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">django_celery_results 1.0.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">API Reference</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="django-celery-results-managers">
+<h1><code class="docutils literal"><span class="pre">django_celery_results.managers</span></code><a class="headerlink" href="#django-celery-results-managers" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-django_celery_results.managers"></span><dl class="class">
+<dt id="django_celery_results.managers.TaskResultManager">
+<em class="property">class </em><code class="descclassname">django_celery_results.managers.</code><code class="descname">TaskResultManager</code><a class="reference internal" href="../_modules/django_celery_results/managers.html#TaskResultManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django_celery_results.managers.TaskResultManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Manager for <code class="xref py py-class docutils literal"><span class="pre">celery.models.TaskResult</span></code> models.</p>
+<dl class="method">
+<dt id="django_celery_results.managers.TaskResultManager.connection_for_read">
+<code class="descname">connection_for_read</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/django_celery_results/managers.html#TaskResultManager.connection_for_read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django_celery_results.managers.TaskResultManager.connection_for_read" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="django_celery_results.managers.TaskResultManager.connection_for_write">
+<code class="descname">connection_for_write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/django_celery_results/managers.html#TaskResultManager.connection_for_write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django_celery_results.managers.TaskResultManager.connection_for_write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="django_celery_results.managers.TaskResultManager.current_engine">
+<code class="descname">current_engine</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/django_celery_results/managers.html#TaskResultManager.current_engine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django_celery_results.managers.TaskResultManager.current_engine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="django_celery_results.managers.TaskResultManager.delete_expired">
+<code class="descname">delete_expired</code><span class="sig-paren">(</span><em>expires</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/django_celery_results/managers.html#TaskResultManager.delete_expired"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django_celery_results.managers.TaskResultManager.delete_expired" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete all expired results.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="django_celery_results.managers.TaskResultManager.get_all_expired">
+<code class="descname">get_all_expired</code><span class="sig-paren">(</span><em>expires</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/django_celery_results/managers.html#TaskResultManager.get_all_expired"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django_celery_results.managers.TaskResultManager.get_all_expired" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all expired task results.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="django_celery_results.managers.TaskResultManager.get_task">
+<code class="descname">get_task</code><span class="sig-paren">(</span><em>task_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/django_celery_results/managers.html#TaskResultManager.get_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django_celery_results.managers.TaskResultManager.get_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get result for task by <code class="docutils literal"><span class="pre">task_id</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><strong>exception_retry_count</strong> (<em>int</em>) &#8211; How many times to retry by
+transaction rollback on exception.  This could
+happen in a race condition if another worker is trying to
+create the same task.  The default is to retry once.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="django_celery_results.managers.TaskResultManager.store_result">
+<code class="descname">store_result</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/django_celery_results/managers.html#TaskResultManager.store_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django_celery_results.managers.TaskResultManager.store_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Store the result and status of a task.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>content_type</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) &#8211; Mime-type of result and meta content.</li>
+<li><strong>content_encoding</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) &#8211; Type of encoding (e.g. binary/utf-8).</li>
+<li><strong>task_id</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) &#8211; Id of task.</li>
+<li><strong>result</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) &#8211; The serialized return value of the task,
+or an exception instance raised by the task.</li>
+<li><strong>status</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) &#8211; Task status.  See <a class="reference external" href="http://docs.celeryproject.org/en/master/reference/celery.states.html#module-celery.states" title="(in Celery v4.0)"><code class="xref py py-mod docutils literal"><span class="pre">celery.states</span></code></a> for a list of
+possible status values.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>traceback</strong> (<em>str</em>) &#8211; The traceback string taken at the point of
+exception (only passed if the task failed).</li>
+<li><strong>meta</strong> (<em>str</em>) &#8211; Serialized result meta data (this contains e.g.
+children).</li>
+<li><strong>exception_retry_count</strong> (<em>int</em>) &#8211; How many times to retry by
+transaction rollback on exception.  This could
+happen in a race condition if another worker is trying to
+create the same task.  The default is to retry twice.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="django_celery_results.managers.TaskResultManager.warn_if_repeatable_read">
+<code class="descname">warn_if_repeatable_read</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/django_celery_results/managers.html#TaskResultManager.warn_if_repeatable_read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django_celery_results.managers.TaskResultManager.warn_if_repeatable_read" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="django_celery_results.managers.TxIsolationWarning">
+<em class="property">exception </em><code class="descclassname">django_celery_results.managers.</code><code class="descname">TxIsolationWarning</code><a class="reference internal" href="../_modules/django_celery_results/managers.html#TxIsolationWarning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django_celery_results.managers.TxIsolationWarning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="django_celery_results.managers.transaction_retry">
+<code class="descclassname">django_celery_results.managers.</code><code class="descname">transaction_retry</code><span class="sig-paren">(</span><em>max_retries=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/django_celery_results/managers.html#transaction_retry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django_celery_results.managers.transaction_retry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator for functions doing database operations, adding
+retrying if the oepration fails.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><strong>max_retries</strong> (<em>int</em>) &#8211; Maximum number of retries.  Default one retry.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="django_celery_results.models.html"
+                        title="previous chapter"><code class="docutils literal"><span class="pre">django_celery_results.models</span></code></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="django_celery_results.utils.html"
+                        title="next chapter"><code class="docutils literal"><span class="pre">django_celery_results.utils</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/reference/django_celery_results.managers.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="django_celery_results.utils.html" title="django_celery_results.utils"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="django_celery_results.models.html" title="django_celery_results.models"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">django_celery_results 1.0.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; <a href="../copyright.html">Copyright</a> 2009-2016, Ask Solem.
+    </div>
+  </body>
+</html>
