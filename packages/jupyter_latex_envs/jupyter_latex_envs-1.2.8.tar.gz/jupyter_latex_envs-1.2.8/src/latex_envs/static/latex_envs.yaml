@@ -1,0 +1,20 @@
+Type: IPython Notebook Extension
+Name: (some) LaTeX environments for Jupyter
+Description: Enable to use laTeX environments in Jupyter's markdown cells
+Link: README.md
+Icon: icon.png
+Main: latex_envs.js
+Compatibility: Jupyter (4.x) 
+Parameters:
+- name: LaTeX_envs_menu_present
+  description: LaTeX_envs menu (insert environments) present
+  input_type: checkbox
+  default: true
+- name: eqLabelWithNumbers
+  description: Label equation with numbers (otherwise with their \label{} key)
+  input_type: checkbox
+  default: true  
+- name: bibliofile
+  description: BibTeX filename (in current directory)
+  input_type: text
+  default: biblio.bib  
