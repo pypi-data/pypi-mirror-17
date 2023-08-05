@@ -1,0 +1,54 @@
+===============================
+Phriky Units
+===============================
+
+
+.. image:: https://img.shields.io/pypi/v/phriky_units.svg
+        :target: https://pypi.python.org/pypi/phriky_units
+
+.. image:: https://img.shields.io/travis/jpwco/phriky_units.svg
+        :target: https://travis-ci.org/jpwco/phriky_units
+
+.. image:: https://readthedocs.org/projects/phriky-units/badge/?version=latest
+        :target: https://phriky-units.readthedocs.io/en/latest/?badge=latest
+        :alt: Documentation Status
+
+.. image:: https://pyup.io/repos/github/jpwco/phriky_units/shield.svg
+     :target: https://pyup.io/repos/github/jpwco/phriky_units/
+     :alt: Updates
+
+
+Physical unit static analysis tool for C++, especially for ROS
+
+
+* Free software: MIT license
+* Documentation: https://phriky-units.readthedocs.io.
+
+
+* sudo pip install phriky_units
+
+
+Dependencies:
+This code requires CppCheck to run. 
+Two options:
+1) git clone https://github.com/unl-nimbus-lab/phriky-units-dependencies-and-examples.git  and run setup.py for a local installation
+2) Download and install from http://cppcheck.sourceforge.net/
+
+
+
+
+Features
+--------
+
+* TODO
+
+Credits
+---------
+
+This work was supported in part by NSF awards #1638099 and #1526652, and USDA-NIFA #2013-67021-20947.
+
+
+Thank you Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
