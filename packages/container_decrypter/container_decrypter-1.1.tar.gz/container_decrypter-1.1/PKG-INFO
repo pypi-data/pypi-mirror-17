@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: container_decrypter
+Version: 1.1
+Summary: A library for decrypting JDownloader container formats. Currently it supports only DLC files. 
+Home-page: https://github.com/dennisfischer/container_decrypter
+Author: Dennis Fischer
+Author-email: dennis.fischer@live.com
+License: MIT
+Description: # container_decrypter
+        A library for decrypting JDownloader container formats. Currently it supports only DLC files.
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: MIT License
+Requires: requests
