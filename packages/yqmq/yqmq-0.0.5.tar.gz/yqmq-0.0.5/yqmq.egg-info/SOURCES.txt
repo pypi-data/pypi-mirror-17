@@ -1,0 +1,15 @@
+setup.cfg
+setup.py
+yqmq/__init__.py
+yqmq/channel.py
+yqmq/codec.py
+yqmq/connection.py
+yqmq/consumer.py
+yqmq/frame.py
+yqmq/spec.py
+yqmq.egg-info/PKG-INFO
+yqmq.egg-info/SOURCES.txt
+yqmq.egg-info/dependency_links.txt
+yqmq.egg-info/requires.txt
+yqmq.egg-info/top_level.txt
+yqmq.egg-info/zip-safe
