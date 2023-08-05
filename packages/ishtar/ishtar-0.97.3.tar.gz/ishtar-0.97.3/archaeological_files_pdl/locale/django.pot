@@ -1,0 +1,152 @@
+# Ishtar po translation.
+# Copyright (C) 2014
+# This file is distributed under the same license as the Ishtar package.
+# Étienne Loks <etienne.loks at peacefrogs net>, 2014.
+# Étienne Loks <etienne.loks@iggdrasil.net>, 2015. #zanata
+# Valérie-Emma Leroux <emma@iggdrasil.net>, 2016. #zanata
+msgid ""
+msgstr ""
+
+#: forms.py:41
+msgid "General"
+msgstr ""
+
+#: forms.py:43
+msgid "File type"
+msgstr ""
+
+#: forms.py:44 forms.py:401
+msgid "Year"
+msgstr ""
+
+#: forms.py:48
+msgid "Creation date"
+msgstr ""
+
+#: forms.py:51
+msgid "Reception date"
+msgstr ""
+
+#: forms.py:62
+msgid "Reception date cannot be after today."
+msgstr ""
+
+#: forms.py:70
+msgid "Permit type"
+msgstr ""
+
+#: forms.py:72
+msgid "Saisine type"
+msgstr ""
+
+#: forms.py:85
+msgid "Planning"
+msgstr ""
+
+#: forms.py:88
+msgid "Planning name"
+msgstr ""
+
+#: forms.py:91 forms.py:121
+#: templates/ishtar/wizard/wizard_preventiveplanning.html:31
+msgid "Towns"
+msgstr ""
+
+#: forms.py:93 forms.py:123
+#: templates/ishtar/wizard/wizard_preventiveplanning.html:41
+msgid "Departments"
+msgstr ""
+
+#: forms.py:94 forms.py:124
+msgid "Locality"
+msgstr ""
+
+#: forms.py:97 forms.py:127
+msgid "Address (number/street)"
+msgstr ""
+
+#: forms.py:98 forms.py:128
+msgid "Number/street"
+msgstr ""
+
+#: forms.py:100 forms.py:130
+msgid "Postal code"
+msgstr ""
+
+#: forms.py:105
+msgid "Total surface (m2)"
+msgstr ""
+
+#: forms.py:110
+msgid "Total developed surface (m2)"
+msgstr ""
+
+#: forms.py:117
+msgid "Address"
+msgstr ""
+
+#: forms.py:231 forms.py:235 forms.py:265 forms.py:268
+msgid "General contractor"
+msgstr ""
+
+#: forms.py:250 forms.py:362
+msgid "In charge"
+msgstr ""
+
+#: forms.py:340
+msgid "Town planning service"
+msgstr ""
+
+#: forms.py:344
+msgid "File reference"
+msgstr ""
+
+#: forms.py:347
+msgid "Planning service"
+msgstr ""
+
+#: forms.py:381
+msgid "Person in charge"
+msgstr ""
+
+#: forms.py:393
+msgid "Related file"
+msgstr ""
+
+#: forms.py:397
+msgid "Comment"
+msgstr ""
+
+#: forms.py:404
+msgid "Numeric reference"
+msgstr ""
+
+#: views.py:50
+msgid "New file"
+msgstr ""
+
+#: views.py:77
+msgid "File modification"
+msgstr ""
+
+#: views.py:93 views.py:97
+msgid "File followed by"
+msgstr ""
+
+#: templates/ishtar/wizard/file_confirm_wizard.html:8
+msgid "The following files have the same numeric index as this file:"
+msgstr ""
+
+#: templates/ishtar/wizard/file_confirm_wizard.html:19
+msgid ""
+"The following files are in the same town and have parcels in common with "
+"this file:"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_person_orga.html:28
+msgid "Corporation"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_person_orga.html:32
+msgid "Natural person"
+msgstr ""

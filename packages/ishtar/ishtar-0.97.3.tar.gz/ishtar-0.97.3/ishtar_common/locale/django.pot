@@ -1,0 +1,2383 @@
+# Ishtar po translation.
+# Copyright (C) 2010-2015
+# This file is distributed under the same license as the Ishtar package.
+# Étienne Loks <etienne.loks at peacefrogs net>, 2010-2015.
+# Étienne Loks <etienne.loks@iggdrasil.net>, 2015. #zanata
+# Valérie-Emma Leroux <emma@iggdrasil.net>, 2016. #zanata
+# Étienne Loks <etienne.loks@iggdrasil.net>, 2016. #zanata
+msgid ""
+msgstr ""
+
+#: __init__.py:8
+msgid "username"
+msgstr ""
+
+#: __init__.py:9
+msgid "email address"
+msgstr ""
+
+#: __init__.py:10
+msgid "Related item"
+msgstr ""
+
+#: context_processors.py:38
+msgid "Archaeological file"
+msgstr ""
+
+#: context_processors.py:39 models.py:1457
+msgid "Operation"
+msgstr ""
+
+#: context_processors.py:41
+msgid "Context record"
+msgstr ""
+
+#: context_processors.py:43
+msgid "Find"
+msgstr ""
+
+#: data_importer.py:182
+#, python-format
+msgid "\"%(value)s\" is too long. The max length is %(length)d characters."
+msgstr ""
+
+#: data_importer.py:199
+#, python-format
+msgid "\"%(value)s\" not equal to yes or no"
+msgstr ""
+
+#: data_importer.py:211
+#, python-format
+msgid "\"%(value)s\" is not a float"
+msgstr ""
+
+#: data_importer.py:224 data_importer.py:238 data_importer.py:482
+#, python-format
+msgid "\"%(value)s\" is not a valid date"
+msgstr ""
+
+#: data_importer.py:251
+#, python-format
+msgid "\"%(value)s\" is not an integer"
+msgstr ""
+
+#: data_importer.py:302 data_importer.py:545
+#, python-format
+msgid "Choice for \"%s\" is not available. Which one is relevant?\n"
+msgstr ""
+
+#: data_importer.py:309
+#, python-format
+msgid "%d. None of the above - create new"
+msgstr ""
+
+#: data_importer.py:312
+#, python-format
+msgid "%d. None of the above - skip"
+msgstr ""
+
+#: data_importer.py:508
+#, python-format
+msgid "\"%(value)s\" is not a valid path for the given archive"
+msgstr ""
+
+#: data_importer.py:620
+msgid ""
+"The given file is not correct. Check the file format. If you use a CSV file: "
+"check that column separator and encoding are similar to the ones used by the "
+"reference file."
+msgstr ""
+
+#: data_importer.py:624
+#, python-format
+msgid "Too many cols (%(user_col)d) when maximum is %(ref_col)d"
+msgstr ""
+
+#: data_importer.py:626
+msgid "No data provided"
+msgstr ""
+
+#: data_importer.py:627
+msgid "Value is required"
+msgstr ""
+
+#: data_importer.py:628
+#, python-format
+msgid "At least %d columns must be filled"
+msgstr ""
+
+#: data_importer.py:629
+msgid "The regexp doesn't match."
+msgstr ""
+
+#: data_importer.py:1037
+msgid "Not imported"
+msgstr ""
+
+#: data_importer.py:1441
+msgid "line"
+msgstr ""
+
+#: data_importer.py:1441
+msgid "col"
+msgstr ""
+
+#: data_importer.py:1441
+msgid "error"
+msgstr ""
+
+#: data_importer.py:1447
+msgid "field"
+msgstr ""
+
+#: data_importer.py:1447
+msgid "source"
+msgstr ""
+
+#: data_importer.py:1447
+msgid "result"
+msgstr ""
+
+#: data_importer.py:1463
+#, python-format
+msgid "\"%(value)s\" not in %(values)s"
+msgstr ""
+
+#: forms.py:55
+msgid "Enter a valid name consisting of letters, spaces and hyphens."
+msgstr ""
+
+#: forms.py:71 forms_common.py:490
+msgid "Confirm"
+msgstr ""
+
+#: forms.py:76
+msgid "Are you sure you want to delete?"
+msgstr ""
+
+#: forms.py:85
+msgid "There are identical items."
+msgstr ""
+
+#: forms.py:123 forms.py:124
+msgid "Closing date"
+msgstr ""
+
+#: forms.py:137
+msgid "You should select an item."
+msgstr ""
+
+#: forms.py:138
+msgid "Add a new item"
+msgstr ""
+
+#: forms.py:204 models.py:1234
+msgid "Template"
+msgstr ""
+
+#: forms_common.py:39 forms_common.py:57 forms_common.py:170
+#: forms_common.py:293 models.py:1300 models.py:2583
+#: templates/blocks/JQueryAdvancedTown.html:19
+#: templates/ishtar/sheet_organization.html:13
+msgid "Town"
+msgstr ""
+
+#: forms_common.py:41
+msgid ""
+"<p>Type name, department code and/or postal code of the town you would like "
+"to select. The search is insensitive to case.</p>\n"
+"<p>Only the first twenty results are displayed but specifying the department "
+"code is generally sufficient to get the appropriate result.</p>\n"
+"<p class='example'>For instance type \"saint denis 93\" for getting the "
+"french town Saint-Denis in the Seine-Saint-Denis department.</p>"
+msgstr ""
+
+#: forms_common.py:66 forms_common.py:718 ishtar_menu.py:47 models.py:1455
+#: models.py:2255 models.py:2407 models.py:2464
+#: templates/ishtar/sheet_person.html:4
+msgid "Person"
+msgstr ""
+
+#: forms_common.py:158 forms_common.py:234 forms_common.py:336
+#: ishtar_menu.py:71 models.py:1456 models.py:2172
+#: templates/ishtar/sheet_organization.html:4
+msgid "Organization"
+msgstr ""
+
+#: forms_common.py:161 forms_common.py:197 forms_common.py:229
+#: forms_common.py:263 forms_common.py:331 models.py:902 models.py:1233
+#: models.py:1501 models.py:1719 models.py:2166 models.py:2242 models.py:2569
+#: templates/ishtar/sheet_organization.html:8
+#: templates/ishtar/sheet_organization.html:21
+msgid "Name"
+msgstr ""
+
+#: forms_common.py:162 models.py:1442 models.py:1850
+msgid "Organization type"
+msgstr ""
+
+#: forms_common.py:164 forms_common.py:287 models.py:1295
+#: templates/ishtar/sheet_organization.html:10
+msgid "Address"
+msgstr ""
+
+#: forms_common.py:166 forms_common.py:290 models.py:1296
+#: templates/ishtar/sheet_organization.html:11
+msgid "Address complement"
+msgstr ""
+
+#: forms_common.py:168 forms_common.py:291 models.py:1298
+#: templates/ishtar/sheet_organization.html:12
+msgid "Postal code"
+msgstr ""
+
+#: forms_common.py:171 forms_common.py:294 models.py:1301
+msgid "Country"
+msgstr ""
+
+#: forms_common.py:173 forms_common.py:231 forms_common.py:267
+#: forms_common.py:333 forms_common.py:446 models.py:1328
+msgid "Email"
+msgstr ""
+
+#: forms_common.py:174 forms_common.py:270 models.py:1313
+#: templates/ishtar/sheet_organization.html:14
+#: templates/ishtar/sheet_person.html:18
+#: templates/ishtar/wizard/wizard_person.html:17
+msgid "Phone"
+msgstr ""
+
+#: forms_common.py:175 forms_common.py:279 models.py:1325
+#: templates/ishtar/sheet_organization.html:15
+#: templates/ishtar/sheet_person.html:36
+#: templates/ishtar/wizard/wizard_person.html:35
+msgid "Mobile phone"
+msgstr ""
+
+#: forms_common.py:198 forms_common.py:232 forms_common.py:334 models.py:1877
+#: models.py:2168 models.py:2505 templates/sheet_ope.html:85
+#: templates/sheet_ope.html.py:105 templates/sheet_ope.html:126
+#: templates/ishtar/import_list.html:13
+#: templates/ishtar/sheet_organization.html:23
+#: templates/ishtar/blocks/window_tables/documents.html:8
+msgid "Type"
+msgstr ""
+
+#: forms_common.py:207 views.py:130
+msgid "Organization search"
+msgstr ""
+
+#: forms_common.py:230 forms_common.py:261 forms_common.py:332 models.py:2240
+#: templates/ishtar/sheet_organization.html:22
+msgid "Surname"
+msgstr ""
+
+#: forms_common.py:246 forms_common.py:319 views.py:95
+msgid "Person search"
+msgstr ""
+
+#: forms_common.py:258 templates/ishtar/sheet_person.html:7
+#: templates/ishtar/wizard/wizard_person.html:6
+msgid "Identity"
+msgstr ""
+
+#: forms_common.py:260 forms_common.py:644 forms_common.py:685 models.py:2238
+#: models.py:2502 templates/sheet_ope.html:104
+#: templates/ishtar/blocks/window_tables/documents.html:7
+msgid "Title"
+msgstr ""
+
+#: forms_common.py:265 models.py:2244
+msgid "Raw name"
+msgstr ""
+
+#: forms_common.py:268 models.py:1314
+msgid "Phone description"
+msgstr ""
+
+#: forms_common.py:271 models.py:1316 models.py:1318
+msgid "Phone description 2"
+msgstr ""
+
+#: forms_common.py:273
+msgid "Phone 2"
+msgstr ""
+
+#: forms_common.py:275 models.py:1322
+msgid "Phone description 3"
+msgstr ""
+
+#: forms_common.py:277 models.py:1320
+msgid "Phone 3"
+msgstr ""
+
+#: forms_common.py:282
+msgid "Current organization"
+msgstr ""
+
+#: forms_common.py:296 models.py:1303
+msgid "Other address: address"
+msgstr ""
+
+#: forms_common.py:299 models.py:1306
+msgid "Other address: address complement"
+msgstr ""
+
+#: forms_common.py:301 models.py:1307
+msgid "Other address: postal code"
+msgstr ""
+
+#: forms_common.py:303 models.py:1309
+msgid "Other address: town"
+msgstr ""
+
+#: forms_common.py:305 models.py:1311
+msgid "Other address: country"
+msgstr ""
+
+#: forms_common.py:315
+msgid "Already has an account"
+msgstr ""
+
+#: forms_common.py:330
+msgid "Username"
+msgstr ""
+
+#: forms_common.py:348
+msgid "Account search"
+msgstr ""
+
+#: forms_common.py:395 forms_common.py:425 forms_common.py:429 models.py:2220
+msgid "Person type"
+msgstr ""
+
+#: forms_common.py:440 forms_common.py:445 ishtar_menu.py:32
+msgid "Account"
+msgstr ""
+
+#: forms_common.py:449 wizards.py:1170
+msgid "New password"
+msgstr ""
+
+#: forms_common.py:452
+msgid "New password (confirmation)"
+msgstr ""
+
+#: forms_common.py:471
+msgid "Your password and confirmation password do not match."
+msgstr ""
+
+#: forms_common.py:476
+msgid "You must provide a correct password."
+msgstr ""
+
+#: forms_common.py:484
+msgid "This username already exists."
+msgstr ""
+
+#: forms_common.py:491
+msgid "Send the new password by email?"
+msgstr ""
+
+#: forms_common.py:500 forms_common.py:513 models.py:2584
+msgid "Towns"
+msgstr ""
+
+#: forms_common.py:510
+msgid "There are identical towns."
+msgstr ""
+
+#: forms_common.py:594
+msgid "Only one choice can be checked."
+msgstr ""
+
+#: forms_common.py:642
+msgid "Documentation informations"
+msgstr ""
+
+#: forms_common.py:646 forms_common.py:686 models.py:1851 models.py:2485
+msgid "Source type"
+msgstr ""
+
+#: forms_common.py:648 forms_common.py:687 templates/sheet_ope.html:84
+msgid "Reference"
+msgstr ""
+
+#: forms_common.py:651 forms_common.py:688
+msgid "Internal reference"
+msgstr ""
+
+#: forms_common.py:654 models.py:2516
+msgid "Numerical ressource (web address)"
+msgstr ""
+
+#: forms_common.py:655 models.py:2518
+msgid "Receipt date"
+msgstr ""
+
+#: forms_common.py:657 models.py:2004 models.py:2520
+msgid "Creation date"
+msgstr ""
+
+#: forms_common.py:660 models.py:2523
+msgid "Receipt date in documentation"
+msgstr ""
+
+#: forms_common.py:662 forms_common.py:690 models.py:287 models.py:516
+#: models.py:1746 models.py:2248 models.py:2530
+msgid "Comment"
+msgstr ""
+
+#: forms_common.py:664 forms_common.py:689 models.py:904 models.py:1505
+#: models.py:1678 models.py:1720 models.py:2529 templates/sheet_ope.html:128
+msgid "Description"
+msgstr ""
+
+#: forms_common.py:667 models.py:2531
+msgid "Additional information"
+msgstr ""
+
+#: forms_common.py:669 forms_common.py:693 models.py:2533
+msgid "Has a duplicate"
+msgstr ""
+
+#: forms_common.py:682 forms_common.py:711 forms_common.py:744 models.py:2469
+#: templates/ishtar/wizard/wizard_person_deletion.html:124
+msgid "Author"
+msgstr ""
+
+#: forms_common.py:692
+msgid "Additional informations"
+msgstr ""
+
+#: forms_common.py:703
+msgid "Would you like to delete this documentation?"
+msgstr ""
+
+#: forms_common.py:719 models.py:1852 models.py:2459 models.py:2466
+msgid "Author type"
+msgstr ""
+
+#: forms_common.py:737
+msgid "Author selection"
+msgstr ""
+
+#: forms_common.py:751
+msgid "There are identical authors."
+msgstr ""
+
+#: forms_common.py:755 models.py:2470 models.py:2512
+#: templates/sheet_ope.html:106
+#: templates/ishtar/blocks/window_tables/documents.html:9
+msgid "Authors"
+msgstr ""
+
+#: ishtar_menu.py:29
+msgid "Administration"
+msgstr ""
+
+#: ishtar_menu.py:33
+msgid "Add/modify"
+msgstr ""
+
+#: ishtar_menu.py:36
+msgid "Deletion"
+msgstr ""
+
+#: ishtar_menu.py:39 models.py:1029 views.py:1232
+msgid "Global variables"
+msgstr ""
+
+#: ishtar_menu.py:44
+msgid "Directory"
+msgstr ""
+
+#: ishtar_menu.py:50 ishtar_menu.py:74 templates/blocks/JQueryJqGrid.html:3
+msgid "Search"
+msgstr ""
+
+#: ishtar_menu.py:54 ishtar_menu.py:79 templates/ishtar/import_list.html:15
+msgid "Creation"
+msgstr ""
+
+#: ishtar_menu.py:58 ishtar_menu.py:84
+msgid "Modification"
+msgstr ""
+
+#: ishtar_menu.py:62 ishtar_menu.py:89 templates/ishtar/merge.html:5
+msgid "Merge"
+msgstr ""
+
+#: ishtar_menu.py:66 ishtar_menu.py:93 models.py:2041 widgets.py:110
+#: templates/ishtar/form_delete.html:11
+msgid "Delete"
+msgstr ""
+
+#: ishtar_menu.py:101 models.py:2015
+msgid "Imports"
+msgstr ""
+
+#: ishtar_menu.py:104 views.py:1240
+msgid "New import"
+msgstr ""
+
+#: ishtar_menu.py:108 views.py:1254
+msgid "Current imports"
+msgstr ""
+
+#: ishtar_menu.py:112
+msgid "Old imports"
+msgstr ""
+
+#: models.py:178
+msgid "Not a valid item."
+msgstr ""
+
+#: models.py:191
+msgid "A selected item is not a valid item."
+msgstr ""
+
+#: models.py:202
+msgid "This item already exists."
+msgstr ""
+
+#: models.py:283 models.py:515 models.py:1268 models.py:1280
+msgid "Label"
+msgstr ""
+
+#: models.py:285
+msgid "Textual ID"
+msgstr ""
+
+#: models.py:288 models.py:518 models.py:1237
+msgid "Available"
+msgstr ""
+
+#: models.py:537 models.py:1792
+msgid "Key"
+msgstr ""
+
+#: models.py:543
+msgid "Specific key to an import"
+msgstr ""
+
+#: models.py:623
+msgid "Last editor"
+msgstr ""
+
+#: models.py:626
+msgid "Creator"
+msgstr ""
+
+#: models.py:766 models.py:2595
+msgid "Order"
+msgstr ""
+
+#: models.py:767
+msgid "Symmetrical"
+msgstr ""
+
+#: models.py:768
+msgid "Tiny label"
+msgstr ""
+
+#: models.py:782
+msgid "Cannot have symmetrical and an inverse_relation"
+msgstr ""
+
+#: models.py:896
+msgid "Euro"
+msgstr ""
+
+#: models.py:897
+msgid "US dollar"
+msgstr ""
+
+#: models.py:903 models.py:1503
+msgid "Slug"
+msgstr ""
+
+#: models.py:905
+msgid "Files module"
+msgstr ""
+
+#: models.py:906
+msgid "Context records module"
+msgstr ""
+
+#: models.py:908
+msgid "Finds module"
+msgstr ""
+
+#: models.py:909
+msgid "Need context records module"
+msgstr ""
+
+#: models.py:911
+msgid "Warehouses module"
+msgstr ""
+
+#: models.py:912
+msgid "Need finds module"
+msgstr ""
+
+#: models.py:914
+msgid "Home page"
+msgstr ""
+
+#: models.py:915
+msgid ""
+"Homepage of Ishtar - if not defined a default homepage will appear. Use the "
+"markdown syntax."
+msgstr ""
+
+#: models.py:918
+msgid "File external id"
+msgstr ""
+
+#: models.py:920
+msgid ""
+"Formula to manage file external ID. Change this with care. With incorrect "
+"formula, the application might be unusable and import of external data can "
+"be destructive."
+msgstr ""
+
+#: models.py:925
+msgid "Parcel external id"
+msgstr ""
+
+#: models.py:928
+msgid ""
+"Formula to manage parcel external ID. Change this with care. With incorrect "
+"formula, the application might be unusable and import of external data can "
+"be destructive."
+msgstr ""
+
+#: models.py:933
+msgid "Context record external id"
+msgstr ""
+
+#: models.py:935
+msgid ""
+"Formula to manage context record external ID. Change this with care. With "
+"incorrect formula, the application might be unusable and import of external "
+"data can be destructive."
+msgstr ""
+
+#: models.py:940
+msgid "Base find external id"
+msgstr ""
+
+#: models.py:942
+msgid ""
+"Formula to manage base find external ID. Change this with care. With "
+"incorrect formula, the application might be unusable and import of external "
+"data can be destructive."
+msgstr ""
+
+#: models.py:947
+msgid "Find external id"
+msgstr ""
+
+#: models.py:949
+msgid ""
+"Formula to manage find external ID. Change this with care. With incorrect "
+"formula, the application might be unusable and import of external data can "
+"be destructive."
+msgstr ""
+
+#: models.py:954
+msgid "Raw name for person"
+msgstr ""
+
+#: models.py:956
+msgid ""
+"Formula to manage person raw_name. Change this with care. With incorrect "
+"formula, the application might be unusable and import of external data can "
+"be destructive."
+msgstr ""
+
+#: models.py:960
+msgid "Current active"
+msgstr ""
+
+#: models.py:961
+msgid "Currency"
+msgstr ""
+
+#: models.py:965
+msgid "Ishtar site profile"
+msgstr ""
+
+#: models.py:966
+msgid "Ishtar site profiles"
+msgstr ""
+
+#: models.py:1022
+msgid "Variable name"
+msgstr ""
+
+#: models.py:1023
+msgid "Description of the variable"
+msgstr ""
+
+#: models.py:1025 models.py:1793
+msgid "Value"
+msgstr ""
+
+#: models.py:1028
+msgid "Global variable"
+msgstr ""
+
+#: models.py:1138 models.py:1168
+msgid "Total"
+msgstr ""
+
+#: models.py:1145 models.py:1269 models.py:1281
+#: templates/ishtar/sheet_person.html:21
+#: templates/ishtar/dashboards/dashboard_main_detail.html:141
+#: templates/ishtar/dashboards/dashboard_main_detail_users.html:26
+#: templates/ishtar/wizard/wizard_person.html:20
+msgid "Number"
+msgstr ""
+
+#: models.py:1232
+msgid "Administrative Act"
+msgstr ""
+
+#: models.py:1236
+msgid "Associated object"
+msgstr ""
+
+#: models.py:1240
+msgid "Document template"
+msgstr ""
+
+#: models.py:1241
+msgid "Document templates"
+msgstr ""
+
+#: models.py:1272 models.py:1282 models.py:1999
+msgid "State"
+msgstr ""
+
+#: models.py:1286 templates/blocks/JQueryAdvancedTown.html:12
+msgid "Department"
+msgstr ""
+
+#: models.py:1287
+msgid "Departments"
+msgstr ""
+
+#: models.py:1324
+msgid "Raw phone"
+msgstr ""
+
+#: models.py:1330
+msgid "Alternative address is prefered"
+msgstr ""
+
+#: models.py:1369
+msgid "Tel: "
+msgstr ""
+
+#: models.py:1373
+msgid "Mobile: "
+msgstr ""
+
+#: models.py:1377
+msgid "Email: "
+msgstr ""
+
+#: models.py:1382
+msgid "Merge key"
+msgstr ""
+
+#: models.py:1443
+msgid "Organization types"
+msgstr ""
+
+#: models.py:1459
+msgid "Archaeological site"
+msgstr ""
+
+#: models.py:1460
+msgid "Parcels"
+msgstr ""
+
+#: models.py:1462
+msgid "Operation source"
+msgstr ""
+
+#: models.py:1465 views.py:1057 views.py:1108
+msgid "Archaeological files"
+msgstr ""
+
+#: models.py:1467 views.py:1060 views.py:1116
+msgid "Context records"
+msgstr ""
+
+#: models.py:1469
+msgid "Context record relations"
+msgstr ""
+
+#: models.py:1471 views.py:1062 views.py:1119
+msgid "Finds"
+msgstr ""
+
+#: models.py:1507 templates/ishtar/dashboards/dashboard_main.html:25
+msgid "Users"
+msgstr ""
+
+#: models.py:1509
+msgid "Associated model"
+msgstr ""
+
+#: models.py:1512
+msgid "Is template"
+msgstr ""
+
+#: models.py:1513
+msgid "Unicity keys (separator \";\")"
+msgstr ""
+
+#: models.py:1517
+msgid "Importer - Type"
+msgstr ""
+
+#: models.py:1518
+msgid "Importer - Types"
+msgstr ""
+
+#: models.py:1608
+msgid "Importer - Default"
+msgstr ""
+
+#: models.py:1609
+msgid "Importer - Defaults"
+msgstr ""
+
+#: models.py:1644
+msgid "Importer - Default value"
+msgstr ""
+
+#: models.py:1645
+msgid "Importer - Default values"
+msgstr ""
+
+#: models.py:1677
+msgid "Column number"
+msgstr ""
+
+#: models.py:1680
+msgid "Required"
+msgstr ""
+
+#: models.py:1683
+msgid "Importer - Column"
+msgstr ""
+
+#: models.py:1684
+msgid "Importer - Columns"
+msgstr ""
+
+#: models.py:1704
+msgid "Field name"
+msgstr ""
+
+#: models.py:1706 models.py:1740
+msgid "Force creation of new items"
+msgstr ""
+
+#: models.py:1708 models.py:1742
+msgid "Concatenate with existing"
+msgstr ""
+
+#: models.py:1710 models.py:1744
+msgid "Concatenate character"
+msgstr ""
+
+#: models.py:1714
+msgid "Importer - Duplicate field"
+msgstr ""
+
+#: models.py:1715
+msgid "Importer - Duplicate fields"
+msgstr ""
+
+#: models.py:1722
+msgid "Regular expression"
+msgstr ""
+
+#: models.py:1725
+msgid "Importer - Regular expression"
+msgstr ""
+
+#: models.py:1726
+msgid "Importer - Regular expressions"
+msgstr ""
+
+#: models.py:1749
+msgid "Importer - Target"
+msgstr ""
+
+#: models.py:1750
+msgid "Importer - Targets"
+msgstr ""
+
+#: models.py:1774 views.py:343
+msgid "True"
+msgstr ""
+
+#: models.py:1775 views.py:345
+msgid "False"
+msgstr ""
+
+#: models.py:1794
+msgid "Is set"
+msgstr ""
+
+#: models.py:1801
+msgid "Importer - Target key"
+msgstr ""
+
+#: models.py:1802
+msgid "Importer - Targets keys"
+msgstr ""
+
+#: models.py:1853 models.py:2497 models.py:2508
+msgid "Format"
+msgstr ""
+
+#: models.py:1854 models.py:2599
+msgid "Operation type"
+msgstr ""
+
+#: models.py:1855
+msgid "Period"
+msgstr ""
+
+#: models.py:1856
+msgid "Report state"
+msgstr ""
+
+#: models.py:1857
+msgid "Unit"
+msgstr ""
+
+#: models.py:1858
+msgid "Material"
+msgstr ""
+
+#: models.py:1860
+msgid "Conservatory state"
+msgstr ""
+
+#: models.py:1861
+msgid "Preservation type"
+msgstr ""
+
+#: models.py:1862
+msgid "Object type"
+msgstr ""
+
+#: models.py:1864
+msgid "Identification type"
+msgstr ""
+
+#: models.py:1866
+msgid "Context record relation type"
+msgstr ""
+
+#: models.py:1867 models.py:2491
+msgid "Support type"
+msgstr ""
+
+#: models.py:1873
+msgid "Integer"
+msgstr ""
+
+#: models.py:1874
+msgid "Float"
+msgstr ""
+
+#: models.py:1875
+msgid "String"
+msgstr ""
+
+#: models.py:1876 templates/sheet_ope.html:86
+msgid "Date"
+msgstr ""
+
+#: models.py:1878 templates/sheet_ope.html:61 templates/sheet_ope.html.py:83
+#: templates/ishtar/dashboards/dashboard_main_detail.html:126
+msgid "Year"
+msgstr ""
+
+#: models.py:1879
+msgid "String to boolean"
+msgstr ""
+
+#: models.py:1880
+msgctxt "filesystem"
+msgid "File"
+msgstr ""
+
+#: models.py:1881
+msgid "Unknow type"
+msgstr ""
+
+#: models.py:1897
+msgid "4 digit year. e.g.: \"2015\""
+msgstr ""
+
+#: models.py:1898
+msgid "4 digit year/month/day. e.g.: \"2015/02/04\""
+msgstr ""
+
+#: models.py:1899
+msgid "Day/month/4 digit year. e.g.: \"04/02/2015\""
+msgstr ""
+
+#: models.py:1909
+msgid "Options"
+msgstr ""
+
+#: models.py:1911
+msgid "Split character(s)"
+msgstr ""
+
+#: models.py:1915
+msgid "Importer - Formater type"
+msgstr ""
+
+#: models.py:1916
+msgid "Importer - Formater types"
+msgstr ""
+
+#: models.py:1963 templates/ishtar/dashboards/dashboard_main_detail.html:63
+msgid "Created"
+msgstr ""
+
+#: models.py:1964
+msgid "Analyse in progress"
+msgstr ""
+
+#: models.py:1965
+msgid "Analysed"
+msgstr ""
+
+#: models.py:1966
+msgid "Import pending"
+msgstr ""
+
+#: models.py:1967
+msgid "Import in progress"
+msgstr ""
+
+#: models.py:1968
+msgid "Finished with errors"
+msgstr ""
+
+#: models.py:1969
+msgid "Finished"
+msgstr ""
+
+#: models.py:1970
+msgid "Archived"
+msgstr ""
+
+#: models.py:1982
+msgid "Imported file"
+msgstr ""
+
+#: models.py:1985
+msgid "Associated images (zip file)"
+msgstr ""
+
+#: models.py:1987
+msgid "Encoding"
+msgstr ""
+
+#: models.py:1989
+msgid "Skip lines"
+msgstr ""
+
+#: models.py:1990 templates/ishtar/import_list.html:47
+msgid "Error file"
+msgstr ""
+
+#: models.py:1993
+msgid "Result file"
+msgstr ""
+
+#: models.py:1996 templates/ishtar/import_list.html:53
+msgid "Match file"
+msgstr ""
+
+#: models.py:2002
+msgid "Conservative import"
+msgstr ""
+
+#: models.py:2007
+msgid "End date"
+msgstr ""
+
+#: models.py:2009
+msgid "Remaining seconds"
+msgstr ""
+
+#: models.py:2014
+msgid "Import"
+msgstr ""
+
+#: models.py:2031
+msgid "Analyse"
+msgstr ""
+
+#: models.py:2033 models.py:2036
+msgid "Re-analyse"
+msgstr ""
+
+#: models.py:2034
+msgid "Launch import"
+msgstr ""
+
+#: models.py:2037
+msgid "Re-import"
+msgstr ""
+
+#: models.py:2038
+msgid "Archive"
+msgstr ""
+
+#: models.py:2040
+msgid "Unarchive"
+msgstr ""
+
+#: models.py:2173
+msgid "Organizations"
+msgstr ""
+
+#: models.py:2175
+msgid "Can view all Organizations"
+msgstr ""
+
+#: models.py:2176
+msgid "Can view own Organization"
+msgstr ""
+
+#: models.py:2177
+msgid "Can add own Organization"
+msgstr ""
+
+#: models.py:2179
+msgid "Can change own Organization"
+msgstr ""
+
+#: models.py:2181
+msgid "Can delete own Organization"
+msgstr ""
+
+#: models.py:2216
+msgid "Groups"
+msgstr ""
+
+#: models.py:2221
+msgid "Person types"
+msgstr ""
+
+#: models.py:2228
+msgid "Mr"
+msgstr ""
+
+#: models.py:2229
+msgid "Miss"
+msgstr ""
+
+#: models.py:2230
+msgid "Mr and Mrs"
+msgstr ""
+
+#: models.py:2231
+msgid "Mrs"
+msgstr ""
+
+#: models.py:2232
+msgid "Doctor"
+msgstr ""
+
+#: models.py:2246
+msgid "Contact type"
+msgstr ""
+
+#: models.py:2249 models.py:2296
+msgid "Types"
+msgstr ""
+
+#: models.py:2252
+msgid "Is attached to"
+msgstr ""
+
+#: models.py:2256
+msgid "Persons"
+msgstr ""
+
+#: models.py:2258
+msgid "Can view all Persons"
+msgstr ""
+
+#: models.py:2259
+msgid "Can view own Person"
+msgstr ""
+
+#: models.py:2260
+msgid "Can add own Person"
+msgstr ""
+
+#: models.py:2261
+msgid "Can change own Person"
+msgstr ""
+
+#: models.py:2262
+msgid "Can delete own Person"
+msgstr ""
+
+#: models.py:2411
+msgid "Ishtar user"
+msgstr ""
+
+#: models.py:2412
+msgid "Ishtar users"
+msgstr ""
+
+#: models.py:2454
+msgid "To modify the password use the form in Auth > User"
+msgstr ""
+
+#: models.py:2460
+msgid "Author types"
+msgstr ""
+
+#: models.py:2486
+msgid "Source types"
+msgstr ""
+
+#: models.py:2492
+msgid "Support types"
+msgstr ""
+
+#: models.py:2498
+msgid "Formats"
+msgstr ""
+
+#: models.py:2503
+msgid "External ID"
+msgstr ""
+
+#: models.py:2506
+msgid "Support"
+msgstr ""
+
+#: models.py:2510
+msgid "Scale"
+msgstr ""
+
+#: models.py:2524
+msgid "Item number"
+msgstr ""
+
+#: models.py:2525
+msgid "Ref."
+msgstr ""
+
+#: models.py:2528
+msgid "Internal ref."
+msgstr ""
+
+#: models.py:2570
+msgid "Surface (m2)"
+msgstr ""
+
+#: models.py:2571 templates/sheet_ope.html:46 templates/sheet_ope.html.py:107
+msgid "Localisation"
+msgstr ""
+
+#: models.py:2596
+msgid "Is preventive"
+msgstr ""
+
+#: models.py:2600
+msgid "Operation types"
+msgstr ""
+
+#: models.py:2626
+msgid "Preventive"
+msgstr ""
+
+#: models.py:2627
+msgid "Research"
+msgstr ""
+
+#: utils.py:52
+msgid " (...)"
+msgstr ""
+
+#: views.py:102
+msgid "New person"
+msgstr ""
+
+#: views.py:110
+msgid "Person modification"
+msgstr ""
+
+#: views.py:125
+msgid "Person deletion"
+msgstr ""
+
+#: views.py:136
+msgid "New organization"
+msgstr ""
+
+#: views.py:143
+msgid "Organization modification"
+msgstr ""
+
+#: views.py:159
+msgid "Organization deletion"
+msgstr ""
+
+#: views.py:166
+msgid "Account management"
+msgstr ""
+
+#: views.py:172
+msgid "Account deletion"
+msgstr ""
+
+#: views.py:970 views.py:1039
+msgid "Operation not permitted."
+msgstr ""
+
+#: views.py:972
+#, python-format
+msgid "New %s"
+msgstr ""
+
+#: views.py:1058 views.py:1112
+msgid "Operations"
+msgstr ""
+
+#: views.py:1301 templates/ishtar/import_list.html:43
+msgid "Link unmatched items"
+msgstr ""
+
+#: views.py:1316
+msgid "Delete import"
+msgstr ""
+
+#: views.py:1375 views.py:1391
+msgid "Corporation manager"
+msgstr ""
+
+#: widgets.py:239 widgets.py:347 widgets.py:463
+msgid "Search..."
+msgstr ""
+
+#: widgets.py:608 templatetags/window_tables.py:76
+msgid "No results"
+msgstr ""
+
+#: widgets.py:609 templatetags/window_tables.py:77
+msgid "Loading..."
+msgstr ""
+
+#: widgets.py:610
+msgid "Remove"
+msgstr ""
+
+#: wizards.py:321 templates/ishtar/import_delete.html:20
+msgid "Yes"
+msgstr ""
+
+#: wizards.py:323
+msgid "No"
+msgstr ""
+
+#: wizards.py:1227
+#, python-format
+msgid "[%(app_name)s] Account creation/modification"
+msgstr ""
+
+#: templates/404.html:14
+msgid "Page not found"
+msgstr ""
+
+#: templates/404.html:15
+msgid "Back to main page"
+msgstr ""
+
+#: templates/account_activation_email.txt:3
+#, python-format
+msgid "Your account on %(app_name)s has been created or modified."
+msgstr ""
+
+#: templates/account_activation_email.txt:5
+msgid "Login:"
+msgstr ""
+
+#: templates/account_activation_email.txt:6
+msgid "Password:"
+msgstr ""
+
+#: templates/account_activation_email.txt:8
+msgid "You can log in here:"
+msgstr ""
+
+#: templates/account_activation_email.txt:10
+msgid "Thank you for you interest in the project."
+msgstr ""
+
+#: templates/account_activation_email.txt:13
+#, python-format
+msgid "The %(app_name)s team"
+msgstr ""
+
+#: templates/base.html:36
+msgid "Logged in"
+msgstr ""
+
+#: templates/base.html:37
+msgid "Log out"
+msgstr ""
+
+#: templates/base.html:38
+msgid "Change password"
+msgstr ""
+
+#: templates/base.html:40 templates/registration/activate.html:10
+#: templates/registration/login.html:8 templates/registration/login.html:10
+#: templates/registration/password_reset_complete.html:8
+msgid "Log in"
+msgstr ""
+
+#: templates/base.html:46
+msgid "Lang"
+msgstr ""
+
+#: templates/base.html:46 templates/base.html.py:93 templates/welcome.html:7
+#: templates/welcome.html.py:8 templates/welcome.html:9
+#: templates/welcome.html.py:10 templates/ishtar/manage_basket.html:4
+#: templates/ishtar/blocks/window_field.html:1
+#: templates/ishtar/blocks/window_field_detail.html:1
+#: templates/ishtar/blocks/window_field_multiple.html:1
+#: templates/ishtar/blocks/window_field_url.html:1
+msgid ":"
+msgstr ""
+
+#: templates/base.html:71
+msgid "Default selected items"
+msgstr ""
+
+#: templates/base.html:91
+msgid "Current items"
+msgstr ""
+
+#: templates/base.html:125
+msgid "Processing..."
+msgstr ""
+
+#: templates/base.html:126
+msgid "This can be long."
+msgstr ""
+
+#: templates/base.html:127
+msgid "Time to take a coffee?"
+msgstr ""
+
+#: templates/base.html:128
+msgid "Time to take another coffee?"
+msgstr ""
+
+#: templates/sheet_ope.html:4
+msgid "Export as:"
+msgstr ""
+
+#: templates/sheet_ope.html:4
+msgid "OpenOffice.org file"
+msgstr ""
+
+#: templates/sheet_ope.html:4
+msgid "PDF file"
+msgstr ""
+
+#: templates/sheet_ope.html:5
+msgid "General"
+msgstr ""
+
+#: templates/sheet_ope.html:6
+msgid "Year:"
+msgstr ""
+
+#: templates/sheet_ope.html:7
+msgid "Numerical reference:"
+msgstr ""
+
+#: templates/sheet_ope.html:9
+msgid "Patriarche OA code:"
+msgstr ""
+
+#: templates/sheet_ope.html:10
+msgid "Patriarche OA code not yet recorded !"
+msgstr ""
+
+#: templates/sheet_ope.html:12
+msgid "Operation's name:"
+msgstr ""
+
+#: templates/sheet_ope.html:14
+msgid "Edition date:"
+msgstr ""
+
+#: templates/sheet_ope.html:16
+msgid "Begining date:"
+msgstr ""
+
+#: templates/sheet_ope.html:17
+msgid "Field work end date:"
+msgstr ""
+
+#: templates/sheet_ope.html:19
+msgid "Head scientist:"
+msgstr ""
+
+#: templates/sheet_ope.html:20
+msgid "State:"
+msgstr ""
+
+#: templates/sheet_ope.html:20
+msgid "Active file"
+msgstr ""
+
+#: templates/sheet_ope.html:21
+msgid "Closed operation"
+msgstr ""
+
+#: templates/sheet_ope.html:22
+msgid "Closing date:"
+msgstr ""
+
+#: templates/sheet_ope.html:22
+msgid "by"
+msgstr ""
+
+#: templates/sheet_ope.html:24
+msgid "Type:"
+msgstr ""
+
+#: templates/sheet_ope.html:25
+msgid "Surface:"
+msgstr ""
+
+#: templates/sheet_ope.html:26
+msgid "Cost:"
+msgstr ""
+
+#: templates/sheet_ope.html:27
+msgid "Duration:"
+msgstr ""
+
+#: templates/sheet_ope.html:27
+msgid "Day"
+msgstr ""
+
+#: templates/sheet_ope.html:29
+msgid "Remains:"
+msgstr ""
+
+#: templates/sheet_ope.html:30
+msgid "Periods:"
+msgstr ""
+
+#: templates/sheet_ope.html:33
+msgid "Related file:"
+msgstr ""
+
+#: templates/sheet_ope.html:35
+msgid "Operator's reference code:"
+msgstr ""
+
+#: templates/sheet_ope.html:36
+msgid "Town planning service:"
+msgstr ""
+
+#: templates/sheet_ope.html:37
+msgid "Permit type:"
+msgstr ""
+
+#: templates/sheet_ope.html:38
+msgid "Permit reference:"
+msgstr ""
+
+#: templates/sheet_ope.html:39
+msgid "General contractor organisation:"
+msgstr ""
+
+#: templates/sheet_ope.html:40
+msgid "General contractor:"
+msgstr ""
+
+#: templates/sheet_ope.html:44
+msgid "Comment:"
+msgstr ""
+
+#: templates/sheet_ope.html:47
+msgid "Towns:"
+msgstr ""
+
+#: templates/sheet_ope.html:49
+msgid "Main address:"
+msgstr ""
+
+#: templates/sheet_ope.html:50
+msgid "Complement:"
+msgstr ""
+
+#: templates/sheet_ope.html:51
+msgid "Postal code:"
+msgstr ""
+
+#: templates/sheet_ope.html:53
+msgid "Lambert X:"
+msgstr ""
+
+#: templates/sheet_ope.html:54
+msgid "Lambert Y:"
+msgstr ""
+
+#: templates/sheet_ope.html:55
+msgid "Altitude (m NGF):"
+msgstr ""
+
+#: templates/sheet_ope.html:58
+msgid "Associated parcels"
+msgstr ""
+
+#: templates/sheet_ope.html:60
+msgid "Commune"
+msgstr ""
+
+#: templates/sheet_ope.html:62
+msgid "Section"
+msgstr ""
+
+#: templates/sheet_ope.html:63 templates/sheet_ope.html.py:129
+msgid "Parcel"
+msgstr ""
+
+#: templates/sheet_ope.html:64
+msgid "Owner"
+msgstr ""
+
+#: templates/sheet_ope.html:75
+msgid "No parcel associated to this operation"
+msgstr ""
+
+#: templates/sheet_ope.html:79 templates/sheet_ope.html.py:81
+msgid "Admninistrative acts"
+msgstr ""
+
+#: templates/sheet_ope.html:96
+msgid "No administrative act associated to this operation"
+msgstr ""
+
+#: templates/sheet_ope.html:100
+msgid "Documentation"
+msgstr ""
+
+#: templates/sheet_ope.html:102
+msgid "Documents"
+msgstr ""
+
+#: templates/sheet_ope.html:117
+msgid "No document associated to this operation"
+msgstr ""
+
+#: templates/sheet_ope.html:121 templates/sheet_ope.html.py:123
+msgid "Context Records"
+msgstr ""
+
+#: templates/sheet_ope.html:125
+msgid "ID"
+msgstr ""
+
+#: templates/sheet_ope.html:127
+msgid "Chronology"
+msgstr ""
+
+#: templates/sheet_ope.html:142
+msgid "No context record associated to this operation"
+msgstr ""
+
+#: templates/welcome.html:4
+msgid ""
+"Welcome in Ishtar, open source software for management and inventory of "
+"archaeological data"
+msgstr ""
+
+#: templates/welcome.html:5
+msgid "Some useful links:"
+msgstr ""
+
+#: templates/welcome.html:7
+msgid "Presentation site and blog"
+msgstr ""
+
+#: templates/welcome.html:7
+msgid "stay tuned with Ishtar news!"
+msgstr ""
+
+#: templates/welcome.html:8
+msgid "Admin interface"
+msgstr ""
+
+#: templates/welcome.html:8
+msgid "for admin only."
+msgstr ""
+
+#: templates/welcome.html:9
+msgid "Forum"
+msgstr ""
+
+#: templates/welcome.html:9
+msgid ""
+"need help? find a new bug? a fantastic feature to propose? Here is the place "
+"to go."
+msgstr ""
+
+#: templates/welcome.html:10
+msgid "Source code"
+msgstr ""
+
+#: templates/welcome.html:10
+msgid "tickets"
+msgstr ""
+
+#: templates/welcome.html:10
+msgid "where the magic happens."
+msgstr ""
+
+#: templates/window.html:38 templates/blocks/JQueryJqGrid.html:25
+#: templates/ishtar/manage_basket.html:9
+msgid "Add"
+msgstr ""
+
+#: templates/admin/base_site.html:4 templates/admin/base_site.html.py:7
+msgid "Ishtar administration"
+msgstr ""
+
+#: templates/blocks/JQueryAdvancedTown.html:3
+msgctxt "Region"
+msgid "State"
+msgstr ""
+
+#: templates/blocks/JQueryAdvancedTown.html:29
+msgid "Choose a state first"
+msgstr ""
+
+#: templates/blocks/JQueryJqGrid.html:9
+msgid "Search and select an item"
+msgstr ""
+
+#: templates/blocks/JQueryJqGrid.html:17 templates/blocks/JQueryJqGrid.html:20
+#: templates/ishtar/blocks/window_tables/dynamic_documents.html:9
+#: templates/ishtar/blocks/window_tables/dynamic_documents.html:12
+msgid "Export as CSV"
+msgstr ""
+
+#: templates/blocks/JQueryJqGrid.html:17 templates/blocks/JQueryJqGrid.html:20
+#: templates/ishtar/blocks/window_tables/dynamic_documents.html:9
+msgid "CSV"
+msgstr ""
+
+#: templates/blocks/JQueryJqGrid.html:18
+#: templates/ishtar/blocks/window_tables/dynamic_documents.html:10
+msgid "Export as CSV - full"
+msgstr ""
+
+#: templates/blocks/JQueryJqGrid.html:18
+#: templates/ishtar/blocks/window_tables/dynamic_documents.html:10
+msgid "CSV full"
+msgstr ""
+
+#: templates/blocks/JQueryJqGrid.html:96
+#: templates/ishtar/blocks/window_tables/dynamic_documents.html:41
+msgid "An error as occured during search. Check your query fields."
+msgstr ""
+
+#: templates/blocks/comma_list.html:1
+msgid "and"
+msgstr ""
+
+#: templates/blocks/comma_list.html:1
+msgid ", "
+msgstr ""
+
+#: templates/blocks/comma_list.html:1
+msgid "."
+msgstr ""
+
+#: templates/blocks/form_flex_snippet.html:12
+msgid "Show / hide advanced search"
+msgstr ""
+
+#: templates/blocks/form_flex_snippet.html:18
+#: templates/blocks/form_snippet.html:9
+msgid "Help"
+msgstr ""
+
+#: templates/ishtar/basket_list.html:6
+msgid "remove"
+msgstr ""
+
+#: templates/ishtar/form.html:10 templates/ishtar/formset.html:8
+#: templates/ishtar/import_list.html:58 templates/ishtar/merge.html:31
+#: templates/ishtar/simple_form.html:7
+#: templates/ishtar/wizard/confirm_wizard.html:42
+#: templates/ishtar/wizard/default_wizard.html:30
+#: templates/ishtar/wizard/search.html:13
+#: templates/ishtar/wizard/validation_bar.html:4
+msgid "Validate"
+msgstr ""
+
+#: templates/ishtar/import_delete.html:8
+msgid "The current items are linked to this import:"
+msgstr ""
+
+#: templates/ishtar/import_delete.html:18
+msgid "All these items will be deleted with this import."
+msgstr ""
+
+#: templates/ishtar/import_delete.html:19
+msgid "Are you sure?"
+msgstr ""
+
+#: templates/ishtar/import_delete.html:22
+msgid "Back"
+msgstr ""
+
+#: templates/ishtar/import_list.html:8
+msgid "No pending imports."
+msgstr ""
+
+#: templates/ishtar/import_list.html:14
+msgctxt "file"
+msgid "File"
+msgstr ""
+
+#: templates/ishtar/import_list.html:16
+msgid "Status"
+msgstr ""
+
+#: templates/ishtar/import_list.html:17
+msgid "Action"
+msgstr ""
+
+#: templates/ishtar/import_list.html:25
+msgid "Source file"
+msgstr ""
+
+#: templates/ishtar/import_list.html:50
+msgid "Control file"
+msgstr ""
+
+#: templates/ishtar/manage_basket.html:7
+msgid "Checking \"Select all\" only select the current page."
+msgstr ""
+
+#: templates/ishtar/manage_basket.html:10
+msgid "Basket content"
+msgstr ""
+
+#: templates/ishtar/merge.html:7
+msgid "Every operation on this form is irreversible"
+msgstr ""
+
+#: templates/ishtar/merge.html:9
+msgid "Page "
+msgstr ""
+
+#: templates/ishtar/merge.html:17
+msgid "Item A"
+msgstr ""
+
+#: templates/ishtar/merge.html:18
+msgid "Item B"
+msgstr ""
+
+#: templates/ishtar/merge.html:19
+msgid "B is a duplicate of A"
+msgstr ""
+
+#: templates/ishtar/merge.html:20
+msgid "A is a duplicate of B"
+msgstr ""
+
+#: templates/ishtar/merge.html:21
+msgid "Is not duplicate"
+msgstr ""
+
+#: templates/ishtar/organization_form.html:37
+#: templates/ishtar/organization_person_form.html:32
+#: templates/ishtar/person_form.html:43
+#: templates/ishtar/blocks/modify_toolbar.html:1
+#: templates/ishtar/blocks/window_nav.html:39
+msgid "Modify"
+msgstr ""
+
+#: templates/ishtar/organization_form.html:38
+#: templates/ishtar/organization_person_form.html:33
+#: templates/ishtar/person_form.html:44
+msgid "New"
+msgstr ""
+
+#: templates/ishtar/organization_form.html:39
+#: templates/ishtar/organization_person_form.html:34
+#: templates/ishtar/person_form.html:45
+msgid "Save"
+msgstr ""
+
+#: templates/ishtar/organization_form.html:40
+#: templates/ishtar/organization_person_form.html:35
+#: templates/ishtar/person_form.html:46
+#: templates/ishtar/wizard/validation_bar.html:6
+msgid "Cancel"
+msgstr ""
+
+#: templates/ishtar/organization_person_form.html:9
+#: templates/ishtar/person_form.html:9
+msgid "Identification"
+msgstr ""
+
+#: templates/ishtar/person_form.html:24
+msgid "Contact informations"
+msgstr ""
+
+#: templates/ishtar/sheet.html:28
+msgid "Close"
+msgstr ""
+
+#: templates/ishtar/sheet.html:34
+msgid "Close all windows"
+msgstr ""
+
+#: templates/ishtar/sheet_organization.html:9
+msgid "Created by:"
+msgstr ""
+
+#: templates/ishtar/sheet_organization.html:19
+msgid "Person in the organization"
+msgstr ""
+
+#: templates/ishtar/sheet_organization.html:34
+msgid "No person in this organization"
+msgstr ""
+
+#: templates/ishtar/sheet_person.html:20
+#: templates/ishtar/wizard/wizard_person.html:19
+msgid "Phone type"
+msgstr ""
+
+#: templates/ishtar/sheet_person.html:43
+#: templates/ishtar/wizard/wizard_person.html:42
+msgid "Business address"
+msgstr ""
+
+#: templates/ishtar/sheet_person.html:51
+#: templates/ishtar/wizard/wizard_person.html:51
+msgid "Other address"
+msgstr ""
+
+#: templates/ishtar/sheet_person.html:59
+msgid "Associated organization"
+msgstr ""
+
+#: templates/ishtar/sheet_person.html:70
+msgid "Associated operations as scientist"
+msgstr ""
+
+#: templates/ishtar/sheet_person.html:74
+msgid "Associated operations as responsible"
+msgstr ""
+
+#: templates/ishtar/sheet_person.html:80
+msgid "Associated archaelogical files"
+msgstr ""
+
+#: templates/ishtar/sheet_person.html:86
+msgid "Documents associated to operations"
+msgstr ""
+
+#: templates/ishtar/sheet_person.html:91
+msgid "Documents associated to context records"
+msgstr ""
+
+#: templates/ishtar/sheet_person.html:96
+msgid "Documents associated to finds"
+msgstr ""
+
+#: templates/ishtar/blocks/window_field_url.html:2
+msgid "link"
+msgstr ""
+
+#: templates/ishtar/blocks/window_nav.html:6
+msgid "Previous version"
+msgstr ""
+
+#: templates/ishtar/blocks/window_nav.html:17
+msgid "Restore this version"
+msgstr ""
+
+#: templates/ishtar/blocks/window_nav.html:17
+msgid ""
+"Are you sure to restore to this version? All changement made since this "
+"version will be lost."
+msgstr ""
+
+#: templates/ishtar/blocks/window_nav.html:22
+msgid "Restore"
+msgstr ""
+
+#: templates/ishtar/blocks/window_nav.html:24
+msgid "Next version"
+msgstr ""
+
+#: templates/ishtar/blocks/window_nav.html:45
+msgid "Export as OpenOffice.org file"
+msgstr ""
+
+#: templates/ishtar/blocks/window_nav.html:45
+msgid "Export as PDF file"
+msgstr ""
+
+#: templates/ishtar/blocks/window_tables/documents.html:10
+msgid "Related to"
+msgstr ""
+
+#: templates/ishtar/blocks/window_tables/documents.html:11
+#: templates/ishtar/blocks/window_tables/documents.html:19
+msgid "Link"
+msgstr ""
+
+#: templates/ishtar/dashboards/dashboard_main_detail.html:5
+msgid "Numbers"
+msgstr ""
+
+#: templates/ishtar/dashboards/dashboard_main_detail.html:12
+msgid "Change"
+msgstr ""
+
+#: templates/ishtar/dashboards/dashboard_main_detail.html:16
+msgid "Total:"
+msgstr ""
+
+#: templates/ishtar/dashboards/dashboard_main_detail.html:19
+msgid "Draw rectangle on the graph to zoom. Double-click to reinitialize."
+msgstr ""
+
+#: templates/ishtar/dashboards/dashboard_main_detail.html:21
+msgid "Display as an image"
+msgstr ""
+
+#: templates/ishtar/dashboards/dashboard_main_detail.html:24
+msgid "Right-click on this image to save it."
+msgstr ""
+
+#: templates/ishtar/dashboards/dashboard_main_detail.html:41
+msgid "By years"
+msgstr ""
+
+#: templates/ishtar/dashboards/dashboard_main_detail.html:43
+#: templates/ishtar/dashboards/dashboard_main_detail.html:53
+msgid "Average:"
+msgstr ""
+
+#: templates/ishtar/dashboards/dashboard_main_detail.html:44
+#: templates/ishtar/dashboards/dashboard_main_detail.html:54
+msgid "Variance:"
+msgstr ""
+
+#: templates/ishtar/dashboards/dashboard_main_detail.html:45
+#: templates/ishtar/dashboards/dashboard_main_detail.html:55
+msgid "Standard deviation:"
+msgstr ""
+
+#: templates/ishtar/dashboards/dashboard_main_detail.html:46
+#: templates/ishtar/dashboards/dashboard_main_detail.html:56
+msgid "Median:"
+msgstr ""
+
+#: templates/ishtar/dashboards/dashboard_main_detail.html:47
+#: templates/ishtar/dashboards/dashboard_main_detail.html:57
+msgid "Mode:"
+msgstr ""
+
+#: templates/ishtar/dashboards/dashboard_main_detail.html:51
+msgid "By operations"
+msgstr ""
+
+#: templates/ishtar/dashboards/dashboard_main_detail.html:61
+msgid "Created last"
+msgstr ""
+
+#: templates/ishtar/dashboards/dashboard_main_detail.html:74
+msgid "Recent changes"
+msgstr ""
+
+#: templates/ishtar/dashboards/dashboard_main_detail.html:76
+msgid "Modified"
+msgstr ""
+
+#: templates/ishtar/dashboards/dashboard_main_detail.html:114
+msgid "No data for these criteria."
+msgstr ""
+
+#: templates/ishtar/dashboards/dashboard_main_detail.html:132
+msgid "Month"
+msgstr ""
+
+#: templates/ishtar/dashboards/dashboard_main_detail_users.html:26
+msgid "User type"
+msgstr ""
+
+#: templates/ishtar/wizard/confirm_wizard.html:17
+#: templates/ishtar/wizard/wizard_done_summary.html:6
+msgid "You have entered the following informations:"
+msgstr ""
+
+#: templates/ishtar/wizard/confirm_wizard.html:41
+msgid "Would you like to save them?"
+msgstr ""
+
+#: templates/ishtar/wizard/default_wizard.html:36
+#: templates/ishtar/wizard/parcels_wizard.html:24
+#: templates/ishtar/wizard/relations_wizard.html:23
+#: templates/ishtar/wizard/search.html:20
+#: templates/ishtar/wizard/towns_wizard.html:19
+msgid "Add/Modify"
+msgstr ""
+
+#: templates/ishtar/wizard/default_wizard.html:58
+msgid ""
+"The form has changed if you don't validate it all your changes will be lost."
+msgstr ""
+
+#: templates/ishtar/wizard/parcels_wizard.html:12
+msgid ""
+"Existing parcels from the operation will be automatically added to the "
+"archaeological file."
+msgstr ""
+
+#: templates/ishtar/wizard/parcels_wizard.html:20
+#: templates/ishtar/wizard/relations_wizard.html:20
+msgid "all"
+msgstr ""
+
+#: templates/ishtar/wizard/parcels_wizard.html:23
+msgid "Add all parcels from the archaeological file"
+msgstr ""
+
+#: templates/ishtar/wizard/towns_wizard.html:27
+msgid "No town set in the associated file."
+msgstr ""
+
+#: templates/ishtar/wizard/validation_bar.html:5
+msgid "Validate and end"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_closing_done.html:4
+msgid "Item successfully closed"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_delete_done.html:4
+msgid "Item successfully deleted"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_done.html:4
+msgid "Item successfully saved"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_done_summary_2.html:7
+#: templates/ishtar/wizard/wizard_list_search_result.html:9
+msgid "You have saved the following informations:"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_organization_deletion.html:6
+msgid "Associated persons"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_organization_deletion.html:14
+msgid "Associated archaeological files"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_organization_deletion.html:22
+msgid "Operator of archaeological operations"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_organization_deletion.html:30
+msgid "Adminact: operator of archaeological operations"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_person_deletion.html:6
+msgid "In charge of archaeological files"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_person_deletion.html:14
+msgid "General contractor of archaeological files"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_person_deletion.html:22
+msgid "Responsible town planning service of archaeological files"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_person_deletion.html:30
+msgid "Scientist in charge of archaeological files"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_person_deletion.html:38
+msgid "Scientist in charge of archaeological operations"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_person_deletion.html:46
+msgid "In charge of archaeological operations"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_person_deletion.html:54
+msgid "Rapporteur CIRA des operations"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_person_deletion.html:62
+msgid "Administrativ act: in charge of archaeological operations"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_person_deletion.html:70
+msgid "Administrativ act: scientist in charge"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_person_deletion.html:78
+msgid "Administrativ act: signatory"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_person_deletion.html:86
+msgid "In charge of warehouses"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_person_deletion.html:94
+msgid "Treatments of items"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_person_deletion.html:98
+msgid "downstream"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_person_deletion.html:101
+msgid "upstream"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_person_deletion.html:108
+msgid "Property of items"
+msgstr ""
+
+#: templates/ishtar/wizard/wizard_person_deletion.html:116
+msgid "Owns parcels"
+msgstr ""
+
+#: templates/registration/activate.html:8
+msgid "Account successfully activated"
+msgstr ""
+
+#: templates/registration/activate.html:14
+msgid "Account activation failed"
+msgstr ""
+
+#: templates/registration/activation_complete.html:7
+msgid "You may now login with your username and password."
+msgstr ""
+
+#: templates/registration/activation_complete.html:9
+msgid "Login now"
+msgstr ""
+
+#: templates/registration/activation_complete.html:11
+msgid "Home"
+msgstr ""
+
+#: templates/registration/activation_email.txt:2
+msgid "Activate account at"
+msgstr ""
+
+#: templates/registration/activation_email.txt:6
+#, python-format
+msgid "Link is valid for %(expiration_days)s days."
+msgstr ""
+
+#: templates/registration/activation_email_subject.txt:1
+msgid "Account activation on"
+msgstr ""
+
+#: templates/registration/login.html:16
+msgid "Forgot password?"
+msgstr ""
+
+#: templates/registration/login.html:16
+msgid "Reset it"
+msgstr ""
+
+#: templates/registration/login.html:17
+msgid "Not member?"
+msgstr ""
+
+#: templates/registration/login.html:17
+#: templates/registration/registration_form.html:8
+msgid "Register"
+msgstr ""
+
+#: templates/registration/logout.html:6
+msgid "Logged out"
+msgstr ""
+
+#: templates/registration/password_change_done.html:6
+msgid "Password changed"
+msgstr ""
+
+#: templates/registration/password_change_form.html:10
+#: templates/registration/password_reset_confirm.html:11
+#: templates/registration/password_reset_form.html:11
+#: templates/registration/registration_form.html:10
+msgid "Submit"
+msgstr ""
+
+#: templates/registration/password_reset_complete.html:6
+msgid "Password reset successfully"
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:17
+msgid "Password reset failed"
+msgstr ""
+
+#: templates/registration/password_reset_done.html:6
+msgid "Email with password reset instructions has been sent."
+msgstr ""
+
+#: templates/registration/password_reset_email.html:2
+#, python-format
+msgid "Reset password at %(site_name)s"
+msgstr ""
+
+#: templates/registration/password_reset_form.html:7
+msgid "Reset password"
+msgstr ""
+
+#: templates/registration/registration_complete.html:6
+msgid "You are now registered. Activation email sent."
+msgstr ""
