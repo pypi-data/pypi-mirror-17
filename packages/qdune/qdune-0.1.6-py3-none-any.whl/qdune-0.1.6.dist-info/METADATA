@@ -1,0 +1,16 @@
+Metadata-Version: 2.0
+Name: qdune
+Version: 0.1.6
+Summary: dune point cloud processing tools
+Home-page: https://github.com/tashley/qDune
+Author: Thomas Ashley
+Author-email: tashley22@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: matplotlib
+Requires-Dist: numpy
+Requires-Dist: pandas
+
+UNKNOWN
+
+
