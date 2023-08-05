@@ -1,0 +1,9 @@
+# Documentation
+include README
+
+# FLANN
+graft src/Density_Sampling/FLANN
+recursive-include src/Density_Sampling/FLANN *
+
+# Miscellaneous
+include LICENSE
