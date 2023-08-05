@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: sspals
+Version: 0.0.4
+Summary: process single-shot positron annihlation lifetime spectra
+Home-page: https://github.com/PositroniumSpectroscopy/sspals
+Author: Adam Deller
+Author-email: a.deller@ucl.ac.uk
+License: BSD
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Scientific/Engineering :: Physics
