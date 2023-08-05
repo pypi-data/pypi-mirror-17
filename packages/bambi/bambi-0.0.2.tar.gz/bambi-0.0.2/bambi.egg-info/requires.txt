@@ -1,0 +1,7 @@
+numpy
+pandas>=0.18.0
+patsy
+statsmodels
+
+[test]
+nose>=0.10.1
