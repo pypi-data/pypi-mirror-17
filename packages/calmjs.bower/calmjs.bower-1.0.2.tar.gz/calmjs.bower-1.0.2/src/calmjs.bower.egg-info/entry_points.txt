@@ -1,0 +1,15 @@
+[calmjs.extras_keys]
+bower_components = enabled
+
+[calmjs.runtime]
+bower = calmjs.bower:bower.runtime
+
+[distutils.commands]
+bower = calmjs.bower:bower
+
+[distutils.setup_keywords]
+bower_json = calmjs.dist:validate_json_field
+
+[egg_info.writers]
+bower.json = calmjs.bower:write_bower_json
+
