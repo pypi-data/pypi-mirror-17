@@ -1,0 +1,9 @@
+.gitignore
+README.rst
+setup.py
+mir/ytplay.py
+mir.ytplay.egg-info/PKG-INFO
+mir.ytplay.egg-info/SOURCES.txt
+mir.ytplay.egg-info/dependency_links.txt
+mir.ytplay.egg-info/entry_points.txt
+mir.ytplay.egg-info/top_level.txt
