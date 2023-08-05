@@ -1,0 +1,12 @@
+README.rst
+setup.cfg
+setup.py
+scrapy_statsd_middleware/__init__.py
+scrapy_statsd_middleware/statsd_middleware.py
+scrapy_statsd_middleware.egg-info/PKG-INFO
+scrapy_statsd_middleware.egg-info/SOURCES.txt
+scrapy_statsd_middleware.egg-info/dependency_links.txt
+scrapy_statsd_middleware.egg-info/top_level.txt
+scrapy_statsd_middleware/tests/__init__.py
+scrapy_statsd_middleware/tests/statsd_mock.py
+scrapy_statsd_middleware/tests/test_statsd_middleware.py
