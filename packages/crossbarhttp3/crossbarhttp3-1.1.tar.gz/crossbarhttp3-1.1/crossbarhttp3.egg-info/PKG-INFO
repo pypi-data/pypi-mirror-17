@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: crossbarhttp3
+Version: 1.1
+Summary: Library for connecting to Crossbar.io HTTP Bridge Services.
+Home-page: https://github.com/jose-lpa/crossbarhttp3
+Author: José Luis Patiño Andrés
+Author-email: jose.lpa@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: wamp,crossbar.io,websockets,http-bridge
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Utilities
