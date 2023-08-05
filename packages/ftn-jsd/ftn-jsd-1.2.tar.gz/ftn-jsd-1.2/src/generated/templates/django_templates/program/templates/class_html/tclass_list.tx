@@ -1,0 +1,46 @@
+{% raw %}
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block breadcrumb-page %}{% endraw %} {{definition.name}} List {% raw %}{% endblock breadcrumb-page %}
+
+{% block title %}
+{% endraw %}
+<h1>{{definition.name}}</h1>
+{{ '{% endblock %} {% block content %}' }}
+<table class="table">
+    <tr>
+    {% for attribute in definition.attributes %}
+    <th>{{attribute.name.title()}}</th>
+    {% endfor %}
+  {{ '{%' }} if '{{model.name}}.change_{{definition.name.lower()}}' in user.get_all_permissions {{ '%}' }}
+    <th>Update</th>
+     {{ '{%' }} endif {{ '%}' }}
+    {{ '{%' }} if '{{model.name}}.delete_{{definition.name.lower()}}' in user.get_all_permissions {{ '%}' }}
+    <th>Delete</th>
+     {{ '{%' }} endif {{ '%}' }}
+    </tr>
+
+    {{ '{%' }} for {{definition.name.lower()}} in object_list {{ '%}' }}
+   <tr>
+    {% for attribute in definition.attributes %}
+    <td>{{'{{'}} {{definition.name.lower()}}.{{attribute.name}} {{'}}'}}</td>
+    {% endfor %}
+      {{ '{%' }} if '{{model.name}}.change_{{definition.name.lower()}}' in user.get_all_permissions {{ '%}' }}
+ <td>     <a class="lsf-icon" title="edit" href="{{ '{%' }} url '{{model.name}}:{{definition.name.lower()}}_edit' {{definition.name.lower()}}.id {{ '%}' }}">Update</a> </td>
+    {{ '{%' }} endif {{ '%}' }}
+
+    {{ '{%' }} if '{{model.name}}.delete_{{definition.name.lower()}}' in user.get_all_permissions {{ '%}' }}
+ <td>       <a class="lsf-icon" title="delete" href="{{ '{%' }} url '{{model.name}}:{{definition.name.lower()}}_delete' {{definition.name.lower()}}.id {{ '%}' }}">Delete</a> </td>
+    {{ '{%' }} endif {{ '%}' }}
+
+    </tr>
+ <tr>  
+
+    
+{{'    {% endfor %}'}}
+
+{{ '{%' }} if '{{model.name}}.add_{{definition.name.lower()}}' in user.get_all_permissions {{ '%}' }}
+<td> <a class="lsf-icon" title="add" href="{{ '{%' }} url '{{model.name}}:{{definition.name.lower()}}_new' {{ '%}' }}">New</a> </td>
+{{ '{%' }} endif {{ '%}' }} </tr> </table>
+{{'{% endblock %}'}}
