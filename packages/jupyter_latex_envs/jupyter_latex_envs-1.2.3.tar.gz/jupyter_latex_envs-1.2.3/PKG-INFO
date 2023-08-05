@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: jupyter_latex_envs
+Version: 1.2.3
+Summary: Jupyter notebook extension which supports (some) LaTeX environments within markdown cells. Also provides support for labels and crossreferences, document wide numbering, bibliography, and more...
+Home-page: http://github.com/jfbercher/jupyter_latex_envs
+Author: Jean-François Bercher
+Author-email: jf.bercher@gmail.com
+License: Modified BSD
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: JavaScript
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Utilities
