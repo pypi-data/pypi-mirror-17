@@ -1,0 +1,22 @@
+Metadata-Version: 1.0
+Name: mipy
+Version: 0.0.1
+Summary: Copy files to Micropython
+Home-page: https://github.com/bcb/mipy
+Author: Beau Barker
+Author-email: beauinmelbourne@gmail.com
+License: MIT
+Description: mipy
+        ****
+        
+        Copy files to Micropython.
+        
+        .. sourcecode:: sh
+        
+            pip install --user mipy
+        
+        .. sourcecode:: sh
+        
+            mipy cp main.py
+        
+Platform: UNKNOWN
