@@ -1,0 +1,3 @@
+[console_scripts]
+zh-doclint = zh_doclint.main:entry_point
+
