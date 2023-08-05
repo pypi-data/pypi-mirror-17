@@ -1,0 +1,25 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="collective.warmup">
+
+  <subscriber
+    zcml:condition="installed zope.processlifetime"
+    handler=".event.Starting"
+    for="zope.processlifetime.IProcessStarting"
+  />
+
+  <subscriber
+    zcml:condition="not-installed zope.processlifetime"
+    handler=".event.Starting"
+    for="zope.app.appsetup.interfaces.IProcessStartingEvent"
+  />
+
+  <browser:page
+    name="health.check"
+    for="zope.interface.Interface"
+    class=".browser.HealthCheck"
+    permission="zope2.View" />
+
+</configure>

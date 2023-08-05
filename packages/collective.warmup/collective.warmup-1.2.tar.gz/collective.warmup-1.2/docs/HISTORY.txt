@@ -1,0 +1,31 @@
+Changelog
+=========
+
+1.2 (2016-09-08)
+----------------
+- Check for write permissions within logfile and fallback
+  to a temporary file if can't write instead of sys.exit
+  [avoinea]
+
+- Add @@health.check browser view to be used with load-balancer
+  health-check in order not to mark backend healthy too early
+  before proper warmup.
+  [avoinea]
+
+- Avoid zombie processes. [jone]
+
+- Add zcml:condition for Plone 3 compatibility
+  [gborelli]
+
+
+1.1 (2014-07-18)
+----------------
+
+- Python 2.4 support
+  [gborelli]
+
+
+1.0 (2014-04-06)
+----------------
+
+- First release
