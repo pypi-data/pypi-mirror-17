@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+Pyxolotl.egg-info/PKG-INFO
+Pyxolotl.egg-info/SOURCES.txt
+Pyxolotl.egg-info/dependency_links.txt
+Pyxolotl.egg-info/entry_points.txt
+Pyxolotl.egg-info/requires.txt
+Pyxolotl.egg-info/top_level.txt
+pyxolotl/__init__.py
+pyxolotl/__main__.py
+pyxolotl/config.py
+pyxolotl/core.py
+pyxolotl/cryptostorage.py
+pyxolotl/exceptions.py
+pyxolotl/version.py
