@@ -1,0 +1,16 @@
+README.rst
+setup.py
+django_parler_tools.egg-info/PKG-INFO
+django_parler_tools.egg-info/SOURCES.txt
+django_parler_tools.egg-info/dependency_links.txt
+django_parler_tools.egg-info/not-zip-safe
+django_parler_tools.egg-info/requires.txt
+django_parler_tools.egg-info/top_level.txt
+parler_tools/__init__.py
+parler_tools/admin.py
+parler_tools/apps.py
+parler_tools/i18n.py
+parler_tools/models.py
+parler_tools/tests.py
+parler_tools/views.py
+parler_tools/migrations/__init__.py

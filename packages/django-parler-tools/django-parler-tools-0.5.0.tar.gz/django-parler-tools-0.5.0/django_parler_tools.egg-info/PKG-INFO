@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: django-parler-tools
+Version: 0.5.0
+Summary: Collection of helpers and mixins for translated projects (extracted from aldryn-translation-tools)
+Home-page: https://github.com/razisayyed/parler-tools
+Author: Razi Alsayyed
+Author-email: razi.sayed@gmail.com
+License: LICENSE
+Description: UNKNOWN
+Platform: OS Independent
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
