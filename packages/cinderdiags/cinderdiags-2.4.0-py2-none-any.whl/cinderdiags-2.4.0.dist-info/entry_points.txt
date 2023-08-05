@@ -1,0 +1,9 @@
+[cliff.cinderdiags]
+options-check = cinderdiags.options:CheckOptions
+software-check = cinderdiags.software:CheckSoftware
+ssh-credentials-check = cinderdiags.access:CheckCredentials
+volume-paths-check = cinderdiags.volume_paths:CheckPaths
+
+[console_scripts]
+cinderdiags = cinderdiags.main:main
+
