@@ -1,0 +1,28 @@
+Metadata-Version: 1.2
+Name: amplikyzer2
+Version: 1.0.1
+Summary: amplicon methylation analyzer for SFF (flowgrams) and FASTQ (MiSeq) files
+Home-page: https://bitbucket.org/svenrahmann/amplikyzer/
+Author: Sven Rahmann
+Author-email: Sven.Rahmann@gmail.com
+License: MIT
+Description: *amplikyzer* is short for amplicon analyzer.
+        It is a software to analyze sequenced amplicons with emphasis on
+        flowgram analysis (resulting from 454 or IonTorrent sequencing) and methylation analysis after sodium bisulfite treatment.
+        *amplikyzer2* is the successor to *amplikyzer* and adds support for the analysis of FASTQ reads from Illumina's MiSeq sequencer.
+        
+        Please read the information in the [Wiki](https://bitbucket.org/svenrahmann/amplikyzer/wiki/Home).
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Requires-Python: >=3.4
