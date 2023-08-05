@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: comake
+Version: v0.1.2
+Summary: A c++ build tool
+Home-page: https://github.com/boully/comake
+Author: liaosiwei
+Author-email: liaosiwei@163.com
+License: UNKNOWN
+Download-URL: https://github.com/boully/comake/tarball/v0.1.2
+Description: UNKNOWN
+Keywords: c++,auto-build,dependency
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
