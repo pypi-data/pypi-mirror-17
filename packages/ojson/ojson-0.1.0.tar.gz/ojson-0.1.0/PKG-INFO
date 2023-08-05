@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: ojson
+Version: 0.1.0
+Summary: Keep your JSON structure as it is
+Home-page: https://github.com/joaoandrepsilva/ojson
+Author: João André <joao.andre@axado.com.br>, Fabio Menegazzo <fabio.menegazzo@axado.com.br>
+Author-email: UNKNOWN
+License: MIT
+Description: # ojson
+        Python lib to convert JSON to a dictionary preserving its order.
+        
+Keywords: json ordered dict
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: PyPy
