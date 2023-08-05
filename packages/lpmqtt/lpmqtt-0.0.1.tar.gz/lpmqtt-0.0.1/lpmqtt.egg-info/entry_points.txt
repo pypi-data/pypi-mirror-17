@@ -1,0 +1,3 @@
+[console_scripts]
+lpmqtt = lpmqtt.daemon:main
+
