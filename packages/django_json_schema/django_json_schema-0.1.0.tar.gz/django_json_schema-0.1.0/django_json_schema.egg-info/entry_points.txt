@@ -1,0 +1,3 @@
+[console_scripts]
+django_json_schema = django_json_schema.cli:main
+
