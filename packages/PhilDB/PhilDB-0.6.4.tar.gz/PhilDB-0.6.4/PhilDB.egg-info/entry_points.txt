@@ -1,0 +1,4 @@
+[console_scripts]
+phil = phildb.console:main
+phil-create = phildb.create:main
+
