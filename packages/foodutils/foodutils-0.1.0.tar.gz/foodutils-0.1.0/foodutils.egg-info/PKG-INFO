@@ -1,0 +1,23 @@
+Metadata-Version: 1.1
+Name: foodutils
+Version: 0.1.0
+Summary: Utils for handling food.
+Home-page: https://github.com/NewmanJ1987/foodutils.git
+Author: Mister foo
+Author-email: mister@foo.com
+License: UNKNOWN
+Description: foodutils
+        =========
+        
+        Utils for handling food.
+        
+Platform: any
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
