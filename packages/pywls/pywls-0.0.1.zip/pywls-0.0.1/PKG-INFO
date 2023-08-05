@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: pywls
+Version: 0.0.1
+Summary: Weblogic automation with Python
+Home-page: https://github.com/ethnchao/pywls
+Author: Ethn Chao
+Author-email: maicheng.linyi@gmail.com
+License: GPLv3
+Description: UNKNOWN
+Keywords: pywls python weblogic ansible
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: System :: Installation/Setup
+Classifier: Topic :: System :: Systems Administration
+Classifier: Topic :: Utilities
