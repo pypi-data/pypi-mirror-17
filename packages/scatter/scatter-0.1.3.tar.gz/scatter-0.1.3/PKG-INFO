@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: scatter
+Version: 0.1.3
+Summary: Implementable distributed computing engine for python
+Home-page: https://github.com/doylezdead/python-scatter
+Author: Ryan Doyle
+Author-email: rcdoyle@mtu.edu
+License: UNKNOWN
+Download-URL: https://github.com/doylezdead/python-scatter/tarball/0.1.3
+Description: # python-scatter
+        The easiest distributed computing engine for python
+        
+Keywords: cluster,thread,distributed,scatter
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4

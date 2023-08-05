@@ -1,0 +1,11 @@
+setup.cfg
+setup.py
+scatter/Agent.py
+scatter/Master.py
+scatter/__init__.py
+scatter/lib.py
+scatter.egg-info/PKG-INFO
+scatter.egg-info/SOURCES.txt
+scatter.egg-info/dependency_links.txt
+scatter.egg-info/top_level.txt
+scatter.egg-info/zip-safe
