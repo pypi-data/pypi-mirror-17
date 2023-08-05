@@ -1,0 +1,62 @@
+Metadata-Version: 1.0
+Name: ctnamecleaner
+Version: 0.7
+Summary: Replace village and commonly-misspelled Connecticut town names with real town names.
+Home-page: https://github.com/jakekara/ctnamecleaner-py
+Author: Jake Kara
+Author-email: jake@jakekara.com
+License: GPL
+Description: # CT Name Cleaner
+        
+        Resolve village and coloquial Connecticut town names, as well as common
+        misspellings of Connecticut town names to their official town names.
+        
+        This is based on an R package of the same name by my colleague Andrew Ba Tran.
+        
+        This installs a command line script, ctclean,  as well as a library 
+        
+        by Jake Kara, jake@jakekara.com
+        
+        ### Installation
+        
+            pip install ctnamecleaner
+        
+        ### Command line util
+        
+        Usage:
+        
+        	$ ctclean New\ Preston
+        	WASHINGTON
+        	$ ctclean "New Preston"
+        	WASHINGTON
+        
+        When nothing is found, return None:
+        
+        	$ ctclean NotGonnaFindItsVille
+        	None
+        
+        Set a custom value to return on error with the --error or -e flag:
+        
+            $ ctclean NotGonnaFindItsVille --error "Ruh Roh"
+            Ruh Roh
+        
+        ### Use with Pandas dataframes
+        
+        See the demo/ folder in this repo for an example of translating an entire
+        column with the Lookup.clean_dataframe() method. It uses pandas'
+        DataFrame.join() method, so it's faster than using the Lookup.cean() method
+        and applying it with a lambda function yourself.
+        
+        ### Extending with other data
+        
+        Not in CT? Want to map other things, like population? Just make a spreadsheet
+        and put it anywhere, online or locally, that Pandas .read_csv() can open.
+        
+        You can specify a spreadsheet (local or remote) to use as the lookup table
+        when you instantiate a Lookup object. You have to specify a path to the sheet
+        as well as the name of the raw name column and the clean name column.
+        
+             >>> l = lookup.Lookup(csv_url="http://path/to/your/sheet",
+        			   raw_name_col="something",
+        			   clean_name_col="something_else")
+Platform: UNKNOWN
