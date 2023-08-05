@@ -1,0 +1,15 @@
+from django.conf.urls import patterns, url
+
+from {{model.name}} import views
+
+urlpatterns = patterns('',
+{% for definition in model.classes %}
+                       url(r'^{{definition.name.lower()}}_list$', views.{{definition.name.lower()}}_list, name='{{definition.name.lower()}}_list'),
+                       url(r'^{{definition.name.lower()}}_create$', views.{{definition.name.lower()}}_create, name='{{definition.name.lower()}}_new'),
+                       url(r'^{{definition.name.lower()}}_update/(?P<pk>\d+)$', views.{{definition.name.lower()}}_update, name='{{definition.name.lower()}}_edit'),
+                       url(r'^{{definition.name.lower()}}_delete/(?P<pk>\d+)$', views.{{definition.name.lower()}}_delete, name='{{definition.name.lower()}}_delete'),
+{% endfor %}
+{% for method in model.methods %}
+					   url(r'^{{method.name}}{% if method.parameters %}{% for p in method.parameters %}/(?P<{{p.value}}>\d+){% endfor %}${% else %}/${% endif %}', '{{model.name}}.customViews.{{method.name.lower()}}', name='{{method.name.lower()}}'),
+{% endfor %}
+)
