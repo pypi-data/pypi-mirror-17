@@ -1,0 +1,4 @@
+[console_scripts]
+gae_testrunner.py = webapptitude.test:main
+webapptitude_test = webapptitude.test:main
+
