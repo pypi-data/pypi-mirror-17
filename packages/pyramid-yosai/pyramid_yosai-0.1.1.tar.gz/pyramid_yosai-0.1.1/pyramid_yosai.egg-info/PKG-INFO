@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: pyramid-yosai
+Version: 0.1.1
+Summary: pyramid_yosai
+Home-page: UNKNOWN
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Description: Integration of Yosai with Pyramid
+Keywords: web wsgi pyramid yosai security rbac authorization
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Framework :: Pyramid
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application
