@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: chakraversiontracker
+Version: 1.0.0.20160901
+Summary: Software to detect packages in rolling repositories of Chakra that are out of date.
+Home-page: https://gitlab.com/gallaecio/chakraversiontracker
+Author: Adrián Chaves (Gallaecio)
+Author-email: adriyetichaves@gmail.com
+License: AGPLv3+
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: System :: Archiving :: Packaging
