@@ -1,0 +1,27 @@
+Metadata-Version: 2.0
+Name: damtsavi-core
+Version: 0.0
+Summary: Server brute force protection.
+Home-page: https://bitbucket.org/triflesoft/damtsavi-core
+Author: TrifleSoft LLC
+Author-email: support@triflesoft.org
+License: BSD
+Keywords: damtsavi triflesoft
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: System Administrators
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: python-iptables
+Requires-Dist: python-systemd
+
+Server Brute Force Protection by TrifleSoft
+=============================================
+
+Server brute force protection.
+Reads journald log and blocks attacker IPs.
+
+

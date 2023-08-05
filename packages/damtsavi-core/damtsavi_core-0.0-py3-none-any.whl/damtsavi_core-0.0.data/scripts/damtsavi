@@ -1,0 +1,28 @@
+#!python
+
+from damtsavi_core import DmatsaviJournalProcessor
+from damtsavi_core import DmatsaviProtectedService
+from damtsavi_core.actions import DmatsaviIPTables4DenyAction
+from damtsavi_core.patterns import DmatsaviMessagePattern
+
+PROTECTED_SERVICES = [
+    DmatsaviProtectedService(
+        [
+            DmatsaviMessagePattern(
+                'sshd.service',
+                [
+                    '^pam_unix\(sshd:auth\)\:\\s+authentication\\s+failure;\\s+logname=.*\\s+uid=\\d*\\s+euid=\\d\\s+tty=.*\\s+ruser=.*\\s+rhost=(?P<ipv4_address>\\d+\\.\\d+\\.\\d+\\.\\d+)\\s+user=.*$',
+                    '^Failed\\s+password\\s+for\\s+.*\\s+from\\s+(?P<ipv4_address>\\d+\\.\\d+\\.\\d+\\.\\d+)\\s+port\\s+\\d+\\s+ssh2'
+                ],
+                [
+                    '^Accepted\\s+publickey\\s+for\\s+.*\\s+from\\s+(?P<ipv4_address>\\d+\\.\\d+\\.\\d+\\.\\d+)\\s+port\\s+\\d+\\s+ssh2',
+                    '^Accepted\\s+password\\s+for\\s+.*\\s+from\\s+(?P<ipv4_address>\\d+\\.\\d+\\.\\d+\\.\\d+)\\s+port\\s+\\d+\\s+ssh2'
+                ])
+        ],
+        [
+            DmatsaviIPTables4DenyAction()
+        ])
+]
+
+processor = DmatsaviJournalProcessor(PROTECTED_SERVICES)
+processor.loop()
