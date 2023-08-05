@@ -1,0 +1,43 @@
+Metadata-Version: 1.0
+Name: scrapy-statsd-middleware
+Version: 0.0.6
+Summary: Statsd integration middleware for scrapy
+Home-page: https://github.com/zachgoldstein/scrapy-statsd
+Author: Zach Goldstein
+Author-email: zachgold@gmail.com
+License: Apache 2.0
+Description: ======================================
+        Scrapy statsd middleware demonstration
+        ======================================
+        
+        Installation
+        ============
+        
+        pip install scrapy-statsd
+        
+        .. code-block:: python
+        
+        	DOWNLOADER_MIDDLEWARES = {
+        	  'statsd_middleware.StatsdMiddleware': 543,
+        	}
+        	
+        	SPIDER_MIDDLEWARES = {
+        	  'statsd_middleware.StatsdMiddleware': 543,
+        	}
+        
+        
+        Example Implementation
+        ======================
+        
+        see /example
+        install docker
+        run it via docker-compose
+        see the graphite graph...
+        
+        
+        Development
+        ===========
+        
+        cd ./scrapy_statsd_middleware 
+        nose2
+Platform: UNKNOWN
