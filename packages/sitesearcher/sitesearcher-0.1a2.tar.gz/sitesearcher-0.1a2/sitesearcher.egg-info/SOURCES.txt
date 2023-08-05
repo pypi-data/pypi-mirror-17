@@ -1,0 +1,17 @@
+MANIFEST.in
+README.rst
+setup.py
+sitesearcher/__init__.py
+sitesearcher/items.py
+sitesearcher/pipelines.py
+sitesearcher/script.py
+sitesearcher/settings.py
+sitesearcher/utils.py
+sitesearcher.egg-info/PKG-INFO
+sitesearcher.egg-info/SOURCES.txt
+sitesearcher.egg-info/dependency_links.txt
+sitesearcher.egg-info/entry_points.txt
+sitesearcher.egg-info/requires.txt
+sitesearcher.egg-info/top_level.txt
+sitesearcher/spiders/__init__.py
+sitesearcher/spiders/search_spider.py
