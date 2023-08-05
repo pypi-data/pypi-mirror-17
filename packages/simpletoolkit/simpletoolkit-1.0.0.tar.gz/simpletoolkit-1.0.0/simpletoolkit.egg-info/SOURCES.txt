@@ -1,0 +1,16 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+data/__init__.py
+data/data_file
+simpletoolkit.egg-info/PKG-INFO
+simpletoolkit.egg-info/SOURCES.txt
+simpletoolkit.egg-info/dependency_links.txt
+simpletoolkit.egg-info/entry_points.txt
+simpletoolkit.egg-info/requires.txt
+simpletoolkit.egg-info/top_level.txt
+source/__init__.py
+source/decorator.py
+source/iterator.py
