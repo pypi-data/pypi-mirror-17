@@ -1,0 +1,2 @@
+include common_dibbs/auth/templates/redirect_form.html
+include common_dibbs/auth/*.txt
