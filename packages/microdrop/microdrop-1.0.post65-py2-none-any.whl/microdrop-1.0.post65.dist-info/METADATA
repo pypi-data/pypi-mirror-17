@@ -1,0 +1,100 @@
+Metadata-Version: 2.0
+Name: microdrop
+Version: 1.0.post65
+Summary: Microdrop is a graphical user interface for the DropBot Digital Microfluidics control system
+Home-page: http://microfluidics.utoronto.ca/microdrop
+Author: Ryan Fobel and Christian Fobel
+Author-email: ryan@fobel.net and christian@fobel.net
+License: GPL
+Keywords: digital microfluidics dmf automation dropbot microdrop
+Platform: UNKNOWN
+Requires-Dist: application-repository (>=0.5)
+Requires-Dist: blinker
+Requires-Dist: configobj
+Requires-Dist: flatland-fork
+Requires-Dist: geo-util
+Requires-Dist: ipython
+Requires-Dist: ipython-helpers (>=0.4)
+Requires-Dist: matplotlib (>=1.5.0)
+Requires-Dist: microdrop-plugin-template (>=1.1.post30)
+Requires-Dist: microdrop-utility (>=0.4.post2)
+Requires-Dist: networkx
+Requires-Dist: opencv-helpers
+Requires-Dist: openpyxl
+Requires-Dist: pandas
+Requires-Dist: pandas
+Requires-Dist: path-helpers (>=0.2)
+Requires-Dist: paver (>=1.2.4)
+Requires-Dist: pip-helpers (>=0.6)
+Requires-Dist: pycairo-gtk2-win
+Requires-Dist: pygst-0.10-win
+Requires-Dist: pygst-utils (>=0.2.post26,<0.3)
+Requires-Dist: pygtk-textbuffer-with-undo
+Requires-Dist: pyparsing
+Requires-Dist: pyutilib.component.core (>=4.4.1)
+Requires-Dist: pyutilib.component.loader (>=3.3.1)
+Requires-Dist: pywin32
+Requires-Dist: pyyaml
+Requires-Dist: pyzmq
+Requires-Dist: run-exe (>=0.5)
+Requires-Dist: scipy
+Requires-Dist: si-prefix
+Requires-Dist: svg-model (>=0.5.post24)
+Requires-Dist: svgwrite
+Requires-Dist: task-scheduler
+Requires-Dist: tornado
+Requires-Dist: wheeler.pygtkhelpers (>=0.12.post7)
+
+MicroDrop
+=========
+
+Microdrop is a graphical user interface for the [DropBot][1] digital
+microfluidics control system (described in detail in [Fobel et al., Appl. Phys.
+Lett. 102, 193513 (2013)][2]).
+
+If you use this information in work that you publish, please cite as
+appropriate.
+
+Installation
+============
+
+ 1. Update `pip`:
+
+        pip install -U pip
+
+ 2. Install microdrop:
+
+        pip install --find-links http://192.99.4.95/wheels --trusted-host 192.99.4.95 microdrop
+
+ 3. Create new settings directory with batch file launcher:
+
+        python -m microdrop.bin.create_portable_config <microdrop settings directory>
+
+ 4. Launch MicroDrop:
+
+        <microdrop settings directory>\microdrop.bat
+
+ 5. Install plugins:
+
+     ![Install MicroDrop plugins][install-plugins]
+
+ 6. Relaunch MicroDrop:
+
+        <microdrop settings directory>\microdrop.bat
+
+
+[1]: http://microfluidics.utoronto.ca/microdrop
+[2]: http://dx.doi.org/10.1063/1.4807118
+[3]: https://pypi.python.org/pypi/microdrop
+
+[install-plugins]: microdrop/static/images/plugins-install.gif
+
+
+Credits
+=======
+
+Ryan Fobel <ryan@fobel.net>
+Christian Fobel <christian@fobel.net>
+
+
+
