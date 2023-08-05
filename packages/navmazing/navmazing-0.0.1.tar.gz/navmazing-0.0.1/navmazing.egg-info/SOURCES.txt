@@ -1,0 +1,17 @@
+.travis.yml
+AUTHORS
+ChangeLog
+LICENSE
+README.rst
+requirements-test.txt
+requirements.txt
+setup.cfg
+setup.py
+navmazing/__init__.py
+navmazing.egg-info/PKG-INFO
+navmazing.egg-info/SOURCES.txt
+navmazing.egg-info/dependency_links.txt
+navmazing.egg-info/not-zip-safe
+navmazing.egg-info/pbr.json
+navmazing.egg-info/top_level.txt
+tests/test_simple.py
