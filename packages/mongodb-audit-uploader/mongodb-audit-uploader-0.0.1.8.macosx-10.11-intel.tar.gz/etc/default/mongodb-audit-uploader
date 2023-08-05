@@ -1,0 +1,5 @@
+[DEFAULT]
+days = 30
+elasticsearch_host = localhost
+elasticsearch_port = 9200
+audit_log_location = /home/audit.json

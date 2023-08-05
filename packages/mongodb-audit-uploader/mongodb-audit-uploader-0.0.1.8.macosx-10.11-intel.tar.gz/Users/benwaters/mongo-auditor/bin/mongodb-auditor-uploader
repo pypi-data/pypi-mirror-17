@@ -1,0 +1,19 @@
+#!python
+from mongodb_auditor_uploader import MongoAuditUploader
+import argparse
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Upload mongodb audit logs into elasticsearch")
+    parser.add_argument('-c', '--config', help="The location of the config", required=False)
+    args = parser.parse_args()
+    if args.config is None:
+        uploader = MongoAuditUploader()
+    elif args.config is not None:
+        uploader = MongoAuditUploader(config_path=args.config)
+    else:
+        print("shoot")
+
+
+if __name__ == '__main__':
+    main()
