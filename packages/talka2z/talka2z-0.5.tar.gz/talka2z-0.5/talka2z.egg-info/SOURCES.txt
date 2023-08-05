@@ -1,0 +1,14 @@
+setup.py
+talka2z/__init__.py
+talka2z.egg-info/PKG-INFO
+talka2z.egg-info/SOURCES.txt
+talka2z.egg-info/dependency_links.txt
+talka2z.egg-info/top_level.txt
+talka2z/auth/__init__.py
+talka2z/auth/handlers/__init__.py
+talka2z/auth/handlers/remote_sign_in_handler.py
+talka2z/auth/handlers/remote_sign_out_handler.py
+talka2z/users/__init__.py
+talka2z/users/get_user.py
+talka2z/utils/__init__.py
+talka2z/utils/load_config.py
