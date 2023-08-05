@@ -1,0 +1,8 @@
+{
+    "namingFormat": "{{sname}} [{{seasonnumber}}x{{episodenumber}}] - {{episodename}}",
+    "_commented_namingFormat": "{{sname}} E{{absolute_number}} - {{episodename}}",
+    "replaces": {
+        "YouTube_": "~",
+        "&": "-"
+    }
+}
