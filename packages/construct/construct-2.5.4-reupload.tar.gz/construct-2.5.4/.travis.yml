@@ -1,0 +1,29 @@
+language: python
+
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.cache/pip
+
+python:
+    - "2.6"
+    - "2.7"
+    - "3.2"
+    - "3.3"
+    - "3.4"
+    - "3.5"
+    - "pypy"
+    - "pypy3"
+
+before_script:
+    - "export PYTHONPATH=$PYTHONPATH:`pwd`"
+    - "uname -a"
+    - "cd tests"
+
+script: nosetests -vv
+
+notifications:
+    email:
+        on_success: change
+        on_failure: change
