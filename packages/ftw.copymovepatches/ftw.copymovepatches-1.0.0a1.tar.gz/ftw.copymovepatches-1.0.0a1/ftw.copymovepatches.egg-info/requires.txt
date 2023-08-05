@@ -1,0 +1,13 @@
+setuptools
+collective.monkeypatcher
+plone.app.dexterity
+plone.dexterity
+Plone
+plone.api
+
+[tests]
+ftw.builder
+ftw.testing
+ftw.testbrowser
+plone.app.testing
+plone.testing
