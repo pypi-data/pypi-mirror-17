@@ -1,0 +1,34 @@
+language: python
+python:
+- 2.6
+- 2.7
+- 3.3
+- 3.4
+- 3.5
+- pypy
+- pypy3
+- nightly
+env:
+- TOXENV=pytest29
+- TOXENV=pytest30
+matrix:
+  include:
+  - python: 2.7
+    env: TOXENV=flake8
+  - python: 3.5
+    env: TOXENV=flake8
+install:
+- pip install tox-travis
+script:
+- tox
+deploy:
+  provider: pypi
+  user: cr3
+  password:
+    secure: P8Y9PS/9tsDIcI0dG/mjArZkbw9jD36gV/JkW3uUnRPYwJbFaAItwsSGRayPex7OSGkEwZykMGOwq/aCdwc2GHBiNc2hdTobuudWXYFOO2yVytcstnPsYeym3VVoXcH6+50zZ/HqzA7kTc0jrPaKyAz4bpkghJLa3aKEOdC5FIemRl3/nqMyW8jWtSDPIsyFjoAE9kNtD/uUCx3T8zT37ENGK6wCP6CVVQ/I4CCiFHCo1AvxWL5GSnpFLS9wS++j2dfcgFPy1l7HP7FYPbuF0Unn50zCjjTk1YBaabKY6vrBdHCsEPrMv1o8rNQd+tu/SxEeZsAIUMJCQMu1/fbusnyofXY9TwSNwhA8ODHi2OkY9j1zTgvQ57nosoPPisC6/kqnFlf6eB9I2zHrZs+LrRoLA6xl1qPS/xCACBrnNp77v+IP8I0HJDVIkRsZ1P0twEcyyUX/U0Ft8ZzHAQngftIGy/dEYmfWZaNB4LLJNnPmZZjwctPXaNE7Z4L+frpujEqxJMbm6AuruxYSuyHO3qnFxd/V5Z6sqO15g1sCipDtTGPmWsSfaRXpWU9Ic/RQc0mDKGpRHyVzMdKPQo6lJ1BSdepJxNFgcf6B9saq3NUGga2DodbGlv+7PK+aaqI4rDPpeH29lveUQgE1eK7BXYF2vVyzxnM1ym5sWKRt9Ek=
+  distributions: sdist bdist_wheel
+  on:
+    tags: true
+    repo: cr3/pytest-param
+    python: 3.5
+    condition: "$TOXENV = pytest30"
