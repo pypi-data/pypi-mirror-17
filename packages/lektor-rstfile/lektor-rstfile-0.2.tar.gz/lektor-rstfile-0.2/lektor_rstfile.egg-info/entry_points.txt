@@ -1,0 +1,3 @@
+[lektor.plugins]
+rstfile = lektor_rstfile:RstFilePlugin
+
