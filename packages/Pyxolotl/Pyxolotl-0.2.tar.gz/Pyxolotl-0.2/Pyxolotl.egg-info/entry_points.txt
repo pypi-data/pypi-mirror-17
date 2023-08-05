@@ -1,0 +1,3 @@
+[console_scripts]
+pyxolotl = pyxolotl.__main__:main
+
