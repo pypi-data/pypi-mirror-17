@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+setup.py
+ctip/__init__.py
+ctip/__main__.py
+ctip/entrypoint.py
+ctip/exceptions.py
+ctip/gen.py
+ctip/models.py
+ctip/utils.py
+ctip.egg-info/PKG-INFO
+ctip.egg-info/SOURCES.txt
+ctip.egg-info/dependency_links.txt
+ctip.egg-info/entry_points.txt
+ctip.egg-info/requires.txt
+ctip.egg-info/top_level.txt
