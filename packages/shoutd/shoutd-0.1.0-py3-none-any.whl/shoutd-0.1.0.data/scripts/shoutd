@@ -1,0 +1,26 @@
+#!python
+# -*- coding: utf-8 -*-
+
+"""shoutd
+
+Usage:
+  shoutd <advertise_address> [--peer-addresses=<s0:p0,s1:p1,...>]
+  shoutd (-h | --help)
+  shoutd (-v | --version)
+
+Options:
+  -h --help             Show this screen.
+  -v --version          Show version.
+  --join=<router_ip>    Shoutd router IP address
+"""
+from docopt import docopt
+from shoutd import ShoutD
+
+if __name__ == '__main__':
+    import logging
+    logging.basicConfig(level=logging.INFO)
+
+    args = docopt(__doc__, version='shoutd 0.1.0')
+
+    app = ShoutD(args['<advertise_address>'], peer_addresses=args.get('--peer-addresses'))
+    app.run_forever()
