@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: firebase_idtoken
+Version: 1.0.0
+Summary: A simple python library for verifying Firebase ID tokens in Google App Engine
+Home-page: https://github.com/bobobobo/gae-firebase-idtoken
+Author: Bobo Häggström
+Author-email: bobo.haggstrom@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: firebase token verification gae appengine
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
