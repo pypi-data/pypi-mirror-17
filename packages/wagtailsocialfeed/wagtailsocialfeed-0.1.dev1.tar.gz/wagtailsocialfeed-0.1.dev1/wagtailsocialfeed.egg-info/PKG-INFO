@@ -1,0 +1,56 @@
+Metadata-Version: 1.1
+Name: wagtailsocialfeed
+Version: 0.1.dev1
+Summary: A Wagtail module that provides pages and content blocks to show social media feeds
+Home-page: https://github.com/LUKKIEN/wagtailsocialfeed
+Author: Tim Leguijt
+Author-email: info@leguijtict.nl
+License: UNKNOWN
+Description: ===============================
+        Wagtail Form Blocks
+        ===============================
+        
+        
+        .. image:: https://img.shields.io/pypi/v/wagtailsocialfeed.svg
+                :target: https://pypi.python.org/pypi/wagtailsocialfeed
+        
+        .. image:: https://readthedocs.org/projects/wagtailsocialfeed/badge/?version=latest
+                :target: https://wagtailsocialfeed.readthedocs.io/en/latest/?badge=latest
+                :alt: Documentation Status
+        
+        .. image:: https://travis-ci.org/LUKKIEN/wagtailsocialfeed.svg?branch=master
+            :target: https://travis-ci.org/LUKKIEN/wagtailsocialfeed
+        
+        A Wagtail module that provides pages and content blocks to show social media feeds
+        
+        
+        * Free software: MIT license
+        * Documentation: https://wagtailsocialfeed.readthedocs.io.
+        
+        
+        Features
+        --------
+        
+        * TODO
+        
+        
+        =========
+        CHANGELOG
+        =========
+        
+        0.1.dev1 (2016-09-01)
+        ---------------------
+        + First implementation
+        
+Keywords: wagtailsocialfeed
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
