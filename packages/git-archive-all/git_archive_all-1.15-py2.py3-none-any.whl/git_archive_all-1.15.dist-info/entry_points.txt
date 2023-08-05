@@ -1,0 +1,4 @@
+
+    [console_scripts]
+    git-archive-all=git_archive_all:main
+    
