@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: django-dynamic-formsets
+Version: 0.0.3
+Summary: A random test lib
+Home-page: https://github.com/dallasmorningnews/django-dynamic-formsets
+Author: Allan James Vestal, The Dallas Morning News
+Author-email: ajvestal@dallasnews.com
+License: New BSD License
+Download-URL: https://github.com/dallasmorningnews/django-dynamic-formsets/tarball/0.0.3
+Description: A jQuery plugin for managing Django formsets
+        ============================================
+        
+        This [jQuery](http://jquery.com/) plugin helps you create more usable [Django](http://www.djangoproject.com/) formsets by allowing clients to add and remove forms on the client-side.
+        
+        It was primarily developed by [Stanislaus Madueke](https://github.com/elo80ka), and re-packaged as a static Django app (with a couple shiny new enhancements and more docs) by [The Dallas Morning News](https://github.com/DallasMorningNews/).
+        
+        Documentation will be added very soon.
+        
+Keywords: django,formset,javascript
+Platform: UNKNOWN
