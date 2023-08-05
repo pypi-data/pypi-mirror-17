@@ -1,0 +1,16 @@
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+eswrapper/__init__.py
+eswrapper/defines.py
+eswrapper/eswrapper.py
+eswrapper/originals_defines.py
+eswrapper/originals_eswrapper.py
+eswrapper/settings.py
+eswrapper/utils.py
+searchandreco.egg-info/PKG-INFO
+searchandreco.egg-info/SOURCES.txt
+searchandreco.egg-info/dependency_links.txt
+searchandreco.egg-info/requires.txt
+searchandreco.egg-info/top_level.txt
