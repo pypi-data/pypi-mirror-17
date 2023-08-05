@@ -1,0 +1,27 @@
+FROM {{ namespace }}/{{ image_prefix }}openstack-base:{{ tag }}
+MAINTAINER {{ maintainer }}
+
+{% import "macros.j2" as macros with context %}
+
+{% if install_type == 'binary' %}
+
+{% if base_distro in ['centos', 'fedora', 'oraclelinux', 'rhel'] %}
+    {% set gnocchi_base_packages = ['openstack-gnocchi-common'] %}
+{% elif base_distro in ['ubuntu'] %}
+    {% set gnocchi_base_packages = ['gnocchi-common'] %}
+{% endif %}
+{{ macros.install_packages(gnocchi_base_packages | customizable("packages")) }}
+
+{% elif install_type == 'source' %}
+
+ADD gnocchi-base-archive /gnocchi-base-source
+RUN ln -s gnocchi-base-source/* gnocchi \
+    && useradd --user-group gnocchi \
+    && /var/lib/kolla/venv/bin/pip --no-cache-dir install --upgrade -c requirements/upper-constraints.txt tooz /gnocchi \
+    && mkdir -p /etc/gnocchi /var/log/gnocchi /home/gnocchi \
+    && cp -r /gnocchi/etc/* /etc/gnocchi/ \
+    && chown -R gnocchi: /etc/gnocchi /var/log/gnocchi /home/gnocchi
+
+{% endif %}
+
+RUN usermod -a -G kolla gnocchi

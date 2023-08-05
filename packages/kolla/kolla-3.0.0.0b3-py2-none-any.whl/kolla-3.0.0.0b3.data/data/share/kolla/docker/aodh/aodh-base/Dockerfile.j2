@@ -1,0 +1,30 @@
+FROM {{ namespace }}/{{ image_prefix }}openstack-base:{{ tag }}
+MAINTAINER {{ maintainer }}
+
+{% import "macros.j2" as macros with context %}
+
+{% if install_type == 'binary' %}
+
+{% if base_distro in ['centos', 'fedora', 'oraclelinux', 'rhel'] %}
+    {% set aodh_base_packages = ['openstack-aodh-common'] %}
+{% elif base_distro in ['ubuntu'] %}
+    {% set aodh_base_packages = ['aodh-common'] %}
+{% endif %}
+{{ macros.install_packages(aodh_base_packages | customizable("packages")) }}
+
+{% elif install_type == 'source' %}
+
+ADD aodh-base-archive /aodh-base-source
+RUN ln -s aodh-base-source/* aodh \
+    && useradd --user-group aodh \
+    && /var/lib/kolla/venv/bin/pip --no-cache-dir install --upgrade -c requirements/upper-constraints.txt /aodh \
+    && mkdir -p /etc/aodh /var/log/aodh /home/aodh \
+    && cp -r /aodh/etc/* /etc/aodh/ \
+    && chown -R aodh: /etc/aodh /var/log/aodh /home/aodh
+
+{% endif %}
+
+RUN usermod -a -G kolla aodh
+
+{% block aodh_base_footer %}{% endblock %}
+{% block footer %}{% endblock %}

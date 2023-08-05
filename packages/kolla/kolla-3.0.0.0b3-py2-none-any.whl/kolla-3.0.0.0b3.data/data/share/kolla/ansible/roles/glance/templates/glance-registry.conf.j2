@@ -1,0 +1,51 @@
+[DEFAULT]
+debug = {{ glance_logging_debug }}
+
+# NOTE(elemoine) log_dir alone does not work for Glance
+log_file = /var/log/kolla/glance/registry.log
+
+bind_host = {{ api_interface_address }}
+bind_port = {{ glance_registry_port }}
+workers = {{ openstack_service_workers }}
+
+[database]
+connection = mysql+pymysql://{{ glance_database_user }}:{{ glance_database_password }}@{{ glance_database_address }}/{{ glance_database_name }}
+max_retries = -1
+
+[keystone_authtoken]
+auth_uri = {{ keystone_public_url }}
+auth_url = {{ keystone_admin_url }}
+auth_type = password
+project_domain_id = default
+user_domain_id = default
+project_name = service
+username = {{ glance_keystone_user }}
+password = {{ glance_keystone_password }}
+
+{# For Kolla-Ansible, generate the memcache servers based on the list of
+memcached servers in the inventory and memcached_servers should be un-set.
+For Kolla-Kubernetes,  it is necessary to define the memcached_servers
+variable in globals.yml to set it to the Kubernetes service for memcached. #}
+memcache_security_strategy = ENCRYPT
+memcache_secret_key = {{ memcache_secret_key }}
+{% if orchestration_engine == 'KUBERNETES' %}
+memcache_servers = {{ memcached_servers }}
+{% else %}
+memcached_servers = {% for host in groups['memcached'] %}{{ hostvars[host]['ansible_' + hostvars[host]['api_interface']]['ipv4']['address'] }}:{{ memcached_port }}{% if not loop.last %},{% endif %}{% endfor %}
+{%- endif %}
+
+[paste_deploy]
+flavor = keystone
+
+[oslo_messaging_notifications]
+{% if enable_ceilometer | bool %}
+driver = messagingv2
+
+[oslo_messaging_rabbit]
+rabbit_userid = {{ rabbitmq_user }}
+rabbit_password = {{ rabbitmq_password }}
+rabbit_ha_queues = true
+rabbit_hosts = {% for host in groups['rabbitmq'] %}{{ hostvars[host]['ansible_' + hostvars[host]['api_interface']]['ipv4']['address'] }}:{{ rabbitmq_port }}{% if not loop.last %},{% endif %}{% endfor %}
+{% else %}
+driver = noop
+{% endif %}

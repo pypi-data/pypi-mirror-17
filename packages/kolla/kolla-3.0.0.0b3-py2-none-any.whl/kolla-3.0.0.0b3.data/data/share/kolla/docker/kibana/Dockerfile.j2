@@ -1,0 +1,16 @@
+FROM {{ namespace }}/{{ image_prefix }}base:{{ tag }}
+MAINTAINER {{ maintainer }}
+
+{% import "macros.j2" as macros with context %}
+
+RUN useradd -r -m --user-group kibana \
+    && usermod -a -G kolla kibana
+
+{% set kibana_packages = ['kibana'] %}
+{{ macros.install_packages(kibana_packages | customizable("packages")) }}
+
+{% block kibana_footer %}{% endblock %}
+{% block footer %}{% endblock %}
+{{ include_footer }}
+
+USER kibana
