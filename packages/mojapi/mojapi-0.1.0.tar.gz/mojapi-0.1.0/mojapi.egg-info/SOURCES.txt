@@ -1,0 +1,10 @@
+setup.cfg
+setup.py
+mojapi/__init__.py
+mojapi/api.py
+mojapi/utils.py
+mojapi.egg-info/PKG-INFO
+mojapi.egg-info/SOURCES.txt
+mojapi.egg-info/dependency_links.txt
+mojapi.egg-info/requires.txt
+mojapi.egg-info/top_level.txt
