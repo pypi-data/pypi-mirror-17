@@ -1,0 +1,19 @@
+Metadata-Version: 2.0
+Name: daemo-api-client
+Version: 1.0.3
+Summary: Client library for Daemo
+Home-page: https://github.com/crowdresearch/daemo-api-client/
+Author: Daemo
+Author-email: daemo@cs.stanford.edu
+License: MIT
+Keywords: daemo crowdsourcing client
+Platform: UNKNOWN
+Requires-Dist: autobahn
+Requires-Dist: pyOpenSSL
+Requires-Dist: requests
+Requires-Dist: service-identity
+Requires-Dist: twisted
+
+Client library for Daemo
+
+
