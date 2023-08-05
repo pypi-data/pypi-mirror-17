@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+bin/twitter-cleanse
+twitter_cleanse/__init__.py
+twitter_cleanse/cleanse.py
+twitter_cleanse/metadata.py
+twitter_cleanse.egg-info/PKG-INFO
+twitter_cleanse.egg-info/SOURCES.txt
+twitter_cleanse.egg-info/dependency_links.txt
+twitter_cleanse.egg-info/requires.txt
+twitter_cleanse.egg-info/top_level.txt
