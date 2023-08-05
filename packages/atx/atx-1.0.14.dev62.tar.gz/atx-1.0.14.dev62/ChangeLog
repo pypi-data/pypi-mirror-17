@@ -1,0 +1,71 @@
+CHANGES
+=======
+
+* info添加截图功能
+* update offset tests
+* add delay param to click_image
+* add profession doc about how to catch click_image error, close #60
+* fix ios report
+* match add rect
+* add get top layer name for surfaceflinger-fps program
+* add confidence and position for assert_exists, wait add safe=False
+* report support asset_exists and click_nowait now
+* add bootstrap fonts resouce
+* add current_app for android
+* add images tab & fix encoding
+* fix decode error for log used in click_image
+* fix offset bug, add match kwargs to add image operation method
+* add atx.ImageCrop
+* translate atx_click_image to python
+* use local resources
+* add match method for click_image
+* update atx-assistant version to 1.0.2
+* move click_image to save screen crop
+* fix install twice android test apk, close #59
+* add run/run_step for debug
+* update requirements
+* rename device folder to drivers, fix ios click image
+* handle exception to avoid subprocess in android_hook cannot be killed
+* use different scale for different screen size
+* fix rotation for swipe
+* fix rotation in webpage
+* fix rotation (uiautomator use top-left as origin even when screen is rotated)
+* fix screen2touch for rotated screen
+* fix connect(None) raise error problem, update atx-assistant version to 1.0.1
+* add edit-mode in record command
+* add save in draft_editor
+* create workdir if not exists
+* update record command. record for android only
+* make atx support facebook-wda report, close #36
+* fix exception when passing port=None
+* offset use percentage in atx_click_image
+* add missing file
+* add click/click_image interaction
+* fix md type
+* add desc args for click_image
+* set adb_shell timeout default to 30s
+* screencap add support to copy to clipboard, close #56
+* add debug script
+* fix clear_text error
+
+1.0.13
+------
+
+* little update desc
+* add atx assistant
+* remove androguard from atx, and put androguard into pypi
+* remove port restrict about atx gui
+* fix when adb port default not 5037 error
+* update drafte editor
+* trace uinodes to change it according to it's order
+* find ui by node index after modified case.json
+* add process_case for modified case.json
+* separate draft generate and code generate
+* change find_selector priority
+* add report test, part
+* fix issue #48 screenrecord failure
+* update windows install
+* update wda deps
+* remove useless doc
+* use timeout instead of while loop
+* fix Division Zero bug
