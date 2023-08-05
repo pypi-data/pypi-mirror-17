@@ -1,0 +1,4 @@
+[babel.extractors]
+ik_django = i18nkit.django_extract:django_extract
+ik_jinja2 = i18nkit.jinja2_extract:jinja2_extract
+
