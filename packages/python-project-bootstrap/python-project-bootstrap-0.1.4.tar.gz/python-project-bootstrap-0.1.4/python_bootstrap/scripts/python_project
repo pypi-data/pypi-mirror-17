@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# coding=utf-8
+
+if ! $(python -c 'from python_bootstrap.generator.PythonProject import main' &> /dev/null); then
+    echo "Please check that python_project and its dependencies are installed in your system or virtual environment";
+else
+    python -m 'python_bootstrap.generator.PythonProject' ${@}
+fi
