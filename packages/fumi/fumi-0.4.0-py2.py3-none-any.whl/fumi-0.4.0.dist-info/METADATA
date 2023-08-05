@@ -1,0 +1,79 @@
+Metadata-Version: 2.0
+Name: fumi
+Version: 0.4.0
+Summary: A small and (hopefully) simple deployment tool
+Home-page: https://github.com/rmed/fumi
+Author: Rafael Medina García
+Author-email: rafamedgar@gmail.com
+License: MIT
+Keywords: fumi deploy git remote ssh
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: blessings (==1.6)
+Requires-Dist: paramiko (==2.0.2)
+Requires-Dist: pyyaml (==3.12)
+Requires-Dist: scp (==0.10.2)
+Requires-Dist: six (==1.10.0)
+
+fumi |PyPI version|
+===================
+
+A small and (hopefully) simple deployment tool.
+
+fumi fetches deployment configurations from a ``fumi.yml`` file. To
+start using fumi in a project, simply create that file (either manually
+or directly with fumi).
+
+Installation
+------------
+
+::
+
+    $ pip install fumi
+
+Documentation
+-------------
+
+Documentation is available online at https://fumi.readthedocs.io.
+
+You may also build the documentation using Sphinx:
+
+.. code:: shell
+
+    $ make html
+
+Usage
+-----
+
+::
+
+    usage: fumi [-h] [--version] {deploy,list,new,prepare,remove} ...
+
+    Simple deployment tool
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      --version             show program's version number and exit
+
+    commands:
+      {deploy,list,new,prepare,remove}
+        deploy              deploy with given configuration
+        list                list all the available deployment configurations
+        new                 create new deployment configuration
+        prepare             test connection and prepare remote directories
+        remove              remove a configuration from the deployment file
+
+.. |PyPI version| image:: https://img.shields.io/pypi/v/fumi.svg
+   :target: https://pypi.python.org/pypi/fumi
+
+
