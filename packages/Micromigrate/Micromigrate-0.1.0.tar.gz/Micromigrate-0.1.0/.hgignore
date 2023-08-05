@@ -1,0 +1,10 @@
+.env/
+.tox/
+docs/build/
+dist/
+build/
+.cache/
+.*\.swp
+.*\.py(c|o)
+.*\.egg-info
+.*\.egg
