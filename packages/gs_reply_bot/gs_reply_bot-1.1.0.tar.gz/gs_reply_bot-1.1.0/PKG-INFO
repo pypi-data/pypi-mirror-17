@@ -1,0 +1,42 @@
+Metadata-Version: 1.1
+Name: gs_reply_bot
+Version: 1.1.0
+Summary: Automatic reply bot for GNU Social.
+Home-page: https://gitgud.io/dtluna/
+Author: dtluna
+Author-email: dtluna@openmailbox.org
+License: GPLv3
+Description: gs_reply_bot
+        ============
+        Installation
+        ------------
+        
+        ``pip install gs_reply_bot``
+        
+        or
+        
+        ``python3 setup.py install``
+        
+        
+        Basic usage
+        -----------
+        
+        Set the configuration parameters in the default location (``$XDG_CONFIG_HOME/gs_reply_bot/config.json``) or supply it to the script with ``-c``.
+        
+        Configuration example:
+        
+        ::
+        
+            {
+                "server_url": "https://gnusocial.server",
+                "username": "username",
+                "password": "password",
+                "users": {
+                    "user@gnusocial.server": ["message", "another message"]
+                }
+            }
+        
+Platform: any
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
