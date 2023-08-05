@@ -1,0 +1,3 @@
+[console_scripts]
+elaspic = elaspic.__main__:main
+
