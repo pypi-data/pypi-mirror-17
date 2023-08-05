@@ -1,0 +1,10 @@
+.gitignore
+PKGBUILD
+README.rst
+setup.py
+mir/linca.py
+mir.linca.egg-info/PKG-INFO
+mir.linca.egg-info/SOURCES.txt
+mir.linca.egg-info/dependency_links.txt
+mir.linca.egg-info/entry_points.txt
+mir.linca.egg-info/top_level.txt
