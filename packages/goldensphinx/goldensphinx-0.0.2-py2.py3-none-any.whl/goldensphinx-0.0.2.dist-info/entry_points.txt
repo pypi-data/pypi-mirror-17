@@ -1,0 +1,3 @@
+[console_scripts]
+goldensphinx = goldensphinx.cli:cli
+
