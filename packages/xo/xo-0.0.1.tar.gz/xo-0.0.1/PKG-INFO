@@ -1,0 +1,38 @@
+Metadata-Version: 1.1
+Name: xo
+Version: 0.0.1
+Summary: A Tic-tac-toe CLI game and library.
+Home-page: https://github.com/dwayne/xo-python
+Author: Dwayne Crooks
+Author-email: me@dwaynecrooks.com
+License: MIT
+Description: xo
+        ==
+        
+        A `Python <https://www.python.org/>`_ CLI game and library for `Tic-tac-toe <http://en.wikipedia.org/wiki/Tic-tac-toe>`_.
+        
+        Copyright
+        ---------
+        
+        Copyright (c) 2016 Dwayne Crooks. See `LICENSE </LICENSE.txt>`_ for further details.
+        
+        
+        Change Log
+        ----------
+        
+        0.0.1 (2016-09-05)
+        ++++++++++++++++++
+        
+        Birth!
+        
+Keywords: tic-tac-toe tic tac toe noughts crosses
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Games/Entertainment :: Board Games
