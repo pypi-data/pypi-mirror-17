@@ -1,0 +1,4 @@
+six
+
+[This section defines feature flags end-users can use in dependenciesmemcached-session]
+python-memcached>=1.58
