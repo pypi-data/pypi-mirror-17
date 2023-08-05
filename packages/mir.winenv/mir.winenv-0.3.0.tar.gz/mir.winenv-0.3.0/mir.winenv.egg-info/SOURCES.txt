@@ -1,0 +1,10 @@
+.gitignore
+CHANGELOG.md
+LICENSE
+README.rst
+setup.py
+mir.winenv.egg-info/PKG-INFO
+mir.winenv.egg-info/SOURCES.txt
+mir.winenv.egg-info/dependency_links.txt
+mir.winenv.egg-info/entry_points.txt
+mir.winenv.egg-info/top_level.txt
