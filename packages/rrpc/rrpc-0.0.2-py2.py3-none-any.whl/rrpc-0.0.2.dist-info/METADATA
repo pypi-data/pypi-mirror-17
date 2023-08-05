@@ -1,0 +1,21 @@
+Metadata-Version: 2.0
+Name: rrpc
+Version: 0.0.2
+Summary: a redis rpc implementation
+Home-page: https://github.com/FuGangqiang/rrpc
+Author: FuGangqiang
+Author-email: fu_gangqiang@qq.com
+License: MIT
+Keywords: redis rpc json
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Environment :: Web Environment
+Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: redis
+
+
+a redis rpc implementation.
+
+
