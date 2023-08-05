@@ -1,0 +1,8 @@
+deepdiff==2.5.1
+Django==1.10
+djangorestframework==3.4.5
+psycopg2==2.6.2
+requests==2.11.1
+simplejson==3.8.2
+six==1.10.0
+wheel==0.24.0
