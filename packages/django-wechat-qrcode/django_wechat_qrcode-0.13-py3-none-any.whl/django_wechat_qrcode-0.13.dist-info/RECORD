@@ -1,0 +1,13 @@
+django_wechat_qrcode-0.13.dist-info/DESCRIPTION.rst,sha256=M2fk_fvsmSz0q1o9ZyDCyOx-cigk5DIgGsPcixLZV40,842
+django_wechat_qrcode-0.13.dist-info/METADATA,sha256=niKx-yjIcHEEGJ1Ka6udojTFO4vCHVjWE9LzJSIWXEg,1576
+django_wechat_qrcode-0.13.dist-info/RECORD,,
+django_wechat_qrcode-0.13.dist-info/WHEEL,sha256=rNo05PbNqwnXiIHFsYm0m22u4Zm6YJtugFG2THx4w3g,92
+django_wechat_qrcode-0.13.dist-info/metadata.json,sha256=lkH31yBm3Lbud9vUQv1Gl7o6kHZJ-1fCYMog0hjhido,838
+django_wechat_qrcode-0.13.dist-info/top_level.txt,sha256=lJ7l1nyDt4uWLvG9GVo-Zo-rlkBsRRkXe45ps_jmq3c,7
+qrcode/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+qrcode/admin.py,sha256=IMS-cFOWrm74odmaSPLMJ60101vyqmX5GweL9cZTj5I,262
+qrcode/models.py,sha256=FkFXY2AYv02LU8ncnQWbLfWmIzJOn-_QropRQcds_Aw,1036
+qrcode/tests.py,sha256=mrbGGRNg5jwbTJtWWa7zSKdDyeB4vmgZCRc2nk6VY-g,60
+qrcode/urls.py,sha256=jvcNPLNrG5ZZTFAYvstSVKucJF4iQH9cJs1LKuU0SI4,176
+qrcode/views.py,sha256=_3zoK-nNngNsuKxsD8tLFk0x1aDnEEy7gEbzH07QmUA,3889
+qrcode/templates/qrcode/qrcode.html,sha256=-nXH7wY_xpQ8x7DQwqaEf96PsWPonYmkwSzwbRB20Jo,1048
