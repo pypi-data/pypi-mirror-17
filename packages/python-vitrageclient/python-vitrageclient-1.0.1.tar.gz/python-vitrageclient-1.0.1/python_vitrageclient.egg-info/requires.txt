@@ -1,0 +1,5 @@
+pbr>=1.6
+Babel>=2.3.4
+cliff!=1.16.0,!=1.17.0,>=1.15.0
+oslo.utils>=3.16.0
+keystoneauth1>=2.10.0
