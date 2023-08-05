@@ -1,0 +1,28 @@
+Metadata-Version: 1.1
+Name: django-unique-uploadto
+Version: 0.1.1
+Summary: Use a unique filename for django uploads
+Home-page: https://github.org/ionata/django-unique-uploadto
+Author: Ionata Digital
+Author-email: webmaster@ionata.com.au
+License: BSD
+Description: ==========================================================================
+        django-unique-uploadto - Ensure no collisions for file uploads
+        ==========================================================================
+        
+        Use an instantiation of the ``unique_uploadto.UniqueFileName`` class to
+        prevent uploads from colliding with each other.
+        Creates a file with a timestamp and uuid in the filename.
+        Optionally accepts a prefix path and default file extension
+        
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Framework :: Django

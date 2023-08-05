@@ -1,0 +1,10 @@
+MANIFEST.in
+README.rst
+setup.py
+django_unique_uploadto.egg-info/PKG-INFO
+django_unique_uploadto.egg-info/SOURCES.txt
+django_unique_uploadto.egg-info/dependency_links.txt
+django_unique_uploadto.egg-info/requires.txt
+django_unique_uploadto.egg-info/top_level.txt
+unique_uploadto/__init__.py
+unique_uploadto/unique_uploadto.py
