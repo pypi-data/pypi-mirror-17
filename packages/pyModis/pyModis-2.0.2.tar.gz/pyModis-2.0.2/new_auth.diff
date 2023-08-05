@@ -1,0 +1,143 @@
+diff --git a/pymodis/downmodis.py b/pymodis/downmodis.py
+index c017cc0..94e4724 100644
+--- a/pymodis/downmodis.py
++++ b/pymodis/downmodis.py
+@@ -49,7 +49,10 @@ import ftplib
+ try:
+     import requests
+ except ImportError:
+-    import urllib2
++    try:
++        from urllib.request import Request, urlopen
++    except ImportError: # Python 2
++        from urllib2 import Request, urlopen
+ from HTMLParser import HTMLParser
+ import re
+ 
+@@ -330,8 +333,8 @@ class downModis:
+                                     timeout=self.timeout)
+                 self.dirData = modisHtmlParser(http.content).get_dates()
+             except:
+-                http = urllib2.urlopen(urljoin(self.url, self.path),
+-                                       timeout=self.timeout)
++                http = urlopen(urljoin(self.url, self.path),
++                               timeout=self.timeout)
+                 self.dirData = modisHtmlParser(http.read()).get_dates()
+             self.dirData.reverse()
+         except:
+@@ -363,7 +366,7 @@ class downModis:
+             self.dirData = [elem.split()[-1] for elem in self.dirData if elem.startswith("d")]
+             if self.debug:
+                 logging.debug("Open connection {url}".format(url=self.url))
+-        except (EOFError, ftplib.error_perm), e:
++        except (EOFError, ftplib.error_perm) as e:
+             logging.error('Error in connection: {err}'.format(err=e))
+             if self.nconnection <= ncon:
+                 self._connectFTP()
+@@ -386,7 +389,7 @@ class downModis:
+         """
+         try:
+             self.ftp.cwd(day)
+-        except (ftplib.error_reply, socket.error), e:
++        except (ftplib.error_reply, socket.error) as e:
+             logging.error("Error {err} entering in directory "
+                           "{name}".format(err=e, name=day))
+             self.setDirectoryIn(day)
+@@ -395,7 +398,7 @@ class downModis:
+         """Move up within the file directory"""
+         try:
+             self.ftp.cwd('..')
+-        except (ftplib.error_reply, socket.error), e:
++        except (ftplib.error_reply, socket.error) as e:
+             logging.error("Error {err} when trying to come back".format(err=e))
+             self.setDirectoryOver()
+ 
+@@ -483,7 +486,7 @@ class downModis:
+                 http = modisHtmlParser(requests.get(url,
+                                        timeout=self.timeout).content)
+             except:
+-                http = modisHtmlParser(urllib2.urlopen(url,
++                http = modisHtmlParser(urlopen(url,
+                                        timeout=self.timeout).read())
+             # download JPG files also
+             if self.jpeg:
+@@ -501,7 +504,7 @@ class downModis:
+                 logging.debug("The number of file to download is: "
+                               "{num}".format(num=len(finalList)))
+             return finalList
+-        except (socket.error), e:
++        except (socket.error) as e:
+             logging.error("Error {err} when try to receive list of "
+                           "files".format(err=e))
+             self._getFilesListHTTP(day)
+@@ -547,7 +550,7 @@ class downModis:
+                 logging.debug("The number of file to download is: "
+                               "{num}".format(num=len(finalList)))
+             return finalList
+-        except (ftplib.error_reply, socket.error), e:
++        except (ftplib.error_reply, socket.error) as e:
+             logging.error("Error {err} when trying to receive list of "
+                           "files".format(err=e))
+             self._getFilesListFTP()
+@@ -579,7 +582,7 @@ class downModis:
+         try:
+             gdal.Open(filHdf)
+             return 0
+-        except (RuntimeError), e:
++        except (RuntimeError) as e:
+             logging.error(e)
+             return 1
+ 
+@@ -602,18 +605,31 @@ class downModis:
+            :param str filHdf: name of the file to write to
+            :param str day: the day in format YYYY.MM.DD
+         """
++        import ipdb
+         filSave = open(filHdf, "wb")
+         try:  # download and write the file
+             try:  # use request module
+-                http = requests.get(urljoin(self.url, self.path, day, filDown))
++                print('in requests')
++                http = requests.get(urljoin(self.url, self.path, day, filDown),
++                                    auth=(self.user, self.password))
++                ipdb.set_trace()
+                 orig_size = http.headers['content-length']
++                ipdb.set_trace()
+                 filSave.write(http.content)
++                ipdb.set_trace()
++                print('dopo request')
+             except:  # use urllib2 module
+-                http = urllib2.urlopen(urljoin(self.url, self.path, day,
+-                                               filDown))
++                import base64
++                ipdb.set_trace()
++                print('in urllib2')
++                credentials = '{user}:{paswd}'.format(user=self.user,
++                                                      paswd=self.password).encode()
++                http = urlopen(Request(urljoin(self.url, self.path, day, filDown),
++                                      headers={'Authorization': b'Basic ' \
++                                               + base64.b64encode(credentials)} ))
+                 orig_size = http.headers['content-length']
+                 filSave.write(http.read())
+-
++                print('dopo urllib2')
+         # if local file has an error, try to download the file again
+         except:
+             logging.error("Cannot download {name}. "
+@@ -667,14 +683,14 @@ class downModis:
+                 logging.debug("File {name} downloaded".format(name=filDown))
+         # if error during download process, try to redownload the file
+         except (ftplib.error_reply, socket.error, ftplib.error_temp,
+-                EOFError), e:
++                EOFError) as e:
+             logging.error("Cannot download {name}, the error was '{err}'. "
+                           "Retrying...".format(name=filDown, err=e))
+             filSave.close()
+             os.remove(filSave.name)
+             try:
+                 self.ftp.pwd()
+-            except (ftplib.error_temp, EOFError), e:
++            except (ftplib.error_temp, EOFError) as e:
+                 self._connectFTP()
+             self._downloadFileFTP(filDown, filHdf)
+         filSave.close()
