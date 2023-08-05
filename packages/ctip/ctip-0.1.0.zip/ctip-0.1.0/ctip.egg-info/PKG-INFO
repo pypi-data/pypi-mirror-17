@@ -1,0 +1,103 @@
+Metadata-Version: 1.1
+Name: ctip
+Version: 0.1.0
+Summary: Extendible configuration testing in parallel.
+Home-page: https://github.com/becketta/ctip.git
+Author: Aaron Beckett
+Author-email: aminor65ii@gmail.com
+License: MIT
+Description: # CTIP (Configuration Testing In Parallel)
+        
+        CTIP is a general, extensible tool for running batches of configurable jobs in
+        parallel on a variety of environments from your local machine to a remote server.
+        
+        By relying on the end-user to specify what to run and how to run it, CTIP is a
+        very general solution for optimizing and experimenting on programs that use
+        configuration files to determine behavior. CTIP provides the infrastructure for
+        generating and passing configurations to user-adapted classes that setup and run
+        a given program. It also provides tools for tracking job status when jobs are run
+        locally.
+        
+        ## Install
+        
+        See the [INSTALL](INSTALL.md) file for more detailed information.
+        
+        Via pip:
+        ``` bash
+        $ pip install ctip
+        ```
+        
+        Configure ctip installation by setting paths to directories containing all user
+        defined ``Experiments`` and ``Environments``:
+        ```
+        $ ctip set experiment-dir ~/research/ctip-exp
+        $ ctip set environment-dir ~/research/ctip-env
+        ```
+        
+        ## Usage
+        
+        For complete documentation of ctip, browse the docs folder or go to the future and
+        visit a website I will make with all the documentation.
+        
+        For a concise summary of all available commands, run:
+        ```
+        $ ctip help
+        ```
+        
+        Run configurations for the ``Doodle`` experiment in the ``Local`` environment as
+        specified in a genfile named ``doodle_configs.gen``:
+        ```
+        $ ctip run gen doodle_configs.gen --experiment Doodle --environment Local
+        ```
+        
+        **Note:** During development, avoid constant re-installation by using
+        ``python ctip-runner.py`` instead of the ``ctip`` command.
+        
+        ## Change log
+        
+        Please see the [CHANGELOG](CHANGELOG.md) for information about what has changed
+        recently or the [TODO](TODO.md) list to see what's comming.
+        
+        ## Testing
+        
+        From the root ctip directory run:
+        ``` bash
+        $ py.test
+        ```
+        
+        ## Security
+        
+        If you discover any security related issues, please email me at aminor65ii@gmail.com
+        instead of using the issue tracker.
+        
+        With that being said, any communication ctip does with the outside world is through
+        user provided Environment classes and thus most security vulnerabilities will likely
+        be the responsibility of the end-user.
+        
+        Also sql injection through the optional 'where' clause is not only possible but is
+        considered a feature. The only database malicious queries effect is the ctip
+        database which only ever holds information you put in it... so go ahead.
+        
+        ## Credits
+        
+        Thanks to the Hintze Lab at Michigan State University for being a willing guinea pig.
+        
+        ## License
+        
+        The MIT License (MIT). Please see the [LICENSE](LICENSE) file for more information.
+        
+Keywords: config configuration test testing parallel research tool optimization
+Platform: any
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Console
+Classifier: Framework :: Pytest
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development :: Testing
+Classifier: Topic :: Utilities
