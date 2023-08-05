@@ -1,0 +1,213 @@
+Metadata-Version: 1.1
+Name: osprey
+Version: 1.1.0
+Summary: |Build Status| |Coverage Status| |PyPi version| [|License|]
+(http://www.apache.org/licenses/LICENSE-2.0) |DOI| [|Documentation|]
+(http://msmbuilder.org/osprey)
+Home-page: https://github.com/msmbuilder/osprey
+Author: Robert T. McGibbon
+Author-email: rmcgibbo@gmail.com
+License: Apache Software License
+Download-URL: https://pypi.python.org/pypi/osprey/
+Description: Osprey
+        ======
+        
+        |Build Status| |Coverage Status| |PyPi version| [|License|]
+        (http://www.apache.org/licenses/LICENSE-2.0) |DOI| [|Documentation|]
+        (http://msmbuilder.org/osprey)
+        
+        .. figure:: http://msmbuilder.org/osprey/development/_static/osprey.svg
+           :alt: Logo
+        
+           Logo
+        
+        Osprey is an easy-to-use tool for hyperparameter optimization for
+        machine learning algorithms in python using scikit-learn (or using
+        scikit-learn compatible APIs).
+        
+        Each Osprey experiment combines an dataset, an estimator, a search space
+        (and engine), cross validation and asynchronous serialization for
+        distributed parallel optimization of model hyperparameters.
+        
+        Documentation
+        -------------
+        
+        For full documentation, please visit the `Osprey
+        homepage <http://msmbuilder.org/osprey/>`__.
+        
+        Installation
+        ------------
+        
+        If you have an Anaconda Python distribution, installation is as easy as:
+        
+        ::
+        
+            $ conda install -c omnia osprey
+        
+        You can also install Osprey with ``pip``:
+        
+        ::
+        
+            $ pip install osprey
+        
+        Alternatively, you can install directly from this GitHub repo:
+        
+        ::
+        
+            $ git clone https://github.com/msmbuilder/osprey.git
+            $ cd osprey && git checkout 1.1.0
+            $ python setup.py install
+        
+        Example using `MSMBuilder <https://github.com/msmbuilder/msmbuilder>`__
+        -----------------------------------------------------------------------
+        
+        Below is an example of an osprey ``config`` file to cross validate
+        Markov state models based on varying the number of clusters and dihedral
+        angles used in a model:
+        
+        .. code:: yaml
+        
+            estimator:
+              eval_scope: msmbuilder
+              eval: |
+                Pipeline([
+                    ('featurizer', DihedralFeaturizer(types=['phi', 'psi'])),
+                    ('cluster', MiniBatchKMeans()),
+                    ('msm', MarkovStateModel(n_timescales=5, verbose=False)),
+                ])
+        
+            search_space:
+              cluster__n_clusters:
+                min: 10
+                max: 100
+                type: int
+              featurizer__types:
+                choices:
+                  - ['phi', 'psi']
+                  - ['phi', 'psi', 'chi1']
+               type: enum
+        
+            cv: 5
+        
+            dataset_loader:
+              name: mdtraj
+              params:
+                trajectories: ~/local/msmbuilder/Tutorial/XTC/*/*.xtc
+                topology: ~/local/msmbuilder/Tutorial/native.pdb
+                stride: 1
+        
+            trials:
+                uri: sqlite:///osprey-trials.db
+        
+        Then run ``osprey worker``. You can run multiple parallel instances of
+        ``osprey worker`` simultaneously on a cluster too.
+        
+        ::
+        
+            $ osprey worker config.yaml
+        
+            ...
+        
+            ----------------------------------------------------------------------
+            Beginning iteration                                              1 / 1
+            ----------------------------------------------------------------------
+            History contains: 0 trials
+            Choosing next hyperparameters with random...
+              {'cluster__n_clusters': 20, 'featurizer__types': ['phi', 'psi']}
+        
+            Fitting 5 folds for each of 1 candidates, totalling 5 fits
+            [Parallel(n_jobs=1)]: Done   1 jobs       | elapsed:    0.3s
+            [Parallel(n_jobs=1)]: Done   5 out of   5 | elapsed:    1.8s finished
+            ---------------------------------
+            Success! Model score = 4.080646
+            (best score so far   = 4.080646)
+            ---------------------------------
+        
+            1/1 models fit successfully.
+            time:         October 27, 2014 10:44 PM
+            elapsed:      4 seconds.
+            osprey worker exiting.
+        
+        You can dump the database to JSON or CSV with ``osprey dump``.
+        
+        Dependencies
+        ------------
+        
+        -  ``python>=2.7.11``
+        -  ``six>=1.10.0``
+        -  ``pyyaml>=3.11``
+        -  ``numpy>=1.10.4``
+        -  ``scipy>=0.17.0``
+        -  ``scikit-learn>=0.17.0``
+        -  ``sqlalchemy>=1.0.10``
+        -  ``bokeh>=0.12.0``
+        -  ``matplotlib>=1.5.0``
+        -  ``pandas>=0.18.0``
+        -  ``GPy`` (optional, required for ``gp`` strategy)
+        -  ``hyperopt`` (optional, required for ``hyperopt_tpe`` strategy)
+        -  ``nose`` (optional, for testing)
+        
+        Contributing
+        ------------
+        
+        In case you encounter any issues with this package, please consider
+        submitting a ticket to the `GitHub Issue
+        Tracker <https://github.com/msmbuilder/osprey/issues>`__. We also
+        welcome any feature requests and highly encourage users to `submit pull
+        requests <https://help.github.com/articles/creating-a-pull-request/>`__
+        for bug fixes and improvements.
+        
+        For more detailed information, please refer to our
+        `documentation <http://msmbuilder.org/osprey/contributing.html>`__.
+        
+        Citing
+        ------
+        
+        If you use Osprey in your research, please cite:
+        
+        .. code:: bibtex
+        
+            @misc{osprey,
+              author       = {Robert T. McGibbon and
+                              Carlos X. Hernández and
+                              Matthew P. Harrigan and
+                              Steven Kearnes and
+                              Mohammad M. Sultan and
+                              Stanislaw Jastrzebski and
+                              Brooke E. Husic and
+                              Vijay S. Pande},
+              title        = {Osprey 1.0.0},
+              month        = jun,
+              year         = 2016,
+              doi          = {10.5281/zenodo.56251},
+              url          = {http://dx.doi.org/10.5281/zenodo.56251}
+            }
+        
+        .. |Build Status| image:: https://travis-ci.org/msmbuilder/osprey.svg?branch=master
+           :target: https://travis-ci.org/msmbuilder/osprey
+        .. |Coverage Status| image:: https://coveralls.io/repos/github/msmbuilder/osprey/badge.svg?branch=master
+           :target: https://coveralls.io/github/msmbuilder/osprey?branch=master
+        .. |PyPi version| image:: https://badge.fury.io/py/osprey.svg
+           :target: https://pypi.python.org/pypi/osprey/
+        .. |License| image:: https://img.shields.io/badge/license-ASLv2.0-red.svg?style=flat
+        .. |DOI| image:: https://zenodo.org/badge/9890/msmbuilder/osprey.svg
+           :target: https://zenodo.org/badge/latestdoi/9890/msmbuilder/osprey
+        .. |Documentation| image:: https://img.shields.io/badge/docs-latest-blue.svg?style=flat
+        
+Platform: Windows
+Platform: Linux
+Platform: Mac OS-X
+Platform: Unix
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Information Analysis

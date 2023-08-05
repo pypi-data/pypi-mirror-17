@@ -1,0 +1,3 @@
+[console_scripts]
+osprey = osprey.cli.main:main
+
