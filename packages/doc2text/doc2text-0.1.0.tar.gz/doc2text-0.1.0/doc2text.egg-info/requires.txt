@@ -1,0 +1,11 @@
+PyPDF2
+numpy
+Pillow
+scipy
+pytesseract
+
+[dev]
+check-manifest
+
+[test]
+coverage
