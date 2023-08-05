@@ -1,0 +1,573 @@
+#!/usr/bin/env py.test
+
+import unittest
+
+from py_alg_dat import array_list
+from py_alg_dat import entry
+from py_alg_dat import graph
+from py_alg_dat import graph_algorithms
+from py_alg_dat import graph_edge
+from py_alg_dat import graph_path
+from py_alg_dat import graph_vertex
+from py_alg_dat import minimum_spanning_tree
+
+class TestGraphAlgorithms(unittest.TestCase):
+
+    def setUp( self ):
+        # Graph from http://en.wikipedia.org/wiki/Prim%27s_algorithm
+        self.g1 = graph.UnDirectedWeightedGraph( 7 )
+
+        self.v1 = graph_vertex.UnWeightedGraphVertex( self.g1, "A" )
+        self.v2 = graph_vertex.UnWeightedGraphVertex( self.g1, "B" )
+        self.v3 = graph_vertex.UnWeightedGraphVertex( self.g1, "C" )
+        self.v4 = graph_vertex.UnWeightedGraphVertex( self.g1, "D" )
+        self.v5 = graph_vertex.UnWeightedGraphVertex( self.g1, "E" )
+        self.v6 = graph_vertex.UnWeightedGraphVertex( self.g1, "F" )
+        self.v7 = graph_vertex.UnWeightedGraphVertex( self.g1, "G" )
+
+        self.g1.add_vertex( self.v1 )
+        self.g1.add_vertex( self.v2 )
+        self.g1.add_vertex( self.v3 )
+        self.g1.add_vertex( self.v4 )
+        self.g1.add_vertex( self.v5 )
+        self.g1.add_vertex( self.v6 )
+        self.g1.add_vertex( self.v7 )
+
+        self.g1.add_edge( self.v1, self.v2, 7 )    # ( A - B, 7 )
+        self.g1.add_edge( self.v1, self.v4, 5 )    # ( A - D, 5 )
+        self.g1.add_edge( self.v2, self.v3, 8 )    # ( B - C, 8 )
+        self.g1.add_edge( self.v2, self.v4, 9 )    # ( B - D, 9 )
+        self.g1.add_edge( self.v2, self.v5, 7 )    # ( B - E, 7 )
+        self.g1.add_edge( self.v3, self.v5, 5 )    # ( C - E, 5 )
+        self.g1.add_edge( self.v4, self.v5, 15 )   # ( D - E, 15 )
+        self.g1.add_edge( self.v4, self.v6, 6 )    # ( D - F, 6 )
+        self.g1.add_edge( self.v5, self.v6, 8 )    # ( E - F, 8 )
+        self.g1.add_edge( self.v5, self.v7, 9 )    # ( E - G, 9 )
+        self.g1.add_edge( self.v6, self.v7, 11 )   # ( F - G, 11 )
+
+        # Directed weighted graph from http://compalg.inf.elte.hu/~tony/Oktatas/TDK/FINAL/Chap%2013.PDF
+        self.g2 = graph.DirectedWeightedGraph( 7 )
+
+        self.v0_g2 = graph_vertex.UnWeightedGraphVertex( self.g2, "A" )
+        self.v1_g2 = graph_vertex.UnWeightedGraphVertex( self.g2, "B" )
+        self.v2_g2 = graph_vertex.UnWeightedGraphVertex( self.g2, "C" )
+        self.v3_g2 = graph_vertex.UnWeightedGraphVertex( self.g2, "D" )
+        self.v4_g2 = graph_vertex.UnWeightedGraphVertex( self.g2, "E" )
+        self.v5_g2 = graph_vertex.UnWeightedGraphVertex( self.g2, "F" )
+        self.v6_g2 = graph_vertex.UnWeightedGraphVertex( self.g2, "G" )
+
+        self.g2.add_vertex( self.v0_g2 )
+        self.g2.add_vertex( self.v1_g2 )
+        self.g2.add_vertex( self.v2_g2 )
+        self.g2.add_vertex( self.v3_g2 )
+        self.g2.add_vertex( self.v4_g2 )
+        self.g2.add_vertex( self.v5_g2 )
+        self.g2.add_vertex( self.v6_g2 )
+
+        self.g2.add_edge( self.v0_g2, self.v1_g2, 7 )   # ( A - B, 7 )
+        self.g2.add_edge( self.v1_g2, self.v2_g2, 2 )   # ( B - C, 2 )
+        self.g2.add_edge( self.v1_g2, self.v6_g2, 3 )   # ( B - G, 3 )
+        self.g2.add_edge( self.v2_g2, self.v3_g2, 2 )   # ( C - D, 2 )
+        self.g2.add_edge( self.v2_g2, self.v6_g2, 4 )   # ( C - G, 4 )
+        self.g2.add_edge( self.v3_g2, self.v4_g2, 5 )   # ( D - E, 5 )
+        self.g2.add_edge( self.v3_g2, self.v6_g2, 1 )   # ( D - G, 5 )
+        self.g2.add_edge( self.v4_g2, self.v5_g2, 6 )   # ( E - F, 6 )
+        self.g2.add_edge( self.v5_g2, self.v0_g2, 1 )   # ( F - A, 1 )
+        self.g2.add_edge( self.v5_g2, self.v6_g2, 4 )   # ( F - G, 4 )
+        self.g2.add_edge( self.v6_g2, self.v0_g2, 7 )   # ( G - A, 7 )
+        self.g2.add_edge( self.v6_g2, self.v4_g2, 1 )   # ( G - E, 1 )
+
+    def test_graph_algorithms_prim_0( self ):
+        e1 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v2, self.v1, 7 )
+        e2 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v3, self.v5, 5 )
+        e3 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v4, self.v1, 5 )
+        e4 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v5, self.v2, 7 )
+        e5 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v6, self.v4, 6 )
+        e6 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v7, self.v5, 9 )
+        mstRef0 = minimum_spanning_tree.MinimumSpanningTree( self.g1 )
+        mstRef0.add_edge( e1 )
+        mstRef0.add_edge( e2 )
+        mstRef0.add_edge( e3 )
+        mstRef0.add_edge( e4 )
+        mstRef0.add_edge( e5 )
+        mstRef0.add_edge( e6 )
+        mst0 = graph_algorithms.GraphAlgorithms.prims_algorithm( self.g1, self.v1 )
+        self.assertEqual( mstRef0, mst0 )
+
+    def test_graph_algorithms_prim_1( self ):
+        e1 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v1, self.v2, 7 )
+        e2 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v3, self.v5, 5 )
+        e3 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v4, self.v1, 5 )
+        e4 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v5, self.v2, 7 )
+        e5 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v6, self.v4, 6 )
+        e6 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v7, self.v5, 9 )
+        mstRef1 = minimum_spanning_tree.MinimumSpanningTree( self.g1 )
+        mstRef1.add_edge( e1 )
+        mstRef1.add_edge( e2 )
+        mstRef1.add_edge( e3 )
+        mstRef1.add_edge( e4 )
+        mstRef1.add_edge( e5 )
+        mstRef1.add_edge( e6 )
+        mst1 = graph_algorithms.GraphAlgorithms.prims_algorithm( self.g1, self.v2 )
+        self.assertEqual( mstRef1, mst1 )
+
+    def test_graph_algorithms_prim_2( self ):
+        e1 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v1, self.v2, 7 )
+        e2 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v2, self.v5, 7 )
+        e3 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v4, self.v1, 5 )
+        e4 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v5, self.v3, 5 )
+        e5 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v6, self.v4, 6 )
+        e6 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v7, self.v5, 9 )
+        mstRef2 = minimum_spanning_tree.MinimumSpanningTree( self.g1 )
+        mstRef2.add_edge( e1 )
+        mstRef2.add_edge( e2 )
+        mstRef2.add_edge( e3 )
+        mstRef2.add_edge( e4 )
+        mstRef2.add_edge( e5 )
+        mstRef2.add_edge( e6 )
+        mst2 = graph_algorithms.GraphAlgorithms.prims_algorithm( self.g1, self.v3 )
+        self.assertEqual( mstRef2, mst2 )
+
+    def test_graph_algorithms_prim_3( self ):
+        e1 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v1, self.v4, 5 )
+        e2 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v2, self.v1, 7 )
+        e3 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v3, self.v5, 5 )
+        e4 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v5, self.v2, 7 )
+        e5 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v6, self.v4, 6 )
+        e6 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v7, self.v5, 9 )
+        mstRef3 = minimum_spanning_tree.MinimumSpanningTree( self.g1 )
+        mstRef3.add_edge( e1 )
+        mstRef3.add_edge( e2 )
+        mstRef3.add_edge( e3 )
+        mstRef3.add_edge( e4 )
+        mstRef3.add_edge( e5 )
+        mstRef3.add_edge( e6 )
+        mst3 = graph_algorithms.GraphAlgorithms.prims_algorithm( self.g1, self.v4 )
+        self.assertEqual( mstRef3, mst3 )
+
+    def test_graph_algorithms_prim_4( self ):
+        e1 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v1, self.v2, 7 )
+        e2 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v2, self.v5, 7 )
+        e3 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v3, self.v5, 5 )
+        e4 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v4, self.v1, 5 )
+        e5 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v6, self.v4, 6 )
+        e6 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v7, self.v5, 9 )
+        mstRef4 = minimum_spanning_tree.MinimumSpanningTree( self.g1 )
+        mstRef4.add_edge( e1 )
+        mstRef4.add_edge( e2 )
+        mstRef4.add_edge( e3 )
+        mstRef4.add_edge( e4 )
+        mstRef4.add_edge( e5 )
+        mstRef4.add_edge( e6 )
+        mst4 = graph_algorithms.GraphAlgorithms.prims_algorithm( self.g1, self.v5 )
+        self.assertEqual( mstRef4, mst4 )
+
+    def test_graph_algorithms_prim_5( self ):
+        e1 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v1, self.v4, 5 )
+        e2 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v2, self.v1, 7 )
+        e3 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v3, self.v5, 5 )
+        e4 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v4, self.v6, 6 )
+        e5 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v5, self.v2, 7 )
+        e6 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v7, self.v5, 9 )
+        mstRef5 = minimum_spanning_tree.MinimumSpanningTree( self.g1 )
+        mstRef5.add_edge( e1 )
+        mstRef5.add_edge( e2 )
+        mstRef5.add_edge( e3 )
+        mstRef5.add_edge( e4 )
+        mstRef5.add_edge( e5 )
+        mstRef5.add_edge( e6 )
+        mst5 = graph_algorithms.GraphAlgorithms.prims_algorithm( self.g1, self.v6 )
+        self.assertEqual( mstRef5, mst5 )
+
+    def test_graph_algorithms_prim_6( self ):
+        e1 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v1, self.v2, 7 )
+        e2 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v2, self.v5, 7 )
+        e3 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v3, self.v5, 5 )
+        e4 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v4, self.v1, 5 )
+        e5 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v5, self.v7, 9 )
+        e6 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v6, self.v4, 6 )
+        mstRef6 = minimum_spanning_tree.MinimumSpanningTree( self.g1 )
+        mstRef6.add_edge( e1 )
+        mstRef6.add_edge( e2 )
+        mstRef6.add_edge( e3 )
+        mstRef6.add_edge( e4 )
+        mstRef6.add_edge( e5 )
+        mstRef6.add_edge( e6 )
+        mst6 = graph_algorithms.GraphAlgorithms.prims_algorithm( self.g1, self.v7 )
+        self.assertEqual( mstRef6, mst6 )
+
+    def test_graph_algorithms_kruskal( self ):
+        e1 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v1, self.v4, 5 )
+        e2 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v3, self.v5, 5 )
+        e3 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v6, self.v4, 6 )
+        e4 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v1, self.v2, 7 )
+        e5 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v2, self.v5, 7 )
+        e6 = graph_edge.UnDirectedWeightedGraphEdge( self.g1, self.v5, self.v7, 9 )
+        mstRef = minimum_spanning_tree.MinimumSpanningTree( self.g1 )
+        mstRef.add_edge( e1 )
+        mstRef.add_edge( e2 )
+        mstRef.add_edge( e3 )
+        mstRef.add_edge( e4 )
+        mstRef.add_edge( e5 )
+        mstRef.add_edge( e6 )
+        mst = graph_algorithms.GraphAlgorithms.kruskals_algorithm( self.g1 )
+        self.assertEqual( mstRef, mst )
+
+    def test_graph_algorithms_dijkstra_v0( self ):
+        e01 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v0_g2, self.v1_g2, 7 )
+        e12 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v1_g2, self.v2_g2, 2 )
+        e23 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v2_g2, self.v3_g2, 2 )
+        e64 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v6_g2, self.v4_g2, 1 )
+        e45 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v4_g2, self.v5_g2, 6 )
+        e16 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v1_g2, self.v6_g2, 3 )
+
+        e0 = entry.Entry( True, 0, None, None )
+        e1 = entry.Entry( True, 7, self.v0_g2, e01 )
+        e2 = entry.Entry( True, 9, self.v1_g2, e12 )
+        e3 = entry.Entry( True, 11, self.v2_g2, e23 )
+        e4 = entry.Entry( True, 11, self.v6_g2, e64 )
+        e5 = entry.Entry( True, 17, self.v4_g2, e45 )
+        e6 = entry.Entry( True, 10, self.v1_g2, e16 )
+
+        tRef0 = array_list.ArrayList( self.g2.get_number_of_vertices() )
+        tRef0[0] = e0
+        tRef0[1] = e1
+        tRef0[2] = e2
+        tRef0[3] = e3
+        tRef0[4] = e4
+        tRef0[5] = e5
+        tRef0[6] = e6
+        t0 = graph_algorithms.GraphAlgorithms.dijkstras_algorithm( self.g2, self.v0_g2 )
+        self.assertEqual( tRef0, t0 )
+
+    def test_graph_algorithms_dijkstra_v1( self ):
+        e60 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v6_g2, self.v0_g2, 7 )
+        e21 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v1_g2, self.v2_g2, 2 )
+        e23 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v2_g2, self.v3_g2, 2 )
+        e64 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v6_g2, self.v4_g2, 1 )
+        e45 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v4_g2, self.v5_g2, 6 )
+        e16 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v1_g2, self.v6_g2, 3 )
+
+        e0 = entry.Entry( True, 10, self.v6_g2, e60 )
+        e1 = entry.Entry( True, 0, None, None )
+        e2 = entry.Entry( True, 2, self.v1_g2, e21 )
+        e3 = entry.Entry( True, 4, self.v2_g2, e23 )
+        e4 = entry.Entry( True, 4, self.v6_g2, e64 )
+        e5 = entry.Entry( True, 10, self.v4_g2, e45 )
+        e6 = entry.Entry( True, 3, self.v1_g2, e16 )
+
+        tRef1 = array_list.ArrayList( self.g2.get_number_of_vertices() )
+        tRef1[0] = e0
+        tRef1[1] = e1
+        tRef1[2] = e2
+        tRef1[3] = e3
+        tRef1[4] = e4
+        tRef1[5] = e5
+        tRef1[6] = e6
+        t1 = graph_algorithms.GraphAlgorithms.dijkstras_algorithm( self.g2, self.v1_g2 )
+        self.assertEqual( tRef1, t1 )
+
+    def test_graph_algorithms_dijkstra_v2( self ):
+        e60 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v6_g2, self.v0_g2, 7 )
+        e01 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v0_g2, self.v1_g2, 7 )
+        e23 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v2_g2, self.v3_g2, 2 )
+        e64 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v6_g2, self.v4_g2, 1 )
+        e45 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v4_g2, self.v5_g2, 6 )
+        e36 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v3_g2, self.v6_g2, 1 )
+
+        e0 = entry.Entry( True, 10, self.v6_g2, e60 )
+        e1 = entry.Entry( True, 17, self.v0_g2, e01 )
+        e2 = entry.Entry( True, 0, None, None )
+        e3 = entry.Entry( True, 2, self.v2_g2, e23 )
+        e4 = entry.Entry( True, 4, self.v6_g2, e64 )
+        e5 = entry.Entry( True, 10, self.v4_g2, e45 )
+        e6 = entry.Entry( True, 3, self.v3_g2, e36 )
+
+        tRef2 = array_list.ArrayList( self.g2.get_number_of_vertices() )
+        tRef2[0] = e0
+        tRef2[1] = e1
+        tRef2[2] = e2
+        tRef2[3] = e3
+        tRef2[4] = e4
+        tRef2[5] = e5
+        tRef2[6] = e6
+        t2 = graph_algorithms.GraphAlgorithms.dijkstras_algorithm( self.g2, self.v2_g2 )
+        self.assertEqual( tRef2, t2 )
+
+    def test_graph_algorithms_dijkstra_v3( self ):
+        e60 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v6_g2, self.v0_g2, 7 )
+        e01 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v0_g2, self.v1_g2, 7 )
+        e12 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v1_g2, self.v2_g2, 2 )
+        e64 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v6_g2, self.v4_g2, 1 )
+        e45 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v4_g2, self.v5_g2, 6 )
+        e36 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v3_g2, self.v6_g2, 1 )
+
+        e0 = entry.Entry( True, 8, self.v6_g2, e60 )
+        e1 = entry.Entry( True, 15, self.v0_g2, e01 )
+        e2 = entry.Entry( True, 17, self.v1_g2, e12 )
+        e3 = entry.Entry( True, 0, None, None )
+        e4 = entry.Entry( True, 2, self.v6_g2, e64 )
+        e5 = entry.Entry( True, 8, self.v4_g2, e45 )
+        e6 = entry.Entry( True, 1, self.v3_g2, e36 )
+
+        tRef3 = array_list.ArrayList( self.g2.get_number_of_vertices() )
+        tRef3[0] = e0
+        tRef3[1] = e1
+        tRef3[2] = e2
+        tRef3[3] = e3
+        tRef3[4] = e4
+        tRef3[5] = e5
+        tRef3[6] = e6
+        t3 = graph_algorithms.GraphAlgorithms.dijkstras_algorithm( self.g2, self.v3_g2 )
+        self.assertEqual( tRef3, t3 )
+
+    def test_graph_algorithms_dijkstra_v4( self ):
+        e50 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v5_g2, self.v0_g2, 1 )
+        e01 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v0_g2, self.v1_g2, 7 )
+        e12 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v1_g2, self.v2_g2, 2 )
+        e23 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v2_g2, self.v3_g2, 2 )
+        e45 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v4_g2, self.v5_g2, 6 )
+        e56 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v5_g2, self.v6_g2, 4 )
+
+        e0 = entry.Entry( True, 7, self.v5_g2, e50 )
+        e1 = entry.Entry( True, 14, self.v0_g2, e01 )
+        e2 = entry.Entry( True, 16, self.v1_g2, e12 )
+        e3 = entry.Entry( True, 18, self.v2_g2, e23 )
+        e4 = entry.Entry( True, 0, None, None )
+        e5 = entry.Entry( True, 6, self.v4_g2, e45 )
+        e6 = entry.Entry( True, 10, self.v5_g2, e56 )
+
+        tRef4 = array_list.ArrayList( self.g2.get_number_of_vertices() )
+        tRef4[0] = e0
+        tRef4[1] = e1
+        tRef4[2] = e2
+        tRef4[3] = e3
+        tRef4[4] = e4
+        tRef4[5] = e5
+        tRef4[6] = e6
+        t4 = graph_algorithms.GraphAlgorithms.dijkstras_algorithm( self.g2, self.v4_g2 )
+        self.assertEqual( tRef4, t4 )
+
+    def test_graph_algorithms_dijkstra_v5( self ):
+        e50 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v5_g2, self.v0_g2, 1 )
+        e01 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v0_g2, self.v1_g2, 7 )
+        e12 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v1_g2, self.v2_g2, 2 )
+        e23 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v2_g2, self.v3_g2, 2 )
+        e64 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v6_g2, self.v4_g2, 1 )
+        e56 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v5_g2, self.v6_g2, 4 )
+
+        e0 = entry.Entry( True, 1, self.v5_g2, e50 )
+        e1 = entry.Entry( True, 8, self.v0_g2, e01 )
+        e2 = entry.Entry( True, 10, self.v1_g2, e12 )
+        e3 = entry.Entry( True, 12, self.v2_g2, e23 )
+        e4 = entry.Entry( True, 5, self.v6_g2, e64 )
+        e5 = entry.Entry( True, 0, None, None )
+        e6 = entry.Entry( True, 4, self.v5_g2, e56 )
+
+        tRef5 = array_list.ArrayList( self.g2.get_number_of_vertices() )
+        tRef5[0] = e0
+        tRef5[1] = e1
+        tRef5[2] = e2
+        tRef5[3] = e3
+        tRef5[4] = e4
+        tRef5[5] = e5
+        tRef5[6] = e6
+        t5 = graph_algorithms.GraphAlgorithms.dijkstras_algorithm( self.g2, self.v5_g2 )
+        self.assertEqual( tRef5, t5 )
+
+    def test_graph_algorithms_dijkstra_v6( self ):
+        e60 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v6_g2, self.v0_g2, 7 )
+        e01 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v0_g2, self.v1_g2, 7 )
+        e12 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v1_g2, self.v2_g2, 2 )
+        e23 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v2_g2, self.v3_g2, 2 )
+        e64 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v6_g2, self.v4_g2, 1 )
+        e45 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v4_g2, self.v5_g2, 6 )
+
+        e0 = entry.Entry( True, 7, self.v6_g2, e60 )
+        e1 = entry.Entry( True, 14, self.v0_g2, e01 )
+        e2 = entry.Entry( True, 16, self.v1_g2, e12 )
+        e3 = entry.Entry( True, 18, self.v2_g2, e23 )
+        e4 = entry.Entry( True, 1, self.v6_g2, e64 )
+        e5 = entry.Entry( True, 7, self.v4_g2, e45 )
+        e6 = entry.Entry( True, 0, None, None )
+
+        tRef6 = array_list.ArrayList( self.g2.get_number_of_vertices() )
+        tRef6[0] = e0
+        tRef6[1] = e1
+        tRef6[2] = e2
+        tRef6[3] = e3
+        tRef6[4] = e4
+        tRef6[5] = e5
+        tRef6[6] = e6
+        t6 = graph_algorithms.GraphAlgorithms.dijkstras_algorithm( self.g2, self.v6_g2 )
+        self.assertEqual( tRef6, t6 )
+
+    def test_graph_algorithms_shortest_path_v0_v1( self ):
+        pRef01 = graph_path.GraphPath( self.g2 )
+
+        # Reference vertices are added in reverse order
+        # in order to make comparison easier.
+        pRef01.add_vertex( self.v1_g2 )
+        pRef01.add_vertex( self.v0_g2 )
+
+        e01 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v0_g2, self.v1_g2, 7 )
+
+        # Reference edges are added in reverse order
+        # in order to make comparison easier.
+        pRef01.add_edge( e01 )
+
+        p01 = graph_algorithms.GraphAlgorithms.shortest_path( self.g2, self.v0_g2, self.v1_g2 )
+        self.assertEqual( pRef01, p01 )
+
+    def test_graph_algorithms_shortest_path_v0_v2( self ):
+        pRef02 = graph_path.GraphPath( self.g2 )
+
+        # Reference vertices are added in reverse order
+        # in order to make comparison easier.
+        pRef02.add_vertex( self.v2_g2 )
+        pRef02.add_vertex( self.v1_g2 )
+        pRef02.add_vertex( self.v0_g2 )
+
+        e01 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v0_g2, self.v1_g2, 7 )
+        e02 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v1_g2, self.v2_g2, 2 )
+
+        # Reference edges are added in reverse order
+        # in order to make comparison easier.
+        pRef02.add_edge( e02 )
+        pRef02.add_edge( e01 )
+
+        p02 = graph_algorithms.GraphAlgorithms.shortest_path( self.g2, self.v0_g2, self.v2_g2 )
+        self.assertEqual( pRef02, p02 )
+
+    def test_graph_algorithms_shortest_path_v0_v3( self ):
+        pRef03 = graph_path.GraphPath( self.g2 )
+
+        # Reference vertices are added in reverse order
+        # in order to make comparison easier.
+        pRef03.add_vertex( self.v3_g2 )
+        pRef03.add_vertex( self.v2_g2 )
+        pRef03.add_vertex( self.v1_g2 )
+        pRef03.add_vertex( self.v0_g2 )
+
+        e01 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v0_g2, self.v1_g2, 7 )
+        e02 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v1_g2, self.v2_g2, 2 )
+        e03 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v2_g2, self.v3_g2, 2 )
+
+        # Reference edges are added in reverse order
+        # in order to make comparison easier.
+        pRef03.add_edge( e03 )
+        pRef03.add_edge( e02 )
+        pRef03.add_edge( e01 )
+
+        p03 = graph_algorithms.GraphAlgorithms.shortest_path( self.g2, self.v0_g2, self.v3_g2 )
+        self.assertEqual( pRef03, p03 )
+
+    def test_graph_algorithms_shortest_path_v0_v4( self ):
+        pRef04 = graph_path.GraphPath( self.g2 )
+
+        # Reference vertices are added in reverse order
+        # in order to make comparison easier.
+        pRef04.add_vertex( self.v4_g2 )
+        pRef04.add_vertex( self.v6_g2 )
+        pRef04.add_vertex( self.v1_g2 )
+        pRef04.add_vertex( self.v0_g2 )
+
+        e01 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v0_g2, self.v1_g2, 7 )
+        e16 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v1_g2, self.v6_g2, 3 )
+        e64 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v6_g2, self.v4_g2, 1 )
+
+        # Reference edges are added in reverse order
+        # in order to make comparison easier.
+        pRef04.add_edge( e64 )
+        pRef04.add_edge( e16 )
+        pRef04.add_edge( e01 )
+
+        p04 = graph_algorithms.GraphAlgorithms.shortest_path( self.g2, self.v0_g2, self.v4_g2 )
+        self.assertEqual( pRef04, p04 )
+
+    def test_graph_algorithms_shortest_path_v0_v5( self ):
+        pRef05 = graph_path.GraphPath( self.g2 )
+
+        # Reference vertices are added in reverse order
+        # in order to make comparison easier.
+        pRef05.add_vertex( self.v5_g2 )
+        pRef05.add_vertex( self.v4_g2 )
+        pRef05.add_vertex( self.v6_g2 )
+        pRef05.add_vertex( self.v1_g2 )
+        pRef05.add_vertex( self.v0_g2 )
+
+        e01 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v0_g2, self.v1_g2, 7 )
+        e16 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v1_g2, self.v6_g2, 3 )
+        e64 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v6_g2, self.v4_g2, 1 )
+        e65 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v4_g2, self.v5_g2, 6 )
+
+        # Reference edges are added in reverse order
+        # in order to make comparison easier.
+        pRef05.add_edge( e65 )
+        pRef05.add_edge( e64 )
+        pRef05.add_edge( e16 )
+        pRef05.add_edge( e01 )
+
+        p05 = graph_algorithms.GraphAlgorithms.shortest_path( self.g2, self.v0_g2, self.v5_g2 )
+        self.assertEqual( pRef05, p05 )
+
+    def test_graph_algorithms_shortest_path_v0_v6( self ):
+        pRef06 = graph_path.GraphPath( self.g2 )
+
+        # Reference vertices are added in reverse order
+        # in order to make comparison easier.
+        pRef06.add_vertex( self.v6_g2 )
+        pRef06.add_vertex( self.v1_g2 )
+        pRef06.add_vertex( self.v0_g2 )
+
+        e01 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v0_g2, self.v1_g2, 7 )
+        e16 = graph_edge.DirectedWeightedGraphEdge( self.g2, self.v1_g2, self.v6_g2, 3 )
+
+        # Reference edges are added in reverse order
+        # in order to make comparison easier.
+        pRef06.add_edge( e16 )
+        pRef06.add_edge( e01 )
+
+        p06 = graph_algorithms.GraphAlgorithms.shortest_path( self.g2, self.v0_g2, self.v6_g2 )
+        self.assertEqual( pRef06, p06 )
+
+    def test_graph_algorithms_bellman_ford(self):
+        # Create directed weighted graph - reference: http://algs4.cs.princeton.edu
+        test_graph = graph.DirectedWeightedGraph(8)
+
+        v0 = graph_vertex.UnWeightedGraphVertex(test_graph, "0")
+        v1 = graph_vertex.UnWeightedGraphVertex(test_graph, "1")
+        v2 = graph_vertex.UnWeightedGraphVertex(test_graph, "2")
+        v3 = graph_vertex.UnWeightedGraphVertex(test_graph, "3")
+        v4 = graph_vertex.UnWeightedGraphVertex(test_graph, "4")
+        v5 = graph_vertex.UnWeightedGraphVertex(test_graph, "5")
+        v6 = graph_vertex.UnWeightedGraphVertex(test_graph, "6")
+        v7 = graph_vertex.UnWeightedGraphVertex(test_graph, "7")
+
+        test_graph.add_vertex(v0)
+        test_graph.add_vertex(v1)
+        test_graph.add_vertex(v2)
+        test_graph.add_vertex(v3)
+        test_graph.add_vertex(v4)
+        test_graph.add_vertex(v5)
+        test_graph.add_vertex(v6)
+        test_graph.add_vertex(v7)
+
+        test_graph.add_edge(v0, v1, 5)
+        test_graph.add_edge(v0, v4, 9)
+        test_graph.add_edge(v0, v7, 8)
+        test_graph.add_edge(v1, v2, 12)
+        test_graph.add_edge(v1, v3, 15)
+        test_graph.add_edge(v1, v7, 4)
+        test_graph.add_edge(v2, v3, 3)
+        test_graph.add_edge(v2, v6, 11)
+        test_graph.add_edge(v3, v6, 9)
+        test_graph.add_edge(v4, v5, 4)
+        test_graph.add_edge(v4, v6, 20)
+        test_graph.add_edge(v4, v7, 5)
+        test_graph.add_edge(v5, v2, 1)
+        test_graph.add_edge(v5, v6, 13)
+        test_graph.add_edge(v7, v2, 7)
+        test_graph.add_edge(v7, v5, 6)
+        print graph_algorithms.GraphAlgorithms.bellman_ford_algorithm(test_graph, v0)
+
