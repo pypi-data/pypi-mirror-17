@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+setup.py
+csv_tools/__init__.py
+csv_tools.egg-info/PKG-INFO
+csv_tools.egg-info/SOURCES.txt
+csv_tools.egg-info/dependency_links.txt
+csv_tools.egg-info/requires.txt
+csv_tools.egg-info/top_level.txt
+csv_tools/tests/__init__.py
+csv_tools/tests/test_csv_tools.py
+csv_tools/tests/static/__init__.py

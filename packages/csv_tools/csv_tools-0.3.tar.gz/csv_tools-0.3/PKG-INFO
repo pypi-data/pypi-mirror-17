@@ -1,0 +1,40 @@
+Metadata-Version: 1.1
+Name: csv_tools
+Version: 0.3
+Summary: Tools for working with delimited files.
+Home-page: https://github.com/cw-andrews/csv_tools
+Author: cw-andrews
+Author-email: cwandrews.oh@gmail.com
+License: MIT
+Description: #CSVTools 
+        
+        Tools for working with delimited files.
+        
+        1. DialectDetector
+           When passed delimited file path will sniff file for dialect and header information using specified detection settings for DialectDetector instance.
+           1. sniff_for_dialect:
+              Sniff delimited file and return csv.Dialect.
+           2. sniff_for_headers:
+              Sniff delimited file and return first row if the file has headers else list of numbered columns as headers in the form of 'Column' + column #.
+           3. sniff_for_encoding:
+              Sniff file to try and determine and return encoding else returns latin-1.
+        
+        2. SchemaEngine
+           Engine for data-typing delimited file into field_names, their data type, and max length (if applicable).
+           1. build_schema_string:
+              Process delimited file and return schema string for file passed.
+        
+        3. integrity_check
+           Take filepath and report on the number of columns detected per line, extra quotechars, etc. Helps to detect problems in source files which may cause issues when creating schema files and indicator for whether file will need preprocessor.
+Keywords: csv,delimited,csv_tools
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
