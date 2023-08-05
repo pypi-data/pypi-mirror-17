@@ -1,0 +1,14 @@
+MANIFEST.in
+README.rst
+requirements.txt
+setup.cfg
+setup.py
+s3cache/__init__.py
+s3cache/exception.py
+s3cache/s3file.py
+s3cache/utils.py
+s3cache.egg-info/PKG-INFO
+s3cache.egg-info/SOURCES.txt
+s3cache.egg-info/dependency_links.txt
+s3cache.egg-info/requires.txt
+s3cache.egg-info/top_level.txt
