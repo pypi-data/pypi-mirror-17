@@ -1,0 +1,77 @@
+---
+# ansible-playbook "$MYRIA_ANSIBLE_DIR/site.yml" --extra-vars "$ANSIBLE_VARS" --private-key "$PRIVATE_KEY_FILE"
+# NB: this playbook is expected to be called with either `--tags=provision`, `--tags=configure` or `--tags=update`!
+# By (mis)design, it is impossible to filter by tags within a playbook itself
+# (tags within a role invocation actually apply the tags to every task within the role).
+# The only way to achieve the same effect within a playbook is to use variables and
+# conditionals instead of tags, and we don't want to go there (yet).
+
+- name: Gather EC2 facts
+  hosts: ec2
+  remote_user: ubuntu
+  become: yes
+  gather_facts: true
+  tasks:
+    - ec2_facts:
+
+- name: Configure common functionality on all nodes
+  hosts: ec2
+  remote_user: ubuntu
+  become: yes
+  gather_facts: false
+  roles:
+    - basenode
+    - yarn-common
+    - postgres
+    - ganglia-monitor
+
+- name: Configure YARN RM
+  hosts: tag_cluster_role_coordinator
+  remote_user: ubuntu
+  become: yes
+  gather_facts: false
+  roles:
+    - yarn-master
+
+- name: Configure YARN NM
+  hosts: ec2
+  remote_user: ubuntu
+  become: yes
+  gather_facts: false
+  roles:
+    - yarn-slave
+
+- name: Configure Ganglia UI on coordinator
+  hosts: tag_cluster_role_coordinator
+  remote_user: ubuntu
+  become: yes
+  gather_facts: false
+  roles:
+    - ganglia-metad
+    - ganglia-web
+
+- name: Configure and launch MyriaX on coordinator
+  hosts: tag_cluster_role_coordinator
+  remote_user: ubuntu
+  become: yes
+  gather_facts: false
+  roles:
+    - myria-python
+    - myria
+
+- name: Install and launch myria-web on coordinator
+  hosts: tag_cluster_role_coordinator
+  remote_user: ubuntu
+  become: yes
+  gather_facts: false
+  roles:
+    - gae
+    - myria-web
+
+- name: Install and launch jupyter-notebook on coordinator
+  hosts: tag_cluster_role_coordinator
+  remote_user: ubuntu
+  become: yes
+  gather_facts: false
+  roles:
+    - jupyter
