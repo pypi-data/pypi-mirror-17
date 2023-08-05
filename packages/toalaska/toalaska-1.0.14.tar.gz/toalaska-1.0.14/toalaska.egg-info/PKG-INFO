@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: toalaska
+Version: 1.0.14
+Summary: this is a test package for packing python liberaries tutorial.
+Home-page: http://www.toalaska.net/
+Author: toalaska
+Author-email: toalaska@126.com
+License: MIT
+Description: cd toalaska
+        python setup.py sdist
+        cp ~/.pypirc  ~/.pypirc.bak
+        cp ~/.pypirc.toalaska  ~/.pypirc
+        python setup.py register sdist upload
+        cp  ~/.pypirc.bak  ~/.pypirc
+        
+Keywords: test python package
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
