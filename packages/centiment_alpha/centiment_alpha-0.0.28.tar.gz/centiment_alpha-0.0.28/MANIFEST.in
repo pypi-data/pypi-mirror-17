@@ -1,0 +1,2 @@
+recursive-include centiment_alpha *.jar
+recursive-include centiment_alpha/lexicon *.list *.lex *.txt *.tweet *.replace
