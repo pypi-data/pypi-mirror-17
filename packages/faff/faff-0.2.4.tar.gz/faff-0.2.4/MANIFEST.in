@@ -1,0 +1,5 @@
+# Required for Tox functionality.
+include README.md
+include LICENCE
+# Markdown templates.
+include faff/ext/templates/*
