@@ -1,0 +1,9 @@
+# usage: `pip install -r requirements.txt`
+numpy>=1.6
+scipy>=0.16
+networkx
+
+# optional
+cvxopt==1.1.8
+nose
+matplotlib
