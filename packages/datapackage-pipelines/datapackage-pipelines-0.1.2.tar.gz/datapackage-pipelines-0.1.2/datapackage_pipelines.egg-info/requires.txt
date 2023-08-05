@@ -1,0 +1,12 @@
+six>=1.9
+celery
+requests
+datapackage
+jsontableschema
+pyyaml
+redis
+flask
+
+[develop]
+pylint
+tox
