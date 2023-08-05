@@ -1,0 +1,15 @@
+MANIFEST.in
+README.txt
+setup.py
+qdune/__init__.py
+qdune/qdune.py
+qdune/test.py
+qdune.egg-info/PKG-INFO
+qdune.egg-info/SOURCES.txt
+qdune.egg-info/dependency_links.txt
+qdune.egg-info/top_level.txt
+qdune/testdata/info.csv
+qdune/testdata/xyz/survey5.txt
+qdune/testdata/xyz/survey6.txt
+qdune/testdata/xyz/survey7.txt
+qdune/testdata/xyz/survey8.txt
