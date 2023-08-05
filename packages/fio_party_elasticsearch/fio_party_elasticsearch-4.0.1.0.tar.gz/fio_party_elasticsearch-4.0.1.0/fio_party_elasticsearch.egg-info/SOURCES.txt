@@ -1,0 +1,17 @@
+README.rst
+setup.cfg
+setup.py
+./__init__.py
+./party.py
+./party.xml
+./tryton.cfg
+./tests/__init__.py
+./tests/test_party.py
+./tests/test_views_depends.py
+fio_party_elasticsearch.egg-info/PKG-INFO
+fio_party_elasticsearch.egg-info/SOURCES.txt
+fio_party_elasticsearch.egg-info/dependency_links.txt
+fio_party_elasticsearch.egg-info/entry_points.txt
+fio_party_elasticsearch.egg-info/not-zip-safe
+fio_party_elasticsearch.egg-info/requires.txt
+fio_party_elasticsearch.egg-info/top_level.txt

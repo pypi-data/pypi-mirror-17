@@ -1,0 +1,4 @@
+
+    [trytond.modules]
+    party_elasticsearch = trytond.modules.party_elasticsearch
+    
