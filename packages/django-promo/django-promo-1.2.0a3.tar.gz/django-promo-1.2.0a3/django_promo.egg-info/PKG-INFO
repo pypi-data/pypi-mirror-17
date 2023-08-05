@@ -1,0 +1,56 @@
+Metadata-Version: 1.1
+Name: django-promo
+Version: 1.2.0a3
+Summary: A reuseable Django application for coupon gereration and handling.
+Home-page: https://github.com/ashwineaso/django-promo
+Author: ashwineaso
+Author-email: root@ashwineaso.com
+License: The MIT License (MIT)
+Copyright (c) 2016 ashwineaso
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Description: #django-coupons
+        
+        ![build status](https://travis-ci.org/byteweaver/django-coupons.png)
+        
+        A reuseable Django application for coupon gereration and handling
+        
+        ## Setup instructions
+        
+        1. Install `django-coupons` via pip:
+           ```
+           $ pip install django-coupons
+           ```
+        
+        2. Add `'coupons'` to `INSTALLED_APPS` in `settings.py`.
+        
+        3. Migrate database:
+        
+           ```
+           $ python manage.py migrate
+           ```
+        
+        ## Supported use cases of coupons
+        
+        This application supports different kind of coupons in the way how they can be redeemed.
+        The difference is defined by the number of possible redeems and if they are bound to a specific user (may even be a list of users) or not.
+        
+            1) single time (default), coupon can be used one time without being bound to an user.
+            2) user limited, coupon can be used one time but only by a specific user.
+            3) limit number, coupon can be used a limited number of times, by any user once.
+            4) users list, coupon can be used by a defined list of users, each once.
+            5) unlimited, coupon can be used unlimited times, but only once by the same user.
+        
+Platform: UNKNOWN
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
