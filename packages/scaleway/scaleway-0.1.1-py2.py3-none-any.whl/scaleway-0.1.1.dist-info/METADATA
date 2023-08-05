@@ -1,0 +1,40 @@
+Metadata-Version: 2.0
+Name: scaleway
+Version: 0.1.1
+Summary: development instance management on scaleway
+Home-page: http://scaleway.sepu.cz
+Author: Antoni Segura Puimedon
+Author-email: antonisp@celebdor.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: click (>=6.6)
+Requires-Dist: pbr (>=1.8)
+Requires-Dist: requests (>=2.11.1)
+
+scaleway
+========
+
+Script to manage scaleway development servers.
+
+Functionality
+-------------
+
+* show: shows the IP address of the instance.
+* mount: sshfs mounts the user's home of the instance into the local user's *mnt*
+* umount: sshfs umount.
+
+Roadmap
+-------
+
+* Spinning down snapshotting and terminating servers.
+* Creating instances from the snapshots.
+
+
+
