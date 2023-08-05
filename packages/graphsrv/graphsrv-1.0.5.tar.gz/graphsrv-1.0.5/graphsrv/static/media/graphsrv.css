@@ -1,0 +1,62 @@
+html, body {
+  background-color: #222;
+  height: 100%;
+}
+
+div.height1 {
+  height: 10%; 
+}
+div.height2 {
+  height: 16.5%;
+}
+div.height3 {
+  height: 33%;
+}
+div.height4 {
+  height: 50%;
+}
+div.height6 {
+  height: 66%;
+}
+
+div.graphsrv.overview {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+}
+
+div.graphsrv.overview div.container-fluid {
+  height: 100%;
+}
+
+div.graphsrv.overview div.row>div {
+  background-color: #000;
+  height: 100%;
+}
+
+div.graphsrv.overview div.overview-file {
+  white-space:pre;
+  color: #fff;
+  font-size: 12px;
+  padding-top: 10px;
+}
+
+div.graphsrv.overview div.graph-label {
+  text-align: center;
+}
+
+div.graphsrv.overview div.graph-label a {
+  text-decoration: underline;
+}
+
+div.graphsrv.overview div.empty {
+  padding-top: 10%;
+  color: #666;
+  font-size: 150%;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  border: 1px #333 dashed;
+}
