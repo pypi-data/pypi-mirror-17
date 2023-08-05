@@ -1,0 +1,12 @@
+MANIFEST.in
+README.rst
+setup.py
+systemd/__init__.py
+systemd/daemon.c
+systemd/daemon.pyx
+systemd/journal.c
+systemd/journal.pyx
+systemd.egg-info/PKG-INFO
+systemd.egg-info/SOURCES.txt
+systemd.egg-info/dependency_links.txt
+systemd.egg-info/top_level.txt
