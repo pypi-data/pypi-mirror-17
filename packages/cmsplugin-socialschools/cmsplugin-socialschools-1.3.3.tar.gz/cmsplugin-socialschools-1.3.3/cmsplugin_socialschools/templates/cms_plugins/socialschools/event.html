@@ -1,0 +1,60 @@
+{% load i18n %}
+{% load staticfiles %}
+
+{% autoescape off %}
+<div class="post clearfix">
+    <div class="post-labels">
+        <% if (event){ %>
+            <div class="post-label-type post-color-event">
+                <icon class="glyphicon glyphicon-calendar"></icon>
+            </div>
+        <% } else { %>
+            <div class="post-label-type post-color-comment">
+                <icon class="glyphicon glyphicon-comment"></icon>
+            </div>
+        <% } %>
+    </div>
+
+    <!-- Post body -->
+    <% if (event){ %>
+        <div class="post-body post-body-color-event">
+    <% } else { %>
+        <div class="post-body post-body-color-comment">
+    <% } %>
+        <div class="post-message-container">
+            <div class="clearfix">
+            <div class="post-meta pull-left">
+               <%= _community_name %>
+                <br>
+            </div>
+            </div>
+            <hr>
+            <h2 class="post-header"><%= title %></h2>
+            <div class="post-description">
+            </div>
+                <div class="row-fluid">
+                    <div class="event-icon">
+                        <div class="event-icon-month">
+                            <%= moment(start_date).format('MMM') %>
+                        </div>
+                        <div class="event-icon-day">
+                            <p class="event-icon-day-number"><%= moment(start_date).format('DD') %></p>
+                            <span><%= moment(start_date).format('dddd') %></span>
+                        </div>
+                    </div>
+                    <div class="event-details">
+                    <p class="event-location meta-info"><icon class="glyphicon glyphicon-map-marker"></icon> <%= location %> </p>
+                    <p class="event-multiday-time meta-info"><span class="meta-info">{% trans 'Starts' %}</span> &nbsp;<strong><%= moment(start_date).format('LL H:mm') %></strong></p>
+                    <p class="event-multiday-time meta-info"><span class="meta-info">{% trans 'Ends' %}</span> &nbsp;<strong><%= moment(end_date).format('LL H:mm') %></strong></p>
+                    </div>
+                </div>
+            <div class="post-photos-container gallery clearfix" data-toggle="modal-gallery" data-target="#modal-gallery">
+            </div>
+            <div class="post-videos-container">
+            </div>
+<!--             <div class="post-comments-container">
+            </div> -->
+        </div>
+    </div>
+</div>
+{% endautoescape %}

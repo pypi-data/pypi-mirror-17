@@ -1,0 +1,171 @@
+{% load staticfiles %}
+{% load sekizai_tags %}
+{% load i18n %}
+{# Separate addtoblocks used so all static stuff only gets rendered once #}
+{% addtoblock 'js' %}
+<script src="{% static 'cmsplugin_socialschools/js/socialschools.js' %}"></script>
+<script src="{% static 'cmsplugin_socialschools/js/lib/underscore-min.js' %}"></script>
+<script src="{% static 'cmsplugin_socialschools/js/lib/moment+langs.min.js' %}"></script>
+<script id="post-template" type="text/x-handlebars-template">
+    {% include "cms_plugins/socialschools/post.html" %}
+</script>
+<script id="post-withoutevent-template" type="text/x-handlebars-template">
+    {% include "cms_plugins/socialschools/postwithoutevent.html" %}
+</script>
+<script id="news-template" type="text/x-handlebars-template">
+    {% include "cms_plugins/socialschools/news.html" %}
+</script>
+<script id="document-template" type="text/x-handlebars-template">
+    {% include "cms_plugins/socialschools/document.html" %}
+</script>
+<script id="comment-template" type="text/x-handlebars-template">
+    <div id="comment"></div>
+</script>
+<script id="photo-template" type="text/x-handlebars-template">
+    {% include "cms_plugins/socialschools/photo.html" %}
+</script>
+<script id="video-template" type="text/x-handlebars-template">
+    {% include "cms_plugins/socialschools/video.html" %}
+</script>
+<script id="pub-photo-template" type="text/x-handlebars-template">
+    {% include "cms_plugins/socialschools/pubphoto.html" %}
+</script>
+<script id="pub-photo-grid-template" type="text/x-handlebars-template">
+    {% include "cms_plugins/socialschools/pubphotogrid.html" %}
+</script>
+<script id="news-thumb-template" type="text/x-handlebars-template">
+    {% include "cms_plugins/socialschools/newsthumb.html" %}
+</script>
+<script id="news-thumb-template-without-event" type="text/x-handlebars-template">
+    {% include "cms_plugins/socialschools/newsthumbwithoutevent.html" %}
+</script>
+<script id="news-photo-template" type="text/x-handlebars-template">
+    {% include "cms_plugins/socialschools/newsphoto.html" %}
+</script>
+<script src="{% static 'cmsplugin_socialschools/js/socialschools_cmsplugin.js' %}"></script>
+<script type="text/javascript">
+    moment.lang('{{LANGUAGE_CODE}}');
+</script>
+{% endaddtoblock %}
+
+{# modal-gallery is the modal dialog used for the image gallery #}
+{% addtoblock 'js' %}
+  <div id="modal-gallery" class="modal modal-gallery hide fade" tabindex="-1">
+      <div class="modal-header">
+          <a class="close" data-dismiss="modal">&times;</a>
+          <h3 class="modal-title"></h3>
+      </div>
+      <div class="modal-body"><div class="modal-image"></div></div>
+      <div class="modal-footer">
+          <a class="btn btn-primary modal-prev"><i class="glyphicon glyphicon-arrow-left"></i>{% trans 'Previous' %}</a>
+          <a class="btn btn-primary modal-next">{% trans 'Next' %} <i class="glyphicon glyphicon-arrow-right"></i></a>
+          <a class="btn modal-play modal-slideshow" data-slideshow="5000"><i class="glyphicon glyphicon-play"></i> {% trans 'Slideshow' %}</a>
+          <a class="btn modal-download" target="_blank"><i class="glyphicon glyphicon-download"></i> {% trans 'Download' %}</a>
+      </div>
+  </div>
+{% endaddtoblock %}
+
+
+{% addtoblock 'js' %}
+<script type="text/javascript">
+(function () {
+  var socialschools = new Socialschools('https://app.socialschools.nl/');
+  {% if instance.only_photos %}
+    {% if instance.photo_choice == instance.CAROUSEL %}
+      var publicPhotos = socialschools.getPublicPhotos('{{ instance.community_id }}', undefined, function (photos) {
+        renderPublicPhotos('#cms-instance-{{ instance.id }}', photos);
+      });
+    {% else %}
+      var publicPhotos = socialschools.getPublicPhotos('{{ instance.community_id }}', undefined, function (photos) {
+          renderPublicPhotosInGrid('#cms-instance-{{ instance.id }}', photos);
+        });
+    {% endif %}
+  {% else %}
+  var posts = socialschools.getPublicPosts({{ instance.community_id }}, {
+    {% if instance.only_descendants %}
+      only_descendants: true,
+    {% endif %}
+    {% if instance.community_and_descendants %}
+      community_and_descendants: true,
+    {% endif %}
+    {% if instance.number_of_items %}
+      number_of_items: {{ instance.number_of_items }}
+    {% endif %}
+    },
+    function (posts) {
+    {% if instance.only_headlines %}
+      renderNews('#cms-instance-{{ instance.id }}', posts);
+    {% elif instance.headlines_with_thumbnails %}
+      {% if not instance.hide_events %}
+        renderNewsWithThumb('#cms-instance-{{ instance.id}}', posts);
+      {% else %}
+        renderNewsWithThumbWithoutEvent('#cms-instance-{{ instance.id}}', posts);
+      {% endif %}
+    {% else %}
+      {% if instance.hide_events %}
+        renderPostswithoutEvent('#cms-instance-{{ instance.id }}', posts);
+      {% else %}
+        renderPosts('#cms-instance-{{ instance.id }}', posts);
+      {% endif %}
+    {% endif %}
+  });
+  {% endif %}
+}());
+</script>
+{% endaddtoblock %}
+
+<div id="cms-instance-{{ instance.id }}" class="news-plugin">
+
+
+  {% if instance.only_headlines %}
+    <div class="css-posts-content"></div>
+    <aside class="content-block">
+    <div class="tabbar">
+      <div class="content content-news">
+        <h2>{% if instance.news_headlines %} {{ instance.news_headlines }} {% endif %} News</h2>
+        <ul class="news nav">
+        </ul>
+      </div>
+    </aside>
+    <ul class="pager">
+      <li>
+        <a class="css-posts-next-page" href="#">{% trans 'More' %}</a>
+      </li>
+    </ul>
+
+  {% elif instance.headlines_with_thumbnails %}
+      <aside class="content-block newsfeed-headlines-thumbnails">
+      <div class="tabbar">
+        <div class="content content-news">
+          <ul class="news-thumb nav">
+          </ul>
+        </div>
+      </aside>
+      <ul class="pager">
+        <li>
+         <a class="css-posts-next-page" href="#">{% trans 'More' %}</a>
+        </li>
+      </ul>
+
+  {% elif instance.only_photos %}
+  <aside class="content-block newsfeed-photo-carousel">
+    <div class="tabbar">
+      <div class="tab-icon photos"></div>
+    </div>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner content-pub-photo" role="listbox">
+      </div>
+    </div>
+  </aside>
+
+  {% else %}
+  <div class="css-posts-content newsfeed-full-posts"></div>
+  <div class="css-post-cont"></div>
+  <ul class="pager">
+    <li>
+         <a class="css-posts-next-page" href="#">{% trans 'Next' %}</a>
+    </li>
+  </ul>
+  {% endif %}
+</div>
+
