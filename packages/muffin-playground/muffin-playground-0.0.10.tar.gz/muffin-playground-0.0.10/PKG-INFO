@@ -1,0 +1,43 @@
+Metadata-Version: 1.1
+Name: muffin-playground
+Version: 0.0.10
+Summary: Convenience classes for simple muffin apps
+Home-page: https://github.com/feihong/muffin-playground
+Author: Feihong Hsu
+Author-email: feihong.hsu@gmail.com
+License: Apache 2.0
+Description: Muffin-Playground
+        #################
+        
+        A small module containing convenience classes to make it easier to create simple muffin applications.
+        
+        What it offers:
+        
+        - An easy-to-use static file handler that automatically compiles certain types of source files (.plim, .styl, .pyj)
+        - Client autoreload
+        - Support for plim templating language (.plim)
+        - Support for Stylus CSS preprocessor (.styl)
+        - Support for RapydScript Python-to-JS compiler (.pyj)
+        - Custom muffin.Application subclass with a render() method for plim templates
+        - WebSocketHandler class with on_open(), on_close(), and on_message() methods
+        
+        Installation
+        ============
+        
+          pip install muffin-playground
+        
+        If you want RapydScript and Stylus support, you must install their packages via npm:
+        
+          npm install -g stylus rapydscript-ng
+        
+Keywords: asyncio,aiohttp,muffin
+Platform: Any
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
