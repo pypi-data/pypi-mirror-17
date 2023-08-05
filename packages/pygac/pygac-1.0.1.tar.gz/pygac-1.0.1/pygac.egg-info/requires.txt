@@ -1,0 +1,7 @@
+docutils>=0.3
+numpy>=1.8.0
+pyorbital>=v0.3.2
+h5py
+
+[geolocation interpolation]
+python-geotiepoints
