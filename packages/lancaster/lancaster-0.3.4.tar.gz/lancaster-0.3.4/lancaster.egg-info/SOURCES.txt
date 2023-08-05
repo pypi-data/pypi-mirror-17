@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+versioneer.py
+lancaster/__init__.py
+lancaster/_lancaster.c
+lancaster/_version.py
+lancaster.egg-info/PKG-INFO
+lancaster.egg-info/SOURCES.txt
+lancaster.egg-info/dependency_links.txt
+lancaster.egg-info/top_level.txt
