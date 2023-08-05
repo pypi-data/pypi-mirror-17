@@ -1,0 +1,139 @@
+- type: host
+  name: www.bing.com
+  ssl: true
+  cdn: bing
+
+- type: cdn
+  id: cbcdn
+  name: CacheBrowser CDN (Cloudfront)
+  edge_servers:
+    - 54.230.27.22
+    - 54.230.27.181
+
+    - 205.185.208.110
+- type: host
+  name: www.cachebrowser.info
+  ssl: true
+  cdn: cbcdn
+
+- type: cdn
+  id: highwinds
+  name: Highwinds
+  edge_servers:
+
+- type: cdn
+  id: edgecast
+  name: Edgecast
+  edge_servers:
+    - 72.21.91.39
+
+- type: host
+  name: 41.media.tumblr.com
+  ssl: true
+  cdn: highwinds
+
+- type: host
+  name: 40.media.tumblr.com
+  ssl: true
+  cdn: edgecast
+
+- type: host
+  name: 33.media.tumblr.com
+  ssl: true
+  cdn: highwinds
+
+- type: host
+  name: 36.media.tumblr.com
+  ssl: true
+  cdn: cbcdn
+
+- type: host
+  name: static.tumblr.com
+  ssl: true
+  cdn: cbcdn
+
+- type: host
+  name: assets.tumblr.com
+  ssl: true
+  cdn: cbcdn
+
+
+- type: cdn
+  id: facebook
+  name: Facebook
+  edge_servers:
+    - 31.13.71.1
+
+- type: host
+  name: www.facebook.com
+  ssl: true
+  cdn: facebook
+
+- type: cdn
+  id: akamai
+  name: Akamai
+  edge_servers:
+    - 104.97.14.251
+
+- type: host
+  name: fbstatic-a.akamaihd.net
+  cdn: akamai
+  ssl: true
+
+
+- type: host
+  name: fbcdn-dragon-a.akamaihd.net
+  cdn: akamai
+  ssl: true
+
+- type: host
+  name: fbcdn-profile-a.akamaihd.net
+  cdn: akamai
+  ssl: true
+
+- type: host
+  name: fbcdn-photos-a-a.akamaihd.net
+  cdn: akamai
+  ssl: true
+
+- type: host
+  name: fbcdn-sphotos-e-a.akamaihd.net
+  cdn: akamai
+  ssl: true
+
+- type: host
+  name: scontent.xx.fbcdn.net
+  cdn: akamai
+  ssl: true
+
+- type: host
+  name: pixel.facebook.com
+  cdn: akamai
+  ssl: true
+
+
+- type: cdn
+  id: google
+  name: Google
+  edge_servers:
+    - 173.194.205.102
+
+- type: host
+  name: s.ytimg.com
+  cdn: google
+  ssl: true
+
+- type: host
+  name: i.ytimg.com
+  cdn: google
+  ssl: true
+
+- type: host
+  name: yt3.ggpht.com
+  cdn: google
+  ssl: true
+
+- type: host
+  name: www.youtube.com
+  cdn: google
+  ssl: true

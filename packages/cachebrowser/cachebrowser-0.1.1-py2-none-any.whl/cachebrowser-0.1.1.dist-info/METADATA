@@ -1,0 +1,20 @@
+Metadata-Version: 2.0
+Name: cachebrowser
+Version: 0.1.1
+Summary: A proxy-less censorship resistance tool
+Home-page: https://www.cachebrowser.net
+Author: Hadi Zolfaghari
+Author-email: hadi@cs.umass.edu
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: PyYAML
+Requires-Dist: appdirs
+Requires-Dist: click (>=6.6)
+Requires-Dist: ipwhois
+Requires-Dist: mitmproxy (>=0.17)
+Requires-Dist: peewee
+Requires-Dist: websocket-server
+
+UNKNOWN
+
+
