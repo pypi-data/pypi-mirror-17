@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: aiohipchat
+Version: 0.0.2
+Summary: Simple bot that plugs into aiohttp and HipChat
+Home-page: https://github.com/mrasband/aiohipchat
+Author: Matt Rasband
+Author-email: matt.rasband@gmail.com
+License: Apache-2.0
+Download-URL: https://github.com/mrasband/aiohipchat/archive/v0.0.2.tar.gz
+Description: UNKNOWN
+Keywords: asyncio,hipchat,bot,chatbot
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.5
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Intended Audience :: Developers
+Classifier: Development Status :: 4 - Beta
