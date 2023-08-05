@@ -1,0 +1,108 @@
+# TakeAway
+
+TakeAway is a command line interface for ordering food via takeaway.com and similar website from other country.
+
+## Working websites
+
+- AT: https://www.lieferservice.at
+- BE: https://www.pizza.be
+- CH: https://www.lieferservice.ch
+- FR: https://www.pizza.fr
+- LU: https://www.pizza.lu
+- NL: https://www.thuisbezorgd.nl
+- PT: https://www.pizza.pt
+- VT: https://www.vietnammm.com
+
+## Installation
+
+See requirements.txt.
+
+Pip packages not yet available.
+
+## Features
+
+- Download restaurants and meals.
+- Search by restaurants, categories and meals.
+- Get information about a restaurant.
+- Order from the website.
+- Create an user to save your address.
+
+### Download
+
+    --db-make Download restaurants and meals
+    
+    --db-update Update information older than 30 days.
+    
+    --db-del Delete postcode from database
+    
+When downloading more than 30 restaurants the default behavior is to download by batch of 30 and wait 60 seconds between each batch.
+    
+### Search
+
+    -r Search for a restaurant
+    
+    -c Seach for a category
+    
+    -m Seach for a meal
+    
+    -v Display additionnal information about a restaurant (2 levels)
+    
+    -a Add meals to your basket
+    
+    -d Delete meals from your basket
+    
+    -l List items in basket
+    
+### Checkout
+
+    -- checkout --confirm Order your meals
+    
+### User
+
+    -u Load an user
+    
+    --u-create Create or modify an user
+    
+    --u-list List all saved user
+    
+    --u-del Delete an user
+    
+### Other command
+
+    --postcode Change the current postcode
+    -i Deactivate interactive mode
+    
+### How-to
+Start the script and create the database:
+
+    takeaway.py your_country your_postcode --db-make
+    
+Search for meals in every restaurants:
+    
+    -m meal1 meal2 ...
+    
+Search for meals in one restaurant:
+
+    -m meal1 meal2 ... -r restaurant1 restaurant2 ...
+    
+Add meals to your basket:
+    
+    -a item_number item_number ...
+    
+Load an user:
+
+    -u your_user
+    
+Order:
+
+    --checkout --confirm
+    
+All in one:
+
+    takeaway.py your_country your_postcode -m meal1 ... -r restaurant1 ... -a item_number item_number -u your_user --checkout --confirm -i
+    
+## Website not yet working
+
+- DE: https://www.lieferando.de
+- PL: https://pyszne.pl
+
