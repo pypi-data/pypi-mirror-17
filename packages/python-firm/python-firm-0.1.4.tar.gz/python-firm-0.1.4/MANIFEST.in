@@ -1,0 +1,7 @@
+recursive-include libfirm *.c *.c.inl *.d *.def *.h Makefile *.pl *.py *.sh *.md COPYING
+include gen/__init__.py
+include gen/compile.py
+include gen/subbuild.py
+include gen/firmtypes.h
+include gen/node_defs.h
+include gen/symbols/*.h
