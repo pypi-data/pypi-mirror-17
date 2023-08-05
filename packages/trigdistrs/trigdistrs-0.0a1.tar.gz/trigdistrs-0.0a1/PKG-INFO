@@ -1,0 +1,36 @@
+Metadata-Version: 1.1
+Name: trigdistrs
+Version: 0.0a1
+Summary: Trigonometric Probability Distributions (see Souza 2016: NEW TRIGONOMETRIC CLASSES OF PROBABILISTIC DISTRIBUTIONS, PhD Thesisavailable at http://goo.gl/Z6nbJz).
+Uses symbolic computing with sympy.stats.
+Home-page: https://github.com/TrigonometricDistribution
+Author: Lucas M. Soares Gallindo
+Author-email: lucas.soares@ufpe.br
+License: GPLv3+
+Description: Probability distributions are elements of measure theory and general statistics,providing standardized formulas to computeodds of events happening.
+        This package presents new probability distributions produced by skewing regulardistribution using trigonometric functions.
+        References:
+        * http://goo.gl/Z6nbJz
+        * CosW: https://cran.r-project.org/web/packages/CosW/index.html
+        * SecKW: https://cran.r-project.org/web/packages/SecKW/index.html
+        * SinIW: https://cran.r-project.org/web/packages/SinIW/index.html
+        * TanB: https://cran.r-project.org/web/packages/TanB/index.html
+        
+Keywords: Statistics Probability Distribution
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: License :: DFSG approved
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Topic :: Education :: Computer Aided Instruction (CAI)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research

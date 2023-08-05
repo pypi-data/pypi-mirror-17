@@ -1,0 +1,15 @@
+MANIFEST.in
+README.rst
+setup.py
+trigdistrs/CosW.py
+trigdistrs/SecKW.py
+trigdistrs/SinIW.py
+trigdistrs/TanB.py
+trigdistrs/__init__.py
+trigdistrs/benchmarks.py
+trigdistrs.egg-info/PKG-INFO
+trigdistrs.egg-info/SOURCES.txt
+trigdistrs.egg-info/dependency_links.txt
+trigdistrs.egg-info/not-zip-safe
+trigdistrs.egg-info/requires.txt
+trigdistrs.egg-info/top_level.txt
