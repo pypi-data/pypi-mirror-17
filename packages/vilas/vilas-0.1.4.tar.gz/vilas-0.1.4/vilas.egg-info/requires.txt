@@ -1,0 +1,10 @@
+kivy
+numpy
+prody
+matplotlib
+
+[dev]
+check-manifest
+
+[test]
+coverage
