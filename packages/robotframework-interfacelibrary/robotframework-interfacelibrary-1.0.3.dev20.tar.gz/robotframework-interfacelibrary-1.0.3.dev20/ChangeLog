@@ -1,0 +1,64 @@
+CHANGES
+=======
+
+* update get request keyword to login with headers
+* update generate date keyword to get random date/add Mysql select note
+* process more result for mysql select statement
+* update select statement to handle more than one result
+* update mysql select keyword to avoid database cache
+* update post file request to support login with headers info
+* update post request to support the json data and handle the json response better
+* Update README.md
+* rm redundant words
+* +depend ins for mysql-connector-python
+* modify pip install instroduction
+* Update requirements.txt
+* Update requirements.txt
+* Update .travis.yml
+* add keywords html docs
+* docs:sys.path.insert("./src")
+* cahnge pypi account
+* Update README.md
+* InterfaceLibrary -> src/InterfaceLibrary
+
+1.0.2
+-----
+
+* fix mysql-connector-python dep,release 1.0.2 version
+* os.popen("pip install mysql-connector-python") manually in setup.py
+* @hash -> @2.2.0
+* src -> IterfaceLibrary
+* append <;mysql-connector-python >= "2.0.4">
+* mysql-connector -> mysql-connector-python
+* rm comment
+* modify
+* double deps
+* mysql-connector >= 2.0.0  --install-option="--egg"
+* modify
+* update
+* --install-option=" --egg "
+* -e pkg
+* @commit hash version
+* + :
+* update reqiurements.txt Signed-off-by: seven57 <seven_five57@sina.com>
+* @2.2.0
+* fix requiremwnts.txt
+* update .travis.yml
+* triggle travis CI
+* coment mysql
+* triggle travis
+* fix passwd
+* correct password
+* add setup.cfg
+* update depend
+* using offical mysql-connector-python depend url
+* replace old setup.py by pbr toolchain
+
+1.0.0
+-----
+
+* Update README.md
+* Update .travis.yml
+* add travis ci pypi deployment
+* Update README.md
+* Update README.rst
