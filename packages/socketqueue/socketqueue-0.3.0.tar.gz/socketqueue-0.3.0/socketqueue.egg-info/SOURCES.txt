@@ -1,0 +1,9 @@
+README.txt
+setup.py
+socketqueue/__init__.py
+socketqueue.egg-info/PKG-INFO
+socketqueue.egg-info/SOURCES.txt
+socketqueue.egg-info/dependency_links.txt
+socketqueue.egg-info/top_level.txt
+tests/__init__.py
+tests/test_socket_queue.py
