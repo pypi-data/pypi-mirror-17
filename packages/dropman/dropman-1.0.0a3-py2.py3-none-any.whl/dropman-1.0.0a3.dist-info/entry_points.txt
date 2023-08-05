@@ -1,0 +1,3 @@
+[console_scripts]
+dropman = dropman.cli:main
+
