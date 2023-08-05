@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: csh_uuid
+Version: 0.0.1.dev1
+Summary: CSH UUID UID bi-directional converter api
+Home-page: UNKNOWN
+Author: Liam Middlebrook
+Author-email: liammiddlebrook@gmail.com
+License: MIT
+Description: CSH-UUID Python
+        ===============
+        
+        Python wrapper for https://github.com/liam-middlebrook/uuid-api-http
+        
+        
+Platform: UNKNOWN
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
