@@ -1,0 +1,4 @@
+[console_scripts]
+pyblog-build = pyblog.cli:pyblog_build
+pyblog-init = pyblog.cli:pyblog_init
+
