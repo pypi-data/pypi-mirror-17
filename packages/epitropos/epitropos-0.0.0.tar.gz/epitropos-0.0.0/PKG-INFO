@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: epitropos
+Version: 0.0.0
+Summary: Fabulously simple OAuth2 server with pluggable storage and authentication plugins.
+Home-page: https://glow.dev.ramcloud.io/sjohnson/epitropos
+Author: Sean Johnson
+Author-email: pirogoeth@maio.me
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Bottle
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Internet
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: System :: Systems Administration :: Authentication/Directory
+Classifier: Topic :: System :: Systems Administration :: Authentication/Directory :: LDAP
