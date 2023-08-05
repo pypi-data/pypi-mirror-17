@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: odprep
+Version: 0.1.1
+Summary: Orders catalog ids and updates delivery status every 10min. Once delivered, processes cat ids and dumps in disaster-open-data bucket
+Home-page: https://github.com/lizasapphire/odprep
+Author: lizasapphire
+Author-email: lizasapphire@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
