@@ -1,0 +1,3 @@
+[console_scripts]
+winenv = mir.winenv.__main__:main
+
