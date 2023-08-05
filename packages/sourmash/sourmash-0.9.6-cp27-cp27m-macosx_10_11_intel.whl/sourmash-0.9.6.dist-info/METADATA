@@ -1,0 +1,41 @@
+Metadata-Version: 2.0
+Name: sourmash
+Version: 0.9.6
+Summary: tools for comparing DNA sequences with MinHash sketches
+Home-page: https://github.com/dib-lab/sourmash
+Author: C. Titus Brown
+Author-email: titus@idyll.org
+License: BSD 3-clause
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Environment :: MacOS X
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Programming Language :: C++
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Development Status :: 5 - Production/Stable
+Requires-Dist: PyYAML (>=3.11)
+Requires-Dist: screed (>=0.9)
+Provides-Extra: demo
+Requires-Dist: ipython; extra == 'demo'
+Requires-Dist: jupyter; extra == 'demo'
+Requires-Dist: jupyter-client; extra == 'demo'
+Provides-Extra: doc
+Requires-Dist: sphinx; extra == 'doc'
+Provides-Extra: test
+Requires-Dist: matplotlib; extra == 'test'
+Requires-Dist: numpy; extra == 'test'
+Requires-Dist: pytest; extra == 'test'
+Requires-Dist: pytest-cov; extra == 'test'
+Requires-Dist: scipy; extra == 'test'
+
+UNKNOWN
+
+
