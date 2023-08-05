@@ -1,0 +1,35 @@
+Metadata-Version: 1.1
+Name: anad-dev
+Version: 0.0.2
+Summary: tools for development..... in anad labo
+Home-page: https://site.anad/
+Author: dais
+Author-email: dais.cns@gmail.com
+License: MIT
+Description: anad\_dev
+        =========
+        
+        tools for development..... in anad labo
+        
+        Installation
+        ------------
+        
+        ::
+        
+            pip install anad_dev
+        
+        Usage
+        -----
+        
+        .. code:: python
+        
+            import anad_dev
+        
+Keywords: tools develop coding
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: System Administrators
+Classifier: Programming Language :: Python :: 3.5
