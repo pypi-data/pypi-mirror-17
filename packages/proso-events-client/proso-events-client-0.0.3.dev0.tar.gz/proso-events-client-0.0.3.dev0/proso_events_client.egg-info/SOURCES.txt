@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.rst
+requirements.txt
+setup.py
+proso/__init__.py
+proso/events/__init__.py
+proso/events/client.py
+proso_events_client.egg-info/PKG-INFO
+proso_events_client.egg-info/SOURCES.txt
+proso_events_client.egg-info/dependency_links.txt
+proso_events_client.egg-info/namespace_packages.txt
+proso_events_client.egg-info/requires.txt
+proso_events_client.egg-info/top_level.txt
