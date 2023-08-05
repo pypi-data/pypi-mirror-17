@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+setup.cfg
+setup.py
+pygments_style_goggles.egg-info/PKG-INFO
+pygments_style_goggles.egg-info/SOURCES.txt
+pygments_style_goggles.egg-info/dependency_links.txt
+pygments_style_goggles.egg-info/entry_points.txt
+pygments_style_goggles.egg-info/requires.txt
+pygments_style_goggles.egg-info/top_level.txt
+style/__init__.py
+style/goggles.py
