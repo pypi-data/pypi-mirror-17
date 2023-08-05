@@ -1,0 +1,11 @@
+README.rst
+setup.py
+pyv4l2/__init__.py
+pyv4l2/control.c
+pyv4l2/exceptions.py
+pyv4l2/frame.c
+pyv4l2.egg-info/PKG-INFO
+pyv4l2.egg-info/SOURCES.txt
+pyv4l2.egg-info/dependency_links.txt
+pyv4l2.egg-info/requires.txt
+pyv4l2.egg-info/top_level.txt
