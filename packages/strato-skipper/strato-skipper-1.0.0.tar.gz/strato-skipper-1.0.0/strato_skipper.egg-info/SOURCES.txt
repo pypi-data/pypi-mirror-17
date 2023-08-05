@@ -1,0 +1,15 @@
+setup.cfg
+setup.py
+skipper/__init__.py
+skipper/cli.py
+skipper/config.py
+skipper/git.py
+skipper/main.py
+skipper/runner.py
+skipper/utils.py
+strato_skipper.egg-info/PKG-INFO
+strato_skipper.egg-info/SOURCES.txt
+strato_skipper.egg-info/dependency_links.txt
+strato_skipper.egg-info/entry_points.txt
+strato_skipper.egg-info/requires.txt
+strato_skipper.egg-info/top_level.txt
