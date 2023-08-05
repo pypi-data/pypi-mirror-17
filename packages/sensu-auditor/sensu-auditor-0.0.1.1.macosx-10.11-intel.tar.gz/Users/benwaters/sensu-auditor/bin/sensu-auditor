@@ -1,0 +1,10 @@
+#!/Users/benwaters/sensu-auditor/bin/python
+from sensu_auditor import SensuAuditor
+
+
+def main():
+    SensuAuditor()
+
+
+if __name__ == '__main__':
+    main()
