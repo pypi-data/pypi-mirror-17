@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: bdss-client
+Version: 1.0.0b1
+Summary: Big Data Smart Socket client
+Home-page: https://github.com/feltus/BDSS
+Author: Nick Watts
+Author-email: nick@nawatts.com
+License: GPLv2
+Description: # BDSS Client
+        
+        [See documentation in the docs folder](/client/docs)
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Scientific/Engineering
