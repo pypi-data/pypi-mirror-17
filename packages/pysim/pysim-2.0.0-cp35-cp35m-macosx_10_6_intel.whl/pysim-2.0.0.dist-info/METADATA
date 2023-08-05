@@ -1,0 +1,24 @@
+Metadata-Version: 2.0
+Name: pysim
+Version: 2.0.0
+Summary: package for dynamical system modelling
+Home-page: http://pys.im
+Author: Linus Aldebjer
+Author-email: aldebjer@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: numpy (>=1.8.1)
+
+UNKNOWN
+
+
