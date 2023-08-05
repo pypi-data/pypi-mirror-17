@@ -1,0 +1,4 @@
+[console_scripts]
+plato-cat = plato_cat.cmd:cat
+plato-clean = plato_cat.cmd:clean
+
