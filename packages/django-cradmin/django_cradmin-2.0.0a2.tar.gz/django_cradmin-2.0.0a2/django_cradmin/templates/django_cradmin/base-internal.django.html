@@ -1,0 +1,91 @@
+{% extends "django_cradmin/standalone-base.django.html" %}
+{% comment %}
+    Base template for all views within a role.
+
+    Examples:
+
+        Set a page title (h1 tag) and some content::
+
+            {% extends "django_cradmin/base-internal.django.html" %}
+
+            {% block page-cover-title %}
+                The heading
+            {% endblock page-cover-title %}
+
+            {% block content %}
+                Some content
+            {% endblock content %}
+
+        Add extra content below the page title::
+
+            {% extends "django_cradmin/base-internal.django.html" %}
+
+            {% block page-cover-title %}
+                The heading
+            {% endblock page-cover-title %}
+
+            {% block page-cover-content %}
+                {{ block.super }}
+                <p>Some content below the page title</p>
+            {% endblock page-cover-content %}
+
+{% endcomment %}
+{% load cradmin_tags %}
+
+
+{% block bodyclass %}
+    {% block cradmin-instance-bodyclass %}
+        {{ request.cradmin_instance.get_body_css_classes_string }}
+    {% endblock cradmin-instance-bodyclass %}
+
+    {% block viewspecific-bodyclass %}
+        {# Put view specific body classes here #}
+    {% endblock viewspecific-bodyclass %}
+{% endblock bodyclass %}
+
+
+{% block header %}
+    {% with header_renderable=request.cradmin_instance.get_header_renderable %}
+        {% if header_renderable %}
+            {% cradmin_render_renderable header_renderable %}
+        {% endif %}
+    {% endwith %}
+{% endblock header %}
+
+
+{% block main-content %}
+    {% comment %}
+        The page header can be hidden in two ways:
+        - Set hide_pageheader = True in the template context.
+        - Set the DJANGO_CRADMIN_HIDE_PAGE_HEADER setting.
+    {% endcomment %}
+    {% if not hide_pageheader and not DJANGO_CRADMIN_HIDE_PAGE_HEADER %}
+        {% block page-cover %}
+            <header class="{% block page-cover-cssclass %}page-cover{% endblock %}{% cradmin_test_css_class 'page-cover' %}">
+                {% block page-cover-content %}
+                    <h1 class="page-cover__title{% cradmin_test_css_class 'primary-h1' %}">
+                        {% block page-cover-title %}{% endblock page-cover-title %}
+                    </h1>
+                {% endblock page-cover-content %}
+            </header>
+        {% endblock page-cover %}
+    {% endif %}
+
+    {% block content %}{% endblock content %}
+{% endblock main-content %}
+
+
+{% block footer %}
+    {% with footer_renderable=request.cradmin_instance.get_footer_renderable %}
+        {% if footer_renderable %}
+            {% cradmin_render_renderable footer_renderable %}
+        {% endif %}
+    {% endwith %}
+{% endblock footer %}
+
+
+{% block toggleable-menu %}
+    {% if request.cradmin_instance.expandable_menu_renderable %}
+        {% cradmin_render_renderable request.cradmin_instance.expandable_menu_renderable %}
+    {% endif %}
+{% endblock toggleable-menu %}
