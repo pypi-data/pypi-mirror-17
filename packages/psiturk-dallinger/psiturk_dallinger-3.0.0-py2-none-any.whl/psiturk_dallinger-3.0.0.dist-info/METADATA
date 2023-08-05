@@ -1,0 +1,47 @@
+Metadata-Version: 2.0
+Name: psiturk-dallinger
+Version: 3.0.0
+Summary: An open platform for science on Amazon Mechanical Turk
+Home-page: http://github.com/NYUCCL/psiturk
+Author: NYU Computation and Cognition Lab
+Author-email: authors@psiturk.org
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: Flask (==0.10.1)
+Requires-Dist: SQLAlchemy (==0.8.3)
+Requires-Dist: argparse (==1.2.1)
+Requires-Dist: boto (==2.15.0)
+Requires-Dist: cmd2 (==0.6.7)
+Requires-Dist: docopt (==0.6.1)
+Requires-Dist: fake-factory (==0.3.2)
+Requires-Dist: fuzzywuzzy (==0.2)
+Requires-Dist: gitpython (==0.1.7)
+Requires-Dist: gunicorn (==18.0)
+Requires-Dist: psutil (==1.2.1)
+Requires-Dist: requests (==2.2.1)
+Requires-Dist: setproctitle (==1.1.8)
+Requires-Dist: sh (==1.09)
+Requires-Dist: ua-parser (==0.3.6)
+Requires-Dist: user-agents (==0.2.0)
+
+<img src="https://psiturk.org/static/images/psiturk_logo_README.png">
+
+[![Build Status](https://travis-ci.org/NYUCCL/psiTurk.png?branch=master)](https://travis-ci.org/NYUCCL/psiTurk)
+[![Coverage Status](http://coveralls.io/repos/NYUCCL/psiTurk/badge.png?branch=master)](http://coveralls.io/r/NYUCCL/psiTurk?branch=master)
+[![Code Health](https://landscape.io/github/NYUCCL/psiTurk/master/landscape.png)](https://landscape.io/github/NYUCCL/psiTurk/master)
+[![Downloads](https://pypip.in/d/PsiTurk/badge.png)](https://pypi.python.org/pypi/PsiTurk/)
+[![License](http://img.shields.io/badge/license-MIT-red.svg)](http://en.wikipedia.org/wiki/MIT_License)
+
+The current stable version is 2.1.1.
+
+Please visit [psiturk.org](https://psiturk.org) for more information.
+
+You are welcome to use this code for personal or academic uses. If you fork,
+or use this in an academic paper please cite as follows:
+
+McDonnell, J.V., Martin, J.B., Markant, D.B., Coenen, A., Rich, A.S., and Gureckis, T.M. 
+(2012). psiTurk (Version 1.02) [Software]. New York, NY: New York University. 
+Available from https://github.com/NYUCCL/psiTurk
+
+
+
