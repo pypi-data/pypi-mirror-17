@@ -1,0 +1,10 @@
+README.rst
+setup.cfg
+setup.py
+sample/__init__.py
+sample/core.py
+sample/helpers.py
+scrapy_statsd_middleware.egg-info/PKG-INFO
+scrapy_statsd_middleware.egg-info/SOURCES.txt
+scrapy_statsd_middleware.egg-info/dependency_links.txt
+scrapy_statsd_middleware.egg-info/top_level.txt
