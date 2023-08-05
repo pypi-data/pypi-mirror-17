@@ -1,0 +1,3 @@
+[console_scripts]
+vassal_deployer = vassal_deployer.__main__:main
+

@@ -1,0 +1,16 @@
+MANIFEST.in
+cirrus.conf
+requirements.txt
+setup.py
+src/vassal_deployer/__init__.py
+src/vassal_deployer/__main__.py
+src/vassal_deployer/deploy.py
+src/vassal_deployer/logger.py
+src/vassal_deployer/nginx_config.py
+src/vassal_deployer/vassal_config.py
+src/vassal_deployer.egg-info/PKG-INFO
+src/vassal_deployer.egg-info/SOURCES.txt
+src/vassal_deployer.egg-info/dependency_links.txt
+src/vassal_deployer.egg-info/entry_points.txt
+src/vassal_deployer.egg-info/requires.txt
+src/vassal_deployer.egg-info/top_level.txt
