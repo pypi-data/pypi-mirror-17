@@ -1,0 +1,16 @@
+Metadata-Version: 1.0
+Name: PySpeed
+Version: 0.1.1
+Summary: PySpeed - flexible progress bars for Python
+Home-page: https://launchpad.net/pyspeed
+Author: Amit Aronovitch
+Author-email: pyspeed-dev@lists.launchpad.net
+License: MIT/X11
+Description: Time flies when you're having fun!
+        
+        Add progress bars to your program with easy to use, Pythonic,
+        wrapper iterators.
+        Supports multi-level bars, text-mode bars (for the terminal),
+        and graphical ones (GTK).
+        
+Platform: any
