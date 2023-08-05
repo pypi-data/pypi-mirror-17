@@ -1,0 +1,3 @@
+[console_scripts]
+chegg-marc-condon = chegg.scripts.main:main
+
