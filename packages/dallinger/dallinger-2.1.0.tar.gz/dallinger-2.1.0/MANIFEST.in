@@ -1,0 +1,9 @@
+recursive-include dallinger *
+recursive-include docs *
+
+include requirements.txt
+include README.md
+include LICENSE
+include portrait.jpg
+
+prune *.pyc
