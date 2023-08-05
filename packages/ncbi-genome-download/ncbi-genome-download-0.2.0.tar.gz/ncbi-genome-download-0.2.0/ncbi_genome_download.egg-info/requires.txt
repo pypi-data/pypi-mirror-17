@@ -1,0 +1,10 @@
+requests
+pyOpenSSL >= 16.0.0
+ndg-httpsclient >= 0.4.0
+
+[testing]
+pytest
+coverage
+pytest-cov
+requests-mock
+pytest-mock
