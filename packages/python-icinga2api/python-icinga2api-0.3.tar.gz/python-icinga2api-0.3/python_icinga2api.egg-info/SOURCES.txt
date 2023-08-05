@@ -1,0 +1,10 @@
+MANIFEST.in
+setup.py
+icinga2api/__init__.py
+icinga2api/client.py
+python_icinga2api.egg-info/PKG-INFO
+python_icinga2api.egg-info/SOURCES.txt
+python_icinga2api.egg-info/dependency_links.txt
+python_icinga2api.egg-info/not-zip-safe
+python_icinga2api.egg-info/pbr.json
+python_icinga2api.egg-info/top_level.txt
