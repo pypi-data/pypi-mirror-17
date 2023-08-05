@@ -1,0 +1,17 @@
+CHANGES
+LICENSE
+MANIFEST.in
+README.rst
+requirements.txt
+setup.cfg
+setup.py
+hudsucker/__init__.py
+hudsucker/__main__.py
+hudsucker/_version.py
+hudsucker.egg-info/PKG-INFO
+hudsucker.egg-info/SOURCES.txt
+hudsucker.egg-info/dependency_links.txt
+hudsucker.egg-info/entry_points.txt
+hudsucker.egg-info/requires.txt
+hudsucker.egg-info/top_level.txt
+hudsucker.egg-info/zip-safe
