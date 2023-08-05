@@ -1,0 +1,42 @@
+Metadata-Version: 2.0
+Name: chegg-marc-condon
+Version: 0.0.1
+Summary: Utility Library for Taking AR report generating out of CakePHP DB
+Home-page: https://github.com/fogcitymarathoner/rrg
+Author: Marc Condon
+Author-email: marc@sfgeek.net
+License: MIT
+Keywords: Chegg Code Chalenge
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Provides-Extra: dev
+Requires-Dist: check-manifest; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: coverage; extra == 'test'
+
+==================================
+Chegg Code Challenge - Marc Condon
+==================================
+
+---
+USE
+---
+
+pip install chegg-marc-condon
+
+cat input-file | chegg-marc-condon
+
+pip uninstall chegg-marc-condon
+
+----------------
+Algorithmic Cost
+----------------
+
+This program has an O2 algorithmic cost, meaning there an N**2 steps for solution.  Where N is appoximately
+(Number of Patterns + Number of Paths)/2. I optimized the solution by making sure all the patterns are unique
+and immediately exclude patterns that cannot match because the of matching terms do not match.
+
