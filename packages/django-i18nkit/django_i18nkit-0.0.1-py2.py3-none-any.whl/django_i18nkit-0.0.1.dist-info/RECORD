@@ -1,0 +1,14 @@
+django_i18nkit-0.0.1.dist-info/DESCRIPTION.rst,sha256=OCTuuN6LcWulhHS3d5rfjdsQtW22n7HENFRh6jC6ego,10
+django_i18nkit-0.0.1.dist-info/METADATA,sha256=6gDHe4A0ao63ngRfowa6yP8DZRAxdK0EBBF_J81u0yQ,486
+django_i18nkit-0.0.1.dist-info/RECORD,,
+django_i18nkit-0.0.1.dist-info/WHEEL,sha256=GrqQvamwgBV4nLoJe0vhYRSWzWsx7xjlt74FT0SWYfE,110
+django_i18nkit-0.0.1.dist-info/metadata.json,sha256=f46T8Rfbg7NOhzDWKcMvaSUyQQ9-ni1s-tAxoMDUpbs,618
+django_i18nkit-0.0.1.dist-info/top_level.txt,sha256=A6Ke1romd1dAgYj0zOpJQi84rZs1xlfHLo7_YcpBZBQ,8
+i18nkit/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+i18nkit/excel.py,sha256=zt9yJeKGJDLfrj_gfWFWlX_txK_FS56GweAhiXQ3f7U,2143
+i18nkit/utils.py,sha256=fyLaTHL2wdyWQKheyFUvbpCO58HUzF-2lUDs-InLnmM,1748
+i18nkit/management/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+i18nkit/management/commands/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+i18nkit/management/commands/ik_export.py,sha256=WEG_5rihH_0aJkP3Aa7VtQrwv4quJegqotASmVqm2ZI,786
+i18nkit/management/commands/ik_extract.py,sha256=tMImdjpvotseNP0DZFG43l1fj03G-mP-qkYfxbQOKsM,4931
+i18nkit/management/commands/ik_import.py,sha256=lmB2iFiWtadyWh5U6lWYowuDiL1BeAN0iVpOVbn_OTA,2443
