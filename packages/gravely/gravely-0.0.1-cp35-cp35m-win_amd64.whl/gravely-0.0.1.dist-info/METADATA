@@ -1,0 +1,33 @@
+Metadata-Version: 2.0
+Name: gravely
+Version: 0.0.1
+Summary: A gravity simulatorwritten to taste modern Python packaging practices.
+Home-page: https://lcode.info/mainline/gravely
+Author: LCODE team
+Author-email: team@lcode.info
+License: LGPL v3.0
+Keywords: cython gravity physics simulation
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Cython
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Classifier: Topic :: Scientific/Engineering :: Physics
+Requires-Python: >=3.4
+Requires-Dist: h5py (>=2.2)
+Requires-Dist: numpy (>=1.8.2)
+Provides-Extra: diagnostics
+Requires-Dist: matplotlib (>=1.4); extra == 'diagnostics'
+Provides-Extra: test
+Requires-Dist: nose (>=1.0); extra == 'test'
+
+UNKNOWN
+
+
