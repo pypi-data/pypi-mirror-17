@@ -1,0 +1,12 @@
+setup.cfg
+setup.py
+twisted_s3/__init__.py
+twisted_s3/auth.py
+twisted_s3/client.py
+twisted_s3/future.py
+twisted_s3/response.py
+twisted_s3.egg-info/PKG-INFO
+twisted_s3.egg-info/SOURCES.txt
+twisted_s3.egg-info/dependency_links.txt
+twisted_s3.egg-info/requires.txt
+twisted_s3.egg-info/top_level.txt
