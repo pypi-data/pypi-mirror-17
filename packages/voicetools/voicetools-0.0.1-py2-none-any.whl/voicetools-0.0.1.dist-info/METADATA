@@ -1,0 +1,25 @@
+Metadata-Version: 2.0
+Name: voicetools
+Version: 0.0.1
+Summary: All-in-one voice tools library
+Home-page: https://github.com/namco1992/voicetools
+Author: namco1992
+Author-email: namco1992@gmail.com
+License: MIT
+Keywords: python baidu tts asr wolfram turing
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Multimedia :: Sound/Audio :: Sound Synthesis
+Classifier: Topic :: Multimedia :: Sound/Audio :: Speech
+Requires-Dist: requests
+Requires-Dist: wolframalpha
+
+All-in-one voice tools library
+
+
