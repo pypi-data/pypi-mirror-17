@@ -1,0 +1,15 @@
+README.rst
+setup.cfg
+setup.py
+pyvk/__init__.py
+pyvk/api.py
+pyvk/auth.py
+pyvk/config.py
+pyvk/exceptions.py
+pyvk/request.py
+pyvk/utils.py
+pyvk.egg-info/PKG-INFO
+pyvk.egg-info/SOURCES.txt
+pyvk.egg-info/dependency_links.txt
+pyvk.egg-info/requires.txt
+pyvk.egg-info/top_level.txt
