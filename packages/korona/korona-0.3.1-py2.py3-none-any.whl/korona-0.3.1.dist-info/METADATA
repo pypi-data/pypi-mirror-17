@@ -1,0 +1,151 @@
+Metadata-Version: 2.0
+Name: korona
+Version: 0.3.1
+Summary: Package for building html pages
+Home-page: https://github.com/bharadwajyarlagadda/korona
+Author: Bharadwaj Yarlagadda
+Author-email: yarlagaddabharadwaj@gmail.com
+License: MIT License
+Keywords: make html built html create html korona html maker html build
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: future (==0.15.2)
+Requires-Dist: jinja2 (==2.8)
+
+******
+korona
+******
+
+|version| |travis| |coveralls| |license|
+
+Korona helps you to generate HTML pages from the given inputs(HTML Tags and Attributes) without writing the HTML code.
+
+Links
+=====
+
+- Project: https://github.com/bharadwajyarlagadda/korona
+- Documentation: http://korona.readthedocs.io
+- Pypi: https://pypi.python.org/pypi/korona
+- TravisCI: https://travis-ci.org/bharadwajyarlagadda/korona
+
+Features
+========
+
+- Supported on Python 2.7 and Python 3.3+
+- With this package, you can avoid writing direct HTML code.
+
+Quickstart
+==========
+
+Install using pip:
+
+::
+
+    pip install korona
+
+
+.. |version| image:: https://img.shields.io/pypi/v/korona.svg?style=flat-square
+    :target: https://pypi.python.org/pypi/korona/
+
+.. |travis| image:: https://img.shields.io/travis/bharadwajyarlagadda/korona/master.svg?style=flat-square
+    :target: https://travis-ci.org/bharadwajyarlagadda/korona
+
+.. |coveralls| image:: https://img.shields.io/coveralls/bharadwajyarlagadda/korona/master.svg?style=flat-square
+    :target: https://coveralls.io/r/bharadwajyarlagadda/korona
+
+.. |license| image:: https://img.shields.io/pypi/l/korona.svg?style=flat-square
+    :target: https://pypi.python.org/pypi/korona/
+
+
+Changelog
+=========
+
+v0.3.1
+------
+
+- Added validation for URL strings in constructing the tags.
+
+v0.3.0
+------
+
+- Added classes for building some of the tags:
+
+  - <h1></h1>
+  - <h2></h2>
+  - <h3></h3>
+  - <h4></h4>
+  - <h5></h5>
+  - <h6></h6>
+  - <head></head>
+  - <header></header>
+  - <hr>
+
+Caveats:
+
+- Korona has no ability to construct inner tags for now. (For ex. <address><p>Hi There</p></address>)
+- Korona will be added with constructing the inner tags in the future releases.
+
+v0.2.0
+------
+
+- Added classes for building some of the tags:
+
+  - <colgroup></colgroup>
+  - <dd></dd>
+  - <del></del>
+  - <details></details>
+  - <dialog></dialog>
+  - <div></div>
+  - <dl></dl>
+  - <dt></dt>
+  - <embed>
+  - <fieldset></fieldset>
+  - <figure></figure>
+  - <footer></footer>
+  - <form></form>
+  - <frame>
+  - <frameset></frameset>
+
+Caveats:
+
+- Korona has no ability to construct inner tags for now. (For ex. <address><p>Hi There</p></address>)
+- Korona will be added with constructing the inner tags in the future releases.
+
+v0.1.0
+------
+
+- First release.
+- Added classes for building some of the tags:
+
+  - <a></a>
+  - <abbr></abbr>
+  - <acronym></acronym>
+  - <address></address>
+  - <area>
+  - <article></article>
+  - <b></b>
+  - <base>
+  - <button></button>
+  - <canvas></canvas>
+  - <caption></caption>
+  - <cite></cite>
+
+Caveats:
+
+- Korona has no ability to construct inner tags for now. (For ex. <address><p>Hi There</p></address>)
+- Korona will be added with constructing the inner tags in the future releases.
+
+
