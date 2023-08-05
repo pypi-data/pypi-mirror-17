@@ -1,0 +1,14 @@
+astropy
+h5py
+matplotlib
+numpy
+pandas
+pymongo
+requests
+scikit-learn
+scipy
+
+[dev]
+scikit-image
+
+[test]
