@@ -1,0 +1,26 @@
+from django.db import models
+from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
+
+
+{% for definition in model.classes %}
+class {{definition.name}}(models.Model):
+    {% for attribute in definition.attributes %}
+    {{attribute.name}} = models.{{attribute.type|typeDef}}({% for argument in attribute.arguments%}{% if argument.value is string and attribute.type is not checkType %}{{argument.name}}="{{argument.value}}"{% elif attribute.type is checkType %}{{argument.name}}='{{argument.value}}'{% if argument.value == definition.name %},blank=True, null=True, related_name='children'{% endif %}{% elif argument.name is choice %}{{argument.name}}=({% for field in argument.fields%}("{{field.name}}","{{field.value}}"){% if not loop.last %},{% endif %}{% endfor %}){% else %}{{argument.name}}={{argument.value}}{% endif %}{% if not loop.last %}, {% endif %}{% endfor %})
+    {% if loop.last %}
+
+    class Meta:
+        permissions = (
+            ("view_{{definition.name.lower()}}", "Can view the {{definition.name}}"),
+        )
+
+    def __str__(self):
+        return str(self.{% for attribute in definition.attributes %}{% if loop.first %}{{attribute.name}}{% endif %}{% endfor %}){% endif %}
+    {% endfor %}
+
+
+    def get_absolute_url(self):
+        return reverse('{{model.name}}:{{definition.name.lower()}}_edit', kwargs={'pk': self.pk})
+
+
+{% endfor %}

@@ -1,0 +1,62 @@
+{% raw %}
+
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block bootstrap3_content %}
+
+<div class="container">
+<!--
+{% block breadcrumbs %}
+<ul class="nav pull-left">
+    <li><a href="/">Home</a> <span class="divider">/</span></li>
+    {% block breadcrumb-page %}{% endblock breadcrumb-page %}
+</ul>
+{% endblock breadcrumbs %}
+-->
+    <!-- navigation -->
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">{% endraw %}{{model.name}}{% raw %}</a>
+        </div>
+         <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+            {% endraw %}
+            {% for definition in model.classes %}
+                 {{ '{%' }} if '{{model.name}}.view_{{definition.name.lower()}}' in user.get_all_permissions {{ '%}' }}
+                    <li><a href="/{{model.name}}/{{definition.name.lower()}}_list">{{definition.name}}</a></li>
+                 {{ '{%' }} endif {{ '%}' }}
+            {% endfor %}
+            {% raw %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            {% if not user.is_anonymous %}
+                <li>
+                    <a class="lsf-icon" title="user" href="{% url 'auth_password_change' %}">{{ user }}</a>
+                </li>
+            {% endif %}
+            {% if not user.is_authenticated %}
+                <li><a href="{% url 'django.contrib.auth.views.login' %}">{% bootstrap_icon "login" %} Login</a></li>
+                <li><a href="{% url 'registration_register' %}">{% bootstrap_icon "register" %} Register</a></li>
+                {% else %}
+                <li><a href="{% url 'django.contrib.auth.views.logout' %}?next=/">{% bootstrap_icon "logout" %} Logout</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="row">
+        <h1>{% block title %}{% endblock %}</h1>
+
+        {% bootstrap_messages %}
+
+        <div class="span12 box">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% endraw %}
