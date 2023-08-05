@@ -1,0 +1,6 @@
+[console_scripts]
+boltrun = boltkit.runner:run
+boltstub = boltkit.server:stub
+neotest-start = boltkit.neo4j:start
+neotest-stop = boltkit.neo4j:stop
+
