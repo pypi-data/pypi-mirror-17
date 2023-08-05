@@ -1,0 +1,87 @@
+Metadata-Version: 2.0
+Name: dropman
+Version: 1.0.0a5
+Summary: A digital ocean management command line program in Python.
+Home-page: https://github.com/dcsg/dropman
+Author: Daniel Gomes
+Author-email: me@danielcsgomes.com
+License: MIT
+Keywords: digitalocean droplet droplets
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: PyYAML (==3.12)
+Requires-Dist: docopt (==0.6.2)
+Requires-Dist: python-digitalocean (==1.9.0)
+Requires-Dist: tabulate (==0.7.5)
+Provides-Extra: test
+Requires-Dist: coverage; extra == 'test'
+Requires-Dist: pytest; extra == 'test'
+Requires-Dist: pytest-cov; extra == 'test'
+
+DropMan: Manage your Digital Ocean Droplets
+===========================================
+
+Installation
+------------
+
+To install simply
+
+.. code-block:: bash
+
+    $ pip install dropman
+
+Configuration
+-------------
+
+Create the `.dropman` configuration file in your home directory.
+
+.. code-block:: bash
+
+    $ touch ~/.dropman
+
+Add the Digital Ocean API token to the configuration file:
+
+.. code-block:: yaml
+
+    token: "YOUR DIGITAL OCEAN API TOKEN"
+
+Run
+------------
+
+To list the options available:
+
+.. code-block:: bash
+
+    $ dropman --help
+
+List all droplets:
+
+.. code-block:: bash
+
+    $ dropman list
+
+Shutdown a droplet:
+
+.. code-block:: bash
+
+    $ dropman shutdown <id>
+
+Power On a droplet:
+
+.. code-block:: bash
+
+    $ dropman poweron <id>
+
+
