@@ -1,0 +1,3 @@
+[console_scripts]
+knowlify = knowlify.__main__:main
+
