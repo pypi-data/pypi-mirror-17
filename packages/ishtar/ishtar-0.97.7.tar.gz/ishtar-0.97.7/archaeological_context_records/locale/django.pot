@@ -1,0 +1,622 @@
+# Ishtar po translation.
+# Copyright (C) 2010-2015
+# This file is distributed under the same license as the Ishtar package.
+# Étienne Loks <etienne.loks at peacefrogs net>, 2010-2015.
+# Valérie-Emma Leroux <emma@iggdrasil.net>, 2016. #zanata
+# Étienne Loks <etienne.loks@iggdrasil.net>, 2016. #zanata
+msgid ""
+msgstr ""
+
+#: forms.py:47 forms.py:51 models.py:130 wizards.py:77
+msgid "Operation"
+msgstr ""
+
+#: forms.py:59 forms.py:137 models.py:132
+#: templates/ishtar/sheet_contextrecord.html:64
+msgid "ID"
+msgstr ""
+
+#: forms.py:64
+msgid "Code PATRIARCHE"
+msgstr ""
+
+#: forms.py:65
+msgid "Operation's year"
+msgstr ""
+
+#: forms.py:67
+msgid "Operation's number (index by year)"
+msgstr ""
+
+#: forms.py:69
+msgid "Archaelogical site"
+msgstr ""
+
+#: forms.py:75
+msgid "Search within operation relations"
+msgstr ""
+
+#: forms.py:77 forms.py:228 models.py:49
+msgid "Period"
+msgstr ""
+
+#: forms.py:78
+msgid "Unit type"
+msgstr ""
+
+#: forms.py:79
+msgid "Parcel (section/number/public domain)"
+msgstr ""
+
+#: forms.py:81
+msgid "Search within relations"
+msgstr ""
+
+#: forms.py:111 forms.py:333 views.py:118
+msgid "Context record search"
+msgstr ""
+
+#: forms.py:125
+msgid "You should at least select one context record."
+msgstr ""
+
+#: forms.py:131
+msgid "General"
+msgstr ""
+
+#: forms.py:136 models.py:118 models.py:128
+#: templates/ishtar/sheet_contextrecord.html:68
+msgid "Parcel"
+msgstr ""
+
+#: forms.py:139 models.py:133 templates/ishtar/sheet_contextrecord.html:31
+#: templates/ishtar/sheet_contextrecord.html:67
+msgid "Description"
+msgstr ""
+
+#: forms.py:141 models.py:138
+msgid "Length (m)"
+msgstr ""
+
+#: forms.py:142 models.py:139
+msgid "Width (m)"
+msgstr ""
+
+#: forms.py:143 models.py:140
+msgid "Thickness (m)"
+msgstr ""
+
+#: forms.py:144 models.py:142
+msgid "Depth (m)"
+msgstr ""
+
+#: forms.py:145 models.py:150
+msgid "Unit"
+msgstr ""
+
+#: forms.py:147 models.py:144
+msgid "Location"
+msgstr ""
+
+#: forms.py:150
+msgid "Image"
+msgstr ""
+
+#: forms.py:151
+#, python-format
+msgid ""
+"<p>Heavy images are resized to: %(width)dx%(height)d (ratio is preserved).</"
+"p>"
+msgstr ""
+
+#: forms.py:217
+msgid "This ID already exists for this operation."
+msgstr ""
+
+#: forms.py:223 forms.py:250 models.py:60
+msgid "Dating"
+msgstr ""
+
+#: forms.py:229 models.py:50
+msgid "Start date"
+msgstr ""
+
+#: forms.py:230 models.py:51 models.py:137
+msgid "End date"
+msgstr ""
+
+#: forms.py:231 models.py:54
+msgid "Quality"
+msgstr ""
+
+#: forms.py:232 models.py:36 models.py:52
+msgid "Dating type"
+msgstr ""
+
+#: forms.py:259 ishtar_menu.py:29 models.py:356
+msgid "Context record"
+msgstr ""
+
+#: forms.py:280
+msgid "Relations"
+msgstr ""
+
+#: forms.py:284 forms.py:294 models.py:155
+#: templates/ishtar/sheet_contextrecord.html:42
+msgid "Interpretation"
+msgstr ""
+
+#: forms.py:288
+msgid "Comments on dating"
+msgstr ""
+
+#: forms.py:290 models.py:152
+msgid "Has furniture?"
+msgstr ""
+
+#: forms.py:292 models.py:154
+msgid "Filling"
+msgstr ""
+
+#: forms.py:296 models.py:175
+msgid "Activity"
+msgstr ""
+
+#: forms.py:298 models.py:173
+msgid "Identification"
+msgstr ""
+
+#: forms.py:300 models.py:158
+msgid "TAQ"
+msgstr ""
+
+#: forms.py:301 models.py:162
+msgid "Estimated TAQ"
+msgstr ""
+
+#: forms.py:303 models.py:165
+msgid "TPQ"
+msgstr ""
+
+#: forms.py:304 models.py:169
+msgid "Estimated TPQ"
+msgstr ""
+
+#: forms.py:319
+msgid "Operation search"
+msgstr ""
+
+#: forms.py:321
+msgid "You should select an operation."
+msgstr ""
+
+#: forms.py:326
+msgid "Would you like to delete this context record?"
+msgstr ""
+
+#: forms.py:335
+msgid "You should select a context record."
+msgstr ""
+
+#: forms.py:340
+msgid "Year of the operation"
+msgstr ""
+
+#: forms.py:342
+msgid "Numeric reference"
+msgstr ""
+
+#: forms.py:348
+msgid "Town of the operation"
+msgstr ""
+
+#: forms.py:350
+msgid "Period of the context record"
+msgstr ""
+
+#: forms.py:352
+msgid "Unit type of the context record"
+msgstr ""
+
+#: forms.py:365
+msgid "Documentation search"
+msgstr ""
+
+#: forms.py:367
+msgid "You should select a document."
+msgstr ""
+
+#: ishtar_menu.py:31 ishtar_menu.py:50
+msgid "Search"
+msgstr ""
+
+#: ishtar_menu.py:35
+msgid "Creation"
+msgstr ""
+
+#: ishtar_menu.py:39 ishtar_menu.py:61
+msgid "Modification"
+msgstr ""
+
+#: ishtar_menu.py:43 ishtar_menu.py:67
+msgid "Deletion"
+msgstr ""
+
+#: ishtar_menu.py:47
+msgid "Documentation"
+msgstr ""
+
+#: ishtar_menu.py:55
+msgid "Add"
+msgstr ""
+
+#: models.py:37
+msgid "Dating types"
+msgstr ""
+
+#: models.py:43
+msgid "Dating quality"
+msgstr ""
+
+#: models.py:44
+msgid "Dating qualities"
+msgstr ""
+
+#: models.py:56
+msgid "Precise dating"
+msgstr ""
+
+#: models.py:61
+msgid "Datings"
+msgstr ""
+
+#: models.py:72 models.py:86 models.py:98
+msgid "Order"
+msgstr ""
+
+#: models.py:73
+msgid "Parent unit"
+msgstr ""
+
+#: models.py:77
+msgid "Unit Type"
+msgstr ""
+
+#: models.py:78
+msgid "Unit Types"
+msgstr ""
+
+#: models.py:89
+msgid "Activity Type"
+msgstr ""
+
+#: models.py:90
+msgid "Activity Types"
+msgstr ""
+
+#: models.py:101
+msgid "Identification Type"
+msgstr ""
+
+#: models.py:102
+msgid "Identification Types"
+msgstr ""
+
+#: models.py:125
+msgid "External ID"
+msgstr ""
+
+#: models.py:127
+msgid "External ID is set automatically"
+msgstr ""
+
+#: models.py:134
+msgid "Comment"
+msgstr ""
+
+#: models.py:135
+msgid "Date d'ouverture"
+msgstr ""
+
+#: models.py:145
+msgid "A short description of the location of the context record"
+msgstr ""
+
+#: models.py:148
+msgid "Comment on datings"
+msgstr ""
+
+#: models.py:159
+msgid ""
+"\"Terminus Ante Quem\" the context record can't have been created after this "
+"date"
+msgstr ""
+
+#: models.py:163
+msgid "Estimation of a \"Terminus Ante Quem\""
+msgstr ""
+
+#: models.py:166
+msgid ""
+"\"Terminus Post Quem\" the context record can't have been created before "
+"this date"
+msgstr ""
+
+#: models.py:170
+msgid "Estimation of a \"Terminus Post Quem\""
+msgstr ""
+
+#: models.py:178
+msgid "Point"
+msgstr ""
+
+#: models.py:179
+msgid "Polygon"
+msgstr ""
+
+#: models.py:183 models.py:184 templates/ishtar/sheet_contextrecord.html:4
+msgid "Context Record"
+msgstr ""
+
+#: models.py:186
+msgid "Can view all Context Records"
+msgstr ""
+
+#: models.py:188
+msgid "Can view own Context Record"
+msgstr ""
+
+#: models.py:190
+msgid "Can add own Context Record"
+msgstr ""
+
+#: models.py:192
+msgid "Can change own Context Record"
+msgstr ""
+
+#: models.py:194
+msgid "Can delete own Context Record"
+msgstr ""
+
+#: models.py:203
+msgctxt "short"
+msgid "Context record"
+msgstr ""
+
+#: models.py:322
+msgid "Inverse relation"
+msgstr ""
+
+#: models.py:326 templates/ishtar/sheet_contextrecord.html:63
+msgid "Relation type"
+msgstr ""
+
+#: models.py:327
+msgid "Relation types"
+msgstr ""
+
+#: models.py:340
+msgid "Record relation"
+msgstr ""
+
+#: models.py:341
+msgid "Record relations"
+msgstr ""
+
+#: models.py:353
+msgid "Context record documentation"
+msgstr ""
+
+#: models.py:354
+msgid "Context record documentations"
+msgstr ""
+
+#: views.py:128
+msgid "New context record"
+msgstr ""
+
+#: views.py:139
+msgid "Context record modification"
+msgstr ""
+
+#: views.py:153
+msgid "Context record deletion"
+msgstr ""
+
+#: views.py:158
+msgid "Context record: source search"
+msgstr ""
+
+#: views.py:166
+msgid "Context record: new source"
+msgstr ""
+
+#: views.py:174
+msgid "Context record: source modification"
+msgstr ""
+
+#: views.py:189
+msgid "Context record: source deletion"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:14
+msgid "Complete ID:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:16
+#: templates/ishtar/sheet_contextrecord.html:94
+msgid "Patriarche OA code not yet recorded!"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:17
+msgid "Temporary ID:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:20
+msgid "Creation date:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:21
+msgid "Created by:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:23
+#: templates/ishtar/sheet_contextrecord.html:106
+msgid "Type:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:25
+msgid "Chronology:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:27
+msgid "Place:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:28
+msgid "Parcel:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:33
+msgid "Description:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:34
+msgid "Comment:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:35
+msgid "Length (m):"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:36
+msgid "Width (m):"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:37
+msgid "Depth (m):"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:38
+msgid "Thickness (m):"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:44
+msgid "Activity:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:45
+msgid "Identification:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:46
+msgid "Interpretation:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:50
+msgid "Datations"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:51
+msgid "TAQ:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:52
+msgid "Estimated TAQ:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:53
+msgid "TPQ:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:54
+msgid "Estimated TPQ:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:58
+msgid "In relation with"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:65
+msgid "Type"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:66
+msgid "Chronology"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:88
+msgid "Operation summary"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:89
+msgid "Year:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:92
+msgid "Patriarche OA code:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:97
+msgid "Head scientist:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:98
+msgid "State:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:100
+msgid "Active file"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:102
+msgid "Closed operation"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:103
+msgid "Closing date:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:104
+msgid "by"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:107
+msgid "Remains:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:108
+msgid "Periods:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:111
+msgid "Localisation"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:112
+msgid "Towns:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:113
+msgid "Related operation:"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:116
+msgid "No operation linked to this context unit!"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:119
+msgid "Document from this context record"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:124
+msgid "Finds"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecord.html:129
+msgid "Documents from associated finds"
+msgstr ""
+
+#: templates/ishtar/sheet_contextrecordsource.html:4
+msgid "Context record source"
+msgstr ""
