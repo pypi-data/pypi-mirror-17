@@ -1,0 +1,18 @@
+Metadata-Version: 2.0
+Name: esf
+Version: 1.0.3
+Summary: Esf is a simple file formatting engine for arrays
+Home-page: https://github.com/encloinc/esf
+Author: EncloCreations
+Author-email: jelch2002@gmail.com
+License: UNKNOWN
+Keywords: file,simple,array
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: peppercorn
+
+Esf is the easiest way to load and save arrays onto files, made for beginners!
+
+
