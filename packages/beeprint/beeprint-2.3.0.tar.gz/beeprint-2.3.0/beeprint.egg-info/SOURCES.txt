@@ -1,0 +1,16 @@
+README.txt
+setup.cfg
+setup.py
+beeprint/__init__.py
+beeprint/constants.py
+beeprint/debug_kit.py
+beeprint/helper.py
+beeprint/printer.py
+beeprint/settings.py
+beeprint/terminal_size.py
+beeprint/utils.py
+beeprint.egg-info/PKG-INFO
+beeprint.egg-info/SOURCES.txt
+beeprint.egg-info/dependency_links.txt
+beeprint.egg-info/requires.txt
+beeprint.egg-info/top_level.txt
