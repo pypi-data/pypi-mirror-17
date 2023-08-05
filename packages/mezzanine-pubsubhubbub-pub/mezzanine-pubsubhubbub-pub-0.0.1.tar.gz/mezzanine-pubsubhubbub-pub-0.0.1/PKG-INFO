@@ -1,0 +1,33 @@
+Metadata-Version: 1.1
+Name: mezzanine-pubsubhubbub-pub
+Version: 0.0.1
+Summary: publisher of pubsubhubbub (PuSH) in Mezzanine.
+Home-page: https://github.com/kemsakurai/mezzanine-pubsubhubbub-pub
+Author: Ken Sakurai
+Author-email: sakurai.kem@gmail.com
+License: Apache license 2.0
+Description: mezzanine_pubsubhubbub_pub
+        ===========================
+        
+        Requirements
+        ------------
+        
+        * mezzanine
+        * requests
+        
+        
+        Installation
+        ------------
+        
+            $ pip install -e git+https://github.com/kemsakurai/mezzanine-pubsubhubbub-pub.git#egg=mezzanine_pubsubhubbub_pub
+        
+        
+Keywords: d,j,a,n,g,o,,, ,m,e,z,z,a,n,i,n,e,,, ,p,u,b,s,u,b,h,u,b,b,u,b
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Operating System :: OS Independent
