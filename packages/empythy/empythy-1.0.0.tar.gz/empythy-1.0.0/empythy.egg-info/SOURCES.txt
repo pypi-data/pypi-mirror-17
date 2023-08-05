@@ -1,0 +1,17 @@
+.gitignore
+LICENSE
+MANIFEST.in
+README.md
+requirements.txt
+setup.cfg
+setup.py
+empythy/EmpathyMachines.py
+empythy/__init__.py
+empythy/test_script.py
+empythy/utils.py
+empythy.egg-info/PKG-INFO
+empythy.egg-info/SOURCES.txt
+empythy.egg-info/dependency_links.txt
+empythy.egg-info/requires.txt
+empythy.egg-info/top_level.txt
+empythy/corpora/aggregatedCorpusCleanedAndFiltered.csv
