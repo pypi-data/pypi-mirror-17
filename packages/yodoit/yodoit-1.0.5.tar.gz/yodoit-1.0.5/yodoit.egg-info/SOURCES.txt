@@ -1,0 +1,12 @@
+setup.py
+bin/yodoit
+yodoit/__init__.py
+yodoit/cfg_authkeys.py
+yodoit/cli.py
+yodoit/getboardconfig.py
+yodoit/trelloapi.py
+yodoit.egg-info/PKG-INFO
+yodoit.egg-info/SOURCES.txt
+yodoit.egg-info/dependency_links.txt
+yodoit.egg-info/pbr.json
+yodoit.egg-info/top_level.txt
