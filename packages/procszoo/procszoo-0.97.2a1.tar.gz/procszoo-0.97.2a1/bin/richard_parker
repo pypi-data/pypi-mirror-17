@@ -1,0 +1,12 @@
+#!/usr/bin/env python
+import os
+import sys
+
+this_file_absdir = os.path.dirname(os.path.abspath(__file__))
+procszoo_mod_dir = os.path.abspath("%s/.." % this_file_absdir)
+sys.path.insert(0, procszoo_mod_dir)
+
+from procszoo.scripts import richard_parker
+
+if __name__ == "__main__":
+    richard_parker.main()

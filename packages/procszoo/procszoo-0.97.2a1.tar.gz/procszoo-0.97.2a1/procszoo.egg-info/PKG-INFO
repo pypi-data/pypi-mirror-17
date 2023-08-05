@@ -1,0 +1,27 @@
+Metadata-Version: 1.1
+Name: procszoo
+Version: 0.97.2a1
+Summary: python module to operate Linux namespaces
+Home-page: https://github.com/xning/procszoo
+Author: xning
+Author-email: anzhou94@gmail.com
+License: GPL2+
+Description: Procszoo aims to provide you a simple but complete tool and you can use it as a DSL or an embeded programming language which let you operate Linux namespaces by Python. Procszoo gives a smart init program. I get it from baseimage-docker. Thanks a lot, you guys. Procszoo does not require new version Python (but we support python3, too) and Linux kernel.
+Keywords: linux container namespace sandbox process
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: System :: Systems Administration
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Operating System :: POSIX :: Linux

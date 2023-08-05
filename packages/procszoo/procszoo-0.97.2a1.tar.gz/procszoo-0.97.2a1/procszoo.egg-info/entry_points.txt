@@ -1,0 +1,8 @@
+[console_scripts]
+mamaji = procszoo.scripts.mamaji:main
+mamaji-2 = procszoo.scripts.mamaji:main
+mamaji-2.7 = procszoo.scripts.mamaji:main
+richard_parker = procszoo.scripts.richard_parker:main
+richard_parker-2 = procszoo.scripts.richard_parker:main
+richard_parker-2.7 = procszoo.scripts.richard_parker:main
+
