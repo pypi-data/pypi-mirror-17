@@ -1,0 +1,4 @@
+[console_scripts]
+tm = trackmac.main:cli
+trackmac_service = trackmac.app:main
+
