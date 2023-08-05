@@ -1,0 +1,16 @@
+Metadata-Version: 2.0
+Name: project-abstraction
+Version: 0.5
+Summary: Python library for encrypting scripts
+Home-page: UNKNOWN
+Author: Shashwat Antony
+Author-email: shashwat@arya.ai
+License: MIT
+Download-URL: http://github.com/Arya-ai/project_abstraction
+Platform: UNKNOWN
+Requires-Dist: Pycrypto
+Requires-Dist: dill
+
+Python script encryptor.
+
+
