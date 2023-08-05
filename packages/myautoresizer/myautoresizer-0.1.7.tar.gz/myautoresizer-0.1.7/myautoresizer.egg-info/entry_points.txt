@@ -1,0 +1,4 @@
+[console_scripts]
+ma_autoresize = myautoresizer.scripts:ma_autoresize
+ma_printrect = myautoresizer.scripts:ma_printrect
+
