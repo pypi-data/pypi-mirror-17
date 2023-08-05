@@ -1,0 +1,7 @@
+eventlet
+pbr>=1.6
+Jinja2>=2.8
+oslo.log
+oslo.serialization
+oslo.utils
+six
