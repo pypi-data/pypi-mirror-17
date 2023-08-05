@@ -1,0 +1,6 @@
+[console_scripts]
+sealights-unittest = python_agent.test_listener.integrations.unittest_helper:main
+
+[pytest11]
+sealights-python-agent = python_agent.test_listener.integrations.pytest_helper
+
