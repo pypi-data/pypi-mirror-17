@@ -1,0 +1,37 @@
+#!/usr/bin/env python
+
+try:
+    from cStringIO import StringIO
+except:
+    from StringIO import StringIO
+
+from matplotlib import pyplot
+
+def plot(items, title=None):
+    pyplot.figure(1, figsize=(8,8))
+    pyplot.axes([0.1, 0.1, 0.8, 0.8])
+    labels, sizes = zip(*items)
+    explode = (0.1, 0, 0, 0)  # explode 1st slice
+
+    # Plot
+    pyplot.pie(sizes, explode=explode, labels=labels, #colors=colors,
+               autopct='%1.1f%%', shadow=True, startangle=140)
+
+    if title:
+        pyplot.title(title, fontsize=24, fontweight='bold')
+    pyplot.show()
+
+
+if __name__ == '__main__':
+    import sys
+    f = sys.stdin
+
+    # read title
+    first_char = f.read(1)
+    f.seek(0)
+    title = (f.readline()[1:].strip()
+             if first_char.startswith('#')
+             else None)
+
+    items = list(l.split('\t') for l in (l.strip() for l in f) if l)
+    plot(items, title=title)
