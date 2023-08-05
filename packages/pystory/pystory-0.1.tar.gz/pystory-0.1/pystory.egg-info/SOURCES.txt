@@ -1,0 +1,12 @@
+README.rst
+setup.cfg
+setup.py
+pystory/__init__.py
+pystory/__main__.py
+pystory/pystory.py
+pystory/test_pystory.py
+pystory.egg-info/PKG-INFO
+pystory.egg-info/SOURCES.txt
+pystory.egg-info/dependency_links.txt
+pystory.egg-info/entry_points.txt
+pystory.egg-info/top_level.txt
