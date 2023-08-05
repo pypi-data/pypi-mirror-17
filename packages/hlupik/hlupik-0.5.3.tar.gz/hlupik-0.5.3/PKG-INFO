@@ -1,0 +1,30 @@
+Metadata-Version: 1.1
+Name: hlupik
+Version: 0.5.3
+Summary: Simple HTTP/1.1 client with low cpu overhead
+Home-page: https://github.com/baverman/hlupik/
+Author: Anton Bobrov
+Author-email: baverman@gmail.com
+License: MIT
+Description: hlupik
+        ------
+        
+        Simple HTTP/1.1 client with low cpu overhead
+        
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Internet
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: System :: Distributed Computing
+Classifier: Topic :: System :: Systems Administration
+Classifier: Topic :: System :: Monitoring
