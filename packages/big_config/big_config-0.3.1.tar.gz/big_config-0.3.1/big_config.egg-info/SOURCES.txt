@@ -1,0 +1,15 @@
+setup.cfg
+setup.py
+big_config/__init__.py
+big_config/config.py
+big_config/constants.py
+big_config/parsers.py
+big_config/path_list.py
+big_config/test.config.py
+big_config/test.parsers.py
+big_config/test.path_list.py
+big_config.egg-info/PKG-INFO
+big_config.egg-info/SOURCES.txt
+big_config.egg-info/dependency_links.txt
+big_config.egg-info/not-zip-safe
+big_config.egg-info/top_level.txt
