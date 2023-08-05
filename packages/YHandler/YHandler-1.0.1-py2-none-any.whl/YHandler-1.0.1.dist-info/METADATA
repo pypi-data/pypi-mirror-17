@@ -1,0 +1,16 @@
+Metadata-Version: 2.0
+Name: YHandler
+Version: 1.0.1
+Summary: Yahoo Fantasy API Wrapper
+Home-page: https://github.com/BrutalSimplicity/YHandler
+Author: BrutalSimplicity
+Author-email: kory.taborn@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: lxml
+Requires-Dist: oauthlib
+Requires-Dist: requests
+
+UNKNOWN
+
+
