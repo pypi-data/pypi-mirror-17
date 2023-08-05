@@ -1,0 +1,13 @@
+Django>=1.7,<1.10
+djangorestframework>=3.0,<3.4
+djangorestframework-gis
+
+[testing]
+pytest
+pytest-django
+pytest-cov
+pytest-mock
+flake8
+django-environ
+GeoAlchemy2
+psycopg2
