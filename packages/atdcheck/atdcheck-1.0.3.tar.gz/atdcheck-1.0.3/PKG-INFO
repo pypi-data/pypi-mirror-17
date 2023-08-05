@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: atdcheck
+Version: 1.0.3
+Summary: A Python wrapper for ATD (After The Dateline)
+Home-page: https://github.com/kurniawano/atdcheck
+Author: Oka Kurniawan
+Author-email: oka@okakurniawan.net
+License: MIT
+Description: # atdcheck
+        Python wrapper for checking using ATD (After the Dateline)
+        
+Keywords: tools utilities spell grammar check
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Education
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
