@@ -1,0 +1,14 @@
+Metadata-Version: 2.0
+Name: hlsrelay
+Version: 0.0.1
+Summary: A tool to pull live HLS stream from one origin and push to another origin
+Home-page: https://github.com/Eyevinn/hls-relay
+Author: Jonas Birme
+Author-email: jonas.birme@eyevinn.se
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: m3u8
+
+UNKNOWN
+
+
