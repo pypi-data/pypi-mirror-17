@@ -1,0 +1,34 @@
+Metadata-Version: 1.1
+Name: systemd
+Version: 0.8.0
+Summary: Python systemd wrapper
+Home-page: http://github.com/mosquito/python-systemd
+Author: Dmitry Orlov <me@mosquito.su>
+Author-email: me@mosquito.su
+License: Apache
+Description: SystemD
+        =======
+        
+        Python systemd wrapper using Cython
+Keywords: systemd,python,daemon,sd_notify,cython
+Platform: POSIX
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Natural Language :: Russian
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Cython
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: System
+Classifier: Topic :: System :: Operating System
+Provides: systemd
