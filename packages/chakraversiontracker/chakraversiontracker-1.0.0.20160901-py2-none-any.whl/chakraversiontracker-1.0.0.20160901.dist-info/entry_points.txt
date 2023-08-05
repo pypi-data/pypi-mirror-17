@@ -1,0 +1,3 @@
+[console_scripts]
+chakraversiontracker = chakraversiontracker.__main__:main
+
