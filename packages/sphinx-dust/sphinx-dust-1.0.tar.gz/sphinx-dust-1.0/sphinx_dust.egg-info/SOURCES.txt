@@ -1,0 +1,11 @@
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+dust/__init__.py
+dust/directive.py
+sphinx_dust.egg-info/PKG-INFO
+sphinx_dust.egg-info/SOURCES.txt
+sphinx_dust.egg-info/dependency_links.txt
+sphinx_dust.egg-info/requires.txt
+sphinx_dust.egg-info/top_level.txt
