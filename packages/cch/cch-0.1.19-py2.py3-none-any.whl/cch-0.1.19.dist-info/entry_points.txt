@@ -1,0 +1,12 @@
+[console_scripts]
+lskp = cch.cli:lskp
+lssg = cch.cli:lssg
+lsvm = cch.cli:lsvm
+mkkp = cch.cli:mkkp
+mksg = cch.cli:mksg
+mkvm = cch.cli:mkvm
+rmkp = cch.cli:rmkp
+rmsg = cch.cli:rmsg
+rmvm = cch.cli:rmvm
+stpvm = cch.cli:stpvm
+

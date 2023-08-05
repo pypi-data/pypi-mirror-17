@@ -1,0 +1,49 @@
+Metadata-Version: 2.0
+Name: cch
+Version: 0.1.19
+Summary: Cloud CLI for Humans
+Home-page: https://github.com/rushiagr/cch
+Author: Rushi Agrawal
+Author-email: rushi.agr@gmail.com
+License: Apache 2.0
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Unix
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: click
+Requires-Dist: awscli
+Requires-Dist: boto3
+Requires-Dist: prettytable
+Requires-Dist: future
+
+
+CCH - Cloud CLI for Humans.
+
+Very simple cloud CLI, specifically designed for human use. Strictly forbidden
+for scripts' consumption :)
+
+Just type `mkvm` and it will help you step-by-step create a virtual machine, by
+first letting you provide a flavor from availale flavors, then similarly a
+security group, and then root volume storage.  All the other commands are just
+as simple!
+
+View demo at: https://asciinema.org/a/ektm98481nniu7rldc1ncu5af
+
+
+Installation
+------------
+
+    pip install cch
+
+More details at https://github.com/rushiagr/cch/blob/master/README.md
+
+
