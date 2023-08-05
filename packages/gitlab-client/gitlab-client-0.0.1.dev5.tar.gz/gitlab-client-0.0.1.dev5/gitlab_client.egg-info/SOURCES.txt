@@ -1,0 +1,17 @@
+AUTHORS
+ChangeLog
+README.md
+requirements.txt
+setup.cfg
+setup.py
+tox.ini
+client/__init__.py
+client/shell.py
+gitlab_client.egg-info/PKG-INFO
+gitlab_client.egg-info/SOURCES.txt
+gitlab_client.egg-info/dependency_links.txt
+gitlab_client.egg-info/entry_points.txt
+gitlab_client.egg-info/not-zip-safe
+gitlab_client.egg-info/pbr.json
+gitlab_client.egg-info/requires.txt
+gitlab_client.egg-info/top_level.txt
