@@ -1,0 +1,22 @@
+Changelog
+=========
+
+
+1.0.1 (2016-09-09)
+------------------
+
+- Ignore empty strings in converter.
+  [tschanzt]
+
+- Improve overlay behavior (close on click outside the overlay + close on ESC).
+  [mathias.leimgruber]
+
+- Get Widget name on overlay creation.
+  [tschanzt]
+
+
+1.0.0 (2016-09-07)
+------------------
+
+- Initial release
+  [tschanzt]
