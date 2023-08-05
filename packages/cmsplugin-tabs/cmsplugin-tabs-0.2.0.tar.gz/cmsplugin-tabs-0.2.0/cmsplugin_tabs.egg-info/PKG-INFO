@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: cmsplugin-tabs
+Version: 0.2.0
+Summary: A simple tabs plugin for django-cms
+Home-page: http://github.com/nimbis/cmsplugin-tabs
+Author: Nimbis Services, Inc.
+Author-email: devops@nimbisservices.com
+License: BSD
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Framework :: Django

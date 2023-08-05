@@ -1,0 +1,37 @@
+{% load sekizai_tags cms_tags %}
+
+{% block content %}
+{% addtoblock "js" %}
+<script type="text/javascript">
+  $(document).ready(function() {
+    // Choose the first tab (for no match)
+    $("#tab-{{ instance.id }} a:first").tab('show');
+
+    // get ALL THE TABS, match against #whatever
+    $("#tab-{{ instance.id }} a").each(function(i){
+        if ($(this).text().toLowerCase() == location.hash.substring(1).toLowerCase()){
+            $(this).tab('show');
+            return false;
+        }
+    });
+  });
+</script>
+{% endaddtoblock %}
+{% endblock %}
+
+<div id="tabs-plugin-{{ instance.id }}" class="cmsplugin-tabs-plugin">
+  <ul class="nav nav-tabs" id="tab-{{ instance.id }}">
+  {% for tab in instance.child_plugin_instances %}
+    <li>
+      <a href="#tab-{{ tab.id }}" data-toggle="tab">{{ tab.title }}</a>
+    </li>
+  {% endfor %}
+  </ul>
+  <div class="tab-content">
+  {% for tab in instance.child_plugin_instances %}
+    <div class="tab-pane" id="tab-{{ tab.id }}">
+      {% render_plugin tab %}
+    </div>
+  {% endfor %}
+  </div>
+</div>
