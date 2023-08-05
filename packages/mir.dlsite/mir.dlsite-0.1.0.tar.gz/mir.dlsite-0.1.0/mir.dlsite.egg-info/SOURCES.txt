@@ -1,0 +1,9 @@
+.gitignore
+README.rst
+setup.py
+mir/dlsite.py
+mir.dlsite.egg-info/PKG-INFO
+mir.dlsite.egg-info/SOURCES.txt
+mir.dlsite.egg-info/dependency_links.txt
+mir.dlsite.egg-info/requires.txt
+mir.dlsite.egg-info/top_level.txt
