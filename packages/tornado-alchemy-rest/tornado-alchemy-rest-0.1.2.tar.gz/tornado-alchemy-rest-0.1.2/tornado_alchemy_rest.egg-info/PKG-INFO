@@ -1,0 +1,45 @@
+Metadata-Version: 1.1
+Name: tornado-alchemy-rest
+Version: 0.1.2
+Summary: Tornado REST API
+Home-page: https://github.com/EzyInsights/tornado-alchemy-rest
+Author: EzyInsights team
+Author-email: andrii.kostenko@kampiki.com
+License: Apache
+Description: ##Tornado + Alchemy REST Client
+        
+        This simple module creates CRUD endpoints for some SQLAlchemy model.
+        
+        ####Usage example
+        
+        ```python
+            import tornado.web
+            from tornado.web import URLSpec
+            from .models import ItemTable
+            from tornado_alchemy_rest import SingleRESTAPIHandler, ListRESTAPIHandler
+          
+            class SingleItemHandler(SingleRESTAPIHandler):
+                table = ItemTable
+            
+                def delete(self, *args, **kwargs):
+                    raise HTTPError(405)
+            
+            
+            class ItemHandler(ListRESTAPIHandler):
+                table = ItemTable
+        
+            app = tornado.web.Application([
+                URLSpec(prefix(r'items'), ItemHandler, dict(psql=psql_pool), 'items'),
+                URLSpec(prefix(r'items/(\d+)'), SingleItemHandler, dict(psql=psql_pool), 'single_item'),
+            ])
+        ```
+        
+Keywords: tornado sqlalchemy alchemy rest api postgresql
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5

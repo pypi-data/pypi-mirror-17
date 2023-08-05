@@ -1,0 +1,8 @@
+tornado
+sqlalchemy
+
+[test]
+coverage
+
+[dev]
+check-manifest
