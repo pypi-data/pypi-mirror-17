@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: ipython2slack
+Version: 0.1.2
+Summary: Sending infromation fron IPython console to Slack chanel
+Home-page: https://github.com/xfox/ipython2slack
+Author: Ivan Lazarev
+Author-email: ilazarev@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
