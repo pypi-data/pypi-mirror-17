@@ -1,0 +1,51 @@
+Metadata-Version: 2.0
+Name: genedoku
+Version: 1.0.0a4
+Summary: A simple python package that solves sudokus using genetic algorithms
+Home-page: https://github.com/AgustinCB/genedoku
+Author: AgustinCB
+Author-email: jnieve@gmail.com
+License: GNU
+Keywords: sudoku genetic algorithm solver
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Games/Entertainment :: Puzzle Games
+Classifier: License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+
+Genedoku
+========
+
+Solve sudokus of any size using genetic algorithms with an easy approach
+
+Basic usage
+-----------
+
+.. code:: python
+
+    from genedoku.Evolution import Evolution
+    from genedoku.SudokuChromosome import SudokuChromosome
+
+    e = Evolution(problem, SudokuChromosome, 50, 20000)
+    r = e.start()
+
+Where problem contains an array of NxN representing the sudoku and using
+0 in the empty spaces.
+
+Test
+----
+
+.. code:: bash
+
+    python tests/test_genedoku.py [options] < tests/example.txt
+
+Where example.txt it's an input file containing the matrix in the
+following format:
+
+Each row it's separated by '', each element in row per ' ' and the final
+line should be blank. Empty spaces are 0
+
+
