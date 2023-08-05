@@ -1,0 +1,16 @@
+{% extends "django_cradmin/layouts/standalone/focused.django.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Signed out" %}
+{% endblock title %}
+
+{% block page-cover-title %}
+    {% trans "Signed out" %}
+{% endblock page-cover-title %}
+
+{% block content %}
+    <a href="{{ LOGIN_URL }}">
+        {% trans "Sign back in" %}
+    </a>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends "cradmin_register_account/base.django.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+
+{% block title %}
+    {% trans "Check your email" %}
+{% endblock title %}
+
+{% block page-cover-title %}
+    {% trans "Check your email" %}
+{% endblock page-cover-title %}
+
+{% block content %}
+    <p>
+        {% trans "We have sent you an email. Click the link in the email to activate your account." %}
+    </p>
+    <p>
+        {% trans "If you do not see the email, check your junk folder." %}
+    </p>
+{% endblock content %}
