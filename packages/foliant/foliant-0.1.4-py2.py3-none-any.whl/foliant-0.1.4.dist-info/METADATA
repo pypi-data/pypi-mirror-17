@@ -1,0 +1,12 @@
+Metadata-Version: 1.2
+Name: foliant
+Version: 0.1.4
+Summary: **Foliant** is a documentation generator that builds PDF, Docx, and TeX output
+Home-page: https://github.com/foliant-docs/foliant
+License: UNKNOWN
+Author: Konstantin Molchanov
+Author-email: moigagoo@live.com
+Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: PyDrive (>=1.2.1)
+Requires-Dist: PyYAML
+Requires-Dist: docopt
