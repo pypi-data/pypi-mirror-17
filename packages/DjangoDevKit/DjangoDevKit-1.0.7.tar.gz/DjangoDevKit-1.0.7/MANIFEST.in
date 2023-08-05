@@ -1,0 +1,7 @@
+exclude .installed.cfg
+exclude .coveragerc
+graft docs
+graft djangodevkit
+include *.py *.rst *.cfg *.ini *.txt
+global-exclude *.pyc
+global-exclude __pycache__
