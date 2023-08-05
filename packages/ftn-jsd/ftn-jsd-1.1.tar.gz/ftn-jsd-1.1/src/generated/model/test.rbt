@@ -1,0 +1,117 @@
+"TODO_name"
+css="http://bootswatch.com/lumen/bootstrap.min.css"
+"City" {
+
+  foreignKey "state" ( to = "State" )
+  char "name" ( max_length = 30,  null = false )
+  char "zipCode" ( max_length = 12,  null = false )
+
+
+
+
+}
+"Enterprise" {
+  char "name" ( max_length = 50,  null = false )
+  char "address" ( max_length = 150,  null = false )
+
+  foreignKey "city" ( to = "City" )
+}
+"State" {
+
+  char "name" ( max_length = 25,  null = false )
+}
+"Department" {
+  char "departmentName" ( max_length = 20,  editable = true,  null = false )
+  char "address" ( max_length = 155,  null = false )
+  foreignKey "enterprise" ( to = "Enterprise" )
+
+  foreignKey "city" ( to = "City" )
+}
+"Vendor" {
+
+  char "name" ( max_length = 30,  null = false )
+  char "address" ( max_length = 150,  null = false )
+  foreignKey "city" ( to = "City" )
+}
+"OrderItem" {
+  foreignKey "order" ( to = "Order" )
+  foreignKey "product" ( to = "Product" )
+  decimal "orderedQuantity" ( decimal_places = 2,  null = false,  max_digits = 15 )
+  decimal "available" ( decimal_places = 2,  null = true,  max_digits = 15 )
+  decimal "unitPrice" ( decimal_places = 2,  null = false,  max_digits = 15 )
+  decimal "unitTax" ( decimal_places = 2,  null = false,  max_digits = 15 )
+  decimal "value" ( decimal_places = 2,  null = false,  max_digits = 10 )
+}
+"Order" {
+
+
+
+  int "orderNumber" ( null = false )
+  dateTime "orderDate" ( null = false )
+  text "shipmentAddress" ( max_length = 200,  null = false )
+  int "orderTotal" ( null = false )
+  char "orderStatus" ( max_length = 30,  null = false,  choices = (("ORDERING","ordering"),("FINISHED","finished"),("CANCELED","canceled"),("SHIPPED","shipped")) )
+  foreignKey "city" ( to = "City" )
+  foreignKey "customer" ( to = "Customer" )
+}
+"PriceListItem" {
+  foreignKey "product" ( to = "Product" )
+  foreignKey "priceList" ( to = "PriceList" )
+  decimal "price" ( decimal_places = 2,  null = false,  max_digits = 10 )
+  decimal "tax" ( decimal_places = 2,  null = false,  max_digits = 10 )
+}
+"Payment" {
+  foreignKey "order" ( to = "Order" )
+  char "paymetMethod" ( max_length = 50,  choices = (("CASH","cash"),("CREDITCARD","creditCard"),("PAYPAL","payPal")) )
+  dateTime "dateReceived" ( null = false )
+  decimal "amountReceived" ( max_length = 9,  decimal_places = 2,  null = false,  max_digits = 10 )
+  boolean "canceled" ( null = false )
+}
+"Invoice" {
+  foreignKey "order" ( to = "Order" )
+  int "invoiceNumber" ( null = false )
+  dateTime "invoiceDate" ( )
+  text "invoiceTotal" ( max_length = 300,  null = true )
+  boolean "canceled" ( )
+}
+"Customer" {
+  char "name" ( max_length = 31,  null = false )
+  char "address" ( max_length = 51,  null = false )
+
+  foreignKey "city" ( to = "City" )
+}
+"PriceList" {
+
+  int "listNumber" ( null = false )
+  dateTime "activeFromDate" ( null = false )
+}
+"Stock" {
+  foreignKey "department" ( to = "Department" )
+
+  char "stockName" ( max_length = 20,  null = false )
+  text "desription" ( max_length = 255,  null = true )
+}
+"Product" {
+  foreignKey "stockKeepingUnit" ( to = "StockKeepingUnit" )
+  foreignKey "category" ( to = "Category" )
+
+  foreignKey "vendor" ( to = "Vendor" )
+
+  char "productName" ( max_length = 25,  null = false )
+  text "description" ( max_length = 255,  null = true )
+}
+"Category" {
+
+
+  foreignKey "subcategory" ( to = "Category" )
+  char "categoryName" ( max_length = 25,  null = false )
+  text "description" ( max_length = 200,  null = true )
+}
+"StockKeepingUnit" {
+  foreignKey "stock" ( to = "Stock" )
+
+  decimal "available" ( decimal_places = 2,  null = false,  max_digits = 10 )
+  decimal "reserved" ( decimal_places = 2,  null = false,  max_digits = 10 )
+}
+  "report_city"()  "report_week"()        "reportOrders"("fromDate","toDate")  "reportInvoices"("fromDate","toDate")        "finish"()  "createInvoice"()  "cancel"()  "reportorders"()      "cancel"()    "reportinvoices"()      "copy"("percentage")
+

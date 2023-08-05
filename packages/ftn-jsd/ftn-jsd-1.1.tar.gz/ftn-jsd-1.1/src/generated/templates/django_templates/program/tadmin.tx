@@ -1,0 +1,24 @@
+from django.contrib import admin
+{% for definition in model.classes %}
+from {{model.name}}.models import {{definition.name}}
+{% endfor %}
+# Handle the signal sent by user_login
+from registration.signals import user_registered
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import Permission
+
+
+def user_registered_handler(sender, **kwargs):
+    """signal intercept for user_registered"""
+    request = kwargs['request']
+    new_user = authenticate(username=request.POST['username'], password=request.POST['password1'])
+    view_permissions = [{% for definition in model.classes %}'view_{{definition.name.lower()}}', {% endfor %}]
+    for v_perm in view_permissions:
+        permission = Permission.objects.get(codename=v_perm)
+        if permission:
+            new_user.user_permissions.add(permission)
+
+user_registered.connect(user_registered_handler)
+{% for definition in model.classes %}
+admin.site.register({{definition.name}})
+{% endfor %}
