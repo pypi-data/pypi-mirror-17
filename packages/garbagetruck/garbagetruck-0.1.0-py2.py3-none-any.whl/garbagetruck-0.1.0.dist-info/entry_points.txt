@@ -1,0 +1,3 @@
+[console_scripts]
+garbagetruck = garbagetruck.cli:main
+
