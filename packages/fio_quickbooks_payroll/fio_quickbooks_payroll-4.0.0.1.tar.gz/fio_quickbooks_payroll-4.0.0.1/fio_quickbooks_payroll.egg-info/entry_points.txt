@@ -1,0 +1,4 @@
+
+    [trytond.modules]
+    quickbooks_payroll = trytond.modules.quickbooks_payroll
+    
