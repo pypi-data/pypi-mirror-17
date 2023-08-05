@@ -1,0 +1,3 @@
+[console_scripts]
+pystory = pystory.__main__:main
+
