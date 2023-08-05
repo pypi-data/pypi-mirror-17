@@ -1,0 +1,14 @@
+CONTRIBUTING.md
+LICENSE
+README.md
+setup.cfg
+setup.py
+bojack/__init__.py
+bojack/client.py
+bojack/connection.py
+bojack.egg-info/PKG-INFO
+bojack.egg-info/SOURCES.txt
+bojack.egg-info/dependency_links.txt
+bojack.egg-info/pbr.json
+bojack.egg-info/top_level.txt
+tests/test_client.py
