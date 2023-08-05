@@ -1,0 +1,17 @@
+Metadata-Version: 2.0
+Name: OLIVER
+Version: 0.6
+Summary: Convenience functions for interacting with the OLIVER workspace
+Home-page: https://msu.edu/~tessmero/
+Author: Oliver Tessmer
+Author-email: oliver.tessmer@gmail.com
+License: UNKNOWN
+Keywords: oliver
+Platform: UNKNOWN
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: py4j
+
+UNKNOWN
+
+
