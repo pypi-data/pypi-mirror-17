@@ -1,0 +1,7 @@
+global-include *.pyx
+global-include *.pxd
+global-include *.cc
+global-include *.h
+global-include fasttext/VERSION
+
+prune facebookresearch-fastText-*
