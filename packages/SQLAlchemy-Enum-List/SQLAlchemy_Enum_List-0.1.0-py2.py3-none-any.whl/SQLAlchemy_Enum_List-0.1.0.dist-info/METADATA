@@ -1,0 +1,67 @@
+Metadata-Version: 2.0
+Name: SQLAlchemy-Enum-List
+Version: 0.1.0
+Summary: Store list of enum member.
+Home-page: https://github.com/spoqa/sqlalchemy-enum-list
+Author: Kang Hyojun
+Author-email: iam.kanghyojun@gmail.com
+License: MIT License
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Programming Language :: SQL
+Classifier: Topic :: Database :: Front-Ends
+Classifier: Topic :: Software Development
+Requires-Dist: SQLAlchemy (>=0.8.0)
+Requires-Dist: six
+Requires-Dist: enum34 (>=1.1.6); python_version<'3.5'
+Provides-Extra: tests
+Requires-Dist: pytest; extra == 'tests'
+Requires-Dist: tox; extra == 'tests'
+
+SQAlchemy Enum List
+~~~~~~~~~~~~~~~~~~~
+
+Store list of enum member as unicode string. it works list of python on
+python-side & stored unicode text in database. To store scalar values like
+integer, float read about ScalarListType_ in SQLAlchemy-Utils_
+
+.. _ScalarListType: https://sqlalchemy-utils.readthedocs.io/en/latest/data_types.html#module-sqlalchemy_utils.types.scalar_list
+.. _SQLAlchemy-Utils: https://github.com/kvesteri/sqlalchemy-utils
+
+
+Getting started
+===============
+
+.. code-block:: python
+
+   import enum
+
+   from sqlalchemy.schma import Column
+   from sqlalchemy_enum_list import EnumListType
+
+   class Genre(enum.Enum):
+
+       pop = 1
+
+       soul = 2
+
+       jazz = 3
+
+
+   class Song(Base):
+
+       genre = Column(EnumListType(Genre, int))
+
+   song = Song(genre=[Genre.soul, Genre.jazz])
+
+
