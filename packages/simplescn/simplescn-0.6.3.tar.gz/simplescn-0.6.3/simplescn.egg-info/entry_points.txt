@@ -1,0 +1,4 @@
+[console_scripts]
+scnconnect = simplescn.cmdcom:_init_method_main
+scnmain = simplescn.__main__:_init_method_main
+
