@@ -1,0 +1,314 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>hanziconv package &mdash; hanziconv 0.3.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.3.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="top" title="hanziconv 0.3.2 documentation" href="#" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="#">hanziconv 0.3.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="hanziconv-package">
+<h1>hanziconv package<a class="headerlink" href="#hanziconv-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-hanziconv">
+<span id="hanzi-converter"></span><h2>Hanzi Converter 繁簡轉換器 | 繁简转换器<a class="headerlink" href="#module-hanziconv" title="Permalink to this headline">¶</a></h2>
+<p>This module converts between simplified and traditional Chinese Characters.
+It consists of two parts:</p>
+<blockquote>
+<div><ul class="simple">
+<li>a command line tool: <tt class="docutils literal"><span class="pre">hanzi-convert</span></tt></li>
+<li>a python library: <tt class="docutils literal"><span class="pre">hanziconv</span></tt></li>
+</ul>
+</div></blockquote>
+<p>It supports both Python 2 and 3</p>
+<a class="reference external image-reference" href="https://travis-ci.org/berniey/hanziconv"><img alt="Build Status" src="https://travis-ci.org/berniey/hanziconv.png?branch=master" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/hanziconv/"><img alt="Latest Version" src="https://img.shields.io/badge/version-0.3.2-brightgreen.svg?style=plastic" /></a>
+<a class="reference external image-reference" href="https://pythonhosted.org/hanziconv/"><img alt="Documentation" src="https://img.shields.io/badge/doc-0.3.2-brightgreen.svg?style=plastic" /></a>
+<a class="reference external image-reference" href="https://github.com/berniey/hanziconv"><img alt="Source Code" src="https://img.shields.io/badge/source-latest-blue.svg?style=plastic" /></a>
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/berniey/hanziconv/master/LICENSE"><img alt="License" src="https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=plastic" /></a>
+<div class="section" id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-sh"><div class="highlight"><pre><span class="nv">$ </span>pip install hanziconv
+</pre></div>
+</div>
+</div>
+<div class="section" id="uninstallation">
+<h3>Uninstallation<a class="headerlink" href="#uninstallation" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-sh"><div class="highlight"><pre><span class="nv">$ </span><span class="o">[</span>sudo<span class="o">]</span> pip uninstall hanziconv
+</pre></div>
+</div>
+</div>
+<div class="section" id="command-line-tool">
+<h3>Command Line Tool<a class="headerlink" href="#command-line-tool" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="synopsis">
+<h4>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-sh"><div class="highlight"><pre>$ ./hanzi-convert --help
+usage: hanzi-convert [-h] [-o OUTFILE] [-s] [-v] infile
+
+Simplified and Traditional Chinese Character Conversion
+Version 0.3.2 (By Bernard Yue)
+
+Converting to Traditional Hanzi by default with no -s flag
+
+positional arguments:
+  infile                filename | &quot;-&quot;, corresponds to stdin
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -o OUTFILE, --output OUTFILE
+                        filename to save output, stdout if omitted
+  -s, --simplified      convert to simplified characters
+  -v, --version         show program&#39;s version number and exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="example">
+<h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
+<p>Conversion from stdin</p>
+<div class="highlight-sh"><div class="highlight"><pre>$ ./hanzi-convert -
+Press Crtl-D when finished
+Typing away
+Now write some chinese characters
+繁简转换器
+^D
+Typing away
+Now write some chinese characters
+繁簡轉換器
+$
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="testing">
+<h3>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h3>
+<p>The module uses <a class="reference external" href="http://pytest.org/latest/">pytest</a>.  Use pip to install <cite>pytest</cite>.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span class="nv">$ </span><span class="o">[</span>sudo<span class="o">]</span> pip install pytest
+</pre></div>
+</div>
+<p>Then checkout source code and run test as normal.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span class="nv">$ </span>git clone https://github.com/berniey/hanziconv.git
+<span class="nv">$ </span><span class="nb">cd </span>hanziconv
+<span class="nv">$ </span>python setup.py <span class="nb">test</span>
+</pre></div>
+</div>
+<p>You are encouraged to use <a class="reference external" href="https://virtualenv.pypa.io/en/stable/">virtualenv</a>
+and <a class="reference external" href="https://virtualenvwrapper.readthedocs.io/en/latest/">virtualenvwrapper</a>
+for to avoid changing your currently operating environment.</p>
+</div>
+<div class="section" id="license">
+<h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">This module is distributed under Apache License Version 2.0.</div>
+</div>
+<p>The character map used in this module is based on the Multi-function
+Chinese Character Database developed by Chinese University of Hong Kong.</p>
+</div>
+<div class="section" id="python-api">
+<h3>Python API<a class="headerlink" href="#python-api" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h4>Example<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hanziconv</span> <span class="kn">import</span> <span class="n">HanziConv</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">HanziConv</span><span class="o">.</span><span class="n">toSimplified</span><span class="p">(</span><span class="s">&#39;繁簡轉換器&#39;</span><span class="p">))</span>
+<span class="go">繁简转换器</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">HanziConv</span><span class="o">.</span><span class="n">toTraditional</span><span class="p">(</span><span class="s">&#39;繁简转换器&#39;</span><span class="p">))</span>
+<span class="go">繁簡轉換器</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">HanziConv</span><span class="o">.</span><span class="n">same</span><span class="p">(</span><span class="s">&#39;繁簡轉換器&#39;</span><span class="p">,</span> <span class="s">&#39;繁简转换器&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="api">
+<h4>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h4>
+<dl class="class">
+<dt id="hanziconv.HanziConv">
+<em class="property">class </em><tt class="descclassname">hanziconv.</tt><tt class="descname">HanziConv</tt><a class="headerlink" href="#hanziconv.HanziConv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>This class supports hanzi (漢字) convention between simplified and
+traditional format</p>
+<dl class="classmethod">
+<dt id="hanziconv.HanziConv.same">
+<em class="property">classmethod </em><tt class="descname">same</tt><big>(</big><em>text1</em>, <em>text2</em><big>)</big><a class="headerlink" href="#hanziconv.HanziConv.same" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if text1 and text2 meant literally the same, False
+otherwise</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>text1</strong> &#8211; string to compare to <tt class="docutils literal"><span class="pre">text2</span></tt></li>
+<li><strong>text2</strong> &#8211; string to compare to <tt class="docutils literal"><span class="pre">text1</span></tt></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>True</strong>  &#8211; <tt class="docutils literal"><span class="pre">text1</span></tt> and <tt class="docutils literal"><span class="pre">text2</span></tt> are the same in meaning,
+<strong>False</strong> &#8211; otherwise</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hanziconv</span> <span class="kn">import</span> <span class="n">HanziConv</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">HanziConv</span><span class="o">.</span><span class="n">same</span><span class="p">(</span><span class="s">&#39;繁简转换器&#39;</span><span class="p">,</span> <span class="s">&#39;繁簡轉換器&#39;</span><span class="p">))</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="hanziconv.HanziConv.toSimplified">
+<em class="property">classmethod </em><tt class="descname">toSimplified</tt><big>(</big><em>text</em><big>)</big><a class="headerlink" href="#hanziconv.HanziConv.toSimplified" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert <cite>text</cite> to simplified character string.  Assuming text is
+traditional character string</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>text</strong> &#8211; text to convert</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">converted UTF-8 characters</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hanziconv</span> <span class="kn">import</span> <span class="n">HanziConv</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">HanziConv</span><span class="o">.</span><span class="n">toSimplified</span><span class="p">(</span><span class="s">&#39;繁簡轉換器&#39;</span><span class="p">))</span>
+<span class="go">繁简转换器</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="hanziconv.HanziConv.toTraditional">
+<em class="property">classmethod </em><tt class="descname">toTraditional</tt><big>(</big><em>text</em><big>)</big><a class="headerlink" href="#hanziconv.HanziConv.toTraditional" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert <cite>text</cite> to traditional character string.  Assuming text is
+simplified character string</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>text</strong> &#8211; text to convert</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">converted UTF-8 characters</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hanziconv</span> <span class="kn">import</span> <span class="n">HanziConv</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">HanziConv</span><span class="o">.</span><span class="n">toTraditional</span><span class="p">(</span><span class="s">&#39;繁简转换器&#39;</span><span class="p">))</span>
+<span class="go">繁簡轉換器</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">hanziconv package</a><ul>
+<li><a class="reference internal" href="#module-hanziconv">Hanzi Converter 繁簡轉換器 | 繁简转换器</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#uninstallation">Uninstallation</a></li>
+<li><a class="reference internal" href="#command-line-tool">Command Line Tool</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#testing">Testing</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
+<li><a class="reference internal" href="#python-api">Python API</a><ul>
+<li><a class="reference internal" href="#id1">Example</a></li>
+<li><a class="reference internal" href="#api">API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="#">hanziconv 0.3.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Bernard Yue.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
