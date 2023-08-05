@@ -1,0 +1,4 @@
+include README.md LICENSE requirements*.txt
+recursive-include flamyngo *.py *.css *.json *.js *.png
+prune */*/tests
+prune */*/*/tests
