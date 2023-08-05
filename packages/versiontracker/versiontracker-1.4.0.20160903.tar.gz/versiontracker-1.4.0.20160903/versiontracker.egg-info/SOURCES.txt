@@ -1,0 +1,13 @@
+README.rst
+setup.py
+versiontracker/__init__.py
+versiontracker/__main__.py
+versiontracker/_version.py
+versiontracker/baseseekers.py
+versiontracker/data.json
+versiontracker.egg-info/PKG-INFO
+versiontracker.egg-info/SOURCES.txt
+versiontracker.egg-info/dependency_links.txt
+versiontracker.egg-info/entry_points.txt
+versiontracker.egg-info/requires.txt
+versiontracker.egg-info/top_level.txt
