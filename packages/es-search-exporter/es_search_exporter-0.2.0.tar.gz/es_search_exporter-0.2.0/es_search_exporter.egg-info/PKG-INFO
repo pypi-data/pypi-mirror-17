@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: es-search-exporter
+Version: 0.2.0
+Summary: Elasticsearch search exporter for the Prometheus monitoring system.
+Home-page: https://github.com/ipstatic/es_search_exporter
+Author: Jarod Watkins
+Author-email: jarod@42lines.net
+License: MIT
+Description: See https://github.com/ipstatic/es_search_exporter/blob/master/README.md for documentation.
+Keywords: prometheus exporter network monitoring elastic search
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: Topic :: System :: Monitoring
+Classifier: License :: OSI Approved :: MIT License
