@@ -1,0 +1,10 @@
+setup.py
+webbridge/__init__.py
+webbridge/bridge.py
+webbridge/client.py
+webbridge/server.py
+webbridge.egg-info/PKG-INFO
+webbridge.egg-info/SOURCES.txt
+webbridge.egg-info/dependency_links.txt
+webbridge.egg-info/requires.txt
+webbridge.egg-info/top_level.txt
