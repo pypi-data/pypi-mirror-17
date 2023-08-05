@@ -1,0 +1,9 @@
+jaraco.text
+jaraco.classes
+six>=1.7.0
+
+[setup]
+setuptools_scm>=1.9
+
+[tests]
+pytest>=2.8
