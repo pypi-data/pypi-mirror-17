@@ -1,0 +1,404 @@
+=============
+about PyLucid
+=============
+
+PyLucid is an Open Source web content management system written in Python using Django-CMS.
+
+Since the v2.0 rewrite, PyLucid is more a alternative for `djangocms-installer <https://github.com/nephila/djangocms-installer>`_
+
+The goal is to simplify the Django-CMS setup:
+
+#. Just run the **bootstrap** file to get a working virtualenv with everything installed.
+
+#. run **pylucid_installer** cli program to create a django-CMS page instance
+
+You should not use PyLucid in production, until v2.x is used on `pylucid.org <http://www.pylucid.org>`_ ;)
+
+Try, fork and contribute! ;)
+
++--------------------------------------+---------------------------------------------------+
+| |Coverage Status on coveralls.io|    | `coveralls.io/r/jedie/PyLucid`_                   |
++--------------------------------------+---------------------------------------------------+
+| |Build Status on travis-ci.org|      | `travis-ci.org/jedie/PyLucid`_                    |
++--------------------------------------+---------------------------------------------------+
+| |Requirements Status on requires.io| | `requires.io/github/jedie/PyLucid/requirements/`_ |
++--------------------------------------+---------------------------------------------------+
+
+.. |Coverage Status on coveralls.io| image:: https://coveralls.io/repos/jedie/PyLucid/badge.svg
+.. _coveralls.io/r/jedie/PyLucid: https://coveralls.io/r/jedie/PyLucid
+.. |Build Status on travis-ci.org| image:: https://travis-ci.org/jedie/PyLucid.svg
+.. _travis-ci.org/jedie/PyLucid: https://travis-ci.org/jedie/PyLucid/
+.. |Requirements Status on requires.io| image:: https://requires.io/github/jedie/PyLucid/requirements.svg?branch=develop
+.. _requires.io/github/jedie/PyLucid/requirements/: https://requires.io/github/jedie/PyLucid/requirements/
+
+-------
+install
+-------
+
+prepare
+=======
+
+The `Pillow (PIL fork) <https://pypi.python.org/pypi/Pillow/>`_ doesn't provide binaries for Linux.
+Make sure you have Python’s development libraries installed.
+e.g.:
+
+::
+
+    $ sudo apt-get install python3-dev libjpeg-dev libfreetype6-dev
+
+more info here: `https://pillow.readthedocs.org/en/latest/installation.html <https://pillow.readthedocs.org/en/latest/installation.html>`_
+
+You also need the development packages of **libxml2** and **libxslt** for *lxml*
+
+bootstrap PyLucid
+=================
+
+::
+
+    # download bootstrap file:
+    /home/FooBar$ wget https://github.com/jedie/PyLucid/raw/develop/pylucid-boot.py
+
+    # Create virtualenv with all needed packages:
+    /home/FooBar$ python3 pylucid-boot.py ~/PyLucid_env
+
+Now you have a virtual environment with all existing packages.
+
+create page instance
+====================
+
+You can create a new page instance with the **pylucid_installer** cli programm:
+
+::
+
+    # Go into created virtualenv:
+    /home/FooBar$ cd ~/PyLucid_env
+
+    # activate the env:
+    ~/PyLucid_env $ source bin/activate
+
+    # Create a page instance:
+    (PyLucid_env) ~/PyLucid_env $ pylucid_installer --dest=~/page_instance --name=MyCoolSite
+
+    # Go into created page instance
+    (PyLucid_env) ~/PyLucid_env $ cd ~/page_instance/
+
+    # Create cache tables
+    (PyLucid_env) ~/page_instance $ ./manage.py createcachetable
+
+    # init database
+    (PyLucid_env) ~/page_instance $ ./manage.py migrate
+
+    # Create a super user
+    (PyLucid_env) ~/page_instance $ ./manage.py createsuperuser
+
+    # run developer server:
+    (PyLucid_env) ~/page_instance $ ./manage.py runserver
+
+Info: You can also create more than one page instance! All page instance will use the same environment.
+
+optional packages
+-----------------
+
+Before any pip install, go to your virtual env and activate it!
+e.g.:
+
+::
+
+    /home/FooBar$ cd ~/PyLucid_env
+    ~/PyLucid_env $ source bin/activate
+
+MySQL DB API Driver:
+
+::
+
+    (PyLucid_env) ~/PyLucid_env $ pip install mysqlclient
+
+see also: `Django database docs <https://docs.djangoproject.com/en/1.8/ref/databases/#mysql-db-api-drivers>`_.
+
+or use `django-cymysql <https://pypi.python.org/pypi/django-cymysql/>`_:
+
+::
+
+    (PyLucid_env) ~/PyLucid_env $ pip install cymysql django-cymysql
+
+and set **'ENGINE': 'mysql_cymysql'**
+
+FastCGI wrapper for WSGI applications:
+
+::
+
+    (PyLucid_env) ~/PyLucid_env $ pip install flipflop
+
+see also: `https://pypi.python.org/pypi/flipflop <https://pypi.python.org/pypi/flipflop>`_
+
+DjangoCMS page permissions
+==========================
+
+The default permission settings is `CMS_PERMISSION = True <http://docs.django-cms.org/en/support-3.0.x/reference/configuration.html#cms-permission>`_
+This settings enabled a fine permission system. To create a normal CMS user (and not a superuser) do the following steps:
+
+* create a superuser
+
+* create a user group and add add needed permission. e.g.: everything except models from the apps: *admin, auth, content_types, reversion, session, sites*
+
+* create a new user with staff rights and add the created user group
+
+* create a first page as superuser
+
+* from cms toolbar click on: *Page / **Permissions ...***
+
+* under **Page permissions** add the created user group
+
+With this base setup you can add normal staff user which can create/edit/delete pages.
+
+An easier way is to disable **CMS_PERMISSION** but then you will lost some functionality.
+e.g.:
+
+* create pages that are only visibly for some users.
+
+* deny editing pages for some users.
+
+How to enable multisite support
+===============================
+
+With multisite support you can use one Django app to serve multiple domains.
+
+It used the two projects:
+
+* `djangocms-multisite <https://github.com/nephila/djangocms-multisite>`_
+
+* `django-multisite <https://github.com/ecometrica/django-multisite>`_
+
+Install the needed packages:
+
+::
+
+    /home/FooBar$ cd ~/PyLucid_env
+    ~/PyLucid_env $ source bin/activate
+    (PyLucid_env) ~/PyLucid_env $ pip install djangocms-multisite
+
+Un-comment the multisite lines at the end of your page instance settings file.
+
+How to start 'design demo'
+==========================
+
+You can easy test existing `settings.CMS_TEMPLATES <http://docs.django-cms.org/en/stable/reference/settings-constants.html#cms-templates>`_ with the included django app `pylucid_design_demo <https://github.com/jedie/PyLucid/tree/develop/pylucid_design_demo>`_
+
+The Features:
+
+* preconfigurated: Start the django development server without any setting changes
+
+* use a temp. SQLite database
+
+* predefined user/password
+
+* precreated dummy pages
+
+* easy switch between all ``CMS_TEMPLATES`` via menu
+
+To start the development server, do this:
+
+::
+
+    /home/FooBar$ cd ~/PyLucid_env
+    ~/PyLucid_env $ source bin/activate
+    (PyLucid_env) ~/PyLucid_env $ $ cd src/pylucid/
+    (PyLucid_env) ~/PyLucid_env/src/pylucid$ ./run_design_demo.py
+
+It looks like this:
+
+|20160722_PyLucidDesignDemoApp01.PNG|
+
+.. |20160722_PyLucidDesignDemoApp01.PNG| image:: https://raw.githubusercontent.com/jedie/jedie.github.io/master/screenshots/PyLucid/20160722_PyLucidDesignDemoApp01.PNG
+
+----
+
+unittests
+=========
+
+::
+
+    # go to your virtual env and activate it:
+    /home/FooBar$ cd ~/PyLucid_env
+    ~/PyLucid_env $ source bin/activate
+    (PyLucid_env) ~/PyLucid_env $ cd src/pylucid/
+
+    # run the tests:
+    (PyLucid_env) ~/PyLucid_env/src/pylucid $ ./setup.py test
+
+PyLucid v1 migration
+====================
+
+Use use the `Multiple databases <https://docs.djangoproject.com/en/1.8/topics/db/multi-db>`_ feature to migrate a old v1 installation:
+e.g.:
+
+::
+
+    DATABASES = {
+        'default': { # New, empty database for PyLucid v2 data
+            ...
+        },
+        'legacy': { # Your old database with existing PyLucid v1 data
+            ...
+        }
+    }
+
+You must activate some settings:
+
+* **pylucid_migration**, **pylucid_todo** in INSTALLED_APPS
+
+* Activate a **'legacy'** named second database with the old PyLucid v1 data
+
+* Activate **DATABASE_ROUTERS**
+
+(All parts exists in the example project settings ;) )
+
+commands for migration, e.g.:
+
+::
+
+    # create missing models (e.g. todo app)
+    (PyLucid_env) ~/page_instance $ ./manage.py migrate
+
+    # migrate old pages to django-cms:
+    (PyLucid_env) ~/page_instance $ ./manage.py migrate_pylucid --inline_script --sites=ALL
+
+    # migrate old blog entries to djangocms-blog:
+    (PyLucid_env) ~/page_instance $ ./manage.py migrate_blog --inline_script --sites=ALL
+
+    # export existing designs into filesystem
+    (PyLucid_env) ~/page_instance $ ./manage.py export_designs
+
+**NOTE:**
+With the argument **--inline_script** all ``<script>`` areas would be migrate to a
+**html**-markup entry. So all ``<script>`` areas are active after migration.
+Without **--inline_script** all ``<script>`` areas will be result in escaped text.
+
+All unsupported **lucidTag** entries will be migrate to the "ToDoPlugin". SO the origin code is not away, but
+will be not visible for anonymous users.
+
+upgrade the environment
+=======================
+
+::
+
+    # go to your virtual env and activate it:
+    /home/FooBar$ cd ~/PyLucid_env
+    ~/PyLucid_env $ source bin/activate
+
+    # Upgrade pip:
+    (PyLucid_env) ~/PyLucid_env $ pip install --upgrade pip
+
+    # Update PyLucid
+    (PyLucid_env) ~/PyLucid_env $ cd src/pylucid/
+    (PyLucid_env) ~/PyLucid_env/src/pylucid/ $ git pull
+
+    # Upgrade all packages:
+    (PyLucid_env) ~/PyLucid_env/src/pylucid/ $  pip install --upgrade -r requirements/normal_installation.txt
+
+dev info
+========
+
+Currently the base files are a mix of:
+
+* `https://github.com/nephila/djangocms-installer <https://github.com/nephila/djangocms-installer>`_
+
+* `https://github.com/bogdal/djangocms-example <https://github.com/bogdal/djangocms-example>`_
+
+----
+TODO
+----
+
+migration:
+
+* migrate User Profile data
+
+* migrate the information pagetree.permitViewGroup, pagemeta.permitViewGroup and pagetree.permitEditGroup
+
+-----------------
+Compatible Matrix
+-----------------
+
++---------+------------+----------+----------+
+| PyLucid | Django-CMS | Django   | Python   |
++---------+------------+----------+----------+
+| v2.1    | v3.3       | v1.8 LTS | 3.4, 3.5 |
++---------+------------+----------+----------+
+| v2.0    | v3.2       | v1.8 LTS | 3.4, 3.5 |
++---------+------------+----------+----------+
+| <=v1.6  | -          | v1.6     | 2.6, 2.7 |
++---------+------------+----------+----------+
+
+---------------
+Release History
+---------------
+
+* `04.Sep.2016 - v2.1.1 <https://github.com/jedie/PyLucid/compare/v2.1.0.beta.0...v2.1.1>`_:
+
+    * Update: pillow, django-debug-toolbar, django-compressor, sqlparse
+
+* `v2.1.0.beta.0 <https://github.com/jedie/PyLucid/compare/old/v2.0.x...v2.1.0.beta.0>`_:
+
+    * switch from django-cms v3.2 to v3.3
+
+    * move from `cmsplugin-htmlsitemap <https://github.com/raphaa/cmsplugin-htmlsitemap>`_ to `djangocms-htmlsitemap <https://github.com/kapt-labs/djangocms-htmlsitemap/>`_ 
+
+        * WARNING: A migration will not be done! You have to migrate by hand and delete the database table *cmsplugin_htmlsitemap_htmlsitemap* ;)
+
+* `28.Dec.2015 - v2.0.x beta <https://github.com/jedie/PyLucid/compare/old/v1.6.x...old/v2.0.x>`_:
+
+    * rewrite to use Django-CMS
+
+* `12.Feb.2015 - v1.6.x <https://github.com/jedie/PyLucid/compare/old/v1.5.x...old/v1.6.x>`_:
+
+    * v1.6.x is the last PyLucid release that doesn't based on Django-CMS
+
+    * switch from django 1.4 to 1.6
+
+* `18.Jun.2012 - v1.0.x <https://github.com/jedie/PyLucid/compare/old/v0.x...old/v1.0.x>`_:
+
+    * switch from django 1.3 to 1.4
+
+* `22.Sep.2007 - v0.8.0.beta <https://github.com/jedie/PyLucid/tree/626cc139f8cc162ce2338d62718064533dcf2cc2>`_:
+
+    * PyLucid.org used the first v0.8 Beta Version who used django
+
+* `21.Apr.2005 - v0.0.1 <https://github.com/jedie/PyLucid/tree/9680c2611912ef06c33b1a4a92ea62654a7b8fb1>`_:
+
+    * first Version, only CGI script ListOfNewSides for lucidCMS (PHP based)
+
+(Not all old releases are listed.)
+
+For older PyLucid history, look at:
+
+* `http://www.pylucid.org/permalink/30/development-history#genesis <http://www.pylucid.org/permalink/30/development-history#genesis>`_
+
+========
+donation
+========
+
+* `paypal.me/JensDiemer <https://www.paypal.me/JensDiemer>`_
+
+* `Flattr This! <https://flattr.com/submit/auto?uid=jedie&url=https%3A%2F%2Fgithub.com%2Fjedie%2FPyLucid%2F>`_
+
+* Send `Bitcoins <http://www.bitcoin.org/>`_ to `1823RZ5Md1Q2X5aSXRC5LRPcYdveCiVX6F <https://blockexplorer.com/address/1823RZ5Md1Q2X5aSXRC5LRPcYdveCiVX6F>`_
+
+=====
+links
+=====
+
++----------------------+---------------------------------+
+| Homepage             | `http://www.pylucid.org`_       |
++----------------------+---------------------------------+
+| Sourcecode @ GitHub  | `github.com/jedie/PyLucid`_     |
++----------------------+---------------------------------+
+| Python Package Index | `pypi.python.org/pypi/PyLucid`_ |
++----------------------+---------------------------------+
+| IRC                  | `#pylucid on freenode.net`_     |
++----------------------+---------------------------------+
+
+.. _http://www.pylucid.org: http://www.pylucid.org
+.. _github.com/jedie/PyLucid: https://github.com/jedie/PyLucid
+.. _pypi.python.org/pypi/PyLucid: https://pypi.python.org/pypi/PyLucid
+.. _#pylucid on freenode.net: http://www.pylucid.org/permalink/304/irc-channel
+
