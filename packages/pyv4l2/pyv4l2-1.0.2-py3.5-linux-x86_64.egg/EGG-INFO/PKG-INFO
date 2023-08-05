@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: pyv4l2
+Version: 1.0.2
+Summary: Simple v4l2 for pyv4l2
+Home-page: https://github.com/duanhongyi/pyv4l2
+Author: duanhongyi
+Author-email: duanhongyi@doopai.com
+License: GNU Lesser General Public License v3 (LGPLv3)
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Cython
+Classifier: Programming Language :: C
+Classifier: Topic :: Software Development :: Libraries
