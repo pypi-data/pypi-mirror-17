@@ -1,0 +1,17 @@
+Metadata-Version: 2.0
+Name: twisted-s3
+Version: 0.2.2
+Summary: Asynchronous HTTP client for interacting with Amazon S3
+Home-page: https://github.com/Yelp/twisted_s3
+Author: Yelp Performance Team
+Author-email: no-reply+use_github_issues@yelp.com
+License: UNKNOWN
+Platform: all
+Requires-Dist: fido (>=2.1.0)
+Requires-Dist: six
+Requires-Dist: twisted (>=14.0.0); python_version!="2.6"
+Requires-Dist: twisted (>=14.0.0,<15.5); python_version=="2.6"
+
+UNKNOWN
+
+
