@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: pywebfontkit
+Version: 0.1
+Summary: a simple python based font bundle generator for web.
+Home-page: http://github.com/meyt/pywebfontkit
+Author: Mahdi Ghane.g
+Author-email: UNKNOWN
+License: GPL
+Description: UNKNOWN
+Keywords: pywebfontkit svg woff ttf fontforge otf eot css html webfont webfontgenerator
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Software Development :: Build Tools
