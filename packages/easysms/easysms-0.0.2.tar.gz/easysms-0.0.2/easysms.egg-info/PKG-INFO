@@ -1,0 +1,25 @@
+Metadata-Version: 1.1
+Name: easysms
+Version: 0.0.2
+Summary: The EasySMS is a python wrapper for Easy SMS API. Currently Easy SMS API available as a Heroku add-on Easy SMS only.
+
+Home-page: https://github.com/sv0/easysms
+Author: Slavik Svyrydiuk
+Author-email: svyrydiuk@gmail.com
+License: GNU GPL
+Download-URL: https://github.com/sv0/easysms/archive/0.0.2.tar.gz
+Description: # EasySMS
+        [![Build Status](https://travis-ci.org/sv0/easysms.svg?branch=master)](https://travis-ci.org/sv0/easysms)
+        [![Coverage Status](https://coveralls.io/repos/github/sv0/easysms/badge.svg?branch=master)](https://coveralls.io/github/sv0/easysms?branch=master)
+        
+        The EasySMS is a python wrapper for Easy SMS API. Currently Easy SMS API available as a [Heroku add-on Easy SMS](https://elements.heroku.com/addons/easysms) only.
+        
+Keywords: easysms sms heroku
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Communications
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
