@@ -1,0 +1,15 @@
+Metadata-Version: 2.0
+Name: lektor-rstfile
+Version: 0.2
+Summary: Adds reStructuredText support to Lektor (as standalone files).
+Home-page: http://github.com/AmitAronovitch/lektor-rstfile
+Author: Amit Aronovitch
+Author-email: aronovitch@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: Pygments
+Requires-Dist: docutils
+
+UNKNOWN
+
+
