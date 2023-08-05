@@ -1,0 +1,26 @@
+Metadata-Version: 2.0
+Name: cartridge-downloads
+Version: 0.3.1
+Summary: Digital product support for the Django/Mezzanine/Cartridge stack.
+Home-page: https://github.com/ryneeverett/cartridge-downloads
+Author: Ryne Everett
+Author-email: ryneeverett@gmail.com
+License: BSD
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: cartridge
+Requires-Dist: django-downloadview
+Requires-Dist: django-model-utils
+Requires-Dist: filebrowser-safe (>=0.4.4)
+
+UNKNOWN
+
+
