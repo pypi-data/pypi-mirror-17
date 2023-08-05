@@ -1,0 +1,25 @@
+Changes
+=======
+
+0.20.0 (2015-02-12)
+-------------------
+- Initial version based on djangosaml2 supporting multi-tenant
+
+0.20.1 (2016-04-06)
+- Make djangosaml2 tenant support reading metadata from database by adding the following to settings.py:
+    SAML_CONFIG.update({
+        # Specifying 'inline': 'DB' means SAML metadata comes from the DB via the following method:
+        # tenant/models/Member.get_saml_metadata(self)
+        # Implement this method to retrieve the metadata from the table of your choice.
+        'metadata': {
+            'inline': 'DB',
+        },
+        ...
+    })
+
+0.22.0 (2016-08-29)
+- Removed the logic of loading metadata from database model tenant.Member. Projects using this app can specify
+  their own config loader using the SAML_CONFIG_LOADER setting. This change provides more flexibility in-terms
+  of loading config from any data-source.
+- Also, removed the caching of service provider config objects as per the same logic as above. Individual
+  projects using this app can use their own config loader which handles caching scenarios.
