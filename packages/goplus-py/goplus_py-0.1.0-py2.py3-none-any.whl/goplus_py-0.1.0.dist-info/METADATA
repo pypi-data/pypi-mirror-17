@@ -1,0 +1,34 @@
+Metadata-Version: 2.0
+Name: goplus-py
+Version: 0.1.0
+Summary: Python SDK for GOPLUSPLATFORM
+Home-page: http://goplusplatform.com/
+Author: Go Plus Platform
+Author-email: info@goplusplatform.com
+License: Apache Software License
+Keywords: goplus iot platform sdk
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: paho-mqtt
+Requires-Dist: requests
+Provides-Extra: rpi
+Requires-Dist: RPi.GPIO; extra == 'rpi'
+
+Python SDK for GOPLUSPLATFORM 
+=============================
+
+`GOPLUSPLATFORM <http://goplusplatform.com>`is a cloud based platform that helps young developers to connect different types of IoT devices and create smart services in real time. The platform provides an intuitive user interface for adding and managing devices, simple event-driven logig rules and API for third-party developers. IoT developers can utilize GOPLUSPLATFORM as the backend infrastructure throughout the entire service development cycle, from prototyping to product launch.
+
+This Package provide functions for connecting IoT devices (such as Raspberry Pi or Intel Edison) to platform.
+
+
