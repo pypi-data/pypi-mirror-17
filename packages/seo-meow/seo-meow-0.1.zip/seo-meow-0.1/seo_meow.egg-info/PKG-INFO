@@ -1,0 +1,97 @@
+Metadata-Version: 1.1
+Name: seo-meow
+Version: 0.1
+Summary: A simple Django app to manage basic SEO tags.
+Home-page: https://github.com/utekay/seo-meow
+Author: Maks Krasnikov
+Author-email: lamercat@gmail.com
+License: MIT License
+Description: === Seo-Meow ===
+        
+        Seo-Meow is a very simple Django app to manage basic SEO tags.
+        
+        Installation
+        ------------
+        
+        ::
+        
+            $ pip install git+https://github.com/utekay/seo-meow.git
+        
+        ::
+        
+            # settings.py
+        
+            INSTALLED_APPS = [
+                ...
+                'seomeow',
+            ]
+        
+        ::
+        
+            $ python manage.py migrate seomeow
+        
+        Usage
+        ~~~~~
+        
+        The app looks for the SeoMeow object that matches the current URL.
+        Otherwise it returns the object for “/” which is created automatically.
+        
+        ::
+        
+            {% load seomeow %}
+        
+            <!DOCTYPE html>
+            <html lang="en">
+              <head>
+                ...
+                {% put_seo_meow_tags_here %}
+                ...
+        
+        Also you can ‘assign’ the SeoMeow object to any model instance via
+        Django admin interface. A hyperlink for editing or creating a related
+        SeoMeow object will be available in the message area after mixin class
+        is added to the admin model.
+        
+        ::
+        
+            # admin.py
+        
+            from django.contrib import admin
+            from seomeow.admin import SeoMeowShortcut
+        
+            from .models import News
+        
+            @admin.register(News)
+            class NewsAdmin(SeoMeowShortcut, admin.ModelAdmin):
+                ...
+        
+        The model method “get\_absolute\_url” is required in this case.
+        
+        ::
+        
+            # models.py
+        
+            from django.db import models
+            from django.core.urlresolvers import reverse
+        
+            class News(models.Model):
+                ...
+        
+                def get_absolute_url(self):
+                    # return "/news/%d/" % self.pk # or
+                    return reverse("news", args=(self.pk,))
+        
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.9
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 2.4
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
