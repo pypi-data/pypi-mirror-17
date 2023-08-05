@@ -1,0 +1,27 @@
+Metadata-Version: 1.0
+Name: plotit
+Version: 0.1.0
+Summary: print a basic plot
+Home-page: UNKNOWN
+Author: meltus
+Author-email: sergiosd@arrakis.es
+License: LICENSE.txt
+Description: 
+        =============
+        plotit
+        =============
+        
+        to install the python package plotit:
+        
+        1. Python 3.5 or higher must be installed. You can download last version in https://www.python.org/
+        
+        2. Uncompress the zip file in an empty folder, open a command session in this folder and execute
+        the command
+        
+        	py -3 setup.py install
+        
+        
+        typical application can be found in bin folder bin. Example:
+        
+        	py -3 print_basic_plot 100, '03/05/2054', 0, 5 
+Platform: any
