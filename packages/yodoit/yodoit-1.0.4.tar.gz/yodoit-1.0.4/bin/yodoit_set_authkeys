@@ -1,0 +1,12 @@
+#! /usr/bin/env python
+
+"""
+Writes a "cfg_authkeys.py" config file containing item IDs of a new Eisenhower
+Decision Matrix board on Trello in the YoDoIt module directory.
+
+Run this script to assign the CLI to your Trello account.
+"""
+
+from yodoit import getboardconfig
+
+getboardconfig.create_auth_file()
