@@ -1,0 +1,439 @@
+MOM To-Do
+=========
+
+- MOM.Meta.M_Attr_Spec
+
+  * check for redefinition of attributes to unrelated types (raise TypeError)
+
+    + a redefinition must inherit from the parent's attribute
+
+    + Parent.foo (A_String) <-error-> Child.foo (A_Int)
+
+- Query expressions (http://lucumr.pocoo.org/2011/7/19/sqlachemy-and-you/)
+
+  * extract
+
+  * func: count, sum, min, max, ...
+
+  * group_by
+
+  * join ???
+
+- Don't store attributes in __dict__ ???
+
+  + http://morepypy.blogspot.com/2010/11/efficiently-implementing-python-objects.html
+
+x MOM.Attr.Kind: factor `from_pickle_cargo` from `set_pickle_cargo`
+
+x MOM.Pred.Kind: Region
+
+x Change_Summary: consolidate list of changes into one summary change per
+  object
+
+x Scope.commit
+
+  x check region predicates for each object in change summary
+
+- merge of changes:
+
+  x composite attributes
+
+    x representation in `initial_values`
+
+  x dictionary (pid-> dict (initial_value))
+
+  x Change_Summary
+
+  x objects from database
+
+x Q_Result methods:
+
+  x attr: QR.attr (q.foo) returns `.foo` of each of the members of `QR`
+
+  x attrs: like `attr`, but returns tuple of values for specified attributes
+    of each of the members of `QR`
+
+  x set: set one or more attributes for each of the members of `QR`
+
+    x signature or `set` like that of `dict.update` (to allow setting of
+      composite values like `date.start`)
+
+x Q_Exp bug:
+
+  x `-1 * Q.foo` --> exception
+
+    >>> -1 * Q.foo
+    Traceback (most recent call last):
+      ...
+    TypeError: unsupported operand type(s) for *: 'int' and 'Get'
+
+  x `Q.foo * -1` --> works
+
+- MOM.Attr.Type
+
+  x remove (incomplete) code for symbolic references
+
+  x remove `from_code`
+
+  x remove `_to_cooked`
+
+  x define `P_Type` used by top-level `cooked`
+
+  * use `P_Type` instead of `C_Type` for _A_Composite_ ???
+
+  * _A_Object_.Class: rename to `P_Type` ???
+
+- DB versioning:
+
+  x implement checks for compatibility of
+    database.dbv_hash vs app_type.db_version_hash
+
+  * implement converters from one version to the next (working on
+    pickle-cargo stream of `db_man`)
+
+- MOM.DBW.HPS.Store:
+
+  * on load, allow for non-existing `pid` and delay restore of the
+    corresponding attribute of type `_A_Object_`
+
+x MOM.SCM:
+
+  x etype-specific and change-type-specific callbacks
+
+- MOM.Attr.Kind:
+
+  * Link_Set_Mixin, Link_Mixin
+
+  x get_value (None) --> default
+
+- MOM.Attr.Type:
+
+  * A_Link, A_Link_Set
+
+  x A_Cached_Role_Set
+
+  x A_Decimal
+
+    x `max_digits`
+
+    x `decimal_places`
+
+  x _A_Number_:
+
+    x add check for `min_value` and `max_value`
+
+x Composite attributes
+
+  x MOM.Attr.Type: A_Composite
+
+  x Predicate handling for composites
+
+  x set/set_raw
+
+- Link, M_Link, Role:
+
+  * Link_AB
+
+  * dfc_synthesizer
+
+x MOM.DBW.HPS: Hash-Pickle-Store
+
+  x info: information about the scope stored in the HPS
+
+    x db_version
+
+    x max_cid, max_pid
+
+    x guid
+
+    x root_epk
+
+    x date, user, tool (of db-creation)
+
+    x date, user, tool (of last save)
+
+    x pending: list of `cid` of `commit`s that aren't stored in Hash-Pickle yet
+
+  x %d.commit:
+
+    x per commit, one file named by the `cid` of the commit containing the
+      changes that are part of that commit
+
+  x store: contains pickle with the entities of the scope
+
+x TFL.Meta.Object
+
+  x context manager `let` for temporarily setting attribute values
+
+x Id_Entity: `pid` (persistent id)
+
+  x set by EMS/DBW
+
+  x globally unique per database (not reused!, survives save/load cycle)
+
+x SCM
+
+  x Change Entity.set and Entity.set_raw
+
+    x separate change handling and setting the attributes
+
+    x __init__ must call an internal function that doesn't create a Change
+      object
+
+  x add `cid` (change id)
+
+    x set by EMS/DBW
+
+    x simple number
+
+    x later change <-> higher number
+
+  x Queries: always consult database about outstanding changes
+
+    x `entity.changes (filter)` returns all changes of `entity` restricted to
+      `filter`
+
+    x `scope.query_changes (filter) returns` all changes of (database
+       connected to) `scope` restricted to `filter`
+
+  x reuse for tracking changes over database lifecycle
+
+    x Attributes: cid, time, user, pid
+
+  x store `Id_Entity.pid` instead of `epk` (formally `names`) to refer to
+    entity changed
+
+  x Scope gets an attribute remembering the last change
+
+    x scope.db_cid is set to max (db.cid) when loading from the database
+
+    x ems manages a list of uncommitted changes
+
+x EMS/DBW
+
+  x EMS manages DBW
+
+    x Scope only has EMS attribute
+
+      x remove `.dbw`
+
+    x App_Type still has EMS and DBW
+
+    x Scope creation::
+
+        ### Create scope by loading from existing database
+        Scope.load (app_type, db_uri, user = None)
+
+        ### Create new scope with new database
+        Scope.new (app_type, db_uri, root_epk = None, user = None)
+
+    x Scope passes `db_uri` to `EMS`::
+
+          self.ems = app_type.EMS.connect (self, db_uri)
+
+          self.ems = app_type.EMS.new (self, db_uri)
+
+  x `app_type.DBW.create_database` -> session
+
+  x `app_type.DBW.connect_database` -> session
+
+  x `scope.ems.commit`
+
+  x provide Id_Entity.pid
+
+  x store SCM.Change objects
+
+  x provide interface to check if the DB has asynchronous changes of an
+    entity
+
+    x `async_changes (entity)` returns a list of changes between the state of
+      the object as read from the database and the state as current in the
+      database
+
+x Link, M_Link, Role:
+
+  x Set `is_relevant` of all roles to True
+
+  x Define Alias_Property for `hpk` that maps to `id` derived from objects
+    linked
+
+  x Is `Id_Entity.rename` correct for links ?
+
+  x Implement `epk_to_hpk` to translate from `epk` to `hpk`
+
+  x auto_cacher
+
+  x check_type
+
+  x Link3
+
+  x Link2_Ordered
+
+  x destroy_links / destroy_dependency
+
+x Queries:
+
+  x E_Type_Manager query methods::
+
+      Method                Remarks
+      ============          ===================================================
+      query                 replaces `s_extension`, `t_extension`
+      r_query               replaces role queries
+      count                 replaces `s_count, `t_count`, `accepts filter
+                            criteria
+      instance              unchanged
+      exists                unchanged
+      ============          ===================================================
+
+  x EMS
+
+    x all_links : return Q_Result ? NO
+
+  x Q_Result is
+
+    x instantiated with an iterable
+
+    x iterable, re-iterable
+
+      x if instantiated with something that isn't re-iterable needs to cache
+
+    x can be filtered
+
+      x result of `filter` is another Q_Result
+
+    x can be sorted
+
+      x order_by: specifies `sort_key`, but doesn't do any sorting yet
+
+      x iter: return query result sorted by `sort_key` defined by `order_by`
+
+- M_Entity vs. M_E_Type:
+
+  x Entity defines the specification of the essential class (`E_Spec`)
+
+  x E_Type is automagically created without inheriting from Entity
+
+    x There is an empty class hierarchy of bare essential E_Types (just
+      containing `Essence` attributes)
+
+      x The bare essential E_Type replaces the `E_Spec` in the appropriate
+        package namespace and module.
+
+    x For each DBW backend to support, a separate subclass of the essential
+      E_Type is automagically derived, which contains the DBW specific
+      attribute descriptors
+
+      x The essential E_Type gets the meta-processed predicates
+
+      x `Essence` refers to the bare essential E_Type
+
+    + Support for multiple app-types (like in TOM) can be implemented the
+      same way:
+
+      # For each app-type, there is a class hierarchy of app-type specific
+        E_Types, each defined thus:
+
+        - `__dict__` is Entity.__dict__ updated with ATS.__dict__, except for
+          _Attributes and _Predicates
+
+        - derived from the bare essential E_Type and the app-type specific
+          ancestor E_Types
+
+      # For each DBW backend to support, a separate subclass of the app-type
+        specific E_Type is automagically derived, which contains the DBW
+        specific attribute descriptors
+
+  x M_Entity __init__/__new__ does very little apart from remembering the
+    essential classes (in the class attribute _M_Extension)
+
+  x M_E_Type __init__/__new__ sets up the meta information for the essential
+    classes
+
+  x E_Type_Manager implements the basic query methods
+
+    x Delegation to EMS-manager of scope
+
+    x Subclasses of M_E_Type_Id implemented object- and link-specific query
+      methods
+
+x Id_Entity renaming:
+
+  x `rename` isn't a method of the public API
+
+  x `set` and `set_raw` need to deal with changes in primary key attributes
+
+  x Assignment to primary key attributes is forbidden
+
+x Attr.Kind:
+
+  x remove all dependencies on `obj._attr_man.attr_values [self.attr_dict_name]`
+
+x Scope:
+
+  x Scope just holds (dbw-specific) managers for objects and links
+
+  x change signature of `remove` and `rename`
+
+  x use `.epk` instead of `.name` to identify objects
+
+  x keyed-entities just call `self.home_scope.add (self)`
+
+    x For objects, there is a manager object that manages a hash-table of
+      objects (analogous to the meta-link).
+
+    x This architecture also allows separate hash-tables for different object
+      types (using several managers).
+
+x App_Type
+
+  x Dictionary PNS_Set mapping the fully qualified names of essential package
+    namespaces to the namespaces in question
+
+  x Use `entity_type` instead of `etype` as method name
+
+x Dependency management:
+
+      x referential integrity
+
+        x `_destroy` uses `notify_dependencies_destroy`
+
+        x `rename` uses `self.dependencies` to call `update_dependency_names`
+
+      x fixed: `has_substance` uses `self.dependencies`
+
+x count: move to DBW-Mixin for Scope
+
+x Replace `default_sort_key` (essential attribute) by class attribute
+  `sorted_by`
+
+  x Implement `Sorted_By` to interpret list of attribute names as
+    sort-key (including `-name` for reverse sorting for some attributes)
+
+x Simplify attribute handling ?
+
+  x Move pickle handling out of Entity
+
+  x `set` only handles cooked values
+
+  x `on_error` callback for `set` and `set_raw` instead of
+    `raise_exception`
+
+- Documenter:
+
+  x separate from Entity
+
+  * Need to replace references to `obj.Documenter`
+
+    (like in MOM.Error.Invariant_Error)
+
+- MOM.Error:
+
+  * change doc-strings to describe the error
+
+x Rewrite pickling
+
+  ? Inject after_init_db into Entity
+
+  x Implement pickling/unpickling of entities
+
+### __END__ to-do
