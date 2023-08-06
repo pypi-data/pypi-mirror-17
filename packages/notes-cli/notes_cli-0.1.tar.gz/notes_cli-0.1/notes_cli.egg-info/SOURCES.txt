@@ -1,0 +1,15 @@
+MANIFEST.in
+setup.py
+notes_cli/__init__.py
+notes_cli/cli.py
+notes_cli/notes.json
+notes_cli/notes.py
+notes_cli.egg-info/PKG-INFO
+notes_cli.egg-info/SOURCES.txt
+notes_cli.egg-info/dependency_links.txt
+notes_cli.egg-info/entry_points.txt
+notes_cli.egg-info/not-zip-safe
+notes_cli.egg-info/requires.txt
+notes_cli.egg-info/top_level.txt
+util/__init__.py
+util/util.py
