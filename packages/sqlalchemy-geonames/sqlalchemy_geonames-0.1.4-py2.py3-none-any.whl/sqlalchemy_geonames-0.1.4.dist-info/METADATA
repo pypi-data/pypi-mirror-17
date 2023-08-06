@@ -1,0 +1,27 @@
+Metadata-Version: 2.0
+Name: sqlalchemy-geonames
+Version: 0.1.4
+Summary: UNKNOWN
+Home-page: https://github.com/jmagnusson/sqlalchemy-geonames
+Author: Jacob Magnusson
+Author-email: m@jacobian.se
+License: BSD
+Platform: unix
+Platform: macos
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Programming Language :: Python
+Requires-Dist: GeoAlchemy2 (>=0.2.3)
+Requires-Dist: SQLAlchemy (>=0.8)
+Requires-Dist: progressbar2 (>=2.6)
+Requires-Dist: psycopg2 (>=2.5)
+Requires-Dist: requests (>=2.0)
+
+sqlalchemy-geonames
+-------------------
+
+
+
