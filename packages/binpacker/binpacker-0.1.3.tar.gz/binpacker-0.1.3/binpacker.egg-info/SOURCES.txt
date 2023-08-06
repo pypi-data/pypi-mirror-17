@@ -1,0 +1,11 @@
+README.rst
+setup.py
+binpacker/__init__.py
+binpacker/binpacker.py
+binpacker.egg-info/PKG-INFO
+binpacker.egg-info/SOURCES.txt
+binpacker.egg-info/dependency_links.txt
+binpacker.egg-info/not-zip-safe
+binpacker.egg-info/top_level.txt
+tests/__init__.py
+tests/test_binspacking.py
