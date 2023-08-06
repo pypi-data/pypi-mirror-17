@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+snakecycles/__init__.py
+snakecycles/__init__.pyc
+snakecycles/cli.py
+snakecycles/cli.pyc
+snakecycles.egg-info/PKG-INFO
+snakecycles.egg-info/SOURCES.txt
+snakecycles.egg-info/dependency_links.txt
+snakecycles.egg-info/entry_points.txt
+snakecycles.egg-info/not-zip-safe
+snakecycles.egg-info/requires.txt
+snakecycles.egg-info/top_level.txt
+snakecycles/tests/__init__.py

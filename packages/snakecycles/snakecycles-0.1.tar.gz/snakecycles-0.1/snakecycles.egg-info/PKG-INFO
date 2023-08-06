@@ -1,0 +1,34 @@
+Metadata-Version: 1.1
+Name: snakecycles
+Version: 0.1
+Summary: Parse snakefood output and detect import cycles.
+Home-page: UNKNOWN
+Author: mgallet
+Author-email: github@19pouces.net
+License: CeCILL-B
+Description: SnakeCycles
+        ===========
+        
+        Parse snakefood's output to detect import cycles.
+        
+        Usage:
+        
+            sfood | snakecycles
+            
+        Of course, you can clean sfood's output with `grep -v`
+        
+            sfood | grep -v virtualenv | snakecycles
+            
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX :: BSD
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Unix
+Classifier: License :: OSI Approved :: CEA CNRS Inria Logiciel Libre License, version 2.1 (CeCILL-2.1)
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
