@@ -1,0 +1,11 @@
+/*eslint-disable */
+girder.versionInfo = 
+{
+  "git": true,
+  "SHA": "cb0e4e8324b455a559efb7a49e9b93d29f0b5faf",
+  "shortSHA": "cb0e4e8",
+  "date": "2016-10-06T21:19:09",
+  "apiVersion": "1.7.0"
+}
+;
+/*eslint-enable */
