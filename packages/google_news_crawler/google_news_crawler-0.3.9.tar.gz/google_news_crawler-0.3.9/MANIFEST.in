@@ -1,0 +1,9 @@
+# README file
+include README.rst
+
+# Logging configuration
+include logging.yaml
+
+# License information
+include COPYING
+include LICENSE-2.0.txt
