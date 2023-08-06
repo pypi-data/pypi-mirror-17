@@ -1,0 +1,68 @@
+Metadata-Version: 1.1
+Name: sanpai
+Version: 0.1
+Summary: sanpai is a tool for inspecting and diffing SANs on x509 certificates
+Home-page: http://github.com/blaketmiller/sanpai
+Author: Blake Miller
+Author-email: blakethomasmiller@gmail.com
+License: GNU GPL v2.0
+Description: sanpai
+        ======
+        
+        Sanpai is a tool for inspecting and diffing SANs on x509 certificates.
+        
+        
+        Modules
+        -------
+        For converting a directory to a dict, use convert_dir:
+        
+        .. code-block:: python
+        
+            >>> from sanpai import san
+            >>> domains = san.inspect(pem_file="path/to/cert.pem")
+            >>> type(domains)
+            <type 'list'>
+        
+        
+        Scripts
+        -------
+        From command line, retrieve newline-separated list of domains attached to a cert:
+        
+        .. code-block:: bash
+        
+            $ sanpai /path/to/cert.pem
+            subdomain.example.com
+            example.org
+            *.wilcard.io
+        
+        Compare two certs:
+        
+        .. code-block:: bash
+        
+            $ sanpai /path/to/cert1.pem --diff /path/to/cert2.pem
+            - subdomain.example.com
+            + www.example.org
+            ! example.org
+            ...
+        
+        
+        Installation
+        ------------
+        To install Sanpai, simply:
+        
+        .. code-block:: bash
+        
+            $ pip install sanpai
+        
+Keywords: x509 cert inspect diff subject alternative name san domain openssl crypto cryptography ssl https
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Software Development :: Testing
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Filesystems
+Classifier: Topic :: Utilities

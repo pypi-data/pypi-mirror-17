@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+
+import argparse
+import difflib
+from sanpai import san
+
+
+def main():
+
+    parser = argparse.ArgumentParser(description='get list of domain names listed on SSL cert')
+
+    parser.add_argument('pem_file')
+    parser.add_argument('-d', '--diff', help="second file to compare against pem_file")
+
+    args = parser.parse_args()
+
+    if args.diff:
+        left = san.inspect(pem_file=args.pem_file)
+        right = san.inspect(pem_file=args.diff)
+
+        for line in difflib.context_diff(sorted(left), sorted(right)):
+            print line
+
+    else:
+        for sd in san.inspect(pem_file=args.pem_file):
+            print sd
+
+
+if __name__ == '__main__':
+    main()
