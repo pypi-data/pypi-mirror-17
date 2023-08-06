@@ -1,0 +1,16 @@
+setup.py
+aiio/__init__.py
+aiio/brain.py
+aiio/hear.py
+aiio/iverbs.py
+aiio/model.py
+aiio/speak.py
+aiio/start.py
+aiio/think.py
+aiio/util.py
+aiio.egg-info/PKG-INFO
+aiio.egg-info/SOURCES.txt
+aiio.egg-info/dependency_links.txt
+aiio.egg-info/not-zip-safe
+aiio.egg-info/requires.txt
+aiio.egg-info/top_level.txt
