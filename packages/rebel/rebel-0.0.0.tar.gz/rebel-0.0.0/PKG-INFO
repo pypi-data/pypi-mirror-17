@@ -1,0 +1,23 @@
+Metadata-Version: 1.1
+Name: rebel
+Version: 0.0.0
+Summary: Vanilla SQL for Python
+Home-page: https://github.com/hugollm/rebel
+Author: Hugo Mota
+Author-email: hugo.txt@gmail.com
+License: MIT
+Description: 
+        A library to ease the writing of vanilla SQL in Python.
+        It provides an easy to use interface to common types of queries.
+        
+Keywords: rebel vanilla sql database
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
