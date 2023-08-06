@@ -1,0 +1,26 @@
+[bob.pad.algorithm]
+lda = bob.paper.biosig2016.algorithm.lda:algorithm
+mlp-sigmoid-200-neurons-stoch = bob.paper.biosig2016.config.algorithm.mlp_sigmoid_200_neurons_stoch:algorithm
+
+[bob.pad.database]
+asvspoof-cm = bob.paper.biosig2016.config.database.asvspoof_cm:database
+avspoof-detect-physical = bob.paper.biosig2016.config.database.avspoof_detect_physical:database
+
+[bob.pad.extractor]
+mean-spectrum-32ms = bob.paper.biosig2016.config.extractor.mean_spectrum_32ms:extractor
+mean-std-spectrum-256ms = bob.paper.biosig2016.config.extractor.mean_std_spectrum_256ms_shift_10ms:extractor
+mean-std-spectrum-32ms = bob.paper.biosig2016.config.extractor.mean_std_spectrum_32ms:extractor
+std-spectrum-32ms = bob.paper.biosig2016.config.extractor.std_spectrum_32ms:extractor
+
+[bob.pad.grid]
+normal = bob.paper.biosig2016.config.grid.normal:grid
+
+[bob.pad.preprocessor]
+energy-2gauss-remove-head-tail = bob.paper.biosig2016.config.preprocessor.energy_2gauss_remove_head_tail:preprocessor
+none = bob.paper.biosig2016.config.preprocessor.no_preprocessing:preprocessor
+
+[console_scripts]
+compute_EER_perattack_eval.py = bob.paper.biosig2016.script.compute_EER_perattack_eval:main
+evaluate_pad.py = bob.paper.biosig2016.script.evaluate_pad:main
+spoof_mlp.py = bob.paper.biosig2016.script.spoof_mlp:main
+
