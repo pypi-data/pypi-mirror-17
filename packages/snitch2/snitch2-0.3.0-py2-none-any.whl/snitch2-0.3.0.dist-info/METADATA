@@ -1,0 +1,25 @@
+Metadata-Version: 2.0
+Name: snitch2
+Version: 0.3.0
+Summary: Search a domain for target links.
+Home-page: https://github.com/joelcolucci/snitch2
+Author: Joel Colucci
+Author-email: joelcolucci@gmail.com
+License: MIT
+Platform: any
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: bs4
+Requires-Dist: requests
+Requires-Dist: eventlet
+
+snitch2
+-------------
+A web crawler to search a domain for target links.
+
+
