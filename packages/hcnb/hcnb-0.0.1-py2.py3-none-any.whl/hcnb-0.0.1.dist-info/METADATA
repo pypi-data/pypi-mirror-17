@@ -1,0 +1,19 @@
+Metadata-Version: 2.0
+Name: hcnb
+Version: 0.0.1
+Summary: A plugin for Hachi to detect spam.
+Home-page: https://github.com/guokr/Hachi
+Author: MomingCoder
+Author-email: a398445075@gmail.com
+License: MIT
+Keywords: filter,Hachi,plugin,naive bayes
+Platform: UNKNOWN
+Classifier: Topic :: Text Processing
+Requires-Dist: jieba
+Requires-Dist: numpy
+Requires-Dist: scikit-learn
+Requires-Dist: scipy
+
+UNKNOWN
+
+
