@@ -1,0 +1,54 @@
+CHANGES
+=======
+
+0.2.0
+-----
+
+* Improve class and method regexps
+* Readme has now some running examples
+* Updated from global requirements
+* Catch block validation
+* update homepage with developer documentation page
+* Making Default optional in Match strcuture
+* Allow methods to be empty and error when not dict
+* Change Error to Warning for missing name of namespace
+* Improving tests for metadata in Murano Classes
+* Fix i18n set up
+* Fix bug with loading buffer in ZipLoader in py3
+* Updated from global requirements
+* Add tools/tox_install.sh script
+
+0.1.1
+-----
+
+* Introduce option only_errors
+* Add possibility to load package from open zip file
+* Clean imports in code
+* TrivialFix: Remove logging import unused
+* Added functional test base
+* Added docs autogeneration for error list
+
+0.1.0
+-----
+
+* Bunch of bugfixes
+* Added errors registration
+* Add i18n support
+* Improve logging system
+* Improving tests coverage
+* Report yaml parsing errors instead of ignoring
+* Added tools/cover.sh
+* Improve package version validation
+* Allow method name to start with "."
+* Fix error report in version
+* Accept null description in manifest
+* Bunch of fixes for code_structure, base, manifest:
+* Adding Package Validator
+* Adding UI Validator
+* Adding MuranoPL validator
+* Improving Manifest require check
+* Code Structure checker added with tests
+* Adding ManifestValidator
+* Added core and CLI
+* Commit project structure
+* Added .gitreview
