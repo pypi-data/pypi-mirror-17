@@ -1,0 +1,4 @@
+#!/bin/sh
+# diff "$1" ../py3|grep -v '^[0-9]'|grep -v '^\-\-'|sed 's/^</####\n</'
+p=$(dirname $0)
+diff "$1" ../../py3/asyncoro | ${p}/terse_diff.py

@@ -1,0 +1,137 @@
+diff --git a/py2/asyncoro/discoronode.py b/py2/asyncoro/discoronode.py
+index a6aac02..76d2730 100755
+--- a/py2/asyncoro/discoronode.py
++++ b/py2/asyncoro/discoronode.py
+@@ -116,6 +116,12 @@ def _discoro_server_proc():
+             if status.status == asyncoro.PeerStatus.Online:
+                 if (_discoro_node_coro and _discoro_node_coro.location == status.location):
+                     _discoro_coro.register('discoro_server')
++
++                elif status.name.endswith('-0'):
++                    node = yield Coro.locate('discoro_node', location=status.location,
++                                             timeout=1)
++                    if node:
++                        node.send({'req': 'node_servers', 'client': _discoro_coro})
+             else:  # status.status == asyncoro.PeerStatus.Offline
+                 if (_discoro_scheduler_coro and
+                     _discoro_scheduler_coro.location == status.location):
+@@ -141,6 +147,9 @@ def _discoro_server_proc():
+     asyncoro.AsynCoro.instance().peer_status(SysCoro(_discoro_peer_status))
+     yield asyncoro.AsynCoro.instance().peer(_discoro_node_coro.location)
+     yield asyncoro.AsynCoro.instance().peer(_discoro_scheduler_coro.location)
++    if _discoro_config.get('discover_peers', None):
++        for _discoro_var in _discoro_config.get('nodes', []):
++            yield asyncoro.AsynCoro.instance().peer(_discoro_var)
+ 
+     while 1:
+         _discoro_msg = yield _discoro_coro.receive()
+@@ -277,6 +286,11 @@ def _discoro_server_proc():
+             else:
+                 print('  discoro server "%s" @ %s with PID %s not used by any computation' %
+                       (_discoro_name, _discoro_coro.location, os.getpid()))
++
++        elif _discoro_req == 'node_servers':
++            for _discoro_var in _discoro_msg.get('servers', []):
++                asyncoro.Coro(asyncoro.AsynCoro.instance().peer, _discoro_var)
++
+         else:
+             asyncoro.logger.warning('invalid command "%s" ignored', _discoro_req)
+             _discoro_client = _discoro_msg.get('client', None)
+@@ -316,7 +330,7 @@ def _discoro_process(_discoro_config, _discoro_mp_queue):
+ 
+     if _discoro_config['loglevel']:
+         asyncoro.logger.setLevel(asyncoro.logger.DEBUG)
+-        asyncoro.logger.show_ms(True)
++        # asyncoro.logger.show_ms(True)
+     else:
+         asyncoro.logger.setLevel(asyncoro.logger.INFO)
+     del _discoro_config['loglevel']
+@@ -324,9 +338,10 @@ def _discoro_process(_discoro_config, _discoro_mp_queue):
+     server_id = _discoro_config['id']
+     mp_queue, _discoro_mp_queue = _discoro_mp_queue, None
+     config = {}
+-    for _discoro_var in ['udp_port', 'tcp_port', 'node', 'ext_ip_addr', 'name', 'discover_peers',
++    for _discoro_var in ['udp_port', 'tcp_port', 'node', 'ext_ip_addr', 'name',
+                          'secret', 'certfile', 'keyfile', 'dest_path', 'max_file_size']:
+         config[_discoro_var] = _discoro_config.pop(_discoro_var, None)
++    config['discover_peers'] = False
+ 
+     while 1:
+         try:
+@@ -662,6 +677,8 @@ if __name__ == '__main__':
+                 return
+ 
+             server_config = dict(_discoro_config)
++            if _discoro_config.get('discover_peers', None):
++                server_config['nodes'] = _discoro_nodes
+             server_config['id'] = server.id
+             server_config['name'] = '%s-%s' % (_discoro_name, server.id)
+             server_config['node'] = _discoro_node_coro.location.addr
+@@ -684,14 +701,23 @@ if __name__ == '__main__':
+             return
+ 
+         def monitor_peers(coro=None):
++            global _discoro_nodes
+             coro.set_daemon()
+             while 1:
+                 msg = yield coro.receive()
+                 if not isinstance(msg, asyncoro.PeerStatus):
+                     continue
+-                if msg.status == asyncoro.PeerStatus.Offline:
++                if msg.status == asyncoro.PeerStatus.Online:
++                    if msg.name.endswith('-0'):
++                        peer = yield asyncoro.Coro.locate('discoro_node', location=msg.location,
++                                                          timeout=1)
++                        if peer:
++                            _discoro_nodes.add(peer)
++                else:  # msg.status == asyncoro.PeerStatus.Offline
+                     if (scheduler_coro and scheduler_coro.location == msg.location):
+                         _discoro_node_coro.send({'req': 'release', 'auth': cur_computation_auth})
++                    elif msg.name.startswith('-0'):
++                        _discoro_nodes.discard(msg.location)
+ 
+         def mp_queue_server():
+             while 1:
+@@ -699,6 +725,7 @@ if __name__ == '__main__':
+                 server = _discoro_servers[proc_id - 1]
+                 if proc_coro:
+                     server.coro = asyncoro.deserialize(proc_coro)
++                    _discoro_tcp_ports[proc_id - 1] = server.coro.location.port
+                 else:
+                     server.proc.join()
+                     server.coro = server.proc = None
+@@ -859,6 +886,12 @@ if __name__ == '__main__':
+                             # _discoro_mp_queue.close()
+                             break
+ 
++                elif req == 'node_servers':
++                    client = msg.get('client', None)
++                    if isinstance(client, asyncoro.Coro):
++                        client.send({'req': 'node_servers',
++                                     'servers': [server.coro.location for server in _discoro_servers
++                                                 if server.coro]})
+                 else:
+                     asyncoro.logger.warning('Invalid message ignored')
+ 
+@@ -920,12 +953,11 @@ if __name__ == '__main__':
+                          'discover_peers', 'secret', 'certfile', 'keyfile', 'dest_path',
+                          'max_file_size']:
+         _discoro_server_config[_discoro_var] = _discoro_config.get(_discoro_var, None)
+-    _discoro_server_config['discover_peers'] = False
+     _discoro_server_config['name'] = '%s-%s' % (_discoro_name, 0)
+     _discoro_server_config['tcp_port'] = _discoro_tcp_ports.pop(0)
+     if _discoro_config['loglevel']:
+         asyncoro.logger.setLevel(asyncoro.Logger.DEBUG)
+-        asyncoro.logger.show_ms(True)
++        # asyncoro.logger.show_ms(True)
+     else:
+         asyncoro.logger.setLevel(asyncoro.Logger.INFO)
+     _discoro_scheduler = asyncoro.AsynCoro(**_discoro_server_config)
+@@ -945,6 +977,7 @@ if __name__ == '__main__':
+         raise Exception('Another discoronode seem to be running; '
+                         'check no discoronode and servers are running and '
+                         'remove *.pid files in %s' % _discoro_scheduler.dest_path)
++    _discoro_nodes = set()
+     _discoro_node_coro = asyncoro.Coro(_discoro_node_proc)
+     del _discoro_server_config, _discoro_var
+ 
