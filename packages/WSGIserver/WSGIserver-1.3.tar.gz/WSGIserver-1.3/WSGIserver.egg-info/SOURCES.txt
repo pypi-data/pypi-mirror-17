@@ -1,0 +1,12 @@
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+wsgiserver.py
+WSGIserver.egg-info/PKG-INFO
+WSGIserver.egg-info/SOURCES.txt
+WSGIserver.egg-info/dependency_links.txt
+WSGIserver.egg-info/top_level.txt
+licenses/COPYING
+licenses/COPYING.LESSER
+licenses/LICENSE.CherryPy
