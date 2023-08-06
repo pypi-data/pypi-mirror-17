@@ -1,0 +1,25 @@
+Metadata-Version: 2.0
+Name: peoplegraph-api-client
+Version: 0.1.0
+Summary: Peoplegraph api client
+Home-page: https://github.com/deep-compute/peoplegraph-api-client
+Author: Deep-Compute
+Author-email: rebello.anthony@gmail.com
+License: MIT License
+Download-URL: https://github.com/deep-compute/peoplegraph-api-client/tarball/0.1.0
+Keywords: peoplegraph
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Dist: python-dateutil
+Requires-Dist: requests (>=2.11)
+
+UNKNOWN
+
+
