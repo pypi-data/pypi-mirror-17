@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: opsviewclient
+Version: 0.1.5
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: Joshua Griffiths
+Author-email: jgriffiths@opsview.com
+License: UNKNOWN
+Description: Client for interacting with Opsview's REST API
+Platform: UNKNOWN
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4

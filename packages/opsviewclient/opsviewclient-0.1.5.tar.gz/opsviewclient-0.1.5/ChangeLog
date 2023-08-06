@@ -1,0 +1,40 @@
+CHANGES
+=======
+
+0.1.5
+-----
+
+* Fix formatting
+* Support lists of hosts
+* < 80 chars
+* Fix empty body json
+* Handle lists
+
+0.1.4
+-----
+
+* Fix issue with OpsviewClientException import
+
+0.1.3
+-----
+
+* Refer to base module for get_id method
+
+0.1.2
+-----
+
+* Fix static requirements
+* Move to pbr
+* Remove pyc files and bump version
+
+0.1.1
+-----
+
+* Remove erroneous file
+* Initial requirements
+
+0.1
+---
+
+* Initial commit and implementation
+* Initial commit
