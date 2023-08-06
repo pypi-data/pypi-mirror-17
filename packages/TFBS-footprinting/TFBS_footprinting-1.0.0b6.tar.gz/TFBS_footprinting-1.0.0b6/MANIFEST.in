@@ -1,0 +1,4 @@
+include tfbs_footprinter/tfbs_footprinter.py
+include LICENSE
+include sample_ids.txt
+recursive-include data *.json
