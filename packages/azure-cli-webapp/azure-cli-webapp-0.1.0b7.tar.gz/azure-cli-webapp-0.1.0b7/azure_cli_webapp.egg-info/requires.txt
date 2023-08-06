@@ -1,0 +1,4 @@
+azure==2.0.0rc6
+azure-cli-core
+azure-mgmt-web==0.30.0rc6
+urllib3[secure]==1.16
