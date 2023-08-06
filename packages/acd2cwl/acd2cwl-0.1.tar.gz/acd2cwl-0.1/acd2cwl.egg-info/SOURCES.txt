@@ -1,0 +1,13 @@
+setup.cfg
+setup.py
+acd2cwl/__init__.py
+acd2cwl/acd_2_cwl.py
+acd2cwl/build_tests.py
+acd2cwl/build_tools.py
+acd2cwl.egg-info/PKG-INFO
+acd2cwl.egg-info/SOURCES.txt
+acd2cwl.egg-info/dependency_links.txt
+acd2cwl.egg-info/entry_points.txt
+acd2cwl.egg-info/not-zip-safe
+acd2cwl.egg-info/requires.txt
+acd2cwl.egg-info/top_level.txt
