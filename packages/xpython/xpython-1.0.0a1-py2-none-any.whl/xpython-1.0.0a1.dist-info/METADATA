@@ -1,0 +1,34 @@
+Metadata-Version: 2.0
+Name: xpython
+Version: 1.0.0a1
+Summary: xPython - compiles code to any other language.
+Home-page: https://github.com/1st/xpython
+Author: Anton Danilchenko
+Author-email: anton@danilchenko.me
+License: MIT
+Keywords: python,compiler,xpython
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+
+xPython
+====================
+
+**xPython** superset of Python language that can be converted to any other
+language (Python, JavaScript, Java).
+
+
+Quick start
+-------------
+
+Read `Quick Start <https://github.com/1st/xpython>`_ on GitHub.
+
+
