@@ -1,0 +1,68 @@
+CHANGES
+=======
+
+0.1.0
+-----
+
+* Updated from global requirements
+* Add separate scheduled operations panel in Karbor dashboard
+* Move username and password to restore_auth
+* Update homepage with developer documentation page
+* Add separate restores panel in Karbor dashboard
+* Using import horizon settings instead of copy settings
+* Protect, restore success message reflect async
+* update typos from eumn to enum
+* Update test-requirements with karborclient
+* Update .gitreview post project rename
+* Rename Smaug Dashboard to Karbor
+* Updated from global requirements
+* Updated from global requirements
+* Fix Protection Plan Creation Failed
+* Fix Trigger Creation Failed
+* Updated from global requirements
+* implement checkpoint detail page
+* restore checkpoint js function
+* restore checkpoint basic function
+* implement protection plan detail page
+* create protection plan js function
+* create protection plan basic function
+* Add js resource parameters functions
+* Add js common functions
+* Add tree table js plugin
+* Updated from global requirements
+* make breadcrumb consistent with horizon
+* Remove unused POT file
+* Updated from global requirements
+* fix requirements.txt for smaug-dashboard
+* Updated from global requirements
+* [checkpoint]fix checkpoint 404 error
+* [enabled] Automatically discover static resources
+* [Checkpoints] update view function
+* Updated from global requirements
+* [Protection Plans] Add schedule protect and protect now
+* [Checkpoints] Add delete action
+* [Operation Logs] Submit index view function
+* [Checkpoints] Submit index view function
+* Add parameters for creating a plan
+* Submit interface implement about protectable_get_instance
+* Add the project id and version for smaugclient
+* [Protection Plans] Submit index view function
+* [Protection Providers] Submit detail view function
+* [Protection Providers] Submit index view function
+* [Triggers] Submit detail view function
+* [Triggers] Submit create view function
+* [Triggers] Submit index view function
+* Manual update from global-requirements
+* Submit Trigger API for dashboard
+* Submit Checkpoint API for dashboard
+* Submit Provider API for dashboard
+* Submit Protectable API for dashboard
+* Submit Restore API for dashboard
+* Submit Schedule Operation API for dashboard
+* Submit Protection Plan API for dashboard
+* Init api tests for smaug-dashboard
+* Init smaug client for smaug-dashboard
+* Add Devstack function for Smaug Dashboard
+* Add skeleton for the smaug-dashboard
+* Initial Cookiecutter for smaug-dashboard
+* Added .gitreview
