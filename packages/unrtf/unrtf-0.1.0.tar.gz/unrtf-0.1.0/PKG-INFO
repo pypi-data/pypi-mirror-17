@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: unrtf
+Version: 0.1.0
+Summary: GNU unrtf python bindings
+Home-page: https://github.com/szborows/python-unrtf
+Author: Sławomir Zborowski
+Author-email: slawomir.zborowski@nokia.com
+License: GNU General Public License v3 (GPLv3)
+Description: UNKNOWN
+Keywords: unrtf rtf
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: C
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Utilities
