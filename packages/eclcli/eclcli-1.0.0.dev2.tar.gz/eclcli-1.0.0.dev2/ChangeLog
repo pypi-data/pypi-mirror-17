@@ -1,0 +1,5 @@
+CHANGES
+=======
+
+*  :pencil2: Changed README format from md to rst to support PyPI web page Removed Python3 and Python3.4 from classifier of setup.cfg Updated author-email of setup.cfg Updated contact info of README.rst
+* :new: first commit
