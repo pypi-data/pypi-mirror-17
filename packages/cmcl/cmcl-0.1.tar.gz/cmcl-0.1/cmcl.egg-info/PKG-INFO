@@ -1,0 +1,25 @@
+Metadata-Version: 1.1
+Name: cmcl
+Version: 0.1
+Summary: A python library providing various utilities for use with CMCL software
+Home-page: https://github.com/oparry/cmcl.git
+Author: Owen Parry
+Author-email: owenparry@fastmail.fm
+License: MIT
+Description: CMCL Python Utilities
+        =======================
+        
+        A package to provide various python routines relevant to CMCL's software packages, particularly the SRM Engine Suite and MoDS.
+        
+        ----
+        
+        Contents as of 09/09/2016:
+        - Some elements of IO routines for SRM and MoDS files.
+        
+Keywords: cmcl software utilities
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.4

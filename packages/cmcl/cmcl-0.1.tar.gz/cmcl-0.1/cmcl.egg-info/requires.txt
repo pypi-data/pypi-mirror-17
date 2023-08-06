@@ -1,0 +1,9 @@
+glob
+numpy
+pdb
+
+[dev]
+check-manifest
+
+[test]
+coverage

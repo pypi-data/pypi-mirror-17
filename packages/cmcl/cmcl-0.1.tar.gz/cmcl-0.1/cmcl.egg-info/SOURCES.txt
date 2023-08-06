@@ -1,0 +1,13 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+cmcl/__init__.py
+cmcl/io.py
+cmcl.egg-info/PKG-INFO
+cmcl.egg-info/SOURCES.txt
+cmcl.egg-info/dependency_links.txt
+cmcl.egg-info/requires.txt
+cmcl.egg-info/top_level.txt
+data/data_file
