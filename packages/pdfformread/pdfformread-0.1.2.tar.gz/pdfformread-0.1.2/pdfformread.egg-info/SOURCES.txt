@@ -1,0 +1,12 @@
+MANIFEST.in
+README.rst
+setup.py
+pdfformread/__init__.py
+pdfformread/command_line.py
+pdfformread.egg-info/PKG-INFO
+pdfformread.egg-info/SOURCES.txt
+pdfformread.egg-info/dependency_links.txt
+pdfformread.egg-info/entry_points.txt
+pdfformread.egg-info/not-zip-safe
+pdfformread.egg-info/requires.txt
+pdfformread.egg-info/top_level.txt

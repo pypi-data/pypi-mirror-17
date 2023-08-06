@@ -1,0 +1,38 @@
+Metadata-Version: 1.1
+Name: pdfformread
+Version: 0.1.2
+Summary: Extract form data from a PDF form.
+Home-page: http://github.com/BartMassey/pdfformread
+Author: Bart Massey
+Author-email: bart.massey@gmail.com
+License: MIT
+Description: pdfformread
+        --------------------------
+        
+        Copyright (c) 2016 Bart Massey
+        
+        This Python 2 library and command-line app facilitate
+        getting form data from PDF forms, using the PDFMiner
+        (http://www.unixuser.org/~euske/python/pdfminer) library for
+        extraction.  The code is originally from
+        http://stackoverflow.com/q/3984003/364875 but with minor
+        changes for 2016 and for app.
+        
+        There are a lot of things that need to be improved here:
+        
+        * Unicode and other character encoding handling is kludgy at best.
+        
+        * Only text and selection elements of forms are supported.
+        
+        * Subforms aren't supported.
+        
+        This code is available under the "MIT License".
+        Please see the file COPYING in this distribution
+        for license terms.
+        
+Keywords: pdf form extract data
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Office/Business

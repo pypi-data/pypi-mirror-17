@@ -1,0 +1,3 @@
+[console_scripts]
+pdfformread = pdfformread.command_line:main
+
