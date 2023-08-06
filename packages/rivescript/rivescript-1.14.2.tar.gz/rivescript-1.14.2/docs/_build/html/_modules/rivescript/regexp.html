@@ -1,0 +1,237 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rivescript.regexp &mdash; rivescript 1.12.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="rivescript 1.12.3 documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> rivescript
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.12.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rivescript.html">rivescript package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">rivescript</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>rivescript.regexp</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for rivescript.regexp</h1><div class="highlight"><pre>
+<span></span><span class="c1"># RiveScript-Python</span>
+<span class="c1">#</span>
+<span class="c1"># This code is released under the MIT License.</span>
+<span class="c1"># See the &quot;LICENSE&quot; file for more information.</span>
+<span class="c1">#</span>
+<span class="c1"># https://www.rivescript.com/</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="sd">&quot;&quot;&quot;Common regular expressions used in RiveScript.&quot;&quot;&quot;</span>
+
+<span class="c1"># Common regular expressions.</span>
+<div class="viewcode-block" id="RE"><a class="viewcode-back" href="../../rivescript.html#rivescript.regexp.RE">[docs]</a><span class="k">class</span> <span class="nc">RE</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">equals</span>      <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;\s*=\s*&#39;</span><span class="p">)</span>
+    <span class="n">ws</span>          <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;\s+&#39;</span><span class="p">)</span>
+    <span class="n">objend</span>      <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;^\s*&lt;\s*object&#39;</span><span class="p">)</span>
+    <span class="n">weight</span>      <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;\{weight=(\d+)\}&#39;</span><span class="p">)</span>
+    <span class="n">inherit</span>     <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;\{inherits=(\d+)\}&#39;</span><span class="p">)</span>
+    <span class="n">wilds</span>       <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[\s\*\#\_]+&#39;</span><span class="p">)</span>
+    <span class="n">nasties</span>     <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[^A-Za-z0-9 ]&#39;</span><span class="p">)</span>
+    <span class="n">crlf</span>        <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;&lt;crlf&gt;&#39;</span><span class="p">)</span>
+    <span class="n">literal_w</span>   <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;</span><span class="se">\\</span><span class="s1">w&#39;</span><span class="p">)</span>
+    <span class="n">array</span>       <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;\@(.+?)\b&#39;</span><span class="p">)</span>
+    <span class="n">def_syntax</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;^.+(?:\s+.+|)\s*=\s*.+?$&#39;</span><span class="p">)</span>
+    <span class="n">name_syntax</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;[^a-z0-9_\-\s]&#39;</span><span class="p">)</span>
+    <span class="n">utf8_trig</span>   <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;[A-Z</span><span class="se">\\</span><span class="s1">.]&#39;</span><span class="p">)</span>
+    <span class="n">trig_syntax</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;[^a-z0-9(\|)\[\]*_#@{}&lt;&gt;=\s]&#39;</span><span class="p">)</span>
+    <span class="n">cond_syntax</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;^.+?\s*(?:==|eq|!=|ne|&lt;&gt;|&lt;|&lt;=|&gt;|&gt;=)\s*.+?=&gt;.+?$&#39;</span><span class="p">)</span>
+    <span class="n">utf8_meta</span>   <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;[</span><span class="se">\\</span><span class="s1">&lt;&gt;]&#39;</span><span class="p">)</span>
+    <span class="n">utf8_punct</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;[.?,!;:@#$%^&amp;*()]&#39;</span><span class="p">)</span>
+    <span class="n">cond_split</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;\s*=&gt;\s*&#39;</span><span class="p">)</span>
+    <span class="n">cond_parse</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;^(.+?)\s+(==|eq|!=|ne|&lt;&gt;|&lt;|&lt;=|&gt;|&gt;=)\s+(.+?)$&#39;</span><span class="p">)</span>
+    <span class="n">topic_tag</span>   <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;\{topic=(.+?)\}&#39;</span><span class="p">)</span>
+    <span class="n">set_tag</span>     <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;&lt;set (.+?)=(.+?)&gt;&#39;</span><span class="p">)</span>
+    <span class="n">bot_tag</span>     <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;&lt;bot (.+?)&gt;&#39;</span><span class="p">)</span>
+    <span class="n">get_tag</span>     <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;&lt;get (.+?)&gt;&#39;</span><span class="p">)</span>
+    <span class="n">star_tags</span>   <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;&lt;star(\d+)&gt;&#39;</span><span class="p">)</span>
+    <span class="n">botstars</span>    <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;&lt;botstar(\d+)&gt;&#39;</span><span class="p">)</span>
+    <span class="n">input_tags</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;&lt;input([1-9])&gt;&#39;</span><span class="p">)</span>
+    <span class="n">reply_tags</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;&lt;reply([1-9])&gt;&#39;</span><span class="p">)</span>
+    <span class="n">random_tags</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;\{random\}(.+?)\{/random\}&#39;</span><span class="p">)</span>
+    <span class="n">redir_tag</span>   <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;\{@(.+?)\}&#39;</span><span class="p">)</span>
+    <span class="n">tag_search</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;&lt;([^&lt;]+?)&gt;&#39;</span><span class="p">)</span>
+    <span class="n">placeholder</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;\x00(\d+)\x00&#39;</span><span class="p">)</span>
+    <span class="n">zero_star</span>   <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;^\*$&#39;</span><span class="p">)</span>
+    <span class="n">optionals</span>   <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;\[(.+?)\]&#39;</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Noah Petherbridge &lt;root@kirsle.net&gt;.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.12.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

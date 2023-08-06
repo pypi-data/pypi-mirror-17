@@ -1,0 +1,1003 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rivescript.brain &mdash; rivescript 1.12.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="rivescript 1.12.3 documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> rivescript
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.12.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rivescript.html">rivescript package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">rivescript</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>rivescript.brain</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for rivescript.brain</h1><div class="highlight"><pre>
+<span></span><span class="c1"># RiveScript-Python</span>
+<span class="c1">#</span>
+<span class="c1"># This code is released under the MIT License.</span>
+<span class="c1"># See the &quot;LICENSE&quot; file for more information.</span>
+<span class="c1">#</span>
+<span class="c1"># https://www.rivescript.com/</span>
+
+<span class="kn">from</span> <span class="nn">.regexp</span> <span class="kn">import</span> <span class="n">RE</span>
+<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">RiveScriptError</span><span class="p">,</span> <span class="n">RepliesNotSortedError</span><span class="p">,</span> <span class="n">NoDefaultRandomTopicError</span><span class="p">,</span>
+    <span class="n">DeepRecursionError</span><span class="p">,</span> <span class="n">NoMatchError</span><span class="p">,</span> <span class="n">NoReplyError</span><span class="p">,</span> <span class="n">ObjectError</span><span class="p">,</span>
+    <span class="n">RS_ERR_OBJECT</span><span class="p">,</span> <span class="n">RS_ERR_OBJECT_HANDLER</span><span class="p">,</span> <span class="n">RS_ERR_OBJECT_MISSING</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">python</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">inheritance</span> <span class="k">as</span> <span class="n">inherit_utils</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">utils</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">six</span> <span class="kn">import</span> <span class="n">text_type</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<div class="viewcode-block" id="Brain"><a class="viewcode-back" href="../../rivescript.html#rivescript.brain.Brain">[docs]</a><span class="k">class</span> <span class="nc">Brain</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The Brain class controls the actual reply fetching phase for RiveScript.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        master (RiveScript): A reference to the parent RiveScript instance.</span>
+<span class="sd">        strict (bool): Whether strict mode is enabled.</span>
+<span class="sd">        utf8 (bool): Whether UTF-8 mode is enabled.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">utf8</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">master</span> <span class="o">=</span> <span class="n">master</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">strict</span> <span class="o">=</span> <span class="n">strict</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">utf8</span>   <span class="o">=</span> <span class="n">utf8</span>
+
+        <span class="c1"># Private variables only relevant to the reply-answering part of RiveScript.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_current_user</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="c1"># Proxy functions.</span>
+<div class="viewcode-block" id="Brain.say"><a class="viewcode-back" href="../../rivescript.html#rivescript.brain.Brain.say">[docs]</a>    <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_say</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+<div class="viewcode-block" id="Brain.warn"><a class="viewcode-back" href="../../rivescript.html#rivescript.brain.Brain.warn">[docs]</a>    <span class="k">def</span> <span class="nf">warn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_warn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Brain.reply"><a class="viewcode-back" href="../../rivescript.html#rivescript.brain.Brain.reply">[docs]</a>    <span class="k">def</span> <span class="nf">reply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">errors_as_replies</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Get reply to [&quot;</span> <span class="o">+</span> <span class="n">user</span> <span class="o">+</span> <span class="s2">&quot;] &quot;</span> <span class="o">+</span> <span class="n">msg</span><span class="p">)</span>
+
+        <span class="c1"># Store the current user in case an object macro needs it.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_current_user</span> <span class="o">=</span> <span class="n">user</span>
+
+        <span class="c1"># Format their message.</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">format_message</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="n">reply</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+        <span class="c1"># If the BEGIN block exists, consult it first.</span>
+        <span class="k">if</span> <span class="s2">&quot;__begin__&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_topics</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">begin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getreply</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="s1">&#39;request&#39;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="s1">&#39;begin&#39;</span><span class="p">,</span> <span class="n">ignore_object_errors</span><span class="o">=</span><span class="n">errors_as_replies</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">RiveScriptError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">errors_as_replies</span><span class="p">:</span>
+                    <span class="k">raise</span>
+                <span class="k">return</span> <span class="n">e</span><span class="o">.</span><span class="n">error_message</span>
+
+            <span class="c1"># Okay to continue?</span>
+            <span class="k">if</span> <span class="s1">&#39;{ok}&#39;</span> <span class="ow">in</span> <span class="n">begin</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">reply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getreply</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">ignore_object_errors</span><span class="o">=</span><span class="n">errors_as_replies</span><span class="p">)</span>
+                <span class="k">except</span> <span class="n">RiveScriptError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">errors_as_replies</span><span class="p">:</span>
+                        <span class="k">raise</span>
+                    <span class="n">reply</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">error_message</span>
+                <span class="n">begin</span> <span class="o">=</span> <span class="n">begin</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;{ok}&#39;</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span>
+
+            <span class="n">reply</span> <span class="o">=</span> <span class="n">begin</span>
+
+            <span class="c1"># Run more tag substitutions.</span>
+            <span class="n">reply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_tags</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">reply</span><span class="p">,</span> <span class="n">ignore_object_errors</span><span class="o">=</span><span class="n">errors_as_replies</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Just continue then.</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">reply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getreply</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">ignore_object_errors</span><span class="o">=</span><span class="n">errors_as_replies</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">RiveScriptError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">errors_as_replies</span><span class="p">:</span>
+                    <span class="k">raise</span>
+                <span class="n">reply</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">error_message</span>
+
+        <span class="c1"># Save their reply history.</span>
+        <span class="n">oldInput</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="s1">&#39;__history__&#39;</span><span class="p">][</span><span class="s1">&#39;input&#39;</span><span class="p">][:</span><span class="mi">8</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="s1">&#39;__history__&#39;</span><span class="p">][</span><span class="s1">&#39;input&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">msg</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="s1">&#39;__history__&#39;</span><span class="p">][</span><span class="s1">&#39;input&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">oldInput</span><span class="p">)</span>
+        <span class="n">oldReply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="s1">&#39;__history__&#39;</span><span class="p">][</span><span class="s1">&#39;reply&#39;</span><span class="p">][:</span><span class="mi">8</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="s1">&#39;__history__&#39;</span><span class="p">][</span><span class="s1">&#39;reply&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">reply</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="s1">&#39;__history__&#39;</span><span class="p">][</span><span class="s1">&#39;reply&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">oldReply</span><span class="p">)</span>
+
+        <span class="c1"># Unset the current user.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_current_user</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="k">return</span> <span class="n">reply</span></div>
+
+<div class="viewcode-block" id="Brain.format_message"><a class="viewcode-back" href="../../rivescript.html#rivescript.brain.Brain.format_message">[docs]</a>    <span class="k">def</span> <span class="nf">format_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">botreply</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Format a user&#39;s message for safe processing.</span>
+
+<span class="sd">        This runs substitutions on the message and strips out any remaining</span>
+<span class="sd">        symbols (depending on UTF-8 mode).</span>
+
+<span class="sd">        :param str msg: The user&#39;s message.</span>
+<span class="sd">        :param bool botreply: Whether this formatting is being done for the</span>
+<span class="sd">            bot&#39;s last reply (e.g. in a ``%Previous`` command).</span>
+
+<span class="sd">        :return str: The formatted message.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Make sure the string is Unicode for Python 2.</span>
+        <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+
+        <span class="c1"># Lowercase it.</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+        <span class="c1"># Run substitutions on it.</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="s2">&quot;sub&quot;</span><span class="p">)</span>
+
+        <span class="c1"># In UTF-8 mode, only strip metacharacters and HTML brackets</span>
+        <span class="c1"># (to protect from obvious XSS attacks).</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">utf8</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">utf8_meta</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">unicode_punctuation</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+            <span class="c1"># For the bot&#39;s reply, also strip common punctuation.</span>
+            <span class="k">if</span> <span class="n">botreply</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">utf8_punct</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># For everything else, strip all non-alphanumerics.</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">strip_nasties</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">msg</span></div>
+
+    <span class="k">def</span> <span class="nf">_getreply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ignore_object_errors</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The internal reply getter function.</span>
+
+<span class="sd">        DO NOT CALL THIS YOURSELF.</span>
+
+<span class="sd">        :param str user: The user ID as passed to ``reply()``.</span>
+<span class="sd">        :param str msg: The formatted user message.</span>
+<span class="sd">        :param str context: The reply context, one of ``begin`` or ``normal``.</span>
+<span class="sd">        :param int step: The recursion depth counter.</span>
+<span class="sd">        :param bool ignore_object_errors: Whether to ignore errors from within</span>
+<span class="sd">            Python object macros and not raise an ``ObjectError`` exception.</span>
+
+<span class="sd">        :return str: The reply output.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Needed to sort replies?</span>
+        <span class="k">if</span> <span class="s1">&#39;topics&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_sorted</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">RepliesNotSortedError</span><span class="p">(</span><span class="s2">&quot;You must call sort_replies() once you are done loading RiveScript documents&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Initialize the user&#39;s profile?</span>
+        <span class="k">if</span> <span class="n">user</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;topic&#39;</span><span class="p">:</span> <span class="s1">&#39;random&#39;</span><span class="p">}</span>
+
+        <span class="c1"># Collect data on the user.</span>
+        <span class="n">topic</span>     <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="s1">&#39;topic&#39;</span><span class="p">]</span>
+        <span class="n">stars</span>     <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">thatstars</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># For %Previous&#39;s.</span>
+        <span class="n">reply</span>     <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+        <span class="c1"># Avoid letting them fall into a missing topic.</span>
+        <span class="k">if</span> <span class="n">topic</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_topics</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;User &quot;</span> <span class="o">+</span> <span class="n">user</span> <span class="o">+</span> <span class="s2">&quot; was in an empty topic named &#39;&quot;</span> <span class="o">+</span> <span class="n">topic</span> <span class="o">+</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">)</span>
+            <span class="n">topic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="s1">&#39;topic&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;random&#39;</span>
+
+        <span class="c1"># Avoid deep recursion.</span>
+        <span class="k">if</span> <span class="n">step</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_depth</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">DeepRecursionError</span>
+
+        <span class="c1"># Are we in the BEGIN statement?</span>
+        <span class="k">if</span> <span class="n">context</span> <span class="o">==</span> <span class="s1">&#39;begin&#39;</span><span class="p">:</span>
+            <span class="n">topic</span> <span class="o">=</span> <span class="s1">&#39;__begin__&#39;</span>
+
+        <span class="c1"># Initialize this user&#39;s history.</span>
+        <span class="k">if</span> <span class="s1">&#39;__history__&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="s1">&#39;__history__&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;input&#39;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s1">&#39;undefined&#39;</span><span class="p">,</span> <span class="s1">&#39;undefined&#39;</span><span class="p">,</span> <span class="s1">&#39;undefined&#39;</span><span class="p">,</span> <span class="s1">&#39;undefined&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;undefined&#39;</span><span class="p">,</span> <span class="s1">&#39;undefined&#39;</span><span class="p">,</span> <span class="s1">&#39;undefined&#39;</span><span class="p">,</span> <span class="s1">&#39;undefined&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;undefined&#39;</span>
+                <span class="p">],</span>
+                <span class="s1">&#39;reply&#39;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s1">&#39;undefined&#39;</span><span class="p">,</span> <span class="s1">&#39;undefined&#39;</span><span class="p">,</span> <span class="s1">&#39;undefined&#39;</span><span class="p">,</span> <span class="s1">&#39;undefined&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;undefined&#39;</span><span class="p">,</span> <span class="s1">&#39;undefined&#39;</span><span class="p">,</span> <span class="s1">&#39;undefined&#39;</span><span class="p">,</span> <span class="s1">&#39;undefined&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;undefined&#39;</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+
+        <span class="c1"># More topic sanity checking.</span>
+        <span class="k">if</span> <span class="n">topic</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_topics</span><span class="p">:</span>
+            <span class="c1"># This was handled before, which would mean topic=random and</span>
+            <span class="c1"># it doesn&#39;t exist. Serious issue!</span>
+            <span class="k">raise</span> <span class="n">NoDefaultRandomTopicError</span><span class="p">(</span><span class="s2">&quot;no default topic &#39;random&#39; was found&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Create a pointer for the matched data when we find it.</span>
+        <span class="n">matched</span>        <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">matchedTrigger</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">foundMatch</span>     <span class="o">=</span> <span class="bp">False</span>
+
+        <span class="c1"># See if there were any %Previous&#39;s in this topic, or any topic related</span>
+        <span class="c1"># to it. This should only be done the first time -- not during a</span>
+        <span class="c1"># recursive redirection. This is because in a redirection, &quot;lastreply&quot;</span>
+        <span class="c1"># is still gonna be the same as it was the first time, causing an</span>
+        <span class="c1"># infinite loop!</span>
+        <span class="k">if</span> <span class="n">step</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">allTopics</span> <span class="o">=</span> <span class="p">[</span><span class="n">topic</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">topic</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_includes</span> <span class="ow">or</span> <span class="n">topic</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_lineage</span><span class="p">:</span>
+                <span class="c1"># Get all the topics!</span>
+                <span class="n">allTopics</span> <span class="o">=</span> <span class="n">inherit_utils</span><span class="o">.</span><span class="n">get_topic_tree</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="p">,</span> <span class="n">topic</span><span class="p">)</span>
+
+            <span class="c1"># Scan them all!</span>
+            <span class="k">for</span> <span class="n">top</span> <span class="ow">in</span> <span class="n">allTopics</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Checking topic &quot;</span> <span class="o">+</span> <span class="n">top</span> <span class="o">+</span> <span class="s2">&quot; for any %Previous&#39;s.&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">top</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_sorted</span><span class="p">[</span><span class="s2">&quot;thats&quot;</span><span class="p">]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;There is a %Previous in this topic!&quot;</span><span class="p">)</span>
+
+                    <span class="c1"># Do we have history yet?</span>
+                    <span class="n">lastReply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="s2">&quot;__history__&quot;</span><span class="p">][</span><span class="s2">&quot;reply&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+                    <span class="c1"># Format the bot&#39;s last reply the same way as the human&#39;s.</span>
+                    <span class="n">lastReply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">format_message</span><span class="p">(</span><span class="n">lastReply</span><span class="p">,</span> <span class="n">botreply</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;lastReply: &quot;</span> <span class="o">+</span> <span class="n">lastReply</span><span class="p">)</span>
+
+                    <span class="c1"># See if it&#39;s a match.</span>
+                    <span class="k">for</span> <span class="n">trig</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_sorted</span><span class="p">[</span><span class="s2">&quot;thats&quot;</span><span class="p">][</span><span class="n">top</span><span class="p">]:</span>
+                        <span class="n">pattern</span> <span class="o">=</span> <span class="n">trig</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                        <span class="n">botside</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reply_regexp</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Try to match lastReply (&quot;</span> <span class="o">+</span> <span class="n">lastReply</span> <span class="o">+</span> <span class="s2">&quot;) to &quot;</span> <span class="o">+</span> <span class="n">pattern</span><span class="p">)</span>
+
+                        <span class="c1"># Match??</span>
+                        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">botside</span><span class="p">,</span> <span class="n">lastReply</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                            <span class="c1"># Huzzah! See if OUR message is right too.</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Bot side matched!&quot;</span><span class="p">)</span>
+                            <span class="n">thatstars</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
+
+                            <span class="c1"># Compare the triggers to the user&#39;s message.</span>
+                            <span class="n">user_side</span> <span class="o">=</span> <span class="n">trig</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                            <span class="n">subtrig</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reply_regexp</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">user_side</span><span class="p">[</span><span class="s2">&quot;trigger&quot;</span><span class="p">])</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Now try to match &quot;</span> <span class="o">+</span> <span class="n">msg</span> <span class="o">+</span> <span class="s2">&quot; to &quot;</span> <span class="o">+</span> <span class="n">user_side</span><span class="p">[</span><span class="s2">&quot;trigger&quot;</span><span class="p">])</span>
+
+                            <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">subtrig</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Found a match!&quot;</span><span class="p">)</span>
+                                <span class="n">matched</span> <span class="o">=</span> <span class="n">trig</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                                <span class="n">matchedTrigger</span> <span class="o">=</span> <span class="n">subtrig</span>
+                                <span class="n">foundMatch</span> <span class="o">=</span> <span class="bp">True</span>
+
+                                <span class="c1"># Get the stars!</span>
+                                <span class="n">stars</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
+                                <span class="k">break</span>
+
+                        <span class="c1"># Break if we found a match.</span>
+                        <span class="k">if</span> <span class="n">foundMatch</span><span class="p">:</span>
+                            <span class="k">break</span>
+                <span class="c1"># Break if we found a match.</span>
+                <span class="k">if</span> <span class="n">foundMatch</span><span class="p">:</span>
+                    <span class="k">break</span>
+
+        <span class="c1"># Search their topic for a match to their trigger.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">foundMatch</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">trig</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_sorted</span><span class="p">[</span><span class="s2">&quot;topics&quot;</span><span class="p">][</span><span class="n">topic</span><span class="p">]:</span>
+                <span class="n">pattern</span> <span class="o">=</span> <span class="n">trig</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+                <span class="c1"># Process the triggers.</span>
+                <span class="n">regexp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reply_regexp</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Try to match </span><span class="si">%r</span><span class="s2"> against </span><span class="si">%r</span><span class="s2"> (</span><span class="si">%r</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">regexp</span><span class="o">.</span><span class="n">pattern</span><span class="p">))</span>
+
+                <span class="c1"># Python&#39;s regular expression engine is slow. Try a verbatim</span>
+                <span class="c1"># match if this is an atomic trigger.</span>
+                <span class="n">isAtomic</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">is_atomic</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+                <span class="n">isMatch</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="k">if</span> <span class="n">isAtomic</span><span class="p">:</span>
+                    <span class="c1"># Only look for exact matches, no sense running atomic triggers</span>
+                    <span class="c1"># through the regexp engine.</span>
+                    <span class="k">if</span> <span class="n">msg</span> <span class="o">==</span> <span class="n">pattern</span><span class="p">:</span>
+                        <span class="n">isMatch</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># Non-atomic triggers always need the regexp.</span>
+                    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">regexp</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                        <span class="c1"># The regexp matched!</span>
+                        <span class="n">isMatch</span> <span class="o">=</span> <span class="bp">True</span>
+
+                        <span class="c1"># Collect the stars.</span>
+                        <span class="n">stars</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
+
+                <span class="k">if</span> <span class="n">isMatch</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Found a match!&quot;</span><span class="p">)</span>
+
+                    <span class="n">matched</span> <span class="o">=</span> <span class="n">trig</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="n">foundMatch</span> <span class="o">=</span> <span class="bp">True</span>
+                    <span class="n">matchedTrigger</span> <span class="o">=</span> <span class="n">pattern</span>
+                    <span class="k">break</span>
+
+        <span class="c1"># Store what trigger they matched on. If their matched trigger is None,</span>
+        <span class="c1"># this will be too, which is great.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="s2">&quot;__lastmatch__&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">matchedTrigger</span>
+
+        <span class="k">if</span> <span class="n">matched</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">nil</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="c1"># See if there are any hard redirects.</span>
+                <span class="k">if</span> <span class="n">matched</span><span class="p">[</span><span class="s2">&quot;redirect&quot;</span><span class="p">]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Redirecting us to &quot;</span> <span class="o">+</span> <span class="n">matched</span><span class="p">[</span><span class="s2">&quot;redirect&quot;</span><span class="p">])</span>
+                    <span class="n">redirect</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_tags</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">matched</span><span class="p">[</span><span class="s2">&quot;redirect&quot;</span><span class="p">],</span> <span class="n">stars</span><span class="p">,</span> <span class="n">thatstars</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span>
+                                                  <span class="n">ignore_object_errors</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Pretend user said: &quot;</span> <span class="o">+</span> <span class="n">redirect</span><span class="p">)</span>
+                    <span class="n">reply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getreply</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="p">(</span><span class="n">step</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ignore_object_errors</span><span class="o">=</span><span class="n">ignore_object_errors</span><span class="p">)</span>
+                    <span class="k">break</span>
+
+                <span class="c1"># Check the conditionals.</span>
+                <span class="k">for</span> <span class="n">con</span> <span class="ow">in</span> <span class="n">matched</span><span class="p">[</span><span class="s2">&quot;condition&quot;</span><span class="p">]:</span>
+                    <span class="n">halves</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">cond_split</span><span class="p">,</span> <span class="n">con</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">halves</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">halves</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                        <span class="n">condition</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">cond_parse</span><span class="p">,</span> <span class="n">halves</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                        <span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+                            <span class="n">left</span>     <span class="o">=</span> <span class="n">condition</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                            <span class="n">eq</span>       <span class="o">=</span> <span class="n">condition</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+                            <span class="n">right</span>    <span class="o">=</span> <span class="n">condition</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+                            <span class="n">potreply</span> <span class="o">=</span> <span class="n">halves</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Left: &quot;</span> <span class="o">+</span> <span class="n">left</span> <span class="o">+</span> <span class="s2">&quot;; eq: &quot;</span> <span class="o">+</span> <span class="n">eq</span> <span class="o">+</span> <span class="s2">&quot;; right: &quot;</span> <span class="o">+</span> <span class="n">right</span> <span class="o">+</span> <span class="s2">&quot; =&gt; &quot;</span> <span class="o">+</span> <span class="n">potreply</span><span class="p">)</span>
+
+                            <span class="c1"># Process tags all around.</span>
+                            <span class="n">left</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_tags</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">stars</span><span class="p">,</span> <span class="n">thatstars</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">ignore_object_errors</span><span class="p">)</span>
+                            <span class="n">right</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_tags</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">stars</span><span class="p">,</span> <span class="n">thatstars</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">ignore_object_errors</span><span class="p">)</span>
+
+                            <span class="c1"># Defaults?</span>
+                            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                                <span class="n">left</span> <span class="o">=</span> <span class="s1">&#39;undefined&#39;</span>
+                            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">right</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                                <span class="n">right</span> <span class="o">=</span> <span class="s1">&#39;undefined&#39;</span>
+
+                            <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Check if &quot;</span> <span class="o">+</span> <span class="n">left</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">eq</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span>
+
+                            <span class="c1"># Validate it.</span>
+                            <span class="n">passed</span> <span class="o">=</span> <span class="bp">False</span>
+                            <span class="k">if</span> <span class="n">eq</span> <span class="o">==</span> <span class="s1">&#39;eq&#39;</span> <span class="ow">or</span> <span class="n">eq</span> <span class="o">==</span> <span class="s1">&#39;==&#39;</span><span class="p">:</span>
+                                <span class="k">if</span> <span class="n">left</span> <span class="o">==</span> <span class="n">right</span><span class="p">:</span>
+                                    <span class="n">passed</span> <span class="o">=</span> <span class="bp">True</span>
+                            <span class="k">elif</span> <span class="n">eq</span> <span class="o">==</span> <span class="s1">&#39;ne&#39;</span> <span class="ow">or</span> <span class="n">eq</span> <span class="o">==</span> <span class="s1">&#39;!=&#39;</span> <span class="ow">or</span> <span class="n">eq</span> <span class="o">==</span> <span class="s1">&#39;&lt;&gt;&#39;</span><span class="p">:</span>
+                                <span class="k">if</span> <span class="n">left</span> <span class="o">!=</span> <span class="n">right</span><span class="p">:</span>
+                                    <span class="n">passed</span> <span class="o">=</span> <span class="bp">True</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="c1"># Gasp, dealing with numbers here...</span>
+                                <span class="k">try</span><span class="p">:</span>
+                                    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">left</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+                                    <span class="k">if</span> <span class="n">eq</span> <span class="o">==</span> <span class="s1">&#39;&lt;&#39;</span><span class="p">:</span>
+                                        <span class="k">if</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+                                            <span class="n">passed</span> <span class="o">=</span> <span class="bp">True</span>
+                                    <span class="k">elif</span> <span class="n">eq</span> <span class="o">==</span> <span class="s1">&#39;&lt;=&#39;</span><span class="p">:</span>
+                                        <span class="k">if</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+                                            <span class="n">passed</span> <span class="o">=</span> <span class="bp">True</span>
+                                    <span class="k">elif</span> <span class="n">eq</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">:</span>
+                                        <span class="k">if</span> <span class="n">left</span> <span class="o">&gt;</span> <span class="n">right</span><span class="p">:</span>
+                                            <span class="n">passed</span> <span class="o">=</span> <span class="bp">True</span>
+                                    <span class="k">elif</span> <span class="n">eq</span> <span class="o">==</span> <span class="s1">&#39;&gt;=&#39;</span><span class="p">:</span>
+                                        <span class="k">if</span> <span class="n">left</span> <span class="o">&gt;=</span> <span class="n">right</span><span class="p">:</span>
+                                            <span class="n">passed</span> <span class="o">=</span> <span class="bp">True</span>
+                                <span class="k">except</span><span class="p">:</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Failed to evaluate numeric condition!&quot;</span><span class="p">)</span>
+
+                            <span class="c1"># How truthful?</span>
+                            <span class="k">if</span> <span class="n">passed</span><span class="p">:</span>
+                                <span class="n">reply</span> <span class="o">=</span> <span class="n">potreply</span>
+                                <span class="k">break</span>
+
+                <span class="c1"># Have our reply yet?</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">reply</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">break</span>
+
+                <span class="c1"># Process weights in the replies.</span>
+                <span class="n">bucket</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">matched</span><span class="p">[</span><span class="s2">&quot;reply&quot;</span><span class="p">]:</span>
+                    <span class="n">weight</span> <span class="o">=</span> <span class="mi">1</span>
+                    <span class="n">match</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                        <span class="n">weight</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+                        <span class="k">if</span> <span class="n">weight</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Can&#39;t have a weight &lt;= 0!&quot;</span><span class="p">)</span>
+                            <span class="n">weight</span> <span class="o">=</span> <span class="mi">1</span>
+                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight</span><span class="p">):</span>
+                        <span class="n">bucket</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+                <span class="c1"># Get a random reply.</span>
+                <span class="n">reply</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">bucket</span><span class="p">)</span>
+                <span class="k">break</span>
+
+        <span class="c1"># Still no reply?</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">foundMatch</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NoMatchError</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">reply</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NoReplyError</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Reply: &quot;</span> <span class="o">+</span> <span class="n">reply</span><span class="p">)</span>
+
+        <span class="c1"># Process tags for the BEGIN block.</span>
+        <span class="k">if</span> <span class="n">context</span> <span class="o">==</span> <span class="s2">&quot;begin&quot;</span><span class="p">:</span>
+            <span class="c1"># BEGIN blocks can only set topics and uservars. The rest happen</span>
+            <span class="c1"># later!</span>
+            <span class="n">reTopic</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">topic_tag</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">reTopic</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Setting user&#39;s topic to &quot;</span> <span class="o">+</span> <span class="n">match</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="s2">&quot;topic&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">match</span>
+                <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;{{topic={match}}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">match</span><span class="o">=</span><span class="n">match</span><span class="p">),</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+            <span class="n">reSet</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">set_tag</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">reSet</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Set uservar &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="n">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;set {key}={value}&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">match</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="n">match</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Process more tags if not in BEGIN.</span>
+            <span class="n">reply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_tags</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">reply</span><span class="p">,</span> <span class="n">stars</span><span class="p">,</span> <span class="n">thatstars</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">ignore_object_errors</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">reply</span>
+
+<div class="viewcode-block" id="Brain.reply_regexp"><a class="viewcode-back" href="../../rivescript.html#rivescript.brain.Brain.reply_regexp">[docs]</a>    <span class="k">def</span> <span class="nf">reply_regexp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">regexp</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Prepares a trigger for the regular expression engine.</span>
+
+<span class="sd">        :param str user: The user ID invoking a reply.</span>
+<span class="sd">        :param str regexp: The original trigger text to be turned into a regexp.</span>
+
+<span class="sd">        :return regexp: The final regexp object.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">regexp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_regexc</span><span class="p">[</span><span class="s2">&quot;trigger&quot;</span><span class="p">]:</span>
+            <span class="c1"># Already compiled this one!</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_regexc</span><span class="p">[</span><span class="s2">&quot;trigger&quot;</span><span class="p">][</span><span class="n">regexp</span><span class="p">]</span>
+
+        <span class="c1"># If the trigger is simply &#39;*&#39; then the * there needs to become (.*?)</span>
+        <span class="c1"># to match the blank string too.</span>
+        <span class="n">regexp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">zero_star</span><span class="p">,</span> <span class="s1">r&#39;&lt;zerowidthstar&gt;&#39;</span><span class="p">,</span> <span class="n">regexp</span><span class="p">)</span>
+
+        <span class="c1"># Simple replacements.</span>
+        <span class="n">regexp</span> <span class="o">=</span> <span class="n">regexp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="s1">&#39;(.+?)&#39;</span><span class="p">)</span>   <span class="c1"># Convert * into (.+?)</span>
+        <span class="n">regexp</span> <span class="o">=</span> <span class="n">regexp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="s1">&#39;(\d+?)&#39;</span><span class="p">)</span>  <span class="c1"># Convert # into (\d+?)</span>
+        <span class="n">regexp</span> <span class="o">=</span> <span class="n">regexp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39;(\w+?)&#39;</span><span class="p">)</span>  <span class="c1"># Convert _ into (\w+?)</span>
+        <span class="n">regexp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">r&#39;\{weight=\d+\}&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">regexp</span><span class="p">)</span>  <span class="c1"># Remove {weight} tags</span>
+        <span class="n">regexp</span> <span class="o">=</span> <span class="n">regexp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;zerowidthstar&gt;&#39;</span><span class="p">,</span> <span class="s1">r&#39;(.*?)&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Optionals.</span>
+        <span class="n">optionals</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">optionals</span><span class="p">,</span> <span class="n">regexp</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">optionals</span><span class="p">:</span>
+            <span class="n">parts</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;|&quot;</span><span class="p">)</span>
+            <span class="n">new</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">parts</span><span class="p">:</span>
+                <span class="n">p</span> <span class="o">=</span> <span class="s1">r&#39;(?:</span><span class="se">\\</span><span class="s1">s|</span><span class="se">\\</span><span class="s1">b)+{}(?:</span><span class="se">\\</span><span class="s1">s|</span><span class="se">\\</span><span class="s1">b)+&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+                <span class="n">new</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+            <span class="c1"># If this optional had a star or anything in it, make it</span>
+            <span class="c1"># non-matching.</span>
+            <span class="n">pipes</span> <span class="o">=</span> <span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">new</span><span class="p">)</span>
+            <span class="n">pipes</span> <span class="o">=</span> <span class="n">pipes</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">r&#39;(.+?)&#39;</span><span class="p">,</span> <span class="s1">r&#39;(?:.+?)&#39;</span><span class="p">)</span>
+            <span class="n">pipes</span> <span class="o">=</span> <span class="n">pipes</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">r&#39;(\d+?)&#39;</span><span class="p">,</span> <span class="s1">r&#39;(?:\d+?)&#39;</span><span class="p">)</span>
+            <span class="n">pipes</span> <span class="o">=</span> <span class="n">pipes</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">r&#39;([A-Za-z]+?)&#39;</span><span class="p">,</span> <span class="s1">r&#39;(?:[A-Za-z]+?)&#39;</span><span class="p">)</span>
+
+            <span class="n">regexp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">r&#39;\s*\[&#39;</span> <span class="o">+</span> <span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">match</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;\]\s*&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;(?:&#39;</span> <span class="o">+</span> <span class="n">pipes</span> <span class="o">+</span> <span class="s1">r&#39;|(?:</span><span class="se">\\</span><span class="s1">s|</span><span class="se">\\</span><span class="s1">b))&#39;</span><span class="p">,</span> <span class="n">regexp</span><span class="p">)</span>
+
+        <span class="c1"># _ wildcards can&#39;t match numbers!</span>
+        <span class="n">regexp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">literal_w</span><span class="p">,</span> <span class="s1">r&#39;[A-Za-z]&#39;</span><span class="p">,</span> <span class="n">regexp</span><span class="p">)</span>
+
+        <span class="c1"># Filter in arrays.</span>
+        <span class="n">arrays</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">regexp</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">array</span> <span class="ow">in</span> <span class="n">arrays</span><span class="p">:</span>
+            <span class="n">rep</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">if</span> <span class="n">array</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_array</span><span class="p">:</span>
+                <span class="n">rep</span> <span class="o">=</span> <span class="s1">r&#39;(?:&#39;</span> <span class="o">+</span> <span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">expand_array</span><span class="p">(</span><span class="n">array</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
+            <span class="n">regexp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">r&#39;\@&#39;</span> <span class="o">+</span> <span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="o">+</span> <span class="s1">r&#39;\b&#39;</span><span class="p">,</span> <span class="n">rep</span><span class="p">,</span> <span class="n">regexp</span><span class="p">)</span>
+
+        <span class="c1"># Filter in bot variables.</span>
+        <span class="n">bvars</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">bot_tag</span><span class="p">,</span> <span class="n">regexp</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">bvars</span><span class="p">:</span>
+            <span class="n">rep</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">if</span> <span class="n">var</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_var</span><span class="p">:</span>
+                <span class="n">rep</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">strip_nasties</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_var</span><span class="p">[</span><span class="n">var</span><span class="p">])</span>
+            <span class="n">regexp</span> <span class="o">=</span> <span class="n">regexp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;bot {var}&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">var</span><span class="o">=</span><span class="n">var</span><span class="p">),</span> <span class="n">rep</span><span class="p">)</span>
+
+        <span class="c1"># Filter in user variables.</span>
+        <span class="n">uvars</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">get_tag</span><span class="p">,</span> <span class="n">regexp</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">uvars</span><span class="p">:</span>
+            <span class="n">rep</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">if</span> <span class="n">var</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">]:</span>
+                <span class="n">rep</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">strip_nasties</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="n">var</span><span class="p">])</span>
+            <span class="n">regexp</span> <span class="o">=</span> <span class="n">regexp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;get {var}&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">var</span><span class="o">=</span><span class="n">var</span><span class="p">),</span> <span class="n">rep</span><span class="p">)</span>
+
+        <span class="c1"># Filter in &lt;input&gt; and &lt;reply&gt; tags. This is a slow process, so only</span>
+        <span class="c1"># do it if we have to!</span>
+        <span class="k">if</span> <span class="s1">&#39;&lt;input&#39;</span> <span class="ow">in</span> <span class="n">regexp</span> <span class="ow">or</span> <span class="s1">&#39;&lt;reply&#39;</span> <span class="ow">in</span> <span class="n">regexp</span><span class="p">:</span>
+            <span class="k">for</span> <span class="nb">type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="s1">&#39;reply&#39;</span><span class="p">]:</span>
+                <span class="n">tags</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">r&#39;&lt;&#39;</span> <span class="o">+</span> <span class="nb">type</span> <span class="o">+</span> <span class="s1">r&#39;([0-9])&gt;&#39;</span><span class="p">,</span> <span class="n">regexp</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">:</span>
+                    <span class="n">rep</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">format_message</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="s1">&#39;__history__&#39;</span><span class="p">][</span><span class="nb">type</span><span class="p">][</span><span class="nb">int</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+                    <span class="n">regexp</span> <span class="o">=</span> <span class="n">regexp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;{type}{index}&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="nb">type</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">),</span> <span class="n">rep</span><span class="p">)</span>
+                <span class="n">regexp</span> <span class="o">=</span> <span class="n">regexp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;{type}&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="nb">type</span><span class="p">),</span>
+                                        <span class="bp">self</span><span class="o">.</span><span class="n">format_message</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="s1">&#39;__history__&#39;</span><span class="p">][</span><span class="nb">type</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+                <span class="c1"># TODO: the Perl version doesn&#39;t do just &lt;input&gt;/&lt;reply&gt; in trigs!</span>
+
+        <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;^&#39;</span> <span class="o">+</span> <span class="n">regexp</span> <span class="o">+</span> <span class="s1">r&#39;$&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Brain.do_expand_array"><a class="viewcode-back" href="../../rivescript.html#rivescript.brain.Brain.do_expand_array">[docs]</a>    <span class="k">def</span> <span class="nf">do_expand_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">array_name</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Do recurrent array expansion, returning a set of keywords.</span>
+
+<span class="sd">        Exception is thrown when there are cyclical dependencies between</span>
+<span class="sd">        arrays or if the ``@array`` name references an undefined array.</span>
+
+<span class="sd">        :param str array_name: The name of the array to expand.</span>
+<span class="sd">        :param int depth: The recursion depth counter.</span>
+
+<span class="sd">        :return set: The final set of array entries.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">depth</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_depth</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;deep recursion detected&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">array_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_array</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;array &#39;</span><span class="si">%s</span><span class="s2">&#39; not defined&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">array_name</span><span class="p">))</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_array</span><span class="p">[</span><span class="n">array_name</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">array</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_array</span><span class="p">[</span><span class="n">array_name</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">array</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;@&#39;</span><span class="p">):</span>
+                <span class="n">ret</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+                <span class="n">expanded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">do_expand_array</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">depth</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">ret</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">expanded</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Brain.expand_array"><a class="viewcode-back" href="../../rivescript.html#rivescript.brain.Brain.expand_array">[docs]</a>    <span class="k">def</span> <span class="nf">expand_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">array_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Expand variables and return a set of keywords.</span>
+
+<span class="sd">        :param str array_name: The name of the array to expand.</span>
+
+<span class="sd">        :return list: The final array contents.</span>
+
+<span class="sd">        Warning is issued when exceptions occur.&quot;&quot;&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_array</span><span class="p">[</span><span class="n">array_name</span><span class="p">]</span> <span class="k">if</span> <span class="n">array_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_array</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">do_expand_array</span><span class="p">(</span><span class="n">array_name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Error expanding array &#39;</span><span class="si">%s</span><span class="s2">&#39;: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">array_name</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
+
+<div class="viewcode-block" id="Brain.process_tags"><a class="viewcode-back" href="../../rivescript.html#rivescript.brain.Brain.process_tags">[docs]</a>    <span class="k">def</span> <span class="nf">process_tags</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">reply</span><span class="p">,</span> <span class="n">st</span><span class="o">=</span><span class="p">[],</span> <span class="n">bst</span><span class="o">=</span><span class="p">[],</span> <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ignore_object_errors</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Post process tags in a message.</span>
+
+<span class="sd">        :param str user: The user ID.</span>
+<span class="sd">        :param str msg: The user&#39;s formatted message.</span>
+<span class="sd">        :param str reply: The raw RiveScript reply for the message.</span>
+<span class="sd">        :param []str st: The array of ``&lt;star&gt;`` matches from the trigger.</span>
+<span class="sd">        :param []str bst: The array of ``&lt;botstar&gt;`` matches from a</span>
+<span class="sd">            ``%Previous`` command.</span>
+<span class="sd">        :param int depth: The recursion depth counter.</span>
+<span class="sd">        :param bool ignore_object_errors: Whether to ignore errors in Python</span>
+<span class="sd">            object macros instead of raising an ``ObjectError`` exception.</span>
+
+<span class="sd">        :return str: The final reply after tags have been processed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">stars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span>
+        <span class="n">stars</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">st</span><span class="p">)</span>
+        <span class="n">botstars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span>
+        <span class="n">botstars</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">bst</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">stars</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">stars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;undefined&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">botstars</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">botstars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;undefined&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Tag shortcuts.</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;person&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;{person}&lt;star&gt;{/person}&#39;</span><span class="p">)</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;@&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;{@&lt;star&gt;}&#39;</span><span class="p">)</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;formal&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;{formal}&lt;star&gt;{/formal}&#39;</span><span class="p">)</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;sentence&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;{sentence}&lt;star&gt;{/sentence}&#39;</span><span class="p">)</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;uppercase&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;{uppercase}&lt;star&gt;{/uppercase}&#39;</span><span class="p">)</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;lowercase&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;{lowercase}&lt;star&gt;{/lowercase}&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Weight and &lt;star&gt; tags.</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span>  <span class="c1"># Leftover {weight}s</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">stars</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;star&gt;&#39;</span><span class="p">,</span> <span class="n">stars</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">reStars</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">star_tags</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">reStars</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">stars</span><span class="p">):</span>
+                    <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;star{match}&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">match</span><span class="o">=</span><span class="n">match</span><span class="p">),</span> <span class="n">stars</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="p">)])</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">botstars</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;botstar&gt;&#39;</span><span class="p">,</span> <span class="n">botstars</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">reStars</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">botstars</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">reStars</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">botstars</span><span class="p">):</span>
+                    <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;botstar{match}&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">match</span><span class="o">=</span><span class="n">match</span><span class="p">),</span> <span class="n">botstars</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="p">)])</span>
+
+        <span class="c1"># &lt;input&gt; and &lt;reply&gt;</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;input&gt;&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="s1">&#39;__history__&#39;</span><span class="p">][</span><span class="s1">&#39;input&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;reply&gt;&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="s1">&#39;__history__&#39;</span><span class="p">][</span><span class="s1">&#39;reply&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">reInput</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">input_tags</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">reInput</span><span class="p">:</span>
+            <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;input{match}&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">match</span><span class="o">=</span><span class="n">match</span><span class="p">),</span>
+                                  <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="s1">&#39;__history__&#39;</span><span class="p">][</span><span class="s1">&#39;input&#39;</span><span class="p">][</span><span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">reReply</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">reply_tags</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">reReply</span><span class="p">:</span>
+            <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;reply{match}&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">match</span><span class="o">=</span><span class="n">match</span><span class="p">),</span>
+                                  <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="s1">&#39;__history__&#39;</span><span class="p">][</span><span class="s1">&#39;reply&#39;</span><span class="p">][</span><span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+
+        <span class="c1"># &lt;id&gt; and escape codes.</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;id&gt;&#39;</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">s&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">n&#39;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">#&#39;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Random bits.</span>
+        <span class="n">reRandom</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">random_tags</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">reRandom</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">if</span> <span class="s1">&#39;|&#39;</span> <span class="ow">in</span> <span class="n">match</span><span class="p">:</span>
+                <span class="n">output</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">output</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
+            <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;{{random}}{match}{{/random}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">match</span><span class="o">=</span><span class="n">match</span><span class="p">),</span> <span class="n">output</span><span class="p">)</span>
+
+        <span class="c1"># Person Substitutions and String Formatting.</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;person&#39;</span><span class="p">,</span> <span class="s1">&#39;formal&#39;</span><span class="p">,</span> <span class="s1">&#39;sentence&#39;</span><span class="p">,</span> <span class="s1">&#39;uppercase&#39;</span><span class="p">,</span>  <span class="s1">&#39;lowercase&#39;</span><span class="p">]:</span>
+            <span class="n">matcher</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">r&#39;\{&#39;</span> <span class="o">+</span> <span class="n">item</span> <span class="o">+</span> <span class="s1">r&#39;\}(.+?)\{/&#39;</span> <span class="o">+</span> <span class="n">item</span> <span class="o">+</span> <span class="s1">r&#39;\}&#39;</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matcher</span><span class="p">:</span>
+                <span class="n">output</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="s1">&#39;person&#39;</span><span class="p">:</span>
+                    <span class="c1"># Person substitutions.</span>
+                    <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">match</span><span class="p">,</span> <span class="s2">&quot;person&quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">output</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">string_format</span><span class="p">(</span><span class="n">match</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+                <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;{{{item}}}{match}{{/{item}}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="n">match</span><span class="p">),</span> <span class="n">output</span><span class="p">)</span>
+
+        <span class="c1"># Handle all variable-related tags with an iterative regex approach,</span>
+        <span class="c1"># to allow for nesting of tags in arbitrary ways (think &lt;set a=&lt;get b&gt;&gt;)</span>
+        <span class="c1"># Dummy out the &lt;call&gt; tags first, because we don&#39;t handle them right</span>
+        <span class="c1"># here.</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;call&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;{__call__}&quot;</span><span class="p">)</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;/call&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;{/__call__}&quot;</span><span class="p">)</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="c1"># This regex will match a &lt;tag&gt; which contains no other tag inside</span>
+            <span class="c1"># it, i.e. in the case of &lt;set a=&lt;get b&gt;&gt; it will match &lt;get b&gt; but</span>
+            <span class="c1"># not the &lt;set&gt; tag, on the first pass. The second pass will get the</span>
+            <span class="c1"># &lt;set&gt; tag, and so on.</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">tag_search</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span> <span class="k">break</span>  <span class="c1"># No remaining tags!</span>
+
+            <span class="n">match</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">parts</span>  <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">tag</span>    <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="n">data</span>   <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">insert</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>  <span class="c1"># Result of the tag evaluation</span>
+
+            <span class="c1"># Handle the tags.</span>
+            <span class="k">if</span> <span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;bot&quot;</span> <span class="ow">or</span> <span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;env&quot;</span><span class="p">:</span>
+                <span class="c1"># &lt;bot&gt; and &lt;env&gt; tags are similar.</span>
+                <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_var</span> <span class="k">if</span> <span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;bot&quot;</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_global</span>
+                <span class="k">if</span> <span class="s2">&quot;=&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                    <span class="c1"># Setting a bot/env variable.</span>
+                    <span class="n">parts</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Set &quot;</span> <span class="o">+</span> <span class="n">tag</span> <span class="o">+</span> <span class="s2">&quot; variable &quot;</span> <span class="o">+</span> <span class="n">text_type</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">+</span> <span class="n">text_type</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+                    <span class="n">target</span><span class="p">[</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># Getting a bot/env variable.</span>
+                    <span class="n">insert</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;undefined&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;set&quot;</span><span class="p">:</span>
+                <span class="c1"># &lt;set&gt; user vars.</span>
+                <span class="n">parts</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Set uservar &quot;</span> <span class="o">+</span> <span class="n">text_type</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">+</span> <span class="n">text_type</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">tag</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;add&quot;</span><span class="p">,</span> <span class="s2">&quot;sub&quot;</span><span class="p">,</span> <span class="s2">&quot;mult&quot;</span><span class="p">,</span> <span class="s2">&quot;div&quot;</span><span class="p">]:</span>
+                <span class="c1"># Math operator tags.</span>
+                <span class="n">parts</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+                <span class="n">var</span>   <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+                <span class="c1"># Sanity check the value.</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">var</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">]:</span>
+                        <span class="c1"># Initialize it.</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">insert</span> <span class="o">=</span> <span class="s2">&quot;[ERR: Math can&#39;t &#39;{}&#39; non-numeric value &#39;{}&#39;]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+                <span class="c1"># Attempt the operation.</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">orig</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="n">var</span><span class="p">])</span>
+                    <span class="n">new</span>  <span class="o">=</span> <span class="mi">0</span>
+                    <span class="k">if</span> <span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;add&quot;</span><span class="p">:</span>
+                        <span class="n">new</span> <span class="o">=</span> <span class="n">orig</span> <span class="o">+</span> <span class="n">value</span>
+                    <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;sub&quot;</span><span class="p">:</span>
+                        <span class="n">new</span> <span class="o">=</span> <span class="n">orig</span> <span class="o">-</span> <span class="n">value</span>
+                    <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;mult&quot;</span><span class="p">:</span>
+                        <span class="n">new</span> <span class="o">=</span> <span class="n">orig</span> <span class="o">*</span> <span class="n">value</span>
+                    <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;div&quot;</span><span class="p">:</span>
+                        <span class="n">new</span> <span class="o">=</span> <span class="n">orig</span> <span class="o">/</span> <span class="n">value</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">new</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">insert</span> <span class="o">=</span> <span class="s2">&quot;[ERR: Math couldn&#39;t &#39;{}&#39; to value &#39;{}&#39;]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="n">var</span><span class="p">])</span>
+            <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;get&quot;</span><span class="p">:</span>
+                <span class="n">insert</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;undefined&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Unrecognized tag.</span>
+                <span class="n">insert</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">{}</span><span class="se">\x01</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">match</span><span class="p">)</span>
+
+            <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;{}&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">match</span><span class="p">),</span> <span class="n">insert</span><span class="p">)</span>
+
+        <span class="c1"># Restore unrecognized tags.</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\x01</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Streaming code. DEPRECATED!</span>
+        <span class="k">if</span> <span class="s1">&#39;{!&#39;</span> <span class="ow">in</span> <span class="n">reply</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_warn</span><span class="p">(</span><span class="s2">&quot;Use of the {!...} tag is deprecated and not supported here.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Topic setter.</span>
+        <span class="n">reTopic</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">topic_tag</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">reTopic</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Setting user&#39;s topic to &quot;</span> <span class="o">+</span> <span class="n">match</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="s2">&quot;topic&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">match</span>
+            <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;{{topic={match}}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">match</span><span class="o">=</span><span class="n">match</span><span class="p">),</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Inline redirecter.</span>
+        <span class="n">reRedir</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">redir_tag</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">reRedir</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Redirect to &quot;</span> <span class="o">+</span> <span class="n">match</span><span class="p">)</span>
+            <span class="n">at</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">subreply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getreply</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">at</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="p">(</span><span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;{{@{match}}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">match</span><span class="o">=</span><span class="n">match</span><span class="p">),</span> <span class="n">subreply</span><span class="p">)</span>
+
+        <span class="c1"># Object caller.</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;{__call__}&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;call&gt;&quot;</span><span class="p">)</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;{/__call__}&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;/call&gt;&quot;</span><span class="p">)</span>
+        <span class="n">reCall</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">r&#39;&lt;call&gt;(.+?)&lt;/call&gt;&#39;</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">reCall</span><span class="p">:</span>
+            <span class="n">parts</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">ws</span><span class="p">,</span> <span class="n">match</span><span class="p">)</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="n">obj</span>    <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">args</span>   <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">args</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+            <span class="c1"># Do we know this object?</span>
+            <span class="k">if</span> <span class="n">obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_objlangs</span><span class="p">:</span>
+                <span class="c1"># We do, but do we have a handler for that language?</span>
+                <span class="n">lang</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_objlangs</span><span class="p">[</span><span class="n">obj</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">lang</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_handlers</span><span class="p">:</span>
+                    <span class="c1"># We do.</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_handlers</span><span class="p">[</span><span class="n">lang</span><span class="p">]</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="n">python</span><span class="o">.</span><span class="n">PythonObjectError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">ignore_object_errors</span><span class="p">:</span>
+                            <span class="k">raise</span> <span class="n">ObjectError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+                        <span class="n">output</span> <span class="o">=</span> <span class="n">RS_ERR_OBJECT</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">ignore_object_errors</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="n">ObjectError</span><span class="p">(</span><span class="n">RS_ERR_OBJECT_HANDLER</span><span class="p">)</span>
+                    <span class="n">output</span> <span class="o">=</span> <span class="n">RS_ERR_OBJECT_HANDLER</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">ignore_object_errors</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">ObjectError</span><span class="p">(</span><span class="n">RS_ERR_OBJECT_MISSING</span><span class="p">)</span>
+                <span class="n">output</span> <span class="o">=</span> <span class="n">RS_ERR_OBJECT_MISSING</span>
+
+            <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;call&gt;{match}&lt;/call&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">match</span><span class="o">=</span><span class="n">match</span><span class="p">),</span> <span class="n">output</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">reply</span></div>
+
+<div class="viewcode-block" id="Brain.substitute"><a class="viewcode-back" href="../../rivescript.html#rivescript.brain.Brain.substitute">[docs]</a>    <span class="k">def</span> <span class="nf">substitute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">kind</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Run a kind of substitution on a message.</span>
+
+<span class="sd">        :param str msg: The message to run substitutions against.</span>
+<span class="sd">        :param str kind: The kind of substitution to run,</span>
+<span class="sd">            one of ``subs`` or ``person``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Safety checking.</span>
+        <span class="k">if</span> <span class="s1">&#39;lists&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_sorted</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">RepliesNotSortedError</span><span class="p">(</span><span class="s2">&quot;You must call sort_replies() once you are done loading RiveScript documents&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">kind</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_sorted</span><span class="p">[</span><span class="s2">&quot;lists&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="n">RepliesNotSortedError</span><span class="p">(</span><span class="s2">&quot;You must call sort_replies() once you are done loading RiveScript documents&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Get the substitution map.</span>
+        <span class="n">subs</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;sub&#39;</span><span class="p">:</span>
+            <span class="n">subs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_sub</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">subs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_person</span>
+
+        <span class="c1"># Make placeholders each time we substitute something.</span>
+        <span class="n">ph</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">i</span>  <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_sorted</span><span class="p">[</span><span class="s2">&quot;lists&quot;</span><span class="p">][</span><span class="n">kind</span><span class="p">]:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">subs</span><span class="p">[</span><span class="n">pattern</span><span class="p">]</span>
+
+            <span class="c1"># Make a placeholder.</span>
+            <span class="n">ph</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+            <span class="n">placeholder</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x00</span><span class="si">%d</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="n">cache</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_regexc</span><span class="p">[</span><span class="n">kind</span><span class="p">][</span><span class="n">pattern</span><span class="p">]</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">cache</span><span class="p">[</span><span class="s2">&quot;sub1&quot;</span><span class="p">],</span> <span class="n">placeholder</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">cache</span><span class="p">[</span><span class="s2">&quot;sub2&quot;</span><span class="p">],</span> <span class="n">placeholder</span> <span class="o">+</span> <span class="s1">r&#39;\1&#39;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">cache</span><span class="p">[</span><span class="s2">&quot;sub3&quot;</span><span class="p">],</span> <span class="s1">r&#39;\1&#39;</span> <span class="o">+</span> <span class="n">placeholder</span> <span class="o">+</span> <span class="s1">r&#39;\2&#39;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">cache</span><span class="p">[</span><span class="s2">&quot;sub4&quot;</span><span class="p">],</span> <span class="s1">r&#39;\1&#39;</span> <span class="o">+</span> <span class="n">placeholder</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+        <span class="n">placeholders</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">placeholder</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">placeholders</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">ph</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">match</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+
+        <span class="c1"># Strip &amp; return.</span>
+        <span class="k">return</span> <span class="n">msg</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Noah Petherbridge &lt;root@kirsle.net&gt;.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.12.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

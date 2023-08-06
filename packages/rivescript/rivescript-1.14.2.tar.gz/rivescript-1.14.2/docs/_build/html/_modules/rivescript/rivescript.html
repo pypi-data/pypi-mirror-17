@@ -1,0 +1,1305 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rivescript.rivescript &mdash; rivescript 1.12.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="rivescript 1.12.3 documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> rivescript
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.12.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rivescript.html">rivescript package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">rivescript</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>rivescript.rivescript</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for rivescript.rivescript</h1><div class="highlight"><pre>
+<span></span><span class="c1"># RiveScript-Python</span>
+<span class="c1">#</span>
+<span class="c1"># This code is released under the MIT License.</span>
+<span class="c1"># See the &quot;LICENSE&quot; file for more information.</span>
+<span class="c1">#</span>
+<span class="c1"># https://www.rivescript.com/</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+<span class="kn">from</span> <span class="nn">six</span> <span class="kn">import</span> <span class="n">text_type</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">pprint</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">codecs</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">__version__</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">python</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">sorting</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">inheritance</span> <span class="k">as</span> <span class="n">inherit_utils</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">utils</span>
+<span class="kn">from</span> <span class="nn">.brain</span> <span class="kn">import</span> <span class="n">Brain</span>
+<span class="kn">from</span> <span class="nn">.parser</span> <span class="kn">import</span> <span class="n">Parser</span>
+<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">RS_ERR_MATCH</span><span class="p">,</span> <span class="n">RS_ERR_REPLY</span><span class="p">,</span> <span class="n">RS_ERR_DEEP_RECURSION</span>
+<span class="p">)</span>
+
+<span class="c1"># These constants come from the exceptions submodule but should be exportable</span>
+<span class="c1"># from this one. Pyflakes gives warnings about them not being used, so...</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">RS_ERR_MATCH</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">RS_ERR_REPLY</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">RS_ERR_DEEP_RECURSION</span>
+
+<div class="viewcode-block" id="RiveScript"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript">[docs]</a><span class="k">class</span> <span class="nc">RiveScript</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A RiveScript interpreter for Python 2 and 3.</span>
+
+<span class="sd">    :param bool debug: Set to True to enable verbose logging.</span>
+
+<span class="sd">    :param bool strict: Enable strict mode.</span>
+<span class="sd">        Strict mode causes RiveScript syntax errors to be fatal.</span>
+<span class="sd">        This option is ``True`` by default.</span>
+
+<span class="sd">    :param str log: Specify a log file to write debug output to.</span>
+<span class="sd">        This can redirect debug lines to a file instead of ``STDOUT``.</span>
+
+<span class="sd">    :param int depth: Specify the recursion depth limit.</span>
+<span class="sd">        This is how many times RiveScript will recursively follow redirects</span>
+<span class="sd">        before giving up with a ``DeepRecursionError`` exception.</span>
+<span class="sd">        The default is ``50``.</span>
+
+<span class="sd">    :param bool utf8: Enable UTF-8 mode.</span>
+<span class="sd">        The default is ``False``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">############################################################################</span>
+    <span class="c1"># Initialization and Utility Methods                                       #</span>
+    <span class="c1">############################################################################</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">utf8</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a new RiveScript interpreter.&quot;&quot;&quot;</span>
+
+        <span class="c1">###</span>
+        <span class="c1"># User configurable fields.</span>
+        <span class="c1">###</span>
+
+        <span class="c1"># Debugging</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_debug</span> <span class="o">=</span> <span class="n">debug</span>   <span class="c1"># Debug mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log</span>   <span class="o">=</span> <span class="n">log</span>     <span class="c1"># Debug log file</span>
+
+        <span class="c1"># Unicode stuff</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_utf8</span>               <span class="o">=</span> <span class="n">utf8</span>  <span class="c1"># UTF-8 mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unicode_punctuation</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;[.,!?;:]&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Misc.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_strict</span> <span class="o">=</span> <span class="n">strict</span>  <span class="c1"># Strict mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_depth</span>  <span class="o">=</span> <span class="n">depth</span>   <span class="c1"># Recursion depth limit</span>
+
+        <span class="c1">###</span>
+        <span class="c1"># Internal fields.</span>
+        <span class="c1">###</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_global</span>   <span class="o">=</span> <span class="p">{}</span>      <span class="c1"># &#39;global&#39; variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_var</span>      <span class="o">=</span> <span class="p">{}</span>      <span class="c1"># &#39;bot&#39; variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sub</span>      <span class="o">=</span> <span class="p">{}</span>      <span class="c1"># &#39;sub&#39; variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_person</span>   <span class="o">=</span> <span class="p">{}</span>      <span class="c1"># &#39;person&#39; variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_array</span>    <span class="o">=</span> <span class="p">{}</span>      <span class="c1"># &#39;array&#39; variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_users</span>    <span class="o">=</span> <span class="p">{}</span>      <span class="c1"># &#39;user&#39; variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_freeze</span>   <span class="o">=</span> <span class="p">{}</span>      <span class="c1"># frozen &#39;user&#39; variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_includes</span> <span class="o">=</span> <span class="p">{}</span>      <span class="c1"># included topics</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lineage</span>  <span class="o">=</span> <span class="p">{}</span>      <span class="c1"># inherited topics</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span> <span class="o">=</span> <span class="p">{}</span>      <span class="c1"># Object handlers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_objlangs</span> <span class="o">=</span> <span class="p">{}</span>      <span class="c1"># Languages of objects used</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_topics</span>   <span class="o">=</span> <span class="p">{}</span>      <span class="c1"># Main reply structure</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_thats</span>    <span class="o">=</span> <span class="p">{}</span>      <span class="c1"># %Previous reply structure</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sorted</span>   <span class="o">=</span> <span class="p">{}</span>      <span class="c1"># Sorted buffers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_syntax</span>   <span class="o">=</span> <span class="p">{}</span>      <span class="c1"># Syntax tracking (filenames &amp; line no.&#39;s)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_regexc</span>   <span class="o">=</span> <span class="p">{</span>       <span class="c1"># Precomputed regexes for speed optimizations.</span>
+            <span class="s2">&quot;trigger&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s2">&quot;sub&quot;</span><span class="p">:</span>    <span class="p">{},</span>
+            <span class="s2">&quot;person&quot;</span><span class="p">:</span>  <span class="p">{},</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Internal helpers.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parser</span> <span class="o">=</span> <span class="n">Parser</span><span class="p">(</span>
+            <span class="n">master</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+            <span class="n">strict</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_strict</span><span class="p">,</span>
+            <span class="n">utf8</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_utf8</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_brain</span> <span class="o">=</span> <span class="n">Brain</span><span class="p">(</span>
+            <span class="n">master</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+            <span class="n">strict</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_strict</span><span class="p">,</span>
+            <span class="n">utf8</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_utf8</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Define the default Python language handler.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">python</span><span class="o">.</span><span class="n">PyRiveObjects</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_say</span><span class="p">(</span><span class="s2">&quot;Interpreter initialized.&quot;</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="RiveScript.VERSION"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.VERSION">[docs]</a>    <span class="k">def</span> <span class="nf">VERSION</span><span class="p">(</span><span class="bp">self</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the version number of the RiveScript library.</span>
+
+<span class="sd">        This may be called as either a class method or a method of a RiveScript</span>
+<span class="sd">        object instance.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">__version__</span></div>
+
+    <span class="k">def</span> <span class="nf">_say</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debug</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;[RS] {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="p">:</span>
+            <span class="c1"># Log it to the file.</span>
+            <span class="n">fh</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span>
+            <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;[RS] &quot;</span> <span class="o">+</span> <span class="n">message</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">fh</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_warn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">lineno</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;[RS]&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debug</span><span class="p">:</span>
+            <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;[RS::Warning]&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span> <span class="ow">and</span> <span class="n">lineno</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="s2">&quot;at&quot;</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="s2">&quot;line&quot;</span><span class="p">,</span> <span class="n">lineno</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+
+    <span class="c1">############################################################################</span>
+    <span class="c1"># Loading and Parsing Methods                                              #</span>
+    <span class="c1">############################################################################</span>
+
+<div class="viewcode-block" id="RiveScript.load_directory"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.load_directory">[docs]</a>    <span class="k">def</span> <span class="nf">load_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load RiveScript documents from a directory.</span>
+
+<span class="sd">        :param str directory: The directory of RiveScript documents to load</span>
+<span class="sd">            replies from.</span>
+<span class="sd">        :param []str ext: List of file extensions to consider as RiveScript</span>
+<span class="sd">            documents. The default is ``[&quot;.rive&quot;, &quot;.rs&quot;]``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_say</span><span class="p">(</span><span class="s2">&quot;Loading from directory: &quot;</span> <span class="o">+</span> <span class="n">directory</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">ext</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># Use the default extensions - .rive is preferable.</span>
+            <span class="n">ext</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;.rive&#39;</span><span class="p">,</span> <span class="s1">&#39;.rs&#39;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">ext</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="c1"># Backwards compatibility for ext being a string value.</span>
+            <span class="n">ext</span> <span class="o">=</span> <span class="p">[</span><span class="n">ext</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_warn</span><span class="p">(</span><span class="s2">&quot;Error: &quot;</span> <span class="o">+</span> <span class="n">directory</span> <span class="o">+</span> <span class="s2">&quot; is not a directory.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">extension</span> <span class="ow">in</span> <span class="n">ext</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">extension</span><span class="p">):</span>
+                    <span class="c1"># Load this file.</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">load_file</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">item</span><span class="p">))</span>
+                    <span class="k">break</span></div>
+
+<div class="viewcode-block" id="RiveScript.load_file"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.load_file">[docs]</a>    <span class="k">def</span> <span class="nf">load_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load and parse a RiveScript document.</span>
+
+<span class="sd">        :param str filename: The path to a RiveScript file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_say</span><span class="p">(</span><span class="s2">&quot;Loading file: &quot;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
+
+        <span class="n">fh</span>    <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">fh</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_say</span><span class="p">(</span><span class="s2">&quot;Parsing &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; lines of code from &quot;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parse</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">lines</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RiveScript.stream"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.stream">[docs]</a>    <span class="k">def</span> <span class="nf">stream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Stream in RiveScript source code dynamically.</span>
+
+<span class="sd">        :param code: Either a string containing RiveScript code or an array of</span>
+<span class="sd">            lines of RiveScript code.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_say</span><span class="p">(</span><span class="s2">&quot;Streaming code.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">code</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">text_type</span><span class="p">]:</span>
+            <span class="n">code</span> <span class="o">=</span> <span class="n">code</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parse</span><span class="p">(</span><span class="s2">&quot;stream()&quot;</span><span class="p">,</span> <span class="n">code</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">code</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Parse RiveScript code into memory.</span>
+
+<span class="sd">        :param str fname: The arbitrary file name used for syntax reporting.</span>
+<span class="sd">        :param []str code: Lines of RiveScript source code to parse.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Get the &quot;abstract syntax tree&quot;</span>
+        <span class="n">ast</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">code</span><span class="p">)</span>
+
+        <span class="c1"># Get all of the &quot;begin&quot; type variables: global, var, sub, person, ...</span>
+        <span class="k">for</span> <span class="n">kind</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">ast</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">internal</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">kind</span><span class="p">)</span>  <span class="c1"># The internal name for this attribute</span>
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;&lt;undef&gt;&quot;</span><span class="p">:</span>
+                    <span class="k">del</span> <span class="n">internal</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">internal</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+                <span class="c1"># Precompile substitutions.</span>
+                <span class="k">if</span> <span class="n">kind</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;sub&quot;</span><span class="p">,</span> <span class="s2">&quot;person&quot;</span><span class="p">]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_precompile_substitution</span><span class="p">(</span><span class="n">kind</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+        <span class="c1"># Let the scripts set the debug mode and other special globals.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_global</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;debug&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_debug</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_global</span><span class="p">[</span><span class="s2">&quot;debug&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;true&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_global</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;depth&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_depth</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_global</span><span class="p">[</span><span class="s2">&quot;depth&quot;</span><span class="p">])</span>
+
+        <span class="c1"># Consume all the parsed triggers.</span>
+        <span class="k">for</span> <span class="n">topic</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">ast</span><span class="p">[</span><span class="s2">&quot;topics&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="c1"># Keep a map of the topics that are included/inherited under this topic.</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">topic</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_includes</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_includes</span><span class="p">[</span><span class="n">topic</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">topic</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lineage</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_lineage</span><span class="p">[</span><span class="n">topic</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_includes</span><span class="p">[</span><span class="n">topic</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;includes&quot;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lineage</span><span class="p">[</span><span class="n">topic</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;inherits&quot;</span><span class="p">])</span>
+
+            <span class="c1"># Consume the triggers.</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">topic</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topics</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_topics</span><span class="p">[</span><span class="n">topic</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">trigger</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;triggers&quot;</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_topics</span><span class="p">[</span><span class="n">topic</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trigger</span><span class="p">)</span>
+
+                <span class="c1"># Precompile the regexp for this trigger.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_precompile_regexp</span><span class="p">(</span><span class="n">trigger</span><span class="p">[</span><span class="s2">&quot;trigger&quot;</span><span class="p">])</span>
+
+                <span class="c1"># Does this trigger have a %Previous? If so, make a pointer to</span>
+                <span class="c1"># this exact trigger in _thats.</span>
+                <span class="k">if</span> <span class="n">trigger</span><span class="p">[</span><span class="s2">&quot;previous&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">topic</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_thats</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_thats</span><span class="p">[</span><span class="n">topic</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">trigger</span><span class="p">[</span><span class="s2">&quot;trigger&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_thats</span><span class="p">[</span><span class="n">topic</span><span class="p">]:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_thats</span><span class="p">[</span><span class="n">topic</span><span class="p">][</span><span class="n">trigger</span><span class="p">[</span><span class="s2">&quot;trigger&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_thats</span><span class="p">[</span><span class="n">topic</span><span class="p">][</span><span class="n">trigger</span><span class="p">[</span><span class="s2">&quot;trigger&quot;</span><span class="p">]][</span><span class="n">trigger</span><span class="p">[</span><span class="s2">&quot;previous&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">trigger</span>
+
+        <span class="c1"># Load all the parsed objects.</span>
+        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">ast</span><span class="p">[</span><span class="s2">&quot;objects&quot;</span><span class="p">]:</span>
+            <span class="c1"># Have a handler for it?</span>
+            <span class="k">if</span> <span class="n">obj</span><span class="p">[</span><span class="s2">&quot;language&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_objlangs</span><span class="p">[</span><span class="n">obj</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="s2">&quot;language&quot;</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">[</span><span class="n">obj</span><span class="p">[</span><span class="s2">&quot;language&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">obj</span><span class="p">[</span><span class="s2">&quot;code&quot;</span><span class="p">])</span>
+
+<div class="viewcode-block" id="RiveScript.deparse"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.deparse">[docs]</a>    <span class="k">def</span> <span class="nf">deparse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Dump the in-memory RiveScript brain as a Python data structure.</span>
+
+<span class="sd">        This would be useful, for example, to develop a user interface for</span>
+<span class="sd">        editing RiveScript replies without having to edit the RiveScript</span>
+<span class="sd">        source code directly.</span>
+
+<span class="sd">        :return dict: JSON-serializable Python data structure containing the</span>
+<span class="sd">            contents of all RiveScript replies currently loaded in memory.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Data to return.</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;begin&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;global&quot;</span><span class="p">:</span>   <span class="p">{},</span>
+                <span class="s2">&quot;var&quot;</span><span class="p">:</span>      <span class="p">{},</span>
+                <span class="s2">&quot;sub&quot;</span><span class="p">:</span>      <span class="p">{},</span>
+                <span class="s2">&quot;person&quot;</span><span class="p">:</span>   <span class="p">{},</span>
+                <span class="s2">&quot;array&quot;</span><span class="p">:</span>    <span class="p">{},</span>
+                <span class="s2">&quot;triggers&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="s2">&quot;that&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;topic&quot;</span><span class="p">:</span>   <span class="p">{},</span>
+            <span class="s2">&quot;that&quot;</span><span class="p">:</span>    <span class="p">{},</span>
+            <span class="s2">&quot;inherit&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s2">&quot;include&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Populate the config fields.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debug</span><span class="p">:</span>
+            <span class="n">result</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="s2">&quot;global&quot;</span><span class="p">][</span><span class="s2">&quot;debug&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debug</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_depth</span> <span class="o">!=</span> <span class="mi">50</span><span class="p">:</span>
+            <span class="n">result</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="s2">&quot;global&quot;</span><span class="p">][</span><span class="s2">&quot;depth&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">50</span>
+
+        <span class="c1"># Definitions</span>
+        <span class="n">result</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="s2">&quot;var&quot;</span><span class="p">]</span>    <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_var</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">result</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="s2">&quot;sub&quot;</span><span class="p">]</span>    <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sub</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">result</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="s2">&quot;person&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_person</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">result</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="s2">&quot;array&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_array</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">result</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="s2">&quot;global&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_global</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+
+        <span class="c1"># Topic Triggers.</span>
+        <span class="k">for</span> <span class="n">topic</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topics</span><span class="p">:</span>
+            <span class="n">dest</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Where to place the topic info</span>
+
+            <span class="k">if</span> <span class="n">topic</span> <span class="o">==</span> <span class="s2">&quot;__begin__&quot;</span><span class="p">:</span>
+                <span class="c1"># Begin block.</span>
+                <span class="n">dest</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="s2">&quot;triggers&quot;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Normal topic.</span>
+                <span class="k">if</span> <span class="n">topic</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;topic&quot;</span><span class="p">]:</span>
+                    <span class="n">result</span><span class="p">[</span><span class="s2">&quot;topic&quot;</span><span class="p">][</span><span class="n">topic</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="n">dest</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;topic&quot;</span><span class="p">][</span><span class="n">topic</span><span class="p">]</span>
+
+            <span class="c1"># Copy the triggers.</span>
+            <span class="k">for</span> <span class="n">trig</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topics</span><span class="p">[</span><span class="n">topic</span><span class="p">]</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+                <span class="n">dest</span><span class="p">[</span><span class="n">trig</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_copy_trigger</span><span class="p">(</span><span class="n">trig</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+        <span class="c1"># %Previous&#39;s.</span>
+        <span class="k">for</span> <span class="n">topic</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_thats</span><span class="p">:</span>
+            <span class="n">dest</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Where to place the topic info</span>
+
+            <span class="k">if</span> <span class="n">topic</span> <span class="o">==</span> <span class="s2">&quot;__begin__&quot;</span><span class="p">:</span>
+                <span class="c1"># Begin block.</span>
+                <span class="n">dest</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="s2">&quot;that&quot;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Normal topic.</span>
+                <span class="k">if</span> <span class="n">topic</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;that&quot;</span><span class="p">]:</span>
+                    <span class="n">result</span><span class="p">[</span><span class="s2">&quot;that&quot;</span><span class="p">][</span><span class="n">topic</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="n">dest</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;that&quot;</span><span class="p">][</span><span class="n">topic</span><span class="p">]</span>
+
+            <span class="c1"># The &quot;that&quot; structure is backwards: bot reply, then trigger, then info.</span>
+            <span class="k">for</span> <span class="n">previous</span><span class="p">,</span> <span class="n">pdata</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_thats</span><span class="p">[</span><span class="n">topic</span><span class="p">]</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">trig</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">pdata</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+                    <span class="n">dest</span><span class="p">[</span><span class="n">trig</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_copy_trigger</span><span class="p">(</span><span class="n">trig</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">previous</span><span class="p">)</span>
+
+        <span class="c1"># Inherits/Includes.</span>
+        <span class="k">for</span> <span class="n">topic</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lineage</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="n">result</span><span class="p">[</span><span class="s2">&quot;inherit&quot;</span><span class="p">][</span><span class="n">topic</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">inherit</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">result</span><span class="p">[</span><span class="s2">&quot;inherit&quot;</span><span class="p">][</span><span class="n">topic</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inherit</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">topic</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_includes</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="n">result</span><span class="p">[</span><span class="s2">&quot;include&quot;</span><span class="p">][</span><span class="n">topic</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">include</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">result</span><span class="p">[</span><span class="s2">&quot;include&quot;</span><span class="p">][</span><span class="n">topic</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">include</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="RiveScript.write"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fh</span><span class="p">,</span> <span class="n">deparsed</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Write the currently parsed RiveScript data into a file.</span>
+
+<span class="sd">        Pass either a file name (string) or a file handle object.</span>
+
+<span class="sd">        This uses ``deparse()`` to dump a representation of the loaded data and</span>
+<span class="sd">        writes it to the destination file. If you provide your own data as the</span>
+<span class="sd">        ``deparsed`` argument, it will use that data instead of calling</span>
+<span class="sd">        ``deparse()`` itself. This way you can use ``deparse()``, edit the data,</span>
+<span class="sd">        and use that to write the RiveScript document (for example, to be used</span>
+<span class="sd">        by a user interface for editing RiveScript without writing the code</span>
+<span class="sd">        directly).</span>
+
+<span class="sd">        :param fh: Either a file name ``str`` or a file handle object of a file</span>
+<span class="sd">            opened in write mode.</span>
+<span class="sd">        :param optional dict deparsed: A data structure in the same format as</span>
+<span class="sd">            what ``deparse()`` returns. If not passed, this value will come from</span>
+<span class="sd">            the current in-memory data from ``deparse()``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Passed a string instead of a file handle?</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="n">fh</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Deparse the loaded data.</span>
+        <span class="k">if</span> <span class="n">deparsed</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">deparsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deparse</span><span class="p">()</span>
+
+        <span class="c1"># Start at the beginning.</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;// Written by rivescript.deparse()</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;! version = 2.0</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Variables of all sorts!</span>
+        <span class="k">for</span> <span class="n">kind</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;global&quot;</span><span class="p">,</span> <span class="s2">&quot;var&quot;</span><span class="p">,</span> <span class="s2">&quot;sub&quot;</span><span class="p">,</span> <span class="s2">&quot;person&quot;</span><span class="p">,</span> <span class="s2">&quot;array&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">deparsed</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="n">kind</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">deparsed</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="n">kind</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+                <span class="c1"># Array types need to be separated by either spaces or pipes.</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">deparsed</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="n">kind</span><span class="p">][</span><span class="n">var</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">text_type</span><span class="p">]:</span>
+                    <span class="n">needs_pipes</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="k">for</span> <span class="n">test</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="s2">&quot; &quot;</span> <span class="ow">in</span> <span class="n">test</span><span class="p">:</span>
+                            <span class="n">needs_pipes</span> <span class="o">=</span> <span class="bp">True</span>
+                            <span class="k">break</span>
+
+                    <span class="c1"># Word-wrap the result, target width is 78 chars minus the</span>
+                    <span class="c1"># kind, var, and spaces and equals sign.</span>
+                    <span class="c1"># TODO: not implemented yet.</span>
+                    <span class="c1"># width = 78 - len(kind) - len(var) - 4</span>
+
+                    <span class="k">if</span> <span class="n">needs_pipes</span><span class="p">:</span>
+                        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_write_wrapped</span><span class="p">(</span><span class="s2">&quot;|&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;|&quot;</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">data</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+                <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;! {kind} {var} = {data}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">kind</span><span class="o">=</span><span class="n">kind</span><span class="p">,</span>
+                    <span class="n">var</span><span class="o">=</span><span class="n">var</span><span class="p">,</span>
+                    <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+                <span class="p">))</span>
+            <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Begin block.</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">deparsed</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="s2">&quot;triggers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&gt; begin</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_write_triggers</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="n">deparsed</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="s2">&quot;triggers&quot;</span><span class="p">],</span> <span class="n">indent</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt; begin</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># The topics. Random first!</span>
+        <span class="n">topics</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;random&quot;</span><span class="p">]</span>
+        <span class="n">topics</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">deparsed</span><span class="p">[</span><span class="s2">&quot;topic&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+        <span class="n">done_random</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">for</span> <span class="n">topic</span> <span class="ow">in</span> <span class="n">topics</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">topic</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">deparsed</span><span class="p">[</span><span class="s2">&quot;topic&quot;</span><span class="p">]:</span> <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">topic</span> <span class="o">==</span> <span class="s2">&quot;random&quot;</span> <span class="ow">and</span> <span class="n">done_random</span><span class="p">:</span> <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">topic</span> <span class="o">==</span> <span class="s2">&quot;random&quot;</span><span class="p">:</span> <span class="n">done_random</span> <span class="o">=</span> <span class="bp">True</span>
+
+            <span class="n">tagged</span> <span class="o">=</span> <span class="bp">False</span>  <span class="c1"># Used &gt; topic tag</span>
+
+            <span class="k">if</span> <span class="n">topic</span> <span class="o">!=</span> <span class="s2">&quot;random&quot;</span> <span class="ow">or</span> <span class="n">topic</span> <span class="ow">in</span> <span class="n">deparsed</span><span class="p">[</span><span class="s2">&quot;include&quot;</span><span class="p">]</span> <span class="ow">or</span> <span class="n">topic</span> <span class="ow">in</span> <span class="n">deparsed</span><span class="p">[</span><span class="s2">&quot;inherit&quot;</span><span class="p">]:</span>
+                <span class="n">tagged</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&gt; topic &quot;</span> <span class="o">+</span> <span class="n">topic</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">topic</span> <span class="ow">in</span> <span class="n">deparsed</span><span class="p">[</span><span class="s2">&quot;inherit&quot;</span><span class="p">]:</span>
+                    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot; inherits &quot;</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">deparsed</span><span class="p">[</span><span class="s2">&quot;inherit&quot;</span><span class="p">][</span><span class="n">topic</span><span class="p">]))</span>
+                <span class="k">if</span> <span class="n">topic</span> <span class="ow">in</span> <span class="n">deparsed</span><span class="p">[</span><span class="s2">&quot;include&quot;</span><span class="p">]:</span>
+                    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot; includes &quot;</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">deparsed</span><span class="p">[</span><span class="s2">&quot;include&quot;</span><span class="p">][</span><span class="n">topic</span><span class="p">]))</span>
+
+                <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="n">indent</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">tagged</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_write_triggers</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="n">deparsed</span><span class="p">[</span><span class="s2">&quot;topic&quot;</span><span class="p">][</span><span class="n">topic</span><span class="p">],</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">)</span>
+
+            <span class="c1"># Any %Previous&#39;s?</span>
+            <span class="k">if</span> <span class="n">topic</span> <span class="ow">in</span> <span class="n">deparsed</span><span class="p">[</span><span class="s2">&quot;that&quot;</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_write_triggers</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="n">deparsed</span><span class="p">[</span><span class="s2">&quot;that&quot;</span><span class="p">][</span><span class="n">topic</span><span class="p">],</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">tagged</span><span class="p">:</span>
+                <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt; topic</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">True</span></div>
+
+    <span class="k">def</span> <span class="nf">_copy_trigger</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trig</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">previous</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Make copies of all data below a trigger.</span>
+
+<span class="sd">        :param str trig: The trigger key.</span>
+<span class="sd">        :param dict data: The data under that trigger.</span>
+<span class="sd">        :param previous: The ``%Previous`` for the trigger.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Copied data.</span>
+        <span class="n">dest</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">if</span> <span class="n">previous</span><span class="p">:</span>
+            <span class="n">dest</span><span class="p">[</span><span class="s2">&quot;previous&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">previous</span>
+
+        <span class="k">if</span> <span class="s2">&quot;redirect&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">and</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;redirect&quot;</span><span class="p">]:</span>
+            <span class="c1"># @Redirect</span>
+            <span class="n">dest</span><span class="p">[</span><span class="s2">&quot;redirect&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;redirect&quot;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="s2">&quot;condition&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;condition&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="c1"># *Condition</span>
+            <span class="n">dest</span><span class="p">[</span><span class="s2">&quot;condition&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;condition&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+                <span class="n">dest</span><span class="p">[</span><span class="s2">&quot;condition&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;condition&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="s2">&quot;reply&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;reply&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="c1"># -Reply</span>
+            <span class="n">dest</span><span class="p">[</span><span class="s2">&quot;reply&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;reply&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+                <span class="n">dest</span><span class="p">[</span><span class="s2">&quot;reply&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;reply&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">dest</span>
+
+    <span class="k">def</span> <span class="nf">_write_triggers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fh</span><span class="p">,</span> <span class="n">triggers</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Write triggers to a file handle.</span>
+
+<span class="sd">        :param fh: The file handle.</span>
+<span class="sd">        :param dict triggers: The triggers to write to the file.</span>
+<span class="sd">        :param str indent: The indentation (spaces) to prefix each line with.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">trig</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">triggers</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">indent</span> <span class="o">+</span> <span class="s2">&quot;+ &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_write_wrapped</span><span class="p">(</span><span class="n">trig</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">triggers</span><span class="p">[</span><span class="n">trig</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="s2">&quot;previous&quot;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+                <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">indent</span> <span class="o">+</span> <span class="s2">&quot;% &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_write_wrapped</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;previous&quot;</span><span class="p">],</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="s2">&quot;condition&quot;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">cond</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;condition&quot;</span><span class="p">]:</span>
+                    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">indent</span> <span class="o">+</span> <span class="s2">&quot;* &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_write_wrapped</span><span class="p">(</span><span class="n">cond</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="s2">&quot;redirect&quot;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+                <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">indent</span> <span class="o">+</span> <span class="s2">&quot;@ &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_write_wrapped</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;redirect&quot;</span><span class="p">],</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="s2">&quot;reply&quot;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">reply</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;reply&quot;</span><span class="p">]:</span>
+                    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">indent</span> <span class="o">+</span> <span class="s2">&quot;- &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_write_wrapped</span><span class="p">(</span><span class="n">reply</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_write_wrapped</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">78</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Word-wrap a line of RiveScript code for being written to a file.</span>
+
+<span class="sd">        :param str line: The original line of text to word-wrap.</span>
+<span class="sd">        :param str sep: The word separator.</span>
+<span class="sd">        :param str indent: The indentation to use (as a set of spaces).</span>
+<span class="sd">        :param int width: The character width to constrain each line to.</span>
+
+<span class="sd">        :return str: The reformatted line(s).&quot;&quot;&quot;</span>
+
+        <span class="n">words</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">sep</span><span class="p">)</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">line</span>  <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">buf</span>   <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
+            <span class="n">buf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">words</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">width</span><span class="p">:</span>
+                <span class="c1"># Need to word wrap!</span>
+                <span class="n">words</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">buf</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>  <span class="c1"># Undo</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">buf</span><span class="p">))</span>
+                <span class="n">buf</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="c1"># Straggler?</span>
+        <span class="k">if</span> <span class="n">line</span><span class="p">:</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+        <span class="c1"># Returned output</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
+            <span class="n">eol</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">if</span> <span class="n">sep</span> <span class="o">==</span> <span class="s2">&quot; &quot;</span><span class="p">:</span>
+                <span class="n">eol</span> <span class="o">=</span> <span class="s2">&quot;\s&quot;</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">+=</span> <span class="n">eol</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">indent</span> <span class="o">+</span> <span class="s2">&quot;^ &quot;</span> <span class="o">+</span> <span class="n">item</span>
+
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="c1">############################################################################</span>
+    <span class="c1"># Sorting Methods                                                          #</span>
+    <span class="c1">############################################################################</span>
+
+<div class="viewcode-block" id="RiveScript.sort_replies"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.sort_replies">[docs]</a>    <span class="k">def</span> <span class="nf">sort_replies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">thats</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sort the loaded triggers in memory.</span>
+
+<span class="sd">        After you have finished loading your RiveScript code, call this method</span>
+<span class="sd">        to populate the various internal sort buffers. This is absolutely</span>
+<span class="sd">        necessary for reply matching to work efficiently!</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># (Re)initialize the sort cache.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sorted</span><span class="p">[</span><span class="s2">&quot;topics&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sorted</span><span class="p">[</span><span class="s2">&quot;thats&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_say</span><span class="p">(</span><span class="s2">&quot;Sorting triggers...&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Loop through all the topics.</span>
+        <span class="k">for</span> <span class="n">topic</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topics</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_say</span><span class="p">(</span><span class="s2">&quot;Analyzing topic &quot;</span> <span class="o">+</span> <span class="n">topic</span><span class="p">)</span>
+
+            <span class="c1"># Collect a list of all the triggers we&#39;re going to worry about.</span>
+            <span class="c1"># If this topic inherits another topic, we need to recursively add</span>
+            <span class="c1"># those to the list as well.</span>
+            <span class="n">alltrig</span> <span class="o">=</span> <span class="n">inherit_utils</span><span class="o">.</span><span class="n">get_topic_triggers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+
+            <span class="c1"># Sort them.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sorted</span><span class="p">[</span><span class="s2">&quot;topics&quot;</span><span class="p">][</span><span class="n">topic</span><span class="p">]</span> <span class="o">=</span> <span class="n">sorting</span><span class="o">.</span><span class="n">sort_trigger_set</span><span class="p">(</span><span class="n">alltrig</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+
+            <span class="c1"># Get all of the %Previous triggers for this topic.</span>
+            <span class="n">that_triggers</span> <span class="o">=</span> <span class="n">inherit_utils</span><span class="o">.</span><span class="n">get_topic_triggers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+
+            <span class="c1"># And sort them, too.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sorted</span><span class="p">[</span><span class="s2">&quot;thats&quot;</span><span class="p">][</span><span class="n">topic</span><span class="p">]</span> <span class="o">=</span> <span class="n">sorting</span><span class="o">.</span><span class="n">sort_trigger_set</span><span class="p">(</span><span class="n">that_triggers</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+
+        <span class="c1"># And sort the substitution lists.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="s2">&quot;lists&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sorted</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sorted</span><span class="p">[</span><span class="s2">&quot;lists&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sorted</span><span class="p">[</span><span class="s2">&quot;lists&quot;</span><span class="p">][</span><span class="s2">&quot;sub&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sorting</span><span class="o">.</span><span class="n">sort_list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sub</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sorted</span><span class="p">[</span><span class="s2">&quot;lists&quot;</span><span class="p">][</span><span class="s2">&quot;person&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sorting</span><span class="o">.</span><span class="n">sort_list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_person</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div>
+
+    <span class="c1">############################################################################</span>
+    <span class="c1"># Public Configuration Methods                                             #</span>
+    <span class="c1">############################################################################</span>
+
+<div class="viewcode-block" id="RiveScript.set_handler"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.set_handler">[docs]</a>    <span class="k">def</span> <span class="nf">set_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">language</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Define a custom language handler for RiveScript objects.</span>
+
+<span class="sd">        Pass in a ``None`` value for the object to delete an existing handler (for</span>
+<span class="sd">        example, to prevent Python code from being able to be run by default).</span>
+
+<span class="sd">        Look in the ``eg`` folder of the rivescript-python distribution for</span>
+<span class="sd">        an example script that sets up a JavaScript language handler.</span>
+
+<span class="sd">        :param str language: The lowercased name of the programming language.</span>
+<span class="sd">            Examples: python, javascript, perl</span>
+<span class="sd">        :param class obj: An instance of an implementation class object.</span>
+<span class="sd">            It should provide the following interface::</span>
+
+<span class="sd">                class MyObjectHandler:</span>
+<span class="sd">                    def __init__(self):</span>
+<span class="sd">                        pass</span>
+<span class="sd">                    def load(self, name, code):</span>
+<span class="sd">                        # name = the name of the object from the RiveScript code</span>
+<span class="sd">                        # code = the source code of the object</span>
+<span class="sd">                    def call(self, rs, name, fields):</span>
+<span class="sd">                        # rs     = the current RiveScript interpreter object</span>
+<span class="sd">                        # name   = the name of the object being called</span>
+<span class="sd">                        # fields = array of arguments passed to the object</span>
+<span class="sd">                        return reply</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Allow them to delete a handler too.</span>
+        <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">language</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">:</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">[</span><span class="n">language</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">[</span><span class="n">language</span><span class="p">]</span> <span class="o">=</span> <span class="n">obj</span></div>
+
+<div class="viewcode-block" id="RiveScript.set_subroutine"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.set_subroutine">[docs]</a>    <span class="k">def</span> <span class="nf">set_subroutine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">code</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Define a Python object from your program.</span>
+
+<span class="sd">        This is equivalent to having an object defined in the RiveScript code,</span>
+<span class="sd">        except your Python code is defining it instead.</span>
+
+<span class="sd">        :param str name: The name of the object macro.</span>
+<span class="sd">        :param def code: A Python function with a method signature of</span>
+<span class="sd">            ``(rs, args)``</span>
+
+<span class="sd">        This method is only available if there is a Python handler set up</span>
+<span class="sd">        (which there is by default, unless you&#39;ve called</span>
+<span class="sd">        ``set_handler(&quot;python&quot;, None)``).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Do we have a Python handler?</span>
+        <span class="k">if</span> <span class="s1">&#39;python&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">[</span><span class="s1">&#39;python&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">_objects</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">code</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_objlangs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;python&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_warn</span><span class="p">(</span><span class="s2">&quot;Can&#39;t set_subroutine: no Python object handler!&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RiveScript.set_global"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.set_global">[docs]</a>    <span class="k">def</span> <span class="nf">set_global</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set a global variable.</span>
+
+<span class="sd">        Equivalent to ``! global`` in RiveScript code.</span>
+
+<span class="sd">        :param str name: The name of the variable to set.</span>
+<span class="sd">        :param str value: The value of the variable.</span>
+<span class="sd">            Set this to ``None`` to delete the variable.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># Unset the variable.</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_global</span><span class="p">:</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_global</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_global</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
+
+<div class="viewcode-block" id="RiveScript.get_global"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.get_global">[docs]</a>    <span class="k">def</span> <span class="nf">get_global</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieve the current value of a global variable.</span>
+
+<span class="sd">        :param str name: The name of the variable to get.</span>
+<span class="sd">        :return str: The value of the variable or ``&quot;undefined&quot;``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_global</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;undefined&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RiveScript.set_variable"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.set_variable">[docs]</a>    <span class="k">def</span> <span class="nf">set_variable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set a bot variable.</span>
+
+<span class="sd">        Equivalent to ``! var`` in RiveScript code.</span>
+
+<span class="sd">        :param str name: The name of the variable to set.</span>
+<span class="sd">        :param str value: The value of the variable.</span>
+<span class="sd">            Set this to ``None`` to delete the variable.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># Unset the variable.</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_var</span><span class="p">:</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_var</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_var</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
+
+<div class="viewcode-block" id="RiveScript.get_variable"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.get_variable">[docs]</a>    <span class="k">def</span> <span class="nf">get_variable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieve the current value of a bot variable.</span>
+
+<span class="sd">        :param str name: The name of the variable to get.</span>
+<span class="sd">        :return str: The value of the variable or ``&quot;undefined&quot;``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_var</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;undefined&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RiveScript.set_substitution"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.set_substitution">[docs]</a>    <span class="k">def</span> <span class="nf">set_substitution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">what</span><span class="p">,</span> <span class="n">rep</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set a substitution.</span>
+
+<span class="sd">        Equivalent to ``! sub`` in RiveScript code.</span>
+
+<span class="sd">        :param str what: The original text to replace.</span>
+<span class="sd">        :param str rep: The text to replace it with.</span>
+<span class="sd">            Set this to ``None`` to delete the substitution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">rep</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># Unset the variable.</span>
+            <span class="k">if</span> <span class="n">what</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_subs</span><span class="p">:</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_subs</span><span class="p">[</span><span class="n">what</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_subs</span><span class="p">[</span><span class="n">what</span><span class="p">]</span> <span class="o">=</span> <span class="n">rep</span></div>
+
+<div class="viewcode-block" id="RiveScript.set_person"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.set_person">[docs]</a>    <span class="k">def</span> <span class="nf">set_person</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">what</span><span class="p">,</span> <span class="n">rep</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set a person substitution.</span>
+
+<span class="sd">        Equivalent to ``! person`` in RiveScript code.</span>
+
+<span class="sd">        :param str what: The original text to replace.</span>
+<span class="sd">        :param str rep: The text to replace it with.</span>
+<span class="sd">            Set this to ``None`` to delete the substitution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">rep</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># Unset the variable.</span>
+            <span class="k">if</span> <span class="n">what</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_person</span><span class="p">:</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_person</span><span class="p">[</span><span class="n">what</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_person</span><span class="p">[</span><span class="n">what</span><span class="p">]</span> <span class="o">=</span> <span class="n">rep</span></div>
+
+<div class="viewcode-block" id="RiveScript.set_uservar"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.set_uservar">[docs]</a>    <span class="k">def</span> <span class="nf">set_uservar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set a variable for a user.</span>
+
+<span class="sd">        This is like the ``&lt;set&gt;`` tag in RiveScript code.</span>
+
+<span class="sd">        :param str user: The user ID to set a variable for.</span>
+<span class="sd">        :param str name: The name of the variable to set.</span>
+<span class="sd">        :param str value: The value to set there.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">user</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_users</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;random&quot;</span><span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
+
+<div class="viewcode-block" id="RiveScript.set_uservars"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.set_uservars">[docs]</a>    <span class="k">def</span> <span class="nf">set_uservars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set many variables for a user, or set many variables for many users.</span>
+
+<span class="sd">        This function can be called in two ways::</span>
+
+<span class="sd">            # Set a dict of variables for a single user.</span>
+<span class="sd">            rs.set_uservars(username, vars)</span>
+
+<span class="sd">            # Set a nested dict of variables for many users.</span>
+<span class="sd">            rs.set_uservars(many_vars)</span>
+
+<span class="sd">        In the first syntax, ``vars`` is a simple dict of key/value string</span>
+<span class="sd">        pairs. In the second syntax, ``many_vars`` is a structure like this::</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &quot;username1&quot;: {</span>
+<span class="sd">                    &quot;key&quot;: &quot;value&quot;,</span>
+<span class="sd">                },</span>
+<span class="sd">                &quot;username2&quot;: {</span>
+<span class="sd">                    &quot;key&quot;: &quot;value&quot;,</span>
+<span class="sd">                },</span>
+<span class="sd">            }</span>
+
+<span class="sd">        This way you can export *all* user variables via ``get_uservars()``</span>
+<span class="sd">        and then re-import them all at once, instead of setting them once per</span>
+<span class="sd">        user.</span>
+
+<span class="sd">        :param optional str user: The user ID to set many variables for.</span>
+<span class="sd">            Skip this parameter to set many variables for many users instead.</span>
+<span class="sd">        :param dict data: The dictionary of key/value pairs for user variables,</span>
+<span class="sd">            or else a dict of dicts mapping usernames to key/value pairs.</span>
+
+<span class="sd">        This may raise a ``TypeError`` exception if you pass it invalid data</span>
+<span class="sd">        types. Note that only the standard ``dict`` type is accepted, but not</span>
+<span class="sd">        variants like ``OrderedDict``, so if you have a dict-like type you</span>
+<span class="sd">        should cast it to ``dict`` first.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Check the parameters to see how we&#39;re being used.</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">user</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">dict</span> <span class="ow">and</span> <span class="n">data</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># Setting many variables for many users.</span>
+            <span class="k">for</span> <span class="n">uid</span><span class="p">,</span> <span class="n">uservars</span> <span class="ow">in</span> <span class="n">user</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">uservars</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">dict</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                        <span class="s2">&quot;In set_uservars(many_vars) syntax, the many_vars dict &quot;</span>
+                        <span class="s2">&quot;must be in the format of `many_vars[&#39;username&#39;] = &quot;</span>
+                        <span class="s2">&quot;dict(key=value)`, but the contents of many_vars[&#39;{}&#39;]&quot;</span>
+                        <span class="s2">&quot; is not a dict.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>
+                    <span class="p">)</span>
+
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">uid</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_users</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">uid</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">topic</span><span class="o">=</span><span class="s2">&quot;random&quot;</span><span class="p">)</span>
+
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">uservars</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">uid</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">user</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="n">text_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">dict</span><span class="p">:</span>
+            <span class="c1"># Setting variables for a single user.</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_users</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">topic</span><span class="o">=</span><span class="s2">&quot;random&quot;</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;set_uservars() may only be called with types ({str}, dict) or &quot;</span>
+                <span class="s2">&quot;(dict&lt;{str}, dict&gt;) but you called it with types ({a}, {b})&quot;</span>
+                <span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="nb">str</span><span class="o">=</span><span class="s2">&quot;unicode&quot;</span> <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="k">else</span> <span class="s2">&quot;str&quot;</span><span class="p">,</span>
+                    <span class="n">a</span><span class="o">=</span><span class="nb">type</span><span class="p">(</span><span class="n">user</span><span class="p">),</span>
+                    <span class="n">b</span><span class="o">=</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">),</span>
+                <span class="p">),</span>
+            <span class="p">)</span></div>
+
+<div class="viewcode-block" id="RiveScript.get_uservar"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.get_uservar">[docs]</a>    <span class="k">def</span> <span class="nf">get_uservar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get a variable about a user.</span>
+
+<span class="sd">        :param str user: The user ID to look up a variable for.</span>
+<span class="sd">        :param str name: The name of the variable to get.</span>
+
+<span class="sd">        :return: The user variable, or ``None`` or ``&quot;undefined&quot;``:</span>
+
+<span class="sd">            * If the user has no data at all, this returns ``None``.</span>
+<span class="sd">            * If the user doesn&#39;t have this variable set, this returns the</span>
+<span class="sd">              string ``&quot;undefined&quot;``.</span>
+<span class="sd">            * Otherwise this returns the string value of the variable.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_users</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="n">name</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;undefined&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span></div>
+
+<div class="viewcode-block" id="RiveScript.get_uservars"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.get_uservars">[docs]</a>    <span class="k">def</span> <span class="nf">get_uservars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get all variables about a user (or all users).</span>
+
+<span class="sd">        :param optional str user: The user ID to retrieve all variables for.</span>
+<span class="sd">            If not passed, this function will return all data for all users.</span>
+
+<span class="sd">        :return dict: All the user variables.</span>
+
+<span class="sd">            * If a ``user`` was passed, this is a ``dict`` of key/value pairs</span>
+<span class="sd">              of that user&#39;s variables. If the user doesn&#39;t exist in memory,</span>
+<span class="sd">              this returns ``None``.</span>
+<span class="sd">            * Otherwise, this returns a ``dict`` of key/value pairs that map</span>
+<span class="sd">              user IDs to their variables (a ``dict`` of ``dict``).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># All the users!</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_users</span>
+        <span class="k">elif</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_users</span><span class="p">:</span>
+            <span class="c1"># Just this one!</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># No info.</span>
+            <span class="k">return</span> <span class="bp">None</span></div>
+
+<div class="viewcode-block" id="RiveScript.clear_uservars"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.clear_uservars">[docs]</a>    <span class="k">def</span> <span class="nf">clear_uservars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Delete all variables about a user (or all users).</span>
+
+<span class="sd">        :param str user: The user ID to clear variables for, or else clear all</span>
+<span class="sd">            variables for all users if not provided.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># All the users!</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_users</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">elif</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_users</span><span class="p">:</span>
+            <span class="c1"># Just this one.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span></div>
+
+<div class="viewcode-block" id="RiveScript.freeze_uservars"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.freeze_uservars">[docs]</a>    <span class="k">def</span> <span class="nf">freeze_uservars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Freeze the variable state for a user.</span>
+
+<span class="sd">        This will clone and preserve a user&#39;s entire variable state, so that it</span>
+<span class="sd">        can be restored later with ``thaw_uservars()``.</span>
+
+<span class="sd">        :param str user: The user ID to freeze variables for.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_users</span><span class="p">:</span>
+            <span class="c1"># Clone the user&#39;s data.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_freeze</span><span class="p">[</span><span class="n">user</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_warn</span><span class="p">(</span><span class="s2">&quot;Can&#39;t freeze vars for user &quot;</span> <span class="o">+</span> <span class="n">user</span> <span class="o">+</span> <span class="s2">&quot;: not found!&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RiveScript.thaw_uservars"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.thaw_uservars">[docs]</a>    <span class="k">def</span> <span class="nf">thaw_uservars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;thaw&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Thaw a user&#39;s frozen variables.</span>
+
+<span class="sd">        :param str action: The action to perform when thawing the variables:</span>
+
+<span class="sd">            * ``discard``: Don&#39;t restore the user&#39;s variables, just delete the</span>
+<span class="sd">              frozen copy.</span>
+<span class="sd">            * ``keep``: Keep the frozen copy after restoring the variables.</span>
+<span class="sd">            * ``thaw``: Restore the variables, then delete the frozen copy</span>
+<span class="sd">              (this is the default).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_freeze</span><span class="p">:</span>
+            <span class="c1"># What are we doing?</span>
+            <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="s2">&quot;thaw&quot;</span><span class="p">:</span>
+                <span class="c1"># Thawing them out.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">clear_uservars</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_freeze</span><span class="p">[</span><span class="n">user</span><span class="p">])</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_freeze</span><span class="p">[</span><span class="n">user</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="s2">&quot;discard&quot;</span><span class="p">:</span>
+                <span class="c1"># Just discard the frozen copy.</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_freeze</span><span class="p">[</span><span class="n">user</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="s2">&quot;keep&quot;</span><span class="p">:</span>
+                <span class="c1"># Keep the frozen copy afterward.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">clear_uservars</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_users</span><span class="p">[</span><span class="n">user</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_freeze</span><span class="p">[</span><span class="n">user</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_warn</span><span class="p">(</span><span class="s2">&quot;Unsupported thaw action&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_warn</span><span class="p">(</span><span class="s2">&quot;Can&#39;t thaw vars for user &quot;</span> <span class="o">+</span> <span class="n">user</span> <span class="o">+</span> <span class="s2">&quot;: not found!&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RiveScript.last_match"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.last_match">[docs]</a>    <span class="k">def</span> <span class="nf">last_match</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the last trigger matched for the user.</span>
+
+<span class="sd">        :param str user: The user ID to get the last matched trigger for.</span>
+<span class="sd">        :return str: The raw trigger text (tags and all) of the trigger that</span>
+<span class="sd">            the user most recently matched. If there was no match to their</span>
+<span class="sd">            last message, this returns ``None`` instead.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_uservar</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="s2">&quot;__lastmatch__&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RiveScript.trigger_info"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.trigger_info">[docs]</a>    <span class="k">def</span> <span class="nf">trigger_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trigger</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">dump</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get information about a trigger.</span>
+
+<span class="sd">        Pass in a raw trigger to find out what file name and line number it</span>
+<span class="sd">        appeared at. This is useful for e.g. tracking down the location of the</span>
+<span class="sd">        trigger last matched by the user via ``last_match()``. Returns a list</span>
+<span class="sd">        of matching triggers, containing their topics, filenames and line</span>
+<span class="sd">        numbers. Returns ``None`` if there weren&#39;t any matches found.</span>
+
+<span class="sd">        The keys in the trigger info is as follows:</span>
+
+<span class="sd">        * ``category``: Either &#39;topic&#39; (for normal) or &#39;thats&#39;</span>
+<span class="sd">          (for %Previous triggers)</span>
+<span class="sd">        * ``topic``: The topic name</span>
+<span class="sd">        * ``trigger``: The raw trigger text</span>
+<span class="sd">        * ``filename``: The filename the trigger was found in.</span>
+<span class="sd">        * ``lineno``: The line number the trigger was found on.</span>
+
+<span class="sd">        Pass in a true value for ``dump``, and the entire syntax tracking</span>
+<span class="sd">        tree is returned.</span>
+
+<span class="sd">        :param str trigger: The raw trigger text to look up.</span>
+<span class="sd">        :param bool dump: Whether to dump the entire syntax tracking tree.</span>
+
+<span class="sd">        :return: A list of matching triggers or ``None`` if no matches.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">dump</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_syntax</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="c1"># Search the syntax tree for the trigger.</span>
+        <span class="k">for</span> <span class="n">category</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_syntax</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">topic</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_syntax</span><span class="p">[</span><span class="n">category</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">trigger</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_syntax</span><span class="p">[</span><span class="n">category</span><span class="p">][</span><span class="n">topic</span><span class="p">]:</span>
+                    <span class="c1"># We got a match!</span>
+                    <span class="k">if</span> <span class="n">response</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                        <span class="n">response</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+                    <span class="n">fname</span><span class="p">,</span> <span class="n">lineno</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_syntax</span><span class="p">[</span><span class="n">category</span><span class="p">][</span><span class="n">topic</span><span class="p">][</span><span class="n">trigger</span><span class="p">][</span><span class="s1">&#39;trigger&#39;</span><span class="p">]</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
+                        <span class="n">category</span><span class="o">=</span><span class="n">category</span><span class="p">,</span>
+                        <span class="n">topic</span><span class="o">=</span><span class="n">topic</span><span class="p">,</span>
+                        <span class="n">trigger</span><span class="o">=</span><span class="n">trigger</span><span class="p">,</span>
+                        <span class="n">filename</span><span class="o">=</span><span class="n">fname</span><span class="p">,</span>
+                        <span class="n">line</span><span class="o">=</span><span class="n">lineno</span><span class="p">,</span>
+                    <span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="RiveScript.current_user"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.current_user">[docs]</a>    <span class="k">def</span> <span class="nf">current_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieve the user ID of the current user talking to your bot.</span>
+
+<span class="sd">        This is mostly useful inside of a Python object macro to get the user</span>
+<span class="sd">        ID of the person who caused the object macro to be invoked (i.e. to</span>
+<span class="sd">        set a variable for that user from within the object).</span>
+
+<span class="sd">        This will return ``None`` if used outside of the context of getting a</span>
+<span class="sd">        reply (the value is unset at the end of the ``reply()`` method).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_brain</span><span class="o">.</span><span class="n">_current_user</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># They&#39;re doing it wrong.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_warn</span><span class="p">(</span><span class="s2">&quot;current_user() is meant to be used from within a Python object macro!&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_brain</span><span class="o">.</span><span class="n">_current_user</span></div>
+
+    <span class="c1">############################################################################</span>
+    <span class="c1"># Reply Fetching Methods                                                   #</span>
+    <span class="c1">############################################################################</span>
+
+<div class="viewcode-block" id="RiveScript.reply"><a class="viewcode-back" href="../../rivescript.html#rivescript.rivescript.RiveScript.reply">[docs]</a>    <span class="k">def</span> <span class="nf">reply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">errors_as_replies</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fetch a reply from the RiveScript brain.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            user (str): A unique user ID for the person requesting a reply.</span>
+<span class="sd">                This could be e.g. a screen name or nickname. It&#39;s used internally</span>
+<span class="sd">                to store user variables (including topic and history), so if your</span>
+<span class="sd">                bot has multiple users each one should have a unique ID.</span>
+<span class="sd">            msg (str): The user&#39;s message. This is allowed to contain</span>
+<span class="sd">                punctuation and such, but any extraneous data such as HTML tags</span>
+<span class="sd">                should be removed in advance.</span>
+<span class="sd">            errors_as_replies (bool): When errors are encountered (such as a</span>
+<span class="sd">                deep recursion error, no reply matched, etc.) this will make the</span>
+<span class="sd">                reply be a text representation of the error message. If you set</span>
+<span class="sd">                this to ``False``, errors will instead raise an exception, such as</span>
+<span class="sd">                a ``DeepRecursionError`` or ``NoReplyError``. By default, no</span>
+<span class="sd">                exceptions are raised and errors are set in the reply instead.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The reply output.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_brain</span><span class="o">.</span><span class="n">reply</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">errors_as_replies</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_precompile_substitution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Pre-compile the regexp for a substitution pattern.</span>
+
+<span class="sd">        This will speed up the substitutions that happen at the beginning of</span>
+<span class="sd">        the reply fetching process. With the default brain, this took the</span>
+<span class="sd">        time for _substitute down from 0.08s to 0.02s</span>
+
+<span class="sd">        :param str kind: One of ``sub``, ``person``.</span>
+<span class="sd">        :param str pattern: The substitution pattern.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">pattern</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_regexc</span><span class="p">[</span><span class="n">kind</span><span class="p">]:</span>
+            <span class="n">qm</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_regexc</span><span class="p">[</span><span class="n">kind</span><span class="p">][</span><span class="n">pattern</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;qm&quot;</span><span class="p">:</span> <span class="n">qm</span><span class="p">,</span>
+                <span class="s2">&quot;sub1&quot;</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;^&#39;</span> <span class="o">+</span> <span class="n">qm</span> <span class="o">+</span> <span class="s1">r&#39;$&#39;</span><span class="p">),</span>
+                <span class="s2">&quot;sub2&quot;</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;^&#39;</span> <span class="o">+</span> <span class="n">qm</span> <span class="o">+</span> <span class="s1">r&#39;(\W+)&#39;</span><span class="p">),</span>
+                <span class="s2">&quot;sub3&quot;</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;(\W+)&#39;</span> <span class="o">+</span> <span class="n">qm</span> <span class="o">+</span> <span class="s1">r&#39;(\W+)&#39;</span><span class="p">),</span>
+                <span class="s2">&quot;sub4&quot;</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">r&#39;(\W+)&#39;</span> <span class="o">+</span> <span class="n">qm</span> <span class="o">+</span> <span class="s1">r&#39;$&#39;</span><span class="p">),</span>
+            <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">_precompile_regexp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trigger</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Precompile the regex for most triggers.</span>
+
+<span class="sd">        If the trigger is non-atomic, and doesn&#39;t include dynamic tags like</span>
+<span class="sd">        ``&lt;bot&gt;``, ``&lt;get&gt;``, ``&lt;input&gt;/&lt;reply&gt;`` or arrays, it can be</span>
+<span class="sd">        precompiled and save time when matching.</span>
+
+<span class="sd">        :param str trigger: The trigger text to attempt to precompile.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">utils</span><span class="o">.</span><span class="n">is_atomic</span><span class="p">(</span><span class="n">trigger</span><span class="p">):</span>
+            <span class="k">return</span>  <span class="c1"># Don&#39;t need a regexp for atomic triggers.</span>
+
+        <span class="c1"># Check for dynamic tags.</span>
+        <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;@&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;bot&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;get&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;input&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;reply&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">trigger</span><span class="p">:</span>
+                <span class="k">return</span>  <span class="c1"># Can&#39;t precompile this trigger.</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_regexc</span><span class="p">[</span><span class="s2">&quot;trigger&quot;</span><span class="p">][</span><span class="n">trigger</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_brain</span><span class="o">.</span><span class="n">reply_regexp</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">trigger</span><span class="p">)</span>
+
+    <span class="c1">############################################################################</span>
+    <span class="c1"># Miscellaneous Private Methods                                            #</span>
+    <span class="c1">############################################################################</span>
+
+    <span class="k">def</span> <span class="nf">_dump</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;For debugging, dump the entire data structure.&quot;&quot;&quot;</span>
+        <span class="n">pp</span> <span class="o">=</span> <span class="n">pprint</span><span class="o">.</span><span class="n">PrettyPrinter</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;=== Variables ===&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-- Globals --&quot;</span><span class="p">)</span>
+        <span class="n">pp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_global</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-- Bot vars --&quot;</span><span class="p">)</span>
+        <span class="n">pp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_var</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-- Substitutions --&quot;</span><span class="p">)</span>
+        <span class="n">pp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sub</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-- Person Substitutions --&quot;</span><span class="p">)</span>
+        <span class="n">pp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_person</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-- Arrays --&quot;</span><span class="p">)</span>
+        <span class="n">pp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_array</span><span class="p">)</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;=== Topic Structure ===&quot;</span><span class="p">)</span>
+        <span class="n">pp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_topics</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;=== %Previous Structure ===&quot;</span><span class="p">)</span>
+        <span class="n">pp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_thats</span><span class="p">)</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;=== Includes ===&quot;</span><span class="p">)</span>
+        <span class="n">pp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_includes</span><span class="p">)</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;=== Inherits ===&quot;</span><span class="p">)</span>
+        <span class="n">pp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lineage</span><span class="p">)</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;=== Sort Buffer ===&quot;</span><span class="p">)</span>
+        <span class="n">pp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sorted</span><span class="p">)</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;=== Syntax Tree ===&quot;</span><span class="p">)</span>
+        <span class="n">pp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_syntax</span><span class="p">)</span></div>
+
+<span class="c1">################################################################################</span>
+<span class="c1"># Interactive Mode                                                             #</span>
+<span class="c1">################################################################################</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">interactive</span> <span class="kn">import</span> <span class="n">interactive_mode</span>
+    <span class="n">interactive_mode</span><span class="p">()</span>
+
+<span class="c1"># vim:expandtab</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Noah Petherbridge &lt;root@kirsle.net&gt;.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.12.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

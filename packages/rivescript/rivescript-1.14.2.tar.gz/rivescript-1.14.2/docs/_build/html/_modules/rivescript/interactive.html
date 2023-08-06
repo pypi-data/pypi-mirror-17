@@ -1,0 +1,367 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rivescript.interactive &mdash; rivescript 1.12.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="rivescript 1.12.3 documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> rivescript
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.12.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rivescript.html">rivescript package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">rivescript</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>rivescript.interactive</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for rivescript.interactive</h1><div class="highlight"><pre>
+<span></span><span class="c1"># RiveScript-Python</span>
+<span class="c1">#</span>
+<span class="c1"># This code is released under the MIT License.</span>
+<span class="c1"># See the &quot;LICENSE&quot; file for more information.</span>
+<span class="c1">#</span>
+<span class="c1"># https://www.rivescript.com/</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">unicode_literals</span>
+
+<span class="sd">&quot;&quot;&quot;interactive.py: RiveScript&#39;s built-in interactive mode.</span>
+
+<span class="sd">To run this, run: python rivescript</span>
+<span class="sd">              or: python __init__.py</span>
+<span class="sd">              or: python __main__.py</span>
+<span class="sd">The preferred method is the former.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">six.moves</span> <span class="kn">import</span> <span class="nb">input</span>
+<span class="kn">from</span> <span class="nn">six</span> <span class="kn">import</span> <span class="n">text_type</span>
+
+<span class="kn">from</span> <span class="nn">rivescript</span> <span class="kn">import</span> <span class="n">RiveScript</span>
+
+<div class="viewcode-block" id="json_in"><a class="viewcode-back" href="../../rivescript.html#rivescript.interactive.json_in">[docs]</a><span class="k">def</span> <span class="nf">json_in</span><span class="p">(</span><span class="n">bot</span><span class="p">,</span> <span class="nb">buffer</span><span class="p">,</span> <span class="n">stateful</span><span class="p">):</span>
+    <span class="c1"># Prepare the response.</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;ok&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;reply&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;vars&#39;</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Decode the incoming JSON.</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">incoming</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="nb">buffer</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">resp</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;error&#39;</span>
+        <span class="n">resp</span><span class="p">[</span><span class="s1">&#39;reply&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Failed to decode incoming JSON data.&#39;</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">resp</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">stateful</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;__END__&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="c1"># Username?</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;json&quot;</span>
+    <span class="k">if</span> <span class="s1">&#39;username&#39;</span> <span class="ow">in</span> <span class="n">incoming</span><span class="p">:</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">incoming</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Decode their variables.</span>
+    <span class="k">if</span> <span class="s2">&quot;vars&quot;</span> <span class="ow">in</span> <span class="n">incoming</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">incoming</span><span class="p">[</span><span class="s2">&quot;vars&quot;</span><span class="p">]:</span>
+            <span class="n">bot</span><span class="o">.</span><span class="n">set_uservar</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">incoming</span><span class="p">[</span><span class="s2">&quot;vars&quot;</span><span class="p">][</span><span class="n">var</span><span class="p">])</span>
+
+    <span class="c1"># Get a response.</span>
+    <span class="k">if</span> <span class="s1">&#39;message&#39;</span> <span class="ow">in</span> <span class="n">incoming</span><span class="p">:</span>
+        <span class="n">resp</span><span class="p">[</span><span class="s1">&#39;reply&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bot</span><span class="o">.</span><span class="n">reply</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">incoming</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">resp</span><span class="p">[</span><span class="s1">&#39;reply&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;[ERR: No message provided]&quot;</span>
+
+    <span class="c1"># Retrieve vars.</span>
+    <span class="n">resp</span><span class="p">[</span><span class="s1">&#39;vars&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bot</span><span class="o">.</span><span class="n">get_uservars</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">resp</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">stateful</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;__END__&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="interactive_mode"><a class="viewcode-back" href="../../rivescript.html#rivescript.interactive.interactive_mode">[docs]</a><span class="k">def</span> <span class="nf">interactive_mode</span><span class="p">():</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;RiveScript interactive mode.&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--debug&quot;</span><span class="p">,</span> <span class="s2">&quot;-d&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Enable debug logging within RiveScript.&quot;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--json&quot;</span><span class="p">,</span> <span class="s2">&quot;-j&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Enable JSON mode. In this mode, you communicate with the bot by &quot;</span>
+            <span class="s2">&quot;sending a JSON-encoded object with keys &#39;username&#39;, &#39;message&#39; and &quot;</span>
+            <span class="s2">&quot;&#39;vars&#39; (an object of user variables) over standard input, and &quot;</span>
+            <span class="s2">&quot;then close the input (^D) or send the string &#39;__END__&#39; on a line &quot;</span>
+            <span class="s2">&quot;by itself. The bot will respond with a similarly formatted JSON &quot;</span>
+            <span class="s2">&quot;response over standard output, and then will either exit or send &quot;</span>
+            <span class="s2">&quot;&#39;__END__&#39; depending on how you ended your input.&quot;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--utf8&quot;</span><span class="p">,</span> <span class="s2">&quot;-u&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Enable UTF-8 mode (default is disabled)&quot;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--log&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The path to a log file to send debugging output to (when debug &quot;</span>
+            <span class="s2">&quot;mode is enabled) instead of standard output.&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="n">text_type</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--nostrict&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Disable strict mode (where syntax errors are fatal)&quot;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--depth&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Override the default recursion depth limit when fetching a reply &quot;</span>
+            <span class="s2">&quot;(default 50)&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;A directory containing RiveScript files (*.rive) to load.&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="n">text_type</span><span class="p">,</span>
+        <span class="c1"># required=True,</span>
+    <span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="c1"># Make the bot.</span>
+    <span class="n">bot</span> <span class="o">=</span> <span class="n">RiveScript</span><span class="p">(</span>
+        <span class="n">debug</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">debug</span><span class="p">,</span>
+        <span class="n">strict</span><span class="o">=</span><span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">nostrict</span><span class="p">,</span>
+        <span class="n">depth</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">depth</span><span class="p">,</span>
+        <span class="n">utf8</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">utf8</span><span class="p">,</span>
+        <span class="n">log</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">log</span>
+    <span class="p">)</span>
+    <span class="n">bot</span><span class="o">.</span><span class="n">load_directory</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">bot</span><span class="o">.</span><span class="n">sort_replies</span><span class="p">()</span>
+
+    <span class="c1"># Interactive mode?</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">json</span><span class="p">:</span>
+        <span class="c1"># Read from standard input.</span>
+        <span class="nb">buffer</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">stateful</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">EOFError</span><span class="p">:</span>
+                <span class="k">break</span>
+
+            <span class="c1"># Look for the __END__ line.</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">r&#39;^__END__$&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">end</span><span class="p">:</span>
+                <span class="c1"># Process it.</span>
+                <span class="n">stateful</span> <span class="o">=</span> <span class="bp">True</span>  <span class="c1"># This is a stateful session</span>
+                <span class="n">json_in</span><span class="p">(</span><span class="n">bot</span><span class="p">,</span> <span class="nb">buffer</span><span class="p">,</span> <span class="n">stateful</span><span class="p">)</span>
+                <span class="nb">buffer</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+                <span class="k">continue</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">buffer</span> <span class="o">+=</span> <span class="n">line</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+        <span class="c1"># We got the EOF. If the session was stateful, just exit,</span>
+        <span class="c1"># otherwise process what we just read.</span>
+        <span class="k">if</span> <span class="n">stateful</span><span class="p">:</span>
+            <span class="n">quit</span><span class="p">()</span>
+        <span class="n">json_in</span><span class="p">(</span><span class="n">bot</span><span class="p">,</span> <span class="nb">buffer</span><span class="p">,</span> <span class="n">stateful</span><span class="p">)</span>
+        <span class="n">quit</span><span class="p">()</span>
+
+    <span class="k">print</span><span class="p">(</span>
+        <span class="s2">&quot;      .   .       </span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;     .:...::      RiveScript Interpreter (Python)</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;    .::   ::.     Library Version: v{version}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot; ..:;;. &#39; .;;:..  </span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;    .  &#39;&#39;&#39;  .     Type &#39;/quit&#39; to quit.</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;     :;,:,;:      Type &#39;/help&#39; for more options.</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;     :     :      </span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;Using the RiveScript bot found in: {path}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;Type a message to the bot and press Return to send it.</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="n">bot</span><span class="o">.</span><span class="n">VERSION</span><span class="p">(),</span> <span class="n">path</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;You&gt; &quot;</span><span class="p">)</span>
+
+        <span class="c1"># Commands</span>
+        <span class="k">if</span> <span class="n">msg</span> <span class="o">==</span> <span class="s1">&#39;/help&#39;</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;&gt; Supported Commands:&quot;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;&gt; /help   - Displays this message.&quot;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;&gt; /quit   - Exit the program.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">msg</span> <span class="o">==</span> <span class="s1">&#39;/quit&#39;</span><span class="p">:</span>
+            <span class="nb">exit</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">reply</span> <span class="o">=</span> <span class="n">bot</span><span class="o">.</span><span class="n">reply</span><span class="p">(</span><span class="s2">&quot;localuser&quot;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Bot&gt;&quot;</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Noah Petherbridge &lt;root@kirsle.net&gt;.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.12.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

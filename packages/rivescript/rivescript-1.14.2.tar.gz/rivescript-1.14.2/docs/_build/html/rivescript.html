@@ -1,0 +1,1646 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rivescript package &mdash; rivescript 1.12.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="rivescript 1.12.3 documentation" href="index.html"/>
+        <link rel="prev" title="Welcome to rivescript’s documentation!" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> rivescript
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.12.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">rivescript package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rivescript.rivescript">rivescript.rivescript module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rivescript.brain">rivescript.brain module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rivescript.exceptions">rivescript.exceptions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rivescript.inheritance">rivescript.inheritance module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rivescript.interactive">rivescript.interactive module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rivescript.parser">rivescript.parser module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rivescript.python">rivescript.python module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rivescript.regexp">rivescript.regexp module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rivescript.sorting">rivescript.sorting module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rivescript.utils">rivescript.utils module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">rivescript</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>rivescript package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/rivescript.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rivescript-package">
+<h1>rivescript package<a class="headerlink" href="#rivescript-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-rivescript.rivescript">
+<span id="rivescript-rivescript-module"></span><h2>rivescript.rivescript module<a class="headerlink" href="#module-rivescript.rivescript" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rivescript.rivescript.RiveScript">
+<em class="property">class </em><code class="descclassname">rivescript.rivescript.</code><code class="descname">RiveScript</code><span class="sig-paren">(</span><em>debug=False</em>, <em>strict=True</em>, <em>depth=50</em>, <em>log=''</em>, <em>utf8=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>A RiveScript interpreter for Python 2 and 3.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>debug</strong> (<em>bool</em>) &#8211; Set to True to enable verbose logging.</li>
+<li><strong>strict</strong> (<em>bool</em>) &#8211; Enable strict mode.
+Strict mode causes RiveScript syntax errors to be fatal.
+This option is <code class="docutils literal"><span class="pre">True</span></code> by default.</li>
+<li><strong>log</strong> (<em>str</em>) &#8211; Specify a log file to write debug output to.
+This can redirect debug lines to a file instead of <code class="docutils literal"><span class="pre">STDOUT</span></code>.</li>
+<li><strong>depth</strong> (<em>int</em>) &#8211; Specify the recursion depth limit.
+This is how many times RiveScript will recursively follow redirects
+before giving up with a <code class="docutils literal"><span class="pre">DeepRecursionError</span></code> exception.
+The default is <code class="docutils literal"><span class="pre">50</span></code>.</li>
+<li><strong>utf8</strong> (<em>bool</em>) &#8211; Enable UTF-8 mode.
+The default is <code class="docutils literal"><span class="pre">False</span></code>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="classmethod">
+<dt id="rivescript.rivescript.RiveScript.VERSION">
+<em class="property">classmethod </em><code class="descname">VERSION</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.VERSION"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.VERSION" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the version number of the RiveScript library.</p>
+<p>This may be called as either a class method or a method of a RiveScript
+object instance.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.clear_uservars">
+<code class="descname">clear_uservars</code><span class="sig-paren">(</span><em>user=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.clear_uservars"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.clear_uservars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete all variables about a user (or all users).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>user</strong> (<em>str</em>) &#8211; The user ID to clear variables for, or else clear all
+variables for all users if not provided.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.current_user">
+<code class="descname">current_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.current_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.current_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the user ID of the current user talking to your bot.</p>
+<p>This is mostly useful inside of a Python object macro to get the user
+ID of the person who caused the object macro to be invoked (i.e. to
+set a variable for that user from within the object).</p>
+<p>This will return <code class="docutils literal"><span class="pre">None</span></code> if used outside of the context of getting a
+reply (the value is unset at the end of the <code class="docutils literal"><span class="pre">reply()</span></code> method).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.deparse">
+<code class="descname">deparse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.deparse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.deparse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dump the in-memory RiveScript brain as a Python data structure.</p>
+<p>This would be useful, for example, to develop a user interface for
+editing RiveScript replies without having to edit the RiveScript
+source code directly.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return dict:</th><td class="field-body">JSON-serializable Python data structure containing the
+contents of all RiveScript replies currently loaded in memory.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.freeze_uservars">
+<code class="descname">freeze_uservars</code><span class="sig-paren">(</span><em>user</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.freeze_uservars"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.freeze_uservars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Freeze the variable state for a user.</p>
+<p>This will clone and preserve a user&#8217;s entire variable state, so that it
+can be restored later with <code class="docutils literal"><span class="pre">thaw_uservars()</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>user</strong> (<em>str</em>) &#8211; The user ID to freeze variables for.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.get_global">
+<code class="descname">get_global</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.get_global"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.get_global" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the current value of a global variable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) &#8211; The name of the variable to get.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return str:</th><td class="field-body">The value of the variable or <code class="docutils literal"><span class="pre">&quot;undefined&quot;</span></code>.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.get_uservar">
+<code class="descname">get_uservar</code><span class="sig-paren">(</span><em>user</em>, <em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.get_uservar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.get_uservar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a variable about a user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>user</strong> (<em>str</em>) &#8211; The user ID to look up a variable for.</li>
+<li><strong>name</strong> (<em>str</em>) &#8211; The name of the variable to get.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><p>The user variable, or <code class="docutils literal"><span class="pre">None</span></code> or <code class="docutils literal"><span class="pre">&quot;undefined&quot;</span></code>:</p>
+<ul class="simple">
+<li>If the user has no data at all, this returns <code class="docutils literal"><span class="pre">None</span></code>.</li>
+<li>If the user doesn&#8217;t have this variable set, this returns the
+string <code class="docutils literal"><span class="pre">&quot;undefined&quot;</span></code>.</li>
+<li>Otherwise this returns the string value of the variable.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.get_uservars">
+<code class="descname">get_uservars</code><span class="sig-paren">(</span><em>user=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.get_uservars"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.get_uservars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all variables about a user (or all users).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>str user</strong> (<em>optional</em>) &#8211; The user ID to retrieve all variables for.
+If not passed, this function will return all data for all users.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return dict:</th><td class="field-body"><p class="first">All the user variables.</p>
+<ul class="last simple">
+<li>If a <code class="docutils literal"><span class="pre">user</span></code> was passed, this is a <code class="docutils literal"><span class="pre">dict</span></code> of key/value pairs
+of that user&#8217;s variables. If the user doesn&#8217;t exist in memory,
+this returns <code class="docutils literal"><span class="pre">None</span></code>.</li>
+<li>Otherwise, this returns a <code class="docutils literal"><span class="pre">dict</span></code> of key/value pairs that map
+user IDs to their variables (a <code class="docutils literal"><span class="pre">dict</span></code> of <code class="docutils literal"><span class="pre">dict</span></code>).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.get_variable">
+<code class="descname">get_variable</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.get_variable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.get_variable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the current value of a bot variable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) &#8211; The name of the variable to get.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return str:</th><td class="field-body">The value of the variable or <code class="docutils literal"><span class="pre">&quot;undefined&quot;</span></code>.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.last_match">
+<code class="descname">last_match</code><span class="sig-paren">(</span><em>user</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.last_match"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.last_match" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the last trigger matched for the user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>user</strong> (<em>str</em>) &#8211; The user ID to get the last matched trigger for.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return str:</th><td class="field-body">The raw trigger text (tags and all) of the trigger that
+the user most recently matched. If there was no match to their
+last message, this returns <code class="docutils literal"><span class="pre">None</span></code> instead.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.load_directory">
+<code class="descname">load_directory</code><span class="sig-paren">(</span><em>directory</em>, <em>ext=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.load_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.load_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load RiveScript documents from a directory.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>directory</strong> (<em>str</em>) &#8211; The directory of RiveScript documents to load
+replies from.</li>
+<li><strong>ext</strong> (<em>[]str</em>) &#8211; List of file extensions to consider as RiveScript
+documents. The default is <code class="docutils literal"><span class="pre">[&quot;.rive&quot;,</span> <span class="pre">&quot;.rs&quot;]</span></code>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.load_file">
+<code class="descname">load_file</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.load_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.load_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load and parse a RiveScript document.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>str</em>) &#8211; The path to a RiveScript file.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.reply">
+<code class="descname">reply</code><span class="sig-paren">(</span><em>user</em>, <em>msg</em>, <em>errors_as_replies=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.reply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.reply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch a reply from the RiveScript brain.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>user</strong> (<em>str</em>) &#8211; A unique user ID for the person requesting a reply.
+This could be e.g. a screen name or nickname. It&#8217;s used internally
+to store user variables (including topic and history), so if your
+bot has multiple users each one should have a unique ID.</li>
+<li><strong>msg</strong> (<em>str</em>) &#8211; The user&#8217;s message. This is allowed to contain
+punctuation and such, but any extraneous data such as HTML tags
+should be removed in advance.</li>
+<li><strong>errors_as_replies</strong> (<em>bool</em>) &#8211; When errors are encountered (such as a
+deep recursion error, no reply matched, etc.) this will make the
+reply be a text representation of the error message. If you set
+this to <code class="docutils literal"><span class="pre">False</span></code>, errors will instead raise an exception, such as
+a <code class="docutils literal"><span class="pre">DeepRecursionError</span></code> or <code class="docutils literal"><span class="pre">NoReplyError</span></code>. By default, no
+exceptions are raised and errors are set in the reply instead.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The reply output.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.set_global">
+<code class="descname">set_global</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.set_global"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.set_global" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a global variable.</p>
+<p>Equivalent to <code class="docutils literal"><span class="pre">!</span> <span class="pre">global</span></code> in RiveScript code.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>str</em>) &#8211; The name of the variable to set.</li>
+<li><strong>value</strong> (<em>str</em>) &#8211; The value of the variable.
+Set this to <code class="docutils literal"><span class="pre">None</span></code> to delete the variable.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.set_handler">
+<code class="descname">set_handler</code><span class="sig-paren">(</span><em>language</em>, <em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.set_handler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.set_handler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a custom language handler for RiveScript objects.</p>
+<p>Pass in a <code class="docutils literal"><span class="pre">None</span></code> value for the object to delete an existing handler (for
+example, to prevent Python code from being able to be run by default).</p>
+<p>Look in the <code class="docutils literal"><span class="pre">eg</span></code> folder of the rivescript-python distribution for
+an example script that sets up a JavaScript language handler.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>language</strong> (<em>str</em>) &#8211; The lowercased name of the programming language.
+Examples: python, javascript, perl</li>
+<li><strong>obj</strong> (<em>class</em>) &#8211; <p>An instance of an implementation class object.
+It should provide the following interface:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyObjectHandler</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">code</span><span class="p">):</span>
+        <span class="c1"># name = the name of the object from the RiveScript code</span>
+        <span class="c1"># code = the source code of the object</span>
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rs</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">fields</span><span class="p">):</span>
+        <span class="c1"># rs     = the current RiveScript interpreter object</span>
+        <span class="c1"># name   = the name of the object being called</span>
+        <span class="c1"># fields = array of arguments passed to the object</span>
+        <span class="k">return</span> <span class="n">reply</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.set_person">
+<code class="descname">set_person</code><span class="sig-paren">(</span><em>what</em>, <em>rep</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.set_person"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.set_person" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a person substitution.</p>
+<p>Equivalent to <code class="docutils literal"><span class="pre">!</span> <span class="pre">person</span></code> in RiveScript code.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>what</strong> (<em>str</em>) &#8211; The original text to replace.</li>
+<li><strong>rep</strong> (<em>str</em>) &#8211; The text to replace it with.
+Set this to <code class="docutils literal"><span class="pre">None</span></code> to delete the substitution.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.set_subroutine">
+<code class="descname">set_subroutine</code><span class="sig-paren">(</span><em>name</em>, <em>code</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.set_subroutine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.set_subroutine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a Python object from your program.</p>
+<p>This is equivalent to having an object defined in the RiveScript code,
+except your Python code is defining it instead.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>str</em>) &#8211; The name of the object macro.</li>
+<li><strong>code</strong> (<em>def</em>) &#8211; A Python function with a method signature of
+<code class="docutils literal"><span class="pre">(rs,</span> <span class="pre">args)</span></code></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>This method is only available if there is a Python handler set up
+(which there is by default, unless you&#8217;ve called
+<code class="docutils literal"><span class="pre">set_handler(&quot;python&quot;,</span> <span class="pre">None)</span></code>).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.set_substitution">
+<code class="descname">set_substitution</code><span class="sig-paren">(</span><em>what</em>, <em>rep</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.set_substitution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.set_substitution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a substitution.</p>
+<p>Equivalent to <code class="docutils literal"><span class="pre">!</span> <span class="pre">sub</span></code> in RiveScript code.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>what</strong> (<em>str</em>) &#8211; The original text to replace.</li>
+<li><strong>rep</strong> (<em>str</em>) &#8211; The text to replace it with.
+Set this to <code class="docutils literal"><span class="pre">None</span></code> to delete the substitution.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.set_uservar">
+<code class="descname">set_uservar</code><span class="sig-paren">(</span><em>user</em>, <em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.set_uservar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.set_uservar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a variable for a user.</p>
+<p>This is like the <code class="docutils literal"><span class="pre">&lt;set&gt;</span></code> tag in RiveScript code.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>user</strong> (<em>str</em>) &#8211; The user ID to set a variable for.</li>
+<li><strong>name</strong> (<em>str</em>) &#8211; The name of the variable to set.</li>
+<li><strong>value</strong> (<em>str</em>) &#8211; The value to set there.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.set_uservars">
+<code class="descname">set_uservars</code><span class="sig-paren">(</span><em>user</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.set_uservars"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.set_uservars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set many variables for a user, or set many variables for many users.</p>
+<p>This function can be called in two ways:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Set a dict of variables for a single user.</span>
+<span class="n">rs</span><span class="o">.</span><span class="n">set_uservars</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="nb">vars</span><span class="p">)</span>
+
+<span class="c1"># Set a nested dict of variables for many users.</span>
+<span class="n">rs</span><span class="o">.</span><span class="n">set_uservars</span><span class="p">(</span><span class="n">many_vars</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the first syntax, <code class="docutils literal"><span class="pre">vars</span></code> is a simple dict of key/value string
+pairs. In the second syntax, <code class="docutils literal"><span class="pre">many_vars</span></code> is a structure like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;username1&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;username2&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This way you can export <em>all</em> user variables via <code class="docutils literal"><span class="pre">get_uservars()</span></code>
+and then re-import them all at once, instead of setting them once per
+user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>str user</strong> (<em>optional</em>) &#8211; The user ID to set many variables for.
+Skip this parameter to set many variables for many users instead.</li>
+<li><strong>data</strong> (<em>dict</em>) &#8211; The dictionary of key/value pairs for user variables,
+or else a dict of dicts mapping usernames to key/value pairs.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>This may raise a <code class="docutils literal"><span class="pre">TypeError</span></code> exception if you pass it invalid data
+types. Note that only the standard <code class="docutils literal"><span class="pre">dict</span></code> type is accepted, but not
+variants like <code class="docutils literal"><span class="pre">OrderedDict</span></code>, so if you have a dict-like type you
+should cast it to <code class="docutils literal"><span class="pre">dict</span></code> first.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.set_variable">
+<code class="descname">set_variable</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.set_variable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.set_variable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a bot variable.</p>
+<p>Equivalent to <code class="docutils literal"><span class="pre">!</span> <span class="pre">var</span></code> in RiveScript code.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>str</em>) &#8211; The name of the variable to set.</li>
+<li><strong>value</strong> (<em>str</em>) &#8211; The value of the variable.
+Set this to <code class="docutils literal"><span class="pre">None</span></code> to delete the variable.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.sort_replies">
+<code class="descname">sort_replies</code><span class="sig-paren">(</span><em>thats=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.sort_replies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.sort_replies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sort the loaded triggers in memory.</p>
+<p>After you have finished loading your RiveScript code, call this method
+to populate the various internal sort buffers. This is absolutely
+necessary for reply matching to work efficiently!</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.stream">
+<code class="descname">stream</code><span class="sig-paren">(</span><em>code</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.stream"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.stream" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stream in RiveScript source code dynamically.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>code</strong> &#8211; Either a string containing RiveScript code or an array of
+lines of RiveScript code.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.thaw_uservars">
+<code class="descname">thaw_uservars</code><span class="sig-paren">(</span><em>user</em>, <em>action='thaw'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.thaw_uservars"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.thaw_uservars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Thaw a user&#8217;s frozen variables.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>action</strong> (<em>str</em>) &#8211; <p>The action to perform when thawing the variables:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">discard</span></code>: Don&#8217;t restore the user&#8217;s variables, just delete the
+frozen copy.</li>
+<li><code class="docutils literal"><span class="pre">keep</span></code>: Keep the frozen copy after restoring the variables.</li>
+<li><code class="docutils literal"><span class="pre">thaw</span></code>: Restore the variables, then delete the frozen copy
+(this is the default).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.trigger_info">
+<code class="descname">trigger_info</code><span class="sig-paren">(</span><em>trigger=None</em>, <em>dump=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.trigger_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.trigger_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get information about a trigger.</p>
+<p>Pass in a raw trigger to find out what file name and line number it
+appeared at. This is useful for e.g. tracking down the location of the
+trigger last matched by the user via <code class="docutils literal"><span class="pre">last_match()</span></code>. Returns a list
+of matching triggers, containing their topics, filenames and line
+numbers. Returns <code class="docutils literal"><span class="pre">None</span></code> if there weren&#8217;t any matches found.</p>
+<p>The keys in the trigger info is as follows:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">category</span></code>: Either &#8216;topic&#8217; (for normal) or &#8216;thats&#8217;
+(for %Previous triggers)</li>
+<li><code class="docutils literal"><span class="pre">topic</span></code>: The topic name</li>
+<li><code class="docutils literal"><span class="pre">trigger</span></code>: The raw trigger text</li>
+<li><code class="docutils literal"><span class="pre">filename</span></code>: The filename the trigger was found in.</li>
+<li><code class="docutils literal"><span class="pre">lineno</span></code>: The line number the trigger was found on.</li>
+</ul>
+<p>Pass in a true value for <code class="docutils literal"><span class="pre">dump</span></code>, and the entire syntax tracking
+tree is returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>trigger</strong> (<em>str</em>) &#8211; The raw trigger text to look up.</li>
+<li><strong>dump</strong> (<em>bool</em>) &#8211; Whether to dump the entire syntax tracking tree.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list of matching triggers or <code class="docutils literal"><span class="pre">None</span></code> if no matches.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.rivescript.RiveScript.write">
+<code class="descname">write</code><span class="sig-paren">(</span><em>fh</em>, <em>deparsed=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/rivescript.html#RiveScript.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.rivescript.RiveScript.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the currently parsed RiveScript data into a file.</p>
+<p>Pass either a file name (string) or a file handle object.</p>
+<p>This uses <code class="docutils literal"><span class="pre">deparse()</span></code> to dump a representation of the loaded data and
+writes it to the destination file. If you provide your own data as the
+<code class="docutils literal"><span class="pre">deparsed</span></code> argument, it will use that data instead of calling
+<code class="docutils literal"><span class="pre">deparse()</span></code> itself. This way you can use <code class="docutils literal"><span class="pre">deparse()</span></code>, edit the data,
+and use that to write the RiveScript document (for example, to be used
+by a user interface for editing RiveScript without writing the code
+directly).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>fh</strong> &#8211; Either a file name <code class="docutils literal"><span class="pre">str</span></code> or a file handle object of a file
+opened in write mode.</li>
+<li><strong>dict deparsed</strong> (<em>optional</em>) &#8211; A data structure in the same format as
+what <code class="docutils literal"><span class="pre">deparse()</span></code> returns. If not passed, this value will come from
+the current in-memory data from <code class="docutils literal"><span class="pre">deparse()</span></code>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-rivescript.brain">
+<span id="rivescript-brain-module"></span><h2>rivescript.brain module<a class="headerlink" href="#module-rivescript.brain" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rivescript.brain.Brain">
+<em class="property">class </em><code class="descclassname">rivescript.brain.</code><code class="descname">Brain</code><span class="sig-paren">(</span><em>master</em>, <em>strict=True</em>, <em>utf8=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/brain.html#Brain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.brain.Brain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>The Brain class controls the actual reply fetching phase for RiveScript.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>master</strong> (<a class="reference internal" href="#rivescript.rivescript.RiveScript" title="rivescript.rivescript.RiveScript"><em>RiveScript</em></a>) &#8211; A reference to the parent RiveScript instance.</li>
+<li><strong>strict</strong> (<em>bool</em>) &#8211; Whether strict mode is enabled.</li>
+<li><strong>utf8</strong> (<em>bool</em>) &#8211; Whether UTF-8 mode is enabled.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="rivescript.brain.Brain.do_expand_array">
+<code class="descname">do_expand_array</code><span class="sig-paren">(</span><em>array_name</em>, <em>depth=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/brain.html#Brain.do_expand_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.brain.Brain.do_expand_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do recurrent array expansion, returning a set of keywords.</p>
+<p>Exception is thrown when there are cyclical dependencies between
+arrays or if the <code class="docutils literal"><span class="pre">&#64;array</span></code> name references an undefined array.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>array_name</strong> (<em>str</em>) &#8211; The name of the array to expand.</li>
+<li><strong>depth</strong> (<em>int</em>) &#8211; The recursion depth counter.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return set:</th><td class="field-body"><p class="first last">The final set of array entries.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.brain.Brain.expand_array">
+<code class="descname">expand_array</code><span class="sig-paren">(</span><em>array_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/brain.html#Brain.expand_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.brain.Brain.expand_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expand variables and return a set of keywords.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>array_name</strong> (<em>str</em>) &#8211; The name of the array to expand.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return list:</th><td class="field-body">The final array contents.</td>
+</tr>
+</tbody>
+</table>
+<p>Warning is issued when exceptions occur.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.brain.Brain.format_message">
+<code class="descname">format_message</code><span class="sig-paren">(</span><em>msg</em>, <em>botreply=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/brain.html#Brain.format_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.brain.Brain.format_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format a user&#8217;s message for safe processing.</p>
+<p>This runs substitutions on the message and strips out any remaining
+symbols (depending on UTF-8 mode).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>msg</strong> (<em>str</em>) &#8211; The user&#8217;s message.</li>
+<li><strong>botreply</strong> (<em>bool</em>) &#8211; Whether this formatting is being done for the
+bot&#8217;s last reply (e.g. in a <code class="docutils literal"><span class="pre">%Previous</span></code> command).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return str:</th><td class="field-body"><p class="first last">The formatted message.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.brain.Brain.process_tags">
+<code class="descname">process_tags</code><span class="sig-paren">(</span><em>user</em>, <em>msg</em>, <em>reply</em>, <em>st=[]</em>, <em>bst=[]</em>, <em>depth=0</em>, <em>ignore_object_errors=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/brain.html#Brain.process_tags"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.brain.Brain.process_tags" title="Permalink to this definition">¶</a></dt>
+<dd><p>Post process tags in a message.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>user</strong> (<em>str</em>) &#8211; The user ID.</li>
+<li><strong>msg</strong> (<em>str</em>) &#8211; The user&#8217;s formatted message.</li>
+<li><strong>reply</strong> (<em>str</em>) &#8211; The raw RiveScript reply for the message.</li>
+<li><strong>st</strong> (<em>[]str</em>) &#8211; The array of <code class="docutils literal"><span class="pre">&lt;star&gt;</span></code> matches from the trigger.</li>
+<li><strong>bst</strong> (<em>[]str</em>) &#8211; The array of <code class="docutils literal"><span class="pre">&lt;botstar&gt;</span></code> matches from a
+<code class="docutils literal"><span class="pre">%Previous</span></code> command.</li>
+<li><strong>depth</strong> (<em>int</em>) &#8211; The recursion depth counter.</li>
+<li><strong>ignore_object_errors</strong> (<em>bool</em>) &#8211; Whether to ignore errors in Python
+object macros instead of raising an <code class="docutils literal"><span class="pre">ObjectError</span></code> exception.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return str:</th><td class="field-body"><p class="first last">The final reply after tags have been processed.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.brain.Brain.reply">
+<code class="descname">reply</code><span class="sig-paren">(</span><em>user</em>, <em>msg</em>, <em>errors_as_replies=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/brain.html#Brain.reply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.brain.Brain.reply" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rivescript.brain.Brain.reply_regexp">
+<code class="descname">reply_regexp</code><span class="sig-paren">(</span><em>user</em>, <em>regexp</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/brain.html#Brain.reply_regexp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.brain.Brain.reply_regexp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepares a trigger for the regular expression engine.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>user</strong> (<em>str</em>) &#8211; The user ID invoking a reply.</li>
+<li><strong>regexp</strong> (<em>str</em>) &#8211; The original trigger text to be turned into a regexp.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return regexp:</th><td class="field-body"><p class="first last">The final regexp object.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.brain.Brain.say">
+<code class="descname">say</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/brain.html#Brain.say"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.brain.Brain.say" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rivescript.brain.Brain.substitute">
+<code class="descname">substitute</code><span class="sig-paren">(</span><em>msg</em>, <em>kind</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/brain.html#Brain.substitute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.brain.Brain.substitute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a kind of substitution on a message.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>msg</strong> (<em>str</em>) &#8211; The message to run substitutions against.</li>
+<li><strong>kind</strong> (<em>str</em>) &#8211; The kind of substitution to run,
+one of <code class="docutils literal"><span class="pre">subs</span></code> or <code class="docutils literal"><span class="pre">person</span></code>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.brain.Brain.warn">
+<code class="descname">warn</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/brain.html#Brain.warn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.brain.Brain.warn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-rivescript.exceptions">
+<span id="rivescript-exceptions-module"></span><h2>rivescript.exceptions module<a class="headerlink" href="#module-rivescript.exceptions" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="rivescript.exceptions.DeepRecursionError">
+<em class="property">exception </em><code class="descclassname">rivescript.exceptions.</code><code class="descname">DeepRecursionError</code><a class="reference internal" href="_modules/rivescript/exceptions.html#DeepRecursionError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.exceptions.DeepRecursionError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rivescript.exceptions.RiveScriptError" title="rivescript.exceptions.RiveScriptError"><code class="xref py py-class docutils literal"><span class="pre">rivescript.exceptions.RiveScriptError</span></code></a></p>
+<p>A deep recursion condition was detected and a reply can&#8217;t be given.</p>
+<p>This error can occur when you have triggers that redirect to each other
+in a circle, for example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">+</span> <span class="n">one</span>
+<span class="o">@</span> <span class="n">two</span>
+
+<span class="o">+</span> <span class="n">two</span>
+<span class="o">@</span> <span class="n">one</span>
+</pre></div>
+</div>
+<p>By default, RiveScript will only recursively look for a trigger up to
+50 levels deep before giving up. This should be a large enough window for
+most use cases, but if you need to increase this limit you can do so by
+setting a higher value for the <code class="docutils literal"><span class="pre">depth</span></code> parameter to the constructor or
+changing it in your RiveScript source code, for example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>! global depth = 75
+</pre></div>
+</div>
+<p>The text version is <code class="docutils literal"><span class="pre">[ERR:</span> <span class="pre">Deep</span> <span class="pre">recursion</span> <span class="pre">detected]</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="rivescript.exceptions.NoDefaultRandomTopicError">
+<em class="property">exception </em><code class="descclassname">rivescript.exceptions.</code><code class="descname">NoDefaultRandomTopicError</code><a class="reference internal" href="_modules/rivescript/exceptions.html#NoDefaultRandomTopicError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.exceptions.NoDefaultRandomTopicError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<p>No default topic could be found.</p>
+<p>This is a critical error and usually means no replies were loaded into the
+bot. Very unlikely is it the case that all replies belong to other topics
+than the default (<code class="docutils literal"><span class="pre">random</span></code>).</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="rivescript.exceptions.NoMatchError">
+<em class="property">exception </em><code class="descclassname">rivescript.exceptions.</code><code class="descname">NoMatchError</code><a class="reference internal" href="_modules/rivescript/exceptions.html#NoMatchError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.exceptions.NoMatchError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rivescript.exceptions.RiveScriptError" title="rivescript.exceptions.RiveScriptError"><code class="xref py py-class docutils literal"><span class="pre">rivescript.exceptions.RiveScriptError</span></code></a></p>
+<p>No reply could be matched.</p>
+<p>This means that no trigger was a match for the user&#8217;s message. To avoid
+this error, add a trigger that only consists of a wildcard:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">+</span> <span class="o">*</span>
+<span class="o">-</span> <span class="n">I</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">know</span> <span class="n">how</span> <span class="n">to</span> <span class="n">reply</span> <span class="n">to</span> <span class="n">that</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>The lone-wildcard trigger acts as a catch-all fallback trigger and will
+ensure that every message the user could send will match at least one
+trigger.</p>
+<p>The text version is <code class="docutils literal"><span class="pre">[ERR:</span> <span class="pre">No</span> <span class="pre">reply</span> <span class="pre">matched]</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="rivescript.exceptions.NoReplyError">
+<em class="property">exception </em><code class="descclassname">rivescript.exceptions.</code><code class="descname">NoReplyError</code><a class="reference internal" href="_modules/rivescript/exceptions.html#NoReplyError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.exceptions.NoReplyError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rivescript.exceptions.RiveScriptError" title="rivescript.exceptions.RiveScriptError"><code class="xref py py-class docutils literal"><span class="pre">rivescript.exceptions.RiveScriptError</span></code></a></p>
+<p>No reply could be found.</p>
+<p>This means that the user&#8217;s message matched a trigger, but the trigger
+didn&#8217;t yield any response for the user. For example, if a trigger was
+followed only by <code class="docutils literal"><span class="pre">*Conditions</span></code> and none of them were true and there were
+no normal replies to fall back on, this error can come up.</p>
+<p>To avoid this error, always make sure you have at least one <code class="docutils literal"><span class="pre">-Reply</span></code>
+for every trigger.</p>
+<p>The text version is <code class="docutils literal"><span class="pre">[ERR:</span> <span class="pre">No</span> <span class="pre">reply</span> <span class="pre">found]</span></code>.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="rivescript.exceptions.ObjectError">
+<em class="property">exception </em><code class="descclassname">rivescript.exceptions.</code><code class="descname">ObjectError</code><span class="sig-paren">(</span><em>error_message='[ERR: Error when executing Python object]'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/exceptions.html#ObjectError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.exceptions.ObjectError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rivescript.exceptions.RiveScriptError" title="rivescript.exceptions.RiveScriptError"><code class="xref py py-class docutils literal"><span class="pre">rivescript.exceptions.RiveScriptError</span></code></a></p>
+<p>An error occurred when executing a Python object macro.</p>
+<p>This will usually be some kind of run-time error, like a
+<code class="docutils literal"><span class="pre">ZeroDivisionError</span></code> or <code class="docutils literal"><span class="pre">IndexError</span></code> for example.</p>
+<p>The text version is <code class="docutils literal"><span class="pre">[ERR:</span> <span class="pre">Error</span> <span class="pre">when</span> <span class="pre">executing</span> <span class="pre">Python</span> <span class="pre">object]</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="rivescript.exceptions.RepliesNotSortedError">
+<em class="property">exception </em><code class="descclassname">rivescript.exceptions.</code><code class="descname">RepliesNotSortedError</code><a class="reference internal" href="_modules/rivescript/exceptions.html#RepliesNotSortedError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.exceptions.RepliesNotSortedError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<p>You attempted to get a reply before sorting the triggers.</p>
+<p>You should call <code class="docutils literal"><span class="pre">sort_replies()</span></code> after loading your RiveScript code and
+before calling <code class="docutils literal"><span class="pre">reply()</span></code> to look up a reply.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="rivescript.exceptions.RiveScriptError">
+<em class="property">exception </em><code class="descclassname">rivescript.exceptions.</code><code class="descname">RiveScriptError</code><span class="sig-paren">(</span><em>error_message=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/exceptions.html#RiveScriptError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.exceptions.RiveScriptError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<p>RiveScript base exception class.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-rivescript.inheritance">
+<span id="rivescript-inheritance-module"></span><h2>rivescript.inheritance module<a class="headerlink" href="#module-rivescript.inheritance" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="rivescript.inheritance.get_topic_tree">
+<code class="descclassname">rivescript.inheritance.</code><code class="descname">get_topic_tree</code><span class="sig-paren">(</span><em>rs</em>, <em>topic</em>, <em>depth=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/inheritance.html#get_topic_tree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.inheritance.get_topic_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given one topic, get the list of all included/inherited topics.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>topic</strong> (<em>str</em>) &#8211; The topic to start the search at.</li>
+<li><strong>depth</strong> (<em>int</em>) &#8211; The recursion depth counter.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return []str:</th><td class="field-body"><p class="first last">Array of topics.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="rivescript.inheritance.get_topic_triggers">
+<code class="descclassname">rivescript.inheritance.</code><code class="descname">get_topic_triggers</code><span class="sig-paren">(</span><em>rs</em>, <em>topic</em>, <em>thats</em>, <em>depth=0</em>, <em>inheritance=0</em>, <em>inherited=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/inheritance.html#get_topic_triggers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.inheritance.get_topic_triggers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recursively scan a topic and return a list of all triggers.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>rs</strong> (<a class="reference internal" href="#rivescript.rivescript.RiveScript" title="rivescript.rivescript.RiveScript"><em>RiveScript</em></a>) &#8211; A reference to the parent RiveScript instance.</li>
+<li><strong>topic</strong> (<em>str</em>) &#8211; The original topic name.</li>
+<li><strong>thats</strong> (<em>bool</em>) &#8211; Are we getting triggers for &#8216;previous&#8217; replies?</li>
+<li><strong>depth</strong> (<em>int</em>) &#8211; Recursion step counter.</li>
+<li><strong>inheritance</strong> (<em>int</em>) &#8211; The inheritance level counter, for topics that
+inherit other topics.</li>
+<li><strong>inherited</strong> (<em>bool</em>) &#8211; Whether the current topic is inherited by others.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List of all triggers found.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">[]str</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-rivescript.interactive">
+<span id="rivescript-interactive-module"></span><h2>rivescript.interactive module<a class="headerlink" href="#module-rivescript.interactive" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="rivescript.interactive.interactive_mode">
+<code class="descclassname">rivescript.interactive.</code><code class="descname">interactive_mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/interactive.html#interactive_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.interactive.interactive_mode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rivescript.interactive.json_in">
+<code class="descclassname">rivescript.interactive.</code><code class="descname">json_in</code><span class="sig-paren">(</span><em>bot</em>, <em>buffer</em>, <em>stateful</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/interactive.html#json_in"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.interactive.json_in" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-rivescript.parser">
+<span id="rivescript-parser-module"></span><h2>rivescript.parser module<a class="headerlink" href="#module-rivescript.parser" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rivescript.parser.Parser">
+<em class="property">class </em><code class="descclassname">rivescript.parser.</code><code class="descname">Parser</code><span class="sig-paren">(</span><em>master</em>, <em>strict=True</em>, <em>utf8=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/parser.html#Parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.parser.Parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>The RiveScript language parser.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>master</strong> (<a class="reference internal" href="#rivescript.rivescript.RiveScript" title="rivescript.rivescript.RiveScript"><em>RiveScript</em></a>) &#8211; A reference to the parent RiveScript bot instance,
+mostly useful for its debug methods like <code class="docutils literal"><span class="pre">warn()</span></code>.</li>
+<li><strong>strict</strong> (<em>bool</em>) &#8211; Strict syntax checking (true by default).</li>
+<li><strong>utf8</strong> (<em>bool</em>) &#8211; Enable UTF-8 mode (false by default).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="rivescript.parser.Parser.check_syntax">
+<code class="descname">check_syntax</code><span class="sig-paren">(</span><em>cmd</em>, <em>line</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/parser.html#Parser.check_syntax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.parser.Parser.check_syntax" title="Permalink to this definition">¶</a></dt>
+<dd><p>Syntax check a line of RiveScript code.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>cmd</strong> (<em>str</em>) &#8211; The command symbol for the line of code, such as one
+of <code class="docutils literal"><span class="pre">+</span></code>, <code class="docutils literal"><span class="pre">-</span></code>, <code class="docutils literal"><span class="pre">*</span></code>, <code class="docutils literal"><span class="pre">&gt;</span></code>, etc.</li>
+<li><strong>line</strong> (<em>str</em>) &#8211; The remainder of the line of code, such as the text of
+a trigger or reply.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A string syntax error message or <code class="docutils literal"><span class="pre">None</span></code> if no errors.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.parser.Parser.concat_modes">
+<code class="descname">concat_modes</code><em class="property"> = {'newline': '\n', 'space': ' ', 'none': ''}</em><a class="headerlink" href="#rivescript.parser.Parser.concat_modes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rivescript.parser.Parser.parse">
+<code class="descname">parse</code><span class="sig-paren">(</span><em>filename</em>, <em>code</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/parser.html#Parser.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.parser.Parser.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read and parse a RiveScript document.</p>
+<p>Returns a data structure that represents all of the useful contents of
+the document, in this format:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;begin&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="c1"># &quot;begin&quot; data</span>
+        <span class="s2">&quot;global&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="c1"># map of !global vars</span>
+        <span class="s2">&quot;var&quot;</span><span class="p">:</span> <span class="p">{},</span>    <span class="c1"># bot !var&#39;s</span>
+        <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="p">{},</span>    <span class="c1"># !sub substitutions</span>
+        <span class="s2">&quot;person&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="c1"># !person substitutions</span>
+        <span class="s2">&quot;array&quot;</span><span class="p">:</span> <span class="p">{},</span>  <span class="c1"># !array lists</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;topics&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="c1"># main reply data</span>
+        <span class="s2">&quot;random&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="c1"># (topic name)</span>
+            <span class="s2">&quot;includes&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="c1"># map of included topics (values=1)</span>
+            <span class="s2">&quot;inherits&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="c1"># map of inherited topics</span>
+            <span class="s2">&quot;triggers&quot;</span><span class="p">:</span> <span class="p">[</span>   <span class="c1"># array of triggers</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;trigger&quot;</span><span class="p">:</span> <span class="s2">&quot;hello bot&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="c1"># array of replies</span>
+                    <span class="s2">&quot;condition&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="c1"># array of conditions</span>
+                    <span class="s2">&quot;redirect&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="c1"># redirect command</span>
+                    <span class="s2">&quot;previous&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="c1"># &#39;previous&#39; reply</span>
+                <span class="p">},</span>
+                <span class="c1"># ...</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="s2">&quot;objects&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="c1"># parsed object macros</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>     <span class="c1"># object name</span>
+            <span class="s2">&quot;language&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="c1"># programming language</span>
+            <span class="s2">&quot;code&quot;</span><span class="p">:</span> <span class="p">[],</span>     <span class="c1"># array of lines of code</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>str</em>) &#8211; The name of the file that the code came from, for
+syntax error reporting purposes.</li>
+<li><strong>code</strong> (<em>str[]</em>) &#8211; The source code to parse.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The aforementioned data structure.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.parser.Parser.say">
+<code class="descname">say</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/parser.html#Parser.say"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.parser.Parser.say" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rivescript.parser.Parser.warn">
+<code class="descname">warn</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/parser.html#Parser.warn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.parser.Parser.warn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-rivescript.python">
+<span id="rivescript-python-module"></span><h2>rivescript.python module<a class="headerlink" href="#module-rivescript.python" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rivescript.python.PyRiveObjects">
+<em class="property">class </em><code class="descclassname">rivescript.python.</code><code class="descname">PyRiveObjects</code><a class="reference internal" href="_modules/rivescript/python.html#PyRiveObjects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.python.PyRiveObjects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>A RiveScript object handler for Python code.</p>
+<p>This class provides built-in support for your RiveScript documents to
+include and execute object macros written in Python. For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nb">object</span> <span class="n">base64</span> <span class="n">python</span>
+    <span class="kn">import</span> <span class="nn">base64</span> <span class="k">as</span> <span class="nn">b64</span>
+    <span class="k">return</span> <span class="n">b64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+<span class="o">&lt;</span> <span class="nb">object</span>
+
+<span class="o">+</span> <span class="n">encode</span> <span class="o">*</span> <span class="ow">in</span> <span class="n">base64</span>
+<span class="o">-</span> <span class="n">OK</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">call</span><span class="o">&gt;</span><span class="n">base64</span> <span class="o">&lt;</span><span class="n">star</span><span class="o">&gt;&lt;/</span><span class="n">call</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Python object macros receive these two parameters:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">rs</span></code> (RiveScript): The reference to the parent RiveScript instance.</li>
+<li><code class="docutils literal"><span class="pre">args</span></code> ([]str): A list of argument words passed to your object.</li>
+</ul>
+<p>Python support is on by default. To turn it off, just unset the Python
+language handler on your RiveScript object:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rs</span><span class="o">.</span><span class="n">set_handler</span><span class="p">(</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="rivescript.python.PyRiveObjects.call">
+<code class="descname">call</code><span class="sig-paren">(</span><em>rs</em>, <em>name</em>, <em>user</em>, <em>fields</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/python.html#PyRiveObjects.call"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.python.PyRiveObjects.call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoke a previously loaded object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>rs</strong> (<a class="reference internal" href="#rivescript.rivescript.RiveScript" title="rivescript.rivescript.RiveScript"><em>RiveScript</em></a>) &#8211; the parent RiveScript instance.</li>
+<li><strong>name</strong> (<em>str</em>) &#8211; The name of the object macro to be called.</li>
+<li><strong>user</strong> (<em>str</em>) &#8211; The user ID invoking the object macro.</li>
+<li><strong>fields</strong> (<em>[]str</em>) &#8211; Array of words sent as the object&#8217;s arguments.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return str:</th><td class="field-body"><p class="first last">The output of the object macro.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rivescript.python.PyRiveObjects.load">
+<code class="descname">load</code><span class="sig-paren">(</span><em>name</em>, <em>code</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/python.html#PyRiveObjects.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.python.PyRiveObjects.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepare a Python code object given by the RiveScript interpreter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>str</em>) &#8211; The name of the Python object macro.</li>
+<li><strong>code</strong> (<em>[]str</em>) &#8211; The Python source code for the object macro.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="rivescript.python.PythonObjectError">
+<em class="property">exception </em><code class="descclassname">rivescript.python.</code><code class="descname">PythonObjectError</code><a class="reference internal" href="_modules/rivescript/python.html#PythonObjectError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.python.PythonObjectError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-rivescript.regexp">
+<span id="rivescript-regexp-module"></span><h2>rivescript.regexp module<a class="headerlink" href="#module-rivescript.regexp" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rivescript.regexp.RE">
+<em class="property">class </em><code class="descclassname">rivescript.regexp.</code><code class="descname">RE</code><a class="reference internal" href="_modules/rivescript/regexp.html#RE"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.regexp.RE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.array">
+<code class="descname">array</code><em class="property"> = re.compile('\\&#64;(.+?)\\b')</em><a class="headerlink" href="#rivescript.regexp.RE.array" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.bot_tag">
+<code class="descname">bot_tag</code><em class="property"> = re.compile('&lt;bot (.+?)&gt;')</em><a class="headerlink" href="#rivescript.regexp.RE.bot_tag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.botstars">
+<code class="descname">botstars</code><em class="property"> = re.compile('&lt;botstar(\\d+)&gt;')</em><a class="headerlink" href="#rivescript.regexp.RE.botstars" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.cond_parse">
+<code class="descname">cond_parse</code><em class="property"> = re.compile('^(.+?)\\s+(==|eq|!=|ne|&lt;&gt;|&lt;|&lt;=|&gt;|&gt;=)\\s+(.+?)$')</em><a class="headerlink" href="#rivescript.regexp.RE.cond_parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.cond_split">
+<code class="descname">cond_split</code><em class="property"> = re.compile('\\s*=&gt;\\s*')</em><a class="headerlink" href="#rivescript.regexp.RE.cond_split" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.cond_syntax">
+<code class="descname">cond_syntax</code><em class="property"> = re.compile('^.+?\\s*(?:==|eq|!=|ne|&lt;&gt;|&lt;|&lt;=|&gt;|&gt;=)\\s*.+?=&gt;.+?$')</em><a class="headerlink" href="#rivescript.regexp.RE.cond_syntax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.crlf">
+<code class="descname">crlf</code><em class="property"> = re.compile('&lt;crlf&gt;')</em><a class="headerlink" href="#rivescript.regexp.RE.crlf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.def_syntax">
+<code class="descname">def_syntax</code><em class="property"> = re.compile('^.+(?:\\s+.+|)\\s*=\\s*.+?$')</em><a class="headerlink" href="#rivescript.regexp.RE.def_syntax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.equals">
+<code class="descname">equals</code><em class="property"> = re.compile('\\s*=\\s*')</em><a class="headerlink" href="#rivescript.regexp.RE.equals" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.get_tag">
+<code class="descname">get_tag</code><em class="property"> = re.compile('&lt;get (.+?)&gt;')</em><a class="headerlink" href="#rivescript.regexp.RE.get_tag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.inherit">
+<code class="descname">inherit</code><em class="property"> = re.compile('\\{inherits=(\\d+)\\}')</em><a class="headerlink" href="#rivescript.regexp.RE.inherit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.input_tags">
+<code class="descname">input_tags</code><em class="property"> = re.compile('&lt;input([1-9])&gt;')</em><a class="headerlink" href="#rivescript.regexp.RE.input_tags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.literal_w">
+<code class="descname">literal_w</code><em class="property"> = re.compile('\\\\w')</em><a class="headerlink" href="#rivescript.regexp.RE.literal_w" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.name_syntax">
+<code class="descname">name_syntax</code><em class="property"> = re.compile('[^a-z0-9_\\-\\s]')</em><a class="headerlink" href="#rivescript.regexp.RE.name_syntax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.nasties">
+<code class="descname">nasties</code><em class="property"> = re.compile('[^A-Za-z0-9 ]')</em><a class="headerlink" href="#rivescript.regexp.RE.nasties" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.objend">
+<code class="descname">objend</code><em class="property"> = re.compile('^\\s*&lt;\\s*object')</em><a class="headerlink" href="#rivescript.regexp.RE.objend" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.optionals">
+<code class="descname">optionals</code><em class="property"> = re.compile('\\[(.+?)\\]')</em><a class="headerlink" href="#rivescript.regexp.RE.optionals" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.placeholder">
+<code class="descname">placeholder</code><em class="property"> = re.compile('\\x00(\\d+)\\x00')</em><a class="headerlink" href="#rivescript.regexp.RE.placeholder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.random_tags">
+<code class="descname">random_tags</code><em class="property"> = re.compile('\\{random\\}(.+?)\\{/random\\}')</em><a class="headerlink" href="#rivescript.regexp.RE.random_tags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.redir_tag">
+<code class="descname">redir_tag</code><em class="property"> = re.compile('\\{&#64;(.+?)\\}')</em><a class="headerlink" href="#rivescript.regexp.RE.redir_tag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.reply_tags">
+<code class="descname">reply_tags</code><em class="property"> = re.compile('&lt;reply([1-9])&gt;')</em><a class="headerlink" href="#rivescript.regexp.RE.reply_tags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.set_tag">
+<code class="descname">set_tag</code><em class="property"> = re.compile('&lt;set (.+?)=(.+?)&gt;')</em><a class="headerlink" href="#rivescript.regexp.RE.set_tag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.star_tags">
+<code class="descname">star_tags</code><em class="property"> = re.compile('&lt;star(\\d+)&gt;')</em><a class="headerlink" href="#rivescript.regexp.RE.star_tags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.tag_search">
+<code class="descname">tag_search</code><em class="property"> = re.compile('&lt;([^&lt;]+?)&gt;')</em><a class="headerlink" href="#rivescript.regexp.RE.tag_search" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.topic_tag">
+<code class="descname">topic_tag</code><em class="property"> = re.compile('\\{topic=(.+?)\\}')</em><a class="headerlink" href="#rivescript.regexp.RE.topic_tag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.trig_syntax">
+<code class="descname">trig_syntax</code><em class="property"> = re.compile('[^a-z0-9(\\|)\\[\\]*_#&#64;{}&lt;&gt;=\\s]')</em><a class="headerlink" href="#rivescript.regexp.RE.trig_syntax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.utf8_meta">
+<code class="descname">utf8_meta</code><em class="property"> = re.compile('[\\\\&lt;&gt;]')</em><a class="headerlink" href="#rivescript.regexp.RE.utf8_meta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.utf8_punct">
+<code class="descname">utf8_punct</code><em class="property"> = re.compile('[.?,!;:&#64;#$%^&amp;*()]')</em><a class="headerlink" href="#rivescript.regexp.RE.utf8_punct" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.utf8_trig">
+<code class="descname">utf8_trig</code><em class="property"> = re.compile('[A-Z\\\\.]')</em><a class="headerlink" href="#rivescript.regexp.RE.utf8_trig" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.weight">
+<code class="descname">weight</code><em class="property"> = re.compile('\\{weight=(\\d+)\\}')</em><a class="headerlink" href="#rivescript.regexp.RE.weight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.wilds">
+<code class="descname">wilds</code><em class="property"> = re.compile('[\\s\\*\\#\\_]+')</em><a class="headerlink" href="#rivescript.regexp.RE.wilds" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.ws">
+<code class="descname">ws</code><em class="property"> = re.compile('\\s+')</em><a class="headerlink" href="#rivescript.regexp.RE.ws" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rivescript.regexp.RE.zero_star">
+<code class="descname">zero_star</code><em class="property"> = re.compile('^\\*$')</em><a class="headerlink" href="#rivescript.regexp.RE.zero_star" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-rivescript.sorting">
+<span id="rivescript-sorting-module"></span><h2>rivescript.sorting module<a class="headerlink" href="#module-rivescript.sorting" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="rivescript.sorting.init_sort_track">
+<code class="descclassname">rivescript.sorting.</code><code class="descname">init_sort_track</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/sorting.html#init_sort_track"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.sorting.init_sort_track" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a new dict for keeping track of triggers for sorting.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="rivescript.sorting.sort_list">
+<code class="descclassname">rivescript.sorting.</code><code class="descname">sort_list</code><span class="sig-paren">(</span><em>items</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/sorting.html#sort_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.sorting.sort_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sort a simple list by number of words and length.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="rivescript.sorting.sort_trigger_set">
+<code class="descclassname">rivescript.sorting.</code><code class="descname">sort_trigger_set</code><span class="sig-paren">(</span><em>triggers</em>, <em>exclude_previous=True</em>, <em>say=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/sorting.html#sort_trigger_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.sorting.sort_trigger_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sort a group of triggers in optimal sorting order.</p>
+<p>The optimal sorting order is, briefly:
+* Atomic triggers (containing nothing but plain words and alternation</p>
+<blockquote>
+<div>groups) are on top, with triggers containing the most words coming
+first. Triggers with equal word counts are sorted by length, and then
+alphabetically if they have the same length.</div></blockquote>
+<ul class="simple">
+<li>Triggers containing optionals are sorted next, by word count like
+atomic triggers.</li>
+<li>Triggers containing wildcards are next, with <code class="docutils literal"><span class="pre">_</span></code> (alphabetic)
+wildcards on top, then <code class="docutils literal"><span class="pre">#</span></code> (numeric) and finally <code class="docutils literal"><span class="pre">*</span></code>.</li>
+<li>At the bottom of the sorted list are triggers consisting of only a
+single wildcard, in the order: <code class="docutils literal"><span class="pre">_</span></code>, <code class="docutils literal"><span class="pre">#</span></code>, <code class="docutils literal"><span class="pre">*</span></code>.</li>
+</ul>
+<p>Triggers that have <code class="docutils literal"><span class="pre">{weight}</span></code> tags are grouped together by weight
+value and sorted amongst themselves. Higher weighted groups are then
+ordered before lower weighted groups regardless of the normal sorting
+algorithm.</p>
+<p>Triggers that come from topics which inherit other topics are also
+sorted with higher priority than triggers from the inherited topics.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>triggers</strong> (<em>[]str</em>) &#8211; Array of triggers to sort.</li>
+<li><strong>exclude_previous</strong> (<em>bool</em>) &#8211; Create a sort buffer for &#8216;previous&#8217; triggers.</li>
+<li><strong>say</strong> (<em>function</em>) &#8211; A reference to <code class="docutils literal"><span class="pre">RiveScript._say()</span></code> or provide your
+own function.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-rivescript.utils">
+<span id="rivescript-utils-module"></span><h2>rivescript.utils module<a class="headerlink" href="#module-rivescript.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="rivescript.utils.is_atomic">
+<code class="descclassname">rivescript.utils.</code><code class="descname">is_atomic</code><span class="sig-paren">(</span><em>trigger</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/utils.html#is_atomic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.utils.is_atomic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine if a trigger is atomic or not.</p>
+<p>In this context we&#8217;re deciding whether or not the trigger needs to use
+the regular expression engine for testing. So any trigger that contains
+nothing but plain words is considered atomic, whereas a trigger with any
+&#8220;regexp-like&#8221; parts (even alternations) is not.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>trigger</strong> &#8211; The trigger to test.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return bool:</th><td class="field-body">Whether it&#8217;s atomic or not.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="rivescript.utils.string_format">
+<code class="descclassname">rivescript.utils.</code><code class="descname">string_format</code><span class="sig-paren">(</span><em>msg</em>, <em>method</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/utils.html#string_format"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.utils.string_format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format a string (upper, lower, formal, sentence).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>msg</strong> (<em>str</em>) &#8211; The user&#8217;s message.</li>
+<li><strong>method</strong> (<em>str</em>) &#8211; One of <code class="docutils literal"><span class="pre">uppercase</span></code>, <code class="docutils literal"><span class="pre">lowercase</span></code>,
+<code class="docutils literal"><span class="pre">sentence</span></code> or <code class="docutils literal"><span class="pre">formal</span></code>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return str:</th><td class="field-body"><p class="first last">The reformatted string.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="rivescript.utils.strip_nasties">
+<code class="descclassname">rivescript.utils.</code><code class="descname">strip_nasties</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/utils.html#strip_nasties"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.utils.strip_nasties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Formats a string for ASCII regex matching.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="rivescript.utils.word_count">
+<code class="descclassname">rivescript.utils.</code><code class="descname">word_count</code><span class="sig-paren">(</span><em>trigger</em>, <em>all=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rivescript/utils.html#word_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rivescript.utils.word_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Count the words that aren&#8217;t wildcards in a trigger.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>trigger</strong> (<em>str</em>) &#8211; The trigger to count words for.</li>
+<li><strong>all</strong> (<em>bool</em>) &#8211; Count purely based on whitespace separators, or
+consider wildcards not to be their own words.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return int:</th><td class="field-body"><p class="first last">The word count.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to rivescript’s documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Noah Petherbridge &lt;root@kirsle.net&gt;.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.12.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

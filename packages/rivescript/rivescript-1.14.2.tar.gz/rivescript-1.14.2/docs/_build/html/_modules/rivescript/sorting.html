@@ -1,0 +1,393 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rivescript.sorting &mdash; rivescript 1.12.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="rivescript 1.12.3 documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> rivescript
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.12.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rivescript.html">rivescript package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">rivescript</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>rivescript.sorting</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for rivescript.sorting</h1><div class="highlight"><pre>
+<span></span><span class="c1"># RiveScript-Python</span>
+<span class="c1">#</span>
+<span class="c1"># This code is released under the MIT License.</span>
+<span class="c1"># See the &quot;LICENSE&quot; file for more information.</span>
+<span class="c1">#</span>
+<span class="c1"># https://www.rivescript.com/</span>
+
+<span class="kn">from</span> <span class="nn">.regexp</span> <span class="kn">import</span> <span class="n">RE</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">utils</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<div class="viewcode-block" id="sort_trigger_set"><a class="viewcode-back" href="../../rivescript.html#rivescript.sorting.sort_trigger_set">[docs]</a><span class="k">def</span> <span class="nf">sort_trigger_set</span><span class="p">(</span><span class="n">triggers</span><span class="p">,</span> <span class="n">exclude_previous</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">say</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sort a group of triggers in optimal sorting order.</span>
+
+<span class="sd">    The optimal sorting order is, briefly:</span>
+<span class="sd">    * Atomic triggers (containing nothing but plain words and alternation</span>
+<span class="sd">      groups) are on top, with triggers containing the most words coming</span>
+<span class="sd">      first. Triggers with equal word counts are sorted by length, and then</span>
+<span class="sd">      alphabetically if they have the same length.</span>
+<span class="sd">    * Triggers containing optionals are sorted next, by word count like</span>
+<span class="sd">      atomic triggers.</span>
+<span class="sd">    * Triggers containing wildcards are next, with ``_`` (alphabetic)</span>
+<span class="sd">      wildcards on top, then ``#`` (numeric) and finally ``*``.</span>
+<span class="sd">    * At the bottom of the sorted list are triggers consisting of only a</span>
+<span class="sd">      single wildcard, in the order: ``_``, ``#``, ``*``.</span>
+
+<span class="sd">    Triggers that have ``{weight}`` tags are grouped together by weight</span>
+<span class="sd">    value and sorted amongst themselves. Higher weighted groups are then</span>
+<span class="sd">    ordered before lower weighted groups regardless of the normal sorting</span>
+<span class="sd">    algorithm.</span>
+
+<span class="sd">    Triggers that come from topics which inherit other topics are also</span>
+<span class="sd">    sorted with higher priority than triggers from the inherited topics.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        triggers ([]str): Array of triggers to sort.</span>
+<span class="sd">        exclude_previous (bool): Create a sort buffer for &#39;previous&#39; triggers.</span>
+<span class="sd">        say (function): A reference to ``RiveScript._say()`` or provide your</span>
+<span class="sd">            own function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">say</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">say</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span>
+
+    <span class="c1"># KEEP IN MIND: the `triggers` array is composed of array elements of the form</span>
+    <span class="c1"># [&quot;trigger text&quot;, pointer to trigger data]</span>
+    <span class="c1"># So this code will use e.g. `trig[0]` when referring to the trigger text.</span>
+
+    <span class="c1"># Create a priority map.</span>
+    <span class="n">prior</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mi">0</span><span class="p">:</span> <span class="p">[]</span>  <span class="c1"># Default priority=0</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">trig</span> <span class="ow">in</span> <span class="n">triggers</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">exclude_previous</span> <span class="ow">and</span> <span class="n">trig</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;previous&quot;</span><span class="p">]:</span>
+            <span class="k">continue</span>
+
+        <span class="n">match</span><span class="p">,</span> <span class="n">weight</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="n">trig</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+            <span class="n">weight</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">weight</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">prior</span><span class="p">:</span>
+            <span class="n">prior</span><span class="p">[</span><span class="n">weight</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">prior</span><span class="p">[</span><span class="n">weight</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trig</span><span class="p">)</span>
+
+    <span class="c1"># Keep a running list of sorted triggers for this topic.</span>
+    <span class="n">running</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Sort them by priority.</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">prior</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Sorting triggers with priority &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+
+        <span class="c1"># So, some of these triggers may include {inherits} tags, if they</span>
+        <span class="c1"># came form a topic which inherits another topic. Lower inherits</span>
+        <span class="c1"># values mean higher priority on the stack.</span>
+        <span class="n">inherits</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>          <span class="c1"># -1 means no {inherits} tag</span>
+        <span class="n">highest_inherits</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>  <span class="c1"># highest inheritance number seen</span>
+
+        <span class="c1"># Loop through and categorize these triggers.</span>
+        <span class="n">track</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">inherits</span><span class="p">:</span> <span class="n">init_sort_track</span><span class="p">()</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="n">trig</span> <span class="ow">in</span> <span class="n">prior</span><span class="p">[</span><span class="n">p</span><span class="p">]:</span>
+            <span class="n">pattern</span> <span class="o">=</span> <span class="n">trig</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t\t</span><span class="s2">Looking at trigger: &quot;</span> <span class="o">+</span> <span class="n">pattern</span><span class="p">)</span>
+
+            <span class="c1"># See if it has an inherits tag.</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">inherit</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                <span class="n">inherits</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">inherits</span> <span class="o">&gt;</span> <span class="n">highest_inherits</span><span class="p">:</span>
+                    <span class="n">highest_inherits</span> <span class="o">=</span> <span class="n">inherits</span>
+                <span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t\t\t</span><span class="s2">Trigger belongs to a topic which inherits other topics: level=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">inherits</span><span class="p">))</span>
+                <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">inherit</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+                <span class="n">trig</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">pattern</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">inherits</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+            <span class="c1"># If this is the first time we&#39;ve seen this inheritance level,</span>
+            <span class="c1"># initialize its track structure.</span>
+            <span class="k">if</span> <span class="n">inherits</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">track</span><span class="p">:</span>
+                <span class="n">track</span><span class="p">[</span><span class="n">inherits</span><span class="p">]</span> <span class="o">=</span> <span class="n">init_sort_track</span><span class="p">()</span>
+
+            <span class="c1"># Start inspecting the trigger&#39;s contents.</span>
+            <span class="k">if</span> <span class="s1">&#39;_&#39;</span> <span class="ow">in</span> <span class="n">pattern</span><span class="p">:</span>
+                <span class="c1"># Alphabetic wildcard included.</span>
+                <span class="n">cnt</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">word_count</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+                <span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t\t\t</span><span class="s2">Has a _ wildcard with &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; words.&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">cnt</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">cnt</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">track</span><span class="p">[</span><span class="n">inherits</span><span class="p">][</span><span class="s1">&#39;alpha&#39;</span><span class="p">]:</span>
+                        <span class="n">track</span><span class="p">[</span><span class="n">inherits</span><span class="p">][</span><span class="s1">&#39;alpha&#39;</span><span class="p">][</span><span class="n">cnt</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="n">track</span><span class="p">[</span><span class="n">inherits</span><span class="p">][</span><span class="s1">&#39;alpha&#39;</span><span class="p">][</span><span class="n">cnt</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trig</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">track</span><span class="p">[</span><span class="n">inherits</span><span class="p">][</span><span class="s1">&#39;under&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trig</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="s1">&#39;#&#39;</span> <span class="ow">in</span> <span class="n">pattern</span><span class="p">:</span>
+                <span class="c1"># Numeric wildcard included.</span>
+                <span class="n">cnt</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">word_count</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+                <span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t\t\t</span><span class="s2">Has a # wildcard with &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; words.&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">cnt</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">cnt</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">track</span><span class="p">[</span><span class="n">inherits</span><span class="p">][</span><span class="s1">&#39;number&#39;</span><span class="p">]:</span>
+                        <span class="n">track</span><span class="p">[</span><span class="n">inherits</span><span class="p">][</span><span class="s1">&#39;number&#39;</span><span class="p">][</span><span class="n">cnt</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="n">track</span><span class="p">[</span><span class="n">inherits</span><span class="p">][</span><span class="s1">&#39;number&#39;</span><span class="p">][</span><span class="n">cnt</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trig</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">track</span><span class="p">[</span><span class="n">inherits</span><span class="p">][</span><span class="s1">&#39;pound&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trig</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="s1">&#39;*&#39;</span> <span class="ow">in</span> <span class="n">pattern</span><span class="p">:</span>
+                <span class="c1"># Wildcard included.</span>
+                <span class="n">cnt</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">word_count</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+                <span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t\t\t</span><span class="s2">Has a * wildcard with &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; words.&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">cnt</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">cnt</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">track</span><span class="p">[</span><span class="n">inherits</span><span class="p">][</span><span class="s1">&#39;wild&#39;</span><span class="p">]:</span>
+                        <span class="n">track</span><span class="p">[</span><span class="n">inherits</span><span class="p">][</span><span class="s1">&#39;wild&#39;</span><span class="p">][</span><span class="n">cnt</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="n">track</span><span class="p">[</span><span class="n">inherits</span><span class="p">][</span><span class="s1">&#39;wild&#39;</span><span class="p">][</span><span class="n">cnt</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trig</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">track</span><span class="p">[</span><span class="n">inherits</span><span class="p">][</span><span class="s1">&#39;star&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trig</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="s1">&#39;[&#39;</span> <span class="ow">in</span> <span class="n">pattern</span><span class="p">:</span>
+                <span class="c1"># Optionals included.</span>
+                <span class="n">cnt</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">word_count</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+                <span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t\t\t</span><span class="s2">Has optionals and &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; words.&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">cnt</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">track</span><span class="p">[</span><span class="n">inherits</span><span class="p">][</span><span class="s1">&#39;option&#39;</span><span class="p">]:</span>
+                    <span class="n">track</span><span class="p">[</span><span class="n">inherits</span><span class="p">][</span><span class="s1">&#39;option&#39;</span><span class="p">][</span><span class="n">cnt</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">track</span><span class="p">[</span><span class="n">inherits</span><span class="p">][</span><span class="s1">&#39;option&#39;</span><span class="p">][</span><span class="n">cnt</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trig</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Totally atomic.</span>
+                <span class="n">cnt</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">word_count</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+                <span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t\t\t</span><span class="s2">Totally atomic and &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; words.&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">cnt</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">track</span><span class="p">[</span><span class="n">inherits</span><span class="p">][</span><span class="s1">&#39;atomic&#39;</span><span class="p">]:</span>
+                    <span class="n">track</span><span class="p">[</span><span class="n">inherits</span><span class="p">][</span><span class="s1">&#39;atomic&#39;</span><span class="p">][</span><span class="n">cnt</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">track</span><span class="p">[</span><span class="n">inherits</span><span class="p">][</span><span class="s1">&#39;atomic&#39;</span><span class="p">][</span><span class="n">cnt</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trig</span><span class="p">)</span>
+
+        <span class="c1"># Move the no-{inherits} triggers to the bottom of the stack.</span>
+        <span class="n">track</span><span class="p">[</span><span class="n">highest_inherits</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">track</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">del</span><span class="p">(</span><span class="n">track</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="c1"># Add this group to the sort list.</span>
+        <span class="k">for</span> <span class="n">ip</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">track</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="n">say</span><span class="p">(</span><span class="s2">&quot;ip=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ip</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">kind</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;atomic&#39;</span><span class="p">,</span> <span class="s1">&#39;option&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;number&#39;</span><span class="p">,</span> <span class="s1">&#39;wild&#39;</span><span class="p">]:</span>
+                <span class="k">for</span> <span class="n">wordcnt</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">track</span><span class="p">[</span><span class="n">ip</span><span class="p">][</span><span class="n">kind</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+                    <span class="c1"># Triggers with a matching word count should be sorted</span>
+                    <span class="c1"># by length, descending.</span>
+                    <span class="n">running</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">track</span><span class="p">[</span><span class="n">ip</span><span class="p">][</span><span class="n">kind</span><span class="p">][</span><span class="n">wordcnt</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+            <span class="n">running</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">track</span><span class="p">[</span><span class="n">ip</span><span class="p">][</span><span class="s1">&#39;under&#39;</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+            <span class="n">running</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">track</span><span class="p">[</span><span class="n">ip</span><span class="p">][</span><span class="s1">&#39;pound&#39;</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+            <span class="n">running</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">track</span><span class="p">[</span><span class="n">ip</span><span class="p">][</span><span class="s1">&#39;star&#39;</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">running</span></div>
+
+<div class="viewcode-block" id="sort_list"><a class="viewcode-back" href="../../rivescript.html#rivescript.sorting.sort_list">[docs]</a><span class="k">def</span> <span class="nf">sort_list</span><span class="p">(</span><span class="n">items</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sort a simple list by number of words and length.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Track by number of words.</span>
+    <span class="n">track</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">by_length</span><span class="p">(</span><span class="n">word1</span><span class="p">,</span> <span class="n">word2</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">word2</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">word1</span><span class="p">)</span>
+
+    <span class="c1"># Loop through each item.</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+        <span class="c1"># Count the words.</span>
+        <span class="n">cword</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">word_count</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">all</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cword</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">track</span><span class="p">:</span>
+            <span class="n">track</span><span class="p">[</span><span class="n">cword</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">track</span><span class="p">[</span><span class="n">cword</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="c1"># Sort them.</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">track</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="n">sort</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">track</span><span class="p">[</span><span class="n">count</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">output</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sort</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">output</span></div>
+
+<div class="viewcode-block" id="init_sort_track"><a class="viewcode-back" href="../../rivescript.html#rivescript.sorting.init_sort_track">[docs]</a><span class="k">def</span> <span class="nf">init_sort_track</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Returns a new dict for keeping track of triggers for sorting.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;atomic&#39;</span><span class="p">:</span> <span class="p">{},</span>  <span class="c1"># Sort by number of whole words</span>
+        <span class="s1">&#39;option&#39;</span><span class="p">:</span> <span class="p">{},</span>  <span class="c1"># Sort optionals by number of words</span>
+        <span class="s1">&#39;alpha&#39;</span><span class="p">:</span>  <span class="p">{},</span>  <span class="c1"># Sort alpha wildcards by no. of words</span>
+        <span class="s1">&#39;number&#39;</span><span class="p">:</span> <span class="p">{},</span>  <span class="c1"># Sort number wildcards by no. of words</span>
+        <span class="s1">&#39;wild&#39;</span><span class="p">:</span>   <span class="p">{},</span>  <span class="c1"># Sort wildcards by no. of words</span>
+        <span class="s1">&#39;pound&#39;</span><span class="p">:</span>  <span class="p">[],</span>  <span class="c1"># Triggers of just #</span>
+        <span class="s1">&#39;under&#39;</span><span class="p">:</span>  <span class="p">[],</span>  <span class="c1"># Triggers of just _</span>
+        <span class="s1">&#39;star&#39;</span><span class="p">:</span>   <span class="p">[]</span>   <span class="c1"># Triggers of just *</span>
+    <span class="p">}</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Noah Petherbridge &lt;root@kirsle.net&gt;.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.12.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,334 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rivescript.inheritance &mdash; rivescript 1.12.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="rivescript 1.12.3 documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> rivescript
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.12.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rivescript.html">rivescript package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">rivescript</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>rivescript.inheritance</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for rivescript.inheritance</h1><div class="highlight"><pre>
+<span></span><span class="c1"># RiveScript-Python</span>
+<span class="c1">#</span>
+<span class="c1"># This code is released under the MIT License.</span>
+<span class="c1"># See the &quot;LICENSE&quot; file for more information.</span>
+<span class="c1">#</span>
+<span class="c1"># https://www.rivescript.com/</span>
+
+<div class="viewcode-block" id="get_topic_triggers"><a class="viewcode-back" href="../../rivescript.html#rivescript.inheritance.get_topic_triggers">[docs]</a><span class="k">def</span> <span class="nf">get_topic_triggers</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">thats</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inheritance</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inherited</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Recursively scan a topic and return a list of all triggers.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        rs (RiveScript): A reference to the parent RiveScript instance.</span>
+<span class="sd">        topic (str): The original topic name.</span>
+<span class="sd">        thats (bool): Are we getting triggers for &#39;previous&#39; replies?</span>
+<span class="sd">        depth (int): Recursion step counter.</span>
+<span class="sd">        inheritance (int): The inheritance level counter, for topics that</span>
+<span class="sd">            inherit other topics.</span>
+<span class="sd">        inherited (bool): Whether the current topic is inherited by others.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        []str: List of all triggers found.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Break if we&#39;re in too deep.</span>
+    <span class="k">if</span> <span class="n">depth</span> <span class="o">&gt;</span> <span class="n">rs</span><span class="o">.</span><span class="n">_depth</span><span class="p">:</span>
+        <span class="n">rs</span><span class="o">.</span><span class="n">_warn</span><span class="p">(</span><span class="s2">&quot;Deep recursion while scanning topic inheritance&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Keep in mind here that there is a difference between &#39;includes&#39; and</span>
+    <span class="c1"># &#39;inherits&#39; -- topics that inherit other topics are able to OVERRIDE</span>
+    <span class="c1"># triggers that appear in the inherited topic. This means that if the top</span>
+    <span class="c1"># topic has a trigger of simply &#39;*&#39;, then NO triggers are capable of</span>
+    <span class="c1"># matching in ANY inherited topic, because even though * has the lowest</span>
+    <span class="c1"># priority, it has an automatic priority over all inherited topics.</span>
+    <span class="c1">#</span>
+    <span class="c1"># The getTopicTriggers method takes this into account. All topics that</span>
+    <span class="c1"># inherit other topics will have their triggers prefixed with a fictional</span>
+    <span class="c1"># {inherits} tag, which would start at {inherits=0} and increment if this</span>
+    <span class="c1"># topic has other inheriting topics. So we can use this tag to make sure</span>
+    <span class="c1"># topics that inherit things will have their triggers always be on top of</span>
+    <span class="c1"># the stack, from inherits=0 to inherits=n.</span>
+
+    <span class="c1"># Important info about the depth vs inheritance params to this function:</span>
+    <span class="c1"># depth increments by 1 each time this function recursively calls itrs.</span>
+    <span class="c1"># inheritance increments by 1 only when this topic inherits another</span>
+    <span class="c1"># topic.</span>
+    <span class="c1">#</span>
+    <span class="c1"># This way, &#39;&gt; topic alpha includes beta inherits gamma&#39; will have this</span>
+    <span class="c1"># effect:</span>
+    <span class="c1">#  alpha and beta&#39;s triggers are combined together into one matching</span>
+    <span class="c1">#  pool, and then those triggers have higher matching priority than</span>
+    <span class="c1">#  gamma&#39;s.</span>
+    <span class="c1">#</span>
+    <span class="c1"># The inherited option is True if this is a recursive call, from a topic</span>
+    <span class="c1"># that inherits other topics. This forces the {inherits} tag to be added</span>
+    <span class="c1"># to the triggers. This only applies when the top topic &#39;includes&#39;</span>
+    <span class="c1"># another topic.</span>
+    <span class="n">rs</span><span class="o">.</span><span class="n">_say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Collecting trigger list for topic &quot;</span> <span class="o">+</span> <span class="n">topic</span> <span class="o">+</span> <span class="s2">&quot;(depth=&quot;</span>
+        <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">depth</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;; inheritance=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">inheritance</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;; &quot;</span>
+        <span class="o">+</span> <span class="s2">&quot;inherited=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">inherited</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+
+    <span class="c1"># topic:   the name of the topic</span>
+    <span class="c1"># depth:   starts at 0 and ++&#39;s with each recursion</span>
+
+    <span class="c1"># Topic doesn&#39;t exist?</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">topic</span> <span class="ow">in</span> <span class="n">rs</span><span class="o">.</span><span class="n">_topics</span><span class="p">:</span>
+        <span class="n">rs</span><span class="o">.</span><span class="n">_warn</span><span class="p">(</span><span class="s2">&quot;Inherited or included topic {} doesn&#39;t exist or has no triggers&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">topic</span>
+        <span class="p">))</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="c1"># Collect an array of triggers to return.</span>
+    <span class="n">triggers</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Get those that exist in this topic directly.</span>
+    <span class="n">inThisTopic</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">thats</span><span class="p">:</span>
+        <span class="c1"># The non-that structure is {topic}-&gt;[array of triggers]</span>
+        <span class="k">if</span> <span class="n">topic</span> <span class="ow">in</span> <span class="n">rs</span><span class="o">.</span><span class="n">_topics</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">trigger</span> <span class="ow">in</span> <span class="n">rs</span><span class="o">.</span><span class="n">_topics</span><span class="p">[</span><span class="n">topic</span><span class="p">]:</span>
+                <span class="n">inThisTopic</span><span class="o">.</span><span class="n">append</span><span class="p">([</span> <span class="n">trigger</span><span class="p">[</span><span class="s2">&quot;trigger&quot;</span><span class="p">],</span> <span class="n">trigger</span> <span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># The &#39;that&#39; structure is: {topic}-&gt;{cur trig}-&gt;{prev trig}-&gt;{trig info}</span>
+        <span class="k">if</span> <span class="n">topic</span> <span class="ow">in</span> <span class="n">rs</span><span class="o">.</span><span class="n">_thats</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">curtrig</span> <span class="ow">in</span> <span class="n">rs</span><span class="o">.</span><span class="n">_thats</span><span class="p">[</span><span class="n">topic</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">previous</span><span class="p">,</span> <span class="n">pointer</span> <span class="ow">in</span> <span class="n">rs</span><span class="o">.</span><span class="n">_thats</span><span class="p">[</span><span class="n">topic</span><span class="p">][</span><span class="n">curtrig</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">inThisTopic</span><span class="o">.</span><span class="n">append</span><span class="p">([</span> <span class="n">previous</span><span class="p">,</span> <span class="n">pointer</span> <span class="p">])</span>
+
+    <span class="c1"># Does this topic include others?</span>
+    <span class="k">if</span> <span class="n">topic</span> <span class="ow">in</span> <span class="n">rs</span><span class="o">.</span><span class="n">_includes</span><span class="p">:</span>
+        <span class="c1"># Check every included topic.</span>
+        <span class="k">for</span> <span class="n">includes</span> <span class="ow">in</span> <span class="n">rs</span><span class="o">.</span><span class="n">_includes</span><span class="p">[</span><span class="n">topic</span><span class="p">]:</span>
+            <span class="n">rs</span><span class="o">.</span><span class="n">_say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t\t</span><span class="s2">Topic &quot;</span> <span class="o">+</span> <span class="n">topic</span> <span class="o">+</span> <span class="s2">&quot; includes &quot;</span> <span class="o">+</span> <span class="n">includes</span><span class="p">)</span>
+            <span class="n">triggers</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">get_topic_triggers</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">includes</span><span class="p">,</span> <span class="n">thats</span><span class="p">,</span> <span class="p">(</span><span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">inheritance</span><span class="p">,</span> <span class="bp">True</span><span class="p">))</span>
+
+    <span class="c1"># Does this topic inherit others?</span>
+    <span class="k">if</span> <span class="n">topic</span> <span class="ow">in</span> <span class="n">rs</span><span class="o">.</span><span class="n">_lineage</span><span class="p">:</span>
+        <span class="c1"># Check every inherited topic.</span>
+        <span class="k">for</span> <span class="n">inherits</span> <span class="ow">in</span> <span class="n">rs</span><span class="o">.</span><span class="n">_lineage</span><span class="p">[</span><span class="n">topic</span><span class="p">]:</span>
+            <span class="n">rs</span><span class="o">.</span><span class="n">_say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t\t</span><span class="s2">Topic &quot;</span> <span class="o">+</span> <span class="n">topic</span> <span class="o">+</span> <span class="s2">&quot; inherits &quot;</span> <span class="o">+</span> <span class="n">inherits</span><span class="p">)</span>
+            <span class="n">triggers</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">get_topic_triggers</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">inherits</span><span class="p">,</span> <span class="n">thats</span><span class="p">,</span> <span class="p">(</span><span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">inheritance</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="bp">False</span><span class="p">))</span>
+
+    <span class="c1"># Collect the triggers for *this* topic. If this topic inherits any</span>
+    <span class="c1"># other topics, it means that this topic&#39;s triggers have higher</span>
+    <span class="c1"># priority than those in any inherited topics. Enforce this with an</span>
+    <span class="c1"># {inherits} tag.</span>
+    <span class="k">if</span> <span class="n">topic</span> <span class="ow">in</span> <span class="n">rs</span><span class="o">.</span><span class="n">_lineage</span> <span class="ow">or</span> <span class="n">inherited</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">trigger</span> <span class="ow">in</span> <span class="n">inThisTopic</span><span class="p">:</span>
+            <span class="n">rs</span><span class="o">.</span><span class="n">_say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t\t</span><span class="s2">Prefixing trigger with {inherits=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">inheritance</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;}&quot;</span> <span class="o">+</span> <span class="n">trigger</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">triggers</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s2">&quot;{inherits=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">inheritance</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;}&quot;</span> <span class="o">+</span> <span class="n">trigger</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">trigger</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">triggers</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">inThisTopic</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">triggers</span></div>
+
+<div class="viewcode-block" id="get_topic_tree"><a class="viewcode-back" href="../../rivescript.html#rivescript.inheritance.get_topic_tree">[docs]</a><span class="k">def</span> <span class="nf">get_topic_tree</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given one topic, get the list of all included/inherited topics.</span>
+
+<span class="sd">    :param str topic: The topic to start the search at.</span>
+<span class="sd">    :param int depth: The recursion depth counter.</span>
+
+<span class="sd">    :return []str: Array of topics.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Break if we&#39;re in too deep.</span>
+    <span class="k">if</span> <span class="n">depth</span> <span class="o">&gt;</span> <span class="n">rs</span><span class="o">.</span><span class="n">_depth</span><span class="p">:</span>
+        <span class="n">rs</span><span class="o">.</span><span class="n">_warn</span><span class="p">(</span><span class="s2">&quot;Deep recursion while scanning topic trees!&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="c1"># Collect an array of all topics.</span>
+    <span class="n">topics</span> <span class="o">=</span> <span class="p">[</span><span class="n">topic</span><span class="p">]</span>
+
+    <span class="c1"># Does this topic include others?</span>
+    <span class="k">if</span> <span class="n">topic</span> <span class="ow">in</span> <span class="n">rs</span><span class="o">.</span><span class="n">_includes</span><span class="p">:</span>
+        <span class="c1"># Try each of these.</span>
+        <span class="k">for</span> <span class="n">includes</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">_includes</span><span class="p">[</span><span class="n">topic</span><span class="p">]):</span>
+            <span class="n">topics</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">get_topic_tree</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">includes</span><span class="p">,</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+    <span class="c1"># Does this topic inherit others?</span>
+    <span class="k">if</span> <span class="n">topic</span> <span class="ow">in</span> <span class="n">rs</span><span class="o">.</span><span class="n">_lineage</span><span class="p">:</span>
+        <span class="c1"># Try each of these.</span>
+        <span class="k">for</span> <span class="n">inherits</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">_lineage</span><span class="p">[</span><span class="n">topic</span><span class="p">]):</span>
+            <span class="n">topics</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">get_topic_tree</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">inherits</span><span class="p">,</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">topics</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Noah Petherbridge &lt;root@kirsle.net&gt;.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.12.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

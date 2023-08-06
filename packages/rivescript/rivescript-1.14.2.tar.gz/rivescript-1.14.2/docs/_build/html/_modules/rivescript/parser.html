@@ -1,0 +1,797 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rivescript.parser &mdash; rivescript 1.12.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="rivescript 1.12.3 documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> rivescript
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.12.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rivescript.html">rivescript package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">rivescript</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>rivescript.parser</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for rivescript.parser</h1><div class="highlight"><pre>
+<span></span><span class="c1"># RiveScript-Python</span>
+<span class="c1">#</span>
+<span class="c1"># This code is released under the MIT License.</span>
+<span class="c1"># See the &quot;LICENSE&quot; file for more information.</span>
+<span class="c1">#</span>
+<span class="c1"># https://www.rivescript.com/</span>
+
+<span class="kn">from</span> <span class="nn">.regexp</span> <span class="kn">import</span> <span class="n">RE</span>
+
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="c1"># Version of RiveScript we support.</span>
+<span class="n">rs_version</span> <span class="o">=</span> <span class="mf">2.0</span>
+
+<div class="viewcode-block" id="Parser"><a class="viewcode-back" href="../../rivescript.html#rivescript.parser.Parser">[docs]</a><span class="k">class</span> <span class="nc">Parser</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The RiveScript language parser.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        master (RiveScript): A reference to the parent RiveScript bot instance,</span>
+<span class="sd">            mostly useful for its debug methods like ``warn()``.</span>
+<span class="sd">        strict (bool): Strict syntax checking (true by default).</span>
+<span class="sd">        utf8 (bool): Enable UTF-8 mode (false by default).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Concatenation mode characters.</span>
+    <span class="n">concat_modes</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">none</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">space</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">,</span>
+        <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">utf8</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">master</span> <span class="o">=</span> <span class="n">master</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">strict</span> <span class="o">=</span> <span class="n">strict</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">utf8</span>   <span class="o">=</span> <span class="n">utf8</span>
+
+    <span class="c1"># Proxy functions</span>
+<div class="viewcode-block" id="Parser.say"><a class="viewcode-back" href="../../rivescript.html#rivescript.parser.Parser.say">[docs]</a>    <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_say</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+<div class="viewcode-block" id="Parser.warn"><a class="viewcode-back" href="../../rivescript.html#rivescript.parser.Parser.warn">[docs]</a>    <span class="k">def</span> <span class="nf">warn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">_warn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Parser.parse"><a class="viewcode-back" href="../../rivescript.html#rivescript.parser.Parser.parse">[docs]</a>    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">code</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Read and parse a RiveScript document.</span>
+
+<span class="sd">        Returns a data structure that represents all of the useful contents of</span>
+<span class="sd">        the document, in this format::</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &quot;begin&quot;: { # &quot;begin&quot; data</span>
+<span class="sd">                    &quot;global&quot;: {}, # map of !global vars</span>
+<span class="sd">                    &quot;var&quot;: {},    # bot !var&#39;s</span>
+<span class="sd">                    &quot;sub&quot;: {},    # !sub substitutions</span>
+<span class="sd">                    &quot;person&quot;: {}, # !person substitutions</span>
+<span class="sd">                    &quot;array&quot;: {},  # !array lists</span>
+<span class="sd">                },</span>
+<span class="sd">                &quot;topics&quot;: { # main reply data</span>
+<span class="sd">                    &quot;random&quot;: { # (topic name)</span>
+<span class="sd">                        &quot;includes&quot;: {}, # map of included topics (values=1)</span>
+<span class="sd">                        &quot;inherits&quot;: {}, # map of inherited topics</span>
+<span class="sd">                        &quot;triggers&quot;: [   # array of triggers</span>
+<span class="sd">                            {</span>
+<span class="sd">                                &quot;trigger&quot;: &quot;hello bot&quot;,</span>
+<span class="sd">                                &quot;reply&quot;: [], # array of replies</span>
+<span class="sd">                                &quot;condition&quot;: [], # array of conditions</span>
+<span class="sd">                                &quot;redirect&quot;: None, # redirect command</span>
+<span class="sd">                                &quot;previous&quot;: None, # &#39;previous&#39; reply</span>
+<span class="sd">                            },</span>
+<span class="sd">                            # ...</span>
+<span class="sd">                        ]</span>
+<span class="sd">                    }</span>
+<span class="sd">                }</span>
+<span class="sd">                &quot;objects&quot;: [ # parsed object macros</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;name&quot;: &quot;&quot;,     # object name</span>
+<span class="sd">                        &quot;language&quot;: &quot;&quot;, # programming language</span>
+<span class="sd">                        &quot;code&quot;: [],     # array of lines of code</span>
+<span class="sd">                    }</span>
+<span class="sd">                ]</span>
+<span class="sd">            }</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            filename (str): The name of the file that the code came from, for</span>
+<span class="sd">                syntax error reporting purposes.</span>
+<span class="sd">            code (str[]): The source code to parse.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: The aforementioned data structure.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Eventual returned structure (&quot;abstract syntax tree&quot; but not really)</span>
+        <span class="n">ast</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;begin&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;global&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="s2">&quot;var&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="s2">&quot;person&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="s2">&quot;array&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;topics&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s2">&quot;objects&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Track temporary variables.</span>
+        <span class="n">topic</span>   <span class="o">=</span> <span class="s1">&#39;random&#39;</span>  <span class="c1"># Default topic=random</span>
+        <span class="n">lineno</span>  <span class="o">=</span> <span class="mi">0</span>         <span class="c1"># Line numbers for syntax tracking</span>
+        <span class="n">comment</span> <span class="o">=</span> <span class="bp">False</span>     <span class="c1"># In a multi-line comment</span>
+        <span class="n">inobj</span>   <span class="o">=</span> <span class="bp">False</span>     <span class="c1"># In an object</span>
+        <span class="n">objname</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>        <span class="c1"># The name of the object we&#39;re in</span>
+        <span class="n">objlang</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>        <span class="c1"># The programming language of the object</span>
+        <span class="n">objbuf</span>  <span class="o">=</span> <span class="p">[]</span>        <span class="c1"># Object contents buffer</span>
+        <span class="n">curtrig</span> <span class="o">=</span> <span class="bp">None</span>      <span class="c1"># Pointer to the current trigger in ast.topics</span>
+        <span class="n">isThat</span>  <span class="o">=</span> <span class="bp">None</span>      <span class="c1"># Is a %Previous trigger</span>
+
+        <span class="c1"># Local (file scoped) parser options.</span>
+        <span class="n">local_options</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">concat</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>  <span class="c1"># Concat mode for ^Continue command</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Read each line.</span>
+        <span class="k">for</span> <span class="n">lp</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">code</span><span class="p">):</span>
+            <span class="n">lineno</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Line: &quot;</span> <span class="o">+</span> <span class="n">line</span> <span class="o">+</span> <span class="s2">&quot; (topic: &quot;</span> <span class="o">+</span> <span class="n">topic</span> <span class="o">+</span> <span class="s2">&quot;) incomment: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">inobj</span><span class="p">))</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># Skip blank lines</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># In an object?</span>
+            <span class="k">if</span> <span class="n">inobj</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">objend</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+                    <span class="c1"># End the object.</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">objname</span><span class="p">):</span>
+                        <span class="n">ast</span><span class="p">[</span><span class="s2">&quot;objects&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">objname</span><span class="p">,</span>
+                            <span class="s2">&quot;language&quot;</span><span class="p">:</span> <span class="n">objlang</span><span class="p">,</span>
+                            <span class="s2">&quot;code&quot;</span><span class="p">:</span> <span class="n">objbuf</span><span class="p">,</span>
+                        <span class="p">})</span>
+                    <span class="n">objname</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                    <span class="n">objlang</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                    <span class="n">objbuf</span>  <span class="o">=</span> <span class="p">[]</span>
+                    <span class="n">inobj</span>   <span class="o">=</span> <span class="bp">False</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">objbuf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                <span class="k">continue</span>
+
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>  <span class="c1"># Trim excess space. We do it down here so we</span>
+                                 <span class="c1"># don&#39;t mess up python objects!</span>
+
+            <span class="c1"># Look for comments.</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;//&#39;</span><span class="p">:</span>  <span class="c1"># A single-line comment.</span>
+                <span class="k">continue</span>
+            <span class="k">elif</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;#&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Using the # symbol for comments is deprecated&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">line</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;/*&#39;</span><span class="p">:</span>  <span class="c1"># Start of a multi-line comment.</span>
+                <span class="k">if</span> <span class="s1">&#39;*/&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>  <span class="c1"># Cancel if the end is here too.</span>
+                    <span class="n">comment</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="k">continue</span>
+            <span class="k">elif</span> <span class="s1">&#39;*/&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="n">comment</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">comment</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># Separate the command from the data.</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Weird single-character line &#39;&quot;</span> <span class="o">+</span> <span class="n">line</span> <span class="o">+</span> <span class="s2">&quot;&#39; found.&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">)</span>
+                <span class="k">continue</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+            <span class="c1"># Ignore inline comments if there&#39;s a space before the // symbols.</span>
+            <span class="k">if</span> <span class="s2">&quot; //&quot;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; //&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+            <span class="c1"># Run a syntax check on this line.</span>
+            <span class="n">syntax_error</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_syntax</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">syntax_error</span><span class="p">:</span>
+                <span class="c1"># There was a syntax error! Are we enforcing strict mode?</span>
+                <span class="n">syntax_error</span> <span class="o">=</span> <span class="s2">&quot;Syntax error in &quot;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot; line &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lineno</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> \
+                    <span class="o">+</span> <span class="n">syntax_error</span> <span class="o">+</span> <span class="s2">&quot; (near: &quot;</span> <span class="o">+</span> <span class="n">cmd</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">line</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">strict</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">syntax_error</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">syntax_error</span><span class="p">)</span>
+                    <span class="k">return</span>  <span class="c1"># Don&#39;t try to continue</span>
+
+            <span class="c1"># Reset the %Previous state if this is a new +Trigger.</span>
+            <span class="k">if</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;+&#39;</span><span class="p">:</span>
+                <span class="n">isThat</span> <span class="o">=</span> <span class="bp">None</span>
+
+            <span class="c1"># Do a lookahead for ^Continue and %Previous commands.</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">code</span><span class="p">)):</span>
+                <span class="n">lookahead</span> <span class="o">=</span> <span class="n">code</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lookahead</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="n">lookCmd</span> <span class="o">=</span> <span class="n">lookahead</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">lookahead</span> <span class="o">=</span> <span class="n">lookahead</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+                <span class="c1"># Only continue if the lookahead line has any data.</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lookahead</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># The lookahead command has to be either a % or a ^.</span>
+                    <span class="k">if</span> <span class="n">lookCmd</span> <span class="o">!=</span> <span class="s1">&#39;^&#39;</span> <span class="ow">and</span> <span class="n">lookCmd</span> <span class="o">!=</span> <span class="s1">&#39;%&#39;</span><span class="p">:</span>
+                        <span class="k">break</span>
+
+                    <span class="c1"># If the current command is a +, see if the following is</span>
+                    <span class="c1"># a %.</span>
+                    <span class="k">if</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;+&#39;</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">lookCmd</span> <span class="o">==</span> <span class="s1">&#39;%&#39;</span><span class="p">:</span>
+                            <span class="n">isThat</span> <span class="o">=</span> <span class="n">lookahead</span>
+                            <span class="k">break</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">isThat</span> <span class="o">=</span> <span class="bp">None</span>
+
+                    <span class="c1"># If the current command is a ! and the next command(s) are</span>
+                    <span class="c1"># ^, we&#39;ll tack each extension on as a line break (which is</span>
+                    <span class="c1"># useful information for arrays).</span>
+                    <span class="k">if</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;!&#39;</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">lookCmd</span> <span class="o">==</span> <span class="s1">&#39;^&#39;</span><span class="p">:</span>
+                            <span class="n">line</span> <span class="o">+=</span> <span class="s2">&quot;&lt;crlf&gt;&quot;</span> <span class="o">+</span> <span class="n">lookahead</span>
+                        <span class="k">continue</span>
+
+                    <span class="c1"># If the current command is not a ^ and the line after is</span>
+                    <span class="c1"># not a %, but the line after IS a ^, then tack it on to the</span>
+                    <span class="c1"># end of the current line.</span>
+                    <span class="k">if</span> <span class="n">cmd</span> <span class="o">!=</span> <span class="s1">&#39;^&#39;</span> <span class="ow">and</span> <span class="n">lookCmd</span> <span class="o">!=</span> <span class="s1">&#39;%&#39;</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">lookCmd</span> <span class="o">==</span> <span class="s1">&#39;^&#39;</span><span class="p">:</span>
+                            <span class="n">line</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">concat_modes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                                <span class="n">local_options</span><span class="p">[</span><span class="s2">&quot;concat&quot;</span><span class="p">],</span> <span class="s2">&quot;&quot;</span>
+                            <span class="p">)</span> <span class="o">+</span> <span class="n">lookahead</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="k">break</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Command: &quot;</span> <span class="o">+</span> <span class="n">cmd</span> <span class="o">+</span> <span class="s2">&quot;; line: &quot;</span> <span class="o">+</span> <span class="n">line</span><span class="p">)</span>
+
+            <span class="c1"># Handle the types of RiveScript commands.</span>
+            <span class="k">if</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;!&#39;</span><span class="p">:</span>
+                <span class="c1"># ! DEFINE</span>
+                <span class="n">halves</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">equals</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="n">left</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">ws</span><span class="p">,</span> <span class="n">halves</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="n">value</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">var</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">halves</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">halves</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="nb">type</span> <span class="o">=</span> <span class="n">left</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+                        <span class="n">var</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">left</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+                <span class="c1"># Remove &#39;fake&#39; line breaks unless this is an array.</span>
+                <span class="k">if</span> <span class="nb">type</span> <span class="o">!=</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">crlf</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+                <span class="c1"># Handle version numbers.</span>
+                <span class="k">if</span> <span class="nb">type</span> <span class="o">==</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span>
+                    <span class="c1"># Verify we support it.</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">rs_version</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Unsupported RiveScript version. We only support &quot;</span> <span class="o">+</span> <span class="n">rs_version</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">)</span>
+                            <span class="k">return</span>
+                    <span class="k">except</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Error parsing RiveScript version number: not a number&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">)</span>
+                    <span class="k">continue</span>
+
+                <span class="c1"># All other types of defines require a variable and value name.</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">var</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Undefined variable name&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">)</span>
+                    <span class="k">continue</span>
+                <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Undefined variable value&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">)</span>
+                    <span class="k">continue</span>
+
+                <span class="c1"># Handle the rest of the types.</span>
+                <span class="k">if</span> <span class="nb">type</span> <span class="o">==</span> <span class="s1">&#39;local&#39;</span><span class="p">:</span>
+                    <span class="c1"># Local file-scoped parser options.</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Set parser option &quot;</span> <span class="o">+</span> <span class="n">var</span> <span class="o">+</span> <span class="s2">&quot; = &quot;</span> <span class="o">+</span> <span class="n">value</span><span class="p">)</span>
+                    <span class="n">local_options</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+                <span class="k">elif</span> <span class="nb">type</span> <span class="o">==</span> <span class="s1">&#39;global&#39;</span><span class="p">:</span>
+                    <span class="c1"># &#39;Global&#39; variables</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Set global &quot;</span> <span class="o">+</span> <span class="n">var</span> <span class="o">+</span> <span class="s2">&quot; = &quot;</span> <span class="o">+</span> <span class="n">value</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s1">&#39;&lt;undef&gt;&#39;</span><span class="p">:</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="k">del</span><span class="p">(</span><span class="n">ast</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="s2">&quot;global&quot;</span><span class="p">][</span><span class="n">var</span><span class="p">])</span>
+                        <span class="k">except</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Failed to delete missing global variable&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">ast</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="s2">&quot;global&quot;</span><span class="p">][</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+                    <span class="c1"># Handle flipping debug and depth vars.</span>
+                    <span class="k">if</span> <span class="n">var</span> <span class="o">==</span> <span class="s1">&#39;debug&#39;</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span><span class="p">:</span>
+                            <span class="n">value</span> <span class="o">=</span> <span class="bp">True</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">value</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="k">elif</span> <span class="n">var</span> <span class="o">==</span> <span class="s1">&#39;depth&#39;</span><span class="p">:</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                        <span class="k">except</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Failed to set &#39;depth&#39; because the value isn&#39;t a number!&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">var</span> <span class="o">==</span> <span class="s1">&#39;strict&#39;</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span><span class="p">:</span>
+                            <span class="n">value</span> <span class="o">=</span> <span class="bp">True</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">value</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="k">elif</span> <span class="nb">type</span> <span class="o">==</span> <span class="s1">&#39;var&#39;</span><span class="p">:</span>
+                    <span class="c1"># Bot variables</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Set bot variable &quot;</span> <span class="o">+</span> <span class="n">var</span> <span class="o">+</span> <span class="s2">&quot; = &quot;</span> <span class="o">+</span> <span class="n">value</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s1">&#39;&lt;undef&gt;&#39;</span><span class="p">:</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="k">del</span><span class="p">(</span><span class="n">ast</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="s2">&quot;var&quot;</span><span class="p">][</span><span class="n">var</span><span class="p">])</span>
+                        <span class="k">except</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Failed to delete missing bot variable&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">ast</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="s2">&quot;var&quot;</span><span class="p">][</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+                <span class="k">elif</span> <span class="nb">type</span> <span class="o">==</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span>
+                    <span class="c1"># Arrays</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Array &quot;</span> <span class="o">+</span> <span class="n">var</span> <span class="o">+</span> <span class="s2">&quot; = &quot;</span> <span class="o">+</span> <span class="n">value</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s1">&#39;&lt;undef&gt;&#39;</span><span class="p">:</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="k">del</span><span class="p">(</span><span class="n">ast</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="s2">&quot;array&quot;</span><span class="p">][</span><span class="n">var</span><span class="p">])</span>
+                        <span class="k">except</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Failed to delete missing array&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">)</span>
+                        <span class="k">continue</span>
+
+                    <span class="c1"># Did this have multiple parts?</span>
+                    <span class="n">parts</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;&lt;crlf&gt;&quot;</span><span class="p">)</span>
+
+                    <span class="c1"># Process each line of array data.</span>
+                    <span class="n">fields</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">parts</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="s1">&#39;|&#39;</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+                            <span class="n">fields</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">))</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">fields</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">ws</span><span class="p">,</span> <span class="n">val</span><span class="p">))</span>
+
+                    <span class="c1"># Convert any remaining &#39;\s&#39; escape codes into spaces.</span>
+                    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+                        <span class="n">f</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;\s&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+
+                    <span class="n">ast</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="s2">&quot;array&quot;</span><span class="p">][</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">fields</span>
+                <span class="k">elif</span> <span class="nb">type</span> <span class="o">==</span> <span class="s1">&#39;sub&#39;</span><span class="p">:</span>
+                    <span class="c1"># Substitutions</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Substitution &quot;</span> <span class="o">+</span> <span class="n">var</span> <span class="o">+</span> <span class="s2">&quot; =&gt; &quot;</span> <span class="o">+</span> <span class="n">value</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s1">&#39;&lt;undef&gt;&#39;</span><span class="p">:</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="k">del</span><span class="p">(</span><span class="n">ast</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="s2">&quot;sub&quot;</span><span class="p">][</span><span class="n">var</span><span class="p">])</span>
+                        <span class="k">except</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Failed to delete missing substitution&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">ast</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="s2">&quot;sub&quot;</span><span class="p">][</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+                <span class="k">elif</span> <span class="nb">type</span> <span class="o">==</span> <span class="s1">&#39;person&#39;</span><span class="p">:</span>
+                    <span class="c1"># Person Substitutions</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Person Substitution &quot;</span> <span class="o">+</span> <span class="n">var</span> <span class="o">+</span> <span class="s2">&quot; =&gt; &quot;</span> <span class="o">+</span> <span class="n">value</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s1">&#39;&lt;undef&gt;&#39;</span><span class="p">:</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="k">del</span><span class="p">(</span><span class="n">ast</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="s2">&quot;person&quot;</span><span class="p">][</span><span class="n">var</span><span class="p">])</span>
+                        <span class="k">except</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Failed to delete missing person substitution&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">ast</span><span class="p">[</span><span class="s2">&quot;begin&quot;</span><span class="p">][</span><span class="s2">&quot;person&quot;</span><span class="p">][</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Unknown definition type &#39;&quot;</span> <span class="o">+</span> <span class="nb">type</span> <span class="o">+</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">:</span>
+                <span class="c1"># &gt; LABEL</span>
+                <span class="n">temp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">ws</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+                <span class="nb">type</span>   <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">name</span>   <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                <span class="n">fields</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="n">name</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="n">fields</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+
+                <span class="c1"># Handle the label types.</span>
+                <span class="k">if</span> <span class="nb">type</span> <span class="o">==</span> <span class="s1">&#39;begin&#39;</span><span class="p">:</span>
+                    <span class="c1"># The BEGIN block.</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Found the BEGIN block.&quot;</span><span class="p">)</span>
+                    <span class="nb">type</span> <span class="o">=</span> <span class="s1">&#39;topic&#39;</span>
+                    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;__begin__&#39;</span>
+                <span class="k">if</span> <span class="nb">type</span> <span class="o">==</span> <span class="s1">&#39;topic&#39;</span><span class="p">:</span>
+                    <span class="c1"># Starting a new topic.</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Set topic to &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+                    <span class="n">curtrig</span> <span class="o">=</span> <span class="bp">None</span>
+                    <span class="n">topic</span>  <span class="o">=</span> <span class="n">name</span>
+
+                    <span class="c1"># Initialize the topic tree.</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_init_topic</span><span class="p">(</span><span class="n">ast</span><span class="p">[</span><span class="s2">&quot;topics&quot;</span><span class="p">],</span> <span class="n">topic</span><span class="p">)</span>
+
+                    <span class="c1"># Does this topic include or inherit another one?</span>
+                    <span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  <span class="c1"># or &#39;inherits&#39; or &#39;includes&#39;</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="n">field</span> <span class="o">==</span> <span class="s1">&#39;includes&#39;</span><span class="p">:</span>
+                                <span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;includes&#39;</span>
+                            <span class="k">elif</span> <span class="n">field</span> <span class="o">==</span> <span class="s1">&#39;inherits&#39;</span><span class="p">:</span>
+                                <span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;inherits&#39;</span>
+                            <span class="k">elif</span> <span class="n">mode</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                                <span class="c1"># This topic is either inherited or included.</span>
+                                <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;includes&#39;</span><span class="p">:</span>
+                                    <span class="n">ast</span><span class="p">[</span><span class="s2">&quot;topics&quot;</span><span class="p">][</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;includes&quot;</span><span class="p">][</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                                <span class="k">else</span><span class="p">:</span>
+                                    <span class="n">ast</span><span class="p">[</span><span class="s2">&quot;topics&quot;</span><span class="p">][</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;inherits&quot;</span><span class="p">][</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="nb">type</span> <span class="o">==</span> <span class="s1">&#39;object&#39;</span><span class="p">:</span>
+                    <span class="c1"># If a field was provided, it should be the programming</span>
+                    <span class="c1"># language.</span>
+                    <span class="n">lang</span> <span class="o">=</span> <span class="bp">None</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">lang</span> <span class="o">=</span> <span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+                    <span class="c1"># Only try to parse a language we support.</span>
+                    <span class="n">curtrig</span> <span class="o">=</span> <span class="bp">None</span>
+                    <span class="k">if</span> <span class="n">lang</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Trying to parse unknown programming language&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">)</span>
+                        <span class="n">lang</span> <span class="o">=</span> <span class="s1">&#39;python&#39;</span>  <span class="c1"># Assume it&#39;s Python.</span>
+
+                    <span class="c1"># We have a handler, so start loading the code.</span>
+                    <span class="n">objname</span> <span class="o">=</span> <span class="n">name</span>
+                    <span class="n">objlang</span> <span class="o">=</span> <span class="n">lang</span>
+                    <span class="n">objbuf</span>  <span class="o">=</span> <span class="p">[]</span>
+                    <span class="n">inobj</span>   <span class="o">=</span> <span class="bp">True</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Unknown label type &#39;&quot;</span> <span class="o">+</span> <span class="nb">type</span> <span class="o">+</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;&lt;&#39;</span><span class="p">:</span>
+                <span class="c1"># &lt; LABEL</span>
+                <span class="nb">type</span> <span class="o">=</span> <span class="n">line</span>
+
+                <span class="k">if</span> <span class="nb">type</span> <span class="o">==</span> <span class="s1">&#39;begin&#39;</span> <span class="ow">or</span> <span class="nb">type</span> <span class="o">==</span> <span class="s1">&#39;topic&#39;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">End topic label.&quot;</span><span class="p">)</span>
+                    <span class="n">topic</span> <span class="o">=</span> <span class="s1">&#39;random&#39;</span>
+                <span class="k">elif</span> <span class="nb">type</span> <span class="o">==</span> <span class="s1">&#39;object&#39;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">End object label.&quot;</span><span class="p">)</span>
+                    <span class="n">inobj</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;+&#39;</span><span class="p">:</span>
+                <span class="c1"># + TRIGGER</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Trigger pattern: &quot;</span> <span class="o">+</span> <span class="n">line</span><span class="p">)</span>
+
+                <span class="c1"># Initialize the topic tree.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_init_topic</span><span class="p">(</span><span class="n">ast</span><span class="p">[</span><span class="s2">&quot;topics&quot;</span><span class="p">],</span> <span class="n">topic</span><span class="p">)</span>
+                <span class="n">curtrig</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;trigger&quot;</span><span class="p">:</span> <span class="n">line</span><span class="p">,</span>
+                    <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">[],</span>
+                    <span class="s2">&quot;condition&quot;</span><span class="p">:</span> <span class="p">[],</span>
+                    <span class="s2">&quot;redirect&quot;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+                    <span class="s2">&quot;previous&quot;</span><span class="p">:</span> <span class="n">isThat</span><span class="p">,</span>
+                <span class="p">}</span>
+                <span class="n">ast</span><span class="p">[</span><span class="s2">&quot;topics&quot;</span><span class="p">][</span><span class="n">topic</span><span class="p">][</span><span class="s2">&quot;triggers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">curtrig</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+                <span class="c1"># - REPLY</span>
+                <span class="k">if</span> <span class="n">curtrig</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Response found before trigger&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">)</span>
+                    <span class="k">continue</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Response: &quot;</span> <span class="o">+</span> <span class="n">line</span><span class="p">)</span>
+                <span class="n">curtrig</span><span class="p">[</span><span class="s2">&quot;reply&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+            <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;%&#39;</span><span class="p">:</span>
+                <span class="c1"># % PREVIOUS</span>
+                <span class="k">pass</span>  <span class="c1"># This was handled above.</span>
+            <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;^&#39;</span><span class="p">:</span>
+                <span class="c1"># ^ CONTINUE</span>
+                <span class="k">pass</span>  <span class="c1"># This was handled above.</span>
+            <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;@&#39;</span><span class="p">:</span>
+                <span class="c1"># @ REDIRECT</span>
+                <span class="k">if</span> <span class="n">curtrig</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Redirect found before trigger&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">)</span>
+                    <span class="k">continue</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Redirect: &quot;</span> <span class="o">+</span> <span class="n">line</span><span class="p">)</span>
+                <span class="n">curtrig</span><span class="p">[</span><span class="s2">&quot;redirect&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;*&#39;</span><span class="p">:</span>
+                <span class="c1"># * CONDITION</span>
+                <span class="k">if</span> <span class="n">curtrig</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Condition found before trigger&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">)</span>
+                    <span class="k">continue</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Adding condition: &quot;</span> <span class="o">+</span> <span class="n">line</span><span class="p">)</span>
+                <span class="n">curtrig</span><span class="p">[</span><span class="s2">&quot;condition&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Unrecognized command </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">cmd</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">)</span>
+                <span class="k">continue</span>
+
+        <span class="k">return</span> <span class="n">ast</span></div>
+
+<div class="viewcode-block" id="Parser.check_syntax"><a class="viewcode-back" href="../../rivescript.html#rivescript.parser.Parser.check_syntax">[docs]</a>    <span class="k">def</span> <span class="nf">check_syntax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Syntax check a line of RiveScript code.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            str cmd: The command symbol for the line of code, such as one</span>
+<span class="sd">                of ``+``, ``-``, ``*``, ``&gt;``, etc.</span>
+<span class="sd">            str line: The remainder of the line of code, such as the text of</span>
+<span class="sd">                a trigger or reply.</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            str: A string syntax error message or ``None`` if no errors.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Run syntax checks based on the type of command.</span>
+        <span class="k">if</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;!&#39;</span><span class="p">:</span>
+            <span class="c1"># ! Definition</span>
+            <span class="c1">#   - Must be formatted like this:</span>
+            <span class="c1">#     ! type name = value</span>
+            <span class="c1">#     OR</span>
+            <span class="c1">#     ! type = value</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">def_syntax</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;Invalid format for !Definition line: must be &#39;! type name = value&#39; OR &#39;! type = value&#39;&quot;</span>
+        <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">:</span>
+            <span class="c1"># &gt; Label</span>
+            <span class="c1">#   - The &quot;begin&quot; label must have only one argument (&quot;begin&quot;)</span>
+            <span class="c1">#   - &quot;topic&quot; labels must be lowercased but can inherit other topics (a-z0-9_\s)</span>
+            <span class="c1">#   - &quot;object&quot; labels must follow the same rules as &quot;topic&quot;, but don&#39;t need to be lowercase</span>
+            <span class="n">parts</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;begin&quot;</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;The &#39;begin&#39; label takes no additional arguments, should be verbatim &#39;&gt; begin&#39;&quot;</span>
+            <span class="k">elif</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;topic&quot;</span><span class="p">:</span>
+                <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">name_syntax</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="s2">&quot;Topics should be lowercased and contain only numbers and letters&quot;</span>
+            <span class="k">elif</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;object&quot;</span><span class="p">:</span>
+                <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">name_syntax</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="s2">&quot;Objects can only contain numbers and letters&quot;</span>
+        <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;+&#39;</span> <span class="ow">or</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;%&#39;</span> <span class="ow">or</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;@&#39;</span><span class="p">:</span>
+            <span class="c1"># + Trigger, % Previous, @ Redirect</span>
+            <span class="c1">#   This one is strict. The triggers are to be run through the regexp engine,</span>
+            <span class="c1">#   therefore it should be acceptable for the regexp engine.</span>
+            <span class="c1">#   - Entirely lowercase</span>
+            <span class="c1">#   - No symbols except: ( | ) [ ] * _ # @ { } &lt; &gt; =</span>
+            <span class="c1">#   - All brackets should be matched</span>
+            <span class="n">parens</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Open parenthesis</span>
+            <span class="n">square</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Open square brackets</span>
+            <span class="n">curly</span>  <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Open curly brackets</span>
+            <span class="n">angle</span>  <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Open angled brackets</span>
+
+            <span class="c1"># Count brackets.</span>
+            <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">char</span> <span class="o">==</span> <span class="s1">&#39;(&#39;</span><span class="p">:</span>
+                    <span class="n">parens</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">char</span> <span class="o">==</span> <span class="s1">&#39;)&#39;</span><span class="p">:</span>
+                    <span class="n">parens</span> <span class="o">-=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">char</span> <span class="o">==</span> <span class="s1">&#39;[&#39;</span><span class="p">:</span>
+                    <span class="n">square</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">char</span> <span class="o">==</span> <span class="s1">&#39;]&#39;</span><span class="p">:</span>
+                    <span class="n">square</span> <span class="o">-=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">char</span> <span class="o">==</span> <span class="s1">&#39;{&#39;</span><span class="p">:</span>
+                    <span class="n">curly</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">char</span> <span class="o">==</span> <span class="s1">&#39;}&#39;</span><span class="p">:</span>
+                    <span class="n">curly</span> <span class="o">-=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">char</span> <span class="o">==</span> <span class="s1">&#39;&lt;&#39;</span><span class="p">:</span>
+                    <span class="n">angle</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">char</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">:</span>
+                    <span class="n">angle</span> <span class="o">-=</span> <span class="mi">1</span>
+
+            <span class="c1"># Any mismatches?</span>
+            <span class="k">if</span> <span class="n">parens</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;Unmatched parenthesis brackets&quot;</span>
+            <span class="k">elif</span> <span class="n">square</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;Unmatched square brackets&quot;</span>
+            <span class="k">elif</span> <span class="n">curly</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;Unmatched curly brackets&quot;</span>
+            <span class="k">elif</span> <span class="n">angle</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;Unmatched angle brackets&quot;</span>
+
+            <span class="c1"># In UTF-8 mode, most symbols are allowed.</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">utf8</span><span class="p">:</span>
+                <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">utf8_trig</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="s2">&quot;Triggers can&#39;t contain uppercase letters, backslashes or dots in UTF-8 mode.&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">trig_syntax</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="s2">&quot;Triggers may only contain lowercase letters, numbers, and these symbols: ( | ) [ ] * _ # @ { } &lt; &gt; =&quot;</span>
+        <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;-&#39;</span> <span class="ow">or</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;^&#39;</span> <span class="ow">or</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span>
+            <span class="c1"># - Trigger, ^ Continue, / Comment</span>
+            <span class="c1"># These commands take verbatim arguments, so their syntax is loose.</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;*&#39;</span><span class="p">:</span>
+            <span class="c1"># * Condition</span>
+            <span class="c1">#   Syntax for a conditional is as follows:</span>
+            <span class="c1">#   * value symbol value =&gt; response</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">RE</span><span class="o">.</span><span class="n">cond_syntax</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;Invalid format for !Condition: should be like &#39;* value symbol value =&gt; response&#39;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">None</span></div>
+
+    <span class="k">def</span> <span class="nf">_init_topic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topics</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a Topic Tree data structure.</span>
+
+<span class="sd">        Sets up the topic under ``ast.topics`` with all its relevant keys</span>
+<span class="sd">        and sub-keys, etc.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            topics (dict): A reference to the ``ast.topics``</span>
+<span class="sd">            name (str): The name of the topic to initialize.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">topics</span><span class="p">:</span>
+            <span class="n">topics</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;includes&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="s2">&quot;inherits&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="s2">&quot;triggers&quot;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="p">}</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Noah Petherbridge &lt;root@kirsle.net&gt;.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.12.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

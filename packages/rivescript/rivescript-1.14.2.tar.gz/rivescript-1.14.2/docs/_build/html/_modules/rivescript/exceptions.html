@@ -1,0 +1,306 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rivescript.exceptions &mdash; rivescript 1.12.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="rivescript 1.12.3 documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> rivescript
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.12.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rivescript.html">rivescript package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">rivescript</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>rivescript.exceptions</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for rivescript.exceptions</h1><div class="highlight"><pre>
+<span></span><span class="c1"># RiveScript-Python</span>
+<span class="c1">#</span>
+<span class="c1"># This code is released under the MIT License.</span>
+<span class="c1"># See the &quot;LICENSE&quot; file for more information.</span>
+<span class="c1">#</span>
+<span class="c1"># https://www.rivescript.com/</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+
+<span class="sd">&quot;&quot;&quot;Exception classes for RiveScript.&quot;&quot;&quot;</span>
+
+<span class="c1"># Exportable constants.</span>
+<span class="n">RS_ERR_MATCH</span> <span class="o">=</span> <span class="s2">&quot;[ERR: No reply matched]&quot;</span>
+<span class="n">RS_ERR_REPLY</span> <span class="o">=</span> <span class="s2">&quot;[ERR: No reply found]&quot;</span>
+<span class="n">RS_ERR_DEEP_RECURSION</span> <span class="o">=</span> <span class="s2">&quot;[ERR: Deep recursion detected]&quot;</span>
+<span class="n">RS_ERR_OBJECT</span> <span class="o">=</span> <span class="s2">&quot;[ERR: Error when executing Python object]&quot;</span>
+<span class="n">RS_ERR_OBJECT_HANDLER</span> <span class="o">=</span> <span class="s2">&quot;[ERR: No Object Handler]&quot;</span>
+<span class="n">RS_ERR_OBJECT_MISSING</span> <span class="o">=</span> <span class="s2">&quot;[ERR: Object Not Found]&quot;</span>
+
+<div class="viewcode-block" id="RiveScriptError"><a class="viewcode-back" href="../../rivescript.html#rivescript.exceptions.RiveScriptError">[docs]</a><span class="k">class</span> <span class="nc">RiveScriptError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;RiveScript base exception class.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">error_message</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RiveScriptError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">error_message</span> <span class="o">=</span> <span class="n">error_message</span></div>
+
+
+<div class="viewcode-block" id="NoMatchError"><a class="viewcode-back" href="../../rivescript.html#rivescript.exceptions.NoMatchError">[docs]</a><span class="k">class</span> <span class="nc">NoMatchError</span><span class="p">(</span><span class="n">RiveScriptError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;No reply could be matched.</span>
+
+<span class="sd">    This means that no trigger was a match for the user&#39;s message. To avoid</span>
+<span class="sd">    this error, add a trigger that only consists of a wildcard::</span>
+
+<span class="sd">        + *</span>
+<span class="sd">        - I do not know how to reply to that.</span>
+
+<span class="sd">    The lone-wildcard trigger acts as a catch-all fallback trigger and will</span>
+<span class="sd">    ensure that every message the user could send will match at least one</span>
+<span class="sd">    trigger.</span>
+
+<span class="sd">    The text version is ``[ERR: No reply matched]``</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">NoMatchError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">RS_ERR_MATCH</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NoReplyError"><a class="viewcode-back" href="../../rivescript.html#rivescript.exceptions.NoReplyError">[docs]</a><span class="k">class</span> <span class="nc">NoReplyError</span><span class="p">(</span><span class="n">RiveScriptError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;No reply could be found.</span>
+
+<span class="sd">    This means that the user&#39;s message matched a trigger, but the trigger</span>
+<span class="sd">    didn&#39;t yield any response for the user. For example, if a trigger was</span>
+<span class="sd">    followed only by ``*Conditions`` and none of them were true and there were</span>
+<span class="sd">    no normal replies to fall back on, this error can come up.</span>
+
+<span class="sd">    To avoid this error, always make sure you have at least one ``-Reply``</span>
+<span class="sd">    for every trigger.</span>
+
+<span class="sd">    The text version is ``[ERR: No reply found]``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">NoReplyError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">RS_ERR_REPLY</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ObjectError"><a class="viewcode-back" href="../../rivescript.html#rivescript.exceptions.ObjectError">[docs]</a><span class="k">class</span> <span class="nc">ObjectError</span><span class="p">(</span><span class="n">RiveScriptError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;An error occurred when executing a Python object macro.</span>
+
+<span class="sd">    This will usually be some kind of run-time error, like a</span>
+<span class="sd">    ``ZeroDivisionError`` or ``IndexError`` for example.</span>
+
+<span class="sd">    The text version is ``[ERR: Error when executing Python object]``</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">error_message</span><span class="o">=</span><span class="n">RS_ERR_OBJECT</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ObjectError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DeepRecursionError"><a class="viewcode-back" href="../../rivescript.html#rivescript.exceptions.DeepRecursionError">[docs]</a><span class="k">class</span> <span class="nc">DeepRecursionError</span><span class="p">(</span><span class="n">RiveScriptError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A deep recursion condition was detected and a reply can&#39;t be given.</span>
+
+<span class="sd">    This error can occur when you have triggers that redirect to each other</span>
+<span class="sd">    in a circle, for example::</span>
+
+<span class="sd">        + one</span>
+<span class="sd">        @ two</span>
+
+<span class="sd">        + two</span>
+<span class="sd">        @ one</span>
+
+<span class="sd">    By default, RiveScript will only recursively look for a trigger up to</span>
+<span class="sd">    50 levels deep before giving up. This should be a large enough window for</span>
+<span class="sd">    most use cases, but if you need to increase this limit you can do so by</span>
+<span class="sd">    setting a higher value for the ``depth`` parameter to the constructor or</span>
+<span class="sd">    changing it in your RiveScript source code, for example::</span>
+
+<span class="sd">        ! global depth = 75</span>
+
+<span class="sd">    The text version is ``[ERR: Deep recursion detected]``</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DeepRecursionError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">RS_ERR_DEEP_RECURSION</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NoDefaultRandomTopicError"><a class="viewcode-back" href="../../rivescript.html#rivescript.exceptions.NoDefaultRandomTopicError">[docs]</a><span class="k">class</span> <span class="nc">NoDefaultRandomTopicError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;No default topic could be found.</span>
+
+<span class="sd">    This is a critical error and usually means no replies were loaded into the</span>
+<span class="sd">    bot. Very unlikely is it the case that all replies belong to other topics</span>
+<span class="sd">    than the default (``random``).&quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="RepliesNotSortedError"><a class="viewcode-back" href="../../rivescript.html#rivescript.exceptions.RepliesNotSortedError">[docs]</a><span class="k">class</span> <span class="nc">RepliesNotSortedError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;You attempted to get a reply before sorting the triggers.</span>
+
+<span class="sd">    You should call ``sort_replies()`` after loading your RiveScript code and</span>
+<span class="sd">    before calling ``reply()`` to look up a reply.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Noah Petherbridge &lt;root@kirsle.net&gt;.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.12.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
