@@ -1,0 +1,3 @@
+[console_scripts]
+ircb = ircb.cli.main:cli
+
