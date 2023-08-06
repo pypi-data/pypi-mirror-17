@@ -1,0 +1,16 @@
+CHANGES
+=======
+
+0.1.1
+-----
+
+* Install setuptools explicitly
+* Ignore build and dist dirs
+* Add pbr to the to be installed dependencies
+* Add travis configuration
+* Add complex object casting
+
+0.1.0
+-----
+
+* Initial commit
