@@ -1,0 +1,33 @@
+{% extends "layout/login.html" %}
+{% block body %}
+
+
+
+
+ <div class="login-page">
+  <form class="register-form" method=post action=""> 
+  <div class="form">  
+ 
+      <img style="max-width: 100%; height:250px; " src="{{ url_for('static' , filename='images/logo.png') }}">
+     <input type="text" id="username" name="username" 
+            placeholder="Nom d'utilisateur" value="{{ request.form.username }}"
+            required>
+
+      <input type="password" id="password" name="password" 
+            placeholder="Mot de passe" value="{{ request.form.password }}"
+            required>
+
+      <input type="password" id="verifpassword" name="verifpassword" 
+            placeholder="Verification du Mot de passe" value="{{ request.form.verifpassword }}"
+            required>
+
+      <input type="email" id="email" name="email" class="input-xlarge"
+            placeholder="Adresse Email" value="{{ request.form.email }}"
+            required>
+
+      <button>S'inscrire</button>
+      <p class="message">Déjà inscrit ? <a href="{{ url_for('login') }}">Se connecter</a></p>
+    </form>
+  </div>
+</div>
+{% endblock %}
