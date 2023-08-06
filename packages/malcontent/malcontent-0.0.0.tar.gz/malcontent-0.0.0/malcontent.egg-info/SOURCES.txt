@@ -1,0 +1,12 @@
+CONTRIBUTING.md
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+tox.ini
+malcontent/__init__.py
+malcontent.egg-info/PKG-INFO
+malcontent.egg-info/SOURCES.txt
+malcontent.egg-info/dependency_links.txt
+malcontent.egg-info/top_level.txt
+tests/__init__.py
