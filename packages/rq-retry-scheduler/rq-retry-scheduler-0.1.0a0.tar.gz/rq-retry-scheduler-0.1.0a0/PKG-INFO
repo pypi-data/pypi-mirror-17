@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: rq-retry-scheduler
+Version: 0.1.0a0
+Summary: RQ Retry and Scheduler
+Home-page: https://github.com/mikemill/rq_retry_scheduler
+Author: Michael Miller
+Author-email: mikemill@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: any
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.4
