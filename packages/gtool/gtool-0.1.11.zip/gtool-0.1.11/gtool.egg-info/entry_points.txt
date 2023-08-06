@@ -1,0 +1,3 @@
+[console_scripts]
+gtool = gtool.core.utils.command:cli
+

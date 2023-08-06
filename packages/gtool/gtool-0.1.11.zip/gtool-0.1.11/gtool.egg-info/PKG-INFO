@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: gtool
+Version: 0.1.11
+Summary: A framework for building security governance, risk and compliance tools.
+Home-page: https://gtoolframework.github.io/
+Author: Ben Sapiro
+Author-email: https://ca.linkedin.com/in/sapiro
+License: GPLv3
+Download-URL: https://github.com/gtoolframework/gtool/tarball/0.1.11
+Description: G.Tool is a framework for building governance, risk and compliance security tools. It's a barebones framework, that is highly extensible but comes with a a lot of common functionality included.
+Keywords: security risk governance compliance framework
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Topic :: Utilities
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Intended Audience :: Information Technology
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.5
