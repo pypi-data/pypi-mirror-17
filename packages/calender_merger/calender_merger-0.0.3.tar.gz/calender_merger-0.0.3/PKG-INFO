@@ -1,0 +1,38 @@
+Metadata-Version: 1.1
+Name: calender_merger
+Version: 0.0.3
+Summary: Python web server for merging calenders.
+Home-page: https://github.com/niccokunzmann/calender_merger
+Author: Nicco Kunzmann
+Author-email: niccokunzmann@rambler.ru
+License: LGPL
+Description: calender_merger
+        ===============
+        
+        Merge calenders and import them into your calender.
+        
+        [**Try it out**](https://calender-merger.herokuapp.com/)
+        
+        Heroku 
+        ------
+        
+        .. image:: https://www.herokucdn.com/deploy/button.svg
+           :target: https://heroku.com/deploy?template=https://github.com/avinassh/niccokunzmann/calender_merger
+           :alt: Deploy to Heroku
+        
+        Status
+        ------
+           
+        .. image:: https://travis-ci.org/niccokunzmann/calender_merger.svg
+           :target: https://travis-ci.org/niccokunzmann/calender_merger
+           :alt: Build Status
+Keywords: web calender
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Development Status :: 5 - Production/Stable
