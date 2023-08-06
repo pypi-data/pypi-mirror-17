@@ -1,0 +1,21 @@
+<html py:strip="">
+  <body>
+    <div id="${ajaxform_id}">
+        ${ajaxform._ajaxform_display(value=value)}
+    </div>
+    <script>
+/*<![CDATA[*/
+    if (typeof tgext_ajaxforms != 'undefined') {
+        tgext_ajaxforms.jQuery('#${ajaxform_id}').find('form').ajaxForm({target:tgext_ajaxforms.jQuery('#${ajaxform_id}').parent(),
+                                                            url:'${ajaxform_action}',
+                                                    beforeSubmit:function(arr, form, options) {
+                                                        tgext_ajaxforms.jQuery('#${ajaxform_id}').find('form').hide();
+                                                        tgext_ajaxforms.jQuery('#${ajaxform_id}').append('<img class="spinner_icon" src="${ajaxform_spinner.link}"/>');
+                                                    }
+        });
+    }
+/*]]>*/
+    </script>
+  </body>
+</html>
+
