@@ -1,0 +1,24 @@
+Metadata-Version: 1.1
+Name: Flask-SAPB1
+Version: 0.0.1
+Summary: Use to connect SAP B1 DI API.
+Home-page: https://github.com/ideabosque/Flask-SAPB1
+Author: Idea Bosque
+Author-email: ideabosque@gmail.com
+License: MIT
+Download-URL: https://github.com/ideabosque/Flask-SAPB1/tarball/0.0.1
+Description: 
+        Flask-SAPB1
+        -------------
+        
+        
+Keywords: SAP B1,SAP Business One,DI
+Platform: win32
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Framework :: Flask
+Classifier: Programming Language :: Python
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
