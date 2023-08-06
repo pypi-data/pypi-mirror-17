@@ -1,0 +1,20 @@
+[console_scripts]
+kstack = karellen.stack.core.cli:kstack_cli_main
+
+[karellen.stack.core.extension]
+installer = karellen.stack.core.extensions.installer:Installer
+
+[karellen.stack.dependency]
+python = karellen.stack.core.dependency
+
+[karellen.stack.manager.installer]
+xcode = karellen.stack.providers.darwin:DarwinXcodeProvider
+yum = karellen.stack.providers.yum:YumProvider
+
+[karellen.stack.schema.loader]
+file = karellen.stack.providers.loaders:FileUrlLoader
+git+git = karellen.stack.providers.loaders:GitUrlLoader
+git+http = karellen.stack.providers.loaders:GitUrlLoader
+git+https = karellen.stack.providers.loaders:GitUrlLoader
+git+ssh = karellen.stack.providers.loaders:GitUrlLoader
+
