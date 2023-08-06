@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: snitch2
+Version: 0.2.3
+Summary: Web crawler for searching a domain for specific external links
+Home-page: https://github.com/joelcolucci/snitch2
+Author: Joel Colucci
+Author-email: joelcolucci@gmail.com
+License: MIT
+Description: 
+        snitch2
+        -------------
+        BFS web crawler for searching a domain for specific external links.
+        
+Platform: any
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
