@@ -1,0 +1,8 @@
+[console_scripts]
+doconv = doconv.doconv:main
+
+[doconv.converter]
+asciidoc = doconv.plugin.asciidoc:AsciiDoc
+asciidoctor = doconv.plugin.asciidoctor:AsciiDoctor
+docbooktodita = doconv.plugin.docbooktodita:DocBookToDita
+
