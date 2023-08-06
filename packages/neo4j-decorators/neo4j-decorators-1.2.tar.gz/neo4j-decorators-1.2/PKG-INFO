@@ -1,0 +1,71 @@
+Metadata-Version: 1.1
+Name: neo4j-decorators
+Version: 1.2
+Summary: Decorators do use py2neo library like Spring Data annotations
+Home-page: UNKNOWN
+Author: Arlindo Neto
+Author-email: <arlindosilvaneto@gmail.com>
+License: UNKNOWN
+Description: # Neo4j Decorator Driver for Python
+        
+        > All annotations assumes class methods as decorated sources.
+        
+        ## Database connection
+        
+        Call Neo4j class and setup the connection
+        
+        ```
+        from neo4jdecorators.db import Neo4j
+        
+        ...
+        
+        Neo4j.initialize(host, username, password)
+        ```
+        
+        ## Query Decorator Signature
+        
+        ```
+        from neo4jdecorators.query import Query
+        
+        ...
+        
+        @Query([cypher statement], asTable=False)
+        def method_name(...):
+            ...
+        ```
+        
+        * __asTable__: If true, the method will get the result parameter as a DataFrame Pandas object
+        
+        ## Transactional Decorator Signature
+        
+        ```
+        from neo4jdecorators.query import Query
+        
+        ...
+        
+        @Transactional
+        def method_name(...):
+            ...
+        ```
+        
+        ## Minimum query decorated method signagure
+        
+        ```
+        def method_name(self, result, *args):
+            ...
+        ```
+        
+        ### Extra args passed could be
+        
+        * __tx__: A transaction to be used (could be the one injected with Transactional decorator)
+        * __parameters__: A dictionary with statement parameters
+        
+        ## Minimum Transactional decorated method signature
+        
+        ```
+        def method_name(self, tx):
+            ...
+        ```
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)
+Classifier: Operating System :: OS Independent
