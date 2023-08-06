@@ -1,0 +1,13 @@
+[console_scripts]
+glare-api = glare.cmd.api:main
+glare-db-manage = glare.cmd.db_manage:main
+
+[oslo.config.opts]
+glare = glare.opts:list_artifacts_opts
+
+[oslo.policy.enforcer]
+glare = glare.common.policy:_get_enforcer
+
+[oslo.policy.policies]
+glare = glare.common.policy:list_rules
+
