@@ -1,0 +1,17 @@
+django_querysetsequence-0.7.dist-info/DESCRIPTION.rst,sha256=hnwRbU6tlt64nmNb5RCogf-ohVMondCVqZRyz1X2mHs,14530
+django_querysetsequence-0.7.dist-info/METADATA,sha256=nr4g3g3hdIKbM5UfvA4dTY2sJWJHrwVPq7KtpOdT1Uw,15573
+django_querysetsequence-0.7.dist-info/metadata.json,sha256=TM1x91dD5EBNJbOutSYqFN1tk8ZxtedAJ3W_JgaIMl8,1201
+django_querysetsequence-0.7.dist-info/RECORD,,
+django_querysetsequence-0.7.dist-info/top_level.txt,sha256=12kobFPjHRH4_Xj90PWDeF5XjMA-ntd910OTrj1utW0,24
+django_querysetsequence-0.7.dist-info/WHEEL,sha256=AvR0WeTpDaxT645bl5FQxUK6NPsTls2ttpcGJg3j1Xg,110
+queryset_sequence/__init__.py,sha256=mtxoEigLNDGDxBdKG2WtTBrpf_xWLSLIaCI_Dg9Fxds,21534
+queryset_sequence/_inheritance.py,sha256=0l9Cg-JBGBJ2Kx9aR1gi_4BzNZ9AzLJoHC8NGoR9xhU,2968
+queryset_sequence/pagination.py,sha256=6aO09U7xthwzNyNaeFASePgMsc7AQYUviEWguJ4qh_Q,8874
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/models.py,sha256=FiBwR_tyvFQobGKoo2ut7-AWytamF0Leg9v_iSFjuOI,1487
+tests/settings.py,sha256=rPIlnSFvrSbW0BOqFwG3MVbdosDeBmxESfdl3ThV3uc,942
+tests/test_inheritance.py,sha256=TGR5h_V7BtRmvXFqkZrQyv5D1ApS8MREh9s1rZQhUCo,4919
+tests/test_not_implemented.py,sha256=nDDxhmuaDLfpng7rduFrWE8W3owtuQvlJKJsz8QSZsM,2952
+tests/test_pagination.py,sha256=NLECVpyU2HkYiuMKqch-26DemOd5fTCJOZlbUqvtLjs,9259
+tests/test_querysetsequence.py,sha256=cWPUQM6WUNsIYKEbVUD-6cuEBPwOLhroTFqOq-s89EY,40940
+tests/test_querysetsequencemodel.py,sha256=jfYK-GhQV-e6dxFgltzIfT_y5k_F-rKn19DOTd1jqPs,541
