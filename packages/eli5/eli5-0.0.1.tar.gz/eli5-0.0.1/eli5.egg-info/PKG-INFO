@@ -1,0 +1,51 @@
+Metadata-Version: 1.1
+Name: eli5
+Version: 0.0.1
+Summary: Debug machine learning classifiers and explain their predictions
+Home-page: https://github.com/TeamHG-Memex/eli5
+Author: Mikhail Korobov
+Author-email: kmike84@gmail.com
+License: MIT license
+Description: ====
+        ELI5
+        ====
+        
+        .. image:: https://img.shields.io/pypi/v/eli5.svg
+           :target: https://pypi.python.org/pypi/eli5
+           :alt: PyPI Version
+        
+        .. image:: https://travis-ci.org/TeamHG-Memex/eli5.svg?branch=master
+           :target: http://travis-ci.org/TeamHG-Memex/eli5
+           :alt: Build Status
+        
+        .. image:: http://codecov.io/github/TeamHG-Memex/eli5/coverage.svg?branch=master
+           :target: http://codecov.io/github/TeamHG-Memex/eli5?branch=master
+           :alt: Code Coverage
+        
+        .. image:: https://readthedocs.org/projects/eli5/badge/?version=latest
+           :target: http://eli5.readthedocs.org/en/latest/?badge=latest
+           :alt: Documentation
+        
+        
+        ELI5 is a Python package which helps to debug machine learning
+        classifiers and explain their predictions.
+        
+        License is MIT.
+        
+        Check `docs <http://eli5.readthedocs.org/>`_ for more.
+        
+        
+        Changelog
+        =========
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
