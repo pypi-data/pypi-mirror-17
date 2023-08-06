@@ -1,0 +1,10 @@
+MANIFEST.in
+README.rst
+setup.py
+tvlc/__init__.py
+tvlc/tvlc.py
+tvlc.egg-info/PKG-INFO
+tvlc.egg-info/SOURCES.txt
+tvlc.egg-info/dependency_links.txt
+tvlc.egg-info/requires.txt
+tvlc.egg-info/top_level.txt
