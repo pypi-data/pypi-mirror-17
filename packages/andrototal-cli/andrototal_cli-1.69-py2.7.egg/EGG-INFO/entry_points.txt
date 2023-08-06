@@ -1,0 +1,3 @@
+[console_scripts]
+andrototal-cli = local_worker.scan_cli:main
+
