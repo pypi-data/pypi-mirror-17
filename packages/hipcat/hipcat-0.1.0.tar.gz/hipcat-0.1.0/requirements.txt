@@ -1,0 +1,4 @@
+# Development requirements go in here:
+-e .
+bumpversion
+tox
