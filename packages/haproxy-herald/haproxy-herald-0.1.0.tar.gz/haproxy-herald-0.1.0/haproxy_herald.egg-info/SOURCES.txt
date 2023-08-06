@@ -1,0 +1,15 @@
+setup.cfg
+setup.py
+haproxy_herald.egg-info/PKG-INFO
+haproxy_herald.egg-info/SOURCES.txt
+haproxy_herald.egg-info/dependency_links.txt
+haproxy_herald.egg-info/entry_points.txt
+haproxy_herald.egg-info/requires.txt
+haproxy_herald.egg-info/top_level.txt
+herald/__init__.py
+herald/baseplugin.py
+herald/herald.py
+herald/rules.py
+herald/plugins/__init__.py
+herald/plugins/fileplugin.py
+herald/plugins/httpplugin.py
