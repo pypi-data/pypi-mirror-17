@@ -1,0 +1,5 @@
+[run]
+source = leonardo_celery_email
+omit =
+    *migrations*
+    leonardo_celery_email/__init__.py

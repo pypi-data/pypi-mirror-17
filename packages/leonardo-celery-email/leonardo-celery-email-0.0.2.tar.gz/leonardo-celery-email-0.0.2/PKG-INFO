@@ -1,0 +1,44 @@
+Metadata-Version: 1.1
+Name: leonardo-celery-email
+Version: 0.0.2
+Summary: A Django email backend that uses a Celery queue for out-of-band sending of the messages.
+Home-page: https://github.com/leonardo-modules/leonardo-celery-email
+Author: Michael Kuty
+Author-email: 6du1ro.n@gmail.com
+License: UNKNOWN
+Description: ==========================
+        Leonardo leonardo-celery-email
+        ==========================
+        
+        A Django email backend that uses a Celery queue for out-of-band sending of the messages.
+        
+        .. contents::
+            :local:
+        
+        Installation
+        ------------
+        
+        .. code-block:: bash
+        
+            pip install leonardo-celery-email
+        
+        Read More
+        =========
+        
+        * https://github.com/django-leonardo/django-leonardo
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
