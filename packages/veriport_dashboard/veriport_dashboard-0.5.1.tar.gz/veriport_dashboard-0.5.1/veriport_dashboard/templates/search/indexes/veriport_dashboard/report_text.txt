@@ -1,0 +1,3 @@
+{{ object.account.name }}
+{{ object.account.get_account_type_display }}
+{{ object.get_mro_verification_display }}
