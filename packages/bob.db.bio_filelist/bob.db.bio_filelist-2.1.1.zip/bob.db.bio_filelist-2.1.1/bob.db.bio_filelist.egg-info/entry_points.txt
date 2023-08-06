@@ -1,0 +1,3 @@
+[bob.db]
+bio_filelist = bob.db.bio_filelist.driver:Interface
+
