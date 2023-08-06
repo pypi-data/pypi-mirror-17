@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: tddc
+Version: 0.1.0
+Summary: Scaffold out methods and tests for collaborative data cleaning.
+Home-page: https://github.com/DataKind-SG/test-driven-data-cleaning
+Author: Oliver Chen
+Author-email: oliverxchen@gmail.com
+License: MIT
+Description: This package provides a framework for collaborative, test-driven data cleaning. The framework enables a reproducible method for data cleaning that can be easily validated. 
+        
+        For a given tabular data set, a Trello board is populated with cards for each column so that team members can tag themselves to a column and ensure that work does not overlap. The cards include summary statistics of the columns that can be useful for writing methods to clean the column. Method stubs and test stubs are also scaffolded out for team members to fill out.
+Keywords: data cleaning collaborative
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5

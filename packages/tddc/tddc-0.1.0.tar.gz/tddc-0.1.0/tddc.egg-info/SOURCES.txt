@@ -1,0 +1,17 @@
+README.rst
+setup.cfg
+setup.py
+bin/tddc
+tddc/__init__.py
+tddc/__main__.py
+tddc/build.py
+tddc/build_trello.py
+tddc/common.py
+tddc/credentials.py
+tddc/run_tddc.py
+tddc/summarize.py
+tddc.egg-info/PKG-INFO
+tddc.egg-info/SOURCES.txt
+tddc.egg-info/dependency_links.txt
+tddc.egg-info/requires.txt
+tddc.egg-info/top_level.txt
