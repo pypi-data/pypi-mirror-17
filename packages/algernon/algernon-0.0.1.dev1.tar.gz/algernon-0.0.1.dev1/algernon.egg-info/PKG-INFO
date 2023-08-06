@@ -1,0 +1,23 @@
+Metadata-Version: 1.1
+Name: algernon
+Version: 0.0.1.dev1
+Summary: Reinforcement learning framework with scikit like interface
+Home-page: https://github.com/Lewuathe/algernon
+Author: Kai Sasaki
+Author-email: lewuathe@me.com
+License: MIT
+Description: algernon
+        
+        Reinforcement learning framework which supports scikit like interface.
+        
+        How to install
+        
+        $ pip install algernon
+        
+Keywords: deeplearning reinforcement_learning
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
