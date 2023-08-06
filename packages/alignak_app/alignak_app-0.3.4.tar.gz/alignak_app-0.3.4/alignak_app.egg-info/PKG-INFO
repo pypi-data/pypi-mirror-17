@@ -1,0 +1,72 @@
+Metadata-Version: 1.1
+Name: alignak-app
+Version: 0.3.4
+Summary: Alignak monitoring application AppIndicator
+Home-page: https://github.com/Alignak-monitoring-contrib/alignak-app
+Author: Estrada Matthieu
+Author-email: ttamalfor@gmail.com
+License: GNU Affero General Public License, version 3
+Description: ===========
+        Alignak App
+        ===========
+        
+        Build status (stable release)
+        =============================
+        
+        .. image:: https://travis-ci.org/Alignak-monitoring-contrib/alignak-app.svg?branch=master
+            :target: https://travis-ci.org/Alignak-monitoring-contrib/alignak-app
+        
+        .. image:: https://coveralls.io/repos/github/Alignak-monitoring-contrib/alignak-app/badge.svg?branch=master
+            :target: https://coveralls.io/github/Alignak-monitoring-contrib/alignak-app?branch=develop
+        
+        .. image:: http://readthedocs.org/projects/alignak-app/badge/?version=latest
+            :target: http://alignak-app.readthedocs.io/en/develop/?badge=latest
+            :alt: Documentation Status
+        
+        Build status (development release)
+        ==================================
+        
+        .. image:: https://travis-ci.org/Alignak-monitoring-contrib/alignak-app.svg?branch=develop
+            :target: https://travis-ci.org/Alignak-monitoring-contrib/alignak-app
+        
+        .. image:: https://coveralls.io/repos/github/Alignak-monitoring-contrib/alignak-app/badge.svg?branch=develop
+            :target: https://coveralls.io/github/Alignak-monitoring-contrib/alignak-app?branch=develop
+        
+        .. image:: http://readthedocs.org/projects/alignak-app/badge/?version=develop
+            :target: http://alignak-app.readthedocs.io/en/develop/?badge=latest
+            :alt: Documentation Status
+        
+        Documentation
+        =============
+        
+        Documentation is available on `Read The Docs <http://alignak-app.readthedocs.io/en/develop/index.html>`_ and in the `/docs` directory.
+        
+        Bugs / Enhancements
+        ===================
+        
+        Please open any issue on this `repository <https://github.com/Alignak-monitoring-contrib/alignak-app/issues>`_.
+        
+        License
+        =======
+        
+        Alignak App is available under the [GPL version 3](http://opensource.org/licenses/GPL-3.0).
+        
+        Preview
+        =======
+        
+        .. image:: https://raw.githubusercontent.com/Alignak-monitoring-contrib/alignak-app/develop/docs/image/preview.png
+        
+Keywords: alignak app indicator
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: X11 Applications :: GTK
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Customer Service
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: System :: Monitoring
+Classifier: Topic :: System :: Systems Administration
+Classifier: Topic :: Desktop Environment
