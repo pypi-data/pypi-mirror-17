@@ -1,0 +1,3 @@
+include *.md
+include adsutils/data/*.dat
+include requirements.txt
