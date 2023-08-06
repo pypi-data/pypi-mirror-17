@@ -1,0 +1,12 @@
+MANIFEST.in
+README.rst
+requirements.txt
+setup.py
+custom_redis/__init__.py
+custom_redis.egg-info/PKG-INFO
+custom_redis.egg-info/SOURCES.txt
+custom_redis.egg-info/dependency_links.txt
+custom_redis.egg-info/entry_points.txt
+custom_redis.egg-info/requires.txt
+custom_redis.egg-info/top_level.txt
+custom_redis.egg-info/zip-safe
