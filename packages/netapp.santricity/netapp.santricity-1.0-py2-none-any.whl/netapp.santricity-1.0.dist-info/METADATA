@@ -1,0 +1,18 @@
+Metadata-Version: 2.0
+Name: netapp.santricity
+Version: 1.0
+Summary: Python SDK for accessing NetApp Santricity Web Services
+Home-page: https://github.com/NetApp/santricity-webapi-pythonsdk
+Author: NetApp
+Author-email: ng-hsg-engcustomer-esolutions-support@netapp.com
+License: The Clear BSD License
+Keywords: Swagger,NetApp,Santricity
+Platform: UNKNOWN
+Requires-Dist: certifi
+Requires-Dist: python-dateutil
+Requires-Dist: six (>=1.9)
+Requires-Dist: urllib3 (>=1.10)
+
+NetApp E-Series SANtricity Python SDK for Web Services
+
+
