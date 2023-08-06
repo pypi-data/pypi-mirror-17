@@ -1,0 +1,5 @@
+graft package/header
+graft package/src
+graft package/data
+include README.md
+include package/__init__.py
