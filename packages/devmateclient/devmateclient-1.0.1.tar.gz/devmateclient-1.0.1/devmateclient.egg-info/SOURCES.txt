@@ -1,0 +1,15 @@
+setup.cfg
+setup.py
+devmateclient/__init__.py
+devmateclient/client.py
+devmateclient/consts.py
+devmateclient/errors.py
+devmateclient/version.py
+devmateclient.egg-info/PKG-INFO
+devmateclient.egg-info/SOURCES.txt
+devmateclient.egg-info/dependency_links.txt
+devmateclient.egg-info/requires.txt
+devmateclient.egg-info/top_level.txt
+devmateclient/api/__init__.py
+devmateclient/api/customers.py
+devmateclient/api/licenses.py
