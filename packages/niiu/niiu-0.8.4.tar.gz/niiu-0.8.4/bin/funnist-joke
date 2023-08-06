@@ -1,0 +1,8 @@
+# _*_ coding: utf-8 _*_
+
+def main():
+    print "this is a joke"
+
+
+if __name__ == "__main__":
+    main()
