@@ -1,0 +1,6 @@
+-r requirements-optional.txt
+nose
+coverage
+sphinx
+coveralls
+sphinx_rtd_theme
