@@ -1,0 +1,23 @@
+Metadata-Version: 1.1
+Name: ovirt-ansible
+Version: 0.3.1
+Summary: oVirt Ansible utility
+Home-page: UNKNOWN
+Author: Ondra Machacek
+Author-email: omachace@redhat.com
+License: ASL2
+Description: = oVirt Engine Ansible helper library
+        
+        == Introduction
+        
+        This project contains the helper library for oVirt Ansible modules.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
