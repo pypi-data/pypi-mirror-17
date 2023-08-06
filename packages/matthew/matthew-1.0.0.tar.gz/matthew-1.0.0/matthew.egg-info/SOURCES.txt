@@ -1,0 +1,11 @@
+setup.cfg
+setup.py
+matthew/__init__.py
+matthew.egg-info/PKG-INFO
+matthew.egg-info/SOURCES.txt
+matthew.egg-info/dependency_links.txt
+matthew.egg-info/not-zip-safe
+matthew.egg-info/top_level.txt
+matthew/is/__init__.py
+matthew/is/always/__init__.py
+matthew/is/always/right/__init__.py
