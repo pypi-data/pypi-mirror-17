@@ -1,0 +1,14 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.py
+pystt/__init__.py
+pystt/stt.py
+pystt/utils.py
+pystt.egg-info/PKG-INFO
+pystt.egg-info/SOURCES.txt
+pystt.egg-info/dependency_links.txt
+pystt.egg-info/top_level.txt
+pystt/tests/__init__.py
+pystt/tests/test_stt.py
+pystt/tests/test_utils.py
