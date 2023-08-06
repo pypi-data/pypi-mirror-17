@@ -1,0 +1,15 @@
+MANIFEST.in
+README.rst
+setup.py
+dagmawi_time/DagmawiTime.py
+dagmawi_time/ElementConnector.py
+dagmawi_time/Hour.py
+dagmawi_time/Minute.py
+dagmawi_time/Second.py
+dagmawi_time/TimeElement.py
+dagmawi_time/__init__.py
+dagmawi_time.egg-info/PKG-INFO
+dagmawi_time.egg-info/SOURCES.txt
+dagmawi_time.egg-info/dependency_links.txt
+dagmawi_time.egg-info/not-zip-safe
+dagmawi_time.egg-info/top_level.txt

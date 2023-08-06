@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: dagmawi-time
+Version: 0.1
+Summary: Create/modify an instance of time
+Home-page: UNKNOWN
+Author: Dagmawi Mulugeta
+Author-email: djdg432@gmail.com
+License: None
+Description: This package allows a developer to instantiate a time object and inc/dec the different time elements(sec,min,hour) as they wish
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
