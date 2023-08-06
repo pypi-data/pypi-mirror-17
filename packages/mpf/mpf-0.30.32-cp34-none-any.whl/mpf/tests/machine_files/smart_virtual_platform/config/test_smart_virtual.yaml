@@ -1,0 +1,79 @@
+#config_version=4
+
+virtual_platform_start_active_switches:
+  - trough1
+  - trough2
+  - trough3
+
+coils:
+    outhole:
+        number: C09
+        pulse_ms: 20
+    trough:
+        number: C10
+        pulse_ms: 20
+    plunger:
+        number: 1
+    device1:
+      number: 2
+    device2:
+      number: 3
+
+switches:
+    start:
+        number: 1
+        tags: start
+    outhole:
+        number: 2
+    trough1:
+        number: 3
+    trough2:
+        number: 4
+    trough3:
+        number: 5
+    plunger:
+        number: 6
+    playfield:
+        number: 7
+        tags: playfield_active
+    device1_s1:
+      number: 8
+    device1_s2:
+      number: 9
+    device2_s1:
+      number: 10
+    device2_s2:
+      number: 11
+
+ball_devices:
+    outhole:
+        tags: drain
+        ball_switches: outhole
+        eject_coil: outhole
+        eject_targets: trough
+        confirm_eject_type: target
+        debug: true
+    trough:
+        tags: trough, home
+        ball_switches: trough1, trough2, trough3
+        eject_coil: trough
+        eject_targets: plunger
+        confirm_eject_type: target
+        debug: true
+    plunger:
+        tags: ball_add_live, home
+        ball_switches: plunger
+        eject_coil: plunger
+        debug: true
+    device1:
+        ball_switches: device1_s1, device1_s2
+        eject_coil: device1
+        eject_targets: device2
+        confirm_eject_type: target
+        tags: home # has to be home or attract will collect the balls
+    device2:
+        ball_switches: device2_s1 #, device2_s2
+#        eject_coil: device2
+#        eject_targets: device2
+        confirm_eject_type: target
+        mechanical_eject: true
