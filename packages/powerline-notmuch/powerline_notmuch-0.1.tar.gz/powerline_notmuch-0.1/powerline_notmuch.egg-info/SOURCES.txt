@@ -1,0 +1,9 @@
+MANIFEST.in
+README.md
+setup.py
+powerline_notmuch/__init__.py
+powerline_notmuch/segments.py
+powerline_notmuch.egg-info/PKG-INFO
+powerline_notmuch.egg-info/SOURCES.txt
+powerline_notmuch.egg-info/dependency_links.txt
+powerline_notmuch.egg-info/top_level.txt

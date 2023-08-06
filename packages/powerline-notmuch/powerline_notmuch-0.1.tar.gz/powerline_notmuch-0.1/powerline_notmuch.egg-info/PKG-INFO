@@ -1,0 +1,68 @@
+Metadata-Version: 1.1
+Name: powerline-notmuch
+Version: 0.1
+Summary: Query your notmuch database from powerline
+Home-page: https://github.com/yggdr/powerline_notmuch
+Author: Konstantin Schukraft
+Author-email: konstantin@schukraft.org
+License: ISC
+Description: Notmuch powerline
+        ===========
+        
+        Easily query your [notmuch](https://notmuchmail.org/) database from [powerline](https://github.com/powerline/powerline).
+        
+        ISC licenced, see the LICENCE file.
+        
+        Examples:
+        ---------
+        The most basic example would be:
+        
+            {
+                "function": "powerline_notmuch.notmuch",
+                "args": {
+                    "searches": [
+                        {"search": "tag:unread and not tag:list"},
+                    ]
+                }
+            }
+        
+        results in
+        
+        ✉·2
+        
+        A bit more, playing around with before and after:
+        
+            {
+                "function": "powerline_notmuch.notmuch",
+                "before": "[",
+                "after": "]",
+                "args": {
+                    "divider": "] [",
+                    "searches": [
+                        {"search": "tag:unread and not tag:list"},
+                        {"icon": "", "search": "tag:unread and tag:list"},
+                        {"icon": "BUGS", "search": "tag:unread and tag:bugs"}
+                    ]
+                }
+            }
+        
+        results in
+        
+        [✉ 2] [ 106] [BUGS 0]
+        
+Keywords: powerline notmuch email
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: ISC License (ISCL)
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Communications :: Email
