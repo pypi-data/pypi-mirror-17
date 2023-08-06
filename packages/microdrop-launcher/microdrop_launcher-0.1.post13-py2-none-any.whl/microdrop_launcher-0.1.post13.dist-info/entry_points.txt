@@ -1,0 +1,3 @@
+[console_scripts]
+launch-microdrop = microdrop_launcher.bin.launch:main
+
