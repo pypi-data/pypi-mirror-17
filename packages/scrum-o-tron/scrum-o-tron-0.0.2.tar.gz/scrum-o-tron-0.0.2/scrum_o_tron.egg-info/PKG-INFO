@@ -1,0 +1,62 @@
+Metadata-Version: 1.1
+Name: scrum-o-tron
+Version: 0.0.2
+Summary: Slack BOT that implements a very simple standup.
+Home-page: UNKNOWN
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: MIT
+Description: Slack BOT that implements a very simple standup.
+        ================================================
+        
+        [![Build Status](https://travis-ci.org/CustardCat/scrum-o-tron.png)](https://travis-ci.org/CustardCat/scrum-o-tron)
+        
+        
+        Usage
+        -----
+        
+        * scrumotron
+        
+        Invite the scrumotron user to a channel.
+        
+        Commands:
+        
+        * !standup start - Starts the standup and clears out old standup data.
+        * !standup message - Adds message to the standup
+        * !standup - shows the current messages in the standup
+        
+        Configuration
+        -------------
+        
+        Environment Variables:
+        
+        * SLACK_BOT_NAME=scrum-o-tron
+        * SLACK_BOT_TOKEN=xxx
+        
+        Obtain the name and token from Slack by creating a new bot.
+        
+        Installation
+        ------------
+        
+        * python setup.py install
+        
+        Development
+        -----------
+        
+        * pip install -r requirements.txt
+        * python setup.py test
+        * python setup.py develop
+        
+Keywords: python slack bot
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

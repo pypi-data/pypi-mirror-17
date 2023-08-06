@@ -1,0 +1,13 @@
+LICENSE.txt
+MANIFEST.in
+setup.cfg
+setup.py
+scrum_o_tron.egg-info/PKG-INFO
+scrum_o_tron.egg-info/SOURCES.txt
+scrum_o_tron.egg-info/dependency_links.txt
+scrum_o_tron.egg-info/entry_points.txt
+scrum_o_tron.egg-info/requires.txt
+scrum_o_tron.egg-info/top_level.txt
+scrumotron/__init__.py
+scrumotron/cli.py
+scrumotron/version.txt
