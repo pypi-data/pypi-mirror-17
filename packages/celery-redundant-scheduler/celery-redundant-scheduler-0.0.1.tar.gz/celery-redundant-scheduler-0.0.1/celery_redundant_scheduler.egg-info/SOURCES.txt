@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+celery_redundant_scheduler/__init__.py
+celery_redundant_scheduler/scheduler.py
+celery_redundant_scheduler.egg-info/PKG-INFO
+celery_redundant_scheduler.egg-info/SOURCES.txt
+celery_redundant_scheduler.egg-info/dependency_links.txt
+celery_redundant_scheduler.egg-info/requires.txt
+celery_redundant_scheduler.egg-info/top_level.txt
+celery_redundant_scheduler/backends/__init__.py
+celery_redundant_scheduler/backends/base.py
+celery_redundant_scheduler/backends/redis.py
