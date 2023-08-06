@@ -1,0 +1,4 @@
+[console_scripts]
+app-catalog-import-assets = openstack_catalog.plugins.glare.import_from_yaml:main
+app-catalog-manage = openstack_catalog.cli:main
+
