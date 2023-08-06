@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+Mopidy_jukePi.egg-info/PKG-INFO
+Mopidy_jukePi.egg-info/SOURCES.txt
+Mopidy_jukePi.egg-info/dependency_links.txt
+Mopidy_jukePi.egg-info/entry_points.txt
+Mopidy_jukePi.egg-info/not-zip-safe
+Mopidy_jukePi.egg-info/requires.txt
+Mopidy_jukePi.egg-info/top_level.txt
+mopidy_jukepi/__init__.py
+mopidy_jukepi/ext.conf
+tests/__init__.py
+tests/test_extension.py
