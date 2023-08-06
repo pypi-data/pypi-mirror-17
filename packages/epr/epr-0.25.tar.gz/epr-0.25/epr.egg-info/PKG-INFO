@@ -1,0 +1,28 @@
+Metadata-Version: 1.0
+Name: epr
+Version: 0.25
+Summary: Tool for quickly adding debugging output
+Home-page: https://github.com/Cogmob/epr
+Author: Luke Avery
+Author-email: cogmob@gmail.com
+License: UNKNOWN
+Description: # EPR #
+        
+        Easy debug printing
+        
+        ### Example usage ###
+        
+        ```python
+        from epr import epr
+        epr(some_object, 'red')
+        
+        # auto including
+        
+        This script will automatically include epr in all python files which attempt to
+        use it:
+        
+        ```python
+        from epr import epr_include_recursive
+        epr_include_recursive(path)
+        
+Platform: UNKNOWN
