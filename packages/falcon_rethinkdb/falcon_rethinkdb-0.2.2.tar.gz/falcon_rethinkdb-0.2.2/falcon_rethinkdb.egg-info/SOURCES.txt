@@ -1,0 +1,13 @@
+MANIFEST.in
+requirements.txt
+setup.py
+falcon_rethinkdb/__init__.py
+falcon_rethinkdb/hooks.py
+falcon_rethinkdb/resource.py
+falcon_rethinkdb/types.py
+falcon_rethinkdb/util.py
+falcon_rethinkdb.egg-info/PKG-INFO
+falcon_rethinkdb.egg-info/SOURCES.txt
+falcon_rethinkdb.egg-info/dependency_links.txt
+falcon_rethinkdb.egg-info/requires.txt
+falcon_rethinkdb.egg-info/top_level.txt
