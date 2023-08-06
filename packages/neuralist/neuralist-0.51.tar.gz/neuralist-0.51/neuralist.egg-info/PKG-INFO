@@ -1,0 +1,23 @@
+Metadata-Version: 1.1
+Name: neuralist
+Version: 0.51
+Summary: A Python interface to access neural-redis.
+Home-page: https://doist.com/
+Author: amix
+Author-email: amix@doist.com
+License: BSD
+Description: UNKNOWN
+Keywords: redis machien learning neural networks
+Platform: Any
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
