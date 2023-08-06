@@ -1,0 +1,15 @@
+AUTHORS
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+gitdb_speedups/__init__.py
+gitdb_speedups/_delta_apply.c
+gitdb_speedups/_delta_apply.h
+gitdb_speedups/_fun.c
+gitdb_speedups.egg-info/PKG-INFO
+gitdb_speedups.egg-info/SOURCES.txt
+gitdb_speedups.egg-info/dependency_links.txt
+gitdb_speedups.egg-info/not-zip-safe
+gitdb_speedups.egg-info/requires.txt
+gitdb_speedups.egg-info/top_level.txt
