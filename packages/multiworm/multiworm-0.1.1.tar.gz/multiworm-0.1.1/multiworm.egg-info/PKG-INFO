@@ -1,0 +1,25 @@
+Metadata-Version: 1.1
+Name: multiworm
+Version: 0.1.1
+Summary: Python interface for Multi-Worm Tracker data
+Home-page: https://github.org/nicktimko/multiworm
+Author: Nick Timkovich
+Author-email: npt@u.northwestern.edu
+License: UNKNOWN
+Description: =========
+        Multiworm
+        =========
+        
+        Reads data from the `Multi-Worm Tracker`_ (MWT) program by the Kerr Lab [Swierczek]_ and exposes it in a clean, easy-to-use interface. Used by `WALDO`_, a data-cleaner for the MWT developed by the Amaral Lab [Winter]_.
+        
+        .. _WALDO: https://github.com/amarallab/waldo
+        .. _`Multi-Worm Tracker`: https://sourceforge.net/projects/mwt/
+        .. [Swierczek] NA Swierczek, AC Giles, CH Rankin, RA Kerr. (2011) "High-throughput behavioral analysis in *C. elegans*" *Nature Methods* doi:10.1038/nmeth.1625
+        .. [Winter] P Winter, RM Brielmann, N Timkovich, HT Navarro, A Teixeira-Castro, R Morimoto, LAN Amaral (accepted, pending publication) "A network approach to discerning the identities of *C. elegans* in a free moving population" *Scientific Reports*
+        
+Keywords: c. elegans,caenorhabditis elegans,caenorhabditis,elegans,worm,tracking,biology,amaral
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
