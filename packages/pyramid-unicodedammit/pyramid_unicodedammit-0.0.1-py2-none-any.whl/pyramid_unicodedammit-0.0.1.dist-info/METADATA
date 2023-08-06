@@ -1,0 +1,19 @@
+Metadata-Version: 2.0
+Name: pyramid-unicodedammit
+Version: 0.0.1
+Summary: Make a best effort to deal with bizarre query strings
+Home-page: https://github.com/npilon/pyramid_unicodedammit
+Author: Nicholas Pilon
+Author-email: npilon@gmail.com
+License: Apache 2.0
+Platform: UNKNOWN
+Requires-Dist: beautifulsoup4 (>=4.5.0)
+Requires-Dist: pyramid (>=1.2dev)
+Provides-Extra: testing
+Requires-Dist: coverage; extra == 'testing'
+Requires-Dist: nose (==1.3.7); extra == 'testing'
+Requires-Dist: webtest (>=2.0.21); extra == 'testing'
+
+UNKNOWN
+
+
