@@ -1,0 +1,46 @@
+Metadata-Version: 1.1
+Name: sixfeetup.workflow.chained
+Version: 1.9
+Summary: Override the state menu to show all states in the workflow chain
+Home-page: http://www.sixfeetup.com
+Author: Six Feet Up, Inc.
+Author-email: info@sixfeetup.com
+License: GPL
+Description: Introduction
+        ============
+        
+        Override the state menu to show all states in the workflow chain.
+        
+        Version 1.8 is compatible with Plone >= 4.3.
+        
+        Version 1.7 is compatible with Plone < 4.3.
+        
+        Changelog
+        =========
+        
+        1.9 - Unreleased
+        ----------------
+        
+        
+        1.8 - 2013-10-24
+        ----------------
+        
+        * Plone 4.3 compatibility
+        
+        1.7 - 2013-02-13
+        ----------------
+        
+        * Added override of contenthistory view and content_history template
+          to display items from all workflows in an object's chain
+        
+        1.0 - Unreleased
+        ----------------
+        
+        * Initial release
+        
+        
+Keywords: plone workflow
+Platform: UNKNOWN
+Classifier: Framework :: Plone
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

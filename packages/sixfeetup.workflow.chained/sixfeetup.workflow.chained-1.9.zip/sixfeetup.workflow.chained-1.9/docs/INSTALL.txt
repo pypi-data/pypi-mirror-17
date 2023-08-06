@@ -1,0 +1,90 @@
+sixfeetup.workflow.chained Information
+====================================================
+If you use chained workflows, sixfeetup.workflow.chained allows
+you to view (and style) each of the chained workflow titles in
+the Action Items sub menu. Plone's built-in display only shows
+a single workflow state on a piece of content, even if you have
+chained workflows. sixfeetup.workflow.chained displays all of
+the active workflow states on a piece of content, plus it allows
+you to to use CSS to override the style of each individual state
+in the displayed list.
+
+
+How to set up `sixfeetup.workflow.chained`:
+====================================================
+Add these slugs to your `configure.zcml` under [instance]
+(Six Feet Up: prefix with 'base-eggs' and 'base-zcml'):
+
+  eggs =
+      sixfeetup.workflow.chained
+
+  zcml =
+      sixfeetup.workflow.chained
+      sixfeetup.workflow.chained-overrides
+
+  # Six Feet Up only egg server:
+  find-links =
+      http://${buildout:skillet-login}@skillet.sixfeetup.com/sixfeetup.workflow.chained
+
+
+What `sixfeetup.workflow.chained` is doing:
+====================================================
+Overrides the `WorkflowSubMenuItem` class from plone.app.content.contentmenu
+Specifically, the `_currentStateTitle` and `extra` functions, returning a
+formattted list of items for the workflow content menu.
+
+`contentmenu.pt` is overridden from `plone.app.contentmenu`, allowing
+the menu items to display correctly.
+
+The `contenthistory` view and associated `content_history.pt` template are
+overridden to display transitions for all workflows in an object's chain.
+
+Dependencies:
+====================================================
+If you are using buildout, sixfeetup.workflow.chained will automagically
+install `z3c.jbot`.
+
+
+sixfeetup.workflow.chained Installation (the default info added by paste/ZopeSkel)
+====================================================
+
+To install sixfeetup.workflow.chained into the global Python environment (or a workingenv),
+using a traditional Zope 2 instance, you can do this:
+
+ * When you're reading this you have probably already run 
+   ``easy_install sixfeetup.workflow.chained``. Find out how to install setuptools
+   (and EasyInstall) here:
+   http://peak.telecommunity.com/DevCenter/EasyInstall
+
+ * Create a file called ``sixfeetup.workflow.chained-configure.zcml`` in the
+   ``/path/to/instance/etc/package-includes`` directory.  The file
+   should only contain this::
+
+       <include package="sixfeetup.chained" />
+
+
+Alternatively, if you are using zc.buildout and the plone.recipe.zope2instance
+recipe to manage your project, you can do this:
+
+ * Add ``sixfeetup.workflow.chained`` to the list of eggs to install, e.g.:
+ 
+    [buildout]
+    ...
+    eggs =
+        ...
+        sixfeetup.workflow.chained
+        
+  * Tell the plone.recipe.zope2instance recipe to install a ZCML slug:
+  
+    [instance]
+    recipe = plone.recipe.zope2instance
+    ...
+    zcml =
+        sixfeetup.workflow.chained
+        
+  * Re-run buildout, e.g. with:
+  
+    $ ./bin/buildout
+        
+You can skip the ZCML slug if you are going to explicitly include the package
+from another package's configure.zcml file.
