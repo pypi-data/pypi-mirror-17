@@ -1,0 +1,55 @@
+Metadata-Version: 1.0
+Name: project-system
+Version: 0.1.1
+Summary: create and open projects
+Home-page: http://project-system.readthedocs.io
+Author: Ian Dennis Miller
+Author-email: iandennismiller@gmail.com
+License: MIT
+Description: project-system
+        =============
+        
+        create and open projects
+        
+        .. image:: https://img.shields.io/github/stars/USERNAME/project-system.svg?style=social&label=GitHub
+            :target: https://github.com/iandennismiller/project-system
+        
+        .. image:: https://img.shields.io/pypi/v/project-system.svg
+            :target: https://pypi.python.org/pypi/project-system
+        
+        .. image:: https://readthedocs.org/projects/project-system/badge/?version=latest
+            :target: http://project-system.readthedocs.io/en/latest/?badge=latest
+            :alt: Documentation Status
+        
+        .. image:: https://travis-ci.org/USERNAME/project-system.svg?branch=master
+            :target: https://travis-ci.org/USERNAME/project-system
+        
+        .. image:: https://coveralls.io/repos/github/USERNAME/project-system/badge.svg?branch=master
+            :target: https://coveralls.io/github/USERNAME/project-system?branch=master
+        
+        Overview
+        --------
+        
+        Installation
+        ^^^^^^^^^^^^
+        
+        Homebrew
+        ~~~~~~~~
+        
+        ::
+        
+            brew install https://raw.githubusercontent.com/USERNAME/project-system/master/etc/project_system.rb
+        
+        Python pip
+        ~~~~~~~~~~
+        
+        ::
+        
+            pip install project-system
+        
+        Documentation
+        ^^^^^^^^^^^^^
+        
+        project-system.readthedocs.io
+        
+Platform: UNKNOWN
