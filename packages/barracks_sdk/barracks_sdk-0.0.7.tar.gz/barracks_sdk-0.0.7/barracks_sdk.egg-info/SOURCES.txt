@@ -1,0 +1,17 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+barracks_sdk/__init__.py
+barracks_sdk/apierror.py
+barracks_sdk/barrackshelper.py
+barracks_sdk/packagedownloadhelper.py
+barracks_sdk/packageinfo.py
+barracks_sdk/updatecheckhelper.py
+barracks_sdk/updatedetail.py
+barracks_sdk/updatedetailrequest.py
+barracks_sdk.egg-info/PKG-INFO
+barracks_sdk.egg-info/SOURCES.txt
+barracks_sdk.egg-info/dependency_links.txt
+barracks_sdk.egg-info/requires.txt
+barracks_sdk.egg-info/top_level.txt
