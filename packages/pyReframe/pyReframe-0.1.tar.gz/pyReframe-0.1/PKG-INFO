@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: pyReframe
+Version: 0.1
+Summary: a port of clojures reframe to python
+Home-page: https://github.com/alchayward/pyReframe.git
+Author: Andrew L. C. Hayward
+Author-email: alc.hayward@gmail.com
+License: MIT
+Download-URL: https://github.com/alchayward/pyReframe/tarball/0.1
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires: pyrsistent
+Requires: rx
