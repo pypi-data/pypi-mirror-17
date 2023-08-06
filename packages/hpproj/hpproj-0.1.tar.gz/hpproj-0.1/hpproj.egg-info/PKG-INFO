@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: hpproj
+Version: 0.1
+Summary: Projection of Healpix maps onto a planar grid
+Home-page: https://git.ias.u-psud.fr/abeelen/hpproj
+Author: Marian Douspis
+Author-email: marian.douspis@ias.u-psud.fr
+License: LGPL-3.0+
+Download-URL: https://git.ias.u-psud.fr/abeelen/hpproj/repository/archive.tar.gz?0.1
+Description: Projection of Healpix maps onto a planar grid using wcs headers
+Platform: UNKNOWN
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)
+Requires: numpy
+Requires: healpy
+Requires: astropy
+Requires: photutils
+Requires: matplotlib
