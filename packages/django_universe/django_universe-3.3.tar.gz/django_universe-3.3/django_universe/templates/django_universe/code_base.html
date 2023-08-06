@@ -1,0 +1,25 @@
+{% extends "django_universe/base_admin.html" %}
+
+
+{% block content %}
+<br><br>
+	<button class="btn btn-default active find_function" arrayname="code_base_view">Views</button>
+	<button class="btn btn-default find_function" arrayname="code_base_models">Models</button>
+	<button class="btn btn-default find_function" arrayname="code_base_tasks">Tasks</button>
+	<button class="btn btn-default find_function" arrayname="code_base_urls">URLS</button>
+	<button class="btn btn-default find_function" arrayname="code_base_htmlToViews">HTML to views</button>
+	<button class="btn btn-default find_function" arrayname="code_base_ajaxcalls">Ajax calls2</button><br><br>
+    <input type="text" id="code_base_search" class="form-control" style="width:50%;" arrayname="code_base_view">
+<!--
+    <input type="text" id="ajax_calls_search" class="form-control" style="width:50%;" arrayname="code_base_view">
+-->
+    
+    <div class="row">
+	<div class="col-md-6" id="trial">
+	</div>
+	<div class="col-md-6" id="trial2" style="white-space: pre;">
+	</div>
+    </div>
+    
+
+{% endblock %}
