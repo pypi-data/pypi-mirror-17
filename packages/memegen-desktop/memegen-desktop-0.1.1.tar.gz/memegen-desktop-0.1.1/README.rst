@@ -1,0 +1,58 @@
+Unix: |Unix Build Status| Windows: |Windows Build Status|\ Metrics:
+|Coverage Status| |Scrutinizer Code Quality|\ Usage: |PyPI Version|
+|PyPI Downloads|
+
+Overview
+========
+
+Desktop client for https://memegen.link.
+
+Setup
+=====
+
+Requirements
+------------
+
+-  Python 3.3+
+-  SpeechRecognition requirements:
+   https://github.com/Uberi/speech_recognition#requirements
+-  macOS: ``$ brew install flac portaudio swig``
+
+Installation
+------------
+
+Install the client with pip:
+
+.. code:: sh
+
+    $ pip install memegen-desktop
+
+or directly from the source code:
+
+.. code:: sh
+
+    $ git clone https://github.com/jacebrowning/memegen-desktop.git
+    $ cd memegen-desktop
+    $ python setup.py install
+
+Usage
+=====
+
+Launch the GUI from the command-line:
+
+.. code:: sh
+
+    $ memegen
+
+.. |Unix Build Status| image:: http://img.shields.io/travis/jacebrowning/memegen-desktop/master.svg
+   :target: https://travis-ci.org/jacebrowning/memegen-desktop
+.. |Windows Build Status| image:: https://img.shields.io/appveyor/ci/jacebrowning/memegen-desktop/master.svg
+   :target: https://ci.appveyor.com/project/jacebrowning/memegen-desktop
+.. |Coverage Status| image:: http://img.shields.io/coveralls/jacebrowning/memegen-desktop/master.svg
+   :target: https://coveralls.io/r/jacebrowning/memegen-desktop
+.. |Scrutinizer Code Quality| image:: http://img.shields.io/scrutinizer/g/jacebrowning/memegen-desktop.svg
+   :target: https://scrutinizer-ci.com/g/jacebrowning/memegen-desktop/?branch=master
+.. |PyPI Version| image:: http://img.shields.io/pypi/v/memegen-desktop.svg
+   :target: https://pypi.python.org/pypi/memegen-desktop
+.. |PyPI Downloads| image:: http://img.shields.io/pypi/dm/memegen-desktop.svg
+   :target: https://pypi.python.org/pypi/memegen-desktop
