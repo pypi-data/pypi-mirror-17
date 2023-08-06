@@ -1,0 +1,60 @@
+Metadata-Version: 1.1
+Name: mot
+Version: 0.2.10
+Summary: Maastricht Optimization Toolbox
+Home-page: https://github.com/cbclab/MOT
+Author: Robbert Harms
+Author-email: robbert.harms@maastrichtuniversity.nl
+License: LGPL v3
+Description: Maastricht Optimization Toolbox
+        ===============================
+        
+        .. image:: https://badge.fury.io/py/mot.png
+            :target: http://badge.fury.io/py/mot
+        
+        
+        A library for parallel optimization and sampling using Python and OpenCL.
+        
+        * Free software: LGPL v3 license
+        * Full documentation: https://mot.readthedocs.org
+        * Project home: https://github.com/cbclab/MOT
+        * Uses the `GitLab workflow <https://docs.gitlab.com/ee/workflow/gitlab_flow.html>`_
+        * Tags: optimization, parallel, opencl, python
+        
+        Quick installation guide:
+        
+        **Linux (Ubuntu)**
+        
+        * ``sudo apt-get install python3 python3-pip python3-pyopencl``
+        * ``sudo pip3 install MOT``
+        
+        
+        **Windows**
+        
+        * Install Python Anaconda 3.* 64bit from https://www.continuum.io/downloads
+        * Install PyOpenCL:
+            * Using a binary package from http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyopencl (preferred method)
+            * Compile PyOpenCL, this requires Visual Studio 2015 (Community edition or higher) with the Python and Common Tools for Visual C++ options enabled.
+        * Open a Anaconda shell and type: ``pip install MOT``
+        
+        
+        For more information and for more elaborate installation instructions, please see: https://mot.readthedocs.org
+        
+Keywords: mot
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Scientific/Engineering
