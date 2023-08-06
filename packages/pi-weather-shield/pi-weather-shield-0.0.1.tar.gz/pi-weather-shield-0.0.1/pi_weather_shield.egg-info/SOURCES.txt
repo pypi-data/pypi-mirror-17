@@ -1,0 +1,11 @@
+setup.py
+pi_weather_shield.egg-info/PKG-INFO
+pi_weather_shield.egg-info/SOURCES.txt
+pi_weather_shield.egg-info/dependency_links.txt
+pi_weather_shield.egg-info/top_level.txt
+piweathershield/__init__.py
+piweathershield/htu21d.py
+piweathershield/ms5637.py
+piweathershield/piweathershield.py
+piweathershield/tsd305.py
+piweathershield/tsys01.py
