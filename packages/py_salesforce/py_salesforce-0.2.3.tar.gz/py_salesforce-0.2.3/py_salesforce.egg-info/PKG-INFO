@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: py-salesforce
+Version: 0.2.3
+Summary:  A Python wrapper for the Salesforce REST API and SOQL.
+Home-page: https://github.com/mohamed-osama-aboelkheir/py_salesforce
+Author: Mohamed AboElKheir
+Author-email: mohamed.osama.aboelkheir@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/mohamed-osama-aboelkheir/py_salesforce/tarball/0.2.3
+Description: UNKNOWN
+Keywords: salesforce,REST,API,SOQL
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
