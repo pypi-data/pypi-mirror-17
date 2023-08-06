@@ -1,0 +1,16 @@
+githubpy
+jenkinsapi
+jenkins-yml[renderer]
+pyyaml
+retrying
+
+[release]
+wheel
+
+[test]
+libfaketime
+pytest
+pytest-asyncio
+pytest-cov
+pytest-logging
+pytest-mock
