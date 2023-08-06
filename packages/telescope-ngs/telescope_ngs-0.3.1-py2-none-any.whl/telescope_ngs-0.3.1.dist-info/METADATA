@@ -1,0 +1,17 @@
+Metadata-Version: 2.0
+Name: telescope-ngs
+Version: 0.3.1
+Summary: Single locus resolution of Transposable ELEment expression using next-generation sequencing.
+Home-page: https://github.com/mlbendall/telescope
+Author: Matthew L. Bendall
+Author-email: bendall@gwu.edu
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: intervaltree
+Requires-Dist: numpy (>=1.7.0)
+Requires-Dist: pysam (>=0.8.2.1)
+Requires-Dist: scipy (>=0.17.0)
+
+UNKNOWN
+
+
