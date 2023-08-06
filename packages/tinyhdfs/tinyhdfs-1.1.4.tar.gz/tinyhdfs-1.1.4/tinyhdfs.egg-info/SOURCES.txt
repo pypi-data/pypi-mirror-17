@@ -1,0 +1,11 @@
+setup.cfg
+setup.py
+tinyhdfs.py
+pytinyhdfs/GZipUtil.py
+pytinyhdfs/WebHDFS.py
+pytinyhdfs/__init__.py
+tinyhdfs.egg-info/PKG-INFO
+tinyhdfs.egg-info/SOURCES.txt
+tinyhdfs.egg-info/dependency_links.txt
+tinyhdfs.egg-info/entry_points.txt
+tinyhdfs.egg-info/top_level.txt

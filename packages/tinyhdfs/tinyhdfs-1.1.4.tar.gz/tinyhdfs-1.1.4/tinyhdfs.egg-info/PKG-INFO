@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: tinyhdfs
+Version: 1.1.4
+Summary: Tiny client for HDFS, base on WebHDFS
+Home-page: https://github.com/vietor/pytinyhdfs
+Author: Vietor Liu
+Author-email: vietor.liu@gmail.com
+License: MIT
+Download-URL: https://github.com/vietor/pytinyhdfs/tarball/1.1.4
+Description: UNKNOWN
+Keywords: webhdfs,hdfs,hadoop
+Platform: UNKNOWN
+Classifier: Topic :: System :: Filesystems
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Environment :: Console
+Classifier: Natural Language :: English
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Requires: python (>=2.6.0)
