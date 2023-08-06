@@ -1,0 +1,19 @@
+## Repository ##
+
+https://gitlab.com/vikingmakt/rask_cronpoke
+
+## Example ##
+
+from rask.rmq import RMQ
+from rask_cronpoke import Cronpoke
+
+def minute_callback(date):
+    #called each minute
+
+def hour_callback(date):
+    #called each hour
+
+rmq = RMQ('amqp://localhost')
+c = Cronpoke(rmq)
+c.add_cb_minute(minute_callback)
+c.add_cb_hour(hour_callback)
