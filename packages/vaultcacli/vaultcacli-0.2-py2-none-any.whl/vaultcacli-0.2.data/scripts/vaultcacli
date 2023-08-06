@@ -1,0 +1,109 @@
+#!python
+
+import requests
+import json
+import os
+import argparse
+
+DEBUG = False
+URL = None
+TOKEN = None
+
+
+def headers():
+    return {
+        'Content-Type': 'application/json',
+        'X-Vault-Token': TOKEN
+    }
+
+
+def generate(path, role, common_name, ttl):
+    data = {
+        "common_name": common_name,
+        "ttl": ttl,
+        "format": "pem",
+    }
+
+    path = '%s/v1/%s/issue/%s' % (
+                                 URL,
+                                 path.lstrip('/'),
+                                 role
+                                )
+
+    r = requests.post(path, headers=headers(), data=json.dumps(data))
+
+    if 200 > r.status_code or r.status_code > 250:
+        raise Exception(r.text)
+
+    return r.json()
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--url", help="URL of Vault", type=str)
+    parser.add_argument("--token", help="Vault token", type=str)
+    parser.add_argument("--path", help="Vault CA path", type=str)
+    parser.add_argument("--role", help="Vault CA role", type=str)
+    parser.add_argument("--debug", help="turn on debugging", action="store_true")
+    parser.add_argument("--ca", help="File to place CA certificate in", type=str)
+    parser.add_argument("--cert", help="File to place certificate in", type=str)
+    parser.add_argument("--key", help="File to place private key in", type=str)
+    parser.add_argument("--name", help="Common name for the certificate", type=str)
+    parser.add_argument("--ttl", help="TTL for the certificate", type=str)
+    args = parser.parse_args()
+
+    URL = os.getenv('VAULT_URL')
+    TOKEN = os.getenv('VAULT_TOKEN')
+    if args.url:
+        URL = args.url
+    if args.token:
+        TOKEN = args.token
+
+    if not args.path:
+        print("Path required")
+        exit(-1)
+
+    if not args.role:
+        print("Role required")
+        exit(-1)
+
+    if not args.ca:
+        print("CA output file required")
+        exit(-1)
+
+    if not args.cert:
+        print("Cert output file required")
+        exit(-1)
+
+    if not args.key:
+        print("Key output file required")
+        exit(-1)
+
+    if not args.name:
+        print("Name for certificate required")
+        exit(-1)
+
+    if not args.ttl:
+        print("TTL for certificate required")
+        exit(-1)
+
+    resp = generate(args.path, args.role, args.name, args.ttl)
+
+    if 'data' in resp:
+        if 'certificate' in resp['data']:
+            cert_dir = os.path.dirname(args.cert)
+            if cert_dir != '' and not os.path.exists(cert_dir):
+                os.makedirs(os.path.dirname(args.cert))
+            with open(args.cert, 'w+') as cert:
+                cert.write(resp['data']['certificate'])
+        if 'private_key' in resp['data']:
+            key_dir = os.path.dirname(args.key)
+            if key_dir != '' and not os.path.exists(key_dir):
+                os.makedirs(os.path.dirname(args.key))
+            with open(args.key, 'w+') as key:
+                key.write(resp['data']['private_key'])
+        if 'issuing_ca' in resp['data']:
+            ca_dir = os.path.dirname(args.ca)
+            if ca_dir != '' and not os.path.exists(ca_dir):
+                os.makedirs(os.path.dirname(args.ca))
+            with open(args.ca, 'w+') as ca:
+                ca.write(resp['data']['issuing_ca'])
