@@ -1,0 +1,3 @@
+[gui_scripts]
+kryptal = kryptal.gui.__main__:main
+
