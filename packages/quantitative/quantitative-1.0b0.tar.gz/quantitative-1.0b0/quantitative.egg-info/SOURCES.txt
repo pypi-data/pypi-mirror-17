@@ -1,0 +1,13 @@
+setup.py
+quantitative/__init__.py
+quantitative.egg-info/PKG-INFO
+quantitative.egg-info/SOURCES.txt
+quantitative.egg-info/dependency_links.txt
+quantitative.egg-info/not-zip-safe
+quantitative.egg-info/requires.txt
+quantitative.egg-info/top_level.txt
+quantitative/core/__init__.py
+quantitative/core/backtest.py
+quantitative/core/metrics.py
+quantitative/core/performance.py
+quantitative/core/portfolio.py
