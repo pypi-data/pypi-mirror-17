@@ -1,0 +1,63 @@
+Metadata-Version: 1.1
+Name: lswapi
+Version: 0.3.1
+Summary: a python client library for easy leaseweb api access
+Home-page: http://developer.leaseweb.com
+Author: Nico Di Rocco
+Author-email: n.dirocco@tech.leaseweb.com
+License: UNKNOWN
+Description: lswapi (beta)
+        =============
+        
+        python module to talk to LeaseWeb's API.
+        
+        For more information refer to the documentation available at
+        [http://developer.leaseweb.com]
+        
+        
+        Installation
+        ------------
+        
+        Install the module using pip
+        
+            pip install lswapi
+        
+        
+        Usage
+        -----
+        
+        The `lswapi.get_leaseweb_api` function creates an instance of the LeaseWeb Api
+        object with the `X-Lsw-Auth` key. You can provide the api key as an argument
+        to `get_leaseweb_api`
+        
+            $ python
+            >>> import lswapi
+            >>> client = lswapi.get_leaseweb_api(api_key="xxxx-xxx-xxxxxx")
+            >>> client.get("/v1/bareMetals")
+        
+        
+        or as an environment variable `LSW_API_KEY`:
+        
+            $ LSW_API_KEY=xxxx-xxxx-xxxxx python
+            >>> import lswapi
+            >>> client = lswapi.get_leaseweb_api()
+            >>> client.get("/v1/bareMetals")
+        
+        
+        Contribute
+        ----------
+        
+        1. Fork it
+        2. Create your feature branch (`git checkout -b my-new-feature`)
+        3. Commit your changes (`git commit -am 'Add some feature'`)
+        4. Push to the branch (`git push origin my-new-feature`)
+        5. Create new Pull Request
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Topic :: Utilities
