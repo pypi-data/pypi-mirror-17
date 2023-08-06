@@ -1,0 +1,16 @@
+ChangeLog
+LICENSE
+MANIFEST.in
+README
+barman-wal-restore
+setup.cfg
+setup.py
+barman_cli.egg-info/PKG-INFO
+barman_cli.egg-info/SOURCES.txt
+barman_cli.egg-info/dependency_links.txt
+barman_cli.egg-info/pbr.json
+barman_cli.egg-info/top_level.txt
+doc/Makefile
+doc/barman-wal-restore.1
+doc/barman-wal-restore.1.md
+rpm/barman-cli.spec
