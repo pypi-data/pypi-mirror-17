@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: django-mgof
+Version: 0.1.1
+Summary: Modern good old forums for Django
+Home-page: https://github.com/synw/django-mgof
+Author: synw
+Author-email: synwe@yahoo.com
+License: UNKNOWN
+Download-URL: https://github.com/synw/django-mgof/releases/tag/0.1.1
+Description: UNKNOWN
+Keywords: django,forum
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Framework :: Django :: 1.9
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7

@@ -1,0 +1,24 @@
+{% load i18n staticfiles mgof %}
+
+{% forums_last_posts %}
+<ul class="list-group">
+	{% for topic in topics %}
+		<li class="list-group-item recent_entry">
+			<div class="gds">
+				<a href="{% url 'forum-topic-detail' topic.pk %}">
+					<i class="fa fa-comment-o"></i>&nbsp;{{ topic.title }}
+				</a>
+				<span style="font-size:85%;">(&nbsp;{{ topic.num_views }} {% trans 'views' %}&nbsp;)</span>
+			</div>
+			<div class="pull-right">
+		    	<a class="btn btn-default btn-sm" href="{% url 'forum-topic-detail' topic.pk %}" title="">{% trans 'Read' %}</a>
+		    </div>
+			<div class="gds" style="font-size:85%;">
+			{% trans 'By' %} <span style="font-weight:bold">{{ topic.last_post_username }}</span>
+			{% if link.date %}
+				{% trans 'Posted' %} {{ topic.last_post_date|timesince }} {% trans 'ago' %}
+			{% endif %}
+			</div>
+		</li>
+	{% endfor %}
+</ul>

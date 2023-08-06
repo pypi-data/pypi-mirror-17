@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+
+{% block title %}{% trans 'Forums' %}{% endblock %}
+
+{% block extra_header %}
+	<link rel="stylesheet" href="{% static 'mgof/css/mgof.css' %}" />
+{% endblock %}
+
+{% block content %}
+	{% if is_moderator %}
+		<a class="btn btn-{% if num_items_in_queue > 0 %}warning{% else %}default{% endif %} pull-right hidden-xxs" href="{% url 'forum-moderation-queue' %}" style="position:relative;top:2em;min-width:16em !important">
+			<i class="fa fa-server"></i>&nbsp;{% trans 'Moderation queue' %}
+			{% if num_items_in_queue > 0 %}<div class="badge">{{ num_items_in_queue }}</div>{% endif %}
+		</a>
+	{% endif %}
+	<h1 class="gds"><i class="fa fa-newspaper-o"></i>&nbsp;{% trans 'Forums' %}</h1>
+	{% if is_moderator %}
+		<div class="btn btn-{% if num_items_in_queue > 0 %}warning{% else %}default{% endif %} btn-block visible-xxs" href="{% url 'forum-moderation-queue' %}" style="position:relative;top:-1em">
+			<i class="fa fa-server"></i>&nbsp;{% trans 'Moderation queue' %}
+			{% if num_items_in_queue > 0 %}<div class="badge">{{ num_items_in_queue }}</div>{% endif %}
+		</div>
+	{% endif %}
+	{% if public_forums %}
+		{% with public_forums as forums %}
+			{% include "mgof/forum/print_forum.html" %}
+		{% endwith %}
+	{% endif %}
+	{% if users_forums %}
+		<h3>{% trans "Users forums" %}</h3>
+		{% with users_forums as forums %}
+			{% include "mgof/forum/print_forum.html" %}
+		{% endwith %}
+	{% endif %}
+	{% if groups_forums %}
+		<h3>{% trans "Groups forums" %}</h3>
+		{% with groups_forums as forums %}
+			{% include "mgof/forum/print_forum.html" %}
+		{% endwith %}
+		{% endif %}
+{% endblock %}
