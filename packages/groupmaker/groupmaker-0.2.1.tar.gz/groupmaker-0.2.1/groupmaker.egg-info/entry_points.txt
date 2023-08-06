@@ -1,0 +1,3 @@
+[console_scripts]
+groupmaker = groupmaker.scripts.groupmaker:main
+

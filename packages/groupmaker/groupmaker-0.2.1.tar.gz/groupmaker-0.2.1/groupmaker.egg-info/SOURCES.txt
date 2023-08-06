@@ -1,0 +1,16 @@
+setup.py
+groupmaker/__init__.py
+groupmaker/counting.py
+groupmaker/file_io.py
+groupmaker/generation.py
+groupmaker/pairing.py
+groupmaker/scoring.py
+groupmaker/solver.py
+groupmaker/table.py
+groupmaker.egg-info/PKG-INFO
+groupmaker.egg-info/SOURCES.txt
+groupmaker.egg-info/dependency_links.txt
+groupmaker.egg-info/entry_points.txt
+groupmaker.egg-info/requires.txt
+groupmaker.egg-info/top_level.txt
+groupmaker.egg-info/zip-safe
