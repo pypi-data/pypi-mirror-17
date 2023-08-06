@@ -1,0 +1,19 @@
+Metadata-Version: 2.0
+Name: biconfigs
+Version: 0.1.2
+Summary: Two way configurations mapping helper for Python.
+Home-page: https://github.com/antfu/biconfigs
+Author: Anthony Fu
+Author-email: anthonyfu117@hotmail.com
+License: MIT
+Provides-Extra: all
+Requires-Dist: PyYAML; extra == 'all'
+Requires-Dist: cson; extra == 'all'
+Provides-Extra: cson
+Requires-Dist: cson; extra == 'cson'
+Provides-Extra: yaml
+Requires-Dist: PyYAML; extra == 'yaml'
+
+Biconfigs
+
+
