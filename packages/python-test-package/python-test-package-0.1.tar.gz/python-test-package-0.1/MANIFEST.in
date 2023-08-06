@@ -1,0 +1,7 @@
+include RELEASE-VERSION
+include version.py
+include setup.py
+include paver-minilib.zip
+recursive-include python_test_package *
+recursive-exclude python_test_package *.pyc
+recursive-exclude python_test_package *~

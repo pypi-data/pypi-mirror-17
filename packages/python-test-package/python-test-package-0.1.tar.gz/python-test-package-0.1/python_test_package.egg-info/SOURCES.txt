@@ -1,0 +1,12 @@
+MANIFEST.in
+RELEASE-VERSION
+pavement.py
+paver-minilib.zip
+setup.py
+version.py
+python_test_package/__init__.py
+python_test_package/__main__.py
+python_test_package.egg-info/PKG-INFO
+python_test_package.egg-info/SOURCES.txt
+python_test_package.egg-info/dependency_links.txt
+python_test_package.egg-info/top_level.txt
