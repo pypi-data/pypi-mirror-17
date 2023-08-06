@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: nose-html-output-parallel
+Version: 1.3
+Summary: Nose plugin to produce test results in html and works with parallel testing (--processes=N).
+Home-page: https://github.com/ruivapps/htmloutputparallel
+Author: Rui Li
+Author-email: rui.li.spam@gmail.com
+License: GNU GENERAL PUBLIC LICENSE, Version 3
+Download-URL: https://github.com/ruivapps/htmloutputparallel/tarball/1.3
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Topic :: Software Development :: Testing
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
