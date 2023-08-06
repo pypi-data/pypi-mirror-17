@@ -1,0 +1,3 @@
+[console_scripts]
+zhlint = zhlint.main:entry_point
+
