@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.rst
+requirements.txt
+setup.py
+calender_merger/__init__.py
+calender_merger/__main__.py
+calender_merger/app.py
+calender_merger.egg-info/PKG-INFO
+calender_merger.egg-info/SOURCES.txt
+calender_merger.egg-info/dependency_links.txt
+calender_merger.egg-info/not-zip-safe
+calender_merger.egg-info/requires.txt
+calender_merger.egg-info/top_level.txt
+calender_merger/static/index.html
+calender_merger/templates/meetups-list.html
