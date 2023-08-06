@@ -1,0 +1,3 @@
+[helga_plugins]
+api_monitor = helga_api_monitor.plugin:monitor
+
