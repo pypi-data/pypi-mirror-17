@@ -1,0 +1,4 @@
+[console_scripts]
+verchew-cli = verchew.cli:main
+verchew-gui = verchew.gui:main
+
