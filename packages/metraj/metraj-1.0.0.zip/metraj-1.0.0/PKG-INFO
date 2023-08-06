@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: metraj
+Version: 1.0.0
+Summary: Trajectory Analysis Package
+Home-page: https://github.com/Hezi-Resheff/trajectory-aa-move-ecol
+Author: Hezi Resheff
+Author-email: hezi.resheff@gmail.com
+License: MIT
+Description: # trajectory-aa-move-ecol
+        Some (mostly simple) tools for trajectory analysis tailored for movement ecology
+        
+Keywords: Trajectory Analysis
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
