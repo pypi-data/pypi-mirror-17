@@ -1,0 +1,3 @@
+[bob.db]
+cbsr_nir_vis_2 = bob.db.cbsr_nir_vis_2.driver:Interface
+
