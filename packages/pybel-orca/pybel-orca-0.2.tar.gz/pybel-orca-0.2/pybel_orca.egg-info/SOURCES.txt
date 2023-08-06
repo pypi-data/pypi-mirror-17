@@ -1,0 +1,10 @@
+setup.py
+bin/pybel-orca.py
+pybel_orca/__init__.py
+pybel_orca/reader.py
+pybel_orca/writer.py
+pybel_orca.egg-info/PKG-INFO
+pybel_orca.egg-info/SOURCES.txt
+pybel_orca.egg-info/dependency_links.txt
+pybel_orca.egg-info/requires.txt
+pybel_orca.egg-info/top_level.txt
