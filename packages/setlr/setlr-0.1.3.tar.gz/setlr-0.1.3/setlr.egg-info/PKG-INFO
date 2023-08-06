@@ -1,0 +1,33 @@
+Metadata-Version: 1.1
+Name: setlr
+Version: 0.1.3
+Summary: setlr is a tool for Semantic Extraction, Transformation, and Loading.
+Home-page: http://packages.python.org/setlr
+Author: Jim McCusker
+Author-email: mccusj@cs.rpi.edu
+License: Apache License 2.0
+Description: # setlr: The Semantic Extract, Transform and Load-er
+        
+        setlr is a tool for generating RDF graphs, including named graphs, from almost any kind of tabular data.
+        
+        # Installation
+        
+        Simply check out the code, optionally create a python virtual environment, and install it using pip:
+        
+        ```bash
+        git clone git@github.com:tetherless-world/setlr.git
+        cd setlr
+        virtualenv --no-site-packages venv
+        source venv/bin/activate
+        pip install -e .
+        ```
+        
+        # Learning how to SETL
+        
+        To learn how to use setlr please visit [the tutorial wiki page](https://github.com/tetherless-world/setlr/wiki/SETLr-Tutorial).
+        
+Keywords: rdf semantic etl
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: Apache Software License
