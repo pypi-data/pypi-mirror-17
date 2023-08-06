@@ -1,0 +1,11 @@
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+notifycenter/__init__.py
+notifycenter.egg-info/PKG-INFO
+notifycenter.egg-info/SOURCES.txt
+notifycenter.egg-info/dependency_links.txt
+notifycenter.egg-info/entry_points.txt
+notifycenter.egg-info/requires.txt
+notifycenter.egg-info/top_level.txt

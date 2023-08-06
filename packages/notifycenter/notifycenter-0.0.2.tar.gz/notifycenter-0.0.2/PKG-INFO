@@ -1,0 +1,26 @@
+Metadata-Version: 1.1
+Name: notifycenter
+Version: 0.0.2
+Summary: Notify Center Python SDK
+Home-page: https://github.com/aminert/notifycenter-python
+Author: Amine Ben Khalifa
+Author-email: amine.benkhalifa@gmail.com
+License: MIT
+Description: Notify Center Python SDK
+        =======================
+        
+        An SDK to call  Notify Center API from python. 
+        
+Keywords: Send push notification mobile notify
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
