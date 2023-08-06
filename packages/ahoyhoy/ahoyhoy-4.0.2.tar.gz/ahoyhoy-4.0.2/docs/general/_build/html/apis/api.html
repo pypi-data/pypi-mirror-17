@@ -1,0 +1,980 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>API &mdash; ahoyhoy 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="ahoyhoy 2.0.0 documentation" href="../index.html" />
+    <link rel="prev" title="Testing" href="../contents/testing.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="api">
+<span id="id1"></span><h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+<p>This part of the documentation covers all the interfaces of AhoyHoy.</p>
+<div class="section" id="module-ahoyhoy.http.proxy">
+<span id="session-proxy"></span><h2>Session proxy<a class="headerlink" href="#module-ahoyhoy.http.proxy" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ahoyhoy.http.proxy.SessionProxy">
+<em class="property">class </em><code class="descclassname">ahoyhoy.http.proxy.</code><code class="descname">SessionProxy</code><span class="sig-paren">(</span><em>session=None</em>, <em>pre_callback=None</em>, <em>post_callback=None</em>, <em>exception_callback=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/http/proxy.html#SessionProxy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.http.proxy.SessionProxy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Proxy adapter so a subclass can proxy methods of a Requests Session,
+but can alter behavior via pre, post, and exception callbacks.</p>
+<p>Can be used by itself, but is intended to be subclassed with
+overwritten callbacks.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.http</span> <span class="k">import</span> <span class="n">SessionProxy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sp</span> <span class="o">=</span> <span class="n">SessionProxy</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+</pre></div>
+</div>
+<p>In order to be a bit more transparent, excpetion_callback will raise
+the thrown exception.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.http</span> <span class="k">import</span> <span class="n">SessionProxy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sp</span> <span class="o">=</span> <span class="n">SessionProxy</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">sp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://wwwwww.google.com&#39;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error raised&quot;</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">Error raised</span>
+</pre></div>
+</div>
+<p>You may override the pre|post|exception callbacks either by subclassing
+them or by runtime configuration.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.http</span> <span class="k">import</span> <span class="n">SessionProxy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">pre_callback</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;pre&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">url</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">post_callback</span><span class="p">(</span><span class="n">res</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">exception_callback</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Exception!!&#39;</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sp</span> <span class="o">=</span> <span class="n">SessionProxy</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">(),</span> <span class="n">pre_callback</span><span class="o">=</span><span class="n">pre_callback</span><span class="p">,</span> <span class="n">post_callback</span><span class="o">=</span><span class="n">post_callback</span><span class="p">,</span> <span class="n">exception_callback</span><span class="o">=</span><span class="n">exception_callback</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">)</span>
+<span class="go">pre</span>
+<span class="go">post</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://google1.com&#39;</span><span class="p">)</span>
+<span class="go">pre</span>
+<span class="go">Exception!!</span>
+<span class="go">post</span>
+</pre></div>
+</div>
+<p>Test proxy for other methods and attributes:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sp</span><span class="o">.</span><span class="n">headers</span>
+<span class="go">{...&#39;User-Agent&#39;: ...}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>session</strong> &#8211; custom session</li>
+<li><strong>pre_callback</strong> &#8211; executed before the proxied method</li>
+<li><strong>post_callback</strong> &#8211; executed after the proxied method</li>
+<li><strong>exception_callback</strong> &#8211; the proxied method is wrapped in a try/except block,
+and when an exception occurs, the exception is passed to this callback</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="ahoyhoy.http.proxy.SessionProxy.exception_callback">
+<code class="descname">exception_callback</code><span class="sig-paren">(</span><em>exc</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/http/proxy.html#SessionProxy.exception_callback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.http.proxy.SessionProxy.exception_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executed when an exception is thrown by the proxied Requests Session method.</p>
+<p>Intended to be overwritten or set by a derived class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>exc</strong> &#8211; the exception raised by the proxied Requests
+Session method. By default, returns what&#8217;s passed in.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.http.proxy.SessionProxy.post_callback">
+<code class="descname">post_callback</code><span class="sig-paren">(</span><em>result</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/http/proxy.html#SessionProxy.post_callback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.http.proxy.SessionProxy.post_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executed after the proxied Requests method.</p>
+<p>Intended to be overwritten or set by a derived class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>result</strong> &#8211; the return value of the proxied Requests
+method.  By default, returns what&#8217;s passed in.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.http.proxy.SessionProxy.pre_callback">
+<code class="descname">pre_callback</code><span class="sig-paren">(</span><em>urlpath</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/http/proxy.html#SessionProxy.pre_callback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.http.proxy.SessionProxy.pre_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executed before the proxied Requests method.</p>
+<p>Intended to be overwritten or set by a derived class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>urlpath</strong> &#8211; the arg[0] of the called proxied method.
+Requests Session methods all take &#8216;url&#8217; as the first positional
+parameter. By default, returns what&#8217;s passed in.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="client">
+<h2>Client<a class="headerlink" href="#client" title="Permalink to this headline">¶</a></h2>
+<p>Client is a wrapper for HTTP calls which allows to use load balancers, circuit breakers and retries.</p>
+<span class="target" id="module-ahoyhoy.client"></span><dl class="class">
+<dt id="ahoyhoy.client.Client">
+<em class="property">class </em><code class="descclassname">ahoyhoy.client.</code><code class="descname">Client</code><span class="sig-paren">(</span><em>lb</em>, <em>ep_list_update_tries=1</em>, <em>**ep_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/client/client.html#Client"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.client.Client" title="Permalink to this definition">¶</a></dt>
+<dd><p>A load balancing, circuit breaking client.</p>
+<p>Accepts load balancer instance as an argument.
+Client can be a duck-typed requests object.</p>
+<p>Usage examples:</p>
+<ol class="arabic simple">
+<li>Client with RoundRobin LB and bad hosts</li>
+</ol>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.utils</span> <span class="k">import</span> <span class="n">Host</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb.providers</span> <span class="k">import</span> <span class="n">ListProvider</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb</span> <span class="k">import</span> <span class="n">RoundRobinLB</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bad_host1</span> <span class="o">=</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google1.com1&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bad_host2</span> <span class="o">=</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google2.com2&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">good_host</span> <span class="o">=</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span> <span class="o">=</span> <span class="n">RoundRobinLB</span><span class="p">(</span><span class="n">ListProvider</span><span class="p">(</span><span class="n">bad_host1</span><span class="p">,</span> <span class="n">bad_host2</span><span class="p">,</span> <span class="n">good_host</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">rrlb</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+</pre></div>
+</div>
+<p><em>Note! Client only accepts HTTP calls for now.</em></p>
+<p>Session&#8217;s attributes and methods (except HTTP calls) are unavailable for calls
+through the Client&#8217;s instance.
+Because of the dynamic nature of <a class="reference internal" href="#ahoyhoy.endpoints.Endpoint" title="ahoyhoy.endpoints.Endpoint"><code class="xref py py-class docutils literal"><span class="pre">Endpoint</span></code></a> s, all parameters (such as headers etc.)
+have to be changed through the client-specific API.</p>
+<p>Consider these examples:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;bla&#39;</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">})</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="c">...</span>
+<span class="gr">AttributeError</span>: <span class="n">No such attribute: &#39;headers&#39;. Only HTTP methods can be called for now.</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">rrlb</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;bla&#39;</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="s1">&#39;bla&#39;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>lb</strong> &#8211; instance of <a class="reference internal" href="#ahoyhoy.lb.iloadbalancer.ILoadBalancer" title="ahoyhoy.lb.iloadbalancer.ILoadBalancer"><code class="xref py py-class docutils literal"><span class="pre">ILoadBalancer</span></code></a></li>
+<li><strong>ep_list_update_tries</strong> &#8211; how many times to try to update endpoints list in LB</li>
+<li><strong>ep_kwargs</strong> &#8211; arguments to pass to an Endpoint (&#8216;retry_http_call_func&#8217;, &#8216;headers&#8217;)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="ahoyhoy.client.Client.resolve">
+<code class="descname">resolve</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/client/client.html#Client.resolve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.client.Client.resolve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resolve an Endpoint. If <cite>NoAvailableEndpointsLbException</cite> was raised, it&#8217;s possible
+to add more &#8220;tries&#8221;, update Endpoints list and try to resolve it one more time.
+(see ._resolve)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="ahoyhoy.client.SimpleClient">
+<code class="descclassname">ahoyhoy.client.</code><code class="descname">SimpleClient</code><span class="sig-paren">(</span><em>session=None</em>, <em>retry_http_call=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/client/client.html#SimpleClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.client.SimpleClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shortcut</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.client.client</span> <span class="k">import</span> <span class="n">SimpleClient</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">SimpleClient</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="client-builders">
+<h2>Client Builders<a class="headerlink" href="#client-builders" title="Permalink to this headline">¶</a></h2>
+<p>ClientBuilder provides convenient api for creating the specific <a class="reference internal" href="client.html#ahoyhoy.client.Client" title="ahoyhoy.client.Client"><code class="xref py py-class docutils literal"><span class="pre">Client</span></code></a> instance.</p>
+<div class="section" id="module-ahoyhoy.client.builder">
+<span id="abstract-class"></span><h3>Abstract class:<a class="headerlink" href="#module-ahoyhoy.client.builder" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="ahoyhoy.client.builder.IClientBuilder">
+<em class="property">class </em><code class="descclassname">ahoyhoy.client.builder.</code><code class="descname">IClientBuilder</code><a class="reference internal" href="../_modules/ahoyhoy/client/builder.html#IClientBuilder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.client.builder.IClientBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract Builder class. Contains required methods
+for all other client builders.</p>
+<dl class="method">
+<dt id="ahoyhoy.client.builder.IClientBuilder.add_headers">
+<code class="descname">add_headers</code><span class="sig-paren">(</span><em>headers</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/client/builder.html#IClientBuilder.add_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.client.builder.IClientBuilder.add_headers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provide your custom headers here.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.client.builder.IClientBuilder.add_retries">
+<code class="descname">add_retries</code><span class="sig-paren">(</span><em>retries</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/client/builder.html#IClientBuilder.add_retries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.client.builder.IClientBuilder.add_retries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Custom retries function. It has to accept function to retry w/ its args and kwargs.
+It&#8217;s highly recommended to use <a class="reference internal" href="#ahoyhoy.retries.Retry" title="ahoyhoy.retries.Retry"><code class="xref py py-func docutils literal"><span class="pre">ahoyhoy.retries.Retry()</span></code></a> function with custom parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.client.builder.IClientBuilder.add_session">
+<code class="descname">add_session</code><span class="sig-paren">(</span><em>session</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/client/builder.html#IClientBuilder.add_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.client.builder.IClientBuilder.add_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add your custom session here.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.client.builder.IClientBuilder.build">
+<code class="descname">build</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/client/builder.html#IClientBuilder.build"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.client.builder.IClientBuilder.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build and return the client.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-ahoyhoy.client"></span><dl class="class">
+<dt id="ahoyhoy.client.LBClientBuilder">
+<em class="property">class </em><code class="descclassname">ahoyhoy.client.</code><code class="descname">LBClientBuilder</code><a class="reference internal" href="../_modules/ahoyhoy/client/builder.html#LBClientBuilder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.client.LBClientBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="client.html#ahoyhoy.client.builder.IClientBuilder" title="ahoyhoy.client.builder.IClientBuilder"><code class="xref py py-class docutils literal"><span class="pre">ahoyhoy.client.builder.IClientBuilder</span></code></a></p>
+<p>Usage examples:</p>
+<ol class="arabic">
+<li><p class="first">Round Robin LB</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.utils</span> <span class="k">import</span> <span class="n">Host</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb.providers</span> <span class="k">import</span> <span class="n">ListProvider</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb</span> <span class="k">import</span> <span class="n">RoundRobinLB</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span> <span class="o">=</span> <span class="n">RoundRobinLB</span><span class="p">(</span><span class="n">ListProvider</span><span class="p">(</span><span class="n">Host</span><span class="p">(</span><span class="s1">&#39;badhost2.bla&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;badhost3.bla&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)))</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">LBClientBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">add_lb</span><span class="p">(</span><span class="n">rrlb</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Round Robin LB and custom session</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;bla&#39;</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">LBClientBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">add_lb</span><span class="p">(</span><span class="n">rrlb</span><span class="p">)</span><span class="o">.</span><span class="n">add_session</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Round Robin LB with custom HTTP retries</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.retries</span> <span class="k">import</span> <span class="n">Retry</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">requests.exceptions</span> <span class="k">import</span> <span class="n">ConnectTimeout</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">retries</span> <span class="o">=</span> <span class="n">Retry</span><span class="p">(</span><span class="n">exceptions</span><span class="o">=</span><span class="n">ConnectTimeout</span><span class="p">,</span> <span class="n">tries</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_delay</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">backoff</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">jitter</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span> <span class="o">=</span> <span class="n">RoundRobinLB</span><span class="p">(</span><span class="n">ListProvider</span><span class="p">(</span><span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)))</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">LBClientBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">add_lb</span><span class="p">(</span><span class="n">rrlb</span><span class="p">)</span><span class="o">.</span><span class="n">add_retries</span><span class="p">(</span><span class="n">retries</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Set multiple updates for endpoints list</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">LBClientBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">add_lb</span><span class="p">(</span><span class="n">rrlb</span><span class="p">)</span><span class="o">.</span><span class="n">set_endpoint_updates</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<dl class="method">
+<dt id="ahoyhoy.client.LBClientBuilder.add_lb">
+<code class="descname">add_lb</code><span class="sig-paren">(</span><em>lb</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/client/builder.html#LBClientBuilder.add_lb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.client.LBClientBuilder.add_lb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add your load balancer instance here.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.client.LBClientBuilder.set_endpoint_updates">
+<code class="descname">set_endpoint_updates</code><span class="sig-paren">(</span><em>ep_updates</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/client/builder.html#LBClientBuilder.set_endpoint_updates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.client.LBClientBuilder.set_endpoint_updates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the number of times an endpoints list has to be updated.
+By default it&#8217;s 1, which is the initial update of available endpoints.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ep_updates</strong> &#8211; int, number of updates of ep list if there&#8217;re no endpoints
+in the closed state</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ahoyhoy.client.SessionClientBuilder">
+<em class="property">class </em><code class="descclassname">ahoyhoy.client.</code><code class="descname">SessionClientBuilder</code><a class="reference internal" href="../_modules/ahoyhoy/client/builder.html#SessionClientBuilder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.client.SessionClientBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="client.html#ahoyhoy.client.builder.IClientBuilder" title="ahoyhoy.client.builder.IClientBuilder"><code class="xref py py-class docutils literal"><span class="pre">ahoyhoy.client.builder.IClientBuilder</span></code></a></p>
+<p>Usage example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.client.builder</span> <span class="k">import</span> <span class="n">SessionClientBuilder</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">SessionClientBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">add_session</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+</pre></div>
+</div>
+<p>Custom headers:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;bla&#39;</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">SessionClientBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">add_session</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="s1">&#39;bla&#39;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">SessionClientBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">add_session</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">add_headers</span><span class="p">({</span><span class="s1">&#39;foo&#39;</span><span class="p">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="s1">&#39;foo&#39;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span>
+</pre></div>
+</div>
+<p>Custom retries:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.retries</span> <span class="k">import</span> <span class="n">Retry</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">requests.exceptions</span> <span class="k">import</span> <span class="n">ConnectTimeout</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">retries</span> <span class="o">=</span> <span class="n">Retry</span><span class="p">(</span><span class="n">exceptions</span><span class="o">=</span><span class="n">ConnectTimeout</span><span class="p">,</span> <span class="n">tries</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_delay</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">backoff</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">jitter</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">SessionClientBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">add_session</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">add_retries</span><span class="p">(</span><span class="n">retries</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-ahoyhoy.client.exceptions">
+<span id="client-exceptions"></span><h3>Client exceptions<a class="headerlink" href="#module-ahoyhoy.client.exceptions" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="ahoyhoy.client.exceptions.NoAvailableEndpointsClientException">
+<em class="property">class </em><code class="descclassname">ahoyhoy.client.exceptions.</code><code class="descname">NoAvailableEndpointsClientException</code><a class="reference internal" href="../_modules/ahoyhoy/client/exceptions.html#NoAvailableEndpointsClientException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.client.exceptions.NoAvailableEndpointsClientException" title="Permalink to this definition">¶</a></dt>
+<dd><p>No Endpoints in the closed state, even after lists updates.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ahoyhoy.client.exceptions.AhoyhoyRequestsException">
+<em class="property">class </em><code class="descclassname">ahoyhoy.client.exceptions.</code><code class="descname">AhoyhoyRequestsException</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/client/exceptions.html#AhoyhoyRequestsException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.client.exceptions.AhoyhoyRequestsException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Request failed for any reason</p>
+<p>Initialize RequestException with <cite>request</cite> and <cite>response</cite> objects.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="load-balancers">
+<h2>Load Balancers<a class="headerlink" href="#load-balancers" title="Permalink to this headline">¶</a></h2>
+<p>There are two load balancing algorithms available for now:</p>
+<blockquote>
+<div><ul class="simple">
+<li>random</li>
+<li>round robin</li>
+</ul>
+</div></blockquote>
+<div class="section" id="module-ahoyhoy.lb.iloadbalancer">
+<span id="base-class"></span><h3>Base class<a class="headerlink" href="#module-ahoyhoy.lb.iloadbalancer" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="ahoyhoy.lb.iloadbalancer.ILoadBalancer">
+<em class="property">class </em><code class="descclassname">ahoyhoy.lb.iloadbalancer.</code><code class="descname">ILoadBalancer</code><span class="sig-paren">(</span><em>provider</em>, <em>session=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/lb/iloadbalancer.html#ILoadBalancer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.lb.iloadbalancer.ILoadBalancer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for load balancers.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>provider</strong> &#8211; any instance of <a class="reference internal" href="#ahoyhoy.lb.providers.iprovider.IProvider" title="ahoyhoy.lb.providers.iprovider.IProvider"><code class="xref py py-class docutils literal"><span class="pre">IProvider</span></code></a></li>
+<li><strong>session</strong> &#8211; custom session</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="ahoyhoy.lb.iloadbalancer.ILoadBalancer.get_or_create_endpoint">
+<code class="descname">get_or_create_endpoint</code><span class="sig-paren">(</span><em>host</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/lb/iloadbalancer.html#ILoadBalancer.get_or_create_endpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.lb.iloadbalancer.ILoadBalancer.get_or_create_endpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Concrete method to create an Endpoint from a <cite>Host</cite> object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>host</strong> &#8211; <cite>Host(&#8216;host&#8217;, &#8216;port&#8217;)</cite> namedtuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.lb.iloadbalancer.ILoadBalancer.pick">
+<code class="descname">pick</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/lb/iloadbalancer.html#ILoadBalancer.pick"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.lb.iloadbalancer.ILoadBalancer.pick" title="Permalink to this definition">¶</a></dt>
+<dd><p>Will only return nodes which have <a class="reference internal" href="#ahoyhoy.circuit.OpenState" title="ahoyhoy.circuit.OpenState"><code class="xref py py-class docutils literal"><span class="pre">OpenState</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.lb.iloadbalancer.ILoadBalancer.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/lb/iloadbalancer.html#ILoadBalancer.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.lb.iloadbalancer.ILoadBalancer.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the hosts list with new hosts (if there are some).</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ahoyhoy.lb">
+<span id="load-blancers-algorithms"></span><h3>Load blancers algorithms<a class="headerlink" href="#module-ahoyhoy.lb" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="ahoyhoy.lb.RandomLB">
+<em class="property">class </em><code class="descclassname">ahoyhoy.lb.</code><code class="descname">RandomLB</code><span class="sig-paren">(</span><em>provider</em>, <em>session=None</em>, <em>random_function=&lt;bound method Random.randint of &lt;random.Random object at 0x254fa28&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/lb/randomlb.html#RandomLB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.lb.RandomLB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ahoyhoy.lb.iloadbalancer.ILoadBalancer" title="ahoyhoy.lb.iloadbalancer.ILoadBalancer"><code class="xref py py-class docutils literal"><span class="pre">ahoyhoy.lb.iloadbalancer.ILoadBalancer</span></code></a></p>
+<p>Implements random algorithm for chosing a host from the list.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.utils</span> <span class="k">import</span> <span class="n">Host</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb.providers</span> <span class="k">import</span> <span class="n">ListProvider</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb</span> <span class="k">import</span> <span class="n">RandomLB</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span> <span class="o">=</span> <span class="n">RandomLB</span><span class="p">(</span><span class="n">ListProvider</span><span class="p">(</span><span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google1.com1&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">),</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span><span class="o">.</span><span class="n">pick</span><span class="p">()</span>
+<span class="go">&lt;Endpoint/.../Host(address=&#39;google...&#39;, port=&#39;80&#39;)/&lt;class &#39;ahoyhoy.circuit.circuit.ClosedState&#39;&gt;</span>
+</pre></div>
+</div>
+<p>Custom random function:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">my_random</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="gp">... </span>   <span class="k">return</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span> <span class="o">=</span> <span class="n">RandomLB</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">ListProvider</span><span class="p">(</span><span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google1.com1&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">),</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="n">random_function</span><span class="o">=</span><span class="n">my_random</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span><span class="o">.</span><span class="n">pick</span><span class="p">()</span>
+<span class="go">&lt;Endpoint/.../Host(address=&#39;google1.com1&#39;, port=&#39;80&#39;)/&lt;class &#39;ahoyhoy.circuit.circuit.ClosedState&#39;&gt;</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>provider</strong> &#8211; <a class="reference internal" href="#ahoyhoy.lb.providers.ListProvider" title="ahoyhoy.lb.providers.ListProvider"><code class="xref py py-class docutils literal"><span class="pre">ListProvider</span></code></a> instance</li>
+<li><strong>random_function</strong> &#8211; function which returns random number for the given range. By default: <code class="xref py py-attr docutils literal"><span class="pre">random.randint</span></code></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="ahoyhoy.lb.RoundRobinLB">
+<em class="property">class </em><code class="descclassname">ahoyhoy.lb.</code><code class="descname">RoundRobinLB</code><span class="sig-paren">(</span><em>provider</em>, <em>session=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/lb/roundrobinlb.html#RoundRobinLB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.lb.RoundRobinLB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ahoyhoy.lb.iloadbalancer.ILoadBalancer" title="ahoyhoy.lb.iloadbalancer.ILoadBalancer"><code class="xref py py-class docutils literal"><span class="pre">ahoyhoy.lb.iloadbalancer.ILoadBalancer</span></code></a></p>
+<p>Implement round robin load balancing algorythm.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.utils</span> <span class="k">import</span> <span class="n">Host</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb.providers</span> <span class="k">import</span> <span class="n">ListProvider</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb</span> <span class="k">import</span> <span class="n">RoundRobinLB</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span> <span class="o">=</span> <span class="n">RoundRobinLB</span><span class="p">(</span><span class="n">ListProvider</span><span class="p">(</span><span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google1.com1&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">),</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span><span class="o">.</span><span class="n">pick</span><span class="p">()</span>
+<span class="go">&lt;Endpoint/.../Host(address=&#39;google1.com1&#39;, port=&#39;80&#39;)/&lt;class &#39;ahoyhoy.circuit.circuit.ClosedState&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span><span class="o">.</span><span class="n">pick</span><span class="p">()</span>
+<span class="go">&lt;Endpoint/.../Host(address=&#39;google.com&#39;, port=&#39;80&#39;)/&lt;class &#39;ahoyhoy.circuit.circuit.ClosedState&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span><span class="o">.</span><span class="n">pick</span><span class="p">()</span>
+<span class="go">&lt;Endpoint/.../Host(address=&#39;google1.com1&#39;, port=&#39;80&#39;)/&lt;class &#39;ahoyhoy.circuit.circuit.ClosedState&#39;&gt;</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>provider</strong> &#8211; <code class="xref py py-class docutils literal"><span class="pre">IProvider</span></code> instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-ahoyhoy.lb.exceptions">
+<span id="load-blancers-exceptions"></span><h3>Load blancers exceptions<a class="headerlink" href="#module-ahoyhoy.lb.exceptions" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="ahoyhoy.lb.exceptions.NoAvailableEndpointsLbException">
+<em class="property">class </em><code class="descclassname">ahoyhoy.lb.exceptions.</code><code class="descname">NoAvailableEndpointsLbException</code><a class="reference internal" href="../_modules/ahoyhoy/lb/exceptions.html#NoAvailableEndpointsLbException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.lb.exceptions.NoAvailableEndpointsLbException" title="Permalink to this definition">¶</a></dt>
+<dd><p>No Endpoints in the closed state.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="providers">
+<h2>Providers<a class="headerlink" href="#providers" title="Permalink to this headline">¶</a></h2>
+<p>Providers exist to give lists of hosts</p>
+<div class="section" id="id2">
+<h3>Base class<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="module-ahoyhoy.lb.providers.iprovider"></span><dl class="class">
+<dt id="ahoyhoy.lb.providers.iprovider.IProvider">
+<em class="property">class </em><code class="descclassname">ahoyhoy.lb.providers.iprovider.</code><code class="descname">IProvider</code><a class="reference internal" href="../_modules/ahoyhoy/lb/providers/iprovider.html#IProvider"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.lb.providers.iprovider.IProvider" title="Permalink to this definition">¶</a></dt>
+<dd><p>A provider provides endpoints for a load balancer.</p>
+<dl class="method">
+<dt id="ahoyhoy.lb.providers.iprovider.IProvider.get_list">
+<code class="descname">get_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/lb/providers/iprovider.html#IProvider.get_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.lb.providers.iprovider.IProvider.get_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a new list of hosts.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ahoyhoy.lb.providers">
+<span id="list-provider"></span><h3>List Provider<a class="headerlink" href="#module-ahoyhoy.lb.providers" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="ahoyhoy.lb.providers.ListProvider">
+<em class="property">class </em><code class="descclassname">ahoyhoy.lb.providers.</code><code class="descname">ListProvider</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/lb/providers/listprovider.html#ListProvider"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.lb.providers.ListProvider" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ahoyhoy.lb.providers.iprovider.IProvider" title="ahoyhoy.lb.providers.iprovider.IProvider"><code class="xref py py-class docutils literal"><span class="pre">ahoyhoy.lb.providers.iprovider.IProvider</span></code></a></p>
+<p>A simple list verison of the IProvider interface</p>
+<p>Accepts a number of items to store as a list</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.utils</span> <span class="k">import</span> <span class="n">Host</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb.providers</span> <span class="k">import</span> <span class="n">ListProvider</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lp</span> <span class="o">=</span> <span class="n">ListProvider</span><span class="p">(</span><span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google1.com1&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">),</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lp</span><span class="o">.</span><span class="n">get_list</span><span class="p">()</span>
+<span class="go">(Host(address=&#39;google1.com1&#39;, port=&#39;80&#39;), Host(address=&#39;google.com&#39;, port=&#39;80&#39;))</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>args</strong> &#8211; an iterable of items (hosts)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-ahoyhoy.retries">
+<span id="retries"></span><h2>Retries<a class="headerlink" href="#module-ahoyhoy.retries" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="ahoyhoy.retries.Retry">
+<code class="descclassname">ahoyhoy.retries.</code><code class="descname">Retry</code><span class="sig-paren">(</span><em>retry_func=&lt;function retry_call&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/retries/retries.html#Retry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.retries.Retry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Usage example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">retry</span> <span class="o">=</span> <span class="n">Retry</span><span class="p">(</span><span class="n">exceptions</span><span class="o">=</span><span class="ne">Exception</span><span class="p">,</span> <span class="n">tries</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_delay</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">backoff</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">jitter</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">retry</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">,</span> <span class="n">fargs</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">,</span> <span class="p">),</span> <span class="n">fkwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;headers&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;bla&#39;</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">}})</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>callable</strong> (<em>retry_func</em>) &#8211; function which accepts input function and its parameters</li>
+<li><strong>kwargs</strong> &#8211; retry_func kwargs</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-ahoyhoy.circuit">
+<span id="circuit-breaker"></span><h2>Circuit breaker<a class="headerlink" href="#module-ahoyhoy.circuit" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ahoyhoy.circuit.Circuit">
+<em class="property">class </em><code class="descclassname">ahoyhoy.circuit.</code><code class="descname">Circuit</code><a class="reference internal" href="../_modules/ahoyhoy/circuit/circuit.html#Circuit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.circuit.Circuit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple base class to handle the transition between
+closed and open circuit states.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ahoyhoy.circuit.OpenState">
+<em class="property">class </em><code class="descclassname">ahoyhoy.circuit.</code><code class="descname">OpenState</code><a class="reference internal" href="../_modules/ahoyhoy/circuit/circuit.html#OpenState"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.circuit.OpenState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">ahoyhoy.circuit.circuit.State</span></code></p>
+<p>Circut in an open state. Opening as well as all other methods will throw RuntimeError.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ahoyhoy.circuit.ClosedState">
+<em class="property">class </em><code class="descclassname">ahoyhoy.circuit.</code><code class="descname">ClosedState</code><a class="reference internal" href="../_modules/ahoyhoy/circuit/circuit.html#ClosedState"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.circuit.ClosedState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">ahoyhoy.circuit.circuit.State</span></code></p>
+<p>Circuit in a closed state. Closing will throw RuntimeError.</p>
+</dd></dl>
+
+<span class="target" id="module-ahoyhoy.circuit.circuit"></span><dl class="class">
+<dt id="ahoyhoy.circuit.circuit.StateClassifier">
+<em class="property">class </em><code class="descclassname">ahoyhoy.circuit.circuit.</code><code class="descname">StateClassifier</code><a class="reference internal" href="../_modules/ahoyhoy/circuit/circuit.html#StateClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.circuit.circuit.StateClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="staticmethod">
+<dt id="ahoyhoy.circuit.circuit.StateClassifier.classify">
+<em class="property">static </em><code class="descname">classify</code><span class="sig-paren">(</span><em>circuit</em>, <em>func</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/circuit/circuit.html#StateClassifier.classify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.circuit.circuit.StateClassifier.classify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Look at the result, and determine what to do, either with the response
+or any exceptions raised along the way.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="ahoyhoy.circuit.circuit.StateClassifier.dispatch">
+<em class="property">static </em><code class="descname">dispatch</code><span class="sig-paren">(</span><em>circuit</em>, <em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/circuit/circuit.html#StateClassifier.dispatch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.circuit.circuit.StateClassifier.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return requested function so it can be then
+called in <cite>classify</cite> method and proccessed respectively.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ahoyhoy.servicediscovery">
+<span id="service-discovery"></span><h2>Service discovery<a class="headerlink" href="#module-ahoyhoy.servicediscovery" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ahoyhoy.servicediscovery.ServiceDiscoveryHttpClient">
+<em class="property">class </em><code class="descclassname">ahoyhoy.servicediscovery.</code><code class="descname">ServiceDiscoveryHttpClient</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/servicediscovery/servicediscovery.html#ServiceDiscoveryHttpClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.servicediscovery.ServiceDiscoveryHttpClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter" title="ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter"><code class="xref py py-class docutils literal"><span class="pre">ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter</span></code></a>, <a class="reference internal" href="#ahoyhoy.http.proxy.SessionProxy" title="ahoyhoy.http.proxy.SessionProxy"><code class="xref py py-class docutils literal"><span class="pre">ahoyhoy.http.proxy.SessionProxy</span></code></a></p>
+<p>An object that transparently allows Service Discovery while preserving
+the same API as a Requests Session object, so typical Requests methods
+take server-relative paths rather than full URLs.</p>
+<p>For instance, here&#8217;s how you can make a Http GET request using Requests&#8217;s
+standard <cite>get</cite> method.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.servicediscovery</span> <span class="k">import</span> <span class="n">ServiceDiscoveryHttpClient</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.utils</span> <span class="k">import</span> <span class="n">Host</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">host</span> <span class="o">=</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sdhc</span> <span class="o">=</span> <span class="n">ServiceDiscoveryHttpClient</span><span class="p">(</span><span class="n">host</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sdhc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+</pre></div>
+</div>
+<p>Note the fact that we&#8217;re passing <cite>get</cite> a path, _not_ a URL.</p>
+<p>Why?</p>
+<p>When using a form of Service Discovery, host/port (and sometimes protocol)
+portions of the URL are resolved at runtime.  This class adapts the a Requests
+Session in order to support this runtime service resolution.</p>
+</dd></dl>
+
+<span class="target" id="module-ahoyhoy.servicediscovery.servicediscovery"></span><dl class="class">
+<dt id="ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter">
+<em class="property">class </em><code class="descclassname">ahoyhoy.servicediscovery.servicediscovery.</code><code class="descname">ServiceDiscoveryAdapter</code><span class="sig-paren">(</span><em>host</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/servicediscovery/servicediscovery.html#ServiceDiscoveryAdapter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adapter intended to be used as a mixin along with a <a class="reference internal" href="#ahoyhoy.http.proxy.SessionProxy" title="ahoyhoy.http.proxy.SessionProxy"><code class="xref py py-class docutils literal"><span class="pre">SessionProxy</span></code></a>
+in order to calculate a <cite>protocol://host:port</cite> string to be added to
+the <cite>path</cite> for a complete url.</p>
+<dl class="attribute">
+<dt id="ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.address">
+<code class="descname">address</code><a class="headerlink" href="#ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.address" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the endpoint&#8217;s address</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.calculate_protocol">
+<code class="descname">calculate_protocol</code><span class="sig-paren">(</span><em>port</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/servicediscovery/servicediscovery.html#ServiceDiscoveryAdapter.calculate_protocol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.calculate_protocol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use port for calculating the protocol.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>port</strong> &#8211; </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.host">
+<code class="descname">host</code><a class="headerlink" href="#ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.host" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the endpoint&#8217;s host</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.port">
+<code class="descname">port</code><a class="headerlink" href="#ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.port" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the endpoint&#8217;s port</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.pre_callback">
+<code class="descname">pre_callback</code><span class="sig-paren">(</span><em>urlpath</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/servicediscovery/servicediscovery.html#ServiceDiscoveryAdapter.pre_callback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.pre_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate and return the url to be passed to the Requests Session,
+using self.url (calculated from self.[host|port|protocol]).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.url">
+<code class="descname">url</code><a class="headerlink" href="#ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the &#8216;protocol://host:port&#8217; url</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="endpoint">
+<h2>Endpoint<a class="headerlink" href="#endpoint" title="Permalink to this headline">¶</a></h2>
+<p>Endpoint is a derivative class from the <a class="reference internal" href="#ahoyhoy.circuit.Circuit" title="ahoyhoy.circuit.Circuit"><code class="xref py py-class docutils literal"><span class="pre">Circuit</span></code></a>. It delegates all HTTP calls ot the session (which is one of the Endpoint&#8217;s attributes), but can also keep a state. If Endpoint was called and request failed, it&#8217;ll change its state from closed to open.</p>
+<p>Another feature of Endpoint is callbacks. It accepts pre-, post- and exception- callbacks, which allows to do corresponding actions with request, response and exceptions handling.</p>
+<span class="target" id="module-ahoyhoy.endpoints"></span><dl class="class">
+<dt id="ahoyhoy.endpoints.Endpoint">
+<em class="property">class </em><code class="descclassname">ahoyhoy.endpoints.</code><code class="descname">Endpoint</code><span class="sig-paren">(</span><em>host=None</em>, <em>pre_callback=None</em>, <em>post_callback=None</em>, <em>exception_callback=None</em>, <em>classify=None</em>, <em>retry=None</em>, <em>session=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/endpoints/endpoint.html#Endpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">ahoyhoy.circuit.circuit.Circuit</span></code></p>
+<p>Accepts a duck-typed session (a &#8220;Session&#8221; in Requests terms)
+and allows it to work as a Circuit (open|closed state).</p>
+<p>Endpoint simply proxies to <cite>session</cite> methods, so it&#8217;s just as easy
+to use as ServiceDiscoveryHttpClient.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.endpoints</span> <span class="k">import</span> <span class="n">Endpoint</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.utils</span> <span class="k">import</span> <span class="n">Host</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">host</span> <span class="o">=</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="s1">&#39;443&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span> <span class="o">=</span> <span class="n">Endpoint</span><span class="p">(</span><span class="n">host</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="c">...</span>
+<span class="gr">RuntimeError</span>: <span class="n">Circuit state is open, no connections possible.</span>
+</pre></div>
+</div>
+<p>When using service discovery, this fits nicely with the way that Load Balancers
+work.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb</span> <span class="k">import</span> <span class="n">RoundRobinLB</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb.providers</span> <span class="k">import</span> <span class="n">ListProvider</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.utils</span> <span class="k">import</span> <span class="n">Host</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lb</span> <span class="o">=</span> <span class="n">RoundRobinLB</span><span class="p">(</span><span class="n">ListProvider</span><span class="p">(</span><span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span> <span class="o">=</span> <span class="n">lb</span><span class="o">.</span><span class="n">pick</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+ <span class="c">...</span>
+<span class="gr">RuntimeError</span>: <span class="n">Circuit state is open, no connections possible.</span>
+</pre></div>
+</div>
+<p>Here&#8217;s an example of how circuit opens automatically:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb</span> <span class="k">import</span> <span class="n">RoundRobinLB</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb.providers</span> <span class="k">import</span> <span class="n">ListProvider</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.utils</span> <span class="k">import</span> <span class="n">Host</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lb</span> <span class="o">=</span> <span class="n">RoundRobinLB</span><span class="p">(</span><span class="n">ListProvider</span><span class="p">(</span><span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google1.com1&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span> <span class="o">=</span> <span class="n">lb</span><span class="o">.</span><span class="n">pick</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span>
+<span class="go">&lt;Endpoint/.../Host(address=&#39;google1.com1&#39;, port=&#39;80&#39;)/&lt;class &#39;ahoyhoy.circuit.circuit.ClosedState&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+ <span class="c">...</span>
+<span class="gr">requests.exceptions.ConnectionError</span>: <span class="n">HTTPConnectionPool(host=&#39;google1.com1&#39;, port=80): Max retries exceeded with url:...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span>
+<span class="go">&lt;Endpoint/.../Host(address=&#39;google1.com1&#39;, port=&#39;80&#39;)/&lt;class &#39;ahoyhoy.circuit.circuit.OpenState&#39;&gt;</span>
+</pre></div>
+</div>
+<p>Before you gasp at the number of lines there, remember that Endpoint is a
+relatively low-level component.  Higher-level components are easier to use,
+but Endpoints allow full flexibility.</p>
+<p>The SimpleHttpEndpoint factory function can be used when you don&#8217;t need
+service discovery.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.endpoints</span> <span class="k">import</span> <span class="n">SimpleHttpEndpoint</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sep</span> <span class="o">=</span> <span class="n">SimpleHttpEndpoint</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sep</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+</pre></div>
+</div>
+<p>Custom exception callback function</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">exc</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="s1">&#39;I caught it!&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span> <span class="o">=</span> <span class="n">Endpoint</span><span class="p">(</span><span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google1.com1&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">),</span> <span class="n">exception_callback</span><span class="o">=</span><span class="n">exc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="go">&#39;I caught it!&#39;</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>host</strong> &#8211; collections.namedtuple, Host(address, port)</li>
+<li><strong>pre_callback</strong> &#8211; </li>
+<li><strong>post_callback</strong> &#8211; </li>
+<li><strong>exception_callback</strong> &#8211; </li>
+<li><strong>classify</strong> &#8211; response clissifier. By default it&#8217;s <a class="reference internal" href="#ahoyhoy.circuit.circuit.StateClassifier.classify" title="ahoyhoy.circuit.circuit.StateClassifier.classify"><code class="xref py py-attr docutils literal"><span class="pre">Circuit's</span> <span class="pre">classify</span></code></a>.</li>
+<li><strong>retry</strong> &#8211; function for retrying HTTP calls</li>
+<li><strong>session</strong> &#8211; custom session</li>
+<li><strong>args</strong> &#8211; positional argument for ServiceDiscoveryHttpClient</li>
+<li><strong>kwargs</strong> &#8211; keyword argument for ServiceDiscoveryHttpClient</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="ahoyhoy.endpoints.Endpoint.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/endpoints/endpoint.html#Endpoint.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.endpoints.Endpoint.post">
+<code class="descname">post</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/endpoints/endpoint.html#Endpoint.post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.endpoints.Endpoint.put">
+<code class="descname">put</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/endpoints/endpoint.html#Endpoint.put"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint.put" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.endpoints.Endpoint.head">
+<code class="descname">head</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/endpoints/endpoint.html#Endpoint.head"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint.head" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.endpoints.Endpoint.patch">
+<code class="descname">patch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/endpoints/endpoint.html#Endpoint.patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint.patch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.endpoints.Endpoint.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/endpoints/endpoint.html#Endpoint.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint.delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ahoyhoy.endpoints.Endpoint.host">
+<code class="descname">host</code><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint.host" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ahoyhoy.endpoints.Endpoint.state">
+<code class="descname">state</code><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint.state" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.endpoints.Endpoint.set_headers">
+<code class="descname">set_headers</code><span class="sig-paren">(</span><em>headers</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/endpoints/endpoint.html#Endpoint.set_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint.set_headers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.endpoints.Endpoint.set_retry">
+<code class="descname">set_retry</code><span class="sig-paren">(</span><em>retry_func</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/endpoints/endpoint.html#Endpoint.set_retry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint.set_retry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="ahoyhoy.endpoints.SimpleHttpEndpoint">
+<code class="descclassname">ahoyhoy.endpoints.</code><code class="descname">SimpleHttpEndpoint</code><span class="sig-paren">(</span><em>session=None</em>, <em>retry=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/endpoints/endpoint.html#SimpleHttpEndpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.endpoints.SimpleHttpEndpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple CircuitBreaking Endpoint that uses a default
+(non-service discoverable) client</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">API</a><ul>
+<li><a class="reference internal" href="#module-ahoyhoy.http.proxy">Session proxy</a></li>
+<li><a class="reference internal" href="#client">Client</a></li>
+<li><a class="reference internal" href="#client-builders">Client Builders</a><ul>
+<li><a class="reference internal" href="#module-ahoyhoy.client.builder">Abstract class:</a></li>
+<li><a class="reference internal" href="#module-ahoyhoy.client.exceptions">Client exceptions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#load-balancers">Load Balancers</a><ul>
+<li><a class="reference internal" href="#module-ahoyhoy.lb.iloadbalancer">Base class</a></li>
+<li><a class="reference internal" href="#module-ahoyhoy.lb">Load blancers algorithms</a></li>
+<li><a class="reference internal" href="#module-ahoyhoy.lb.exceptions">Load blancers exceptions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#providers">Providers</a><ul>
+<li><a class="reference internal" href="#id2">Base class</a></li>
+<li><a class="reference internal" href="#module-ahoyhoy.lb.providers">List Provider</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-ahoyhoy.retries">Retries</a></li>
+<li><a class="reference internal" href="#module-ahoyhoy.circuit">Circuit breaker</a></li>
+<li><a class="reference internal" href="#module-ahoyhoy.servicediscovery">Service discovery</a></li>
+<li><a class="reference internal" href="#endpoint">Endpoint</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../contents/testing.html" title="previous chapter">Testing</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/apis/api.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, NCBI.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/apis/api.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

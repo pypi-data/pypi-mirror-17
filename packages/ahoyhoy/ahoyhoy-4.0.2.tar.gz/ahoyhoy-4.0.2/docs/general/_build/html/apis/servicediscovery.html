@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Service discovery &mdash; ahoyhoy 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="ahoyhoy 2.0.0 documentation" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-ahoyhoy.servicediscovery">
+<span id="service-discovery"></span><h1>Service discovery<a class="headerlink" href="#module-ahoyhoy.servicediscovery" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="ahoyhoy.servicediscovery.ServiceDiscoveryHttpClient">
+<em class="property">class </em><code class="descclassname">ahoyhoy.servicediscovery.</code><code class="descname">ServiceDiscoveryHttpClient</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/servicediscovery/servicediscovery.html#ServiceDiscoveryHttpClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.servicediscovery.ServiceDiscoveryHttpClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter" title="ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter"><code class="xref py py-class docutils literal"><span class="pre">ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter</span></code></a>, <a class="reference internal" href="proxy.html#ahoyhoy.http.proxy.SessionProxy" title="ahoyhoy.http.proxy.SessionProxy"><code class="xref py py-class docutils literal"><span class="pre">ahoyhoy.http.proxy.SessionProxy</span></code></a></p>
+<p>An object that transparently allows Service Discovery while preserving
+the same API as a Requests Session object, so typical Requests methods
+take server-relative paths rather than full URLs.</p>
+<p>For instance, here&#8217;s how you can make a Http GET request using Requests&#8217;s
+standard <cite>get</cite> method.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.servicediscovery</span> <span class="k">import</span> <span class="n">ServiceDiscoveryHttpClient</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.utils</span> <span class="k">import</span> <span class="n">Host</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">host</span> <span class="o">=</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sdhc</span> <span class="o">=</span> <span class="n">ServiceDiscoveryHttpClient</span><span class="p">(</span><span class="n">host</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sdhc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+</pre></div>
+</div>
+<p>Note the fact that we&#8217;re passing <cite>get</cite> a path, _not_ a URL.</p>
+<p>Why?</p>
+<p>When using a form of Service Discovery, host/port (and sometimes protocol)
+portions of the URL are resolved at runtime.  This class adapts the a Requests
+Session in order to support this runtime service resolution.</p>
+</dd></dl>
+
+<span class="target" id="module-ahoyhoy.servicediscovery.servicediscovery"></span><dl class="class">
+<dt id="ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter">
+<em class="property">class </em><code class="descclassname">ahoyhoy.servicediscovery.servicediscovery.</code><code class="descname">ServiceDiscoveryAdapter</code><span class="sig-paren">(</span><em>host</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/servicediscovery/servicediscovery.html#ServiceDiscoveryAdapter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adapter intended to be used as a mixin along with a <a class="reference internal" href="proxy.html#ahoyhoy.http.proxy.SessionProxy" title="ahoyhoy.http.proxy.SessionProxy"><code class="xref py py-class docutils literal"><span class="pre">SessionProxy</span></code></a>
+in order to calculate a <cite>protocol://host:port</cite> string to be added to
+the <cite>path</cite> for a complete url.</p>
+<dl class="attribute">
+<dt id="ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.address">
+<code class="descname">address</code><a class="headerlink" href="#ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.address" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the endpoint&#8217;s address</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.calculate_protocol">
+<code class="descname">calculate_protocol</code><span class="sig-paren">(</span><em>port</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/servicediscovery/servicediscovery.html#ServiceDiscoveryAdapter.calculate_protocol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.calculate_protocol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use port for calculating the protocol.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>port</strong> &#8211; </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.host">
+<code class="descname">host</code><a class="headerlink" href="#ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.host" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the endpoint&#8217;s host</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.port">
+<code class="descname">port</code><a class="headerlink" href="#ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.port" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the endpoint&#8217;s port</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.pre_callback">
+<code class="descname">pre_callback</code><span class="sig-paren">(</span><em>urlpath</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/servicediscovery/servicediscovery.html#ServiceDiscoveryAdapter.pre_callback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.pre_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate and return the url to be passed to the Requests Session,
+using self.url (calculated from self.[host|port|protocol]).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.url">
+<code class="descname">url</code><a class="headerlink" href="#ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the &#8216;protocol://host:port&#8217; url</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/apis/servicediscovery.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, NCBI.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/apis/servicediscovery.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ahoyhoy.client.builder &mdash; ahoyhoy 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="ahoyhoy 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for ahoyhoy.client.builder</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">abc</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">from</span> <span class="nn">six</span> <span class="kn">import</span> <span class="n">add_metaclass</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Client</span><span class="p">,</span> <span class="n">SimpleClient</span>
+<span class="kn">from</span> <span class="nn">..retries</span> <span class="kn">import</span> <span class="n">Retry</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+
+<span class="nd">@add_metaclass</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">ABCMeta</span><span class="p">)</span>
+<div class="viewcode-block" id="IClientBuilder"><a class="viewcode-back" href="../../../apis/client.html#ahoyhoy.client.builder.IClientBuilder">[docs]</a><span class="k">class</span> <span class="nc">IClientBuilder</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Abstract Builder class. Contains required methods</span>
+<span class="sd">    for all other client builders.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_headers</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_retries</span> <span class="o">=</span> <span class="bp">None</span>
+
+<div class="viewcode-block" id="IClientBuilder.add_session"><a class="viewcode-back" href="../../../apis/client.html#ahoyhoy.client.builder.IClientBuilder.add_session">[docs]</a>    <span class="k">def</span> <span class="nf">add_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add your custom session here.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="n">session</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="IClientBuilder.add_retries"><a class="viewcode-back" href="../../../apis/client.html#ahoyhoy.client.builder.IClientBuilder.add_retries">[docs]</a>    <span class="k">def</span> <span class="nf">add_retries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">retries</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Custom retries function. It has to accept function to retry w/ its args and kwargs.</span>
+<span class="sd">        It&#39;s highly recommended to use :func:`ahoyhoy.retries.Retry` function with custom parameters.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_retries</span> <span class="o">=</span> <span class="n">retries</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="IClientBuilder.add_headers"><a class="viewcode-back" href="../../../apis/client.html#ahoyhoy.client.builder.IClientBuilder.add_headers">[docs]</a>    <span class="k">def</span> <span class="nf">add_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Provide your custom headers here.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_headers</span> <span class="o">=</span> <span class="n">headers</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+    <span class="nd">@abc.abstractmethod</span>
+    <span class="k">def</span> <span class="nf">_validate_required_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check that all required parameters were provided.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span>
+
+    <span class="nd">@abc.abstractmethod</span>
+<div class="viewcode-block" id="IClientBuilder.build"><a class="viewcode-back" href="../../../apis/client.html#ahoyhoy.client.builder.IClientBuilder.build">[docs]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Build and return the client.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validate_required_params</span><span class="p">()</span>
+        <span class="k">return</span></div></div>
+
+
+<div class="viewcode-block" id="LBClientBuilder"><a class="viewcode-back" href="../../../apis/client.html#ahoyhoy.client.builder.LBClientBuilder">[docs]</a><span class="k">class</span> <span class="nc">LBClientBuilder</span><span class="p">(</span><span class="n">IClientBuilder</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Usage examples:</span>
+
+<span class="sd">    1. Round Robin LB</span>
+
+<span class="sd">        &gt;&gt;&gt; from ahoyhoy.utils import Host</span>
+<span class="sd">        &gt;&gt;&gt; from ahoyhoy.lb.providers import ListProvider</span>
+<span class="sd">        &gt;&gt;&gt; from ahoyhoy.lb import RoundRobinLB</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; rrlb = RoundRobinLB(ListProvider(Host(&#39;badhost2.bla&#39;, 80), Host(&#39;google.com&#39;, 80), Host(&#39;badhost3.bla&#39;, 80)))</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; client = LBClientBuilder().add_lb(rrlb).build()</span>
+<span class="sd">        &gt;&gt;&gt; client.get(&#39;/&#39;)</span>
+<span class="sd">        &lt;Response [200]&gt;</span>
+
+<span class="sd">    2. Round Robin LB and custom session</span>
+
+<span class="sd">        &gt;&gt;&gt; import requests</span>
+<span class="sd">        &gt;&gt;&gt; s = requests.Session()</span>
+<span class="sd">        &gt;&gt;&gt; s.headers.update({&#39;bla&#39;: &#39;foo&#39;})</span>
+<span class="sd">        &gt;&gt;&gt; client = LBClientBuilder().add_lb(rrlb).add_session(s).build()</span>
+<span class="sd">        &gt;&gt;&gt; client.get(&#39;/&#39;)</span>
+<span class="sd">        &lt;Response [200]&gt;</span>
+
+<span class="sd">    3. Round Robin LB with custom HTTP retries</span>
+
+<span class="sd">        &gt;&gt;&gt; from ahoyhoy.retries import Retry</span>
+<span class="sd">        &gt;&gt;&gt; from requests.exceptions import ConnectTimeout</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; retries = Retry(exceptions=ConnectTimeout, tries=3, delay=0, max_delay=None, backoff=2, jitter=0)</span>
+<span class="sd">        &gt;&gt;&gt; rrlb = RoundRobinLB(ListProvider(Host(&#39;google.com&#39;, 80)))</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; client = LBClientBuilder().add_lb(rrlb).add_retries(retries).build()</span>
+<span class="sd">        &gt;&gt;&gt; client.get(&#39;/&#39;)</span>
+<span class="sd">        &lt;Response [200]&gt;</span>
+
+<span class="sd">    4. Set multiple updates for endpoints list</span>
+
+<span class="sd">        &gt;&gt;&gt; client = LBClientBuilder().add_lb(rrlb).set_endpoint_updates(3)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">LBClientBuilder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lb</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ep_updates</span> <span class="o">=</span> <span class="mi">1</span>
+
+<div class="viewcode-block" id="LBClientBuilder.add_lb"><a class="viewcode-back" href="../../../apis/client.html#ahoyhoy.client.builder.LBClientBuilder.add_lb">[docs]</a>    <span class="k">def</span> <span class="nf">add_lb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lb</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add your load balancer instance here.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lb</span> <span class="o">=</span> <span class="n">lb</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="LBClientBuilder.set_endpoint_updates"><a class="viewcode-back" href="../../../apis/client.html#ahoyhoy.client.builder.LBClientBuilder.set_endpoint_updates">[docs]</a>    <span class="k">def</span> <span class="nf">set_endpoint_updates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ep_updates</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the number of times an endpoints list has to be updated.</span>
+<span class="sd">        By default it&#39;s 1, which is the initial update of available endpoints.</span>
+
+<span class="sd">        :param ep_updates: int, number of updates of ep list if there&#39;re no endpoints</span>
+<span class="sd">         in the closed state</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ep_updates</span> <span class="o">=</span> <span class="n">ep_updates</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+    <span class="k">def</span> <span class="nf">_validate_required_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lb</span>
+
+    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">LBClientBuilder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">Client</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lb</span><span class="p">,</span>
+            <span class="n">session</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_headers</span><span class="p">,</span>
+            <span class="n">retry_http_call_func</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_retries</span><span class="p">,</span>
+            <span class="n">ep_list_update_tries</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_ep_updates</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SessionClientBuilder"><a class="viewcode-back" href="../../../apis/client.html#ahoyhoy.client.builder.SessionClientBuilder">[docs]</a><span class="k">class</span> <span class="nc">SessionClientBuilder</span><span class="p">(</span><span class="n">IClientBuilder</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Usage example:</span>
+
+<span class="sd">        &gt;&gt;&gt; import requests</span>
+<span class="sd">        &gt;&gt;&gt; from ahoyhoy.client.builder import SessionClientBuilder</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; s = requests.Session()</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; client = SessionClientBuilder().add_session(s).build()</span>
+<span class="sd">        &gt;&gt;&gt; client.get(&#39;http://google.com&#39;)</span>
+<span class="sd">        &lt;Response [200]&gt;</span>
+
+<span class="sd">    Custom headers:</span>
+
+<span class="sd">        &gt;&gt;&gt; s.headers.update({&#39;bla&#39;: &#39;foo&#39;})</span>
+<span class="sd">        &gt;&gt;&gt; client = SessionClientBuilder().add_session(s).build()</span>
+<span class="sd">        &gt;&gt;&gt; response = client.get(&#39;http://google.com&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; assert &#39;bla&#39; in response.request.headers</span>
+
+<span class="sd">    or</span>
+
+<span class="sd">        &gt;&gt;&gt; client = SessionClientBuilder().add_session(s).add_headers({&#39;foo&#39;: &#39;bar&#39;}).build()</span>
+<span class="sd">        &gt;&gt;&gt; response = client.get(&#39;http://google.com&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; assert &#39;foo&#39; in response.request.headers</span>
+
+<span class="sd">    Custom retries:</span>
+
+<span class="sd">        &gt;&gt;&gt; from ahoyhoy.retries import Retry</span>
+<span class="sd">        &gt;&gt;&gt; from requests.exceptions import ConnectTimeout</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; retries = Retry(exceptions=ConnectTimeout, tries=3, delay=0, max_delay=None, backoff=2, jitter=0)</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; client = SessionClientBuilder().add_session(s).add_retries(retries).build()</span>
+<span class="sd">        &gt;&gt;&gt; client.get(&#39;http://google.com&#39;)</span>
+<span class="sd">        &lt;Response [200]&gt;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_validate_required_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span>
+
+    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SessionClientBuilder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_headers</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">SimpleClient</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="p">,</span>
+            <span class="n">retry_http_call</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_retries</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, NCBI.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

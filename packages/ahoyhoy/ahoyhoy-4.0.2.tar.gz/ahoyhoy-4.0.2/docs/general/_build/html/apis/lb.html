@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Load Balancers &mdash; ahoyhoy 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="ahoyhoy 2.0.0 documentation" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="load-balancers">
+<h1>Load Balancers<a class="headerlink" href="#load-balancers" title="Permalink to this headline">¶</a></h1>
+<p>There are two load balancing algorithms available for now:</p>
+<blockquote>
+<div><ul class="simple">
+<li>random</li>
+<li>round robin</li>
+</ul>
+</div></blockquote>
+<div class="section" id="module-ahoyhoy.lb.iloadbalancer">
+<span id="base-class"></span><h2>Base class<a class="headerlink" href="#module-ahoyhoy.lb.iloadbalancer" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ahoyhoy.lb.iloadbalancer.ILoadBalancer">
+<em class="property">class </em><code class="descclassname">ahoyhoy.lb.iloadbalancer.</code><code class="descname">ILoadBalancer</code><span class="sig-paren">(</span><em>provider</em>, <em>session=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/lb/iloadbalancer.html#ILoadBalancer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.lb.iloadbalancer.ILoadBalancer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for load balancers.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>provider</strong> &#8211; any instance of <a class="reference internal" href="#ahoyhoy.lb.providers.iprovider.IProvider" title="ahoyhoy.lb.providers.iprovider.IProvider"><code class="xref py py-class docutils literal"><span class="pre">IProvider</span></code></a></li>
+<li><strong>session</strong> &#8211; custom session</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="ahoyhoy.lb.iloadbalancer.ILoadBalancer.get_or_create_endpoint">
+<code class="descname">get_or_create_endpoint</code><span class="sig-paren">(</span><em>host</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/lb/iloadbalancer.html#ILoadBalancer.get_or_create_endpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.lb.iloadbalancer.ILoadBalancer.get_or_create_endpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Concrete method to create an Endpoint from a <cite>Host</cite> object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>host</strong> &#8211; <cite>Host(&#8216;host&#8217;, &#8216;port&#8217;)</cite> namedtuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.lb.iloadbalancer.ILoadBalancer.pick">
+<code class="descname">pick</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/lb/iloadbalancer.html#ILoadBalancer.pick"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.lb.iloadbalancer.ILoadBalancer.pick" title="Permalink to this definition">¶</a></dt>
+<dd><p>Will only return nodes which have <a class="reference internal" href="circuit.html#ahoyhoy.circuit.OpenState" title="ahoyhoy.circuit.OpenState"><code class="xref py py-class docutils literal"><span class="pre">OpenState</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.lb.iloadbalancer.ILoadBalancer.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/lb/iloadbalancer.html#ILoadBalancer.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.lb.iloadbalancer.ILoadBalancer.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the hosts list with new hosts (if there are some).</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ahoyhoy.lb">
+<span id="load-blancers-algorithms"></span><h2>Load blancers algorithms<a class="headerlink" href="#module-ahoyhoy.lb" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ahoyhoy.lb.RandomLB">
+<em class="property">class </em><code class="descclassname">ahoyhoy.lb.</code><code class="descname">RandomLB</code><span class="sig-paren">(</span><em>provider</em>, <em>session=None</em>, <em>random_function=&lt;bound method Random.randint of &lt;random.Random object at 0x1c47c38&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/lb/randomlb.html#RandomLB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.lb.RandomLB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ahoyhoy.lb.iloadbalancer.ILoadBalancer" title="ahoyhoy.lb.iloadbalancer.ILoadBalancer"><code class="xref py py-class docutils literal"><span class="pre">ahoyhoy.lb.iloadbalancer.ILoadBalancer</span></code></a></p>
+<p>Implements random algorithm for chosing a host from the list.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.utils</span> <span class="k">import</span> <span class="n">Host</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb.providers</span> <span class="k">import</span> <span class="n">ListProvider</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb</span> <span class="k">import</span> <span class="n">RandomLB</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span> <span class="o">=</span> <span class="n">RandomLB</span><span class="p">(</span><span class="n">ListProvider</span><span class="p">(</span><span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google1.com1&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">),</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span><span class="o">.</span><span class="n">pick</span><span class="p">()</span>
+<span class="go">&lt;Endpoint/.../Host(address=&#39;google...&#39;, port=&#39;80&#39;)/&lt;class &#39;ahoyhoy.circuit.circuit.ClosedState&#39;&gt;</span>
+</pre></div>
+</div>
+<p>Custom random function:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">my_random</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="gp">... </span>   <span class="k">return</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span> <span class="o">=</span> <span class="n">RandomLB</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">ListProvider</span><span class="p">(</span><span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google1.com1&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">),</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="n">random_function</span><span class="o">=</span><span class="n">my_random</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span><span class="o">.</span><span class="n">pick</span><span class="p">()</span>
+<span class="go">&lt;Endpoint/.../Host(address=&#39;google1.com1&#39;, port=&#39;80&#39;)/&lt;class &#39;ahoyhoy.circuit.circuit.ClosedState&#39;&gt;</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>provider</strong> &#8211; <a class="reference internal" href="#ahoyhoy.lb.providers.ListProvider" title="ahoyhoy.lb.providers.ListProvider"><code class="xref py py-class docutils literal"><span class="pre">ListProvider</span></code></a> instance</li>
+<li><strong>random_function</strong> &#8211; function which returns random number for the given range. By default: <code class="xref py py-attr docutils literal"><span class="pre">random.randint</span></code></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="ahoyhoy.lb.RoundRobinLB">
+<em class="property">class </em><code class="descclassname">ahoyhoy.lb.</code><code class="descname">RoundRobinLB</code><span class="sig-paren">(</span><em>provider</em>, <em>session=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/lb/roundrobinlb.html#RoundRobinLB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.lb.RoundRobinLB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ahoyhoy.lb.iloadbalancer.ILoadBalancer" title="ahoyhoy.lb.iloadbalancer.ILoadBalancer"><code class="xref py py-class docutils literal"><span class="pre">ahoyhoy.lb.iloadbalancer.ILoadBalancer</span></code></a></p>
+<p>Implement round robin load balancing algorythm.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.utils</span> <span class="k">import</span> <span class="n">Host</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb.providers</span> <span class="k">import</span> <span class="n">ListProvider</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb</span> <span class="k">import</span> <span class="n">RoundRobinLB</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span> <span class="o">=</span> <span class="n">RoundRobinLB</span><span class="p">(</span><span class="n">ListProvider</span><span class="p">(</span><span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google1.com1&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">),</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span><span class="o">.</span><span class="n">pick</span><span class="p">()</span>
+<span class="go">&lt;Endpoint/.../Host(address=&#39;google1.com1&#39;, port=&#39;80&#39;)/&lt;class &#39;ahoyhoy.circuit.circuit.ClosedState&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span><span class="o">.</span><span class="n">pick</span><span class="p">()</span>
+<span class="go">&lt;Endpoint/.../Host(address=&#39;google.com&#39;, port=&#39;80&#39;)/&lt;class &#39;ahoyhoy.circuit.circuit.ClosedState&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span><span class="o">.</span><span class="n">pick</span><span class="p">()</span>
+<span class="go">&lt;Endpoint/.../Host(address=&#39;google1.com1&#39;, port=&#39;80&#39;)/&lt;class &#39;ahoyhoy.circuit.circuit.ClosedState&#39;&gt;</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>provider</strong> &#8211; <code class="xref py py-class docutils literal"><span class="pre">IProvider</span></code> instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-ahoyhoy.lb.exceptions">
+<span id="load-blancers-exceptions"></span><h2>Load blancers exceptions<a class="headerlink" href="#module-ahoyhoy.lb.exceptions" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ahoyhoy.lb.exceptions.NoAvailableEndpointsLbException">
+<em class="property">class </em><code class="descclassname">ahoyhoy.lb.exceptions.</code><code class="descname">NoAvailableEndpointsLbException</code><a class="reference internal" href="../_modules/ahoyhoy/lb/exceptions.html#NoAvailableEndpointsLbException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.lb.exceptions.NoAvailableEndpointsLbException" title="Permalink to this definition">¶</a></dt>
+<dd><p>No Endpoints in the closed state.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="providers">
+<h1>Providers<a class="headerlink" href="#providers" title="Permalink to this headline">¶</a></h1>
+<p>Providers exist to give lists of hosts</p>
+<div class="section" id="id1">
+<h2>Base class<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-ahoyhoy.lb.providers.iprovider"></span><dl class="class">
+<dt id="ahoyhoy.lb.providers.iprovider.IProvider">
+<em class="property">class </em><code class="descclassname">ahoyhoy.lb.providers.iprovider.</code><code class="descname">IProvider</code><a class="reference internal" href="../_modules/ahoyhoy/lb/providers/iprovider.html#IProvider"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.lb.providers.iprovider.IProvider" title="Permalink to this definition">¶</a></dt>
+<dd><p>A provider provides endpoints for a load balancer.</p>
+<dl class="method">
+<dt id="ahoyhoy.lb.providers.iprovider.IProvider.get_list">
+<code class="descname">get_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/lb/providers/iprovider.html#IProvider.get_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.lb.providers.iprovider.IProvider.get_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a new list of hosts.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ahoyhoy.lb.providers">
+<span id="list-provider"></span><h2>List Provider<a class="headerlink" href="#module-ahoyhoy.lb.providers" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ahoyhoy.lb.providers.ListProvider">
+<em class="property">class </em><code class="descclassname">ahoyhoy.lb.providers.</code><code class="descname">ListProvider</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/lb/providers/listprovider.html#ListProvider"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.lb.providers.ListProvider" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ahoyhoy.lb.providers.iprovider.IProvider" title="ahoyhoy.lb.providers.iprovider.IProvider"><code class="xref py py-class docutils literal"><span class="pre">ahoyhoy.lb.providers.iprovider.IProvider</span></code></a></p>
+<p>A simple list verison of the IProvider interface</p>
+<p>Accepts a number of items to store as a list</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.utils</span> <span class="k">import</span> <span class="n">Host</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb.providers</span> <span class="k">import</span> <span class="n">ListProvider</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lp</span> <span class="o">=</span> <span class="n">ListProvider</span><span class="p">(</span><span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google1.com1&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">),</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lp</span><span class="o">.</span><span class="n">get_list</span><span class="p">()</span>
+<span class="go">(Host(address=&#39;google1.com1&#39;, port=&#39;80&#39;), Host(address=&#39;google.com&#39;, port=&#39;80&#39;))</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>args</strong> &#8211; an iterable of items (hosts)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Load Balancers</a><ul>
+<li><a class="reference internal" href="#module-ahoyhoy.lb.iloadbalancer">Base class</a></li>
+<li><a class="reference internal" href="#module-ahoyhoy.lb">Load blancers algorithms</a></li>
+<li><a class="reference internal" href="#module-ahoyhoy.lb.exceptions">Load blancers exceptions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#providers">Providers</a><ul>
+<li><a class="reference internal" href="#id1">Base class</a></li>
+<li><a class="reference internal" href="#module-ahoyhoy.lb.providers">List Provider</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/apis/lb.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, NCBI.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/apis/lb.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

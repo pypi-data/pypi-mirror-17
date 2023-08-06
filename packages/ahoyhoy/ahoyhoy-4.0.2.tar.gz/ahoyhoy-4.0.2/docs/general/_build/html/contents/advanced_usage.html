@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Advanced Usage Recipes &mdash; ahoyhoy 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="ahoyhoy 2.0.0 documentation" href="../index.html" />
+    <link rel="next" title="Ahoyhoy’s Objects Hierarchy" href="objects_hierarchy.html" />
+    <link rel="prev" title="Quickstart" href="quickstart.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="advanced-usage-recipes">
+<span id="advanced-usage"></span><h1>Advanced Usage Recipes<a class="headerlink" href="#advanced-usage-recipes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="load-balancer-circuit-breaker">
+<h2>Load Balancer &amp; Circuit Breaker<a class="headerlink" href="#load-balancer-circuit-breaker" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="general-case">
+<h3>General case<a class="headerlink" href="#general-case" title="Permalink to this headline">¶</a></h3>
+<p>The following example shows how a request can be made using a load balancer and circuit breaker with a static list of hosts:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.utils</span> <span class="k">import</span> <span class="n">Host</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">host1</span><span class="p">,</span> <span class="n">host2</span><span class="p">,</span> <span class="n">host3</span> <span class="o">=</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;badhost2.bla&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;badhost3.bla&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb.providers</span> <span class="k">import</span> <span class="n">ListProvider</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">provider</span> <span class="o">=</span> <span class="n">ListProvider</span><span class="p">(</span><span class="n">host1</span><span class="p">,</span> <span class="n">host2</span><span class="p">,</span> <span class="n">host3</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb</span> <span class="k">import</span> <span class="n">RoundRobinLB</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span> <span class="o">=</span> <span class="n">RoundRobinLB</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.client</span> <span class="k">import</span> <span class="n">LBClientBuilder</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">LBClientBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">add_lb</span><span class="p">(</span><span class="n">rrlb</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+</pre></div>
+</div>
+<p>Let&#8217;s walk through this example step by step.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.utils</span> <span class="k">import</span> <span class="n">Host</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">host1</span><span class="p">,</span> <span class="n">host2</span><span class="p">,</span> <span class="n">host3</span> <span class="o">=</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;badhost2.bla&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;badhost3.bla&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>All hosts passed to the load balancer should be <cite>Host</cite> named tuples containing <cite>address</cite> and <cite>port</cite> fields. The default protocol (http or https) will be calculated automatically by the <a class="reference internal" href="../apis/servicediscovery.html#ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.calculate_protocol" title="ahoyhoy.servicediscovery.servicediscovery.ServiceDiscoveryAdapter.calculate_protocol"><code class="xref py py-meth docutils literal"><span class="pre">service</span> <span class="pre">discovery</span> <span class="pre">adapter's</span> <span class="pre">method</span></code></a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb.providers</span> <span class="k">import</span> <span class="n">ListProvider</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">provider</span> <span class="o">=</span> <span class="n">ListProvider</span><span class="p">(</span><span class="n">host1</span><span class="p">,</span> <span class="n">host2</span><span class="p">,</span> <span class="n">host3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><cite>Provider</cite> is an interface for providing list of hosts to the load balancer. Custom providers should be derived from the <a class="reference internal" href="../apis/lb.html#ahoyhoy.lb.providers.iprovider.IProvider" title="ahoyhoy.lb.providers.iprovider.IProvider"><code class="xref py py-class docutils literal"><span class="pre">IProvider</span></code></a> class.</p>
+<p>In this example we use <a class="reference internal" href="../apis/lb.html#ahoyhoy.lb.providers.ListProvider" title="ahoyhoy.lb.providers.ListProvider"><code class="xref py py-class docutils literal"><span class="pre">ListProvider</span></code></a>. It simply returns the list of hosts from before.</p>
+<p>Now we create the load balancer instance and give it the provider. We use a round robin algorithm for this example.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb</span> <span class="k">import</span> <span class="n">RoundRobinLB</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span> <span class="o">=</span> <span class="n">RoundRobinLB</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And finally we create a client, using our load balancer.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.client</span> <span class="k">import</span> <span class="n">LBClientBuilder</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">LBClientBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">add_lb</span><span class="p">(</span><span class="n">rrlb</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+</pre></div>
+</div>
+<p>Client has built-in circuit breaker algorithm, so if there&#8217;s a <em>bad</em> host, it&#8217;ll be marked as unavailable and won&#8217;t be used for further requests.</p>
+</div>
+<div class="section" id="another-load-balancer-example">
+<h3>Another load balancer example<a class="headerlink" href="#another-load-balancer-example" title="Permalink to this headline">¶</a></h3>
+<p>Here&#8217;s another load balancer example, using the random algorithm:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.utils</span> <span class="k">import</span> <span class="n">Host</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">host1</span><span class="p">,</span> <span class="n">host2</span> <span class="o">=</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;badhost2.bla&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb.providers</span> <span class="k">import</span> <span class="n">ListProvider</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">provider</span> <span class="o">=</span> <span class="n">ListProvider</span><span class="p">(</span><span class="n">host1</span><span class="p">,</span> <span class="n">host2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb</span> <span class="k">import</span> <span class="n">RandomLB</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrlb</span> <span class="o">=</span> <span class="n">RandomLB</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.client</span> <span class="k">import</span> <span class="n">LBClientBuilder</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">LBClientBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">add_lb</span><span class="p">(</span><span class="n">rrlb</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="custom-retries">
+<h2>Custom Retries<a class="headerlink" href="#custom-retries" title="Permalink to this headline">¶</a></h2>
+<p>By default a <a class="reference internal" href="../apis/client.html#ahoyhoy.client.LBClientBuilder" title="ahoyhoy.client.LBClientBuilder"><code class="xref py py-class docutils literal"><span class="pre">LBClientBuilder</span></code></a>&#8216;s load balancer uses a <a class="reference internal" href="../apis/retries.html#ahoyhoy.retries.Retry" title="ahoyhoy.retries.Retry"><code class="xref py py-func docutils literal"><span class="pre">ahoyhoy.retries.Retry()</span></code></a> object set to do 3 tries.</p>
+<p>Custom <cite>Retry</cite> objects may be passed to <a class="reference internal" href="../apis/client.html#ahoyhoy.client.LBClientBuilder" title="ahoyhoy.client.LBClientBuilder"><code class="xref py py-class docutils literal"><span class="pre">LBClientBuilder</span></code></a> like so:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">requests.exceptions</span> <span class="k">import</span> <span class="n">ConnectTimeout</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.retries</span> <span class="k">import</span> <span class="n">Retry</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">retry</span> <span class="o">=</span> <span class="n">Retry</span><span class="p">(</span><span class="n">exceptions</span><span class="o">=</span><span class="n">ConnectTimeout</span><span class="p">,</span> <span class="n">tries</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_delay</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">backoff</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">jitter</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">LBClientBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">add_lb</span><span class="p">(</span><span class="n">rrlb</span><span class="p">)</span><span class="o">.</span><span class="n">add_retries</span><span class="p">(</span><span class="n">retry</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-the-protocol-http-or-https">
+<h2>Setting the protocol (http or https)<a class="headerlink" href="#setting-the-protocol-http-or-https" title="Permalink to this headline">¶</a></h2>
+<p>Http is used by default. To use Https, simply make sure that your <cite>Host</cite> uses port 443.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">host1</span> <span class="o">=</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;api.service.com&#39;</span><span class="p">,</span> <span class="mi">443</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Advanced Usage Recipes</a><ul>
+<li><a class="reference internal" href="#load-balancer-circuit-breaker">Load Balancer &amp; Circuit Breaker</a><ul>
+<li><a class="reference internal" href="#general-case">General case</a></li>
+<li><a class="reference internal" href="#another-load-balancer-example">Another load balancer example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#custom-retries">Custom Retries</a></li>
+<li><a class="reference internal" href="#setting-the-protocol-http-or-https">Setting the protocol (http or https)</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="quickstart.html" title="previous chapter">Quickstart</a></li>
+      <li>Next: <a href="objects_hierarchy.html" title="next chapter">Ahoyhoy&#8217;s Objects Hierarchy</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/contents/advanced_usage.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, NCBI.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/contents/advanced_usage.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

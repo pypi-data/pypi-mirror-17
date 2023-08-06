@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Session proxy &mdash; ahoyhoy 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="ahoyhoy 2.0.0 documentation" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-ahoyhoy.http.proxy">
+<span id="session-proxy"></span><h1>Session proxy<a class="headerlink" href="#module-ahoyhoy.http.proxy" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="ahoyhoy.http.proxy.SessionProxy">
+<em class="property">class </em><code class="descclassname">ahoyhoy.http.proxy.</code><code class="descname">SessionProxy</code><span class="sig-paren">(</span><em>session=None</em>, <em>pre_callback=None</em>, <em>post_callback=None</em>, <em>exception_callback=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/http/proxy.html#SessionProxy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.http.proxy.SessionProxy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Proxy adapter so a subclass can proxy methods of a Requests Session,
+but can alter behavior via pre, post, and exception callbacks.</p>
+<p>Can be used by itself, but is intended to be subclassed with
+overwritten callbacks.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.http</span> <span class="k">import</span> <span class="n">SessionProxy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sp</span> <span class="o">=</span> <span class="n">SessionProxy</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+</pre></div>
+</div>
+<p>In order to be a bit more transparent, excpetion_callback will raise
+the thrown exception.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.http</span> <span class="k">import</span> <span class="n">SessionProxy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sp</span> <span class="o">=</span> <span class="n">SessionProxy</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">sp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://wwwwww.google.com&#39;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error raised&quot;</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">Error raised</span>
+</pre></div>
+</div>
+<p>You may override the pre|post|exception callbacks either by subclassing
+them or by runtime configuration.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.http</span> <span class="k">import</span> <span class="n">SessionProxy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">pre_callback</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;pre&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">url</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">post_callback</span><span class="p">(</span><span class="n">res</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">exception_callback</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Exception!!&#39;</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sp</span> <span class="o">=</span> <span class="n">SessionProxy</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">(),</span> <span class="n">pre_callback</span><span class="o">=</span><span class="n">pre_callback</span><span class="p">,</span> <span class="n">post_callback</span><span class="o">=</span><span class="n">post_callback</span><span class="p">,</span> <span class="n">exception_callback</span><span class="o">=</span><span class="n">exception_callback</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">)</span>
+<span class="go">pre</span>
+<span class="go">post</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://google1.com&#39;</span><span class="p">)</span>
+<span class="go">pre</span>
+<span class="go">Exception!!</span>
+<span class="go">post</span>
+</pre></div>
+</div>
+<p>Test proxy for other methods and attributes:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sp</span><span class="o">.</span><span class="n">headers</span>
+<span class="go">{...&#39;User-Agent&#39;: ...}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>session</strong> &#8211; custom session</li>
+<li><strong>pre_callback</strong> &#8211; executed before the proxied method</li>
+<li><strong>post_callback</strong> &#8211; executed after the proxied method</li>
+<li><strong>exception_callback</strong> &#8211; the proxied method is wrapped in a try/except block,
+and when an exception occurs, the exception is passed to this callback</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="ahoyhoy.http.proxy.SessionProxy.exception_callback">
+<code class="descname">exception_callback</code><span class="sig-paren">(</span><em>exc</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/http/proxy.html#SessionProxy.exception_callback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.http.proxy.SessionProxy.exception_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executed when an exception is thrown by the proxied Requests Session method.</p>
+<p>Intended to be overwritten or set by a derived class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>exc</strong> &#8211; the exception raised by the proxied Requests
+Session method. By default, returns what&#8217;s passed in.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.http.proxy.SessionProxy.post_callback">
+<code class="descname">post_callback</code><span class="sig-paren">(</span><em>result</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/http/proxy.html#SessionProxy.post_callback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.http.proxy.SessionProxy.post_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executed after the proxied Requests method.</p>
+<p>Intended to be overwritten or set by a derived class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>result</strong> &#8211; the return value of the proxied Requests
+method.  By default, returns what&#8217;s passed in.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.http.proxy.SessionProxy.pre_callback">
+<code class="descname">pre_callback</code><span class="sig-paren">(</span><em>urlpath</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/http/proxy.html#SessionProxy.pre_callback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.http.proxy.SessionProxy.pre_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executed before the proxied Requests method.</p>
+<p>Intended to be overwritten or set by a derived class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>urlpath</strong> &#8211; the arg[0] of the called proxied method.
+Requests Session methods all take &#8216;url&#8217; as the first positional
+parameter. By default, returns what&#8217;s passed in.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/apis/proxy.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, NCBI.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/apis/proxy.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ahoyhoy.endpoints.endpoint &mdash; ahoyhoy 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="ahoyhoy 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for ahoyhoy.endpoints.endpoint</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Endpoint</span>
+
+<span class="sd">A host and port endpoint</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+
+<span class="kn">from</span> <span class="nn">..circuit</span> <span class="kn">import</span> <span class="n">Circuit</span>
+<span class="kn">from</span> <span class="nn">..servicediscovery</span> <span class="kn">import</span> <span class="n">ServiceDiscoveryHttpClient</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Endpoint"><a class="viewcode-back" href="../../../apis/api.html#ahoyhoy.endpoints.Endpoint">[docs]</a><span class="k">class</span> <span class="nc">Endpoint</span><span class="p">(</span><span class="n">Circuit</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Accepts a duck-typed session (a &quot;Session&quot; in Requests terms)</span>
+<span class="sd">    and allows it to work as a Circuit (open|closed state).</span>
+
+<span class="sd">    Endpoint simply proxies to `session` methods, so it&#39;s just as easy</span>
+<span class="sd">    to use as ServiceDiscoveryHttpClient.</span>
+
+<span class="sd">        &gt;&gt;&gt; from ahoyhoy.endpoints import Endpoint</span>
+<span class="sd">        &gt;&gt;&gt; from ahoyhoy.utils import Host</span>
+<span class="sd">        &gt;&gt;&gt; host = Host(&#39;google.com&#39;, &#39;443&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; ep = Endpoint(host)</span>
+<span class="sd">        &gt;&gt;&gt; ep.get(&#39;/&#39;)</span>
+<span class="sd">        &lt;Response [200]&gt;</span>
+<span class="sd">        &gt;&gt;&gt; ep.open()</span>
+<span class="sd">        &gt;&gt;&gt; ep.get(&#39;/&#39;)</span>
+<span class="sd">        Traceback (most recent call last):</span>
+<span class="sd">        ...</span>
+<span class="sd">        RuntimeError: Circuit state is open, no connections possible.</span>
+
+<span class="sd">    When using service discovery, this fits nicely with the way that Load Balancers</span>
+<span class="sd">    work.</span>
+
+<span class="sd">        &gt;&gt;&gt; from ahoyhoy.lb import RoundRobinLB</span>
+<span class="sd">        &gt;&gt;&gt; from ahoyhoy.lb.providers import ListProvider</span>
+<span class="sd">        &gt;&gt;&gt; from ahoyhoy.utils import Host</span>
+<span class="sd">        &gt;&gt;&gt; lb = RoundRobinLB(ListProvider(Host(&#39;google.com&#39;, &#39;80&#39;)))</span>
+<span class="sd">        &gt;&gt;&gt; ep = lb.pick()</span>
+<span class="sd">        &gt;&gt;&gt; ep.get(&#39;/&#39;)</span>
+<span class="sd">        &lt;Response [200]&gt;</span>
+<span class="sd">        &gt;&gt;&gt; ep.open()</span>
+<span class="sd">        &gt;&gt;&gt; ep.get(&#39;/&#39;)</span>
+<span class="sd">        Traceback (most recent call last):</span>
+<span class="sd">         ...</span>
+<span class="sd">        RuntimeError: Circuit state is open, no connections possible.</span>
+
+<span class="sd">    Here&#39;s an example of how circuit opens automatically:</span>
+
+<span class="sd">        &gt;&gt;&gt; from ahoyhoy.lb import RoundRobinLB</span>
+<span class="sd">        &gt;&gt;&gt; from ahoyhoy.lb.providers import ListProvider</span>
+<span class="sd">        &gt;&gt;&gt; from ahoyhoy.utils import Host</span>
+<span class="sd">        &gt;&gt;&gt; lb = RoundRobinLB(ListProvider(Host(&#39;google1.com1&#39;, &#39;80&#39;)))</span>
+<span class="sd">        &gt;&gt;&gt; ep = lb.pick()</span>
+<span class="sd">        &gt;&gt;&gt; ep</span>
+<span class="sd">        &lt;Endpoint/.../Host(address=&#39;google1.com1&#39;, port=&#39;80&#39;)/&lt;class &#39;ahoyhoy.circuit.circuit.ClosedState&#39;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; ep.get(&#39;/&#39;)</span>
+<span class="sd">        Traceback (most recent call last):</span>
+<span class="sd">         ...</span>
+<span class="sd">        requests.exceptions.ConnectionError: HTTPConnectionPool(host=&#39;google1.com1&#39;, port=80): Max retries exceeded with url:...</span>
+<span class="sd">        &gt;&gt;&gt; ep</span>
+<span class="sd">        &lt;Endpoint/.../Host(address=&#39;google1.com1&#39;, port=&#39;80&#39;)/&lt;class &#39;ahoyhoy.circuit.circuit.OpenState&#39;&gt;</span>
+
+<span class="sd">    Before you gasp at the number of lines there, remember that Endpoint is a</span>
+<span class="sd">    relatively low-level component.  Higher-level components are easier to use,</span>
+<span class="sd">    but Endpoints allow full flexibility.</span>
+
+<span class="sd">    The SimpleHttpEndpoint factory function can be used when you don&#39;t need</span>
+<span class="sd">    service discovery.</span>
+
+<span class="sd">        &gt;&gt;&gt; from ahoyhoy.endpoints import SimpleHttpEndpoint</span>
+<span class="sd">        &gt;&gt;&gt; sep = SimpleHttpEndpoint()</span>
+<span class="sd">        &gt;&gt;&gt; sep.get(&#39;http://google.com&#39;)</span>
+<span class="sd">        &lt;Response [200]&gt;</span>
+
+<span class="sd">    Custom exception callback function</span>
+
+<span class="sd">        &gt;&gt;&gt; def exc(e):</span>
+<span class="sd">        ...     return &#39;I caught it!&#39;</span>
+<span class="sd">        &gt;&gt;&gt; ep = Endpoint(Host(&#39;google1.com1&#39;, &#39;80&#39;), exception_callback=exc)</span>
+<span class="sd">        &gt;&gt;&gt; ep.get(&#39;/&#39;)</span>
+<span class="sd">        &#39;I caught it!&#39;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">pre_callback</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">post_callback</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">exception_callback</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">classify</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">retry</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param host: collections.namedtuple, Host(address, port)</span>
+<span class="sd">        :param pre_callback:</span>
+<span class="sd">        :param post_callback:</span>
+<span class="sd">        :param exception_callback:</span>
+<span class="sd">        :param classify: response clissifier. By default it&#39;s :attr:`Circuit&#39;s classify &lt;ahoyhoy.circuit.circuit.StateClassifier.classify&gt;`.</span>
+<span class="sd">        :param retry: function for retrying HTTP calls</span>
+<span class="sd">        :param session: custom session</span>
+<span class="sd">        :param args: positional argument for ServiceDiscoveryHttpClient</span>
+<span class="sd">        :param kwargs: keyword argument for ServiceDiscoveryHttpClient</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">Endpoint</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_host</span> <span class="o">=</span> <span class="n">host</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pre</span> <span class="o">=</span> <span class="n">pre_callback</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_post</span> <span class="o">=</span> <span class="n">post_callback</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_exc</span> <span class="o">=</span> <span class="n">exception_callback</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_retry</span> <span class="o">=</span> <span class="n">retry</span>
+
+        <span class="c1"># override classify if it was passed as a parameter</span>
+        <span class="k">if</span> <span class="n">classify</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">classify</span> <span class="o">=</span> <span class="n">classify</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_host</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="n">ServiceDiscoveryHttpClient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_host</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="n">session</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Create an Endpoint with session </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">host</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_host</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">host</span>
+
+    <span class="c1"># TODO: make this better</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;&lt;{}/{}/{}/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
+                                     <span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_host</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Endpoint.get"><a class="viewcode-back" href="../../../apis/api.html#ahoyhoy.endpoints.Endpoint.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="s2">&quot;get&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="s2">&quot;options&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Endpoint.head"><a class="viewcode-back" href="../../../apis/api.html#ahoyhoy.endpoints.Endpoint.head">[docs]</a>    <span class="k">def</span> <span class="nf">head</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="s2">&quot;head&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Endpoint.post"><a class="viewcode-back" href="../../../apis/api.html#ahoyhoy.endpoints.Endpoint.post">[docs]</a>    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="s2">&quot;post&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Endpoint.put"><a class="viewcode-back" href="../../../apis/api.html#ahoyhoy.endpoints.Endpoint.put">[docs]</a>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="s2">&quot;put&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Endpoint.patch"><a class="viewcode-back" href="../../../apis/api.html#ahoyhoy.endpoints.Endpoint.patch">[docs]</a>    <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="s2">&quot;patch&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Endpoint.delete"><a class="viewcode-back" href="../../../apis/api.html#ahoyhoy.endpoints.Endpoint.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Endpoint.set_retry"><a class="viewcode-back" href="../../../apis/api.html#ahoyhoy.endpoints.Endpoint.set_retry">[docs]</a>    <span class="k">def</span> <span class="nf">set_retry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">retry_func</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_retry</span> <span class="o">=</span> <span class="n">retry_func</span></div>
+
+<div class="viewcode-block" id="Endpoint.set_headers"><a class="viewcode-back" href="../../../apis/api.html#ahoyhoy.endpoints.Endpoint.set_headers">[docs]</a>    <span class="k">def</span> <span class="nf">set_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">headers</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        For all other endpoint methods we don&#39;t need retries.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Calling __getattr__: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+        <span class="n">realfunc</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">realfunc</span><span class="p">):</span>
+            <span class="nd">@wraps</span><span class="p">(</span><span class="n">realfunc</span><span class="p">)</span>
+            <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Return callable with attributes: </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">realfunc</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">func</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Return an attribute.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">realfunc</span></div>
+
+
+<div class="viewcode-block" id="SimpleHttpEndpoint"><a class="viewcode-back" href="../../../apis/api.html#ahoyhoy.endpoints.SimpleHttpEndpoint">[docs]</a><span class="k">def</span> <span class="nf">SimpleHttpEndpoint</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">retry</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simple CircuitBreaking Endpoint that uses a default</span>
+<span class="sd">    (non-service discoverable) client</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">session</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Create SimpleHttpEndpoint with session </span><span class="si">%s</span><span class="s2"> and retry </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">retry</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">Endpoint</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span> <span class="n">retry</span><span class="o">=</span><span class="n">retry</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, NCBI.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

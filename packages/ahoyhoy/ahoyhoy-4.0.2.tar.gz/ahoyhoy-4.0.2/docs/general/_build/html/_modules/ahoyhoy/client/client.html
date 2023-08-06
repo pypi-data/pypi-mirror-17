@@ -1,0 +1,325 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ahoyhoy.client.client &mdash; ahoyhoy 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="ahoyhoy 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for ahoyhoy.client.client</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">abc</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">from</span> <span class="nn">requests.exceptions</span> <span class="kn">import</span> <span class="n">RequestException</span>
+<span class="kn">from</span> <span class="nn">retry.api</span> <span class="kn">import</span> <span class="n">retry_call</span>
+
+<span class="kn">from</span> <span class="nn">..lb.exceptions</span> <span class="kn">import</span> <span class="n">NoAvailableEndpointsLbException</span>
+<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="kn">import</span> <span class="n">AhoyhoyRequestsException</span><span class="p">,</span> <span class="n">NoAvailableEndpointsClientException</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Client"><a class="viewcode-back" href="../../../apis/client.html#ahoyhoy.client.Client">[docs]</a><span class="k">class</span> <span class="nc">Client</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A load balancing, circuit breaking client.</span>
+
+<span class="sd">    Accepts load balancer instance as an argument.</span>
+<span class="sd">    Client can be a duck-typed requests object.</span>
+
+<span class="sd">    Usage examples:</span>
+
+<span class="sd">    1. Client with RoundRobin LB and bad hosts</span>
+
+<span class="sd">    &gt;&gt;&gt; from ahoyhoy.utils import Host</span>
+<span class="sd">    &gt;&gt;&gt; from ahoyhoy.lb.providers import ListProvider</span>
+<span class="sd">    &gt;&gt;&gt; from ahoyhoy.lb import RoundRobinLB</span>
+
+<span class="sd">    &gt;&gt;&gt; bad_host1 = Host(&#39;google1.com1&#39;, &#39;80&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; bad_host2 = Host(&#39;google2.com2&#39;, &#39;80&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; good_host = Host(&#39;google.com&#39;, &#39;80&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; rrlb = RoundRobinLB(ListProvider(bad_host1, bad_host2, good_host))</span>
+<span class="sd">    &gt;&gt;&gt; client = Client(rrlb)</span>
+<span class="sd">    &gt;&gt;&gt; client.get(&#39;/&#39;)</span>
+<span class="sd">    &lt;Response [200]&gt;</span>
+
+
+<span class="sd">    *Note! Client only accepts HTTP calls for now.*</span>
+
+<span class="sd">    Session&#39;s attributes and methods (except HTTP calls) are unavailable for calls</span>
+<span class="sd">    through the Client&#39;s instance.</span>
+<span class="sd">    Because of the dynamic nature of :class:`~ahoyhoy.endpoints.Endpoint` s, all parameters (such as headers etc.)</span>
+<span class="sd">    have to be changed through the client-specific API.</span>
+
+<span class="sd">    Consider these examples:</span>
+
+<span class="sd">    &gt;&gt;&gt; client.headers.update({&#39;bla&#39;: &#39;foo&#39;})</span>
+<span class="sd">    Traceback (most recent call last):</span>
+<span class="sd">    ...</span>
+<span class="sd">    AttributeError: No such attribute: &#39;headers&#39;. Only HTTP methods can be called for now.</span>
+
+<span class="sd">    &gt;&gt;&gt; c = Client(rrlb, headers={&#39;bla&#39;: &#39;foo&#39;})</span>
+<span class="sd">    &gt;&gt;&gt; response = c.get(&#39;/&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; assert &#39;bla&#39; in response.request.headers.keys()</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="c1">#   Retries logic:</span>
+
+<span class="c1">#                                   +---------------------+</span>
+<span class="c1">#                                   |  client.get(&#39;/url&#39;) |</span>
+<span class="c1">#                                   +---------------------+</span>
+<span class="c1">#                                              |</span>
+<span class="c1">#                                              v</span>
+<span class="c1">#                                   +---------------------+</span>
+<span class="c1"># +------&gt;----+------------&gt;-------&gt;| Resolve an Endpoint |</span>
+<span class="c1"># |           |                     +---------------------+</span>
+<span class="c1"># |           |                                |</span>
+<span class="c1"># |           |                                v</span>
+<span class="c1"># |           |                  /----------------------------\</span>
+<span class="c1"># |           |                  | Did LB raise `no available |  No</span>
+<span class="c1"># |           |                  |    endpoints` exception?   |---------+</span>
+<span class="c1"># |           |                  \----------------------------/         |</span>
+<span class="c1"># |           |                                | Yes                    |</span>
+<span class="c1"># |           |                                v                        |</span>
+<span class="c1"># |   +-----------------+  No  /---------------------------------\      |</span>
+<span class="c1"># |   |Update endpoints |&lt;-----| Did max retries amount for up-  |      |</span>
+<span class="c1"># |   |      list       |      | dating endpoints list exceeded? |      |</span>
+<span class="c1"># |   +-----------------+      \---------------------------------/      |</span>
+<span class="c1"># |                                            | Yes                    |</span>
+<span class="c1"># |                                            v                        |</span>
+<span class="c1"># |                             +-------------------------------+       |</span>
+<span class="c1"># |                             |  Client raises `no available  |       |</span>
+<span class="c1"># |                             |      endpoints` exception     |       |</span>
+<span class="c1"># |                             +-------------------------------+       |</span>
+<span class="c1"># |                                                                     v</span>
+<span class="c1"># |                                                       +--------------------------+</span>
+<span class="c1"># |                                                       |      call Endpoint       |</span>
+<span class="c1"># |                                                       |  (endpoint has its own   |</span>
+<span class="c1"># |                                                       |         retries)         |</span>
+<span class="c1"># |                                                       +--------------------------+</span>
+<span class="c1"># |                                                                     :</span>
+<span class="c1"># |                                                                     v</span>
+<span class="c1"># |                                                       Yes /--------------------\</span>
+<span class="c1"># +-----------------------------------------------------------| any Exception from |</span>
+<span class="c1">#                                                             |   failed request?  |</span>
+<span class="c1">#                                                             \--------------------/</span>
+<span class="c1">#                                                                       | No</span>
+<span class="c1">#                                                                       v</span>
+<span class="c1">#                                                             +---------------------+</span>
+<span class="c1">#                                                             |return the response  |</span>
+<span class="c1">#                                                             +---------------------+</span>
+
+    <span class="n">HTTP_CALLS</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;get&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;options&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;post&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;put&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;head&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;patch&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;delete&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lb</span><span class="p">,</span> <span class="n">ep_list_update_tries</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">ep_kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param lb: instance of :class:`~ahoyhoy.lb.iloadbalancer.ILoadBalancer`</span>
+<span class="sd">        :param ep_list_update_tries: how many times to try to update endpoints list in LB</span>
+<span class="sd">        :param ep_kwargs: arguments to pass to an Endpoint (&#39;retry_http_call_func&#39;, &#39;headers&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># abc.ABCMeta will be type for lb</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">lb</span><span class="p">)</span> <span class="ow">is</span> <span class="n">abc</span><span class="o">.</span><span class="n">ABCMeta</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Load Balancer needs to be instantiated first.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lb</span> <span class="o">=</span> <span class="n">lb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ep_list_update_tries</span> <span class="o">=</span> <span class="n">ep_list_update_tries</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ep_kwargs</span> <span class="o">=</span> <span class="n">ep_kwargs</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Create client with lb </span><span class="si">%s</span><span class="s2"> and ep_kwargs </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lb</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ep_kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        LB will pick and return an Endpoint.</span>
+<span class="sd">        If no Endpoints are available, update the LB list</span>
+<span class="sd">        and raise the exception (so it can be then retried).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ep</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lb</span><span class="o">.</span><span class="n">pick</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">NoAvailableEndpointsLbException</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;There are no endpoints available, so update the list for more tries.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lb</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+            <span class="k">raise</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Endpoint was picked: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ep</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">ep</span>
+
+<div class="viewcode-block" id="Client.resolve"><a class="viewcode-back" href="../../../apis/client.html#ahoyhoy.client.Client.resolve">[docs]</a>    <span class="k">def</span> <span class="nf">resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Resolve an Endpoint. If `NoAvailableEndpointsLbException` was raised, it&#39;s possible</span>
+<span class="sd">        to add more &quot;tries&quot;, update Endpoints list and try to resolve it one more time.</span>
+<span class="sd">        (see ._resolve)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ep</span> <span class="o">=</span> <span class="n">retry_call</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_resolve</span><span class="p">,</span> <span class="n">exceptions</span><span class="o">=</span><span class="n">NoAvailableEndpointsLbException</span><span class="p">,</span> <span class="n">tries</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_ep_list_update_tries</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ep</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_augment_endpoint</span><span class="p">(</span><span class="n">ep</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set additional parameters to endpoint.</span>
+<span class="sd">        :param headers dict:</span>
+<span class="sd">        :param retry_http_call_func partial: function which accepts http call func and its arguments</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;_augment_endpoint is called&quot;</span><span class="p">)</span>
+
+        <span class="n">headers</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;headers&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="n">retry_http_call_func</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;retry_http_call_func&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">retry_http_call_func</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Set retries: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">retry_http_call_func</span><span class="p">)</span>
+            <span class="n">ep</span><span class="o">.</span><span class="n">set_retry</span><span class="p">(</span><span class="n">retry_http_call_func</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">headers</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Set headers: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+            <span class="n">ep</span><span class="o">.</span><span class="n">set_headers</span><span class="p">(</span><span class="n">headers</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">ep</span>
+
+    <span class="k">def</span> <span class="nf">_call_endpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Resolve Endpoint, assign all required attributes to it and make an HTTP call.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ep</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+
+        <span class="n">ep</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_augment_endpoint</span><span class="p">(</span><span class="n">ep</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_ep_kwargs</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Call an Endpoint: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ep</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">ep</span><span class="p">,</span> <span class="n">name</span><span class="p">)(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Received the response from the Endpoint.&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">RequestException</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Got RequestException, raise AhoyhoyRequestsException.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">AhoyhoyRequestsException</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Got unexpected exception: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+            <span class="k">raise</span>
+        <span class="k">return</span> <span class="n">response</span>
+
+    <span class="k">def</span> <span class="nf">_dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delegates calls to the Endpoint through the `retry_call` function.</span>
+<span class="sd">        At this stage retries are used to resolve a new Endpoint, if all of the</span>
+<span class="sd">        previous ones failed.</span>
+<span class="sd">        This function will retry unlimited amount of times until `NoAvailableEndpointsLbException`</span>
+<span class="sd">        is finally raised. This will raise final `NoAvailableEndpointsClientException`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># will try to call an endpoint unlimited amount of times until there are no available endpoints</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">retry_call</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_call_endpoint</span><span class="p">,</span> <span class="n">fargs</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">fkwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">exceptions</span><span class="o">=</span><span class="n">AhoyhoyRequestsException</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">NoAvailableEndpointsLbException</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NoAvailableEndpointsClientException</span><span class="p">(</span>
+              <span class="s2">&quot;No available endpoints are found and maximum retries amount for updating an endpoints list exceeded.&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Other methods of endpoint can&#39;t be called through the client,</span>
+<span class="sd">        just because it can be different endpoint already.</span>
+
+<span class="sd">        TODO: delegate all other actions (like client.headers.update(..)) to the client.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">HTTP_CALLS</span><span class="p">:</span>
+            <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Got an HTTP call </span><span class="si">%s</span><span class="s2"> with arguments: </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">wrapper</span>
+
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;No such attribute: &#39;{}&#39;. Only HTTP methods can be called for now.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="SimpleClient"><a class="viewcode-back" href="../../../apis/client.html#ahoyhoy.client.SimpleClient">[docs]</a><span class="k">def</span> <span class="nf">SimpleClient</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">retry_http_call</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Shortcut</span>
+
+<span class="sd">    &gt;&gt;&gt; from ahoyhoy.client.client import SimpleClient</span>
+<span class="sd">    &gt;&gt;&gt; client = SimpleClient().get(&#39;http://google.com&#39;)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">ahoyhoy.endpoints</span> <span class="kn">import</span> <span class="n">SimpleHttpEndpoint</span>
+    <span class="k">return</span> <span class="n">SimpleHttpEndpoint</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span> <span class="n">retry</span><span class="o">=</span><span class="n">retry_http_call</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, NCBI.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

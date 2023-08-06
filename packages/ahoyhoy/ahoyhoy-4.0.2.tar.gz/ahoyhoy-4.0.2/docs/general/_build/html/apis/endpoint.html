@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Endpoint &mdash; ahoyhoy 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="ahoyhoy 2.0.0 documentation" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="endpoint">
+<h1>Endpoint<a class="headerlink" href="#endpoint" title="Permalink to this headline">¶</a></h1>
+<p>Endpoint is a derivative class from the <a class="reference internal" href="circuit.html#ahoyhoy.circuit.Circuit" title="ahoyhoy.circuit.Circuit"><code class="xref py py-class docutils literal"><span class="pre">Circuit</span></code></a>. It delegates all HTTP calls ot the session (which is one of the Endpoint&#8217;s attributes), but can also keep a state. If Endpoint was called and request failed, it&#8217;ll change its state from closed to open.</p>
+<p>Another feature of Endpoint is callbacks. It accepts pre-, post- and exception- callbacks, which allows to do corresponding actions with request, response and exceptions handling.</p>
+<span class="target" id="module-ahoyhoy.endpoints"></span><dl class="class">
+<dt id="ahoyhoy.endpoints.Endpoint">
+<em class="property">class </em><code class="descclassname">ahoyhoy.endpoints.</code><code class="descname">Endpoint</code><span class="sig-paren">(</span><em>host=None</em>, <em>pre_callback=None</em>, <em>post_callback=None</em>, <em>exception_callback=None</em>, <em>classify=None</em>, <em>retry=None</em>, <em>session=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/endpoints/endpoint.html#Endpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">ahoyhoy.circuit.circuit.Circuit</span></code></p>
+<p>Accepts a duck-typed session (a &#8220;Session&#8221; in Requests terms)
+and allows it to work as a Circuit (open|closed state).</p>
+<p>Endpoint simply proxies to <cite>session</cite> methods, so it&#8217;s just as easy
+to use as ServiceDiscoveryHttpClient.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.endpoints</span> <span class="k">import</span> <span class="n">Endpoint</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.utils</span> <span class="k">import</span> <span class="n">Host</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">host</span> <span class="o">=</span> <span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="s1">&#39;443&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span> <span class="o">=</span> <span class="n">Endpoint</span><span class="p">(</span><span class="n">host</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="c">...</span>
+<span class="gr">RuntimeError</span>: <span class="n">Circuit state is open, no connections possible.</span>
+</pre></div>
+</div>
+<p>When using service discovery, this fits nicely with the way that Load Balancers
+work.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb</span> <span class="k">import</span> <span class="n">RoundRobinLB</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb.providers</span> <span class="k">import</span> <span class="n">ListProvider</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.utils</span> <span class="k">import</span> <span class="n">Host</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lb</span> <span class="o">=</span> <span class="n">RoundRobinLB</span><span class="p">(</span><span class="n">ListProvider</span><span class="p">(</span><span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span> <span class="o">=</span> <span class="n">lb</span><span class="o">.</span><span class="n">pick</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+ <span class="c">...</span>
+<span class="gr">RuntimeError</span>: <span class="n">Circuit state is open, no connections possible.</span>
+</pre></div>
+</div>
+<p>Here&#8217;s an example of how circuit opens automatically:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb</span> <span class="k">import</span> <span class="n">RoundRobinLB</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.lb.providers</span> <span class="k">import</span> <span class="n">ListProvider</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.utils</span> <span class="k">import</span> <span class="n">Host</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lb</span> <span class="o">=</span> <span class="n">RoundRobinLB</span><span class="p">(</span><span class="n">ListProvider</span><span class="p">(</span><span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google1.com1&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span> <span class="o">=</span> <span class="n">lb</span><span class="o">.</span><span class="n">pick</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span>
+<span class="go">&lt;Endpoint/.../Host(address=&#39;google1.com1&#39;, port=&#39;80&#39;)/&lt;class &#39;ahoyhoy.circuit.circuit.ClosedState&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+ <span class="c">...</span>
+<span class="gr">requests.exceptions.ConnectionError</span>: <span class="n">HTTPConnectionPool(host=&#39;google1.com1&#39;, port=80): Max retries exceeded with url:...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span>
+<span class="go">&lt;Endpoint/.../Host(address=&#39;google1.com1&#39;, port=&#39;80&#39;)/&lt;class &#39;ahoyhoy.circuit.circuit.OpenState&#39;&gt;</span>
+</pre></div>
+</div>
+<p>Before you gasp at the number of lines there, remember that Endpoint is a
+relatively low-level component.  Higher-level components are easier to use,
+but Endpoints allow full flexibility.</p>
+<p>The SimpleHttpEndpoint factory function can be used when you don&#8217;t need
+service discovery.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ahoyhoy.endpoints</span> <span class="k">import</span> <span class="n">SimpleHttpEndpoint</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sep</span> <span class="o">=</span> <span class="n">SimpleHttpEndpoint</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sep</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">)</span>
+<span class="go">&lt;Response [200]&gt;</span>
+</pre></div>
+</div>
+<p>Custom exception callback function</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">exc</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="s1">&#39;I caught it!&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span> <span class="o">=</span> <span class="n">Endpoint</span><span class="p">(</span><span class="n">Host</span><span class="p">(</span><span class="s1">&#39;google1.com1&#39;</span><span class="p">,</span> <span class="s1">&#39;80&#39;</span><span class="p">),</span> <span class="n">exception_callback</span><span class="o">=</span><span class="n">exc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ep</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="go">&#39;I caught it!&#39;</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>host</strong> &#8211; collections.namedtuple, Host(address, port)</li>
+<li><strong>pre_callback</strong> &#8211; </li>
+<li><strong>post_callback</strong> &#8211; </li>
+<li><strong>exception_callback</strong> &#8211; </li>
+<li><strong>classify</strong> &#8211; response clissifier. By default it&#8217;s <a class="reference internal" href="circuit.html#ahoyhoy.circuit.circuit.StateClassifier.classify" title="ahoyhoy.circuit.circuit.StateClassifier.classify"><code class="xref py py-attr docutils literal"><span class="pre">Circuit's</span> <span class="pre">classify</span></code></a>.</li>
+<li><strong>retry</strong> &#8211; function for retrying HTTP calls</li>
+<li><strong>session</strong> &#8211; custom session</li>
+<li><strong>args</strong> &#8211; positional argument for ServiceDiscoveryHttpClient</li>
+<li><strong>kwargs</strong> &#8211; keyword argument for ServiceDiscoveryHttpClient</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="ahoyhoy.endpoints.Endpoint.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/endpoints/endpoint.html#Endpoint.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.endpoints.Endpoint.post">
+<code class="descname">post</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/endpoints/endpoint.html#Endpoint.post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.endpoints.Endpoint.put">
+<code class="descname">put</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/endpoints/endpoint.html#Endpoint.put"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint.put" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.endpoints.Endpoint.head">
+<code class="descname">head</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/endpoints/endpoint.html#Endpoint.head"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint.head" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.endpoints.Endpoint.patch">
+<code class="descname">patch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/endpoints/endpoint.html#Endpoint.patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint.patch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.endpoints.Endpoint.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/endpoints/endpoint.html#Endpoint.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint.delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ahoyhoy.endpoints.Endpoint.host">
+<code class="descname">host</code><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint.host" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ahoyhoy.endpoints.Endpoint.state">
+<code class="descname">state</code><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint.state" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.endpoints.Endpoint.set_headers">
+<code class="descname">set_headers</code><span class="sig-paren">(</span><em>headers</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/endpoints/endpoint.html#Endpoint.set_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint.set_headers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ahoyhoy.endpoints.Endpoint.set_retry">
+<code class="descname">set_retry</code><span class="sig-paren">(</span><em>retry_func</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/endpoints/endpoint.html#Endpoint.set_retry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.endpoints.Endpoint.set_retry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="ahoyhoy.endpoints.SimpleHttpEndpoint">
+<code class="descclassname">ahoyhoy.endpoints.</code><code class="descname">SimpleHttpEndpoint</code><span class="sig-paren">(</span><em>session=None</em>, <em>retry=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ahoyhoy/endpoints/endpoint.html#SimpleHttpEndpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ahoyhoy.endpoints.SimpleHttpEndpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple CircuitBreaking Endpoint that uses a default
+(non-service discoverable) client</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/apis/endpoint.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, NCBI.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/apis/endpoint.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
