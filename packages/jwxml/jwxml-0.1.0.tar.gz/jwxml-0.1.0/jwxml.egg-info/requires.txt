@@ -1,0 +1,6 @@
+numpy>=1.9
+matplotlib>=1.4.3
+
+[dev]
+check-manifest>=0.34
+lxml>=3.6.4
