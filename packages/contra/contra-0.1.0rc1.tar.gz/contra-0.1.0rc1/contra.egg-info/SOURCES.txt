@@ -1,0 +1,12 @@
+MANIFEST.in
+contra.pyx
+setup.cfg
+setup.py
+versioneer.py
+aux/_version.py
+contra.egg-info/PKG-INFO
+contra.egg-info/SOURCES.txt
+contra.egg-info/dependency_links.txt
+contra.egg-info/requires.txt
+contra.egg-info/top_level.txt
+src/bstree.cpp
