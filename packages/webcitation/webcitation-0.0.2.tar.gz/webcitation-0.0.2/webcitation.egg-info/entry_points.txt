@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        webcitation=webcitation.api:cli
+    
