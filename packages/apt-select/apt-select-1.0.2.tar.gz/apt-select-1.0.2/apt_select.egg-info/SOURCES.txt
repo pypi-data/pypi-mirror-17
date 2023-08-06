@@ -1,0 +1,16 @@
+README.rst
+setup.cfg
+setup.py
+apt_select/__init__.py
+apt_select/apt_system.py
+apt_select/arguments.py
+apt_select/mirrors.py
+apt_select/utils.py
+apt_select.egg-info/PKG-INFO
+apt_select.egg-info/SOURCES.txt
+apt_select.egg-info/dependency_links.txt
+apt_select.egg-info/requires.txt
+apt_select.egg-info/top_level.txt
+bin/apt-select
+test/test_apt_system.py
+test/test_mirrors.py
