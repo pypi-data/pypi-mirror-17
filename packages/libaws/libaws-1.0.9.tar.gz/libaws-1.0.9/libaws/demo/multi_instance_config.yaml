@@ -1,0 +1,63 @@
+
+- instance:
+    input:
+        name: ceph_deploy_machine 
+        image_id: ami-d99cb7ba 
+        keyname: ap-southeast-2_default_test_access_key 
+        subnet_id:
+            value: subnet-3d2e377b 
+        number: 1
+        instance_type: i2.2xlarge 
+        security_group_ids:
+            value: [sg-70bd2e14]
+        tags:
+            - tag:
+                key: Name
+                value: ceph_deploy_instance 
+
+        spot:
+            price: 2.035 
+            #           availability_zone_group: ggg
+            #duration: 10 
+
+- instance:
+    input:
+        name: ceph_osd_machine 
+        image_id: ami-9892b9fb 
+        keyname: ap-southeast-2_default_test_access_key 
+        subnet_id:
+            value: subnet-3d2e377b 
+        number: 1
+        instance_type: i2.2xlarge 
+        security_group_ids:
+            value: [sg-70bd2e14]
+        tags:
+            - tag:
+                key: Name
+                value: ceph_osd_instance 
+
+        spot:
+            price: 2.035 
+            #           availability_zone_group: ggg
+            #duration: 10 
+
+- instance:
+    input:
+        name: ceph_client_machine 
+        image_id: ami-1493b877  
+        keyname: ap-southeast-2_default_test_access_key 
+        subnet_id:
+            value: subnet-3d2e377b 
+        number: 1
+        instance_type: c4.8xlarge
+        security_group_ids:
+            value: [sg-70bd2e14]
+        tags:
+            - tag:
+                key: Name
+                value: ceph_client_instance 
+
+        spot:
+            #           availability_zone_group: ggg
+            duration: 6 
+

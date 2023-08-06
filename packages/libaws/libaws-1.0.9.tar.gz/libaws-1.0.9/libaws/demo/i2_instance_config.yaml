@@ -1,0 +1,76 @@
+- instance:
+    input:
+        name: ceph_zookeeper_machine 
+        image_id: ami-c7cdf8a4 
+        keyname: ap-southeast-2_default_test_access_key 
+        subnet_id:
+            value: subnet-3d2e377b 
+        number: 1 
+        instance_type: t2.micro 
+        security_group_ids:
+            value: [sg-70bd2e14]
+        tags:
+            - tag:
+                key: Name
+                value: ceph_test_zookeeper_instance 
+
+- instance:
+    input:
+        name: ceph_docker_machine 
+        image_id: ami-7ca2881f 
+        keyname: ap-southeast-2_default_test_access_key 
+        subnet_id:
+            value: subnet-3d2e377b 
+        number: 1 
+        instance_type: t2.micro 
+        security_group_ids:
+            value: [sg-70bd2e14]
+        tags:
+            - tag:
+                key: Name
+                value: ceph_test_docker_instance 
+
+- instance:
+    input:
+        name: ceph_deploy_machine 
+        image_id: ami-9acdf8f9 
+        keyname: ap-southeast-2_default_test_access_key 
+        subnet_id:
+            value: subnet-3d2e377b 
+        number: 1
+        instance_type: i2.2xlarge 
+        security_group_ids:
+            value: [sg-70bd2e14]
+        tags:
+            - tag:
+                key: Name
+                value: ceph_test_deploy_instance 
+
+        spot:
+            price: 1 
+            wait_until_complete: 1
+            #           availability_zone_group: ggg
+            #            duration: 6
+
+- instance:
+    input:
+        name: ceph_osd_machine 
+        image_id: ami-18c3f67b 
+        keyname: ap-southeast-2_default_test_access_key 
+        subnet_id:
+            value: subnet-3d2e377b 
+        number: 2 
+        instance_type: i2.2xlarge 
+        security_group_ids:
+            value: [sg-70bd2e14]
+        tags:
+            - tag:
+                key: Name
+                value: ceph_test_osd_instance 
+
+        spot:
+            price: 1 
+            wait_until_complete: 1
+            #           availability_zone_group: ggg
+            #   duration: 6 
+
