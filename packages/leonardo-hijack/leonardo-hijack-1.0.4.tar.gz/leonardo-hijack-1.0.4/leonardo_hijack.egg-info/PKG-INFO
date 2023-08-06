@@ -1,0 +1,45 @@
+Metadata-Version: 1.1
+Name: leonardo-hijack
+Version: 1.0.4
+Summary: Leonardo module which wrapps django-hijack allows superusers to hijack (=login as) and work on behalf of other users without knowing their credentials.
+Home-page: https://github.com/leonardo-modules/leonardo-hijack
+Author: Michael Kuty
+Author-email: UNKNOWN
+License: UNKNOWN
+Description: ==========================
+        Leonardo leonardo-hijack
+        ==========================
+        
+        Leonardo module which wrapps django-hijack allows superusers to hijack (=login as) and work on behalf of other users without knowing their credentials.
+        
+        .. contents::
+            :local:
+        
+        Installation
+        ------------
+        
+        .. code-block:: bash
+        
+            pip install leonardo-hijack
+        
+        Read More
+        =========
+        
+        * https://github.com/django-leonardo/django-leonardo
+        * https://github.com/arteria/django-hijack
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
