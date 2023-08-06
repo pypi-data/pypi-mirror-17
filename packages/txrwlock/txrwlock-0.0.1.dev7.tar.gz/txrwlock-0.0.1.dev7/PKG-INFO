@@ -1,0 +1,76 @@
+Metadata-Version: 1.1
+Name: txrwlock
+Version: 0.0.1.dev7
+Summary: Readers/Writer Lock for Twisted
+Home-page: UNKNOWN
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Description: ===============================
+        txrwlock
+        ===============================
+        
+        Readers/Writer Lock for Twisted
+        
+        * Free software: MIT
+        * Documentation: txrwlock.readthedocs.org/en/latest/
+        * Source:
+        
+        Features
+        --------
+        
+        * TODO
+        
+        Usage
+        -----
+        
+        Create a virtualenv:
+        
+        .. code-block:: bash
+        
+            $ virtualenv venv
+            $ source venv/bin/activate
+            $ pip install --upgrade pip  # Force upgrade to latest version of pip
+        
+        Setup for production:
+        
+        .. code-block:: bash
+        
+            $ pip install -r requirements.txt .
+        
+        Setup for development and unit tests
+        
+        .. code-block:: bash
+        
+            $ pip install --upgrade -r requirements.txt -r requirements-dev.txt -e .
+        
+        Build source package:
+        
+        .. code-block:: bash
+        
+            python setup.py sdist
+        
+        Build binary package:
+        
+        .. code-block:: bash
+        
+            python setup.py bdist
+        
+        Build Wheel package:
+        
+        .. code-block:: bash
+        
+            python setup.py bdist_wheel
+        
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
