@@ -1,0 +1,17 @@
+Metadata-Version: 2.0
+Name: confipy
+Version: 0.0.2
+Summary: A convenient config file reader.
+Home-page: https://github.com/mansenfranzen/confipy
+Author: Franz Woellert
+Author-email: franz.woellert@gmail.com
+License: MIT
+Download-URL: https://github.com/mansenfranzen/confipy/tarball/0.0.1
+Keywords: config,yaml
+Platform: UNKNOWN
+Requires-Dist: PyYAML
+Requires-Dist: six
+
+UNKNOWN
+
+
