@@ -1,0 +1,17 @@
+[console_scripts]
+asm = pwnlib.commandline.asm:main
+checksec = pwnlib.commandline.checksec:main
+common = pwnlib.commandline.common:main
+constgrep = pwnlib.commandline.constgrep:main
+cyclic = pwnlib.commandline.cyclic:main
+disasm = pwnlib.commandline.disasm:main
+elfdiff = pwnlib.commandline.elfdiff:main
+elfpatch = pwnlib.commandline.elfpatch:main
+errno = pwnlib.commandline.errno:main
+hex = pwnlib.commandline.hex:main
+phd = pwnlib.commandline.phd:main
+pwnstrip = pwnlib.commandline.pwnstrip:main
+scramble = pwnlib.commandline.scramble:main
+shellcraft = pwnlib.commandline.shellcraft:main
+unhex = pwnlib.commandline.unhex:main
+
