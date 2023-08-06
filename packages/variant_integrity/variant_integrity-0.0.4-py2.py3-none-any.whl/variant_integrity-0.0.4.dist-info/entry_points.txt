@@ -1,0 +1,3 @@
+[console_scripts]
+variant_integrity = variant_integrity.__main__:cli
+
