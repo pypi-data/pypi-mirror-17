@@ -1,0 +1,25 @@
+Metadata-Version: 2.0
+Name: cs251tk
+Version: 2.1.0
+Summary: The CS251 (Software Design) Toolkit
+Home-page: https://github.com/stodevx/cs251-toolkit
+Author: Hawken Rives
+Author-email: hawkrives@gmail.com
+License: MIT
+Keywords: stolaf course-tooling
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: PyYAML (==3.*)
+Requires-Dist: natsort (==5.0.*)
+Requires-Dist: requests (==2.*)
+Requires-Dist: termcolor (==1.*)
+
+UNKNOWN
+
+
