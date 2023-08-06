@@ -1,0 +1,3 @@
+[console_scripts]
+c = cc.c:make_cli
+
