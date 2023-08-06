@@ -1,0 +1,50 @@
+#######################################
+django-templateaddons3's documentation!
+#######################################
+
+django-templateaddons3 is a set of tools for use with Django's templates,
+template tags and context processors. It provides additional template tags,
+context processors and utilities for template tag development.
+
+*****
+Links
+*****
+
+HTML documentation
+  `Browse the HTML documentation online
+  <http://django-templateaddons3.readthedocs.io/en/latest/>`_.
+
+RestructuredText documentation
+  `Read the RestructuredText documentation in the docs/ folder in the source
+  code <https://github.com/django-templateaddons/django-templateaddons3/tree/master/docs>`_.
+
+Source code repository
+  `Follow the project on GitHub
+  <https://github.com/django-templateaddons/django-templateaddons3>`_.
+
+Pypi
+  The project is known as
+  `django-templateaddons3 <http://pypi.python.org/pypi/django-templateaddons3>`_
+  in the Python package index.
+
+********
+Contents
+********
+
+.. toctree::
+   :maxdepth: 2
+
+   install
+   template_tags/index
+   developer_tools/index
+   context_processors/index
+   LICENSE
+   AUTHORS
+   CHANGES
+
+*******************
+Credits and license
+*******************
+
+This application is published under the BSD license. See :doc:`LICENSE` and
+:doc:`AUTHORS` for details.
