@@ -1,0 +1,16 @@
+[paths]
+source =
+   src/brite_etl
+   */site-packages/brite_etl
+
+[run]
+branch = true
+source =
+    brite_etl
+    tests
+parallel = true
+
+[report]
+show_missing = true
+precision = 2
+omit = *migrations*
