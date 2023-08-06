@@ -1,0 +1,79 @@
+language: python
+
+sudo: false
+
+env:
+  global:
+    - USE_CONDA=false
+    - COVERAGE=""
+
+python:
+  - 2.6
+  - 2.7
+  - 3.2
+  - 3.3
+  - 3.4
+  - 3.5
+  - pypy
+  - pypy3
+
+matrix:
+  include:
+    - python: 2.7
+      env:
+        - USE_CONDA=true
+        - COVERAGE=--coverage
+
+    - python: 3.5
+      env: USE_CONDA=true
+
+    - python: 2.7
+      env:
+        - PYFLAKES=1
+      install:
+        - pip install pyflakes
+      script:
+        - |
+          SKIP="unable to detect undefined names"
+          SKIP="$SKIP|assigned to but never used"
+          SKIP="$SKIP|imported but unused"
+          SKIP="$SKIP|redefinition of unused"
+          SKIP="$SKIP|test/test_repo_template/asv_test_repo/__init__.py"
+          SKIP="$SKIP|asv/extern/asizeof.py"
+          SKIP="$SKIP|asv/benchmark.py.*undefined name .(run|params)."
+          PYFLAKES_NODOCTEST=1 pyflakes asv test | grep -E -v "$SKIP" > test.out; cat test.out; test \! -s test.out
+
+install:
+  - |
+    set -ev
+    export TRAVIS_PYTHON=`which python`
+    export TRAVIS_PIP=`which pip`
+    if [[ $USE_CONDA == true ]]; then
+      wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh;
+      chmod +x miniconda.sh;
+      ./miniconda.sh -b;
+      export PATH=$HOME/miniconda2/bin:$PATH;
+      conda update --yes conda;
+      mv $HOME/miniconda2/bin/conda $HOME/miniconda2/bin/conda.real;
+      echo -e '#!/bin/bash\n' > $HOME/miniconda2/bin/conda;
+      declare -f travis_retry >> $HOME/miniconda2/bin/conda;
+      echo -e '\ntravis_retry "$HOME/miniconda2/bin/conda.real" "$@"' >> $HOME/miniconda2/bin/conda;
+      chmod +x $HOME/miniconda2/bin/conda;
+      if $TRAVIS_PYTHON -c 'import virtualenv'; then echo "ERROR: virtualenv package is installed"; exit 1; fi;
+    else
+      if [[ "$TRAVIS_PYTHON_VERSION" == "3.2" ]]; then
+        $TRAVIS_PIP install 'virtualenv<14';
+      else
+        $TRAVIS_PIP install virtualenv;
+      fi
+    fi
+    if [[ $TRAVIS_PYTHON_VERSION == 2* ]]; then $TRAVIS_PIP install mercurial ; fi;
+    if [[ $TRAVIS_PYTHON_VERSION == 2* ]]; then $TRAVIS_PIP install python-hglib ; fi;
+    $TRAVIS_PIP install selenium six pytest feedparser;
+    if [[ $COVERAGE != '' ]]; then $TRAVIS_PIP install coverage pytest-coverage coveralls; fi;
+
+script:
+  - $TRAVIS_PYTHON setup.py test $COVERAGE
+
+after_success:
+  - if [[ $COVERAGE != '' ]]; then coveralls; fi
