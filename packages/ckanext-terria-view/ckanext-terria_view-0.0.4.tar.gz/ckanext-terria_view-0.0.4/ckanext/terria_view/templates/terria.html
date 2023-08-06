@@ -1,0 +1,65 @@
+<script>
+
+  function makePopupSendMessage(message, domain, path)
+  {
+    var url = domain + path;
+    var name = (url + window.location.origin).toLowerCase().replace(/[^a-z]/g, '');
+    var popup = window.open(null, name);
+    
+    function post()
+    {
+      message.allowOrigin = window.location.origin;
+      popup.postMessage(message, domain);
+    }
+    
+    function check()
+    {
+      try
+      {
+        if (popup.location.toString() === 'about:blank')
+        {
+          popup.location.href = url;
+        }
+        setTimeout(post, 1000);
+      } catch(e)
+      {
+        // console.error(e);
+        post();
+      }
+    }
+    setTimeout(check, 1000);
+    
+    window.addEventListener('message', function()
+    {
+      if (event.origin === domain && event.data === 'ready')
+      {
+        post();
+      }
+    }, false);
+  }
+
+  window.terriaJSPreview = function()
+  {
+    var url = '{{ terria_instance_url }}';
+    if (url.match(/^[/][/]/))
+    {
+      url = window.location.protocol + url;
+    }
+    var destination = new (URL || webkitURL)(url);
+    var message = JSON.parse(decodeURIComponent('{{ encoded_config }}'));
+    makePopupSendMessage(message, destination.origin, destination.pathname);
+  };
+
+</script>
+<a
+  class="btn pull-right"
+  style="margin-bottom: 10px;"
+  href="#"
+  onclick="terriaJSPreview(event)">
+  {{ _('View in a separate') }} {{title}} {{ _('window') }}
+</a>
+<iframe
+  src="{{ terria_instance_url }}#start={{ encoded_config }}"
+  style="height: 600px; width: 100%; border: none;"
+  allowFullScreen mozAllowFullScreen webkitAllowFullScreen>
+</iframe>
