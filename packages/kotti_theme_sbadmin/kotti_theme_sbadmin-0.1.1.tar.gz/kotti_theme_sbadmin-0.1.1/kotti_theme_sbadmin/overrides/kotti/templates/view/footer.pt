@@ -1,0 +1,11 @@
+<hr />
+
+
+<footer class="footer" version="${api.version | ''}">
+    <div>
+        <strong>Copyright</strong> DPK Information Systems Ltd &copy; 2016
+        <span class="pull-right">Version: ${api.version | ''}</span>
+        <br/>
+        <span class="pull-right" tal:condition="api.has_permission('admin', api.root)">See <a href="/changelog">Changelog</a> for release details.</span>
+    </div>
+</footer>

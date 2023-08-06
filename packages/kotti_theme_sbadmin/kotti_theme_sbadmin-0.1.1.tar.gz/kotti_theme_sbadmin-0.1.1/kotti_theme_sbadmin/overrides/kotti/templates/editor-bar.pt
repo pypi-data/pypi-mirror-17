@@ -1,0 +1,28 @@
+<nav class="navbar-default navbar-static-side blunav" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-label">
+            	<div class="main-brand" style=" ${'margin-bottom: 30px' if request.user is None else ''} " >
+            		<a href="/">
+                  <!-- <h1 class="logo">Help</h1> -->
+                  <img alt="image" class="brand-logo" src="/fanstatic/kotti_theme_sbadmin/img/logo.png">
+                </a>
+            	</div>
+            </li>
+            <li class="nav-header blunav" tal:condition="request.user is not None">
+                <div tal:replace="api.render_template('kotti:templates/user-nav-bar.pt')" />
+            </li>
+
+          <div tal:omit-tag="" tal:define="items [i for i in api.list_children(api.navigation_root) if i.in_navigation]"
+              tal:repeat="item items">
+            <li
+                class="${api.inside(context, item) and 'active' or None}">
+              <a href="${api.url(item)}" title="${item.description}" class="menu menu-${item.name}" >
+                <i class="fa fa-file-text-o"></i>
+                ${item.title}
+              </a>
+            </li>
+          </div>
+        </ul>
+    </div>
+</nav>
