@@ -1,0 +1,53 @@
+
+<nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+<div class="navbar-header">
+    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+    <ul tal:condition="api.has_permission('edit')" class="nav navbar-nav navbar-left" tal:define="disable_context_links disable_context_links | False">
+      <tal:condition tal:condition="api.has_permission('edit')">
+        <li tal:replace="api.render_view('workflow-dropdown')" />
+      </tal:condition>
+
+      <li class="${api.url() == request.url and 'active' or None}">
+        <a href="${api.url()}" i18n:translate="">View</a>
+      </li>
+
+      <tal:condition tal:condition="not disable_context_links">
+        <tal:repeat tal:repeat="link api.edit_links">
+          ${link(context, request)}
+        </tal:repeat>
+      </tal:condition>
+
+      <tal:condition tal:condition="not disable_context_links">
+        <tal:condition tal:condition="api.has_permission('admin')">
+          <ul tal:replace="api.render_view('actions-dropdown')" />
+        </tal:condition>
+        <tal:condition tal:condition="api.has_permission('admin')">
+          <li class="divider-vertical"></li>
+          <ul tal:replace="api.render_view('add-dropdown') | ''" />
+        </tal:condition>
+      </tal:condition>
+    </ul>
+</div>
+    <ul class="nav navbar-nav navbar-top-links navbar-right">
+      <li tal:condition="request.has_permission('admin')">
+        <div tal:replace="api.render_template('kotti:templates/view/search.pt')" />
+      </li>
+      <li tal:condition="request.user is None">
+        <a tal:attributes="href api.url(api.root, '@@login', query={'came_from': request.url, })">
+          Log in
+        </a>
+      </li>
+        <li >
+          <a tal:attributes="href api.url(api.root, '@@logout', query={'came_from': request.url, }) if request.user else api.url(api.root)">
+            <i class="fa fa-sign-out"></i>
+            <span tal:condition="request.user is None">
+              Back to Home
+            </span>
+            <span tal:condition="request.user is not None">
+              Log out
+            </span>
+          </a>
+        </li>
+    </ul>
+
+</nav>

@@ -1,0 +1,152 @@
+/*
+ *
+ *   DPIS + INSPINIA - Responsive Admin Theme
+ *   version 2.4
+ *
+*/
+
+.dataTables_length.jbmod {
+    float: none;
+    padding: 14px 20px 14px 25px;
+}
+
+.dataTables_length.jbmod label {
+	color: #a7b1c2;
+	font-weight: 600;
+}
+
+.form-control.input-sm.in-dashboard {
+	display: inline-block;
+    width: 80px;
+    color: #676a6c;
+}
+
+.html5buttons {
+    display: none;
+}
+
+.profile-element {
+	font-weight: 300;
+}
+
+.btn-smaller {
+	padding: 3px 6px;
+}
+
+.float-e-margins .btn {
+    margin-bottom: 0px;
+}
+
+select.form-control.input-sm.parish_selector {
+    display: inline-block;
+    width: auto;
+}
+
+.parish-toggle {
+	font-weight: normal;
+}
+
+.brand-logo {
+	margin-top: 10px;
+  width: 100px;
+}
+
+.brand-logo.mininav {
+	height:40px;
+	padding: 10px 0px;
+}
+
+.main-brand {
+  text-align: center;
+}
+
+img.login-logo {
+	width: 300px;
+}
+
+.logo{
+  color: white;
+}
+
+.all-reports {
+	margin: 0 0 15px 0;
+}
+
+.selectors {
+	margin-top: 10px;
+}
+
+.dataTables_length.regions {
+	padding-right: 20px
+}
+
+#wrapper {
+	background-color: #21204A;
+}
+
+.navbar-default .nav > li > a:hover,
+.navbar-default .nav > li > a:focus {
+  background-color: #191938;
+  color: white;
+}
+
+.nav-header {
+	background: none;
+}
+
+.navbar-default .nav > li.active {
+  border-left: 4px solid #FDD01F;
+  background: #191938;
+}
+
+.btn-primary {
+    background-color: #46A1BC;
+    border-color: #46A1BC;
+    color: #FFFFFF;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary,
+.btn-primary:active:focus,
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.btn-primary.active:focus {
+    background-color: #649CBC;
+    border-color: #649CBC;
+    color: #FFFFFF;
+}
+
+.btn-warning {
+  border-color: #D8232A;
+  color: #FFFFFF;
+}
+
+.btn-warning.btn-outline {
+  color: #D8232A;
+}
+
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning:active,
+.btn-warning.active,
+.open .dropdown-toggle.btn-warning,
+.btn-warning:active:focus,
+.btn-warning:active:hover,
+.btn-warning.active:hover,
+.btn-warning.active:focus {
+  background-color: #D8232A;
+  border-color: #D8232A;
+  color: #FFFFFF;
+}
+
+body.mini-navbar .nav-header {
+    padding: 0;
+    background-color: #46A1BC;
+}
+
+.form-control:focus, .single-line:focus {
+    border-color: #46A1BC !important;
+}
