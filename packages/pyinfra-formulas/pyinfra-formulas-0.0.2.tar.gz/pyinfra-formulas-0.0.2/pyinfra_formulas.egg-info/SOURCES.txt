@@ -1,0 +1,10 @@
+MANIFEST.in
+setup.py
+formulas/__init__.py
+formulas/nginx/__init__.py
+formulas/nginx/files/static_website.nginx
+pyinfra_formulas.egg-info/PKG-INFO
+pyinfra_formulas.egg-info/SOURCES.txt
+pyinfra_formulas.egg-info/dependency_links.txt
+pyinfra_formulas.egg-info/requires.txt
+pyinfra_formulas.egg-info/top_level.txt
