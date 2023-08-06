@@ -1,0 +1,28 @@
+Metadata-Version: 2.0
+Name: rigexpert-tool
+Version: 1.0.0
+Summary: CLI tool to dump, plot, or convert RigExpert Antenna Analyzer impedance sweeps
+Home-page: https://github.com/vsergeev/rigexpert-tool
+Author: vsergeev
+Author-email: v@sergeev.io
+License: MIT
+Keywords: rigexpert vswr swr antenna analyzer
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Communications :: Ham Radio
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Dist: matplotlib
+Requires-Dist: pyserial
+Requires-Dist: scipy
+
+rigexpert-tool is a CLI tool to dump, plot, and convert impedance sweeps from a `RigExpert <http://www.rigexpert.com/>`_ antenna analyzer. The sweeps are stored in CSV. See https://github.com/vsergeev/rigexpert-tool for examples and more information.
+
+
