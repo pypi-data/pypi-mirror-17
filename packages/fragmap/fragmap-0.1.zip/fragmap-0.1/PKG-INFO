@@ -1,0 +1,31 @@
+Metadata-Version: 1.1
+Name: fragmap
+Version: 0.1
+Summary: Visualize a timeline of Git commit changes on a grid
+Home-page: https://github.com/amollberg/fragmap
+Author: Alexander Mollberg
+Author-email: amollberg@users.noreply.github.com
+License: BSD
+Description: # git fragmap - better commit visualization for git
+        
+        
+        # Requirements
+        
+        npyscreen, which requires curses. For Windows curses can be obtained precompiled from http://www.lfd.uci.edu/~gohlke/pythonlibs/#curses
+        Install using pip, example:
+        
+            pip install curses-2.2-cp27-none-win_amd64.whl
+        
+        Npyscreen itself has to be built from the included npyscreen/ directory, as we
+        require some non-standard functionality that has been patched into this directory.
+        Simply do:
+        
+            cd npyscreen/
+            python setup.py install
+Keywords: git visualization console terminal
+Platform: UNKNOWN
+Classifier: Topic :: Software Development :: Version Control
+Classifier: Environment :: Console
+Classifier: Environment :: Console :: Curses
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: BSD License
