@@ -1,0 +1,16 @@
+Metadata-Version: 2.0
+Name: xmler
+Version: 0.2.0
+Summary: Converts a Python dictionary into a XML string with namespace support.
+Home-page: https://github.com/iDev0urer/xmler
+Author: Chris Watson
+Author-email: chris@marginzero.co
+License: LICENCE
+Download-URL: https://pypi.python.org/packages/source/d/xmler/xmler-0.2.0.tar.gz?raw=true
+Platform: Cross-platform
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+
+Long description and usage instructions can be found at https://github.com/iDev0urer/xmler
+
+
