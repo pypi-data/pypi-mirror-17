@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: robotframework-ride-tortoisesvn
+Version: 0.1.1
+Summary: TortoiseSVN plugin for Robotframework IDE (RIDE).
+Home-page: https://github.com/ukostas/robotframework-ride-tortoisesvn
+Author: ukostas
+Author-email: UNKNOWN
+License: UNKNOWN
+Description: TortoiseSVN plugin for RIDE(robotframework IDE) adds additional menu item
+        to trigger TortoiseSVN (it has to be installed separately) commands.
+        So that RIDE users can update/commit/etc. directly from RIDE.
+Keywords: robotframework testing testautomation tortoise svn plugin ride
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Environment :: Plugins
+Classifier: Topic :: Software Development :: Testing
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Robot Framework
+Classifier: Operating System :: Microsoft :: Windows
