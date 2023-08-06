@@ -1,0 +1,11 @@
+[console_scripts]
+housekeeper = housekeeper.cli:root
+
+[housekeeper.subcommands.1]
+add = housekeeper.pipelines.cli:add
+archive = housekeeper.store.cli:archive
+delete = housekeeper.store.cli:delete
+get = housekeeper.store.cli:get
+init = housekeeper.initiate:init
+list = housekeeper.store.cli:list_cmd
+
