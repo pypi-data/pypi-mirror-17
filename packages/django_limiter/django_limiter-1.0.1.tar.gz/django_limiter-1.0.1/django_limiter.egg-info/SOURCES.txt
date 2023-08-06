@@ -1,0 +1,11 @@
+README.rst
+setup.py
+django_limiter/__init__.py
+django_limiter/middleware.py
+django_limiter/settings.py
+django_limiter/urls.py
+django_limiter/views.py
+django_limiter.egg-info/PKG-INFO
+django_limiter.egg-info/SOURCES.txt
+django_limiter.egg-info/dependency_links.txt
+django_limiter.egg-info/top_level.txt
