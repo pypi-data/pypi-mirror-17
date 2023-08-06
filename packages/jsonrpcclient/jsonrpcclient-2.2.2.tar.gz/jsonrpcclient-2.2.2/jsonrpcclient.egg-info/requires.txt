@@ -1,0 +1,11 @@
+future
+jsonschema
+
+[requests]
+requests
+
+[tornado]
+tornado
+
+[zmq]
+pyzmq
