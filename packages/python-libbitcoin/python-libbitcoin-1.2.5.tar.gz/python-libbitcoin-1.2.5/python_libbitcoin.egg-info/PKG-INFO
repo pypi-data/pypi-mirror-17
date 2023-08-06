@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: python-libbitcoin
+Version: 1.2.5
+Summary: Python client side library for libbitcoin-server.
+Home-page: https://github.com/rojavacrypto/python-libbitcoin
+Author: DarkWallet
+Author-email: policeterror@dyne.org
+License: AGPL
+Description: UNKNOWN
+Keywords: bitcoin libbitcoin blockchain library
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Security :: Cryptography
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
