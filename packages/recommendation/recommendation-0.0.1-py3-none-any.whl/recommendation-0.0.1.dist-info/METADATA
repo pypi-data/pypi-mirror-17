@@ -1,0 +1,18 @@
+Metadata-Version: 2.0
+Name: recommendation
+Version: 0.0.1
+Summary: UNKNOWN
+Home-page: https://github.com/wikimedia-research/translation-recs-app
+Author: Wikimedia Research
+Author-email: UNKNOWN
+License: Apache Software License
+Platform: UNKNOWN
+Requires-Dist: PyYAML
+Requires-Dist: bravado-core
+Requires-Dist: flask
+Requires-Dist: numpy
+Requires-Dist: requests
+
+UNKNOWN
+
+
