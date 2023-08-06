@@ -1,0 +1,80 @@
+# GPSPhoto
+# Programmer: Jess Williams
+# EMail: stripes.denomino@gmail.com
+# Purpose: extracts and converts GPS Data from Photos
+
+Module that uses ExifRead to extract GPS Tag Data from photos that
+have it.  Must have ExifRead module installed.  Functions will
+return empty dictionaries if photos do not contain GPS Tags.
+
+This program is a work in progress, I do not have access to the way
+different devices store thier Exif GPS Data.  If the program doesn't 
+work correctly and the output of the command line with the "-D" option
+gives results.  Please email me and I will will try to fix it.
+
+Install:
+  python setup.py install
+
+
+Use:
+  import gpsphoto
+  data = gpsphoto.getGPSData('/path/to/image.jpg')
+  rawData = gpsphoto.getRawData('/path/to/image.jpg')
+
+  for tag in data.keys():
+    print "%s: %s" % (tag, data[tag])
+
+  for tag in rawData.keys():
+    print "%s: %s" % (tag, rawData[tag])
+
+Command Line:
+  python gpsphoto.py "/path/to/image.jpg"
+
+  for debugging information if you need to email me a to fix
+  A bug, please attach the output of the following
+
+  python gpsphoto.py "-D" "/path/to/image.jpg"
+    
+  Should get an output like the following:
+
+    GPS GPSTimeStamp: [16, 12, 28]
+    Image GPSInfo: 504
+    GPS GPSLongitude: [106, 34, 585371/10000]
+    GPS GPSDate: 2016:10:01
+    GPS GPSLatitudeRef: N
+    GPS GPSLatitude: [35, 3, 95521/5000]
+    GPS GPSProcessingMethod: ASCII
+    GPS GPSLongitudeRef: W
+    GPS GPSAltitudeRef: 0
+    GPS GPSAltitude: 1636
+
+
+Functions:
+  coord2decimal(parameter 1, parameter 2)
+    Function converts degrees, minutes and seconds to decimal. Returns a float.
+    This Function has two parameters
+      - parameter 1 is an argument of a list of floating point numbers.
+        this list either has 2 or 3 elements.  
+        An example of the list with 2 element is: 
+          [45.0, 45.1234] 
+        the first element is degrees the second element is minutes.
+        An example of the list with 3 elements is
+          [45.0, 44.0, 55.1234]
+        the first element is degrees the second element is minutes and
+        the third element is minutes.
+      - parameter 2 is a string of one of the following:
+          'N', 'S', 'E', 'W'
+        indicating what part of the world, for either Latitude or Longitude.
+
+  getGPSData(parameter)
+    Function returns a dictionary of GPS Data, with the following keys:
+      'Latitude', 'Longitude', 'UTC-Time', 'Date', 'Altitude'
+    Function takes one parameter, a string argument of a path to filename
+    of an image.
+
+  getRawData(parameter)
+    Function returns a dictionary of GPS ExifTags extracted by ExifRead.
+    Function takes one parameter, a string argument of a path to filename
+    of an image.
+
+
