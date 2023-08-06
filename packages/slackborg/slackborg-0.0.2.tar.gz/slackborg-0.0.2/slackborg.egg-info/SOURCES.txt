@@ -1,0 +1,12 @@
+README.rst
+setup.py
+slackborg/__init__.py
+slackborg/borg.py
+slackborg/commands.py
+slackborg/conversations.py
+slackborg/utils.py
+slackborg.egg-info/PKG-INFO
+slackborg.egg-info/SOURCES.txt
+slackborg.egg-info/dependency_links.txt
+slackborg.egg-info/requires.txt
+slackborg.egg-info/top_level.txt
