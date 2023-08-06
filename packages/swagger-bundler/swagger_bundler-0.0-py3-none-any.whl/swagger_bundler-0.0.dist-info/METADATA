@@ -1,0 +1,42 @@
+Metadata-Version: 2.0
+Name: swagger-bundler
+Version: 0.0
+Summary: swagger schema bundler
+Home-page: https://github.com/podhmo/swagger-bundler
+Author: podhmo
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: PyYAML
+Requires-Dist: click
+Provides-Extra: docs
+Provides-Extra: testing
+Provides-Extra: validation
+Requires-Dist: jsonschema; extra == 'validation'
+
+swagger-bundler
+========================================
+
+- yaml only
+- python3 only
+
+TODO: readme
+
+.. code-block::
+
+  Usage: swagger-bundler [OPTIONS] COMMAND [ARGS]...
+
+  Options:
+    --help  Show this message and exit.
+
+  Commands:
+    bundle
+    config
+
+
+
+
+
