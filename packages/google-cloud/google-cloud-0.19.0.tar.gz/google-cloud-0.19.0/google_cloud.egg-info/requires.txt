@@ -1,0 +1,11 @@
+httplib2 >= 0.9.1
+googleapis-common-protos
+oauth2client >= 2.0.1
+protobuf >= 3.0.0
+six
+grpcio >= 1.0.0
+google-gax >= 0.13.0, < 0.14dev
+gapic-google-pubsub-v1 >= 0.9.0, < 0.10dev
+grpc-google-pubsub-v1 >= 0.9.0, < 0.10dev
+gapic-google-logging-v2 >= 0.9.0, < 0.10dev
+grpc-google-logging-v2 >= 0.9.0, < 0.10dev
