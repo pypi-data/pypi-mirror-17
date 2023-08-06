@@ -1,0 +1,3 @@
+[console_scripts]
+queue_status = queue_status.__main__:main
+
