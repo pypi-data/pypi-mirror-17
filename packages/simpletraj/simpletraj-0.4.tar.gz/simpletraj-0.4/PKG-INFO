@@ -1,0 +1,25 @@
+Metadata-Version: 1.1
+Name: simpletraj
+Version: 0.4
+Summary: Lightweight coordinate-only trajectory reader based on code from GROMACS, MDAnalysis, VMD.
+Home-page: https://github.com/arose/simpletraj
+Author: Alexander S. Rose
+Author-email: alexander.rose@weirdbyte.de
+License: GPL2
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)
+Classifier: Programming Language :: C
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Requires: numpy
