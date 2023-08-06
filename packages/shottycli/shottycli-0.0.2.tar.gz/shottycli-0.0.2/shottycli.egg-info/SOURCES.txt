@@ -1,0 +1,9 @@
+MANIFEST.in
+README.rst
+setup.py
+shottycli/__init__.py
+shottycli/shottycli.py
+shottycli.egg-info/PKG-INFO
+shottycli.egg-info/SOURCES.txt
+shottycli.egg-info/dependency_links.txt
+shottycli.egg-info/top_level.txt
