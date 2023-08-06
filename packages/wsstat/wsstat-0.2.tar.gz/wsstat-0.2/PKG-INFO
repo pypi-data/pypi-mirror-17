@@ -1,0 +1,13 @@
+Metadata-Version: 1.0
+Name: wsstat
+Version: 0.2
+Summary: Websocket health monitoring made simple (and beautiful)
+Home-page: http://github.com/fitblip/wsstat/
+Author: Ryan Sears
+Author-email: fitblip@gmail.com
+License: UNKNOWN
+Description: # websocket-tester
+        [![Build Status](https://travis-ci.org/Fitblip/wsstat.svg?branch=master)](https://travis-ci.org/Fitblip/wsstat)
+        [![Coverage Status](https://coveralls.io/repos/github/Fitblip/wsstat/badge.svg?branch=master)](https://coveralls.io/github/Fitblip/wsstat?branch=master)
+        
+Platform: UNKNOWN
