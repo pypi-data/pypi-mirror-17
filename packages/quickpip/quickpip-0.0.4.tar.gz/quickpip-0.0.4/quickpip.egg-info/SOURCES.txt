@@ -1,0 +1,17 @@
+.gitignore
+LICENSE
+README.rst
+setup.cfg
+setup.py
+quickpip/__init__.py
+quickpip/__main__.py
+quickpip/compat.py
+quickpip/quickpip.py
+quickpip/utils.py
+quickpip.egg-info/PKG-INFO
+quickpip.egg-info/SOURCES.txt
+quickpip.egg-info/dependency_links.txt
+quickpip.egg-info/entry_points.txt
+quickpip.egg-info/not-zip-safe
+quickpip.egg-info/requires.txt
+quickpip.egg-info/top_level.txt
