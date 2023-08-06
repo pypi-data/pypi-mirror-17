@@ -1,0 +1,16 @@
+cred/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+jsonmodel/__init__.py,sha256=WE3AApCGTX25gtAHFgDKbgtmYwstXqV0CNiXY3z8560,212
+jsonmodel/exceptions.py,sha256=-Y2sWptjRnGCSV24AXkSQix0D-hD7e7sQafkbCv1SAA,2721
+jsonmodel/loader.py,sha256=waRungPFw8i4e0Oc6ImOxDWkzPPN8Uk_UXSVxYMzjZ0,718
+jsonmodel/mapping.py,sha256=GFv6teMyjJRAVrPBgVYHUXjEmKR9VU2n7CUrdpFnryg,4241
+jsonmodel/model-rules.json,sha256=nAzeL308JKhVFBHCnAMHGTKxJfbMd0QCDN8JUSlcOpc,3291
+jsonmodel/validators.py,sha256=z0xuO84iExmeMDJvXrUeZfPIF-uaxQFTuTKSSo4GdyA,66517
+jsonmodel-2.4.dist-info/DESCRIPTION.rst,sha256=w5NpfxGObuhxigbNr7AAiLDuXYsXhRtBdf7UrDmI6iU,8245
+jsonmodel-2.4.dist-info/METADATA,sha256=IwxPtpsl8SClPCPEjlme6WGMKy8zUdQWmw-dEUdkyd4,8827
+jsonmodel-2.4.dist-info/RECORD,,
+jsonmodel-2.4.dist-info/WHEEL,sha256=Ds0ba8WsPJtjBPzEMyPOBG3qfPa6B4mlzB-vhzorIZs,97
+jsonmodel-2.4.dist-info/metadata.json,sha256=D35GPdk30Pq6FNJ4xJLZ5T0WkKbB5COvB4wicXgRF64,722
+jsonmodel-2.4.dist-info/top_level.txt,sha256=ldtbMY4mWKnJt8ATqMzLW8fwMCKV63L_nk-hJWzuBvo,10
+models/__init__.py,sha256=6E6JRe35I7qExWPB6CjtSQaFKBKu72cY3sxumA7tciE,47
+tests/__init__.py,sha256=6E6JRe35I7qExWPB6CjtSQaFKBKu72cY3sxumA7tciE,47
+tests/test_validators.py,sha256=fsFbaWLPEzhpSiTBHKVgtzBGfCZNY-262ofpDlNtyqY,5526
