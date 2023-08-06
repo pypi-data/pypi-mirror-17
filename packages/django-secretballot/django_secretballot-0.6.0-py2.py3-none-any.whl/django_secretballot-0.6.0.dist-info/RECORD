@@ -1,0 +1,16 @@
+django_secretballot-0.6.0.dist-info/DESCRIPTION.rst,sha256=dxlkJ8xbuZZVGsGroJkUHUSToVdiPAXPViwDLI8U2IQ,7995
+django_secretballot-0.6.0.dist-info/METADATA,sha256=nNdzIdBCUNJ02dYV1TZO4eXcKRePlZHjEaKUBeXakpU,8834
+django_secretballot-0.6.0.dist-info/metadata.json,sha256=kMZmToj24NZBy_pUWxfskMdtlktZ1q_uy478xamWh_c,993
+django_secretballot-0.6.0.dist-info/RECORD,,
+django_secretballot-0.6.0.dist-info/top_level.txt,sha256=3V7Mbw9XPKxsMu_Ehq9qq0Z8uRyIOyn5aMjz22ooBH0,19
+django_secretballot-0.6.0.dist-info/WHEEL,sha256=AvR0WeTpDaxT645bl5FQxUK6NPsTls2ttpcGJg3j1Xg,110
+secretballot/__init__.py,sha256=nMO4tvfCWZCWUedFF4zP0x7GEvjAYrPlh_ZGrHDxDI8,4414
+secretballot/middleware.py,sha256=utXAJTEMomISlw0tHjGU5jcbLASbFdiOWWTBrbCBRnc,631
+secretballot/models.py,sha256=K62AH4LW9Wkc6ZPAIRS5qNpAuf6Hczk2soAJd507mBo,1017
+secretballot/views.py,sha256=QBadhLw50o9TZDGCg2fuTyNqq2LrdhTLwVsdqTTVoNI,3213
+secretballot/migrations/0001_initial.py,sha256=oN4P_8g4aFmg0p3AdQzB1Zw7J8HI4x9gcUm0ey44pBI,1263
+secretballot/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/models.py,sha256=-2y0K7SsQFBLQkZifJyNPIAAhF1jPs0f88IIgz0MdaM,676
+tests/test_settings.py,sha256=Da5vypJbppReAi0GnzDY5f7s8vxu4iCSzaW-iHYJ48U,442
+tests/tests.py,sha256=bi9Tc7sgnNGkrp2Lwrd59-mgxSg6pN50emUYyUfulFc,7944
