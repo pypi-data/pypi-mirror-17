@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+P4J/__init__.py
+P4J/dictionary.py
+P4J/generator.py
+P4J/periodogram.py
+P4J/regression.py
+P4J.egg-info/PKG-INFO
+P4J.egg-info/SOURCES.txt
+P4J.egg-info/dependency_links.txt
+P4J.egg-info/requires.txt
+P4J.egg-info/top_level.txt
+examples/periodogram_demo.ipynb
+examples/regression_demo.ipynb
