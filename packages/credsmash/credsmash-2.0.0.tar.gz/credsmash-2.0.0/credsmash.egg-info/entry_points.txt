@@ -1,0 +1,3 @@
+[console_scripts]
+credsmash = credsmash.cli:main
+
