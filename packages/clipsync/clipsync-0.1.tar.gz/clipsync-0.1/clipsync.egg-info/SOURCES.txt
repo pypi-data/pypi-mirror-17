@@ -1,0 +1,13 @@
+run.py
+setup.cfg
+setup.py
+clipsync/__init__.py
+clipsync.egg-info/PKG-INFO
+clipsync.egg-info/SOURCES.txt
+clipsync.egg-info/dependency_links.txt
+clipsync.egg-info/entry_points.txt
+clipsync.egg-info/requires.txt
+clipsync.egg-info/top_level.txt
+clipsync/board/__init__.py
+clipsync/discovery/__init__.py
+clipsync/interact/__init__.py
