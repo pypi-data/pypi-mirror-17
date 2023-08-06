@@ -1,0 +1,3 @@
+{% for package in packages -%}
+{{ package.name | cli(attrs=['bold']) }} {{ package.repository_version | cli('red') }} → {{ package.upstream_version | cli('green') }}
+{% endfor %}
