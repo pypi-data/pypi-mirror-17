@@ -1,0 +1,8 @@
+factory_boy
+fake-factory
+model_mommy
+
+[dev]
+python-boilerplate
+invoke>=0.13
+pytest
