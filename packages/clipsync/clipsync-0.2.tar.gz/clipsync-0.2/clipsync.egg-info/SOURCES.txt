@@ -1,0 +1,16 @@
+run.py
+setup.cfg
+setup.py
+clipsync/__init__.py
+clipsync.egg-info/PKG-INFO
+clipsync.egg-info/SOURCES.txt
+clipsync.egg-info/dependency_links.txt
+clipsync.egg-info/entry_points.txt
+clipsync.egg-info/requires.txt
+clipsync.egg-info/top_level.txt
+clipsync/components/__init__.py
+clipsync/components/board/__init__.py
+clipsync/components/discovery/__init__.py
+clipsync/components/interact/__init__.py
+clipsync/utils/__init__.py
+clipsync/utils/encrypt/__init__.py
