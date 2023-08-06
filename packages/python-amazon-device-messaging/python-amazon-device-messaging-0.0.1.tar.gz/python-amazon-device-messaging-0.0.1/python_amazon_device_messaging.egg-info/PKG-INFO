@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: python-amazon-device-messaging
+Version: 0.0.1
+Summary: Send push notifications to kindle fire devices using ADM.
+Home-page: https://www.jamaalscarlett.com
+Author: jscarlett
+Author-email: jscarlett@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Networking
