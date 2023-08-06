@@ -1,0 +1,15 @@
+MANIFEST.in
+setup.py
+django_rest_framework_angular_resource_generator.egg-info/PKG-INFO
+django_rest_framework_angular_resource_generator.egg-info/SOURCES.txt
+django_rest_framework_angular_resource_generator.egg-info/dependency_links.txt
+django_rest_framework_angular_resource_generator.egg-info/requires.txt
+django_rest_framework_angular_resource_generator.egg-info/top_level.txt
+drf_ng_generator/__init__.py
+drf_ng_generator/converter.py
+drf_ng_generator/schemas.py
+drf_ng_generator/management/__init__.py
+drf_ng_generator/management/commands/__init__.py
+drf_ng_generator/management/commands/drf_ng.py
+drf_ng_generator/templates/ngResource.coffee
+drf_ng_generator/templates/ngResource.js
