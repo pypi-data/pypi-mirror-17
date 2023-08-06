@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Administration &mdash; Exordium 1.0.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Exordium 1.0.0 documentation" href="index.html"/>
+        <link rel="next" title="Screenshots" href="screenshots.html"/>
+        <link rel="prev" title="Installation" href="installation.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Exordium
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Exordium Music Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assumptions_limitations.html">Assumptions and Limitations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Administration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#library-configuration">Library Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#library-upkeep">Library Upkeep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#django-admin">Django Admin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="screenshots.html">Screenshots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wsgi_deployments.html">Apache/WSGI Deployment Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">Migration from Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apache_deployment_howto.html">CentOS 7 Apache/WSGI Deployment HOWTO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Exordium</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Administration</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/administration.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="administration">
+<h1>Administration<a class="headerlink" href="#administration" title="Permalink to this headline">¶</a></h1>
+<p>When logged in to Django as a staff member, the lefthand sidebar will
+include three links at the bottom, for Django administration:</p>
+<div class="figure align-center" id="id1">
+<img alt="Administrative Sidebar" src="_images/admin_sidebar.png" />
+<p class="caption"><span class="caption-text">Administrative Sidebar</span></p>
+</div>
+<div class="section" id="library-configuration">
+<h2>Library Configuration<a class="headerlink" href="#library-configuration" title="Permalink to this headline">¶</a></h2>
+<p><strong>Library Configuration</strong> links to a Django administrative backend
+page provided by <code class="docutils literal"><span class="pre">django-dynamic-preferences</span></code>, which provides
+access to the only real configuration options available in Exordium.
+There are four variables which can be configured:</p>
+<dl class="docutils">
+<dt>Exordium Library Base Path</dt>
+<dd>This is the directory on the server where Exordium can find all
+your music files.  There can be various mounts underneath this
+directory (network or otherwise), but all music files must be
+underneath here somewhere.  Note that even though Exordium will
+never attempt to do any write operations on the library, it&#8217;s
+best if the user running Django does not have write access into
+this directory, anyway.</dd>
+<dt>Exordium Media URL</dt>
+<dd>This is the URL which provides direct web access to the files
+contained in the library base path, above.  This will most
+likely be a static directory configured in Apache or whatever
+other frontend web server is in use.  Technically this option
+does not have to be specified for Exordium to work, but track
+downloading and music streaming won&#8217;t work unless it is.</dd>
+<dt>Exordium Zip File Generation Path</dt>
+<dd>For full-album downloads, Exordium will create a zipfile on
+the filesystem and then give the user a link to that zipfile.
+This option specifies the directory in which the zipfile will
+be written.  This is the only location on the filesystem where
+Exordium requires any write access.  If this option is not
+specified, the button for album zipfile downloads will be
+hidden.</dd>
+<dt>Exordium Zip File Retrieval URL</dt>
+<dd>Similar to &#8220;Exordium Media URL&#8221; above, this is the URL to the
+zipfile generation path, typically configured via Apache or
+whatever the frontend webserver is.  Without this option,
+the button for album zipfile downloads will be hidden.</dd>
+</dl>
+</div>
+<div class="section" id="library-upkeep">
+<h2>Library Upkeep<a class="headerlink" href="#library-upkeep" title="Permalink to this headline">¶</a></h2>
+<p><strong>Library Upkeep</strong> is where music will be added to the library, and
+changes/deletions will be processed.  Clicking on the link will bring
+up the following, in addition to showing the library configuration
+values configured in <strong>Library Configuration</strong>:</p>
+<div class="figure align-center" id="id2">
+<img alt="Library Management" src="_images/library_management.png" />
+<p class="caption"><span class="caption-text">Library Management</span></p>
+</div>
+<p>Most of the time you will just be interested in adding new music to
+the database, so keeping the defaults and hitting &#8220;Start Process&#8221;
+is all you need. If there have been changes to existing files on
+disk (or if files have been deleted, etc), then you can use the
+&#8220;Full Update&#8221; option to do a full comparison of the database to
+the on-disk state.  In practice there isn&#8217;t much difference between
+the two options, speedwise, even though the update option technically
+does more work.  The &#8220;Full Update&#8221; will also re-scan for album art,
+for albums which do not have album art already.</p>
+<p>The checkbox to &#8220;Include debug output&#8221; can be used to include more
+information about the update process as it proceeds, though in general
+there isn&#8217;t a need to do so.  If you encounter problems during the
+update, it would probably be nice to have that option turned on while
+investigating/reporting the bug.</p>
+<p>Note that the initial load of a largeish music library into Exordium
+can take quite awhile.  On my system, a library of 42,000 tracks takes
+about an hour to do the initial add, the majority of that time spent
+looping through the filesystem computing checksums of all the tracks.
+Exordium uses SHA256 for its checksums, and while SHA1 or MD5 are
+faster, and would probably be sufficient for our use, on my system
+this process is primarily I/O bound, and using the faster algorithms
+don&#8217;t actually provide any significant speed increase.</p>
+</div>
+<div class="section" id="django-admin">
+<h2>Django Admin<a class="headerlink" href="#django-admin" title="Permalink to this headline">¶</a></h2>
+<p>This is just a convenience link to the main Django administration
+area.  In general, there is unlikely to be much need to edit Exordium
+objects from inside the administration area, but it might be useful in
+some circumstances to tweak values manually in there.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="screenshots.html" class="btn btn-neutral float-right" title="Screenshots" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="installation.html" class="btn btn-neutral" title="Installation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, CJ Kucera.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
