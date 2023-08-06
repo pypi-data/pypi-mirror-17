@@ -1,0 +1,3 @@
+Django Silent Auction package
+
+

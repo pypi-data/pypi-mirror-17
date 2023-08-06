@@ -1,0 +1,29 @@
+Metadata-Version: 2.0
+Name: silent-auction
+Version: 0.1.3
+Summary: Django Silent Auction package
+Home-page: https://github.com/friends-collaborating/django-silent-auction
+Author: friends-collaborating
+Author-email: info@friends-collaborating.info
+License: MIT
+Keywords: django,auction
+Platform: UNKNOWN
+Classifier: Framework :: Django
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Web Environment
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: Django (==1.10.1)
+Requires-Dist: djangorestframework (==3.4.7)
+Requires-Dist: Markdown (==2.6.7)
+Requires-Dist: django-filter (==0.15.3)
+Requires-Dist: django-parler (==1.6.5)
+Requires-Dist: django-parler-rest (==1.4.2)
+Requires-Dist: django-versatileimagefield (==1.6)
+
+Django Silent Auction package
+
+
