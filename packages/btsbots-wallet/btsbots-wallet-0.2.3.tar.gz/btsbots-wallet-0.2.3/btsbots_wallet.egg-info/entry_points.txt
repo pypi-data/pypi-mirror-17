@@ -1,0 +1,3 @@
+[console_scripts]
+btsbots_wallet = btsbots_wallet.main:entry_point
+
