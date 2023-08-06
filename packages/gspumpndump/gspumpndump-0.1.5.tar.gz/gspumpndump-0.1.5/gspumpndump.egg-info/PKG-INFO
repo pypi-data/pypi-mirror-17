@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: gspumpndump
+Version: 0.1.5
+Summary: Python command line application to backup and restore GeoServer configurations using the RESTConfigAPI. Supports export/import of entire GeoServer workspace and child object structure, including all associated styles and Freemarker Templates.
+Home-page: https://github.com/gisjedi/gspumpndump
+Author: Jonathan Meyer
+Author-email: jon@gisjedi.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3

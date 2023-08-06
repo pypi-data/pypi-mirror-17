@@ -1,0 +1,4 @@
+[console_scripts]
+gsdump = gspumpndump.commands.gsdump:main
+gspump = gspumpndump.commands.gspump:main
+
