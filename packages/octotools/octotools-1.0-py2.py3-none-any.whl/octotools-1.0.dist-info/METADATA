@@ -1,0 +1,54 @@
+Metadata-Version: 2.0
+Name: octotools
+Version: 1.0
+Summary: Utilities for the UK energy market from Octopus Energy
+Home-page: https://github.com/octoenergy/octotools
+Author: Octopus Energy
+Author-email: talent@octopus.energy
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: pytz
+Provides-Extra: dev
+Requires-Dist: wheel; extra == 'dev'
+Requires-Dist: twine; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: flake8; extra == 'test'
+Requires-Dist: pytest; extra == 'test'
+
+# octotools - Utilities for the UK energy market from Octopus Energy
+
+This repo groups together a bunch of useful utilities for the UK energy market, made with love by the Octopus Energy team.
+
+CI status:
+
+[![CircleCI](https://circleci.com/gh/octoenergy/octotools/tree/master.svg?style=svg)](https://circleci.com/gh/octoenergy/octotools/tree/master)
+
+
+## Contributing
+
+Create and activate a virtualenv then:
+
+    $ make
+
+Test package with:
+
+    $ make test
+
+and:
+
+    $ make lint  
+
+Release to PyPI by:
+
+1. Bumping the version in `setup.py`
+
+2. Running: 
+
+        $ make publish
+
+
