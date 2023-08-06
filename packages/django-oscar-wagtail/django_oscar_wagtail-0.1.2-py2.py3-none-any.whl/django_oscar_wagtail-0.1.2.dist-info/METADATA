@@ -1,0 +1,95 @@
+Metadata-Version: 2.0
+Name: django-oscar-wagtail
+Version: 0.1.2
+Summary: Integration between Django Oscar and Wagtail
+Home-page: UNKNOWN
+Author: Michael van Tellingen
+Author-email: michaelvantellingen@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Dist: django-oscar (>=1.3.0)
+Requires-Dist: wagtail (>=1.6.0)
+Provides-Extra: docs
+Requires-Dist: sphinx (>=1.4.0); extra == 'docs'
+Provides-Extra: test
+Requires-Dist: pytest-cov (==2.3.1); extra == 'test'
+Requires-Dist: pytest-django (==3.0.0); extra == 'test'
+Requires-Dist: pytest-pythonpath (==0.7); extra == 'test'
+Requires-Dist: pytest (==3.0.0); extra == 'test'
+Requires-Dist: isort (==4.2.5); extra == 'test'
+Requires-Dist: flake8 (==3.0.3); extra == 'test'
+Requires-Dist: flake8-blind-except (==0.1.1); extra == 'test'
+Requires-Dist: flake8-debugger (==1.4.0); extra == 'test'
+
+Django Oscar Wagtail
+====================
+
+.. image:: https://travis-ci.org/LabD/django-oscar-wagtail.svg?branch=travis
+    :target: https://travis-ci.org/LabD/django-oscar-wagtail
+
+This project integrates the Wagtail CMS with Django Oscar for eCommerce. It
+adds the following features:
+
+- each Oscar category page can now be managed by the Wagtail CMS
+- it is possible to add product lists to wagtail pages
+
+
+
+Installation
+------------
+
+Presuming you have installed Django-Oscar and Wagtail into your Django project.
+
+First install django-oscar-wagtail via PIP:
+
+.. code-block:: bash
+
+    pip install django-oscar-wagtail
+
+And add ``oscar_wagtail`` to your settings as follows:
+
+.. code-block:: python
+
+    INSTALLED_APPS = [
+        # ... your other apps
+        'oscar_wagtail',
+    ]
+
+Fork the catalogue app as described in the `oscar documentation`_. Then instead of
+using the AbstractCategory from Oscar use the one from this project as follows:
+
+.. code-block:: python
+
+    from oscar_wagtail.abstract_models import AbstractCategory
+
+
+    class Category(AbstractCategory):
+        pass
+
+    from oscar.apps.catalogue.models import * 
+
+
+If you want to have a CMS button in the Oscar dashboard, add the following to your settings:
+
+.. code-block:: python
+
+    OSCAR_DASHBOARD_NAVIGATION.insert(1, {
+        'label': 'CMS',
+        'icon': 'icon-th-list',
+        'url_name': 'wagtailadmin_home',
+        'access_fn': lambda user, *args: user.has_perm('wagtailadmin.access_admin')
+    })
+
+.. _oscar documentation: http://django-oscar.readthedocs.io/en/latest/topics/fork_app.html
+
+
