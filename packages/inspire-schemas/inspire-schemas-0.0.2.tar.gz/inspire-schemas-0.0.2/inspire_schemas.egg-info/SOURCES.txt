@@ -1,0 +1,11 @@
+README.rst
+setup.cfg
+setup.py
+inspire_schemas/__init__.py
+inspire_schemas.egg-info/PKG-INFO
+inspire_schemas.egg-info/SOURCES.txt
+inspire_schemas.egg-info/dependency_links.txt
+inspire_schemas.egg-info/not-zip-safe
+inspire_schemas.egg-info/top_level.txt
+inspire_schemas/records/__init__.py
+inspire_schemas/records/elements/__init__.py
