@@ -1,0 +1,15 @@
+githubpy
+jenkinsapi
+jenkins-yml[renderer]
+pyyaml
+retrying
+
+[release]
+wheel
+zest.releaser
+
+[test]
+freezegun
+pytest
+pytest-cov
+pytest-logging
