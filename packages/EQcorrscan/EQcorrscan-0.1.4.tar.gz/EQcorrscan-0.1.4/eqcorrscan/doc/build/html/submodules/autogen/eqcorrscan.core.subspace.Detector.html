@@ -1,0 +1,266 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>eqcorrscan.core.subspace.Detector &mdash; EQcorrscan 0.1.4rc documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/EQcorrscan_logo.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="EQcorrscan 0.1.4rc documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> EQcorrscan
+          
+
+          
+            
+            <img src="../../_static/EQcorrscan_logo.jpg" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">1. Introduction to the EQcorrscan package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../updates.html">2. What&#8217;s new</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">EQcorrscan tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html">3. Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../utils.html">4. Utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">EQcorrscan</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>eqcorrscan.core.subspace.Detector</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/submodules/autogen/eqcorrscan.core.subspace.Detector.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="eqcorrscan-core-subspace-detector">
+<h1>eqcorrscan.core.subspace.Detector<a class="headerlink" href="#eqcorrscan-core-subspace-detector" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="eqcorrscan.core.subspace.Detector">
+<em class="property">class </em><code class="descclassname">eqcorrscan.core.subspace.</code><code class="descname">Detector</code><span class="sig-paren">(</span><em>name=None</em>, <em>sampling_rate=None</em>, <em>multiplex=None</em>, <em>stachans=None</em>, <em>lowcut=None</em>, <em>highcut=None</em>, <em>filt_order=None</em>, <em>data=None</em>, <em>u=None</em>, <em>sigma=None</em>, <em>v=None</em>, <em>dimension=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eqcorrscan/core/subspace.html#Detector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eqcorrscan.core.subspace.Detector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Class to serve as the base for subspace detections.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/2.7/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) <span class="dash" /> Name of subspace detector, used for book-keeping</li>
+<li><strong>sampling_rate</strong> (<a class="reference external" href="https://docs.python.org/2.7/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) <span class="dash" /> Sampling rate in Hz of original waveforms</li>
+<li><strong>multiplex</strong> (<a class="reference external" href="https://docs.python.org/2.7/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a>) <span class="dash" /> Is this detector multiplexed.</li>
+<li><strong>stachans</strong> (<a class="reference external" href="https://docs.python.org/2.7/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a>) <span class="dash" /> List of tuples of (station, channel) used in detector.
+If multiplexed, these must be in the order that multiplexing was done.</li>
+<li><strong>lowcut</strong> (<a class="reference external" href="https://docs.python.org/2.7/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) <span class="dash" /> Lowcut filter in Hz</li>
+<li><strong>highcut</strong> (<a class="reference external" href="https://docs.python.org/2.7/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) <span class="dash" /> Highcut filter in Hz</li>
+<li><strong>filt_order</strong> (<a class="reference external" href="https://docs.python.org/2.7/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) <span class="dash" /> Number of corners for filtering</li>
+<li><strong>data</strong> (<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.11)"><em>numpy.ndarray</em></a>) <span class="dash" /> The actual detector</li>
+<li><strong>u</strong> (<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.11)"><em>numpy.ndarray</em></a>) <span class="dash" /> Full rank U matrix of left (input) singular vectors.</li>
+<li><strong>sigma</strong> (<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.11)"><em>numpy.ndarray</em></a>) <span class="dash" /> Full rank vector of singular values.</li>
+<li><strong>v</strong> (<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.11)"><em>numpy.ndarray</em></a>) <span class="dash" /> Full rank right (output) singular vectors.</li>
+<li><strong>dimension</strong> (<a class="reference external" href="https://docs.python.org/2.7/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) <span class="dash" /> Dimension of data.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="eqcorrscan.core.subspace.Detector.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>name=None</em>, <em>sampling_rate=None</em>, <em>multiplex=None</em>, <em>stachans=None</em>, <em>lowcut=None</em>, <em>highcut=None</em>, <em>filt_order=None</em>, <em>data=None</em>, <em>u=None</em>, <em>sigma=None</em>, <em>v=None</em>, <em>dimension=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eqcorrscan/core/subspace.html#Detector.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eqcorrscan.core.subspace.Detector.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="../core.subspace.Detector.html#eqcorrscan.core.subspace.Detector.__init__" title="eqcorrscan.core.subspace.Detector.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>([name,&nbsp;sampling_rate,&nbsp;multiplex,&nbsp;...])</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../core.subspace.Detector.html#eqcorrscan.core.subspace.Detector.construct" title="eqcorrscan.core.subspace.Detector.construct"><code class="xref py py-obj docutils literal"><span class="pre">construct</span></code></a>(streams,&nbsp;lowcut,&nbsp;highcut,&nbsp;...[,&nbsp;...])</td>
+<td>Construct a subspace detector from a list of streams, full rank.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../core.subspace.Detector.html#eqcorrscan.core.subspace.Detector.detect" title="eqcorrscan.core.subspace.Detector.detect"><code class="xref py py-obj docutils literal"><span class="pre">detect</span></code></a>(st,&nbsp;threshold,&nbsp;trig_int[,&nbsp;moveout,&nbsp;...])</td>
+<td>Detect within continuous data using the subspace method.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../core.subspace.Detector.html#eqcorrscan.core.subspace.Detector.energy_capture" title="eqcorrscan.core.subspace.Detector.energy_capture"><code class="xref py py-obj docutils literal"><span class="pre">energy_capture</span></code></a>()</td>
+<td>Calculate the average percentage energy capture for this subspace.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../core.subspace.Detector.html#eqcorrscan.core.subspace.Detector.partition" title="eqcorrscan.core.subspace.Detector.partition"><code class="xref py py-obj docutils literal"><span class="pre">partition</span></code></a>(dimension)</td>
+<td>Partition subspace into desired dimension.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../core.subspace.Detector.html#eqcorrscan.core.subspace.Detector.read" title="eqcorrscan.core.subspace.Detector.read"><code class="xref py py-obj docutils literal"><span class="pre">read</span></code></a>(filename)</td>
+<td>Read detector from a file, must be HDF5 format.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../core.subspace.Detector.html#eqcorrscan.core.subspace.Detector.write" title="eqcorrscan.core.subspace.Detector.write"><code class="xref py py-obj docutils literal"><span class="pre">write</span></code></a>(filename)</td>
+<td>Write detector to a file - uses HDF5 file format.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, 2016: EQcorrscan developers.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.4rc',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
