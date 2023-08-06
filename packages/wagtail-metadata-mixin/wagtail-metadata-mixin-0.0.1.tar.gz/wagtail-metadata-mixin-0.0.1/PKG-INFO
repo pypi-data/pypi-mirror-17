@@ -1,0 +1,30 @@
+Metadata-Version: 1.1
+Name: wagtail-metadata-mixin
+Version: 0.0.1
+Summary: OpenGraph, Twitter Card and Google+ snippet tags for Wagtail CMS pages
+Home-page: https://github.com/bashu/wagtail-metadata-mixin
+Author: Basil Shubin
+Author-email: basil.shubin@gmail.com
+License: MIT License
+Download-URL: https://github.com/bashu/wagtail-metadata-mixin/zipball/master
+Description: wagtail-metadata-mixin
+        ======================
+        
+        OpenGraph, Twitter Card and Google+ snippet tags for Wagtail CMS pages
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires: Django (>=1.4)
