@@ -1,0 +1,3 @@
+[console_scripts]
+lipds = lipds.__main__:main
+
