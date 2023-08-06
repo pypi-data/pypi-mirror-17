@@ -1,0 +1,102 @@
+import logging                                                  # IMPORTANT
+
+#------------------------------------------------------------------------------
+# Boiler plate for logging.
+
+LOGGER = logging.getLogger("Longbow")                           # IMPORTANT
+
+#------------------------------------------------------------------------------
+# For schedulers a unique string to identify the scheduler should go here.
+# Sometimes "env | grep -i 'something specific'" will suffice.
+
+QUERY_STRING = "unique identifier here."                        # IMPORTANT
+
+#------------------------------------------------------------------------------
+# Delete method (not currently used).
+
+def delete(host, job):                                          # IMPORTANT
+
+	jobid = job["jobid"]
+
+    """Method for deleting job."""
+
+    LOGGER.info("Deleting the job with id: %s", jobid)
+
+    ########################################################
+    #                                                      #
+    #                                                      #
+    #                  Your code here.                     #
+    #                                                      #
+    #                                                      #
+    ########################################################
+
+    LOGGER.info("  Deleted successfully")
+
+
+#------------------------------------------------------------------------------
+# Prepare method
+
+def prepare(hosts, jobname, jobs):                             # IMPORTANT
+
+    """Create the LSF jobfile ready for submitting jobs"""
+
+    LOGGER.info("  Creating submit file for job: %s", jobname)
+    
+    # Open file for script.
+    lsffile = os.path.join(jobs[jobname]["localworkdir"], "submit.extension")
+    jobfile = open(lsffile, "w+")
+
+    # Write the script
+    jobfile.write("#!/bin/bash --login\n")
+    
+    ########################################################
+    #                                                      #
+    #                                                      #
+    #                  Your code here.                     #
+    #                                                      #
+    #                                                      #
+    ########################################################
+    
+    # Append submitfile to list of files ready for staging.
+    jobs[jobname]["subfile"] = "submit.extension"                     # IMPORTANT
+
+
+#------------------------------------------------------------------------------
+# Status method
+
+def status(host, jobid):                                        # IMPORTANT
+
+    """Method for querying job."""
+    
+    ########################################################
+    #                                                      #
+    #                                                      #
+    #                  Your code here.                     #
+    #                                                      #
+    #                                                      #
+    ########################################################    
+    
+    return state (return the state of job)                      # IMPORTANT
+    
+    
+    
+#------------------------------------------------------------------------------
+# Submit method
+    
+def submit(host, jobname, jobs):                                # IMPORTANT
+
+    """Method for submitting job."""
+
+    ########################################################
+    #                                                      #
+    #                                                      #
+    #                  Your code here.                     #
+    #                                                      #
+    #                                                      #
+    ########################################################    
+    
+    LOGGER.info("  Job: %s submitted with id: %s", jobname, output)
+
+    jobs[jobname]["jobid"] = output                             # IMPORTANT
+    
+    
