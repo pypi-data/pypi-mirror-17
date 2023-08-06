@@ -1,0 +1,13 @@
+setup.py
+rosreestr2coord.egg-info/PKG-INFO
+rosreestr2coord.egg-info/SOURCES.txt
+rosreestr2coord.egg-info/dependency_links.txt
+rosreestr2coord.egg-info/entry_points.txt
+rosreestr2coord.egg-info/top_level.txt
+script/__init__.py
+script/batch.py
+script/catalog.py
+script/console.py
+script/export.py
+script/parser.py
+script/utils.py
