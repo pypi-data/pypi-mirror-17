@@ -1,0 +1,76 @@
+Metadata-Version: 2.0
+Name: crypto-allauth
+Version: 0.0.5
+Summary: Plugin for django-allauth that allows authentication using cryptographic tools like Trezor.
+Home-page: https://github.com/Solution4Future/crypto-allauth
+Author: Dominik Kozaczko
+Author-email: dominik.kozaczko@solution4future.com
+License: MIT
+Keywords: django auth account trezor registration
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Environment :: Web Environment
+Classifier: Topic :: Internet
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Framework :: Django
+Requires-Dist: bitcoin (>=1.1.42)
+Requires-Dist: django-allauth (>=0.27.0)
+
+# Welcome to crypto-allauth
+
+[![Build Status](https://travis-ci.org/Solution4Future/crypto-allauth.svg?branch=master)](https://travis-ci.org/Solution4Future/crypto-allauth)
+[![Requirements Status](https://requires.io/github/Solution4Future/crypto-allauth/requirements.svg?branch=master)](https://requires.io/github/Solution4Future/crypto-allauth/requirements/?branch=master)
+[![Shield Status](https://img.shields.io/pypi/v/crypto-allauth.svg)](https://pypi.python.org/pypi/crypto-allauth)
+[![Join the chat at https://gitter.im/solution4future/crypto-allauth](https://badges.gitter.im/solution4future/crypto-allauth.svg)](https://gitter.im/solution4future/crypto-allauth?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+(DISCLAIMER! This software is early alpha and doesn't have tests yet so you are using it on your own)
+
+Crypto-allauth is a library that adds support for some advanced login methods.
+It was first drafted at the TREZOR 2 Hackathon in Prague.
+
+Right now you can only use Trezor but plans are to support other hardware encryption solutions.
+
+## Installation
+
+```sh
+$ pip install crypto-allauth
+```
+
+```py
+INSTALLED_APPS = {
+        ...
+        'allauth',
+        'allauth.account',
+        'allauth.socialaccount',
+        ...
+        'crypto_allauth.providers.trezor',
+        ...
+}
+
+```
+
+And you're all set up.
+
+For the "Login with TREZOR" button to work properly you either need a Chrome plugin or a trezor-bridge daemon. Go to [satoshilabs.com/trezor](http://satoshilabs.com/trezor/) to learn more.
+
+## Roadmap
+
+- U2F support (Yubikey and others)
+- Offline Trezor support
+- Keybase support
+
+## Final notes
+
+Feel free to create pull requests.
+
+If you feel generous you can donate: [1AnrshDKmzRU57GTNJ2ki1bTKK45NDd2Dn](http://i.imgur.com/hlhWwOO.png)
+
+
