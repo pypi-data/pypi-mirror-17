@@ -1,0 +1,5 @@
+recursive-include active_users/api .py
+recursive-exclude active_users *.pyc
+include REQUIREMENTS
+include README.rst
+include LICENSE

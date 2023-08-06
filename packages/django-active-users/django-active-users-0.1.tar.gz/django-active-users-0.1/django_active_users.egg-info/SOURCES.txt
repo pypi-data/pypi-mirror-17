@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.rst
+REQUIREMENTS
+setup.py
+active_users/__init__.py
+active_users/keys.py
+active_users/middleware.py
+active_users/settings.py
+active_users/api/__init__.py
+active_users/api/urls.py
+active_users/api/views.py
+django_active_users.egg-info/PKG-INFO
+django_active_users.egg-info/SOURCES.txt
+django_active_users.egg-info/dependency_links.txt
+django_active_users.egg-info/requires.txt
+django_active_users.egg-info/top_level.txt
