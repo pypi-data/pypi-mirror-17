@@ -1,0 +1,11 @@
+setup.py
+i3_workspace_rollback.egg-info/PKG-INFO
+i3_workspace_rollback.egg-info/SOURCES.txt
+i3_workspace_rollback.egg-info/dependency_links.txt
+i3_workspace_rollback.egg-info/entry_points.txt
+i3_workspace_rollback.egg-info/not-zip-safe
+i3_workspace_rollback.egg-info/requires.txt
+i3_workspace_rollback.egg-info/top_level.txt
+rollback/__init__.py
+rollback/rollback.py
+test/test_rollback.py
