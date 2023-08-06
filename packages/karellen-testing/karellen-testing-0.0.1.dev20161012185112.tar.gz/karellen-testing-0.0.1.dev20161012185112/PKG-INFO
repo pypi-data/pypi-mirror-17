@@ -1,0 +1,56 @@
+Metadata-Version: 1.1
+Name: karellen-testing
+Version: 0.0.1.dev20161012185112
+Summary: Karellen Testing Frameworks and Utilities
+Home-page: https://github.com/karellen/karellen-testing
+Author: Karellen, Inc
+Author-email: supervisor@karellen.co
+License: Apache License, Version 2.0
+Description: Karellen Testing Frameworks and Utilities
+        =========================================
+        
+        `Karellen <https://www.karellen.co/karellen/>`__ Testing Frameworks and
+        Utilities
+        
+        This project aggregates testing frameworks and utilities for all of the
+        projects under `Karellen <https://www.karellen.co/>`__ umbrella.
+        
+        Mock
+        ----
+        
+        A collection of Mock utilities helping with common tasks
+        
+        Spy
+        ~~~
+        
+        .. code:: python
+        
+            from unittest import TestCase
+            from karellen.testing.mock import MagicSpy
+        
+        
+            class Class_A(object):
+                def method_X(self):
+                    self.method_Y()
+        
+                def method_Y(self):
+                    pass
+        
+        
+            class TestSpy(TestCase):
+                def test_class_a_api(self):
+                    mock = MagicSpy(Class_A())
+        
+                    mock.method_X()
+                    mock.method_Y.assert_called_once_with()
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Testing
