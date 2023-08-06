@@ -1,0 +1,4 @@
+[console_scripts]
+launch-microdrop = microdrop_launcher.bin.launch:main
+microdrop-profile-manager = microdrop_launcher.bin.profile_launcher:main
+
