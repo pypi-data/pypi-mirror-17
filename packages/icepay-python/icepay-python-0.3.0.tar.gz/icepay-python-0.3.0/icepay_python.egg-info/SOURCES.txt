@@ -1,0 +1,13 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+icepay/__init__.py
+icepay/client.py
+icepay/test.py
+icepay_python.egg-info/PKG-INFO
+icepay_python.egg-info/SOURCES.txt
+icepay_python.egg-info/dependency_links.txt
+icepay_python.egg-info/requires.txt
+icepay_python.egg-info/top_level.txt
