@@ -1,0 +1,4 @@
+[console_scripts]
+cenvars_newkey = cenvars.cli:cenvars_newkey
+cenvars = cenvars.cli:cenvars
+
