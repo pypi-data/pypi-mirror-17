@@ -1,0 +1,35 @@
+Metadata-Version: 1.1
+Name: deform-treepy
+Version: 1.0
+Summary: A tree widget for deform
+Home-page: https://github.com/ecreall/deform_treepy/
+Author: Amen Souissi
+Author-email: amensouissi@ecreall.com
+License: AGPLv3+
+Description: .. This README is meant for consumption by humans and pypi. Pypi can render rst files so please do not use Sphinx features.
+           If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide_addons.html
+           This text does not appear on pypi or github. It is a comment.
+        
+        ============
+        deform_treepy
+        ============
+        
+        deform_treepy is a deform widget for inputting a tree of words.
+        
+        
+        Changelog
+        =========
+        
+        1.0 (2016-09-15)
+        ----------------
+        
+        -  Initial version
+        
+Keywords: web forms form tree widget
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Framework :: Pyramid
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
