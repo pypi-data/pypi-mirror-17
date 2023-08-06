@@ -1,0 +1,37 @@
+Metadata-Version: 2.0
+Name: django-formed-cmsplugin
+Version: 0.9.3
+Summary: A DjangoCMS plugin which allows you to add a form created with django-formed to your page.
+Home-page: https://bitbucket.org/frontendr/django-formed-cmsplugin
+Author: Johan Arensman
+Author-email: johan@frontendr.com
+License: MIT
+Keywords: D,j,a,n,g,o,C,M,S, ,f,o,r,m,e,d, ,p,l,u,g,i,n
+Platform: OS Independent
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.8
+Classifier: Framework :: Django :: 1.9
+Requires-Dist: Django (>=1.8,<1.9.999)
+Requires-Dist: django-cms (>=3.3.2,<4)
+Requires-Dist: django-formed (>=0.9.10)
+
+==================================
+DjangoCMS plugin for django-formed
+==================================
+
+A DjangoCMS plugin which allows you to add a form created with django-formed to your page.
+
+Installation
+============
+
+`pip install django-formed-cmsplugin`
+
+
