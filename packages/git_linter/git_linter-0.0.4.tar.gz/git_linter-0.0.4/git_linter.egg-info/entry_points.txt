@@ -1,0 +1,3 @@
+[console_scripts]
+git-lint = git_lint.__main__:main
+
