@@ -1,0 +1,14 @@
+Metadata-Version: 2.0
+Name: spktype01
+Version: 0.1.0
+Summary: An supporting module for jplephem to handle data type 1
+Home-page: https://github.com/whiskie14142/spktype01
+Author: whiskie14142
+Author-email: whiskie14142@gmail.com
+License: MIT
+Requires-Dist: jplephem
+Requires-Dist: numpy
+
+A supporting module for jplephem to handle data type 1
+
+
