@@ -1,0 +1,36 @@
+{
+	"entry": "jupyterlab_geojson@0.1.0/lib/plugin.js",
+	"hash": "201d1763a85411880572949078de6f2e",
+	"id": 0,
+	"name": "jupyterlab_geojson",
+	"files": [
+		"jupyterlab_geojson.bundle.js",
+		"jupyterlab_geojson.css"
+	],
+	"modules": {
+		"jupyterlab_geojson@0.1.0/lib/plugin.js": [],
+		"jupyterlab@0.5.0/lib/docregistry/index.js": [],
+		"jupyterlab@0.5.0/lib/docregistry/default.js": [],
+		"codemirror@5.17.0/lib/codemirror.js": [],
+		"codemirror@5.17.0/mode/meta.js": [],
+		"phosphor@0.6.1/lib/core/signaling.js": [],
+		"timers-browserify@1.4.2/main.js": [],
+		"process@0.11.9/browser.js": [],
+		"jupyterlab@0.5.0/lib/docregistry/kernelactions.js": [],
+		"jupyterlab@0.5.0/lib/dialog/index.js": [],
+		"jupyterlab@0.5.0/lib/docregistry/kernelselector.js": [],
+		"jupyterlab@0.5.0/lib/docregistry/registry.js": [],
+		"phosphor@0.6.1/lib/core/disposable.js": [],
+		"phosphor@0.6.1/lib/algorithm/iteration.js": [],
+		"phosphor@0.6.1/lib/core/token.js": [],
+		"jupyterlab_geojson@0.1.0/lib/widget.js": [],
+		"phosphor@0.6.1/lib/algorithm/json.js": [],
+		"phosphor@0.6.1/lib/ui/widget.js": [],
+		"phosphor@0.6.1/lib/core/messaging.js": [],
+		"phosphor@0.6.1/lib/collections/queue.js": [],
+		"phosphor@0.6.1/lib/core/properties.js": [],
+		"phosphor@0.6.1/lib/ui/title.js": [],
+		"leaflet@1.0.1/dist/leaflet-src.js": [],
+		"leaflet@1.0.1/dist/leaflet.css": []
+	}
+}
