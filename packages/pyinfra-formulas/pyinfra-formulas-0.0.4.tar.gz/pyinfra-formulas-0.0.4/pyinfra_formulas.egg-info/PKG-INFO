@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: pyinfra-formulas
+Version: 0.0.4
+Summary: Collection of Pyinfra modules for common use cases
+Home-page: https://github.com/hoh/pyinfra-formulas
+Author: Hugo Herter
+Author-email: contact@hugoherter.com
+License: MIT
+Description: UNKNOWN
+Keywords: pyinfra configuration management formulas
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: System :: Systems Administration
