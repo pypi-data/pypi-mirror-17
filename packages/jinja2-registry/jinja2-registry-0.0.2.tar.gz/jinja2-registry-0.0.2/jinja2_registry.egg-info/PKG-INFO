@@ -1,0 +1,27 @@
+Metadata-Version: 1.1
+Name: jinja2-registry
+Version: 0.0.2
+Summary: jinja2-registry
+Home-page: https://3ptscience.com
+Author: 3point Science
+Author-email: info@3ptscience.com
+License: MIT License
+Download-URL: http://github.com/3ptscience/jinja2-registry
+Description: jinja2_registry
+        ***************
+        
+        jinja2_registry is a convenience library for managing multiple template namespaces with Jinja2
+        
+Keywords: templating
+Platform: Windows
+Platform: Linux
+Platform: Solaris
+Platform: Mac OS-X
+Platform: Unix
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Classifier: Natural Language :: English
