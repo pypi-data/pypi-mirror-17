@@ -1,0 +1,1 @@
+for i in `ls -v otcclient/tests/[0-9]*.sh`; do sh ./$i; done
