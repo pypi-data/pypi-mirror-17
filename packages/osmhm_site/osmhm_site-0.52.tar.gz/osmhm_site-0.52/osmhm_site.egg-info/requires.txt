@@ -1,0 +1,15 @@
+pyramid
+pyramid_chameleon
+pyramid_debugtoolbar
+pyramid_tm
+pyramid_mako
+SQLAlchemy
+transaction
+zope.sqlalchemy
+waitress
+psycopg2
+simplejson
+oauth2
+osm_diff_tool
+osm_hall_monitor
+sendgrid
