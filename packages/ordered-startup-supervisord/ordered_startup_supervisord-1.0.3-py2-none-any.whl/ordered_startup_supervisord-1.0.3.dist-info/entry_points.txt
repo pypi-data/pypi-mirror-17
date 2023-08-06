@@ -1,0 +1,3 @@
+[console_scripts]
+ordered-startup-listener = ordered_startup_supervisord:main
+
