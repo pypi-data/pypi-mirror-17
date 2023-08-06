@@ -1,0 +1,235 @@
+<div ng-controller="SettingsController" class="page settings-page scrolling-panel">
+	<div class="inner">
+		
+        <div class="page-header">
+        
+            <span class="menu-reveal-trigger mobile-show" ng-click="showMenu()"><i class="fa fa-bars"></i></span>
+            
+            <h1>
+                <span class="si cog mobile-hide"></span>
+                Settings
+            </h1>
+		
+            <div class="flag bad" ng-show="!mopidyOnline">
+                <i class="fa fa-exclamation-triangle white-text"></i>
+                &nbsp;
+                Mopidy offline
+            </div>
+		
+            <div class="flag bad" ng-show="!spotify.state().online">
+                <i class="fa fa-exclamation-triangle white-text"></i>
+                &nbsp;
+                Spotify offline
+            </div>
+            
+        </div>
+		
+		<div class="settings">
+			
+			<div class="section info">
+			
+				<h4 class="section-title underline">Spotmop</h4>
+
+				<div class="field">
+					<div class="label">Username</div>
+					<div class="input">
+						<input type="text" name="pusher.username" placeholder="Username" class="autosave" ng-model="settings.state().pusher.username" ng-blur="savePusherName( settings.state().pusher.username )" />
+						<i class="fa fa-check autosave-success"></i>
+					</div>
+				</div>
+
+				<div class="field">
+					<div class="label">Notifications port</div>
+					<div class="input">
+						<input type="text" name="pusher.port" placeholder="6681" class="autosave" ng-model="settings.state().pusher.port" ng-blur="saveField( $event )" />
+						<i class="fa fa-check autosave-success"></i>
+					</div>
+				</div>
+
+				<div class="field shortcut-keys">
+					<div class="label">Keyboard shortcuts</div>
+					<div class="input">
+						<switch class="switch-button" name="keyboardShortcutsEnabled" value="settings.state().keyboardShortcutsEnabled"></switch>
+					</div>
+					<div class="clear-both"></div>
+				</div>
+
+				<div class="field">
+					<div class="label">Current version</div>
+					<div class="input readonly">
+					
+						<span ng-bind="settings.state().version.current"></span>
+						<span ng-show="!settings.state().version.upgrade_available">(latest version)</span>
+						
+						<span ng-show="settings.state().version.upgrade_available">
+						
+							<span ng-show="settings.state().version.is_root">
+								<a class="button secondary" ng-click="upgrade()" ng-show="!upgrading">Upgrade to {{ settings.state().version.latest }}</a>
+								<a class="button secondary disabled" ng-show="upgrading"><i class="fa fa-spin fa-circle-o-notch"></i>&nbsp; Upgrading</a>
+							</span>
+							
+							<span ng-show="!settings.state().version.is_root">Mopidy must be running as root to upgrade</span>
+							
+						</span>
+						
+					</div>
+					<div class="clear-both"></div>
+				</div>
+				
+				<div class="field">
+					<div class="label">Author</div>
+					<div class="input readonly">Built and maintained by James Barnsley (GitHub: <a href="https://github.com/jaedb" target="_blank">jaedb</a>)</div>
+					<div class="clear-both"></div>
+				</div>
+                
+			</div>
+			
+			<!-- SECTION -->
+			
+			<div class="section mopidy">
+			
+				<h4 class="section-title underline">
+					Mopidy Server
+                    &nbsp;<i class="fa fa-exclamation-triangle red-text" ng-if="!mopidyOnline"></i>
+				</h4>
+
+				<div class="field">
+					<div class="label">Hostname</div>
+					<div class="input">
+						<input type="text" name="mopidy.host" placeholder="localhost" class="autosave" ng-model="settings.state().mopidy.host" ng-blur="saveField( $event )" />
+						<i class="fa fa-check autosave-success"></i>
+					</div>
+				</div>
+
+				<div class="field">
+					<div class="label">Port</div>
+					<div class="input">
+						<input type="text" name="mopidy.port" placeholder="6680" class="autosave" ng-model="settings.state().mopidy.port" ng-blur="SaveFields( $event )" />
+						<i class="fa fa-check autosave-success"></i>
+					</div>
+				</div>
+
+				<div class="clear-both"></div>		
+			</div>
+			
+			<!-- SECTION -->
+			
+			<div class="section spotify">
+			
+				<h4 class="section-title underline">
+					Spotify
+                    &nbsp;<i class="fa fa-exclamation-triangle red-text" ng-if="!spotify.state().online"></i>
+				</h4>
+                
+                <div class="field">
+                    <div class="label">Country code</div>
+                    <div class="input">
+                        <input type="text" name="spotify.country" placeholder="NZ" class="autosave" ng-model="settings.state().spotify.country" ng-blur="SaveFields( $event )" />
+                        <i class="fa fa-check autosave-success"></i>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="label">Locale</div>
+                    <div class="input">
+                        <input type="text" name="spotify.locale" placeholder="en_NZ" class="autosave" ng-model="settings.state().spotify.locale" ng-blur="SaveFields( $event )" />
+                        <i class="fa fa-check autosave-success"></i>
+                    </div>
+                </div>
+                
+                <div class="field current-user" ng-if="spotify.isAuthorized()">
+                    <div class="label">Current user</div>
+                    <div class="input">
+                        <span class="my-profile">
+                            <span class="image-container" ng-repeat="image in spotify.state().user.images  | limitTo:1">
+                                <div class="image animate" style="background-image: url({{ image.url }});"></div>
+                            </span>
+                            <span ng-bind="spotify.state().user.display_name"></span> (<a ng-bind="spotify.state().user.id" ui-sref="browse.user({ uri: spotify.state().user.uri })"></a>)
+                            &nbsp;&nbsp;
+                            <a ng-click="spotify.logout()"><i class="fa fa-close"></i>&nbsp; Log out</a>
+                        </span>
+                    </div>
+                </div>
+            
+                <div class="field" ng-if="!spotify.isAuthorized()">
+                    <div class="label">Connect to Spotify</div>
+                    <div class="input">
+                        <a class="button primary" ng-click="spotify.authorize()"><i class="fa fa-tick"></i>&nbsp; Login to Spotify</a>
+                    </div>
+				</div>
+
+				<div class="clear-both"></div>
+			
+			</div>
+			
+			<!-- SECTION -->
+			
+			<div class="section advanced">
+			
+				<h4 class="section-title underline">Advanced</h4>
+				
+                <div class="field radio">
+                    <div class="label">Touch support</div>
+                    <div class="input">
+                        <label>
+                            <input type="radio" name="pointerMode" ng-model="settings.state().pointerMode" value="default" />
+                            <span class="label">Device default (<span ng-if="isTouchDevice()">touch</span><span ng-if="!isTouchDevice()">click</span>)</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="pointerMode" ng-model="settings.state().pointerMode" value="click" />
+                            <span class="label">Force click</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="pointerMode" ng-model="settings.state().pointerMode" value="touch" />
+                            <span class="label">Force touch</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field" ng-if="spotify.state().online">
+                    <div class="label">Spotify authentication</div>
+                    <div class="input">
+                        <a class="button" ng-click="spotify.refreshToken()"><i class="fa fa-refresh"></i>&nbsp; Force token refresh</a>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="label">Debugging</div>
+                    <div class="input">
+                        <confirmation-button
+                            extra-classes="destructive"
+                            default-text="Reset all settings"
+                            confirmation-text="Are you sure?"
+                            on-confirmation="resetSettings">
+                        </confirmation-button>
+                        &nbsp;
+                        <a class="button primary" ui-sref="testing"><i class="fa fa-flask"></i>&nbsp; Testing lab</a>
+                    </div>
+                </div>
+                
+                <div class="field current-connections">
+                    <div class="label">Users connected</div>
+                    <div class="input readonly">
+                    
+                        <div ng-repeat="connection in pusher.state().connections">
+                            <span class="min-width w150 name">
+                                <span ng-bind="connection.username | urlDecode"></span>
+                                <span ng-if="connection.connectionid == settings.state().pusher.connectionid">(you)</span>
+                            </span>
+                            <span class="min-width w150">
+                                <span ng-bind="connection.ip"></span>
+                                <span class="grey-text">(<span ng-bind="connection.connectionid"></span>)</span>
+                            </span>
+                            <span class="min-width w100" ng-if="connection.connectionid != settings.state().pusher.connectionid">
+                                <a ng-click="pushConfig( connection )"><i class="fa fa-sign-in"></i>&nbsp; Push config</a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="clear-both"></div>
+                </div>
+			</div>
+			
+		</div>
+		
+	</div>
+</div>

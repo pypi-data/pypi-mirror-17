@@ -1,0 +1,137 @@
+<div class="page my-playlists-page scrolling-panel">
+	<div class="inner">
+		
+        <div class="page-header">
+		
+            <div class="utilities">
+                <a class="button create-playlist transparent pull-right" ng-click="createPlaylist()">
+                    <i class="fa fa-plus"></i>&nbsp; <span class="mobile-hide">New</span>
+                </a>
+				<dropdownfield
+					options="sortOptions"
+					settingname="playlists.sortField"
+					togglesettingname="playlists.sortReverse"
+					iconclass="fa-sort">
+				</dropdownfield>
+				<dropdownfield
+					options="viewOptions"
+					settingname="playlists.view"
+					iconclass="fa-eye">
+				</dropdownfield>
+				<dropdownfield
+					options="filterOptions"
+					settingname="playlists.filter"
+					iconclass="fa-filter"
+					ng-if="spotify.isAuthorized()">
+				</dropdownfield>
+            </div>
+        
+			<span class="menu-reveal-trigger mobile-show" ng-click="showMenu()"><i class="fa fa-bars"></i></span>
+            
+            <h1>
+                <span class="si playlist mobile-hide"></span>
+                Playlists
+            </h1>
+            
+        </div>
+        
+        <!-- GRID VIEW -->
+		
+		<div class="playlist-items square-panels" ng-if="!settings.state().playlists.view || settings.state().playlists.view == 'grid'">
+			<div ng-if="playlists().length">
+				<div class="item-container" ng-repeat="playlist in playlists() | orderBy:settings.state().playlists.sortField:settings.state().playlists.sortReverse track by playlist.uri">
+					<a
+                        ui-sref="library.playlist({ uri: {{ 'playlist.uri' }} })"
+                        class="square-panel playlist"
+                        candrag
+                        dragobj="playlist"
+                        draggable="false">
+                            <div class="image-container">
+                                <thumbnail size="medium" images="playlist.images"></thumbnail>
+                            </div>
+                            <div class="info animate">
+                                <div class="name" ng-bind="playlist.name"></div>
+                                <div class="secondary tracks" ng-if="playlist.tracks"><span ng-bind="playlist.tracks.total"></span> tracks <span ng-if="playlist.owner.id != settings.state().spotify.user.id">&nbsp;<i class="fa fa-lock"></i></span></div>
+                            </div>
+					</a>
+				</div>
+			</div>
+			
+			<div class="clear-both"></div>
+		
+		</div>
+        
+        <!-- LIST VIEW -->
+		
+		<div class="playlist-items list" ng-if="settings.state().playlists.view == 'list'">
+            <div class="list-item header">
+                <div class="col w40">
+                    Name
+                    <span ng-show="settings.state().playlists.sortField == 'name'">
+                        <i ng-show="!settings.state().playlists.sortReverse" class="fa fa-caret-down"></i>
+                        <i ng-show="settings.state().playlists.sortReverse" class="fa fa-caret-up"></i>
+                    </span>
+                </div>
+                <div class="col w20">
+                    Owner
+                    <span ng-show="settings.state().playlists.sortField == 'owner.id'">
+                        <i ng-show="!settings.state().playlists.sortReverse" class="fa fa-caret-down"></i>
+                        <i ng-show="settings.state().playlists.sortReverse" class="fa fa-caret-up"></i>
+                    </span>
+                </div>
+                <div class="col w10">
+                    Tracks
+                    <span ng-show="settings.state().playlists.sortField == 'tracks.total'">
+                        <i ng-show="!settings.state().playlists.sortReverse" class="fa fa-caret-down"></i>
+                        <i ng-show="settings.state().playlists.sortReverse" class="fa fa-caret-up"></i>
+                    </span>
+                </div>
+                <div class="col w10">
+                    Visibility
+                </div>
+                <div class="col w10">
+                    Collaborative
+                </div>
+                <div class="col w10">
+                    Source
+                </div>
+                <div class="clear-both"></div>
+            </div>
+			<div class="item-container" ng-repeat="playlist in playlists() | orderBy:settings.state().playlists.sortField:settings.state().playlists.sortReverse track by playlist.uri">
+				<div ui-sref="browse.playlist({ uri: playlist.uri })" class="list-item state-link">
+                    <div class="col w40 name">
+                        <span ng-bind="playlist.name"></span>
+                    </div>
+                    <div class="col w20 owner">
+                        <a ui-sref="browse.user({ uri: playlist.owner.uri })" ng-bind="playlist.owner.id" ng-click="$event.stopPropagation()" ng-if="playlist.owner"></a>
+                        <span ng-if="playlist.owner.id == undefined">-</span>
+                    </div>
+                    <div class="col w10 tracks">
+                        <span ng-if="playlist.tracks.total" ng-bind="playlist.tracks.total | number:0"></span>
+                        <span ng-if="!playlist.tracks.total && playlist.tracks" ng-bind="playlist.tracks.length | number:0"></span>
+                        <span ng-if="playlist.tracks == undefined">-</span>
+                    </div>
+                    <div class="col w10">
+                        <span ng-if="playlist.public == true">Public</span>
+                        <span ng-if="playlist.public == false">Private</span>
+                        <span ng-if="playlist.public == undefined">-</span>
+                    </div>
+                    <div class="col w10">
+                        <span ng-if="playlist.collaborative == true">Yes</span>
+                        <span ng-if="playlist.collaborative == false">No</span>
+                        <span ng-if="playlist.collaborative == undefined">-</span>
+                    </div>
+					<div class="col w10">        
+						<span ng-bind="playlist.uri | assetOrigin"></span>
+					</div>
+                    <div class="clear-both"></div>
+				</div>
+			</div>		
+		</div>
+		
+        <div ng-hide="playlists().length" class="no-items">
+            No items
+        </div>
+		
+	</div>
+</div>

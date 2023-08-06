@@ -1,0 +1,51 @@
+<div class="create-playlist-dialog">
+	
+	<h4 class="section-title dialog-title">Create playlist</h4>
+
+	<form ng-submit="savePlaylist()">
+        
+		<div class="field text large">
+			<input name="name" placeholder="Playlist title" ng-model="playlistName" />
+			<span class="note red-text" ng-if="error">Please enter a title</span>
+		</div>
+		
+		<div class="field radio">
+			<label ng-class="{ disabled: !spotify.isAuthorized() }">
+				<input type="radio" name="public" value="true" ng-model="playlistPublic" />
+				<span class="label">Public</span>
+			</label>
+			<label ng-class="{ disabled: !spotify.isAuthorized() }">
+				<input type="radio" name="public" value="false" ng-model="playlistPublic" />
+				<span class="label">Private</span>
+			</label>
+			<div class="clear"></div>
+		</div>
+		
+		<div class="field radio">
+			<label>
+				<input type="radio" name="scheme" value="m3u" ng-model="scheme" />
+				<span class="label">Local (Mopidy)</span>
+			</label>
+			<label ng-show="spotify.isAuthorized()">
+				<input type="radio" name="scheme" value="spotify" ng-model="scheme" />
+				<span class="label">Remote (Spotify)</span>
+			</label>
+			<label ng-show="!spotify.isAuthorized()" class="disabled">
+				<input type="radio" name="scheme" value="spotify" ng-model="scheme" disabled="disabled" />
+				<span class="label">Remote (Spotify)</span>
+			</label>
+			<div class="clear"></div>
+		</div>
+
+		<div class="actions">
+			<button type="submit" class="button save primary" ng-hide="saving">
+				<i class="fa fa-check"></i>&nbsp; Save
+			</button>			
+			<span ng-show="saving" class="saving">
+				<img src="assets/svg/spinner.svg" class="working" />
+			</span>
+		</div>
+		
+	</form>
+	
+</div>
