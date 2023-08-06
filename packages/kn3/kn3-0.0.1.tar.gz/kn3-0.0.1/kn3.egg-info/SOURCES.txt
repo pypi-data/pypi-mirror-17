@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.cfg
+setup.py
+kn3/__init__.py
+kn3/kn3.py
+kn3.egg-info/PKG-INFO
+kn3.egg-info/SOURCES.txt
+kn3.egg-info/dependency_links.txt
+kn3.egg-info/requires.txt
+kn3.egg-info/top_level.txt
