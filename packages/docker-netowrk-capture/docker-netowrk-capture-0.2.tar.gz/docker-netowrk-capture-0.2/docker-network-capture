@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+from docker import Client
+from argparse import ArgumentParser
+
+from dnc.pipeline import Pipeline, LoopbackProducer, InterfaceProducer
+from dnc import CaptureFlags, ContainerError
+
+
+def _main(container, bridge="docker0", capture=CaptureFlags.Egress, docker='', **kwargs):
+    """ Initialize and start packet capture for `container` on specific `bridge`
+
+    :param container: str, container name or id
+    :param bridge: str, name of the docker bridge
+    :param capture: CaptureFlags, what kind of traffic to capture
+    :param docker: str, url to the docker socket
+    :param kwargs: dict, additional arguments passed to the pipeline
+    :return:
+    """
+    cli = Client(base_url=docker)
+    cont = cli.inspect_container(container)
+    ns = cont.get("NetworkSettings", None)
+    if not ns:
+        raise ContainerError("Container has no associated network settings")
+    mac = ns.get("MacAddress", None)
+    if not mac:
+        raise ContainerError("Container has no MAC Address")
+    state = cont.get("State", None)
+    if not state:
+        raise ContainerError("Container has no state")
+    pid = state.get("Pid", None)
+    if not pid:
+        raise ContainerError("Container has no PID (is it running?)")
+
+    name, cid = cont.get("Name", "/unnamed"), cont.get("Id", "(no-id)")
+
+    if 'verbose' in kwargs and kwargs['verbose']:
+        print('[+] Initializing packet capture on: "{b}" for container: "{c}@{h}"'.format(b=args.bridge,
+                                                                                          c=name[1:], h=cid))
+    pipeline = Pipeline(**kwargs)
+    pipeline.add_producer(LoopbackProducer(pid, capture))
+    pipeline.add_producer(InterfaceProducer(bridge, mac, capture))
+
+    try:
+        pipeline.run()
+    except KeyboardInterrupt:
+        print("\b\bExiting")
+        pipeline.running = False
+
+
+def parse_args():
+    """ Parse command line arguments and return them """
+    arguments = ArgumentParser()
+    arguments.add_argument('--verbose', default=False, action='store_true')
+    arguments.add_argument('-b', '--bridge', default='docker0', help='Docker bridge to use')
+    arguments.add_argument('-c', '--capture', default='egress', help='Direction of traffic to capture [egress,ingress]')
+    arguments.add_argument('-d', '--docker', default='unix://var/run/docker.sock', help='')
+    arguments.add_argument('container')
+
+    arg = arguments.parse_args()
+    capture_args = arg.capture.lower()
+    cap = CaptureFlags.Invalid
+    if 'ingress' in capture_args:
+        cap |= CaptureFlags.Ingress
+    if 'egress' in capture_args:
+        cap |= CaptureFlags.Egress
+    arg.cap = cap
+
+    return arg
+
+
+if __name__ == '__main__':
+    args = parse_args()
+    _main(args.container, bridge=args.bridge, docker=args.docker, capture=args.cap, verbose=args.verbose)
