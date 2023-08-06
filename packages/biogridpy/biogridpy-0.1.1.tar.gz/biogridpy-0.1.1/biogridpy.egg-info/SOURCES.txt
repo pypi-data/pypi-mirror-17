@@ -1,0 +1,10 @@
+setup.cfg
+setup.py
+biogridpy/__init__.py
+biogridpy/biogrid_client.py
+biogridpy/biogrid_results.py
+biogridpy.egg-info/PKG-INFO
+biogridpy.egg-info/SOURCES.txt
+biogridpy.egg-info/dependency_links.txt
+biogridpy.egg-info/not-zip-safe
+biogridpy.egg-info/top_level.txt
