@@ -1,0 +1,3 @@
+[console_scripts]
+tfstate = tfstate.cli:cli
+
