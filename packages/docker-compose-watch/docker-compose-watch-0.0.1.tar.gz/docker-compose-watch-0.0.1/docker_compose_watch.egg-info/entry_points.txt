@@ -1,0 +1,3 @@
+[console_scripts]
+docker-compose-watch = dockercomposewatch:main
+
