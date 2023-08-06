@@ -1,0 +1,10 @@
+setup.cfg
+setup.py
+Eos.egg-info/PKG-INFO
+Eos.egg-info/SOURCES.txt
+Eos.egg-info/dependency_links.txt
+Eos.egg-info/requires.txt
+Eos.egg-info/top_level.txt
+eos/__init__.py
+eos/exception.py
+eos/holder_filter.py
