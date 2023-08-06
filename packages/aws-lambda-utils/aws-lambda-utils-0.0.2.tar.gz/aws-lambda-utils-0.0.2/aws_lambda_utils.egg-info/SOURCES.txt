@@ -1,0 +1,9 @@
+setup.cfg
+setup.py
+aws_lambda_utils/__init__.py
+aws_lambda_utils/cfnresponse.py
+aws_lambda_utils.egg-info/PKG-INFO
+aws_lambda_utils.egg-info/SOURCES.txt
+aws_lambda_utils.egg-info/dependency_links.txt
+aws_lambda_utils.egg-info/requires.txt
+aws_lambda_utils.egg-info/top_level.txt
