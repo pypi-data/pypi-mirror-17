@@ -1,0 +1,15 @@
+{% load betty %}
+
+<div class="liveblog-avatar">
+  {% cropped entry.authors.all.0.avatar '1x1' 100 %}
+</div>
+
+<div class="liveblog-entry-meta">
+  <div class="liveblog-author-name">
+    <a href="{{ entry.authors.all.0.get_absolute_url }}">
+      {{ entry.authors.all.0.first_name }} {{ entry.authors.all.0.last_name }}
+    </a>
+  </div>
+  <div class="liveblog-published-time">{{ entry.published | date:'g:i A' }}</div>
+  <div class="liveblog-published-date">{{ entry.published | date:'F jS, o' | upper }}</div>
+</div>
