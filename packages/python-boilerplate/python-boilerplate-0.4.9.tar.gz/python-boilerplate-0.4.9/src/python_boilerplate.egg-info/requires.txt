@@ -1,0 +1,11 @@
+jinja2
+invoke>=0.13
+unidecode
+six
+
+[dev]
+manuel
+pytest
+pytest-cov
+coverage
+mock
