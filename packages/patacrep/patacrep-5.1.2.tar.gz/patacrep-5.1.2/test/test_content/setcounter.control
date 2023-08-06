@@ -1,0 +1,12 @@
+- setcounter:
+    name: songnum
+    value: 101
+- setcounter:
+    name: songnum
+    value: 1
+- setcounter:
+    name: songnum
+    value: 5
+- setcounter:
+    name: counter_name
+    value: -1
