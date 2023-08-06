@@ -1,0 +1,3 @@
+[nose.plugins.0.10]
+nosetests_json_extended_parallel = nosetests_json_extended_parallel.plugin:JsonExtendedPlugin
+
