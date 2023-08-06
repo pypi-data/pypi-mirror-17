@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: sagbescheid
+Version: 0.3.0
+Summary: systemd notification daemon
+Home-page: ['http://github.com/mineo/sagbescheid']
+Author: Wieland Hoffmann
+Author-email: themineo@gmail.com
+License: MIT
+Download-URL: ['https://github.com/mineo/sagbescheid/tarball/master']
+Description: ===========
+        sagbescheid
+        ===========
+        
+        * Documentation: https://sagbescheid.rtfd.org
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7

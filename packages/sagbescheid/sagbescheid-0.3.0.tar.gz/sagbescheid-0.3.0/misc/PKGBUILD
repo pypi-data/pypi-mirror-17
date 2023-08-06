@@ -1,0 +1,28 @@
+pkgname=sagbescheid-git
+pkgver=0.1.0.15.g5b176f6
+pkgrel=1
+pkgdesc=""
+arch=("any")
+url="https://github.com/mineo/sagbescheid"
+license=('MIT')
+source=('git+https://github.com/mineo/sagbescheid')
+md5sums=('SKIP')
+depends=('python2' 'python2-twisted>=15.2.0' 'python2-txdbus')
+makedepends=('git')
+backup=('etc/conf.d/sagbescheid')
+
+pkgver(){
+  cd "${srcdir}/sagbescheid"
+  echo "$(git describe --tags --always | sed 's/-/./g' )"
+}
+
+package() {
+  cd "${srcdir}/sagbescheid"
+  python2 setup.py install --root="$pkgdir" --optimize=1
+  install -d "${pkgdir}/usr/lib/systemd/system/"
+  cp "misc/sagbescheid.service" "${pkgdir}/usr/lib/systemd/system/"
+  install -d "${pkgdir}/etc/conf.d"
+  cp "misc/config" "${pkgdir}/etc/conf.d/sagbescheid"
+}
+
+# vim:set ts=2 sw=2 et:
