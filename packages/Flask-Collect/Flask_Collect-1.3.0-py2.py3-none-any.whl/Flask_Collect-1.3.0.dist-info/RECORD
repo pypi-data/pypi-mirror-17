@@ -1,0 +1,15 @@
+Flask_Collect-1.3.0.dist-info/DESCRIPTION.rst,sha256=NEZmtYfabTjJSRWQkWW0pb8tGrEUbSfsES6o5V_QTK0,5250
+Flask_Collect-1.3.0.dist-info/METADATA,sha256=sloUzjzSSKRZqa5zNTDdNarfLJKdvcWvJjU_fkUfEgc,5408
+Flask_Collect-1.3.0.dist-info/RECORD,,
+Flask_Collect-1.3.0.dist-info/WHEEL,sha256=o2k-Qa-RMNIJmUdIc7KU6VWR_ErNRbWNlxDIpl7lm34,110
+Flask_Collect-1.3.0.dist-info/metadata.json,sha256=jjJbqpn6F_a2-ZTviFOK6kl4eWe__Q_4cFZ2lHKf00k,377
+Flask_Collect-1.3.0.dist-info/top_level.txt,sha256=HWx24TylTle3mZ9hAun3RLspyRzj9KjyEQnuFI91HGs,20
+flask_collect/__init__.py,sha256=ejCuGzJZczWxg0e0S7RvZ8M3r-P0UGCUJ9OCYNnv1nU,483
+flask_collect/collect.py,sha256=wwF46ymmiy40sMYqPZ94mwCq4F3EcwYHcLmQa4pQO-k,3316
+flask_collect/storage/__init__.py,sha256=5E2Vn6DbgfyTPspJr8KUCEpG_621WcONgoWl6kQCRps,320
+flask_collect/storage/base.py,sha256=_1pzhsGaX3mUA81f2EhNTdpcRmFILWOzG5CkVt6EYgs,2098
+flask_collect/storage/file.py,sha256=0R2ZOnUCSLL2S1S8T4N8zd7rcff6JRG-DDKiQtCm69I,1235
+flask_collect/storage/link.py,sha256=_buoktRt7JZWAZO0pOR1mK-NfbjiyZeZNus2eu3hb6g,1643
+flask_collect/storage/test.py,sha256=1vk6mtOihwjz0CwYIZ1OlgvnVkY7VCYYjuy_evTlpmo,518
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_collect.py,sha256=cTsCc1EVo3GwmmG1zzk51mkPO5lylbxFqFoPzp61nqQ,8331
