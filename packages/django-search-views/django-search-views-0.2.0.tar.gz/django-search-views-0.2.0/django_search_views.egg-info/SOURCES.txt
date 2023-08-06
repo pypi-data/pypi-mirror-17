@@ -1,0 +1,13 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.py
+django_search_views.egg-info/PKG-INFO
+django_search_views.egg-info/SOURCES.txt
+django_search_views.egg-info/dependency_links.txt
+django_search_views.egg-info/requires.txt
+django_search_views.egg-info/top_level.txt
+searchlist_views/__init__.py
+searchlist_views/filters.py
+searchlist_views/search.py
+searchlist_views/views.py
