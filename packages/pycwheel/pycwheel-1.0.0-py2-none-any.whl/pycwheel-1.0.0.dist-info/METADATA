@@ -1,0 +1,32 @@
+Metadata-Version: 2.0
+Name: pycwheel
+Version: 1.0.0
+Summary: Compile all py files in a wheel to pyc files
+Home-page: https://github.com/grantpatten/pycwheel
+Author: Grant Patten
+Author-email: grant@gpatten.com
+License: MIT
+Keywords: pyc wheel compile
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Utilities
+
+Compile all py files in a wheel to pyc files
+============================================
+
+The package version information is changed to append .compiled to the end.
+
+If you want the pyc only version of the wheel, specify the .compiled version in your
+requirements file.
+
+Usage
+-----
+
+.. code-block:: bash
+
+    $ pycwheel your_wheel-1.0.0-py2-none-any.whl
+    # Output: your_wheel-1.0.0.compiled-py2-none-any.whl
+
+
