@@ -1,0 +1,8 @@
+nodeconductor>=0.107.0
+jira>=1.0.4
+
+[dev]
+Sphinx==1.2.2
+
+[test]
+ddt>=1.0.0
