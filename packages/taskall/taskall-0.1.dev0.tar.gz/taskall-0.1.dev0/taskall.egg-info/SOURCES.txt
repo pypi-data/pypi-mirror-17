@@ -1,0 +1,12 @@
+setup.py
+taskall/__init__.py
+taskall/base.py
+taskall/future.py
+taskall/parallel.py
+taskall/util.py
+taskall.egg-info/PKG-INFO
+taskall.egg-info/SOURCES.txt
+taskall.egg-info/dependency_links.txt
+taskall.egg-info/pbr.json
+taskall.egg-info/requires.txt
+taskall.egg-info/top_level.txt
