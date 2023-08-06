@@ -1,0 +1,50 @@
+{% if elem.type == 'h1' %}
+<h1>{{elem.text}}</h1>
+{% elif elem.type == 'h2' %}
+<h2>{{elem.text}}</h2>
+{% elif elem.type == 'h3' %}
+<h3>{{elem.text}}</h3>
+{% elif elem.type == 'h4' %}
+<h4>{{elem.text}}</h4>
+{% elif elem.type == 'p' %}
+<p>{{elem.text}}</p>
+{% elif elem.type == 'img' %}
+<a href="#" class="thumbnail">
+<div class="img-hover">
+  <img class="img-responsive img-rounded" src="data:image/png;base64,{{elem.data}}" alt="Embedded Image">
+</div>
+</a>
+{% elif elem.type == 'code' %}
+<pre><code class="{{elem.format}}">{{ elem.text }}</code></pre>
+
+{% elif elem.type == 'table' %}
+  {% if elem.format == 'pd.frame' %}
+{{elem.data|pdframetotable}}
+  {% endif %}
+{% elif elem.type == 'vsplit' %}
+<div class="container">
+<div class="row">
+    {% if elem.count == 2 %}
+    <div class="col-md-6">
+    {% elif elem.count == 3 %}
+    <div class="col-md-4">
+    {% elif elem.count == 4 %}
+    <div class="col-md-3">
+    {% endif %}
+{% elif elem.type == 'then' %}
+    </div>
+    {% if elem.count == 2 %}
+    <div class="col-md-6">
+    {% elif elem.count == 3 %}
+    <div class="col-md-4">
+    {% elif elem.count == 4 %}
+    <div class="col-md-3">
+    {% endif %}
+{% elif elem.type == 'endsplit' %}
+    </div>
+</div><!-- /.row -->
+</div><!-- /.container -->
+{% elif elem.type == 'title' %}
+{% else %}
+<h1> NOT FOUND type : {{elem.type}}</h1>
+{% endif %}

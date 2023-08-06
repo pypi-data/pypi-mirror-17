@@ -1,0 +1,8 @@
+docutils
+jinja2
+
+[dev]
+check-manifest
+
+[test]
+behave
