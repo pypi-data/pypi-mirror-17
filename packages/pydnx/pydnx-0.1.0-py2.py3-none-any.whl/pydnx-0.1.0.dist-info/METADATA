@@ -1,0 +1,15 @@
+Metadata-Version: 2.0
+Name: pydnx
+Version: 0.1.0
+Summary: Package for generating DNX XML for the Ex Libris Rosetta digital preservation application
+Home-page: UNKNOWN
+Author: Sean Mosely
+Author-email: sean.mosely@gmail.com
+License: MIT
+Download-URL: https://github.com/NLNZDigitalPreservation/pydnx/archive/v0.1.0.tar.gz
+Platform: UNKNOWN
+Requires-Dist: lxml (==3.6.4)
+
+UNKNOWN
+
+
