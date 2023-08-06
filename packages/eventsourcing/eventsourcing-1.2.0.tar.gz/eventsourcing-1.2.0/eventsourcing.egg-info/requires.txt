@@ -1,0 +1,16 @@
+python-dateutil
+singledispatch
+six
+singledispatch
+
+[test]
+cassandra-driver
+mock
+PyCrypto
+sqlalchemy
+
+[sqlalchemy]
+sqlalchemy
+
+[cassandra]
+cassandra-driver
