@@ -1,0 +1,16 @@
+adal
+cryptography
+argparse
+boto
+google-api-python-client>=1.5.0
+haikunator
+httplib2
+jwt
+msrest
+msrestazure
+oauth2client>=2.0.0
+PyYAML
+requests>=2.7.0
+SOAPpy
+termcolor
+wstools==0.4.3
