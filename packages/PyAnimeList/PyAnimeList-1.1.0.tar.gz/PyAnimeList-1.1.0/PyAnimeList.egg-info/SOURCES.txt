@@ -1,0 +1,10 @@
+setup.py
+PyAnimeList.egg-info/PKG-INFO
+PyAnimeList.egg-info/SOURCES.txt
+PyAnimeList.egg-info/dependency_links.txt
+PyAnimeList.egg-info/requires.txt
+PyAnimeList.egg-info/top_level.txt
+pyanimelist/__init__.py
+pyanimelist/client.py
+pyanimelist/errors.py
+pyanimelist/objects.py

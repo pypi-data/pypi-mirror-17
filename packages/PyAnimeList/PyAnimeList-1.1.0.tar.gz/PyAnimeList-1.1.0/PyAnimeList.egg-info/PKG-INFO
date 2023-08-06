@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: PyAnimeList
+Version: 1.1.0
+Summary: Python 3 bindings for the MyAnimeList API.
+Home-page: https://github.com/GetRektByMe/PyAnimeList
+Author: Recchan
+Author-email: UNKNOWN
+License: MIT
+Description: An async wrapper for the MyAnimeList api.
+Keywords: aiohttp asyncio myanimelist xml parsing
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Software Development :: Libraries
