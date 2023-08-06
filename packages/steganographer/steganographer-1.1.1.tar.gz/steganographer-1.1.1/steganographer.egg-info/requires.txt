@@ -1,0 +1,9 @@
+Pillow
+
+[test]
+pytest
+coverage
+pytest-cov
+coveralls
+hypothesis
+pytest-xdist
