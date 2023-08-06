@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: food_network_wrapper
+Version: 1.2
+Summary: Allows you to easily search and scrape recipes from http://foodnetwork.com
+Home-page: https://github.com/benawad/food_network_wrapper
+Author: Ben Awad
+Author-email: benawad97@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/benawad/food_network_wrapper/tarball/0.4
+Description: UNKNOWN
+Keywords: cooking,recipes,recipe,python,harvest,foodnetwork,scrape,scraping
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Internet :: WWW/HTTP
