@@ -1,0 +1,19 @@
+Metadata-Version: 2.0
+Name: pepsyn
+Version: 0.0.0
+Summary: Peptide library design
+Home-page: https://github.com/lasersonlab/pepsyn
+Author: Laserson Lab
+Author-email: UNKNOWN
+License: Apache License, Version 2.0
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: biopython
+Requires-Dist: click
+
+# pepsyn
+Peptide library design
+
+
+
+
