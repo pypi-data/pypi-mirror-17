@@ -1,0 +1,6 @@
+elasticsearch==2.0.0
+elasticsearch-dsl==2.0.0
+Flask==0.11.1
+invenio-query-parser==0.4.1
+pyPEG2==2.15.2
+requests==2.4.0

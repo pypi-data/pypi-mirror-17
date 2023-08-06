@@ -1,0 +1,6 @@
+elasticsearch<3.0.0,>=2.0.0
+elasticsearch-dsl>=2.0.0
+Flask>=0.11.1
+-e git+git://github.com/inveniosoftware/invenio-query-parser.git#egg=invenio-query-parser
+pyPEG2>=2.15.2
+requests>=2.4.0
