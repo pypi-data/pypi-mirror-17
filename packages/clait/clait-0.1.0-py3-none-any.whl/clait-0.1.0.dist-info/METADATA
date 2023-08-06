@@ -1,0 +1,160 @@
+Metadata-Version: 2.0
+Name: clait
+Version: 0.1.0
+Summary: Command Line Accounting & Invoice Tool
+Home-page: https://github.com/guyzmo/clait
+Author: Bernard `Guyzmo` Pratz
+Author-email: guyzmo+clait+pub@m0g.net
+License: GPLv2
+Keywords: invoice
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Requires-Dist: docopt
+Requires-Dist: pyyaml
+Requires-Dist: Flask
+Requires-Dist: flask-restful
+Requires-Dist: Flask-Webpack
+Requires-Dist: Flask-cors
+
+Clait
+=====
+
+A tool to generate nicely formatted and LaTeX generated invoices.
+
+How to install?
+---------------
+
+just run:
+
+::
+
+    python3 setup.py install
+
+How to develop?
+---------------
+
+::
+
+    pip3 install zc.buildout
+    buildout
+
+you'll find the tool in:
+
+::
+
+    bin/clait
+
+External dependency
+-------------------
+
+you need to make sure you have installed the texlive suite, along with
+the ``pdflatex`` tool. No special LaTeX library is needed.
+
+How to use?
+-----------
+
+create a directory such as ``paperwork``, within it create two files:
+
+``invoices_config.yaml``:
+
+that will contain the name of the template (``format`` key) the path to
+the pdflatex tool, and in ``source`` all the custom information for your
+billing.
+
+::
+
+    format: french
+    source:
+        name: Ford Prefect
+        address:
+            - Hyperspace bypass
+            - Earth
+        telephone: +44 777 7777 7777
+        website: http://mostly.harmless.com
+        email: ford.prefect@mostly.harmless.com
+        siren: 111 222 333
+        ape: 9602A
+        bank:
+            rib:
+                - 00001
+                - 00002
+                - 00000000001
+                - 42
+            iban: FR42 0000 1000 0200 0000 0000 142
+            bics: FOOBARFUBAR
+    tools:
+        pdflatex: /usr/local/texlive/2014/bin/universal-darwin/pdflatex
+
+``invoices_list.yaml``:
+
+that will contain a list of ``!invoice`` objects. The ``iid`` will be
+the unique reference of the invoice. Then all the elements are as
+defined by the template.
+
+::
+
+    - !invoice
+      iid: 201410-001
+      date: 2014-10-02
+      kind: paid
+      customer: !customer
+        address: [Alpha du centaure]
+        name: Zaphod Beeblebrox
+      subject: Voyage en dauphin
+      desc: "Pr\xE9paration et embarquation sur un dauphin \xE0 travers les mers"
+      place: Babylon
+      products:
+      - !product
+        descr: Soutien psychologique du dauphin
+        price: 430
+        qty: 1
+      - !offer
+        descr: Discount because I'm nice
+        price: 20
+        qty: 1
+
+How to run?
+-----------
+
+To generate all your invoices, in the ``paperwork`` directory:
+
+::
+
+    clait -d paperwork generate
+
+If you want your tax calculation:
+
+::
+
+    clait -d paperwork results quarterly
+    clait -d paperwork results yearly
+
+And finally, to launch the webapp, use
+
+::
+
+    clait -d paperwork api
+
+If you've made a change to an invoice and need to regenerate, just
+remove the pdf file!
+
+How will it look like?
+----------------------
+
+here's a shot of one of the example invoices:
+
+.. figure:: https://github.com/guyzmo/clait/blob/master/examples/IV201410-001.pdf.png
+   :alt: IV201410-001.pdf
+
+   IV201410-001.pdf
+
+License
+-------
+
+This code is licensed under the GPLv3.
+
+
