@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}
+  {% trans "Operation Logs" %}
+{% endblock %}
+
+{% block main %}
+  {% include "operationlogs/_index.html" %}
+  {{ table.render }}
+{% endblock %}
