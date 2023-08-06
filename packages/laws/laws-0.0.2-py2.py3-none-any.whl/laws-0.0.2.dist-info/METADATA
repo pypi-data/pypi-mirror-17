@@ -1,0 +1,18 @@
+Metadata-Version: 2.0
+Name: laws
+Version: 0.0.2
+Summary: Filter AWS instances
+Home-page: https://github.com/cyrillk/list-aws
+Author: Kirill Kulikov
+Author-email: kirill.kulikov@gmail.com
+License: MIT
+Keywords: aws,ec2
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Environment :: Console
+Requires-Dist: boto
+Requires-Dist: tabulate
+
+UNKNOWN
+
+
