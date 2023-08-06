@@ -1,0 +1,8 @@
+Flask==0.11.1
+pymongo==3.3.0
+Jinja2==2.8
+inflect==0.2.5
+
+[dev]
+
+[test]
