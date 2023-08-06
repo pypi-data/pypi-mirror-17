@@ -1,0 +1,15 @@
+2016-05-17 08:55:27,803 saml2:INFO Logging started
+2016-05-17 09:27:03,113 saml2:INFO Logging started
+2016-05-17 09:27:12,376 saml2.entity:DEBUG receiver addresses: ['https://localhost:8088/sso/redirect']
+2016-05-17 09:27:12,378 saml2.entity:DEBUG Binding: urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect
+2016-05-17 09:27:12,379 saml2.request:DEBUG xmlstr: b'<ns0:AuthnRequest xmlns:ns0="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:ns1="urn:oasis:names:tc:SAML:2.0:assertion" AssertionConsumerServiceURL="http://localhost:8087/acs/post" Destination="https://localhost:8088/sso/redirect" ID="id-EmaTpUQkqJuxilTZY" IssueInstant="2016-05-17T07:27:08Z" ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Version="2.0"><ns1:Issuer Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity">http://localhost:8087/coco/sp.xml</ns1:Issuer><ns0:NameIDPolicy AllowCreate="false" Format="urn:oasis:names:tc:SAML:2.0:nameid-format:transient" /></ns0:AuthnRequest>'
+2016-05-17 09:27:12,381 saml2.request:INFO request: <ns0:AuthnRequest xmlns:ns0="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:ns1="urn:oasis:names:tc:SAML:2.0:assertion" AssertionConsumerServiceURL="http://localhost:8087/acs/post" Destination="https://localhost:8088/sso/redirect" ID="id-EmaTpUQkqJuxilTZY" IssueInstant="2016-05-17T07:27:08Z" ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Version="2.0"><ns1:Issuer Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity">http://localhost:8087/coco/sp.xml</ns1:Issuer><ns0:NameIDPolicy AllowCreate="false" Format="urn:oasis:names:tc:SAML:2.0:nameid-format:transient" /></ns0:AuthnRequest>
+2016-05-17 09:27:12,390 saml2.entity:DEBUG Loaded request
+2016-05-17 09:27:12,391 saml2.entity:DEBUG Verified request
+2016-05-17 09:34:05,475 saml2:INFO Logging started
+2016-05-17 19:22:38,052 saml2:INFO Logging started
+2016-05-17 19:37:15,824 saml2:INFO Logging started
+2016-05-17 19:44:45,401 saml2:INFO Logging started
+2016-05-17 20:01:50,008 saml2:INFO Logging started
+2016-05-17 20:04:10,100 saml2:INFO Logging started
+2016-05-17 20:13:17,906 saml2:INFO Logging started
