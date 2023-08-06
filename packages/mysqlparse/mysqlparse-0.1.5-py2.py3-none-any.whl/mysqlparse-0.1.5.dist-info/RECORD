@@ -1,0 +1,14 @@
+mysqlparse/__init__.py,sha256=CHZOmuMFxdFYlzU3e7dtzpkFKevvA5wVAgiZu6FbdZ0,938
+mysqlparse/grammar/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+mysqlparse/grammar/alter_table.py,sha256=qhif3KPXK7pj6aVqcXPTMx8vn657FbG_OoeFG-bxnsw,5070
+mysqlparse/grammar/column_definition.py,sha256=tNEJkCbVbcrxGQJ3p7hIW1PqeTQo74IN31ZySKPck24,1408
+mysqlparse/grammar/data_type.py,sha256=sUptSxz6bDHAhQpCA2i0lCQFIC5bStPSBSzRqsZAafw,3954
+mysqlparse/grammar/grammar.py,sha256=oXh4WyMhIrdC50QPGZdq2fcqTU37XcyjDbOAfGy50LQ,5234
+mysqlparse/grammar/sql_file.py,sha256=JhBWmWsP4GaUuo0lpkMDb72MDsycQiffqZWUGgM1Lxc,409
+mysqlparse/grammar/utils.py,sha256=N_eXG_WLHQdZl6PdruQ2Kt0mxYxjWH00D4xiHyVtBIA,472
+mysqlparse-0.1.5.dist-info/DESCRIPTION.rst,sha256=aMrRGoWSUosZ26bF7OCGgRBmuHnfp4_4vFHCXLEwH3Q,3647
+mysqlparse-0.1.5.dist-info/METADATA,sha256=jqMd-DpVvCnCOd1db5gdyXCCoa-NcwwSALG0fJUSXlo,4458
+mysqlparse-0.1.5.dist-info/RECORD,,
+mysqlparse-0.1.5.dist-info/WHEEL,sha256=o2k-Qa-RMNIJmUdIc7KU6VWR_ErNRbWNlxDIpl7lm34,110
+mysqlparse-0.1.5.dist-info/metadata.json,sha256=2-2U05Tfl11XkW6UOnJMkU8TUN9zZQa8AjdlyIliXmU,1022
+mysqlparse-0.1.5.dist-info/top_level.txt,sha256=Tc8hNKnqedYUlBBTe3CnPjP8q7-be4vzLichZmd-VW8,11
