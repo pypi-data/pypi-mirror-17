@@ -1,0 +1,44 @@
+Metadata-Version: 1.1
+Name: pyconuk_helloworld
+Version: 0.1.0
+Summary: A hello world package
+Home-page: https://github.com/vitorbaptista/pyconuk_helloworld
+Author: Vitor Baptista
+Author-email: vitor@vitorbaptista.com
+License: MIT
+Description: Hello World
+        ===========
+        
+        .. image:: https://travis-ci.org/vitorbaptista/pyconuk_helloworld.svg?branch=master
+            :target: https://travis-ci.org/vitorbaptista/pyconuk_helloworld
+            :alt: Build Status
+        
+        .. image:: https://ci.appveyor.com/api/projects/status/github/vitorbaptista/pyconuk_helloworld?branch=master&svg=true
+            :target: https://ci.appveyor.com/project/vitorbaptista/pyconuk-helloworld?branch=master
+            :alt: Windows Build Status
+        
+        .. image:: https://coveralls.io/repos/github/vitorbaptista/pyconuk_helloworld/badge.svg?branch=master
+            :target: https://coveralls.io/github/vitorbaptista/pyconuk_helloworld?branch=master
+            :alt: Coverage Status
+        
+        Sample package that simply returns "Hello world". Written as part of the
+        "Python Library Development" talk in PyConUK 2016.
+        
+        Installing
+        ----------
+        
+        .. code-block:: shell
+        
+            $ pip install pyconuk_helloworld
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5

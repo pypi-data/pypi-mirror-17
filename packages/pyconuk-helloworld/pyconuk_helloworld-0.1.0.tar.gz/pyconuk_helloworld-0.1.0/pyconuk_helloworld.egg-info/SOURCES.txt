@@ -1,0 +1,14 @@
+CHANGELOG.md
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+helloworld/__init__.py
+helloworld/cli.py
+helloworld/helloworld.py
+pyconuk_helloworld.egg-info/PKG-INFO
+pyconuk_helloworld.egg-info/SOURCES.txt
+pyconuk_helloworld.egg-info/dependency_links.txt
+pyconuk_helloworld.egg-info/entry_points.txt
+pyconuk_helloworld.egg-info/top_level.txt
