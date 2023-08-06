@@ -1,0 +1,26 @@
+--------- beginning of /dev/log/main
+05-17 08:11:57.548 14988 14988 W dalvikvm: Unable to resolve superclass of Lay; (790)
+05-17 08:11:57.548 14988 14988 W dalvikvm: Link of class 'Lay;' failed
+05-17 08:11:57.548 14988 14988 D dalvikvm: DexOpt: unable to opt direct call 0x1e94 at 0x2c in Lf;.a
+05-17 08:11:57.548 14988 14988 D dalvikvm: DexOpt: unable to opt direct call 0x0ab7 at 0x13 in Lf;.a
+05-17 08:11:57.558 21757 27405 D dalvikvm: WAIT_FOR_CONCURRENT_GC blocked 0ms
+05-17 08:11:57.618 21757 27405 D dalvikvm: GC_EXPLICIT freed 403K, 16% free 12023K/14215K, paused 4ms+4ms, total 56ms
+05-17 08:11:57.638 14988 14988 I dalvikvm: Could not find method android.provider.Telephony$Sms.getDefaultSmsPackage, referenced from method cat.a
+05-17 08:11:57.638 14988 14988 W dalvikvm: VFY: unable to resolve static method 3931: Landroid/provider/Telephony$Sms;.getDefaultSmsPackage (Landroid/content/Context;)Ljava/lang/String;
+05-17 08:11:57.638 14988 14988 D dalvikvm: VFY: replacing opcode 0x71 at 0x005e
+05-17 08:11:57.648 14988 14988 I dalvikvm: Could not find method android.content.Context.getDrawable, referenced from method i.a
+05-17 08:11:57.648 14988 14988 W dalvikvm: VFY: unable to resolve virtual method 2839: Landroid/content/Context;.getDrawable (I)Landroid/graphics/drawable/Drawable;
+05-17 08:11:57.648 14988 14988 D dalvikvm: VFY: replacing opcode 0x6e at 0x0006
+05-17 08:11:57.728  2021  6193 D AlarmManagerService: Kernel timezone updated to -120 minutes west of GMT
+05-17 08:11:57.748  2133  2133 W SignalStrength: getGsmLevel=1
+05-17 08:11:57.748  2133  2133 W SignalStrength: getLevel=1 (SignalStrength: 99 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 gsm|lte 1)
+05-17 08:11:57.748  2021  2044 I WifiService: Booster FLAG : 1
+05-17 08:11:57.748  2021  2044 I WifiService: mBoosterFLAG : 1
+05-17 08:11:57.748  2021  2044 I WifiService: current booster mode : FullMode
+05-17 08:11:57.758  2240  2240 D PhoneApp: mReceiver: ACTION_ANY_DATA_CONNECTION_STATE_CHANGED
+05-17 08:11:57.768 14988 14990 D dalvikvm: GC_CONCURRENT freed 499K, 12% free 10450K/11783K, paused 2ms+3ms, total 56ms
+05-17 08:11:57.768 14988 15015 D dalvikvm: WAIT_FOR_CONCURRENT_GC blocked 20ms
+05-17 08:11:57.768 14988 15008 D dalvikvm: WAIT_FOR_CONCURRENT_GC blocked 21ms
+05-17 08:11:57.778 14988 14988 I dalvikvm: Could not find method android.telephony.TelephonyManager.getMmsUserAgent, referenced from method cmt.b
+05-17 08:11:57.778 14988 14988 W dalvikvm: VFY: unable to resolve virtual method 4789: Landroid/telephony/TelephonyManager;.getMmsUserAgent ()Ljava/lang/String;
+05-17 08:11:57.778 14988 14988 D dalvikvm: VFY: replacing opcode 0x6e at 0x0021

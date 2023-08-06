@@ -1,0 +1,23 @@
+--------- beginning of /dev/log/main
+E/SQLiteLog(14988): (1) no such table: mmsconfig
+I/Babel   (14988): MmsConfig: no mmsconfig table android.database.sqlite.SQLiteException: no such table: mmsconfig (code 1): , while compiling: SELECT key, value, type FROM mmsconfig WHERE numeric=?
+I/Babel   (14988): MmsConfig.loadFromResources
+E/Babel   (14988): canonicalizeMccMnc: invalid mccmnc nullnull
+W/Babel   (14988): MmsConfig: invalid key=userAgent or type=string
+W/Babel   (14988): MmsConfig: invalid key=uaProfUrl or type=string
+I/Babel   (14988): MmsConfig.loadMmsSettings: mUserAgent=Hangouts/3.0.87531466, mUaProfUrl=https://ssl.gstatic.com/android/hangouts/hangouts_mms_ua_profile.xml
+I/Babel_StickerModule(14988): App launched.
+I/CameraHal( 1707): 3:309023570800:   Back camera: 90
+I/CameraHal( 1707): 4:309023570830:   Front camera: 270
+E/dalvikvm(14988): Could not find class 'android.hardware.display.DisplayManager', referenced from method com.google.android.libraries.hangouts.video.ScreenCaptureVideoSource.<init>
+W/dalvikvm(14988): VFY: unable to resolve check-cast 563 (Landroid/hardware/display/DisplayManager;) in Lcom/google/android/libraries/hangouts/video/ScreenCaptureVideoSource;
+D/dalvikvm(14988): VFY: replacing opcode 0x1f at 0x0037
+W/dalvikvm(14988): VFY: unable to find class referenced in signature (Landroid/hardware/display/VirtualDisplay;)
+W/dalvikvm(14988): VFY: unable to find class referenced in signature (Landroid/media/projection/MediaProjection;)
+I/dalvikvm(14988): Could not find method android.media.projection.MediaProjection.createVirtualDisplay, referenced from method com.google.android.libraries.hangouts.video.ScreenCaptureVideoSource.createVirtualDisplay
+W/dalvikvm(14988): VFY: unable to resolve virtual method 3518: Landroid/media/projection/MediaProjection;.createVirtualDisplay (Ljava/lang/String;IIIILandroid/view/Surface;Landroid/hardware/display/VirtualDisplay$Callback;Landroid/os/Handler;)Landroid/hardware/display/VirtualDisplay;
+D/dalvikvm(14988): VFY: replacing opcode 0x74 at 0x0053
+I/dalvikvm(14988): Could not find method android.hardware.display.VirtualDisplay.release, referenced from method com.google.android.libraries.hangouts.video.ScreenCaptureVideoSource.destroyVirtualDisplay
+W/dalvikvm(14988): VFY: unable to resolve virtual method 3393: Landroid/hardware/display/VirtualDisplay;.release ()V
+D/dalvikvm(14988): VFY: replacing opcode 0x6e at 0x000d
+V/Herrevad(12333): NQAS connected
