@@ -1,0 +1,4 @@
+#!/home/travis/virtualenv/python3.5.2/bin/python
+
+import grm
+grm.main()
