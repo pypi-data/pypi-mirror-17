@@ -1,0 +1,8 @@
+numpy >= 1.6
+matplotlib
+Cython
+astropy-helpers
+astropy >= 1.2
+pytz
+astroquery
+wcsaxes
