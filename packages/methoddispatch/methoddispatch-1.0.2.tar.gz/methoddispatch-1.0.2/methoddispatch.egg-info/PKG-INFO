@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: methoddispatch
+Version: 1.0.2
+Summary: singledispatch decorator for instance methods.
+Home-page: https://github.com/tim-mitchell/methoddispatch
+Author: Tim Mitchell
+Author-email: tim.mitchell@leapfrog3d.com
+License: BSD
+Description: UNKNOWN
+Keywords: single dispatch decorator method
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: BSD License
