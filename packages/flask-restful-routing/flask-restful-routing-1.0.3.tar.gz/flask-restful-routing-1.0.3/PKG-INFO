@@ -1,0 +1,35 @@
+Metadata-Version: 1.1
+Name: flask-restful-routing
+Version: 1.0.3
+Summary: An easier way to register flask-restful routes
+Home-page: https://github.com/twopicode/flask-restful-routing
+Author: Nick Whyte
+Author-email: nick@nickwhyte.com
+License: UNKNOWN
+Description: flask-restful-routing
+        ============================================
+        
+        Installation
+        ++++++++++++
+        
+          pip install marshmallow-sqlalchemy-referential
+        
+        Sample Usage
+        ++++++++++++
+        
+        .. code-block:: python
+        
+          restful_api = Api(app)
+          resources = RouteRoot([
+              Route('login', '/login', Login),
+              Route('search', '/search', Search),
+              Route('document', '/documents', Documents, Document, [
+                  Route('attachment', '/attachments', Attachments, Attachment)
+              ])
+          ])
+          
+          resources.register_routes(restful_api)
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
