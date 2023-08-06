@@ -1,0 +1,12 @@
+MANIFEST.in
+setup.py
+src/manifest.json
+src/assets/styles/main.scss
+src/clait.egg-info/PKG-INFO
+src/clait.egg-info/SOURCES.txt
+src/clait.egg-info/dependency_links.txt
+src/clait.egg-info/entry_points.txt
+src/clait.egg-info/not-zip-safe
+src/clait.egg-info/requires.txt
+src/clait.egg-info/top_level.txt
+src/templates/index.html
