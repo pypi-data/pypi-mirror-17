@@ -1,0 +1,13 @@
+chardet
+formatizer
+future
+six
+
+[dev]
+coverage
+pytest==3
+pytest-cov
+flake8
+tox
+typing
+mypy-lang
