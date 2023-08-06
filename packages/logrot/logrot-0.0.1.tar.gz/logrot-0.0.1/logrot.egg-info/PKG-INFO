@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: logrot
+Version: 0.0.1
+Summary: Receive piped output from a command and write it to a rotated file.
+Home-page: https://github.com/JesseAldridge/logrot
+Author: Jesse Aldridge
+Author-email: JesseAldridge@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: log logging log-rotation
+Platform: UNKNOWN
