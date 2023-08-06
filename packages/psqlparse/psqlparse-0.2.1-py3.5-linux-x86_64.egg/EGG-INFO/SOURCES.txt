@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.md
+build_libpg_query.sh
+pg_query.pxd
+psqlparse.c
+psqlparse.pyx
+setup.py
+psqlparse.egg-info/PKG-INFO
+psqlparse.egg-info/SOURCES.txt
+psqlparse.egg-info/dependency_links.txt
+psqlparse.egg-info/requires.txt
+psqlparse.egg-info/top_level.txt
