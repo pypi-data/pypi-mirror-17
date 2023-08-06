@@ -1,0 +1,3 @@
+[console_scripts]
+goods = goods.__main__:main
+
