@@ -1,0 +1,8 @@
+[cglims.subcommands.1]
+get = cglims.cli.commands:get
+pedigree = cglims.cli.commands:pedigree
+update = cglims.cli.commands:update
+
+[console_scripts]
+cglims = cglims.cli:root
+
