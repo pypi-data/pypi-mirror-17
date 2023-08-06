@@ -1,0 +1,168 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-25 10:23+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: forms.py:73
+msgid "Base"
+msgstr ""
+
+#: forms.py:93 widget/linkmenu/forms.py:12
+msgid "Links"
+msgstr ""
+
+#: models.py:11 models.py:79
+msgid "name"
+msgstr ""
+
+#: models.py:12
+msgid "slug"
+msgstr ""
+
+#: models.py:13 models.py:80
+msgid "description"
+msgstr ""
+
+#: models.py:19
+msgid "Link list"
+msgstr ""
+
+#: models.py:20
+msgid "Link lists"
+msgstr ""
+
+#: models.py:24
+msgid "Same window"
+msgstr ""
+
+#: models.py:25
+msgid "New window"
+msgstr ""
+
+#: models.py:26
+msgid "Modal window"
+msgstr ""
+
+#: models.py:32 tables.py:51 templates/widget/linkmenu/detail.html:20
+#: widget/linkbutton/forms.py:11
+msgid "Link"
+msgstr ""
+
+#: models.py:34
+msgid "target"
+msgstr ""
+
+#: models.py:36
+msgid "link relationship"
+msgstr ""
+
+#: models.py:38 tables.py:55
+msgid "Image"
+msgstr ""
+
+#: models.py:39
+msgid "List"
+msgstr ""
+
+#: models.py:41
+msgid "visible"
+msgstr ""
+
+#: models.py:43 tables.py:58
+msgid "Ordering"
+msgstr ""
+
+#: models.py:69
+msgid "Link item"
+msgstr ""
+
+#: models.py:70
+msgid "Link items"
+msgstr ""
+
+#: models.py:83
+msgid "Translation"
+msgstr ""
+
+#: models.py:84
+msgid "Translations"
+msgstr ""
+
+#: tables.py:52
+msgid "Target"
+msgstr ""
+
+#: tables.py:54
+msgid "Relationship"
+msgstr ""
+
+#: tables.py:57
+msgid "Visible"
+msgstr ""
+
+#: templates/widget/linkbutton/default.html:9
+msgid "More"
+msgstr ""
+
+#: widget/linkbutton/forms.py:12
+msgid "Select a link."
+msgstr ""
+
+#: widget/linkbutton/models.py:11
+msgid "go to linked page"
+msgstr ""
+
+#: widget/linkbutton/models.py:12
+msgid "open in modal window"
+msgstr ""
+
+#: widget/linkbutton/models.py:13
+msgid "open new window"
+msgstr ""
+
+#: widget/linkbutton/models.py:22
+msgid "link"
+msgstr ""
+
+#: widget/linkbutton/models.py:24
+msgid "on click action"
+msgstr ""
+
+#: widget/linkbutton/models.py:28
+msgid "link button"
+msgstr ""
+
+#: widget/linkbutton/models.py:29
+msgid "link buttons"
+msgstr ""
+
+#: widget/linkmenu/forms.py:13
+msgid "Select a list of links."
+msgstr ""
+
+#: widget/linkmenu/models.py:18
+msgid "link category"
+msgstr ""
+
+#: widget/linkmenu/models.py:30
+msgid "links menu"
+msgstr ""
+
+#: widget/linkmenu/models.py:31
+msgid "links menus"
+msgstr ""

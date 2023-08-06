@@ -1,0 +1,4 @@
+{% load thumbnail %}
+{% thumbnail link.image.file widget.thumb_geom format="PNG" as image %}
+<img src="{{ image.url }}" alt="" /><br />
+{% endthumbnail %}

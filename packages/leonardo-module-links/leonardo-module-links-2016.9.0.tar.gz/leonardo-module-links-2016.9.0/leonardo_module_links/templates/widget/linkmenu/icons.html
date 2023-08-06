@@ -1,0 +1,17 @@
+{% extends widget.get_base_template %}
+
+{% block content %}
+{% block items %}
+{% for row in widget.get_rows %}
+  <div class="row">
+  {% for item in row %}
+    <div class="col-md-{{ widget.columns_classes.0 }} col-xs-{{ widget.columns_classes.2 }} col-sm-{{ widget.columns_classes.1 }} thumb">
+	  <a href="{{ item.web_address }}" {% if item.target == '_blank' %}target=blank{% endif %} {% if item.target == '_modal' %}data-title="{{ item.image.default_caption|default:'' }}" data-footer="{{ item.image.description|default:'' }}" data-toggle="lightbox" rel="{{ widget.fe_identifier }}"{% endif %}>
+    	{% include "widget/linkmenu/_icon.html" with link=item %}
+	  </a>
+ 	 </div>
+  {% endfor %}
+  </div>
+{% endfor %}
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,44 @@
+CHANGES
+=======
+
+2016.9.0
+--------
+
+* More cs translations
+* email icon
+* add FAQs template
+* Translation leonardo module
+* Make initial migrations independent on language choices
+* Fix icons template
+* Fix context
+* Fix the icon template
+* Working frontend admin
+* Cosmetic fixes
+
+2016.1.0
+--------
+
+* Cleanup widget imports and switch to string notation
+* use native list mixin property
+
+2015.10.0
+---------
+
+* use widget list benefits
+* fix positioning
+* simple sticker template
+* fix migration dependency
+* cleanups
+* widget models cleanup
+
+2015.7.0
+--------
+
+* added django migrations
+* cleanup for bootstrap
+
+2015.0.1
+--------
+
+* fix code-block
+* Initial commit

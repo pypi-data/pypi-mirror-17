@@ -1,0 +1,217 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-25 10:23+0200\n"
+"PO-Revision-Date: 2012-03-13 09:50\n"
+"Last-Translator:   <mail@newt.cz>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n>1 && n<5 ? 1 : 2;\n"
+"X-Translated-Using: django-rosetta 0.6.3\n"
+
+#: forms.py:73
+msgid "Base"
+msgstr ""
+
+#: forms.py:93 widget/linkmenu/forms.py:12
+msgid "Links"
+msgstr "Odkaz"
+
+#: models.py:11 models.py:79
+msgid "name"
+msgstr "jméno"
+
+#: models.py:12
+msgid "slug"
+msgstr "URI"
+
+#: models.py:13 models.py:80
+msgid "description"
+msgstr "popis"
+
+#: models.py:19
+msgid "Link list"
+msgstr "Seznam odkazů"
+
+#: models.py:20
+msgid "Link lists"
+msgstr "Seznamy odkazů"
+
+#: models.py:24
+msgid "Same window"
+msgstr "ve stejném okně"
+
+#: models.py:25
+msgid "New window"
+msgstr "v novém okně"
+
+#: models.py:26
+msgid "Modal window"
+msgstr "v modálním okně"
+
+#: models.py:32 tables.py:51 templates/widget/linkmenu/detail.html:20
+#: widget/linkbutton/forms.py:11
+msgid "Link"
+msgstr "Odkaz"
+
+#: models.py:34
+msgid "target"
+msgstr "cíl"
+
+#: models.py:36
+msgid "link relationship"
+msgstr "vztahy odkazu"
+
+#: models.py:38 tables.py:55
+msgid "Image"
+msgstr "obrázek"
+
+#: models.py:39
+msgid "List"
+msgstr "Seznam"
+
+#: models.py:41
+msgid "visible"
+msgstr "viditelný"
+
+#: models.py:43 tables.py:58
+msgid "Ordering"
+msgstr "Pořadí"
+
+#: models.py:69
+msgid "Link item"
+msgstr "Odkaz"
+
+#: models.py:70
+msgid "Link items"
+msgstr "Odkazy"
+
+#: models.py:83
+msgid "Translation"
+msgstr "překlad"
+
+#: models.py:84
+msgid "Translations"
+msgstr "překlady"
+
+#: tables.py:52
+msgid "Target"
+msgstr "cíl"
+
+#: tables.py:54
+msgid "Relationship"
+msgstr "vztahy odkazu"
+
+#: tables.py:57
+msgid "Visible"
+msgstr "viditelný"
+
+#: templates/widget/linkbutton/default.html:9
+msgid "More"
+msgstr "Více"
+
+#: widget/linkbutton/forms.py:12
+msgid "Select a link."
+msgstr "Vyberte odkaz"
+
+#: widget/linkbutton/models.py:11
+msgid "go to linked page"
+msgstr "přejít na stránku"
+
+#: widget/linkbutton/models.py:12
+msgid "open in modal window"
+msgstr "otevřít v modálním okně"
+
+#: widget/linkbutton/models.py:13
+msgid "open new window"
+msgstr "Otevřít v novém okně/záložce"
+
+#: widget/linkbutton/models.py:22
+msgid "link"
+msgstr "odkaz"
+
+#: widget/linkbutton/models.py:24
+msgid "on click action"
+msgstr "akce po kliknutí"
+
+#: widget/linkbutton/models.py:28
+msgid "link button"
+msgstr "tlačítko/odkaz"
+
+#: widget/linkbutton/models.py:29
+msgid "link buttons"
+msgstr "tlačítka/odkazy"
+
+#: widget/linkmenu/forms.py:13
+msgid "Select a list of links."
+msgstr ""
+
+#: widget/linkmenu/models.py:18
+msgid "link category"
+msgstr "seznam odkazů"
+
+#: widget/linkmenu/models.py:30
+msgid "links menu"
+msgstr "seznam odkazů"
+
+#: widget/linkmenu/models.py:31
+msgid "links menus"
+msgstr "seznamy odkazů"
+
+#~ msgid "link categories"
+#~ msgstr "seznamy odkazů"
+
+#~ msgid "new tab"
+#~ msgstr "nová záložka"
+
+#~ msgid "web address"
+#~ msgstr "webová adresa"
+
+#~ msgid "links"
+#~ msgstr "odkazy"
+
+#~ msgid "normal"
+#~ msgstr "normální"
+
+#~ msgid "large"
+#~ msgstr "velké"
+
+#~ msgid "primary"
+#~ msgstr "primární"
+
+#~ msgid "secondary"
+#~ msgstr "sekundární"
+
+#~ msgid "left"
+#~ msgstr "vlevo"
+
+#~ msgid "right"
+#~ msgstr "vpravo"
+
+#~ msgid "You can use relative or absolute URLs."
+#~ msgstr "Můžete použít relativní nebo absolutní URL."
+
+#~ msgid "text"
+#~ msgstr "text"
+
+#~ msgid "size"
+#~ msgstr "velikost"
+
+#~ msgid "priority"
+#~ msgstr "priorita"
+
+#~ msgid "alignment"
+#~ msgstr "zarovnání"
+
+#~ msgid "new window or tab"
+#~ msgstr "nové okno nebo záložka"

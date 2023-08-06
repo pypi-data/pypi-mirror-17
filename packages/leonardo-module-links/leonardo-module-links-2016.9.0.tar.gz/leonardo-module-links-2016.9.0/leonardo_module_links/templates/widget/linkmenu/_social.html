@@ -1,0 +1,3 @@
+<a href="{{ item.web_address }}" class="btn btn-social-icon btn-{{ item.translation.name|lower }}" {% if item.target == "_blank" %}target="_blank"{% endif %}>
+    <span class="fa fa-{% if item.translation.name|lower == 'email' %}envelope{% else %}{{ item.translation.name|lower }}{% endif %}"></span>
+</a>
