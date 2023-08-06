@@ -1,0 +1,15 @@
+scipy
+nltk
+scikit-learn
+numpy
+biopython
+validate_email
+gensim>=0.12.3  # LDA's show topics unified in 0.12.3
+setuptools-git
+Orange3
+tweepy
+beautifulsoup4
+simhash
+wikipedia
+keyring
+keyrings.alt    # for running test on travis
