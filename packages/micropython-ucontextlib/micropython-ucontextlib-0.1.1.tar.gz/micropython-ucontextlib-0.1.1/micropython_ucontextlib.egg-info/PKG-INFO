@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: micropython-ucontextlib
+Version: 0.1.1
+Summary: ucontextlib module for MicroPython
+Home-page: https://github.com/micropython/micropython-lib
+Author: MicroPython Developers
+Author-email: micro-python@googlegroups.com
+License: Python
+Description: Minimal subset of contextlib for MicroPython low-memory ports
+Platform: UNKNOWN
