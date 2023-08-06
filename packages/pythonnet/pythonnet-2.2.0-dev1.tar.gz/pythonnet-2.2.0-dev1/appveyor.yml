@@ -1,0 +1,35 @@
+os: Windows Server 2012
+
+environment:
+  global:
+    PYTHONPATH: c:\testdir
+    PYTHONWARNINGS: 'ignore:::pip.pep425tags:'
+
+  matrix:
+    # http://www.appveyor.com/docs/installed-software#python
+    - PYTHON: "C:\\Python27"
+    - PYTHON: "C:\\Python27-x64"
+    - PYTHON: "C:\\Python33"
+    - PYTHON: "C:\\Python33-x64"
+    - PYTHON: "C:\\Python34"
+    - PYTHON: "C:\\Python34-x64"
+    - PYTHON: "C:\\Python35"
+    - PYTHON: "C:\\Python35-x64"
+
+install:
+- "%PYTHON%\\python.exe -m pip install --upgrade pip"
+- "%PYTHON%\\python.exe -m pip install wheel"
+- "%PYTHON%\\python.exe -m pip install six"
+
+build_script:
+- "%PYTHON%\\python.exe setup.py bdist_wheel"
+
+test_script:
+  - ps: '& "$env:PYTHON\\Scripts\\pip.exe" install --no-cache-dir --force-reinstall --ignore-installed ("dist\\" + (gci dist)[0].Name)'
+  - mkdir c:\testdir
+  - ps: copy-item (gci -path build -re -include Python.Test.dll)[0].FullName c:\testdir
+  - "%PYTHON%\\python.exe src\\tests\\runtests.py"
+
+artifacts:
+  # bdist_wheel puts your built wheel in the dist directory
+  - path: dist\*
