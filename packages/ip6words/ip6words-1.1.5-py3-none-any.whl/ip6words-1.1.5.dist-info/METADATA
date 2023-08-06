@@ -1,0 +1,15 @@
+Metadata-Version: 2.0
+Name: ip6words
+Version: 1.1.5
+Summary: Converts IPv6 addresses to and from a user friendly format using words.
+Home-page: https://github.com/lstn/ip6words
+Author: Lucas Estienne
+Author-email: lucas@estienne.sh
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: dill (==0.2.5)
+Requires-Dist: nltk (==3.2.1)
+
+UNKNOWN
+
+
