@@ -1,0 +1,20 @@
+CHANGES
+=======
+
+1.1.1
+-----
+
+* argument fixes for apply
+* OTP support
+* call it ghpro
+
+1.1.0
+-----
+
+* call it ghpro
+* make it a package
+* use guess_project in stats
+* rename some files
+* refactor backport a bit
+* init with ipython/tools
+* Initial commit
