@@ -1,0 +1,17 @@
+README.rst
+setup.py
+nimbus/__init__.py
+nimbus/aws.py
+nimbus/cli.py
+nimbus/config.py
+nimbus/errors.py
+nimbus/logs.py
+nimbus/saml.py
+nimbus/utils.py
+nimbus.egg-info/PKG-INFO
+nimbus.egg-info/SOURCES.txt
+nimbus.egg-info/dependency_links.txt
+nimbus.egg-info/entry_points.txt
+nimbus.egg-info/not-zip-safe
+nimbus.egg-info/requires.txt
+nimbus.egg-info/top_level.txt
