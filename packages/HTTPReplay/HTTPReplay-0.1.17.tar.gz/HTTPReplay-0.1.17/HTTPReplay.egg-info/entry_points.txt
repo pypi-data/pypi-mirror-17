@@ -1,0 +1,4 @@
+[console_scripts]
+pcap2mitm = httpreplay.main:pcap2mitm
+httpreplay = httpreplay.main:httpreplay
+
