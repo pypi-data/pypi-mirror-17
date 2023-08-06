@@ -1,0 +1,29 @@
+Metadata-Version: 2.0
+Name: pycwheel
+Version: 0.0.3
+Summary: Replace all py files in a wheel with pyc or pyo files.
+Home-page: http://pypi.python.org/pypi/pycwheel/
+Author: Grant Patten
+Author-email: grant@gpatten.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Utilities
+
+Convert all py files in a whl to pyc.
+
+The package version information is changed to append .compiled to the end.
+
+If you want the pyc only version of the wheel, specify the .compiled version in your
+requirements file.
+
+Usage:
+    pycwheel your_wheel-1.0.0-py2-none-any.whl
+    # Output: your_wheel-1.0.0.compiled-py2-none-any.whl
+
+References:
+    https://www.python.org/dev/peps/pep-0427/
+
+
