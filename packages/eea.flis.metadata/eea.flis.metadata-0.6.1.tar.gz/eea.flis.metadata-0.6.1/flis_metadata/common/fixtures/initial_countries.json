@@ -1,0 +1,317 @@
+[
+  {
+    "pk": "al",
+    "model": "common.country",
+    "fields": {
+      "name": "Albania",
+      "sort_id": 1
+    }
+  },
+  {
+    "pk": "at",
+    "model": "common.country",
+    "fields": {
+      "name": "Austria",
+      "sort_id": 2
+    }
+  },
+  {
+    "pk": "be",
+    "model": "common.country",
+    "fields": {
+      "name": "Belgium",
+      "sort_id": 3
+    }
+  },
+  {
+    "pk": "ba",
+    "model": "common.country",
+    "fields": {
+      "name": "Bosnia and Herzegovina",
+      "sort_id": 4
+    }
+  },
+  {
+    "pk": "bg",
+    "model": "common.country",
+    "fields": {
+      "name": "Bulgaria",
+      "sort_id": 5
+    }
+  },
+  {
+    "pk": "hr",
+    "model": "common.country",
+    "fields": {
+      "name": "Croatia",
+      "sort_id": 6
+    }
+  },
+  {
+    "pk": "cy",
+    "model": "common.country",
+    "fields": {
+      "name": "Cyprus",
+      "sort_id": 7
+    }
+  },
+  {
+    "pk": "cz",
+    "model": "common.country",
+    "fields": {
+      "name": "Czech Republic",
+      "sort_id": 8
+    }
+  },
+  {
+    "pk": "dk",
+    "model": "common.country",
+    "fields": {
+      "name": "Denmark",
+      "sort_id": 9
+    }
+  },
+  {
+    "pk": "ee",
+    "model": "common.country",
+    "fields": {
+      "name": "Estonia",
+      "sort_id": 10
+    }
+  },
+  {
+    "pk": "fi",
+    "model": "common.country",
+    "fields": {
+      "name": "Finland",
+      "sort_id": 11
+    }
+  },
+  {
+    "pk": "fr",
+    "model": "common.country",
+    "fields": {
+      "name": "France",
+      "sort_id": 12
+    }
+  },
+  {
+    "pk": "de",
+    "model": "common.country",
+    "fields": {
+      "name": "Germany",
+      "sort_id": 13
+    }
+  },
+  {
+    "pk": "gr",
+    "model": "common.country",
+    "fields": {
+      "name": "Greece",
+      "sort_id": 14
+    }
+  },
+  {
+    "pk": "hu",
+    "model": "common.country",
+    "fields": {
+      "name": "Hungary",
+      "sort_id": 15
+    }
+  },
+  {
+    "pk": "is",
+    "model": "common.country",
+    "fields": {
+      "name": "Iceland",
+      "sort_id": 16
+    }
+  },
+  {
+    "pk": "ir",
+    "model": "common.country",
+    "fields": {
+      "name": "Ireland",
+      "sort_id": 17
+    }
+  },
+  {
+    "pk": "it",
+    "model": "common.country",
+    "fields": {
+      "name": "Italy",
+      "sort_id": 18
+    }
+  },
+  {
+    "pk": "xk",
+    "model": "common.country",
+    "fields": {
+      "name": "Kosovo",
+      "sort_id": 19
+    }
+  },
+  {
+    "pk": "lv",
+    "model": "common.country",
+    "fields": {
+      "name": "Latvia",
+      "sort_id": 20
+    }
+  },
+  {
+    "pk": "li",
+    "model": "common.country",
+    "fields": {
+      "name": "Liechtenstein",
+      "sort_id": 21
+    }
+  },
+  {
+    "pk": "lt",
+    "model": "common.country",
+    "fields": {
+      "name": "Lithuania",
+      "sort_id": 22
+    }
+  },
+  {
+    "pk": "lu",
+    "model": "common.country",
+    "fields": {
+      "name": "Luxembourg",
+      "sort_id": 23
+    }
+  },
+  {
+    "pk": "mk",
+    "model": "common.country",
+    "fields": {
+      "name": "Macedonia, FYR of",
+      "sort_id": 24
+    }
+  },
+  {
+    "pk": "mt",
+    "model": "common.country",
+    "fields": {
+      "name": "Malta",
+      "sort_id": 25
+    }
+  },
+  {
+    "pk": "me",
+    "model": "common.country",
+    "fields": {
+      "name": "Montenegro",
+      "sort_id": 26
+    }
+  },
+
+  {
+    "pk": "nl",
+    "model": "common.country",
+    "fields": {
+      "name": "Netherlands",
+      "sort_id": 27
+    }
+  },
+  {
+    "pk": "no",
+    "model": "common.country",
+    "fields": {
+      "name": "Norway",
+      "sort_id": 28
+    }
+  },
+  {
+    "pk": "pl",
+    "model": "common.country",
+    "fields": {
+      "name": "Poland",
+      "sort_id": 29
+    }
+  },
+  {
+    "pk": "pt",
+    "model": "common.country",
+    "fields": {
+      "name": "Portugal",
+      "sort_id": 30
+    }
+  },
+  {
+    "pk": "ro",
+    "model": "common.country",
+    "fields": {
+      "name": "Romania",
+      "sort_id": 31
+    }
+  },
+  {
+    "pk": "rs",
+    "model": "common.country",
+    "fields": {
+      "name": "Serbia",
+      "sort_id": 32
+    }
+  },
+  {
+    "pk": "sk",
+    "model": "common.country",
+    "fields": {
+      "name": "Slovakia",
+      "sort_id": 33
+    }
+  },
+  {
+    "pk": "si",
+    "model": "common.country",
+    "fields": {
+      "name": "Slovenia",
+      "sort_id": 34
+    }
+  },
+  {
+    "pk": "es",
+    "model": "common.country",
+    "fields": {
+      "name": "Spain",
+      "sort_id": 35
+    }
+  },
+
+  {
+    "pk": "se",
+    "model": "common.country",
+    "fields": {
+      "name": "Sweden",
+      "sort_id": 36
+    }
+  },
+  {
+    "pk": "ch",
+    "model": "common.country",
+    "fields": {
+      "name": "Switzerland",
+      "sort_id": 37
+    }
+  },
+  {
+    "pk": "tr",
+    "model": "common.country",
+    "fields": {
+      "name": "Turkey",
+      "sort_id": 38
+    }
+  },
+  {
+    "pk": "uk",
+    "model": "common.country",
+    "fields": {
+      "name": "United Kingdom",
+      "sort_id": 39
+    }
+  }
+]
+
