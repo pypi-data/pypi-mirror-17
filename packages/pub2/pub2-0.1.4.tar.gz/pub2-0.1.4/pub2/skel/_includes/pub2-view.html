@@ -1,0 +1,21 @@
+<p>
+    Author: {{ site.data.pub2[include.identifier].author }}<br/>
+    Year: {{ site.data.pub2[include.identifier].year }}
+</p>
+
+<p>
+    <a href="/pub/{{ include.identifier }}.html">[View]</a>
+    <a href="/pub/{{ include.identifier }}.pdf">[PDF]</a>
+    <a href="/pub/{{ include.identifier }}.bib">[Bib]</a>
+</p>
+
+{% if site.data.pub2[include.identifier].excerpt %}
+
+<h2>excerpt</h2>
+<div>
+    <p>
+        {{ site.data.pub2[include.identifier].excerpt }}
+    </p>
+</div>
+
+{% endif %}

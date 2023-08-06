@@ -1,0 +1,20 @@
+---
+layout:     page
+title:      Pub2
+permalink:  /pub2/
+---
+
+<p>
+  <b>Pub2</b> is an online publishing system written by Ian Dennis Miller.
+</p>
+
+<ul>
+  {% for pub in site.data.pub2 %}
+  <li>
+    <a href="/pub/{{ pub.identifier }}.html">[View]</a>
+    <a href="/pub/{{ pub.identifier }}.pdf">[PDF]</a>
+    <a href="/pub/{{ pub.identifier }}.bib">[Bib]</a>
+    {{ pub.author }} ({{ pub.year }}). {{ pub.title }}
+  </li>
+  {% endfor %}
+</ul>
