@@ -1,0 +1,17 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+spice_api/__init__.py
+spice_api/constants.py
+spice_api/helpers.py
+spice_api/objects.py
+spice_api/spice.py
+spice_api/stats.py
+spice_api/tokens.py
+spice_api.egg-info/PKG-INFO
+spice_api.egg-info/SOURCES.txt
+spice_api.egg-info/dependency_links.txt
+spice_api.egg-info/requires.txt
+spice_api.egg-info/top_level.txt
