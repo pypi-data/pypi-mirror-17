@@ -1,0 +1,36 @@
+Metadata-Version: 1.1
+Name: fixnc
+Version: 0.0.1
+Summary: Easy edit of netCDF files.
+Home-page: https://github.com/koldunovn/fixnc/
+Author: Nikolay Koldunov
+Author-email: koldunovn@gmail.com
+License: MIT
+Description: 
+        This package makes changing the meta information of the netCDF file easy. 
+        You can add, delete and rename dimentions, variables and attributes.
+        
+        What it does
+        ------------
+        
+        * renames dimentions, variables and attributes in netCDF files.
+        * changes values of variables and attributes.
+        * adds dimentions, variables and attributes.
+        * removes attributes.
+        * reorders dimentions and variables.
+        
+        Important links
+        ---------------
+        - HTML documentation: https://fixnc.readthedocs.io/
+        - Source code: https://github.com/koldunovn/fixnc/
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Scientific/Engineering
