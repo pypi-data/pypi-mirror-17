@@ -1,0 +1,11 @@
+setup.py
+digGenderExtractor/__init__.py
+digGenderExtractor/digge.py
+digGenderExtractor/gender_extractor.py
+digGenderExtractor.egg-info/PKG-INFO
+digGenderExtractor.egg-info/SOURCES.txt
+digGenderExtractor.egg-info/dependency_links.txt
+digGenderExtractor.egg-info/requires.txt
+digGenderExtractor.egg-info/top_level.txt
+test/__init__.py
+test/test_gender_extractor.py
