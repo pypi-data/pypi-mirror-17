@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: apt_package_mirror
+Version: 1.0.2
+Summary: Python script for running an apt package mirror
+Home-page: https://github.com/squidboylan/apt-package-mirror
+Author: Caleb Boylan
+Author-email: calebboylan@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
