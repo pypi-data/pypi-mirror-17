@@ -1,0 +1,13 @@
+README.rst
+setup.cfg
+setup.py
+firefox_cert_override/__init__.py
+firefox_cert_override/base.py
+firefox_cert_override/cli.py
+firefox_cert_override/utils.py
+firefox_cert_override.egg-info/PKG-INFO
+firefox_cert_override.egg-info/SOURCES.txt
+firefox_cert_override.egg-info/dependency_links.txt
+firefox_cert_override.egg-info/entry_points.txt
+firefox_cert_override.egg-info/requires.txt
+firefox_cert_override.egg-info/top_level.txt
