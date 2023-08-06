@@ -1,0 +1,14 @@
+{% extends "layout/login.html" %}
+{% block body %}
+
+ <div class="login-page">
+
+<h1>Bienvenue!</h1>
+<br>
+<p>Vous n'avez pas confirmer votre compte. Vérifiez votre boite mail (et dans les spams) - Vous devez avoir reçu un mail avec un lien de confirmation.</p>
+<p>Vous ne l'avez pas reçu ? <a href="{{ url_for('resend_confirmation') }}">Réenvoyer</a>.</p>
+
+</div>
+
+
+{% endblock %}

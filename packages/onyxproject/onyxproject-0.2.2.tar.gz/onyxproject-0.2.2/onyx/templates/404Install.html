@@ -1,0 +1,5 @@
+{% extends "layout/install.html" %}
+{% block body %}
+	<h1>Erreur {{ error }}</h1>
+	<h3>Revenir à <a href="{{url_for('install')}}">l'installation</a></h3>
+{% endblock %}
