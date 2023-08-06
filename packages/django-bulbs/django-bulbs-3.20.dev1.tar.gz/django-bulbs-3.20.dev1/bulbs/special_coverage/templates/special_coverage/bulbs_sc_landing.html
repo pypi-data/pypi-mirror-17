@@ -1,0 +1,83 @@
+{% load betty humanize ads static content %}
+
+<div class="sc-landing-billboard">
+  <figure class="sc-landing-billboard-img">
+    {% cropped special_coverage.image %}
+  </figure>
+</div>
+
+<section class="sc-landing-body" data-track-category="Special Coverage Landing">
+  <div class="sc-landing-rail">
+    <h1>{{ special_coverage.name }}</h1>
+    <div class="article-count">{{article_count}} ARTICLES</div>
+    {% if special_coverage.tunic_campaign_id %}
+      <campaign-display
+        class="campaign-display-preamble"
+        data-track-action="Video: Recirc: Sponsor"
+        data-track-category="Special Coverage Landing"
+        placement="detail"
+        preamble-text="Presented by"
+        src="{% content_tunic_campaign_url special_coverage.tunic_campaign_id %}"
+        logo-only
+      >
+      </campaign-display>
+    {% endif %}
+    {% if special_coverage.description %}
+      <p class="sc-landing-description">{{ special_coverage.description }}</p>
+    {% endif %}
+    <share-tools
+      class="{{ share_style }}"
+      data-track-action="Special Coverage Landing: Share"
+      share-title="{{ special_coverage.name }}"
+      share-url="http://{{ EXTERNAL_URL }}/special/{{ special_coverage.slug }}">
+      <share-via-facebook icon></share-via-facebook>
+      <share-via-twitter icon twitter-handle="{{ twitter_handle }}"></share-via-twitter>
+      <share-via-email icon message="{{ share_message }}"></share-via-email>
+    </share-tools>
+  </div>
+  <ul class="sc-landing-list">
+    {% if special_coverage.videos %}
+    <li class="sc-landing-carousel">
+      {% include "special_coverage/bulbs_sc_video_carousel.html" %}
+    </li>
+    {% endif %}
+    {% for content in content_list  %}
+      <li class="sc-landing-list-item">
+        <a
+          data-track-category="Special Coverage Landing"
+          data-track-action="Article: "
+          data-track-label="{{ content.get_absolute_url }}"
+          href="{{ content.get_absolute_url }}"
+          class="sc-landing-list-item-link"
+        >
+          <span class="sc-landing-list-item-link-bar"></span>
+          <figure>
+            {% cropped content.primary_image %}
+          </figure>
+          <div class="meta">
+            {% if content.tunic_campaign_id %}
+              <campaign-display
+                  class="campaign-display-preamble"
+                  data-track-action="Video: Recirc: Sponsor"
+                  data-track-category="Special Coverage Landing"
+                  placement="detail"
+                  preamble-text="Presented by"
+                  src="{% content_tunic_campaign_url content.tunic_campaign_id %}"
+                  name-only
+              >
+              </campaign-display>
+            {% else %}
+              <span class="feature-type">{{ content.feature_type }}</span>
+            {% endif %}
+            <h2>{{ content.title|safe }}</h2>
+            <span class="pub">{{ content.published|naturalday|capfirst }}</span>
+          </div>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% if more_content %}
+  <button class="unstyled special-coverage-load-more" data-total="{{ content_list_total }}" data-per-page="{{ per_page }}">Load More</button>
+{% endif %}
