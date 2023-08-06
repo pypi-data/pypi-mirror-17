@@ -1,0 +1,14 @@
+setup.py
+albatross/__init__.py
+albatross/compat.py
+albatross/data_types.py
+albatross/http_error.py
+albatross/request.py
+albatross/response.py
+albatross/server.py
+albatross/status_codes.py
+albatross3.egg-info/PKG-INFO
+albatross3.egg-info/SOURCES.txt
+albatross3.egg-info/dependency_links.txt
+albatross3.egg-info/requires.txt
+albatross3.egg-info/top_level.txt
