@@ -1,0 +1,17 @@
+future
+
+[all]
+sphinx
+mock
+codecov
+duecredit
+
+[doc]
+sphinx
+
+[duecredit]
+duecredit
+
+[tests]
+mock
+codecov
