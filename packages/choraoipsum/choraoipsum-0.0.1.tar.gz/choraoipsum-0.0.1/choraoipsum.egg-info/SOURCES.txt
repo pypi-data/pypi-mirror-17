@@ -1,0 +1,14 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+choraoipsum/__init__.py
+choraoipsum/__main__.py
+choraoipsum/chorao_ipsum.py
+choraoipsum.egg-info/PKG-INFO
+choraoipsum.egg-info/SOURCES.txt
+choraoipsum.egg-info/dependency_links.txt
+choraoipsum.egg-info/entry_points.txt
+choraoipsum.egg-info/requires.txt
+choraoipsum.egg-info/top_level.txt
