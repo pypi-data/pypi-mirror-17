@@ -1,0 +1,15 @@
+README.rst
+setup.cfg
+setup.py
+kanagata/__init__.py
+kanagata/builder.py
+kanagata/repository.py
+kanagata/restriction.py
+kanagata/structure.py
+kanagata.egg-info/PKG-INFO
+kanagata.egg-info/SOURCES.txt
+kanagata.egg-info/dependency_links.txt
+kanagata.egg-info/entry_points.txt
+kanagata.egg-info/not-zip-safe
+kanagata.egg-info/requires.txt
+kanagata.egg-info/top_level.txt
