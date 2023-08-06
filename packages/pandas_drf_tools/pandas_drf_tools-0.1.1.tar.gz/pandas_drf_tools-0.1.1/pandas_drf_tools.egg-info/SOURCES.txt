@@ -1,0 +1,14 @@
+README.rst
+setup.cfg
+setup.py
+pandas_drf_tools/__init__.py
+pandas_drf_tools/generics.py
+pandas_drf_tools/mixins.py
+pandas_drf_tools/pagination.py
+pandas_drf_tools/serializers.py
+pandas_drf_tools/viewsets.py
+pandas_drf_tools.egg-info/PKG-INFO
+pandas_drf_tools.egg-info/SOURCES.txt
+pandas_drf_tools.egg-info/dependency_links.txt
+pandas_drf_tools.egg-info/requires.txt
+pandas_drf_tools.egg-info/top_level.txt
