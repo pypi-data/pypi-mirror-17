@@ -1,0 +1,11 @@
+[console_scripts]
+dbhr = tdtools.dbhr:main
+showdb = tdtools.show.db:main
+showgrant = tdtools.show.grant:main
+showprof = tdtools.show.prof:main
+showrole = tdtools.show.role:main
+showtvm = tdtools.show.tvm:main
+showzone = tdtools.show.zone:main
+tptload = tdtools.tptload:main
+vwrefs = tdtools.vwrefs:main
+
