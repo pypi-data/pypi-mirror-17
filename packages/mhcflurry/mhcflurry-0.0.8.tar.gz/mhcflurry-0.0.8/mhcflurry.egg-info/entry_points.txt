@@ -1,0 +1,4 @@
+[console_scripts]
+mhcflurry-class1-allele-specific-cv-and-train = mhcflurry.class1_allele_specific.cv_and_train_command:run
+mhcflurry-downloads = mhcflurry.downloads_command:run
+

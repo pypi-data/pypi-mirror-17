@@ -1,0 +1,143 @@
+Metadata-Version: 1.1
+Name: mhcflurry
+Version: 0.0.8
+Summary: MHC Binding Predictor
+Home-page: https://github.com/hammerlab/mhcflurry
+Author: Alex Rubinsteyn
+Author-email: alex {dot} rubinsteyn {at} mssm {dot} edu
+License: http://www.apache.org/licenses/LICENSE-2.0.html
+Description: |Build Status| |Coverage Status|
+        
+        mhcflurry
+        =========
+        
+        Open source neural network models for peptide-MHC binding affinity
+        prediction
+        
+        The `adaptive immune
+        system <https://en.wikipedia.org/wiki/Adaptive_immune_system>`__ depends
+        on the presentation of protein fragments by
+        `MHC <https://en.wikipedia.org/wiki/Major_histocompatibility_complex>`__
+        molecules. Machine learning models of this interaction are used in
+        studies of infectious diseases, autoimmune diseases, vaccine
+        development, and cancer immunotherapy.
+        
+        MHCflurry currently supports peptide / `MHC class
+        I <https://en.wikipedia.org/wiki/MHC_class_I>`__ affinity prediction
+        using one model per MHC allele. The predictors may be trained on data
+        that has been augmented with data imputed based on other alleles (see
+        `Rubinsteyn
+        2016 <http://biorxiv.org/content/early/2016/06/07/054775>`__). We
+        anticipate adding additional models, including pan-allele and class II
+        predictors.
+        
+        You can fit MHCflurry models to your own data or download trained models
+        that we provide. Our models are trained on data from
+        `IEDB <http://www.iedb.org/home_v3.php>`__ and `Kim
+        2014 <http://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-15-241>`__.
+        See
+        `here <https://github.com/hammerlab/mhcflurry/tree/master/downloads-generation/data_combined_iedb_kim2014>`__
+        for details on the training data preparation. The steps we use to train
+        predictors on this data, including hyperparameter selection using cross
+        validation, are
+        `here <https://github.com/hammerlab/mhcflurry/tree/master/downloads-generation/models_class1_allele_specific_single>`__.
+        
+        The MHCflurry predictors are implemented in Python using
+        `keras <https://keras.io>`__.
+        
+        Setup
+        -----
+        
+        Install the package:
+        
+        ::
+        
+            pip install mhcflurry
+        
+        Then download our datasets and trained models:
+        
+        ::
+        
+            mhcflurry-downloads fetch
+        
+        From a checkout you can run the unit tests with:
+        
+        ::
+        
+            nosetests .
+        
+        Making predictions
+        ------------------
+        
+        .. code:: python
+        
+            from mhcflurry import predict
+            predict(alleles=['A0201'], peptides=['SIINFEKL'])
+        
+        ::
+        
+              Allele   Peptide  Prediction
+            0  A0201  SIINFEKL  10672.347656
+        
+        Training your own models
+        ------------------------
+        
+        This `unit
+        test <https://github.com/hammerlab/mhcflurry/blob/master/test/test_class1_binding_predictor_A0205.py>`__
+        gives a simple example of how to train a predictor in Python. There is
+        also a script called ``mhcflurry-class1-allele-specific-cv-and-train``
+        that will perform cross validation and model selection given a CSV file
+        of training data. Try
+        ``mhcflurry-class1-allele-specific-cv-and-train --help`` for details.
+        
+        Details on the downloaded class I allele-specific models
+        --------------------------------------------------------
+        
+        Besides the actual model weights, the data downloaded with
+        ``mhcflurry-downloads fetch`` also includes a CSV file giving the
+        hyperparameters used for each predictor. Another CSV gives the cross
+        validation results used to select these hyperparameters.
+        
+        To see the hyperparameters for the production models, run:
+        
+        ::
+        
+            open "$(mhcflurry-downloads path models_class1_allele_specific_single)/production.csv"
+        
+        To see the cross validation results:
+        
+        ::
+        
+            open "$(mhcflurry-downloads path models_class1_allele_specific_single)/cv.csv"
+        
+        Environment variables
+        ---------------------
+        
+        The path where MHCflurry looks for model weights and data can be set
+        with the ``MHCFLURRY_DOWNLOADS_DIR`` environment variable. This
+        directory should contain subdirectories like
+        "models\_class1\_allele\_specific\_single". Setting this variable
+        overrides the other environment variables described below.
+        
+        If you only want to change the version of the released data used, you
+        can set ``MHCFLURRY_DOWNLOADS_CURRENT_RELEASE``. If you want to change
+        the base directory used for all releases, set ``MHCFLURRY_DATA_DIR``.
+        
+        By default, ``MHCFLURRY_DOWNLOADS_DIR`` is a platform specific
+        application storage directory, ``MHCFLURRY_DOWNLOADS_CURRENT_RELEASE``
+        is the latest release, and ``MHCFLURRY_DOWNLOADS_DIR`` is set to
+        ``$MHCFLURRY_DATA_DIR/$MHCFLURRY_DOWNLOADS_CURRENT_RELEASE``.
+        
+        .. |Build Status| image:: https://travis-ci.org/hammerlab/mhcflurry.svg?branch=master
+           :target: https://travis-ci.org/hammerlab/mhcflurry
+        .. |Coverage Status| image:: https://coveralls.io/repos/github/hammerlab/mhcflurry/badge.svg?branch=master
+           :target: https://coveralls.io/github/hammerlab/mhcflurry?branch=master
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
