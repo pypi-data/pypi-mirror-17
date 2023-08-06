@@ -1,0 +1,80 @@
+"""Read mapping for either single end and paired end data using BWA and samtools.
+
+input:
+    fastq -> list with your fastq.gz (R1, R2)
+    ref -> reference's fastq file
+"""
+__sequana__bwa_mem = [":samples", "ref", "output", ":kwargs", ":threads"]
+
+import sequana.snaketools as sm
+from easydev import shellcmd
+cfg = sm.SequanaConfig.from_dict(config)
+
+"""try:
+    ret = shellcmd("which pbwa") # for IP cluster
+    bwa_exe = "pbwa"
+except:
+    ret = shellcmd("which bwa")
+    bwa_exe = "bwa"
+"""
+
+bwa_exe = "bwa"
+
+def bwa_mem_dynamic(name, inputs, outputs=[]):
+    metadata = {'inputs':inputs, 'name':name, 'project':cfg.PROJECT}
+
+    bwa_mem_code = '''
+__bwa_mem_%(name)s__reference = "references_%(name)s/%(project)s.fa"
+__bwa_mem_%(name)s__output = "bwa_mem_%(name)s/%(project)s.sorted.bam"
+
+rule bwa_mem__%(name)s:
+    input:
+        fastq = %(inputs)s,
+        reference = __bwa_mem_%(name)s__ref_input
+    output:
+        mem = "bwa_mem_%(name)s/%(project)s.bam",
+        sort = __bwa_mem_%(name)s__output,
+        reference = __bwa_mem_%(name)s__reference,
+        done = touch("bwa_mem_%(name)s/done")
+    log:
+        mem = "logs/bwa_mem_%(name)s/bwa_mem.logs",
+        index = "logs/bwa_mem_%(name)s/bwa_index.logs",
+        sort = "logs/bwa_mem_%(name)s/samtools_sort.logs"
+    params:
+        index = config["bwa_%(name)s"]["index"]["options"],
+        mem = config["bwa_%(name)s"]["mem"]["options"],
+        rg = config["bwa_%(name)s"]["mem"]["read_groups"],
+        bwa_exe = bwa_exe
+    threads:
+        int(config["bwa_%(name)s"]["mem"]["threads"])
+    shell:
+        """
+        # Symbolic link of the reference
+        if [[ {input.reference} == /* ]];
+        then
+            ln -sf {input.reference} {output.reference}
+        else
+            ln -sf $(pwd)/{input.reference} {output.reference}
+        fi
+
+        # Indexing
+        bwa index {params.index} {output.reference} 2> {log.index}
+        samtools faidx {output.reference}
+
+        # Mapping
+        ({params.bwa_exe} mem -t {threads} -R {params.rg} {params.mem} \
+        {output.reference} {input.fastq} | \
+        samtools view -Sbh -> {output.mem}) 2> {log.mem}
+ 
+        # Sorting
+        samtools sort -o {output.sort} {output.mem} 2> {log.sort}
+        samtools index {output.sort} 2>> {log.sort}
+        """
+    '''
+
+    from easydev import TempFile
+    tt = TempFile()
+    fh = open(tt.name, "w")
+    fh.write(bwa_mem_code % metadata)
+    fh.close()
+    return fh.name

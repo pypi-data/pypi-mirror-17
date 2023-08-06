@@ -1,0 +1,18 @@
+__mark_duplicates__output = "mark_duplicates/%s.bam" % cfg.PROJECT
+
+rule mark_duplicates:
+    input:
+        __mark_duplicates__input
+    output:
+        __mark_duplicates__output
+    log:
+        out = "logs/picard_tools/MarkDuplicates/stdout.logs",
+        err = "logs/picard_tools/MarkDuplicates/stderr.logs",
+        metrics = "logs/picard_tools/MarkDuplicates/%s.metrics" % cfg.PROJECT
+    params:
+        options = config["mark_duplicates"]["options"]
+    shell:
+        """
+        picard MarkDuplicates I={input} \
+        O={output} M={log.metrics} > {log.out} 2> {log.err}
+        """

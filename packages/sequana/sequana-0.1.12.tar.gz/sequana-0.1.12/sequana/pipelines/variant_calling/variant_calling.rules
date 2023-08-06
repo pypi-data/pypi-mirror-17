@@ -1,0 +1,111 @@
+"""
+Author: Dimitri Desvillechabrol
+Affiliation: Institut Pasteur
+Aim: Variant calling
+Data: paired end or single reads
+Run: snakemake -s variant_calling.rules
+"""
+
+import time
+
+import sequana
+from sequana import snaketools as sm
+from sequana.snaketools import SequanaConfig
+from sequana import SnpEff
+sm.init("variant_calling.rules", globals())
+
+
+configfile: "config.yaml"
+cfg = SequanaConfig(config)
+
+
+final_output = []
+
+# If annotation file is not provided
+__report_mapping__ann = None
+__report_mapping__ann_format = None
+
+
+exec(open(sequana.modules["bwa_mem_dynamic"], "r").read())
+
+# we must check if we are in the case of denovo assembly:
+try:
+    __bwa_mem_ref__ref_input
+    __report_mapping__quast_input = __quast__output
+except NameError:
+    __bwa_mem_ref__ref_input = config["bwa_ref"]["reference"]
+    __report_mapping__quast_input = []
+
+# Generate data directory for SnpEff and annotation file for coverage
+if config["snpeff"]["do"]:
+    tmp = SnpEff(config["snpeff"]["reference"])
+    __add_locus_in_fasta__fasta_input = __bwa_mem_ref__ref_input
+    include: sm.modules["add_locus_in_fasta"]
+    __bwa_mem_ref__ref_input = __add_locus_in_fasta__output
+    __report_mapping__ann_input = config["snpeff"]["reference"]
+else:
+    __report_mapping__ann_input = []
+
+# Mapping
+include: bwa_mem_dynamic("ref", cfg.DATASET)
+__mark_duplicates__input = __bwa_mem_ref__output
+__indel_realigner__input = __bwa_mem_ref__output
+__freebayes__input = __bwa_mem_ref__output
+
+# Mark duplicates
+if config["mark_duplicates"]["do"]:
+    include: sm.modules["mark_duplicates"]
+    __indel_realigner__input = __mark_duplicates__output
+    __freebayes__input = __mark_duplicates__output
+
+# Mapping report
+if config["report_mapping"]["do"]:
+    __bedtools_genomecov__input = __bwa_mem_ref__output
+    include: sm.modules["bedtools_genomecov"]
+
+    __report_mapping__input = __bedtools_genomecov__output
+    try:
+        __report_mapping__bam_input = __mark_duplicates__output
+    except NameError:
+        __report_mapping__bam_input = __bwa_mem_ref__output
+
+    include: sm.modules["report_mapping"]
+    final_output.append(__report_mapping__output)
+    
+# Indel realigner
+if config["indel_realigner"]["do"]:
+    include: sm.modules["create_sequence_dictionary"]
+    include: sm.modules["indel_realigner"]
+    __freebayes__input = __indel_realigner__output
+
+# Variant calling
+include: sm.modules["freebayes"]
+
+# snpEff
+if config["snpeff"]["do"]: 
+    __snpeff__input = __freebayes__output
+    include: sm.modules["snpeff"]
+    __vcf_filter__input = __snpeff__output
+else:
+    __vcf_filter__input = __freebayes__output
+
+# VCF filter
+include: sm.modules["vcf_filter"]
+__report_variant__input = __vcf_filter__output
+
+# report vcf
+include: sm.modules["report_variant"]
+final_output.append(__report_variant__output)
+
+
+rule pipeline_variant:
+    input:
+        final_output
+
+
+onsuccess:
+    shell("cp %s %s/" % (__snakefile__, "report"))
+    shell("cp config.yaml %s/" % "report")
+    sm.plot_stats()
+    shell("cp %s %s" % (__freebayes__output, "report"))
+    shell("cp %s %s" % (__vcf_filter__output, "report"))

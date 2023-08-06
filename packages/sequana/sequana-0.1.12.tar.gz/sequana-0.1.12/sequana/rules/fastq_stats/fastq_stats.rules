@@ -1,0 +1,84 @@
+
+
+
+
+def fastq_stats_dynamic(name, inputs, outputs=[]):
+
+    metadata = {'inputs':inputs, 'name':name, 'project':cfg.PROJECT}
+
+    fastq_stats_code = '''
+ff = sm.FileFactory(%(inputs)s)
+
+outdir = "fastq_stats__%(name)s/" 
+__fastq_stats__output = [outdir + x for x in ff.basenames]
+__fastq_stats__output_json = [x.replace(".fastq.gz", "_fastq_stats.json") 
+        for x in __fastq_stats__output]
+__fastq_stats__output_images = [outdir + "/images/" + x for x in ff.basenames]
+__fastq_stats__output_bx = [x.replace(".fastq.gz", "_boxplot.png")
+        for x in __fastq_stats__output_images]
+__fastq_stats__output_gc = [x.replace(".fastq.gz", "_gc.png") 
+        for x in __fastq_stats__output_images]
+
+
+rule fastq_stats__%(name)s:
+    """Calls FastQC on each input datasets + those in bwa_phix directory"""
+    input:
+        %(inputs)s
+    output:
+        json= __fastq_stats__output_json,
+        boxplot=__fastq_stats__output_bx,
+        gc=__fastq_stats__output_gc,
+        done= touch("fastq_stats__%(name)s/fastq_stats.done")
+    params:
+        wkdir="fastq_stats__%(name)s"
+    threads: 4
+    run:
+        from sequana import FastQC, sequana_data
+        import json
+        import pylab
+        pylab.ioff()
+
+        for i in range(len(input)):
+            fastq = FastQC(input[i], max_sample=100000)
+            if len(fastq.fastq) != 0:
+                pylab.clf()
+                fastq.boxplot_quality()
+                pylab.savefig(output.boxplot[i])
+
+                pylab.clf()
+                fastq.histogram_gc_content()
+                pylab.savefig(output.gc[i])
+                stats = fastq.get_stats()
+                stats.to_json(open(output.json[i], "w"))
+            else:
+                import shutil
+                from easydev import touch
+                location = sequana_data("no_data.jpg", "images")
+                shutil.copy(location, output.gc[i])
+                shutil.copy(location, output.boxplot[i])
+                # this will be handled inside report_fastq_stats
+                touch(output.json[i])
+
+            from sequana import FastQStatsReport
+            s = FastQStatsReport(
+                  "fastq_stats__%(name)s",
+                  output_filename="fastq_stats__%(name)s.html",
+                  directory=params.wkdir)
+            s.jinja['main_link'] = '../report/summary.html'
+            s.create_report()
+
+
+    '''
+    from easydev import TempFile
+    tt = TempFile()
+    fh = open(tt.name, "w")
+    fh.write(fastq_stats_code % metadata)
+    fh.close()
+    return fh.name
+
+
+
+
+
+
+
