@@ -1,0 +1,3 @@
+[console_scripts]
+checkpy = check.__main__:main
+
