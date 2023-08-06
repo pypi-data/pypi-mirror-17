@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: uw_atg_wx
+Version: 0.0.1
+Summary: A module to gather meteorologic data from the rooftop of the University of Washington Atmospheric Science department
+Home-page: https://github.com/jsheedy/uw_atg_wx
+Author: Joseph Sheedy
+Author-email: joseph.sheedy@gmail.com
+License: LICENSE.txt
+Download-URL: https://github.com/jsheedy/uw_atg_wx/tarball/0.0.1
+Description: uw_atg_wx: UW Atmospheric Science Weather Data Interface
+        ========================================================
+        
+        A Python module to gather the latest weather observations from the roof of
+        the University of Washington ATG building
+        
+        https://www.atmos.washington.edu/cgi-bin/list_uw.cgi
+Keywords: weather
+Platform: UNKNOWN
