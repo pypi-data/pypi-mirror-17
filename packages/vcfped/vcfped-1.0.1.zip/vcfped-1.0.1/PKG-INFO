@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: vcfped
+Version: 1.0.1
+Summary: Identification of trios and other close relationships in multisample VCF files
+Home-page: https://github.com/magnusdv/vcfped
+Author: Magnus Dehli Vigeland
+Author-email: magnusdv@medisin.uio.no
+License: GPL-2
+Description: # vcfped
+        VCFped is a command line utility which quickly and confidently identifies close relationships (e.g. parent-child, trios and quartets) in a multisample VCF file.
+        The algorithm does not rely on allele frequencies or other annotations, and is highly robust to inbreeding and poor quality variants.
+Keywords: relatedness,variant filestrioexome,vcf,family-based sequencing
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)
