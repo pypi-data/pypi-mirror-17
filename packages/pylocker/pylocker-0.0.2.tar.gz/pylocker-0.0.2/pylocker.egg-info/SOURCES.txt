@@ -1,0 +1,9 @@
+MANIFEST.in
+setup.py
+./Locker.py
+./__init__.py
+./__pkginfo__.py
+pylocker.egg-info/PKG-INFO
+pylocker.egg-info/SOURCES.txt
+pylocker.egg-info/dependency_links.txt
+pylocker.egg-info/top_level.txt
