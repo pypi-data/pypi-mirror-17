@@ -1,0 +1,4 @@
+
+        [cwmon.plugins]
+        system=cwmon_system.cli:system
+    
