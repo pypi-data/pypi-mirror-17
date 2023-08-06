@@ -1,0 +1,20 @@
+Metadata-Version: 2.0
+Name: microdrop-launcher
+Version: 0.1.post64
+Summary: MicroDrop launcher
+Home-page: https://github.com/wheeler-microfluidics/microdrop-launcher
+Author: Christian Fobel
+Author-email: christian@fobel.net
+License: GPL
+Platform: UNKNOWN
+Requires-Dist: appdirs
+Requires-Dist: futures
+Requires-Dist: jinja2
+Requires-Dist: microdrop-plugin-manager (>=0.3.post5)
+Requires-Dist: path-helpers
+Requires-Dist: pip-helpers (>=0.6.post3)
+Requires-Dist: wheeler.pygtkhelpers (>=0.14.post7)
+
+UNKNOWN
+
+
