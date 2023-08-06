@@ -1,0 +1,19 @@
+{
+  "name": "django_cradmin",
+  "devDependencies": {
+    "autoprefixer": "*",
+    "reflect-metadata": "^0.1.3",
+    "postcss-cli": "*",
+    "postcss-scss": "*",
+    "browserify": "*",
+    "typedoc": "^0.4.4",
+    "stylelint": "*",
+    "typescript": "^1.8.10",
+    "rxjs": "5.0.0-beta.6",
+    "zone.js": "^0.6.12",
+    "typings": "^1.0.4",
+    "core-js": "^2.4.0",
+    "tslint": "^3.7.4"
+  },
+  "version": "0.0.1"
+}
