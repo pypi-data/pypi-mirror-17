@@ -1,0 +1,31 @@
+Metadata-Version: 2.0
+Name: trakt-tools
+Version: 0.1.1
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: Dean Gardiner
+Author-email: me@dgardiner.net
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.0
+Classifier: Programming Language :: Python :: 3.1
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Utilities
+Requires-Dist: trakt.py (>=2.8.0,<2.9.0)
+Requires-Dist: click (>=6.0,<7.0)
+Requires-Dist: pytz (>=2016.6)
+
+False
+
+
