@@ -1,0 +1,6 @@
+[sentry.apps]
+46elks = sentry_46elks
+
+[sentry.plugins]
+46elks = sentry_46elks.plugin:Sentry46ElksPlugin
+
