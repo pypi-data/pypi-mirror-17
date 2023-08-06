@@ -1,0 +1,17 @@
+.gitignore
+LICENSE
+README.rst
+setup.cfg
+setup.py
+yourtool/__init__.py
+yourtool/__main__.py
+yourtool/compat.py
+yourtool/utils.py
+yourtool/yourtool.py
+yourtool.egg-info/PKG-INFO
+yourtool.egg-info/SOURCES.txt
+yourtool.egg-info/dependency_links.txt
+yourtool.egg-info/entry_points.txt
+yourtool.egg-info/not-zip-safe
+yourtool.egg-info/requires.txt
+yourtool.egg-info/top_level.txt

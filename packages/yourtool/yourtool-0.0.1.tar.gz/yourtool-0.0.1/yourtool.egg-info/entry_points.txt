@@ -1,0 +1,3 @@
+[console_scripts]
+yourtool = yourtool.__main__:main
+
