@@ -1,0 +1,28 @@
+Metadata-Version: 2.0
+Name: wortfilter
+Version: 0.1.2
+Summary: Filter word lists based on letters
+Home-page: https://gitlab.com/messmer/wortfilter
+Author: Sebastian Messmer
+Author-email: heinzisoft@web.de
+License: GPLv3
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Console
+Classifier: Environment :: X11 Applications
+Classifier: Environment :: X11 Applications :: Qt
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Natural Language :: German
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Utilities
+Requires-Dist: PyQT5 (==5.7)
+Requires-Dist: mypy-lang (==0.4.5)
+
+UNKNOWN
+
+
