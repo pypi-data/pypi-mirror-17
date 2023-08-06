@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: pyVulkan
+Version: 0.7
+Summary: vulkan API bindings for Python
+Home-page: https://github.com/bglgwyng/pyVulkan
+Author: bglgwyng
+Author-email: bglgwyng@gmail.com
+License: BSD
+Description: UNKNOWN
+Keywords: Graphics,3D,Vulkan,cffi
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Multimedia :: Graphics :: 3D Rendering
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Intended Audience :: Developers
