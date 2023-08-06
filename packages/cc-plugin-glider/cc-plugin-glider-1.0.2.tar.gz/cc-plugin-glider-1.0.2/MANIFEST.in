@@ -1,0 +1,3 @@
+include *.txt
+include README.md
+include cc_plugin_glider/tests/data/gliders/*.nc
