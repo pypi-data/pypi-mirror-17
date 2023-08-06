@@ -1,0 +1,84 @@
+Metadata-Version: 2.0
+Name: easyargs
+Version: 0.8.2
+Summary: Making argument parsing easy
+Home-page: https://github.com/stedmeister/easyargs
+Author: Steddy Smit
+Author-email: jacob.smit@zepler.net
+License: MIT
+Keywords: argparsing commandline
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: User Interfaces
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Provides-Extra: dev
+Requires-Dist: check-manifest; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: coverage; extra == 'test'
+
+.. image:: https://travis-ci.org/stedmeister/easyargs.svg?branch=master
+    :target: https://travis-ci.org/stedmeister/easyargs
+
+easyargs
+========
+
+A project designed to make command line argument parsing easy.
+
+It is used as follows:
+
+.. code:: python
+
+    import easyargs
+
+    @easyargs
+    def main(name, count=1, greeting='Hello'):
+        """A simple greeting program"""
+        for i in range(count):
+            print '{greeting} {name}!'.format(greeting=greeting, name=name)
+
+
+    if __name__ == '__main__':
+        main()
+
+In this (rather contrived) example, main will be inspected and the arg keywords
+will be turned into positional arguments and the kwarg keywords will be turned
+into optional arguments.  This can be seen if we run the above script with the
+help flag:
+
+.. code::
+
+    $ python simple.py -h
+    usage: simple_test.py [-h] [--count COUNT] [--greeting GREETING] name
+
+    A simple greeting program
+
+    positional arguments:
+      name
+
+    optional arguments:
+      -h, --help           show this help message and exit
+      --count COUNT
+      --greeting GREETING
+
+Note are that program description is automatically created
+based on the docstring of the function.  Also note that the type of the default
+value is inspected so that the value of count is coerced to an integer:
+
+.. code::
+
+    $ python simple.py World
+    Hello World
+
+    $ python simple.py everybody --count 2 --greeting Hola
+    Hola everybody!
+    Hola everybody!
+
+
