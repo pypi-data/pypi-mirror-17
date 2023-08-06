@@ -1,0 +1,12 @@
+djangorestframework~=3.4
+coreapi~=2.0
+openapi-codec~=1.0
+six~=1.10
+
+[dev]
+pypandoc~=1.2
+
+[test]
+coverage~=4.2
+pytest~=3.0.2
+tox~=2.3
