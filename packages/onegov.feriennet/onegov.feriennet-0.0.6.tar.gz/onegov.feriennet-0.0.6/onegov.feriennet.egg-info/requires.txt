@@ -1,0 +1,9 @@
+onegov.activity
+onegov.org>=0.0.13
+
+[test]
+coverage
+onegov.testing
+pytest
+pytest-localserver
+pyquery
