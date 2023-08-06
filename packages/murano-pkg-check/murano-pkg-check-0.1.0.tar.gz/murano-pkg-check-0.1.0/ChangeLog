@@ -1,0 +1,27 @@
+CHANGES
+=======
+
+0.1.0
+-----
+
+* Bunch of bugfixes
+* Added errors registration
+* Add i18n support
+* Improve logging system
+* Improving tests coverage
+* Report yaml parsing errors instead of ignoring
+* Added tools/cover.sh
+* Improve package version validation
+* Allow method name to start with "."
+* Fix error report in version
+* Accept null description in manifest
+* Bunch of fixes for code_structure, base, manifest:
+* Adding Package Validator
+* Adding UI Validator
+* Adding MuranoPL validator
+* Improving Manifest require check
+* Code Structure checker added with tests
+* Adding ManifestValidator
+* Added core and CLI
+* Commit project structure
+* Added .gitreview
