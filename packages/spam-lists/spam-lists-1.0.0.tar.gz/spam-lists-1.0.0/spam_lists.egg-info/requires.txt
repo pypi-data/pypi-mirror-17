@@ -1,0 +1,13 @@
+future
+requests
+tldextract
+validators
+cachetools
+dnspython
+ipaddress
+pyOpenSSL>=0.13
+ndg-httpsclient
+
+[test]
+nose-parameterized
+mock
