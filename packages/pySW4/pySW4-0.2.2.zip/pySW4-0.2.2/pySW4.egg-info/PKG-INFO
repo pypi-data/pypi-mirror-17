@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: pySW4
+Version: 0.2.2
+Summary: Python routines for interaction with SW4
+Home-page: https://github.com/shaharkadmiel/pySW4
+Author: Shahar Shani-Kadmiel, Omry Volk, Tobias Megies
+Author-email: kadmiel@post.bgu.ac.il
+License: UNKNOWN
+Download-URL: https://github.com/shaharkadmiel/pySW4.git
+Description: pySW4 is an open-source project dedicated to provide a Python framework for working with numerical simulations of seismic-wave propagation with SW4 in all phases of the task (preprocessing, post-processing and runtime visualization).
+Keywords: pySW4,seismology,SW4
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
