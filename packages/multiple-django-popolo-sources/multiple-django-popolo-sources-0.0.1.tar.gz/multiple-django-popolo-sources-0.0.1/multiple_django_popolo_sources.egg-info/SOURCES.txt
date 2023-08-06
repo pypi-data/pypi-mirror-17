@@ -1,0 +1,14 @@
+README.rst
+setup.py
+multiple_django_popolo_sources.egg-info/PKG-INFO
+multiple_django_popolo_sources.egg-info/SOURCES.txt
+multiple_django_popolo_sources.egg-info/dependency_links.txt
+multiple_django_popolo_sources.egg-info/requires.txt
+multiple_django_popolo_sources.egg-info/top_level.txt
+popolo_sources/__init__.py
+popolo_sources/importer.py
+popolo_sources/models.py
+popolo_sources/tests/__init__.py
+popolo_sources/tests/test_importer.py
+popolo_sources/tests/test_link_model.py
+popolo_sources/tests/test_sources.py
