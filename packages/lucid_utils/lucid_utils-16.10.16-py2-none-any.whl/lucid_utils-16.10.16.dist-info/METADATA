@@ -1,0 +1,21 @@
+Metadata-Version: 2.0
+Name: lucid-utils
+Version: 16.10.16
+Summary: A library for analysing LUCID data
+Home-page: UNKNOWN
+Author: Cal Hewitt
+Author-email: hello@calhewitt.xyz
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: matplotlib
+Requires-Dist: numpy
+Requires-Dist: pillow
+Requires-Dist: pyephem
+Requires-Dist: scipy
+
+A library for analysing LUCID data
+
+
