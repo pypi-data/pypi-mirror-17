@@ -1,0 +1,19 @@
+Metadata-Version: 2.0
+Name: korpokkur
+Version: 0.1
+Summary: scaffolding
+Home-page: https://github.com/podhmo/korpokkur
+Author: podhmo
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: mako
+Requires-Dist: configless
+Provides-Extra: testing
+Requires-Dist: jinja2; extra == 'testing'
+
+UNKNOWN
+
+
