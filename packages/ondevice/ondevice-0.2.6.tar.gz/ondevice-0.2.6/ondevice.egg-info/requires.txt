@@ -1,0 +1,9 @@
+filelock
+psutil
+python-daemon
+six
+websocket-client
+
+[dev]
+
+[test]
