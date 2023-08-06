@@ -1,0 +1,18 @@
+Metadata-Version: 2.0
+Name: gapi4term
+Version: 0.8.7
+Summary: Command Line for Google Services
+Home-page: https://github.com/supersaiyanmode/gapi
+Author: Srivatsan Iyer
+Author-email: supersaiyanmode.rox@gmail.com
+License: https://opensource.org/licenses/MIT
+Platform: UNKNOWN
+Requires-Dist: appdirs
+Requires-Dist: google-api-python-client
+Requires-Dist: iso8601
+Requires-Dist: requests[security]
+Requires-Dist: rfc3339
+
+UNKNOWN
+
+
