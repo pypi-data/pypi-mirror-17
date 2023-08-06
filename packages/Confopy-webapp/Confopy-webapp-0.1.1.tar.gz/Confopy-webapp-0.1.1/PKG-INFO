@@ -1,0 +1,34 @@
+Metadata-Version: 1.1
+Name: Confopy-webapp
+Version: 0.1.1
+Summary: Minimal web UI for Confopy.
+Home-page: https://github.com/ooz/Confopy-webapp
+Author: Oliver Zscheyge
+Author-email: oliverzscheyge@gmail.com
+License: MIT
+Description: # Confopy-webapp
+        Minimal web UI built for Confopy.
+        
+        ## Installation
+        
+            virtualenv cwapp
+            cd cwapp
+            bin/pip install Confopy-webapp
+        
+        ## Run it!
+        
+        After installation in virtualenv cwapp execute:
+        
+            bin/python -m confopyapp.app
+            
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
