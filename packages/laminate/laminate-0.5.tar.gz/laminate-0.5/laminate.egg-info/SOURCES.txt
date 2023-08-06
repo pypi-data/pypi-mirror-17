@@ -1,0 +1,10 @@
+MANIFEST.in
+README
+setup.py
+laminate/__init__.py
+laminate/laminate.py
+laminate.egg-info/PKG-INFO
+laminate.egg-info/SOURCES.txt
+laminate.egg-info/dependency_links.txt
+laminate.egg-info/requires.txt
+laminate.egg-info/top_level.txt
