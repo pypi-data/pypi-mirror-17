@@ -1,0 +1,24 @@
+Metadata-Version: 2.0
+Name: aws-lambda-utils
+Version: 0.0.2
+Summary: AWS Lambda Function Python utilities
+Home-page: https://github.com/agassner/aws-lambda-utils
+Author: Arthur Gassner
+Author-email: arthur.gassner@gmail.com
+License: MIT
+Keywords: aws lambda function utilities
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: boto3
+
+# aws-lambda-utils
+AWS Lambda Function python utilities
+
+
