@@ -1,0 +1,14 @@
+six
+zope.dottedname
+
+[testing]
+detox
+flake8
+mock
+pytest
+pytest-cov
+pytest-flake8
+pytest-xdist
+pytz
+six
+zope.dottedname
