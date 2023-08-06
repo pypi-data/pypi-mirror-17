@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="CheesePi Internet Bath Dashboard">
+	<meta name="author" content="">
+
+	<title>Internet Bath</title>
+	<link rel="stylesheet" type="text/css" href="css/custom.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-slider.min.css">
+	<link rel="stylesheet" type="text/css" href="css/opentip.css">
+	<style type="text/css">
+	#bath {
+		width: 600px;
+		border-style: solid;
+		border-color: #777;
+		margin: auto;
+	}
+	#ex1Slider .slider-selection { background: #BABABA; }
+	</style>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+<div class="container">
+<div class="page-header">
+	<h3>Internet Bath</h3>
+</div>
+
+<div class="container">
+<div class="row">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-4">
+	<object class="center-block" data="bath.svg" type="image/svg+xml" id="bath"></object>
+	</div>
+</div>
+<br/>
+
+<div style="display: none;">
+<div class="row">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-2"> <span id="bandwidthLabel2">Bandwidth: <span id="bandwidthLabel">0</span></span> </div>
+	<div class="col-sm-4">
+	<input id="bandwidthInput" type="text" name="somename" data-provide="slider" data-slider-min="0"
+		data-slider-max="100" data-slider-step="5" data-slider-value="0" data-slider-tooltip="hide" >
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-2"> <span id="showerLabel2">Shower: <span id="showerLabel">20</span></span> </div>
+	<div class="col-sm-4">
+	<input id="showerInput" type="text" name="somename" data-provide="slider" data-slider-min="20"
+		data-slider-max="100" data-slider-step="5" data-slider-value="20" data-slider-tooltip="hide" >
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-2"> <span id="tapLabel2">Tap: <span id="tapLabel">20</span></span> </div>
+	<div class="col-sm-4">
+	<input id="tapInput" type="text" name="somename" data-provide="slider" data-slider-min="20"
+		data-slider-max="100" data-slider-step="5" data-slider-value="20" data-slider-tooltip="hide" >
+	</div>
+</div>
+</div>
+
+</div>
+</div>
+
+
+<footer class="footer">
+	<div class="container">
+	<p class="text-muted">SICS 2016</p>
+	</div>
+</footer>
+
+<script src="js/jquery-2.2.2.min.js" type="text/javascript"></script>
+<script src="js/velocity.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-slider.min.js" type="text/javascript"></script>
+<script src="js/opentip-jquery.min.js" type="text/javascript"></script>
+<script>
+var bandwidth = 0; // global variable for overall bandwidth
+var showerIntensity = 50;
+var tapIntensity = 50;
+
+var duration = 1500; // transition duration 
+var swellSize=5; // degree of water rise/fall
+var swellSpeed=1200; // how often should the swell waves occur
+var svgDoc; // svg document
+
+// attach handler to the slider
+$("#bandwidthInput").slider();
+$("#bandwidthInput").on("change", function(slideEvt) {
+	//console.log(slideEvt.value.newValue);
+	$("#bandwidthLabel").text(slideEvt.value.newValue);
+	bandwidth = slideEvt.value.newValue;
+});
+$("#showerInput").slider();
+$("#showerInput").on("change", function(slideEvt) {
+	//console.log(slideEvt.value.newValue);
+	$("#showerLabel").text(slideEvt.value.newValue);
+	showerIntensity = slideEvt.value.newValue;
+});
+$("#tapInput").slider();
+$("#tapInput").on("change", function(slideEvt) {
+	//console.log(slideEvt.value.newValue);
+	$("#tapLabel").text(slideEvt.value.newValue);
+	tapIntensity = slideEvt.value.newValue;
+});
+
+// initialise SVG based variables and animation
+$(window).load(function () { // When the SVG has loaded...
+	var a = document.getElementById("bath");
+	svgDoc = a.contentDocument;
+	showerstream();
+	//bathstream();
+
+	$showerwater = $(svgDoc.getElementById("showerwater"));
+	$showerwater.on("mouseover", tcpinfo);
+	$showerhead = $(svgDoc.getElementById("showerhead"));
+	$showerhead.on("mouseover", tcpinfo);
+
+	// disable the tap water flow for simplicity
+	hidebathstream();
+	$showerhead = $(svgDoc.getElementById("bathwater"));
+	$showerhead.on("mouseover", bandwidthinfo);
+
+	window.setInterval(function(){updateStatus(); },50000);
+	window.setInterval(function(){setBathHeight(bandwidth); },1000);
+	window.setInterval(function(){setShowerIntensity(); },100);
+	//window.setInterval(function(){setTapIntensity(); },100);
+
+});
+
+// tooltips for bandwidth streams
+function bandwidthinfo(evt) {
+	console.log("tcp info!");
+	var myInput = $("#bath");
+	//var myInput = $(svgDoc.getElementById("showerwater"));
+	var inputOpentip = new Opentip(myInput, { showOn: null, style: "glass", fixed: true, tipJoint: "top", target: "#bath", offset: [-80,-105], borderWidth: 3, borderColor: "#226" });
+	inputOpentip.setContent("<u>Bandwidth</u><br/><br/>Bandwidth: <b>4.0 Mbps</b>");
+	inputOpentip.show();
+}
+function tcpinfo(evt) {
+	console.log("tcp info!");
+	var myInput = $("#bath");
+	//var myInput = $(svgDoc.getElementById("showerwater"));
+	var inputOpentip = new Opentip(myInput, { showOn: null, style: "glass", fixed: true, tipJoint: "left", target: "#bath", offset: [-200,-150], borderWidth: 3, borderColor: "#226" });
+	inputOpentip.setContent("Bandwidth: <b>4.0 Mbps</b>");
+	inputOpentip.show();
+}
+
+function statusfail() {
+	console.log("Update failed, CheesePi backend may not be running!");
+}
+function updateStatus() {
+	console.log("Updating status");
+	$.getJSON( "status.json", function( data ) {
+		//console.log(data)
+		$.each( data, function( key, val ) {
+			//console.log(key);
+			if (key=="bandwidth") {bandwidth       = val;}
+			if (key=="tcp")       {showerIntensity = val;}
+			if (key=="udp")       {tapIntensity    = val;}
+		});
+	}).fail(statusfail());
+}
+function setDuckHeight(height) { //move the duck in the bath
+	$duck = $(svgDoc.getElementById("duck"));
+	$duck.velocity({translateY: -height},{queue:false,duration:duration});
+}
+function setBubbleHeight(height) { //move bubbles in the bath
+	$(svgDoc.getElementById("bubble1")).velocity({translateY: -height},{duration:duration,queue:false});
+	$(svgDoc.getElementById("bubble2")).velocity({translateY: -height},{duration:duration,queue:false});
+	$(svgDoc.getElementById("bubble3")).velocity({translateY: -height},{duration:duration,queue:false});
+	$(svgDoc.getElementById("bubble4")).velocity({translateY: -height},{duration:duration,queue:false});
+	$(svgDoc.getElementById("bubble5")).velocity({translateY: -height},{duration:duration,queue:false});
+	$(svgDoc.getElementById("bubble6")).velocity({translateY: -height},{duration:duration,queue:false});
+	$(svgDoc.getElementById("bubble7")).velocity({translateY: -height},{duration:duration,queue:false});
+}
+function setBathHeight(height) { //move all bath water elements
+	// From a height parameter [0-100] 
+	//console.log("set height: "+height);
+	height *= 1.35;
+	swell = Math.sin(new Date().getTime()/swellSpeed)*swellSize;
+	height += swell; // modify water height slightly
+	//if (height>95) {height=95}
+	$clip = $(svgDoc.getElementById("bathclip_1_"));
+	// move the clip mask of the water
+	$clip.velocity({translateY: -height},{duration:duration, queue:false});
+	setDuckHeight(height);
+	setBubbleHeight(height);
+
+	$shower = $(svgDoc.getElementById("shower"));
+}
+function setShowerIntensity() {
+	var showerSwellSpeed=400;
+	var showerSwellSize=0.05;
+	showerSwell = Math.sin(new Date().getTime()/showerSwellSpeed)*showerSwellSize;
+	$shower = $(svgDoc.getElementById("showerwater"));
+	$shower.velocity({scaleX: showerIntensity/100+showerSwell},{duration:duration/10, queue:false});
+	$shower.velocity({opacity: 0.1+(showerIntensity/50)},{duration:duration/50, queue:false});
+}
+function setTapIntensity() {
+	var tapSwellSpeed=400;
+	var tapSwellSize=0.05;
+	tapSwell = Math.sin(new Date().getTime()/tapSwellSpeed)*tapSwellSize;
+	$tap = $(svgDoc.getElementById("tapwater"));
+	$tap.velocity({scaleX: tapIntensity/100+tapSwell},{duration:duration/10, queue:false});
+	$tap.velocity({opacity: 0.1+(tapIntensity/50)},{duration:duration/50, queue:false});
+}
+
+function bathstream() { // move water lines from the bath tap
+	$ts1 = $(svgDoc.getElementById("tapstream1"));
+	setTimeout(function() { animate($ts1.data({tx:-10,ty:140,dur:800,delay:5}));},200);
+
+	$ts2 = $(svgDoc.getElementById("tapstream2"));
+	setTimeout(function() { animate($ts2.data({tx:-5,ty:140,dur:800,delay:10}));},400);
+
+	$ts3 = $(svgDoc.getElementById("tapstream3"));
+	setTimeout(function() { animate($ts3.data({tx:0,ty:140,dur:800,delay:0}));},0);
+
+	$ts4 = $(svgDoc.getElementById("tapstream4"));
+	setTimeout(function() { animate($ts4.data({tx:5,ty:140,dur:800,delay:7}));},700);
+
+	$ts5 = $(svgDoc.getElementById("tapstream5"));
+	setTimeout(function() { animate($ts5.data({tx:10,ty:140,dur:800,delay:12}))},100);
+}
+function hidebathstream() {
+	$(svgDoc.getElementById("tapwater")).hide();
+	$(svgDoc.getElementById("tapstream1")).hide();
+	$(svgDoc.getElementById("tapstream2")).hide();
+	$(svgDoc.getElementById("tapstream3")).hide();
+	$(svgDoc.getElementById("tapstream4")).hide();
+	$(svgDoc.getElementById("tapstream5")).hide();
+}
+
+function showerstream() {
+	$ss1 = $(svgDoc.getElementById("showerstream1"));
+	setTimeout(function() { animate($ss1.data({tx:-10,ty:370,dur:800,delay:5}));},200);
+
+	$ss2 = $(svgDoc.getElementById("showerstream2"));
+	setTimeout(function() { animate($ss2.data({tx:-5,ty:370,dur:800,delay:10}));},400);
+
+	$ss3 = $(svgDoc.getElementById("showerstream3"));
+	setTimeout(function() { animate($ss3.data({tx:0,ty:370,dur:800,delay:0}));},0);
+
+	$ss4 = $(svgDoc.getElementById("showerstream4"));
+	setTimeout(function() { animate($ss4.data({tx:5,ty:370,dur:800,delay:7}));},700);
+
+	$ss5 = $(svgDoc.getElementById("showerstream5"));
+	setTimeout(function() { animate($ss5.data({tx:10,ty:370,dur:800,delay:12}))},100);
+}
+
+function animate(element) { //generic animation function
+	//console.log("#"+element[0].id);
+	$item = $(element[0]);
+	var delay = $item.data('delay');
+	//$item.data({delay:0});
+	//$item.velocity("fadeIn").velocity("fadeOut", { delay: 1, duration: 790, complete:animate });
+	$item.velocity({translateX:[$item.data('tx'),0], translateY:[$item.data('ty'),0]}, {queue:false,duration:duration, delay:delay, complete:animate});
+};
+
+
+</script>
+</body>
+</html>
