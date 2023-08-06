@@ -1,0 +1,20 @@
+Metadata-Version: 2.0
+Name: pa11ycrawler
+Version: 1.5.2
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: Apache-2.0
+Platform: UNKNOWN
+Requires-Dist: scrapy (==1.1.2)
+Requires-Dist: Jinja2 (<3.0)
+Requires-Dist: urlobject (<3.0)
+Requires-Dist: lxml (<4.0)
+Requires-Dist: path.py (<9.0)
+Requires-Dist: requests (<3.0)
+Requires-Dist: pyyaml (<4.0)
+
+UNKNOWN
+
+
