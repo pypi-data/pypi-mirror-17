@@ -1,0 +1,14 @@
+MANIFEST.in
+setup.cfg
+setup.py
+Dajax.egg-info/PKG-INFO
+Dajax.egg-info/SOURCES.txt
+Dajax.egg-info/dependency_links.txt
+Dajax.egg-info/not-zip-safe
+Dajax.egg-info/requires.txt
+Dajax.egg-info/top_level.txt
+dajax/__init__.py
+dajax/apps.py
+dajax/urls.py
+dajax/views.py
+dajax/static/dajax/js/jquery.dajax.js
