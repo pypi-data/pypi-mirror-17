@@ -1,0 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf8 -*-
+
+from __future__ import print_function
+
+from klimalogger import client as logger_client
+
+client = logger_client()
+client.measure_and_store()
+
