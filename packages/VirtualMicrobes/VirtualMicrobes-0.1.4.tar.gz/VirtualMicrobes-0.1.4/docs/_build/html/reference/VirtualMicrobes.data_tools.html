@@ -1,0 +1,747 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VirtualMicrobes.data_tools package &mdash; Virtual Microbes Evolutionary Simulator 0.1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Virtual Microbes Evolutionary Simulator 0.1.3 documentation" href="../index.html"/>
+        <link rel="up" title="VirtualMicrobes package" href="VirtualMicrobes.html"/>
+        <link rel="next" title="VirtualMicrobes.environment package" href="VirtualMicrobes.environment.html"/>
+        <link rel="prev" title="VirtualMicrobes.cython_gsl_interface package" href="VirtualMicrobes.cython_gsl_interface.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Virtual Microbes Evolutionary Simulator
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="VirtualMicrobes.html">VirtualMicrobes package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="VirtualMicrobes.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.Tree.html">VirtualMicrobes.Tree package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.cython_gsl_interface.html">VirtualMicrobes.cython_gsl_interface package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">VirtualMicrobes.data_tools package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.environment.html">VirtualMicrobes.environment package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.event.html">VirtualMicrobes.event package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.mutate.html">VirtualMicrobes.mutate package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.my_tools.html">VirtualMicrobes.my_tools package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.plotting.html">VirtualMicrobes.plotting package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.post_analysis.html">VirtualMicrobes.post_analysis package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.simulation.html">VirtualMicrobes.simulation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.virtual_cell.html">VirtualMicrobes.virtual_cell package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="VirtualMicrobes.html#module-VirtualMicrobes">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Virtual Microbes Evolutionary Simulator</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Reference</a> &raquo;</li>
+      
+          <li><a href="VirtualMicrobes.html">VirtualMicrobes package</a> &raquo;</li>
+      
+    <li>VirtualMicrobes.data_tools package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/reference/VirtualMicrobes.data_tools.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="virtualmicrobes-data-tools-package">
+<h1>VirtualMicrobes.data_tools package<a class="headerlink" href="#virtualmicrobes-data-tools-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-VirtualMicrobes.data_tools.store">
+<span id="virtualmicrobes-data-tools-store-module"></span><h2>VirtualMicrobes.data_tools.store module<a class="headerlink" href="#module-VirtualMicrobes.data_tools.store" title="Permalink to this headline">¶</a></h2>
+<p>Created on Feb 7, 2015</p>
+<p>&#64;author: thocu</p>
+<dl class="class">
+<dt id="VirtualMicrobes.data_tools.store.DataCollection">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.data_tools.store.</code><code class="descname">DataCollection</code><span class="sig-paren">(</span><em>save_dir=''</em>, <em>name='dummy'</em>, <em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataCollection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataCollection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataCollection.change_save_location">
+<code class="descname">change_save_location</code><span class="sig-paren">(</span><em>new_save_dir=None</em>, <em>copy_orig=True</em>, <em>current_save_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataCollection.change_save_location"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataCollection.change_save_location" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataCollection.get_data_point">
+<code class="descname">get_data_point</code><span class="sig-paren">(</span><em>index</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataCollection.get_data_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataCollection.get_data_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a data point at index.</p>
+<p>Exception catching to handle case where due to code update a loaded form
+of a DataStore does not yet hold a particular DataCollection. In that
+case a dummy dict producing empty numpy arrays is returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>index</strong> &#8211; key to a dict shaped data point</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataCollection.init_file">
+<code class="descname">init_file</code><span class="sig-paren">(</span><em>name=None</em>, <em>labels=[]</em>, <em>suffix='.csv'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataCollection.init_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataCollection.init_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataCollection.prune_data_file_to_time">
+<code class="descname">prune_data_file_to_time</code><span class="sig-paren">(</span><em>max_tp</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataCollection.prune_data_file_to_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataCollection.prune_data_file_to_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>prune a data file by dropping lines starting from <em>max_tp</em>.</p>
+<p>This function assumes that the first line contains column names
+and subsequent lines are time point data, starting with an comma separated
+(integer) time point.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>max_tp</strong> &#8211; time point to start dropping lines</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataCollection.update_data_points">
+<code class="descname">update_data_points</code><span class="sig-paren">(</span><em>index</em>, <em>dat</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataCollection.update_data_points"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataCollection.update_data_points" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataCollection.write_data">
+<code class="descname">write_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataCollection.write_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataCollection.write_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.data_tools.store.DataStore">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.data_tools.store.</code><code class="descname">DataStore</code><span class="sig-paren">(</span><em>base_save_dir</em>, <em>name</em>, <em>utility_path</em>, <em>n_most_frequent_metabolic_types</em>, <em>n_most_frequent_genomic_counts</em>, <em>species_markers</em>, <em>reactions_dict</em>, <em>small_mols</em>, <em>clean=True</em>, <em>create=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Storage object for simulation data</p>
+<p>Keep a store of simulation data that can be written to disk and retrieved
+for online plotting. Typically, the store will only hold the most recent data
+points before appending the data to relevant on disk storage files.</p>
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.add_ancestry_data_point">
+<code class="descname">add_ancestry_data_point</code><span class="sig-paren">(</span><em>comp_dat</em>, <em>ref_lods</em>, <em>time_point</em>, <em>leaf_samples=100</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.add_ancestry_data_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.add_ancestry_data_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compare lines of descent in a reference tree to a population snapshot at
+a previous time point.</p>
+<p>The <em>comp_dat</em> is a po</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.add_best_data_point">
+<code class="descname">add_best_data_point</code><span class="sig-paren">(</span><em>best</em>, <em>attribute_mapper</em>, <em>time_point</em>, <em>affix=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.add_best_data_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.add_best_data_point" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.add_collection">
+<code class="descname">add_collection</code><span class="sig-paren">(</span><em>dc</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.add_collection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.add_collection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.add_count_stats_dp">
+<code class="descname">add_count_stats_dp</code><span class="sig-paren">(</span><em>dc_name</em>, <em>dat</em>, <em>time_point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.add_count_stats_dp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.add_count_stats_dp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.add_dp">
+<code class="descname">add_dp</code><span class="sig-paren">(</span><em>dc_name</em>, <em>dat</em>, <em>time_point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.add_dp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.add_dp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.add_eco_data_point">
+<code class="descname">add_eco_data_point</code><span class="sig-paren">(</span><em>system</em>, <em>time_point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.add_eco_data_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.add_eco_data_point" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.add_frequency_stats_dp">
+<code class="descname">add_frequency_stats_dp</code><span class="sig-paren">(</span><em>dc_name</em>, <em>dat</em>, <em>column_names</em>, <em>time_point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.add_frequency_stats_dp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.add_frequency_stats_dp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.add_gain_loss_dp">
+<code class="descname">add_gain_loss_dp</code><span class="sig-paren">(</span><em>dc_name</em>, <em>cur_dat</em>, <em>prev_dat</em>, <em>time_point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.add_gain_loss_dp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.add_gain_loss_dp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.add_list_dp">
+<code class="descname">add_list_dp</code><span class="sig-paren">(</span><em>dc_name</em>, <em>dat</em>, <em>time_point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.add_list_dp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.add_list_dp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.add_lod_binding_conservation">
+<code class="descname">add_lod_binding_conservation</code><span class="sig-paren">(</span><em>lod</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.add_lod_binding_conservation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.add_lod_binding_conservation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.add_lod_data">
+<code class="descname">add_lod_data</code><span class="sig-paren">(</span><em>ete_tree_struct</em>, <em>lod</em>, <em>pop</em>, <em>env</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.add_lod_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.add_lod_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.add_lod_network_data">
+<code class="descname">add_lod_network_data</code><span class="sig-paren">(</span><em>lod</em>, <em>save_dir=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.add_lod_network_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.add_lod_network_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.add_metabolic_stats_dp">
+<code class="descname">add_metabolic_stats_dp</code><span class="sig-paren">(</span><em>dc_name</em>, <em>dat</em>, <em>time_point</em>, <em>cutoff=0.05</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.add_metabolic_stats_dp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.add_metabolic_stats_dp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.add_pop_data_point">
+<code class="descname">add_pop_data_point</code><span class="sig-paren">(</span><em>system</em>, <em>time_point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.add_pop_data_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.add_pop_data_point" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.add_raw_values_dp">
+<code class="descname">add_raw_values_dp</code><span class="sig-paren">(</span><em>dc_name</em>, <em>dat</em>, <em>time_point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.add_raw_values_dp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.add_raw_values_dp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.add_simple_stats_dp">
+<code class="descname">add_simple_stats_dp</code><span class="sig-paren">(</span><em>dc_name</em>, <em>dat</em>, <em>time_point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.add_simple_stats_dp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.add_simple_stats_dp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.ancestry_stats_dir">
+<code class="descname">ancestry_stats_dir</code><em class="property"> = 'ancestry_compare_dat'</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.ancestry_stats_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.best_stats_dir">
+<code class="descname">best_stats_dir</code><em class="property"> = 'best_dat'</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.best_stats_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.change_save_location">
+<code class="descname">change_save_location</code><span class="sig-paren">(</span><em>base_save_dir=None</em>, <em>name=None</em>, <em>clean=False</em>, <em>copy_orig=True</em>, <em>create=True</em>, <em>current_save_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.change_save_location"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.change_save_location" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.class_version">
+<code class="descname">class_version</code><em class="property"> = '1.3'</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.class_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.copy_utility_files">
+<code class="descname">copy_utility_files</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.copy_utility_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.copy_utility_files" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.crossfeed_stats">
+<code class="descname">crossfeed_stats</code><em class="property"> = ['crossfeeding', 'strict crossfeeding', 'exploitive crossfeeding']</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.crossfeed_stats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.eco_diversity_stats_dict">
+<code class="descname">eco_diversity_stats_dict</code><em class="property"> = {'metabolic type': &lt;function &lt;lambda&gt;&gt;, 'genotype': &lt;function &lt;lambda&gt;&gt;, 'producer type': &lt;function &lt;lambda&gt;&gt;, 'export type': &lt;function &lt;lambda&gt;&gt;, 'import type': &lt;function &lt;lambda&gt;&gt;, 'reaction genotype': &lt;function &lt;lambda&gt;&gt;, 'consumer type': &lt;function &lt;lambda&gt;&gt;}</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.eco_diversity_stats_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.eco_stats_dir">
+<code class="descname">eco_stats_dir</code><em class="property"> = 'ecology_dat'</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.eco_stats_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.eco_type_stats">
+<code class="descname">eco_type_stats</code><em class="property"> = ['metabolic_type_vector', 'genotype_vector']</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.eco_type_stats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.fit_stats_names">
+<code class="descname">fit_stats_names</code><em class="property"> = ['toxicity', 'toxicity_change_rate', 'raw_production', 'raw_production_change_rate']</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.fit_stats_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.frequency_stats">
+<code class="descname">frequency_stats</code><span class="sig-paren">(</span><em>dat</em>, <em>column_names</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.frequency_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.frequency_stats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.functional_stats_names">
+<code class="descname">functional_stats_names</code><em class="property"> = ['conversions_type', 'genotype', 'reaction_genotype', 'metabolic_type', 'import_type', 'export_type', 'tf_sensed', 'consumes', 'produces']</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.functional_stats_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.gain_loss">
+<code class="descname">gain_loss</code><span class="sig-paren">(</span><em>cur_dat</em>, <em>prev_dat</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.gain_loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.gain_loss" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.gain_loss_columns">
+<code class="descname">gain_loss_columns</code><em class="property"> = ['gain', 'loss']</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.gain_loss_columns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.genome_dist_stats">
+<code class="descname">genome_dist_stats</code><em class="property"> = ['copy_numbers', 'copy_numbers_tfs', 'copy_numbers_enzymes', 'copy_numbers_inf_pumps', 'copy_numbers_eff_pumps']</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.genome_dist_stats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.genome_simple_stats_names">
+<code class="descname">genome_simple_stats_names</code><em class="property"> = ['tf_promoter_strengths', 'enz_promoter_strengths', 'pump_promoter_strengths', 'tf_ligand_differential_ks', 'enz_subs_differential_ks', 'pump_subs_differential_ks', 'pump_ene_differential_ks', 'tf_differential_reg', 'tf_k_bind_ops', 'enz_vmaxs', 'pump_vmaxs', 'tf_ligand_ks', 'enz_subs_ks', 'pump_ene_ks', 'pump_subs_ks']</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.genome_simple_stats_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.genome_simple_val_stats_names">
+<code class="descname">genome_simple_val_stats_names</code><em class="property"> = ['genome_size', 'chromosome_count', 'tf_count', 'enzyme_count', 'eff_pump_count', 'inf_pump_count', 'tf_avrg_promoter_strengths', 'enz_avrg_promoter_strengths', 'pump_avrg_promoter_strengths', 'tf_sum_promoter_strengths', 'enz_sum_promoter_strengths', 'pump_sum_promoter_strengths']</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.genome_simple_val_stats_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.grid_stats">
+<code class="descname">grid_stats</code><em class="property"> = ['neighbor crossfeeding', 'strict neighbor crossfeeding', 'exploitive neighbor crossfeeding', 'grid production values', 'grid production rates', 'grid death rates', 'grid cell sizes']</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.grid_stats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.grn_edits">
+<code class="descname">grn_edits</code><em class="property"> = {'': &lt;function &lt;lambda&gt;&gt;, '_pruned_1._cT_iT': &lt;function &lt;lambda&gt;&gt;}</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.grn_edits" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.init_ancestry_compare_stores">
+<code class="descname">init_ancestry_compare_stores</code><span class="sig-paren">(</span><em>pop_hist</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.init_ancestry_compare_stores"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.init_ancestry_compare_stores" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.init_dict_stats_store">
+<code class="descname">init_dict_stats_store</code><span class="sig-paren">(</span><em>save_dir</em>, <em>stats_name</em>, <em>column_names</em>, <em>index_name='time_point'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.init_dict_stats_store"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.init_dict_stats_store" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.init_eco_data_stores">
+<code class="descname">init_eco_data_stores</code><span class="sig-paren">(</span><em>save_dir=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.init_eco_data_stores"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.init_eco_data_stores" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.init_gain_loss_store">
+<code class="descname">init_gain_loss_store</code><span class="sig-paren">(</span><em>save_dir</em>, <em>stats_name</em>, <em>index_name='time_point'</em>, <em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.init_gain_loss_store"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.init_gain_loss_store" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.init_list_stats_store">
+<code class="descname">init_list_stats_store</code><span class="sig-paren">(</span><em>save_dir</em>, <em>stats_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.init_list_stats_store"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.init_list_stats_store" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.init_lod_stores">
+<code class="descname">init_lod_stores</code><span class="sig-paren">(</span><em>lod</em>, <em>met_classes</em>, <em>conversions</em>, <em>transports</em>, <em>first_anc</em>, <em>last_anc</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.init_lod_stores"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.init_lod_stores" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.init_phylo_hist_stores">
+<code class="descname">init_phylo_hist_stores</code><span class="sig-paren">(</span><em>phylo_hist</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.init_phylo_hist_stores"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.init_phylo_hist_stores" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.init_pop_data_stores">
+<code class="descname">init_pop_data_stores</code><span class="sig-paren">(</span><em>save_dir=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.init_pop_data_stores"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.init_pop_data_stores" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.init_save_dirs">
+<code class="descname">init_save_dirs</code><span class="sig-paren">(</span><em>clean=False</em>, <em>create=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.init_save_dirs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.init_save_dirs" title="Permalink to this definition">¶</a></dt>
+<dd><p>create the paths to store various data types</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>clean</strong> &#8211; (bool) remove existing files in path</li>
+<li><strong>create</strong> &#8211; create the path within the file system</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.init_simple_stats_plus_store">
+<code class="descname">init_simple_stats_plus_store</code><span class="sig-paren">(</span><em>save_dir</em>, <em>stats_name</em>, <em>index_name='time_point'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.init_simple_stats_plus_store"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.init_simple_stats_plus_store" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.init_simple_stats_store">
+<code class="descname">init_simple_stats_store</code><span class="sig-paren">(</span><em>save_dir</em>, <em>stats_name</em>, <em>index_name='time_point'</em>, <em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.init_simple_stats_store"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.init_simple_stats_store" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.init_simple_value_store">
+<code class="descname">init_simple_value_store</code><span class="sig-paren">(</span><em>save_dir</em>, <em>stats_name</em>, <em>index_name='time_point'</em>, <em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.init_simple_value_store"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.init_simple_value_store" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.init_stats_column_names">
+<code class="descname">init_stats_column_names</code><span class="sig-paren">(</span><em>n_most_freq_met_types</em>, <em>n_most_freq_genomic_counts</em>, <em>species_markers</em>, <em>reactions_dict</em>, <em>small_mols</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.init_stats_column_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.init_stats_column_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize column names for various data collections
+:param n_most_freq_met_types:
+:param n_most_genomic_counts:</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.lod_stats_dir">
+<code class="descname">lod_stats_dir</code><em class="property"> = 'lod_dat'</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.lod_stats_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.meta_stats_names">
+<code class="descname">meta_stats_names</code><em class="property"> = ['providing_count', 'strict_providing_count', 'exploiting_count', 'strict_exploiting_count', 'producing_count', 'consuming_count', 'importing_count', 'exporting_count']</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.meta_stats_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.metabolic_categories">
+<code class="descname">metabolic_categories</code><em class="property"> = ['producer', 'consumer', 'import', 'export']</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.metabolic_categories" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.mut_stats_names">
+<code class="descname">mut_stats_names</code><em class="property"> = ['point_mut_count', 'chromosomal_mut_count', 'stretch_mut_count', 'chromosome_dup_count', 'chromosome_del_count', 'chromosome_fuse_count', 'chromosome_fiss_count', 'sequence_mut_count', 'tandem_dup_count', 'stretch_del_count', 'stretch_invert_count', 'translocate_count', 'internal_hgt_count', 'external_hgt_count']</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.mut_stats_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.network_stats_funcs">
+<code class="descname">network_stats_funcs</code><em class="property"> = {'all_node_connectivities': &lt;function &lt;lambda&gt;&gt;, 'out_degree': &lt;function &lt;lambda&gt;&gt;, 'degree': &lt;function &lt;lambda&gt;&gt;, 'in_degree': &lt;function &lt;lambda&gt;&gt;}</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.network_stats_funcs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.pop_genomic_stats_dict">
+<code class="descname">pop_genomic_stats_dict</code><em class="property"> = {'chromosome counts': &lt;function &lt;lambda&gt;&gt;, 'genome sizes': &lt;function &lt;lambda&gt;&gt;}</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.pop_genomic_stats_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.pop_simple_stats_dict">
+<code class="descname">pop_simple_stats_dict</code><em class="property"> = {'tf_k_bind_ops': &lt;function &lt;lambda&gt;&gt;, 'death rates': &lt;function &lt;lambda&gt;&gt;, 'pump promoter strengths': &lt;function &lt;lambda&gt;&gt;, 'production rates': &lt;function &lt;lambda&gt;&gt;, 'enz_subs_ks': &lt;function &lt;lambda&gt;&gt;, 'enzyme promoter strengths': &lt;function &lt;lambda&gt;&gt;, 'enzyme vmaxs': &lt;function &lt;lambda&gt;&gt;, 'offspring counts': &lt;function &lt;lambda&gt;&gt;, 'production values': &lt;function &lt;lambda&gt;&gt;, 'toxicity rates': &lt;function &lt;lambda&gt;&gt;, 'pump_ene_ks': &lt;function &lt;lambda&gt;&gt;, 'tf_ligand_ks': &lt;function &lt;lambda&gt;&gt;, 'cell sizes': &lt;function &lt;lambda&gt;&gt;, 'pump vmaxs': &lt;function &lt;lambda&gt;&gt;, 'iterages': &lt;function &lt;lambda&gt;&gt;, 'tf counts': &lt;function &lt;lambda&gt;&gt;, 'importer counts': &lt;function &lt;lambda&gt;&gt;, 'differential regulation': &lt;function &lt;lambda&gt;&gt;, 'pump_subs_ks': &lt;function &lt;lambda&gt;&gt;, 'exporter counts': &lt;function &lt;lambda&gt;&gt;, 'pos production': &lt;function &lt;lambda&gt;&gt;, 'tf promoter strengths': &lt;function &lt;lambda&gt;&gt;, 'enzyme counts': &lt;function &lt;lambda&gt;&gt;}</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.pop_simple_stats_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.pop_stats_dir">
+<code class="descname">pop_stats_dir</code><em class="property"> = 'population_dat'</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.pop_stats_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.prune_data_files_to_time">
+<code class="descname">prune_data_files_to_time</code><span class="sig-paren">(</span><em>max_tp</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.prune_data_files_to_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.prune_data_files_to_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.save_dir">
+<code class="descname">save_dir</code><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.save_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.simple_stats">
+<code class="descname">simple_stats</code><span class="sig-paren">(</span><em>dat</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.simple_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.simple_stats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.simple_stats_columns">
+<code class="descname">simple_stats_columns</code><em class="property"> = ['avrg', 'min', 'max', 'median', 'std']</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.simple_stats_columns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.simple_value">
+<code class="descname">simple_value</code><span class="sig-paren">(</span><em>dat</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.simple_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.simple_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.simple_value_column">
+<code class="descname">simple_value_column</code><em class="property"> = ['value']</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.simple_value_column" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.snapshot_stats_names">
+<code class="descname">snapshot_stats_names</code><em class="property"> = ['historic_production_max']</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.snapshot_stats_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.trophic_type_columns">
+<code class="descname">trophic_type_columns</code><em class="property"> = ['fac-mixotroph', 'autotroph', 'heterotroph', 'obl-mixotroph']</em><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.trophic_type_columns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.type_differences_stats">
+<code class="descname">type_differences_stats</code><span class="sig-paren">(</span><em>types</em>, <em>column_names</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.type_differences_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.type_differences_stats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.type_totals_stats">
+<code class="descname">type_totals_stats</code><span class="sig-paren">(</span><em>types</em>, <em>column_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.type_totals_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.type_totals_stats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.upgrade">
+<code class="descname">upgrade</code><span class="sig-paren">(</span><em>odict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.upgrade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.upgrade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upgrading from older pickled version of class to latest version. Version
+information is saved as class variable and should be updated when class
+invariants (e.g. fields) are added. (see also __setstate__)</p>
+<p>Adapted from recipe at <a class="reference external" href="http://code.activestate.com/recipes/521901-upgradable-pickles/">http://code.activestate.com/recipes/521901-upgradable-pickles/</a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.write_data">
+<code class="descname">write_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.write_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.write_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DataStore.write_genome_json">
+<code class="descname">write_genome_json</code><span class="sig-paren">(</span><em>save_dir</em>, <em>name</em>, <em>genome</em>, <em>attribute_mapper</em>, <em>labels</em>, <em>suffix='.json'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DataStore.write_genome_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DataStore.write_genome_json" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.data_tools.store.DictDataCollection">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.data_tools.store.</code><code class="descname">DictDataCollection</code><span class="sig-paren">(</span><em>column_names</em>, <em>index_name</em>, <em>to_string=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DictDataCollection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DictDataCollection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.data_tools.store.DataCollection" title="VirtualMicrobes.data_tools.store.DataCollection"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.data_tools.store.DataCollection</span></code></a></p>
+<p>Entry point for storing and retrieving structured data</p>
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DictDataCollection.update_data_points">
+<code class="descname">update_data_points</code><span class="sig-paren">(</span><em>index</em>, <em>data_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DictDataCollection.update_data_points"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DictDataCollection.update_data_points" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DictDataCollection.write_column_names">
+<code class="descname">write_column_names</code><span class="sig-paren">(</span><em>columns=None</em>, <em>index_name=None</em>, <em>to_string=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DictDataCollection.write_column_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DictDataCollection.write_column_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.DictDataCollection.write_data">
+<code class="descname">write_data</code><span class="sig-paren">(</span><em>sep='</em>, <em>'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#DictDataCollection.write_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.DictDataCollection.write_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.data_tools.store.ListDataCollection">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.data_tools.store.</code><code class="descname">ListDataCollection</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#ListDataCollection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.ListDataCollection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.data_tools.store.DataCollection" title="VirtualMicrobes.data_tools.store.DataCollection"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.data_tools.store.DataCollection</span></code></a></p>
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.ListDataCollection.update_data_points">
+<code class="descname">update_data_points</code><span class="sig-paren">(</span><em>index</em>, <em>data_vector</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#ListDataCollection.update_data_points"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.ListDataCollection.update_data_points" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.data_tools.store.ListDataCollection.write_data">
+<code class="descname">write_data</code><span class="sig-paren">(</span><em>sep='</em>, <em>'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#ListDataCollection.write_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.ListDataCollection.write_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.data_tools.store.create_gene_type_time_course_dfs">
+<code class="descclassname">VirtualMicrobes.data_tools.store.</code><code class="descname">create_gene_type_time_course_dfs</code><span class="sig-paren">(</span><em>cell</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#create_gene_type_time_course_dfs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.create_gene_type_time_course_dfs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.data_tools.store.create_tc_df">
+<code class="descclassname">VirtualMicrobes.data_tools.store.</code><code class="descname">create_tc_df</code><span class="sig-paren">(</span><em>tc_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#create_tc_df"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.create_tc_df" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.data_tools.store.eco_type_vector_to_dict">
+<code class="descclassname">VirtualMicrobes.data_tools.store.</code><code class="descname">eco_type_vector_to_dict</code><span class="sig-paren">(</span><em>vect_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#eco_type_vector_to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.eco_type_vector_to_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.data_tools.store.tf_conservation_to_dict">
+<code class="descclassname">VirtualMicrobes.data_tools.store.</code><code class="descname">tf_conservation_to_dict</code><span class="sig-paren">(</span><em>tf_conservation_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#tf_conservation_to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.tf_conservation_to_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.data_tools.store.tf_name">
+<code class="descclassname">VirtualMicrobes.data_tools.store.</code><code class="descname">tf_name</code><span class="sig-paren">(</span><em>tf</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/data_tools/store.html#tf_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.data_tools.store.tf_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-VirtualMicrobes.data_tools">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-VirtualMicrobes.data_tools" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="VirtualMicrobes.environment.html" class="btn btn-neutral float-right" title="VirtualMicrobes.environment package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="VirtualMicrobes.cython_gsl_interface.html" class="btn btn-neutral" title="VirtualMicrobes.cython_gsl_interface package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Thomas Cuypers, Bram van Dijk.
+      Last updated on Oct 10, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

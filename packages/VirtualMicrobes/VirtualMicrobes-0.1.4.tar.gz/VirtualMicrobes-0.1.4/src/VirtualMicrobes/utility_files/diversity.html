@@ -1,0 +1,66 @@
+<html>
+<head>
+	<!-- Dygraph library -->
+	<script type="text/javascript" src="dygraph-combined-dev.js"></script>
+	<script type="text/javascript" src="synchronizer.js"></script>
+	<!-- JQUERY -->
+	<script type="text/javascript" src="jquery.js"></script>
+
+
+	<title> Population Diversity </title>
+	<link href="viewer.css" rel="stylesheet">
+</head>
+<body >
+	<center>
+	<div class="title-banner"> <center><p class="title">Diversity stats</p></center><script src="drawmenu.js"></script></div>
+
+<!-- Help thingy start -->
+<div class="help">?</div>
+<br>
+
+<div align="center" class="description">On this page, diversity related data is displayed.<br><br>Drag to zoom, and double-click to zoom out. </div>
+<!-- Help thingy end -->
+
+<br><br>
+
+
+	<div id="wrapper" style="display:inline-block;">
+	<div id="graph_genotype_diversity" style="width:500px; height:300px;"></div>
+	<div id="legend_genotype_diversity"  style="width:500px; height:40px;align:center;visibility:auto;"></div>
+	</div>
+	
+	
+	<div id="wrapper" style="display:inline-block;">
+	<div id="graph_reaction_genotype_diversity" style="width:500px; height:300px;"></div>
+	<div id="legend_reaction_genotype_diversity"  style="width:500px; height:40px;align:center;visibility:auto;"></div>
+	</div>
+
+	<div id="wrapper" style="display:inline-block;">
+	<div id="graph_metabolic_type_diversity" style="width:500px; height:300px;"></div>
+	<div id="legend_metabolic_type_diversity"  style="width:500px; height:40px;align:center;visibility:auto;"></div>
+	</div>
+	
+	<div id="wrapper" style="display:inline-block;">
+	<div id="graph_producer_diversity" style="width:500px; height:300px;"></div>
+	<div id="legend_producer_diversity"  style="width:500px; height:40px;align:center;visibility:auto;"></div>
+	</div>
+	
+	<div id="wrapper" style="display:inline-block;">
+	<div id="graph_consumer_diversity" style="width:500px; height:300px;"></div>
+	<div id="legend_consumer_diversity"  style="width:500px; height:40px;align:center;visibility:auto;"></div>
+	</div>	
+	
+	<div id="wrapper" style="display:inline-block;">
+	<div id="graph_import_diversity" style="width:500px; height:300px;"></div>
+	<div id="legend_import_diversity"  style="width:500px; height:40px;align:center;visibility:auto;"></div>
+	</div>
+
+	<div id="wrapper" style="display:inline-block;">
+	<div id="graph_export_diversity" style="width:500px; height:300px;"></div>
+	<div id="legend_export_diversity"  style="width:500px; height:40px;align:center;visibility:auto;"></div>
+	</div>
+
+	<script type="text/javascript" src="diversity.js"></script>
+
+</body>
+</html>

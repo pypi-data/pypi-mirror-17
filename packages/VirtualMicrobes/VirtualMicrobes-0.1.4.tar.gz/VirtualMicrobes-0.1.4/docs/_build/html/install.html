@@ -1,0 +1,306 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installing &mdash; Virtual Microbes Evolutionary Simulator 0.1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Virtual Microbes Evolutionary Simulator 0.1.3 documentation" href="index.html"/>
+        <link rel="next" title="Reference" href="reference/index.html"/>
+        <link rel="prev" title="Overview" href="overview.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Virtual Microbes Evolutionary Simulator
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quick-install">Quick install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#python">Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ete3">ete3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#matplotlib">Matplotlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gnu-scientific-library">Gnu Scientific Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#other">Other</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#optional-packages">Optional packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cython-and-cythongsl">Cython and CythonGSL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference/index.html">Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Virtual Microbes Evolutionary Simulator</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Installing</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/install.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installing">
+<h1>Installing<a class="headerlink" href="#installing" title="Permalink to this headline">¶</a></h1>
+<p>Before installing VirtualMicrobes, you need to have
+<a class="reference external" href="https://pypi.python.org/pypi/setuptools">setuptools</a> installed.</p>
+<div class="section" id="quick-install">
+<h2>Quick install<a class="headerlink" href="#quick-install" title="Permalink to this headline">¶</a></h2>
+<p>Get VirtualMicrobes from the Python Package Index at
+<a class="reference external" href="http://pypi.python.org/pypi/VirtualMicrobes">http://pypi.python.org/pypi/VirtualMicrobes</a></p>
+<p>or install it with</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">VirtualMicrobes</span>
+</pre></div>
+</div>
+<p>and an attempt will be made to find and install an appropriate version
+that matches your operating system and Python version.</p>
+<p>The project can be cloned from bitbucket with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">thocu</span><span class="nd">@bitbucket</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">thocu</span><span class="o">/</span><span class="n">virtualmicrobes</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>Installing the project via <code class="docutils literal"><span class="pre">pip</span></code>, the required packages will be checked
+against your installation and installed if necessary.</p>
+<div class="section" id="python">
+<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h3>
+<p>To use VirtualMicrobes you need Python 2.7</p>
+</div>
+<div class="section" id="ete3">
+<h3>ete3<a class="headerlink" href="#ete3" title="Permalink to this headline">¶</a></h3>
+<p>This is a package for drawing and manipulating phylogenetic trees. It is used to
+keep track of phylogenetic relationships between <code class="docutils literal"><span class="pre">Virtual</span> <span class="pre">Microbes</span></code>.</p>
+<ul class="simple">
+<li>Download: <a class="reference external" href="http://etetoolkit.org/download/">http://etetoolkit.org/download/</a></li>
+</ul>
+<p>ete3 has its own dependency on pyqt.</p>
+</div>
+<div class="section" id="matplotlib">
+<h3>Matplotlib<a class="headerlink" href="#matplotlib" title="Permalink to this headline">¶</a></h3>
+<p>Used for generating various plots during the simulation.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Download: <a class="reference external" href="http://matplotlib.sourceforge.net/">http://matplotlib.sourceforge.net/</a></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="gnu-scientific-library">
+<h3>Gnu Scientific Library<a class="headerlink" href="#gnu-scientific-library" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="other">
+<h3>Other<a class="headerlink" href="#other" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>networkx</li>
+<li>attrdict</li>
+<li>blessings</li>
+<li>networkx</li>
+<li>pandas</li>
+<li>psutil</li>
+<li>errand_boy</li>
+<li>orderedset</li>
+<li>pyparsing</li>
+<li>setproctitle</li>
+<li>sortedcontainers</li>
+<li>mpl</li>
+</ul>
+</div>
+</div>
+<div class="section" id="optional-packages">
+<h2>Optional packages<a class="headerlink" href="#optional-packages" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="cython-and-cythongsl">
+<h3>Cython and CythonGSL<a class="headerlink" href="#cython-and-cythongsl" title="Permalink to this headline">¶</a></h3>
+<p>The package includes a few C Extension modules, originally written in the
+<a class="reference external" href="http://cython.org/">Cython</a> language. If during the install both Cython
+and the CythonGSL package
+are detected, the extensions will be build from the original <code class="docutils literal"><span class="pre">.pyx</span></code> sources.
+Otherwise, the included pre-generated <code class="docutils literal"><span class="pre">.c</span></code> files will be used to build the
+extension.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Download: <a class="reference external" href="http://http://cython.org/#download">http://http://cython.org/#download</a></li>
+<li>Download: <a class="reference external" href="https://github.com/twiecki/CythonGSL">https://github.com/twiecki/CythonGSL</a> (follow the <code class="docutils literal"><span class="pre">build</span></code> and <code class="docutils literal"><span class="pre">install</span></code> instructions in the README)</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="reference/index.html" class="btn btn-neutral float-right" title="Reference" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="overview.html" class="btn btn-neutral" title="Overview" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Thomas Cuypers, Bram van Dijk.
+      Last updated on Oct 10, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

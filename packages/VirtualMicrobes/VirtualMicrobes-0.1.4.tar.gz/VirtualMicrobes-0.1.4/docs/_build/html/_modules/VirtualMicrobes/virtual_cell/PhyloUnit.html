@@ -1,0 +1,589 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VirtualMicrobes.virtual_cell.PhyloUnit &mdash; Virtual Microbes Evolutionary Simulator 0.1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Virtual Microbes Evolutionary Simulator 0.1.3 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Virtual Microbes Evolutionary Simulator
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">Virtual Microbes Evolutionary Simulator</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>VirtualMicrobes.virtual_cell.PhyloUnit</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for VirtualMicrobes.virtual_cell.PhyloUnit</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Created on Nov 17, 2014</span>
+
+<span class="sd">@author: thocu</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">Identifier</span> <span class="k">import</span> <span class="n">Identifier</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">VirtualMicrobes.my_tools.utility</span> <span class="k">as</span> <span class="nn">util</span>
+<span class="kn">import</span> <span class="nn">itertools</span> <span class="k">as</span> <span class="nn">it</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+
+<span class="k">def</span> <span class="nf">_gen_id_func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+<div class="viewcode-block" id="AddInheritanceType"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.PhyloUnit.AddInheritanceType">[docs]</a><span class="k">class</span> <span class="nc">AddInheritanceType</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; A metaclass that can set a class instances base type to support phylogenetic linking</span>
+<span class="sd">    </span>
+<span class="sd">    The base type of the instantiated class can be either a PhyloBase or a PhyloUnit, </span>
+<span class="sd">    depending on its _phylo_type class attribute. This enables an at run-time decision </span>
+<span class="sd">    (via a program options) to fix the ancestry structure the class supports. </span>
+<span class="sd">    PhyloBase instances keep references to neither parents nor children and hence do not need use a </span>
+<span class="sd">    linker dict or unique_key generator. PhyloUnit does support ancestry. Phylogenetic linking </span>
+<span class="sd">    is delegated to a global linker dict. </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+        <span class="nb">print</span> <span class="s1">&#39;calling AddInheritiance on class&#39;</span><span class="p">,</span> <span class="n">name</span>
+        <span class="n">phylo_type_attr</span> <span class="o">=</span> <span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;__phylo_type&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">bases</span> <span class="ow">and</span> <span class="n">attr</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">phylo_type_attr</span><span class="p">):</span>
+            <span class="n">phylo_class</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;base&#39;</span><span class="p">:</span><span class="n">PhyloBase</span><span class="p">,</span> <span class="s1">&#39;ancestry&#39;</span><span class="p">:</span><span class="n">PhyloUnit</span><span class="p">}[</span><span class="n">attr</span><span class="p">[</span><span class="n">phylo_type_attr</span><span class="p">]]</span>
+            <span class="nb">print</span> <span class="s1">&#39;setting phylo_type of&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="n">attr</span><span class="p">[</span><span class="n">phylo_type_attr</span><span class="p">],</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">phylo_class</span>
+            <span class="n">bases</span> <span class="o">=</span> <span class="n">bases</span> <span class="o">+</span> <span class="p">(</span><span class="n">phylo_class</span><span class="p">,)</span>
+        <span class="n">custom_cls</span> <span class="o">=</span> <span class="nb">type</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+        <span class="c1">#setattr(sys.modules[__name__], name, custom_cls) </span>
+        <span class="k">return</span> <span class="n">custom_cls</span></div>
+
+<div class="viewcode-block" id="PhyloBase"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.PhyloUnit.PhyloBase">[docs]</a><span class="k">class</span> <span class="nc">PhyloBase</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Base class for all classes that can behave as phylogenetic units of inheritance.</span>
+<span class="sd">    </span>
+<span class="sd">    Phylogenetic Base units record their time of birth and death and have an identifier field</span>
+<span class="sd">    that can indicate a relation to parents and offspring. PhyloBase object may come into existence</span>
+<span class="sd">    when a mother cell gives rise to a daughter cell and all units of inheritance that it contains</span>
+<span class="sd">    (i.e. when a genome get&#39;s copied), but also when a phylogenetic unit (such as a gene or chromosome)</span>
+<span class="sd">    mutates and the ancestral version will be kept intact for analysis purposes.                                                                                                                                                                                                                                                                                                   </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;time_birth&#39;</span><span class="p">,</span> <span class="s1">&#39;time_death&#39;</span><span class="p">,</span> <span class="s1">&#39;alive&#39;</span><span class="p">,</span> <span class="s1">&#39;marker_dict&#39;</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_birth</span><span class="p">):</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">Identifier</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">PhyloBase</span><span class="o">.</span><span class="n">__unique_id</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_birth</span> <span class="o">=</span> <span class="n">time_birth</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_death</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alive</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">marker_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># NOTE: unordered ok</span>
+        
+<div class="viewcode-block" id="PhyloBase.die"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.PhyloUnit.PhyloBase.die">[docs]</a>    <span class="k">def</span> <span class="nf">die</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Death of a phylo unit happens either when a cell dies and all its genetic material</span>
+<span class="sd">        with it, or when a mutation gives rise to a new variant of the unit.</span>
+<span class="sd">         </span>
+<span class="sd">        :param time: Time of death in simulation time units. </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alive</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_death</span> <span class="o">=</span> <span class="n">time</span></div>
+        
+<div class="viewcode-block" id="PhyloBase.mark"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.PhyloUnit.PhyloBase.mark">[docs]</a>    <span class="k">def</span> <span class="nf">mark</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">marker</span><span class="p">,</span> <span class="n">mark</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Set a marker on the phylo unit. </span>
+<span class="sd">        </span>
+<span class="sd">        :param marker: marker type</span>
+<span class="sd">        :param mark: value</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">marker_dict</span><span class="p">[</span><span class="n">marker</span><span class="p">]</span> <span class="o">=</span> <span class="n">mark</span></div>
+        
+<div class="viewcode-block" id="PhyloBase.living_offspring"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.PhyloUnit.PhyloBase.living_offspring">[docs]</a>    <span class="k">def</span> <span class="nf">living_offspring</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[]</span></div>
+
+<div class="viewcode-block" id="PhyloBase.prune_dead_branch"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.PhyloUnit.PhyloBase.prune_dead_branch">[docs]</a>    <span class="k">def</span> <span class="nf">prune_dead_branch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Return self to be removed from the global phylo linker dict if not alive.</span>
+<span class="sd">        </span>
+<span class="sd">        This is the degenerate base version of pruning. See the version in Phylo Unit for</span>
+<span class="sd">        the case when units keep track of parent-child relationships.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">pruned_phylo_units</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">alive</span><span class="p">:</span>
+            <span class="n">pruned_phylo_units</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pruned_phylo_units</span></div>
+    <span class="c1">#@classmethod</span>
+    <span class="k">def</span> <span class="nf">__unique_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gen_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">         create a unique identifier for each newly created genomic element. No new ids</span>
+<span class="sd">         should be generated upon cell replication. We should  be able to identify</span>
+<span class="sd">         orthologous elements by comparing identifiers between cells.</span>
+<span class="sd">         Within the identifier the type of genomic element can be encoded, eg:</span>
+<span class="sd">         transporter, tf, enzyme etc.</span>
+<span class="sd">         Ids can be generated by maintaining a counter within the derived classes of GEs</span>
+<span class="sd">         created by duplication.</span>
+<span class="sd">         </span>
+<span class="sd">        :return  :</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span>
+        <span class="k">if</span> <span class="n">gen_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">gen_id</span> <span class="o">=</span> <span class="n">_gen_id_func</span>
+        <span class="n">cls</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">gen_id</span><span class="p">(</span><span class="n">cls</span><span class="o">.</span><span class="n">uid</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cls</span><span class="o">.</span><span class="n">uid</span>
+    
+    <span class="k">def</span> <span class="nf">_copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">new_id</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">flat_id</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Makes a (partial) deep copy of a PhyloUnit, when a PhyloUnit is</span>
+<span class="sd">        mutated. In this way the pre- and post-mutation state of the PhyloUnit can be</span>
+<span class="sd">        independently stored, enabling resurrection of the pre-mutation PhyloUnit.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">cls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span>
+        <span class="n">copied</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">)</span>
+        <span class="n">copied</span><span class="o">.</span><span class="n">marker_dict</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">marker_dict</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">new_id</span><span class="p">:</span>
+            <span class="n">copied</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+            <span class="n">copied</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">from_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="n">flat_id</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">copied</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        
+        <span class="n">copied</span><span class="o">.</span><span class="n">alive</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">copied</span><span class="o">.</span><span class="n">time_birth</span> <span class="o">=</span> <span class="n">time</span>
+        <span class="n">copied</span><span class="o">.</span><span class="n">time_death</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">copied</span>
+    
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">marker_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="PhyloUnit"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.PhyloUnit.PhyloUnit">[docs]</a><span class="k">class</span> <span class="nc">PhyloUnit</span><span class="p">(</span><span class="n">PhyloBase</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Extended Base class for all classes that can be represented in phylogenies. These classes </span>
+<span class="sd">    should support ancestor and child retrieval and setting time of birth and death. This is</span>
+<span class="sd">    implemented by appointing </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;parents&#39;</span><span class="p">,</span> <span class="s1">&#39;children&#39;</span><span class="p">,</span> <span class="s1">&#39;_unique_key&#39;</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_birth</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Constructor</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PhyloUnit</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">time_birth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_unique_key</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_phylo_dicts</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_phylo_unit</span><span class="p">()</span>
+
+<div class="viewcode-block" id="PhyloUnit.set_unique_key"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.PhyloUnit.PhyloUnit.set_unique_key">[docs]</a>    <span class="k">def</span> <span class="nf">set_unique_key</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Generate a unique key that can be used for mapping in a global linker dict. </span>
+<span class="sd">        </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_unique_key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">util</span><span class="o">.</span><span class="n">ugly_globals</span><span class="p">[</span><span class="s1">&#39;UniquePhyloKey&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">next</span><span class="p">())</span></div>
+
+    <span class="k">def</span> <span class="nf">_register_phylo_unit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  
+        <span class="sd">&#39;&#39;&#39; Register phylo unit in the global linker dict under its unique key.</span>
+<span class="sd">        </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">partial_linker</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">ugly_globals</span><span class="p">[</span><span class="s1">&#39;PhyloLinkerDict&#39;</span><span class="p">]</span>
+        <span class="n">partial_linker</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_unique_key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span>
+        
+<div class="viewcode-block" id="PhyloUnit.init_phylo_dicts"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.PhyloUnit.PhyloUnit.init_phylo_dicts">[docs]</a>    <span class="k">def</span> <span class="nf">init_phylo_dicts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parents</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">LinkThroughSequence</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">LinkThroughSequence</span><span class="p">()</span></div>
+        
+<div class="viewcode-block" id="PhyloUnit.die"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.PhyloUnit.PhyloUnit.die">[docs]</a>    <span class="k">def</span> <span class="nf">die</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PhyloUnit</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">die</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="PhyloUnit.set_ancestor"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.PhyloUnit.PhyloUnit.set_ancestor">[docs]</a>    <span class="k">def</span> <span class="nf">set_ancestor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ge</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ge</span><span class="p">)</span>
+        <span class="n">ge</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+          
+    <span class="k">def</span> <span class="nf">_remove_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span> <span class="c1">#NOTE: child could have been removed during previous passage</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">_remove_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">parent</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parents</span><span class="p">:</span> <span class="c1">#NOTE: parent could have been removed during previous passage</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parents</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+            
+<div class="viewcode-block" id="PhyloUnit.living_offspring"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.PhyloUnit.PhyloUnit.living_offspring">[docs]</a>    <span class="k">def</span> <span class="nf">living_offspring</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Returns a list of all offspring of this phylo unit that are currently alive.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">offspring</span> <span class="o">=</span> <span class="p">[</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">alive</span> <span class="p">]</span>
+        <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">offspring</span><span class="p">[:]:</span>
+            <span class="n">offspring</span> <span class="o">+=</span> <span class="n">o</span><span class="o">.</span><span class="n">living_offspring</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">offspring</span> </div>
+    
+<div class="viewcode-block" id="PhyloUnit.has_living_offspring"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.PhyloUnit.PhyloUnit.has_living_offspring">[docs]</a>    <span class="k">def</span> <span class="nf">has_living_offspring</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exclude_set</span><span class="o">=</span><span class="nb">set</span><span class="p">()):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Returns True if any of the phylo units descendants are alive</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">offspring_alive</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">)</span> <span class="o">-</span> <span class="n">exclude_set</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">alive</span> <span class="ow">or</span> <span class="n">child</span><span class="o">.</span><span class="n">has_living_offspring</span><span class="p">():</span>
+                <span class="n">offspring_alive</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">offspring_alive</span></div>
+    
+    
+<div class="viewcode-block" id="PhyloUnit.lod_down_single"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.PhyloUnit.PhyloUnit.lod_down_single">[docs]</a>    <span class="k">def</span> <span class="nf">lod_down_single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Proceed down a single branch on the line of descent until there is a</span>
+<span class="sd">        branch point or terminal node.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+                    
+        <span class="n">branch</span> <span class="o">=</span> <span class="p">[]</span>    
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">while</span> <span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">branch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> 
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">node</span><span class="p">,</span> <span class="n">branch</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">node</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># Convert to list because indexing is not working (yet) for </span></div>
+                <span class="c1"># the LinktroughSequence </span>
+    
+<div class="viewcode-block" id="PhyloUnit.lod_up_single"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.PhyloUnit.PhyloUnit.lod_up_single">[docs]</a>    <span class="k">def</span> <span class="nf">lod_up_single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Proceed up a single branch on the line of descent until there is a</span>
+<span class="sd">        branch point or terminal node.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+                    
+        <span class="n">branch</span> <span class="o">=</span> <span class="p">[]</span>    
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">while</span> <span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">branch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> 
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">parents</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">parents</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">node</span><span class="p">,</span> <span class="n">branch</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">node</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">parents</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+            
+<div class="viewcode-block" id="PhyloUnit.lods_down"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.PhyloUnit.PhyloUnit.lods_down">[docs]</a>    <span class="k">def</span> <span class="nf">lods_down</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Composes all the lines of descent leading down from phylo unit in a non-</span>
+<span class="sd">        recursive way (compare lods_up) .</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        
+        <span class="n">lods</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">deque</span><span class="p">([([],</span><span class="bp">self</span><span class="p">)])</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">lods</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">lod</span><span class="p">,</span> <span class="n">node</span> <span class="o">=</span> <span class="n">lods</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+            <span class="n">branch_point</span><span class="p">,</span> <span class="n">branch</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">lod_down_single</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">branch_point</span><span class="o">.</span><span class="n">children</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="n">lod</span><span class="p">,</span> <span class="n">branch</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">branch_point</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+                    <span class="n">lods</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span> <span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="n">lod</span><span class="p">,</span> <span class="n">branch</span> <span class="o">+</span> <span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="p">),</span> <span class="n">c</span><span class="p">)</span> <span class="p">)</span></div>
+    
+<div class="viewcode-block" id="PhyloUnit.lods_up"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.PhyloUnit.PhyloUnit.lods_up">[docs]</a>    <span class="k">def</span> <span class="nf">lods_up</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Composes all the lines of descent leading up from phylo unit (compare</span>
+<span class="sd">        lods_down) </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        
+        <span class="n">lods</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">deque</span><span class="p">([([],</span><span class="bp">self</span><span class="p">)])</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">lods</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">lod</span><span class="p">,</span> <span class="n">node</span> <span class="o">=</span> <span class="n">lods</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+            <span class="n">branch_point</span><span class="p">,</span> <span class="n">branch</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">lod_up_single</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">branch_point</span><span class="o">.</span><span class="n">parents</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">branch</span><span class="p">),</span> <span class="n">lod</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">branch_point</span><span class="o">.</span><span class="n">parents</span><span class="p">:</span>
+                    <span class="n">lods</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span> <span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">branch</span> <span class="o">+</span> <span class="p">[</span><span class="n">p</span><span class="p">]),</span> <span class="n">lod</span><span class="p">),</span> <span class="n">p</span><span class="p">)</span> <span class="p">)</span></div>
+                    
+<div class="viewcode-block" id="PhyloUnit.parent_of"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.PhyloUnit.PhyloUnit.parent_of">[docs]</a>    <span class="k">def</span> <span class="nf">parent_of</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phylo_unit</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return whether this PhyloUnit is the parent of another PhyloUnit.</span>
+<span class="sd">        </span>
+<span class="sd">        phylo_unit : `PhyloUnit`</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">lod</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lods_up</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">pu</span> <span class="ow">in</span> <span class="n">lod</span><span class="p">:</span>           
+                <span class="k">if</span> <span class="n">pu</span> <span class="ow">is</span> <span class="n">phylo_unit</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+    
+<div class="viewcode-block" id="PhyloUnit.child_of"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.PhyloUnit.PhyloUnit.child_of">[docs]</a>    <span class="k">def</span> <span class="nf">child_of</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phylo_unit</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return whether this PhyloUnit is the child of another PhyloUnit.</span>
+<span class="sd">        </span>
+<span class="sd">        phylo_unit : `PhyloUnit`</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">lod</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lods_down</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">pu</span> <span class="ow">in</span> <span class="n">lod</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">pu</span> <span class="ow">is</span> <span class="n">phylo_unit</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+    
+<div class="viewcode-block" id="PhyloUnit.common_ancestors"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.PhyloUnit.PhyloUnit.common_ancestors">[docs]</a>    <span class="k">def</span> <span class="nf">common_ancestors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phylo_unit</span><span class="p">):</span>
+        
+        <span class="n">my_ancestors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parents</span>
+        <span class="n">his_ancestors</span> <span class="o">=</span> <span class="n">phylo_unit</span><span class="o">.</span><span class="n">parents</span>
+        <span class="n">common_ancestors</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">my_ancestors</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">his_ancestors</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">common_ancestors</span>
+        
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            
+            <span class="n">my_ancestors</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">my_ancestors</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">time_birth</span><span class="p">)</span>
+            <span class="n">his_ancestors</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">my_ancestors</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">time_birth</span><span class="p">)</span>
+            <span class="n">our_common_ancestors</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">my_ancestors</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">his_ancestors</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">our_common_ancestors</span><span class="p">):</span>
+                <span class="n">common_ancestors</span> <span class="o">|</span> <span class="n">our_common_ancestors</span>
+                <span class="n">my_ancestors</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">anc</span><span class="p">:</span> <span class="n">anc</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">our_common_ancestors</span><span class="p">,</span> <span class="n">my_ancestors</span><span class="p">)</span>
+                <span class="n">his_ancestors</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">anc</span><span class="p">:</span> <span class="n">anc</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">our_common_ancestors</span><span class="p">,</span> <span class="n">his_ancestors</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">my_ancestors</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">his_ancestors</span><span class="p">):</span>
+                <span class="k">break</span>
+            <span class="k">if</span> <span class="n">my_ancestors</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">time_birth</span> <span class="o">&gt;=</span> <span class="n">his_ancestors</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">most_recent</span> <span class="o">=</span> <span class="n">my_ancestors</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+                <span class="n">my_ancestors</span> <span class="o">+=</span> <span class="n">most_recent</span><span class="o">.</span><span class="n">parents</span>
+            <span class="k">else</span><span class="p">:</span> 
+                <span class="n">most_recent</span> <span class="o">=</span> <span class="n">his_ancestors</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+                <span class="n">his_ancestors</span> <span class="o">+=</span> <span class="n">most_recent</span><span class="o">.</span><span class="n">parents</span>
+        <span class="k">return</span> <span class="n">common_ancestors</span></div>
+                        
+    <span class="k">def</span> <span class="nf">_detach_phylo_node</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Remove the phylo unit from the offspring and parents list of its parents and</span>
+<span class="sd">        offspring respectively.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parents</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_remove_parent</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="n">p</span><span class="o">.</span><span class="n">_remove_child</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_remove_child</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">_remove_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">_remove_from_linker_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Remove the phylo unit from the global linker dict. Any further referencing</span>
+<span class="sd">        using this units unique key will result in KeyError when it is looked up in </span>
+<span class="sd">        the linker dict.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">linker_dict</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">ugly_globals</span><span class="p">[</span><span class="s1">&#39;PhyloLinkerDict&#39;</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">linker_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_unique_key</span><span class="p">]</span>
+    
+<div class="viewcode-block" id="PhyloUnit.prune_dead_branch"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.PhyloUnit.PhyloUnit.prune_dead_branch">[docs]</a>    <span class="k">def</span> <span class="nf">prune_dead_branch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exclude_offspring_check_set</span><span class="o">=</span><span class="nb">set</span><span class="p">()):</span>
+        <span class="sd">&#39;&#39;&#39; Return a set of phylogenetically related units that represent a dead phylo-</span>
+<span class="sd">        genetic branch.</span>
+<span class="sd">        </span>
+<span class="sd">        Recursively checks for parent nodes whether the nodes descendants are</span>
+<span class="sd">        all dead. In that case, the node can be pruned and its parents may</span>
+<span class="sd">        additionally be checked for being part of the extended dead branch. The</span>
+<span class="sd">        exclude is used to prevent superfluous checks of living offspring when</span>
+<span class="sd">        it is already known that the current phylo_unit has no living_offspring.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        exclude_offspring_check_set : set of class:`virtual_cell.PhyloUnit.PhyloUnit` </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">pruned_phylo_units</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">alive</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_living_offspring</span><span class="p">(</span><span class="n">exclude_offspring_check_set</span><span class="p">):</span>
+            <span class="n">pruned_phylo_units</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parents</span><span class="p">:</span>
+                <span class="n">pruned_phylo_units</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">prune_dead_branch</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="bp">self</span><span class="p">])))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_detach_phylo_node</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">pruned_phylo_units</span></div>
+            
+    <span class="k">def</span> <span class="nf">_copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">new_id</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">flat_id</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Makes a (partial) deep copy of a PhyloUnit, when a PhyloUnit is</span>
+<span class="sd">        mutated. In this way the pre- and post-mutation state of the PhyloUnit can be</span>
+<span class="sd">        independently stored, enabling resurrection of the pre-mutation PhyloUnit.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">copied</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">PhyloUnit</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_copy</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">new_id</span><span class="p">,</span> <span class="n">flat_id</span><span class="p">)</span>
+        <span class="n">copied</span><span class="o">.</span><span class="n">set_unique_key</span><span class="p">()</span>
+        <span class="n">copied</span><span class="o">.</span><span class="n">_register_phylo_unit</span><span class="p">()</span>
+        <span class="n">copied</span><span class="o">.</span><span class="n">init_phylo_dicts</span><span class="p">()</span>
+        <span class="n">copied</span><span class="o">.</span><span class="n">set_ancestor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">copied</span>
+    
+    <span class="c1">#http://stackoverflow.com/a/6720815/4293557</span>
+    <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">odict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># NOTE: unordered ok</span>
+        <span class="n">my_cls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span>
+        <span class="n">all_slots</span> <span class="o">=</span><span class="n">it</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="s1">&#39;__slots__&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">())</span> <span class="k">for</span> <span class="n">cls</span> <span class="ow">in</span> <span class="n">my_cls</span><span class="o">.</span><span class="n">__mro__</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">slot</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">all_slots</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slot</span><span class="p">):</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">slot</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;parents&#39;</span><span class="p">,</span> <span class="s1">&#39;children&#39;</span><span class="p">]:</span>
+                <span class="n">odict</span><span class="p">[</span><span class="n">slot</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slot</span><span class="p">)</span><span class="o">.</span><span class="n">_pickle_repr</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">odict</span><span class="p">[</span><span class="n">slot</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slot</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;__dict__&#39;</span><span class="p">):</span>
+            <span class="n">odict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">odict</span>
+ 
+    <span class="k">def</span> <span class="nf">__setstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">slot</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">state</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">slot</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;parents&#39;</span><span class="p">,</span> <span class="s1">&#39;children&#39;</span><span class="p">]:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">LinkThroughSequence</span><span class="o">.</span><span class="n">_unpickle_repr</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slot</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+    
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Thomas Cuypers, Bram van Dijk.
+      Last updated on Oct 10, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

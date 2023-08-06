@@ -1,0 +1,953 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VirtualMicrobes.environment.Grid &mdash; Virtual Microbes Evolutionary Simulator 0.1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Virtual Microbes Evolutionary Simulator 0.1.3 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Virtual Microbes Evolutionary Simulator
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">Virtual Microbes Evolutionary Simulator</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>VirtualMicrobes.environment.Grid</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for VirtualMicrobes.environment.Grid</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Created on Nov 3, 2014</span>
+
+<span class="sd">@author: thocu</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">from</span> <span class="nn">VirtualMicrobes.my_tools.utility</span> <span class="k">import</span> <span class="n">CircularList</span><span class="p">,</span> <span class="n">Coord</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+
+
+<div class="viewcode-block" id="GridError"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.GridError">[docs]</a><span class="k">class</span> <span class="nc">GridError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PositionOutsideGridError"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.PositionOutsideGridError">[docs]</a><span class="k">class</span> <span class="nc">PositionOutsideGridError</span><span class="p">(</span><span class="n">GridError</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Neighborhood"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Neighborhood">[docs]</a><span class="k">class</span> <span class="nc">Neighborhood</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Neighborhood as grid indices (x,y coord tuples) relative to a focal gridpoint. </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">neighbors</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Constructs neighborhood object</span>
+<span class="sd">        </span>
+<span class="sd">        :param neighbors: either a scalar, determining the &#39;radius of x and y</span>
+<span class="sd">        relative to focal gp or a list of (x,y) tuples of neighbor coordinates</span>
+<span class="sd">        relative to focal gp</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">neighbors</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">construct_neighbors</span><span class="p">(</span><span class="n">neighbors</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">neighbors</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">construct_moore_n</span><span class="p">(</span><span class="n">neighbors</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">neighbors</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">construct_named_neighborhood</span><span class="p">(</span><span class="n">neighbors</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Could not construct neighborhood from argument&#39;</span><span class="p">,</span> <span class="n">neighbors</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="Neighborhood.construct_neighbors"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Neighborhood.construct_neighbors">[docs]</a>    <span class="k">def</span> <span class="nf">construct_neighbors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">neighbors</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nei_rel_coords</span> <span class="o">=</span> <span class="p">[</span> <span class="n">Coord</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="n">neighbors</span> <span class="p">]</span></div>
+    
+<div class="viewcode-block" id="Neighborhood.construct_moore_n"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Neighborhood.construct_moore_n">[docs]</a>    <span class="k">def</span> <span class="nf">construct_moore_n</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">exclude_self</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nei_rel_coords</span> <span class="o">=</span> <span class="p">[</span> <span class="n">Coord</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">perim</span><span class="p">,</span> <span class="n">perim</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> 
+                             <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">perim</span><span class="p">,</span> <span class="n">perim</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> 
+                             <span class="k">if</span> <span class="p">(</span> <span class="ow">not</span> <span class="p">(</span><span class="n">exclude_self</span> <span class="ow">and</span> <span class="n">x</span><span class="o">==</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">y</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="p">)</span> <span class="p">]</span></div>
+        
+<div class="viewcode-block" id="Neighborhood.construct_neumann_n"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Neighborhood.construct_neumann_n">[docs]</a>    <span class="k">def</span> <span class="nf">construct_neumann_n</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">manhatten</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">exclude_self</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nei_rel_coords</span> <span class="o">=</span> <span class="p">[</span> <span class="n">Coord</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">manhatten</span><span class="p">,</span> <span class="n">manhatten</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> 
+                             <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">manhatten</span><span class="p">,</span> <span class="n">manhatten</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> 
+                             <span class="k">if</span> <span class="p">(</span> <span class="ow">not</span> <span class="p">(</span><span class="n">exclude_self</span> <span class="ow">and</span> <span class="n">x</span><span class="o">==</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">y</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="p">)</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="nb">abs</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">&lt;=</span><span class="n">manhatten</span> <span class="p">]</span></div>
+        
+<div class="viewcode-block" id="Neighborhood.construct_named_neighborhood"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Neighborhood.construct_named_neighborhood">[docs]</a>    <span class="k">def</span> <span class="nf">construct_named_neighborhood</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;neumann&#39;</span><span class="p">,</span> <span class="s1">&#39;neumann4&#39;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">construct_neumann_n</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;moore&#39;</span><span class="p">,</span> <span class="s1">&#39;moore8&#39;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">construct_moore_n</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;moore9&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">construct_moore_n</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">exclude_self</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;neumann5&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">construct_neumann_n</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">exclude_self</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;neumann12&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">construct_neumann_n</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;moore24&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">construct_moore_n</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;neumann13&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">construct_neumann_n</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">exclude_self</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;moore25&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">construct_moore_n</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">exclude_self</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;no matching neighborhood found to construct&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Neighborhood.get_rel_coords"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Neighborhood.get_rel_coords">[docs]</a>    <span class="k">def</span> <span class="nf">get_rel_coords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a list of neighborhood coordinates that lie in an area of the compass</span>
+<span class="sd">        relative to (0,0)  </span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        area : {&#39;north&#39;, &#39;south&#39;, &#39;east&#39;, &#39;west&#39;}</span>
+<span class="sd">            The named area (or &#39;hemisphere&#39;) in grid space relative to the origin (0,0).</span>
+<span class="sd">        </span>
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        Compass directions translate to relative coordinates as shown below:</span>
+<span class="sd">        _________________________________________</span>
+<span class="sd">        |                                        |</span>
+<span class="sd">        |                                        |</span>
+<span class="sd">        |      N            (0, 1)               |</span>
+<span class="sd">        |    W   E    (-1,0)      (1,0)          |</span>
+<span class="sd">        |      S            (0,-1)               |</span>
+<span class="sd">        |                                        |</span>
+<span class="sd">        |________________________________________|</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of :class:`my_tools.utility.Coord`s</span>
+<span class="sd">            The coordinates that lie within the named area.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">area</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">area</span> <span class="o">==</span> <span class="s1">&#39;north&#39;</span><span class="p">:</span>
+                <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span> <span class="n">coord</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nei_rel_coords</span> <span class="k">if</span> <span class="n">coord</span><span class="o">.</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">]</span>
+            <span class="k">elif</span> <span class="n">area</span> <span class="o">==</span> <span class="s1">&#39;south&#39;</span><span class="p">:</span>
+                <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span> <span class="n">coord</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nei_rel_coords</span> <span class="k">if</span> <span class="n">coord</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">]</span>
+            <span class="k">elif</span> <span class="n">area</span> <span class="o">==</span> <span class="s1">&#39;east&#39;</span><span class="p">:</span>
+                <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span> <span class="n">coord</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nei_rel_coords</span> <span class="k">if</span> <span class="n">coord</span><span class="o">.</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">]</span>
+            <span class="k">elif</span> <span class="n">area</span> <span class="o">==</span> <span class="s1">&#39;west&#39;</span><span class="p">:</span>
+                <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span> <span class="n">coord</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nei_rel_coords</span> <span class="k">if</span> <span class="n">coord</span><span class="o">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="s1"> is not a area&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">area</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">coords</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nei_rel_coords</span>
+        <span class="k">return</span> <span class="n">coords</span></div>
+    
+<div class="viewcode-block" id="Neighborhood.has_coord"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Neighborhood.has_coord">[docs]</a>    <span class="k">def</span> <span class="nf">has_coord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rel_coord</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check that relative coordinate is part of this neighborhood.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        rel_coord : :class:`my_tools.utility.Coord`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">nei_coord</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nei_rel_coords</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">nei_coord</span> <span class="o">==</span> <span class="n">rel_coord</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+    
+<div class="viewcode-block" id="Neighborhood.remove_coord"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Neighborhood.remove_coord">[docs]</a>    <span class="k">def</span> <span class="nf">remove_coord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">remove_coord</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Remove a relative coordinate from the neighborhood.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        remove_coord : :class:`my_tools.utility.Coord`</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nei_rel_coords</span><span class="p">[:]:</span>
+            <span class="k">if</span> <span class="n">coord</span> <span class="o">==</span> <span class="n">remove_coord</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">nei_rel_coords</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span>
+                <span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;coord </span><span class="si">{0}</span><span class="s1"> not found. It cannot be removed&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">remove_coord</span><span class="p">))</span></div>
+    
+<div class="viewcode-block" id="Neighborhood.remove_direction"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Neighborhood.remove_direction">[docs]</a>    <span class="k">def</span> <span class="nf">remove_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Remove coordinates lying to the given direction on the grid, where the</span>
+<span class="sd">        main compass points are translated into coordinates as follows:</span>
+<span class="sd">        </span>
+<span class="sd">        The main compass points are translated into coordinates as follows:</span>
+<span class="sd">          N            (0, 1)</span>
+<span class="sd">        W   E    (-1,0)      (1,0)</span>
+<span class="sd">          S            (0,-1) </span>
+<span class="sd">        e.g. when direction is &#39;north&#39;, all relative coordinates that lie northerly of </span>
+<span class="sd">        the (0,0) will be removed.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        direction : {&#39;north&#39;, &#39;south&#39;, &#39;east&#39;, &#39;west&#39;}, optional</span>
+<span class="sd">            Selects those coordinates in the neighborhood that lie in a</span>
+<span class="sd">            particular direction (default is None, which implies returninng all</span>
+<span class="sd">            coordinates.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;north&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nei_rel_coords</span> <span class="o">=</span> <span class="p">[</span> <span class="n">coord</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nei_rel_coords</span> <span class="k">if</span> <span class="n">coord</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">]</span>
+        <span class="k">elif</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;south&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nei_rel_coords</span> <span class="o">=</span> <span class="p">[</span> <span class="n">coord</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nei_rel_coords</span> <span class="k">if</span> <span class="n">coord</span><span class="o">.</span><span class="n">y</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">]</span>
+        <span class="k">elif</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;east&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nei_rel_coords</span> <span class="o">=</span> <span class="p">[</span> <span class="n">coord</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nei_rel_coords</span> <span class="k">if</span> <span class="n">coord</span><span class="o">.</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">]</span>
+        <span class="k">elif</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;west&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nei_rel_coords</span> <span class="o">=</span> <span class="p">[</span> <span class="n">coord</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nei_rel_coords</span> <span class="k">if</span> <span class="n">coord</span><span class="o">.</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="s1"> is not a direction&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">direction</span><span class="p">))</span></div>
+        
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nei_rel_coords</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;(&quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">coord</span><span class="o">.</span><span class="n">x</span><span class="p">)</span><span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">coord</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>  
+                         <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nei_rel_coords</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="GridPoint"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.GridPoint">[docs]</a><span class="k">class</span> <span class="nc">GridPoint</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">neighborhood_dict</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coord</span> <span class="o">=</span> <span class="n">Coord</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="o">=</span> <span class="n">grid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">neighborhoods</span> <span class="o">=</span> <span class="n">neighborhood_dict</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">updated</span> <span class="o">=</span> <span class="kc">True</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">updated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_updated</span>
+    
+    <span class="nd">@updated</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">updated</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;updated should be of type bool, not </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_updated</span> <span class="o">=</span> <span class="n">val</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">content</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_content</span>
+    
+    <span class="nd">@content</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_content</span> <span class="o">=</span> <span class="n">val</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">coord</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_coord</span>
+    
+    <span class="nd">@coord</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">coord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_coord</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_coord</span> <span class="o">=</span> <span class="n">new_coord</span>
+        
+<div class="viewcode-block" id="GridPoint.nei_grid_coords"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.GridPoint.nei_grid_coords">[docs]</a>    <span class="k">def</span> <span class="nf">nei_grid_coords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">neighborhood_name</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span> <span class="n">Coord</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coord</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">nei_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">coord</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">nei_y</span><span class="p">)</span> 
+            <span class="k">for</span> <span class="p">(</span><span class="n">nei_x</span><span class="p">,</span><span class="n">nei_y</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">[</span><span class="n">neighborhood_name</span><span class="p">]</span><span class="o">.</span><span class="n">get_rel_coords</span><span class="p">(</span><span class="n">area</span><span class="p">)</span> <span class="p">]</span></div>
+
+<div class="viewcode-block" id="GridPoint.nei_rel_to_grid_coords"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.GridPoint.nei_rel_to_grid_coords">[docs]</a>    <span class="k">def</span> <span class="nf">nei_rel_to_grid_coords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">neighborhood_name</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        List of (relative-coordinate, grid-coordinate) tuples of the named neighborhood.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        </span>
+<span class="sd">        neighborhood_name : str</span>
+<span class="sd">            Name of the neighborhood</span>
+<span class="sd">        area :  {&#39;north&#39;, &#39;south&#39;, &#39;east&#39;, &#39;west&#39;}, optional</span>
+<span class="sd">            Select only neighbors lying in a specific area</span>
+<span class="sd">            </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of (:class:`my_tools.utility.Coord`, :class:`my_tools.utility.Coord`) tuples</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span> <span class="p">(</span><span class="n">nei_coord</span><span class="p">,</span> <span class="n">Coord</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coord</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">nei_coord</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">coord</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">nei_coord</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="p">)</span> 
+            <span class="k">for</span> <span class="n">nei_coord</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">[</span><span class="n">neighborhood_name</span><span class="p">]</span><span class="o">.</span><span class="n">get_rel_coords</span><span class="p">(</span><span class="n">area</span><span class="p">)</span> <span class="p">]</span></div>
+        
+<div class="viewcode-block" id="GridPoint.nei_rel_coord_to_gp"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.GridPoint.nei_rel_coord_to_gp">[docs]</a>    <span class="k">def</span> <span class="nf">nei_rel_coord_to_gp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">neighborhood_name</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        List of (relative-coordinate,grid-point) tuples of the named neighborhood.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        neighborhood_name : str</span>
+<span class="sd">            Name of the neighborhood</span>
+<span class="sd">        area :  {&#39;north&#39;, &#39;south&#39;, &#39;east&#39;, &#39;west&#39;}, optional</span>
+<span class="sd">            Select only neighbors lying in a specific area.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of (:class:`my_tools.utility.Coord`, :class:`GridPoint`) tuples</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span> <span class="p">(</span><span class="n">nei_coord</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_neighbor_at</span><span class="p">(</span><span class="n">nei_coord</span><span class="p">,</span> <span class="n">neighborhood_name</span><span class="p">)</span> <span class="p">)</span> 
+                  <span class="k">for</span> <span class="n">nei_coord</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">[</span><span class="n">neighborhood_name</span><span class="p">]</span><span class="o">.</span><span class="n">get_rel_coords</span><span class="p">(</span><span class="n">area</span><span class="p">)</span> <span class="p">]</span></div>
+        
+<div class="viewcode-block" id="GridPoint.get_neighbor_at"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.GridPoint.get_neighbor_at">[docs]</a>    <span class="k">def</span> <span class="nf">get_neighbor_at</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rel_coord</span><span class="p">,</span> <span class="n">neighborhood_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get neighboring grid point at a relative coordinate.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        rel_coord : :class:`my_tools.utility.Coord`</span>
+<span class="sd">            coordinate relative to self</span>
+<span class="sd">        neighborhood_name : str</span>
+<span class="sd">            Name of the neighborhood.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`GridPoint`</span>
+<span class="sd">            The neighboring grid point. </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">[</span><span class="n">neighborhood_name</span><span class="p">]</span><span class="o">.</span><span class="n">has_coord</span><span class="p">(</span><span class="n">rel_coord</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;coordinate </span><span class="si">{}</span><span class="s1"> not in neighborhood </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rel_coord</span><span class="p">,</span> <span class="n">neighborhood_name</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">get_gp</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">coord</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">rel_coord</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">coord</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">rel_coord</span><span class="o">.</span><span class="n">y</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="GridPoint.remove_neighbor_at"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.GridPoint.remove_neighbor_at">[docs]</a>    <span class="k">def</span> <span class="nf">remove_neighbor_at</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rel_coord</span><span class="p">,</span> <span class="n">neighborhood_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove a coordinate from a named neighborhood.</span>
+<span class="sd">        </span>
+<span class="sd">        After removing the relative coordinate `rel_coord`, the corresponding</span>
+<span class="sd">        grid point is no longer considered a neighbor of `self` when applying</span>
+<span class="sd">        neighborhood functions.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        rel_coord : :class:`my_tools.utility.Coord`</span>
+<span class="sd">            Coordinate relative to self.</span>
+<span class="sd">        neighborhood_name : str</span>
+<span class="sd">            Name of the neighborhood.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="p">[</span><span class="n">neighborhood_name</span><span class="p">]</span><span class="o">.</span><span class="n">remove_coord</span><span class="p">(</span><span class="n">rel_coord</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="GridPoint.neighbors"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.GridPoint.neighbors">[docs]</a>    <span class="k">def</span> <span class="nf">neighbors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">neighborhood_name</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return list of grid point content values of neighbors in named neighborhood.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        neighborhood_name : str</span>
+<span class="sd">            Name of the neighborhood.</span>
+<span class="sd">        area :  {&#39;north&#39;, &#39;south&#39;, &#39;east&#39;, &#39;west&#39;}, optional</span>
+<span class="sd">            Select only neighbors lying in a specific area.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">_get_neighbors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">neighborhood_name</span><span class="p">,</span> <span class="n">area</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="GridPoint.neighbor_gps"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.GridPoint.neighbor_gps">[docs]</a>    <span class="k">def</span> <span class="nf">neighbor_gps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">neighborhood_name</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Return list of grid points in a named neighborhood.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        neighborhood_name : str</span>
+<span class="sd">            Name of the neighborhood.</span>
+<span class="sd">        area :  {&#39;north&#39;, &#39;south&#39;, &#39;east&#39;, &#39;west&#39;}, optional</span>
+<span class="sd">            Select only neighbors lying in a specific area.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">_get_neighboring_gps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">neighborhood_name</span><span class="p">,</span> <span class="n">area</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="GridPoint.random_neighbor"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.GridPoint.random_neighbor">[docs]</a>    <span class="k">def</span> <span class="nf">random_neighbor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">neighborhood_name</span><span class="p">,</span> <span class="n">rand_gen</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get random neighbor from a named neighborhood.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        neighborhood_name : str</span>
+<span class="sd">            Name of the neighborhood.</span>
+<span class="sd">        rand_gen : random generator</span>
+<span class="sd">            Random generator for neighbor drawing.</span>
+<span class="sd">        area :  {&#39;north&#39;, &#39;south&#39;, &#39;east&#39;, &#39;west&#39;}, optional</span>
+<span class="sd">            Select only neighbors lying in a specific area.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">nei_gps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighbor_gps</span><span class="p">(</span><span class="n">neighborhood_name</span><span class="p">,</span> <span class="n">area</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">nei_gps</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">return</span> <span class="n">rand_gen</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">nei_gps</span><span class="p">)</span></div>
+            
+        
+        
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">pos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coord</span><span class="o">.</span><span class="n">x</span> <span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">coord</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">nei</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighborhoods</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s1">&#39;key not found in dict&#39;</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighborhoods</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">nei</span>
+    
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;(&quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coord</span><span class="o">.</span><span class="n">x</span><span class="p">)</span><span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coord</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span> <span class="c1"># + str(self.content)</span></div>
+            
+
+<div class="viewcode-block" id="mirror_rel_coord"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.mirror_rel_coord">[docs]</a><span class="k">def</span> <span class="nf">mirror_rel_coord</span><span class="p">(</span><span class="n">coord</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Coord</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="n">coord</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="n">coord</span><span class="o">.</span><span class="n">y</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Grid"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid">[docs]</a><span class="k">class</span> <span class="nc">Grid</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Grid will by default be wrapped, because the Neighborhood will index </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">neighborhood_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nei_wrapped_ew</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nei_wrapped_ns</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rows</span> <span class="o">=</span> <span class="n">rows</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cols</span> <span class="o">=</span> <span class="n">cols</span>
+        <span class="k">if</span> <span class="n">neighborhood_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">neighborhood_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;competition&#39;</span><span class="p">:</span> <span class="n">Neighborhood</span><span class="p">(</span><span class="s1">&#39;moore9&#39;</span><span class="p">),</span> 
+                                      <span class="s1">&#39;diffusion&#39;</span><span class="p">:</span> <span class="n">Neighborhood</span><span class="p">(</span><span class="s1">&#39;neumann&#39;</span><span class="p">),</span>
+                                      <span class="s1">&#39;hgt&#39;</span><span class="p">:</span> <span class="n">Neighborhood</span><span class="p">(</span><span class="s1">&#39;neumann13&#39;</span><span class="p">)</span>
+                                      <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">neighborhood_dict</span> <span class="o">=</span> <span class="n">neighborhood_dict</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_grid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rows</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighborhood_dict</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">nei_wrapped_ew</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">nei_wrapped_ew</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighborhood_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nei_wrapped_ew</span> <span class="o">=</span> <span class="n">nei_wrapped_ew</span>
+        <span class="k">if</span> <span class="n">nei_wrapped_ns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">nei_wrapped_ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighborhood_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nei_wrapped_ns</span> <span class="o">=</span> <span class="n">nei_wrapped_ns</span>
+        <span class="k">for</span> <span class="n">nei</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighborhood_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">nei</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nei_wrapped_ew</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">unwrap_ew</span><span class="p">(</span><span class="n">nei</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">nei</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nei_wrapped_ns</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">unwrap_ns</span><span class="p">(</span><span class="n">nei</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">named_direction_map</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;N&#39;</span><span class="p">:</span><span class="n">Coord</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;NE&#39;</span><span class="p">:</span><span class="n">Coord</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;E&#39;</span><span class="p">:</span><span class="n">Coord</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="p">,</span> <span class="s1">&#39;SE&#39;</span><span class="p">:</span><span class="n">Coord</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> 
+                                    <span class="s1">&#39;S&#39;</span><span class="p">:</span><span class="n">Coord</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">,</span> <span class="s1">&#39;SW&#39;</span><span class="p">:</span><span class="n">Coord</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span><span class="n">Coord</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;NW&#39;</span><span class="p">:</span><span class="n">Coord</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+                                    <span class="s1">&#39;C&#39;</span><span class="p">:</span><span class="n">Coord</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)}</span>
+        
+<div class="viewcode-block" id="Grid.init_grid"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.init_grid">[docs]</a>    <span class="k">def</span> <span class="nf">init_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">neighborhood_dict</span><span class="p">,</span> <span class="n">wrap_ew</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wrap_ns</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="o">=</span> <span class="n">CircularList</span><span class="p">([</span> <span class="n">CircularList</span><span class="p">([</span> <span class="n">GridPoint</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span> <span class="kc">None</span><span class="p">,</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">neighborhood_dict</span><span class="p">),</span> <span class="bp">self</span><span class="p">)</span> 
+                       <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span> <span class="p">])</span> 
+                     <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">)])</span></div>
+    
+<div class="viewcode-block" id="Grid.unwrap_ew"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.unwrap_ew">[docs]</a>    <span class="k">def</span> <span class="nf">unwrap_ew</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">neighborhood_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Unwraps a grid neighborhood at its eastern and western borders.</span>
+<span class="sd">        </span>
+<span class="sd">        Iterate over all grid points and detect when a grid point has neighbors that wrap</span>
+<span class="sd">        over the east or west borders. Then remove the coordinate from the neighborhood. </span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        neighborhood_name : str</span>
+<span class="sd">            The name of the neighborhood to unwrap</span>
+<span class="sd">            </span>
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        For a wrapped neighbor it is true that the difference between the focal</span>
+<span class="sd">        gp coordinate and this neighbors (normalized) grid-coordinate is not</span>
+<span class="sd">        equal to the its relative-coordinate (to focal gp).</span>
+<span class="sd">        </span>
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        :func:`unwrap_ns`</span>
+<span class="sd">        :func:`normalize_coord`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">gp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">gp_iter</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize_coord</span><span class="p">(</span><span class="n">gp</span><span class="o">.</span><span class="n">coord</span><span class="p">)</span><span class="o">.</span><span class="n">x</span>
+            <span class="k">for</span> <span class="n">nei_rel_coord</span><span class="p">,</span> <span class="n">nei_grid_coord</span> <span class="ow">in</span> <span class="n">gp</span><span class="o">.</span><span class="n">nei_rel_to_grid_coords</span><span class="p">(</span><span class="n">neighborhood_name</span><span class="p">):</span>
+                <span class="k">if</span>  <span class="bp">self</span><span class="o">.</span><span class="n">normalize_coord</span><span class="p">(</span><span class="n">nei_grid_coord</span><span class="p">)</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">nei_rel_coord</span><span class="o">.</span><span class="n">x</span><span class="p">:</span> <span class="c1"># test if this neighbor is wrapped</span>
+                    <span class="n">gp</span><span class="o">.</span><span class="n">remove_neighbor_at</span><span class="p">(</span><span class="n">nei_rel_coord</span><span class="p">,</span> <span class="n">neighborhood_name</span><span class="p">)</span> </div>
+                    
+<div class="viewcode-block" id="Grid.unwrap_ns"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.unwrap_ns">[docs]</a>    <span class="k">def</span> <span class="nf">unwrap_ns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">neighborhood_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Unwraps a grid neighborhood at its northern and southern borders.</span>
+<span class="sd">        </span>
+<span class="sd">        Iterate over all grid points and detect when a grid point has neighbors that wrap</span>
+<span class="sd">        over the north or south borders. Then remove the coordinate from the neighborhood.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        neighborhood_name : str</span>
+<span class="sd">            The name of the neighborhood to unwrap</span>
+<span class="sd">            </span>
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        For a wrapped neighbor it is true that the difference between the focal</span>
+<span class="sd">        gp coordinate and this neighbors (normalized) grid-coordinate is not</span>
+<span class="sd">        equal to the its relative-coordinate (to focal gp).</span>
+<span class="sd">        </span>
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        :func:`unwrap_ew`</span>
+<span class="sd">        :func:`normalize_coord`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">gp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">gp_iter</span><span class="p">:</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize_coord</span><span class="p">(</span><span class="n">gp</span><span class="o">.</span><span class="n">coord</span><span class="p">)</span><span class="o">.</span><span class="n">y</span>
+            <span class="k">for</span> <span class="n">nei_rel_coord</span><span class="p">,</span> <span class="n">nei_grid_coord</span> <span class="ow">in</span> <span class="n">gp</span><span class="o">.</span><span class="n">nei_rel_to_grid_coords</span><span class="p">(</span><span class="n">neighborhood_name</span><span class="p">):</span>
+                <span class="k">if</span>  <span class="bp">self</span><span class="o">.</span><span class="n">normalize_coord</span><span class="p">(</span><span class="n">nei_grid_coord</span><span class="p">)</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">y</span> <span class="o">!=</span> <span class="n">nei_rel_coord</span><span class="o">.</span><span class="n">y</span><span class="p">:</span> <span class="c1"># test if this neighbor is wrapped</span>
+                    <span class="n">gp</span><span class="o">.</span><span class="n">remove_neighbor_at</span><span class="p">(</span><span class="n">nei_rel_coord</span><span class="p">,</span> <span class="n">neighborhood_name</span><span class="p">)</span></div>
+                        
+<div class="viewcode-block" id="Grid.normalize_coord"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.normalize_coord">[docs]</a>    <span class="k">def</span> <span class="nf">normalize_coord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coord</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Transform coordinate `coord` to an absolute grid coordinate with non-</span>
+<span class="sd">        wrapped index.</span>
+<span class="sd">        </span>
+<span class="sd">        Applies modulo :attr:`cols` and :attr:`rows` on the coordinates x</span>
+<span class="sd">        and y value, respectively, to obtain a normalized coordinate.   </span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        coord : :class:`my_tools.utility.Coord`</span>
+<span class="sd">            a coordinate on the grid that may be in wrapped index representation</span>
+<span class="sd">            </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`my_tools.utility.Coord`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Coord</span><span class="p">(</span> <span class="n">x</span><span class="o">=</span> <span class="n">coord</span><span class="o">.</span><span class="n">x</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">cols</span> <span class="p">,</span> <span class="n">y</span><span class="o">=</span> <span class="n">coord</span><span class="o">.</span><span class="n">y</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">rows</span> <span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Grid.un_neighbor"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.un_neighbor">[docs]</a>    <span class="k">def</span> <span class="nf">un_neighbor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gp</span><span class="p">,</span> <span class="n">nei_rel_coord</span><span class="p">,</span> <span class="n">neighborhood</span><span class="p">):</span>
+        <span class="n">nei_gp</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">get_neighbor_at</span><span class="p">(</span><span class="n">nei_rel_coord</span><span class="p">,</span> <span class="n">neighborhood</span><span class="p">)</span>
+        <span class="n">gp</span><span class="o">.</span><span class="n">remove_neighbor_at</span><span class="p">(</span><span class="n">nei_rel_coord</span><span class="p">,</span> <span class="n">neighborhood</span><span class="p">)</span>
+        <span class="n">nei_gp</span><span class="o">.</span><span class="n">remove_neighbor_at</span><span class="p">(</span><span class="n">mirror_rel_coord</span><span class="p">(</span><span class="n">nei_rel_coord</span><span class="p">),</span> <span class="n">neighborhood</span><span class="p">)</span></div>
+            
+<div class="viewcode-block" id="Grid.disconnect_direction"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.disconnect_direction">[docs]</a>    <span class="k">def</span> <span class="nf">disconnect_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gp</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">neighborhood</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        For all neighboring grid points lieing in a particular `direction` in a</span>
+<span class="sd">        named `neighborhood` of a grid point `gp`, remove the `gp` coordinate</span>
+<span class="sd">        from their neighborhoods.</span>
+<span class="sd">        </span>
+<span class="sd">        e.g. if area is &#39;south&#39; , the southern neighbors of gp will remove gp&#39;s </span>
+<span class="sd">        relative coordinate from their neighborhood</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">         </span>
+<span class="sd">        gp : :class:`GridPoint` </span>
+<span class="sd">            Grid point that will get unwrapped.</span>
+<span class="sd">            </span>
+<span class="sd">        direction : {&#39;north&#39;, &#39;south&#39;, &#39;east&#39;, &#39;west&#39;}, optional</span>
+<span class="sd">            The direction relative to the `gp`. </span>
+<span class="sd">            </span>
+<span class="sd">        neighborhood : str</span>
+<span class="sd">            named neighborhood for which the unwrapping is done</span>
+<span class="sd">        </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">nei_rel_coord</span> <span class="ow">in</span> <span class="n">gp</span><span class="p">[</span><span class="n">neighborhood</span><span class="p">]</span><span class="o">.</span><span class="n">get_rel_coords</span><span class="p">(</span><span class="n">area</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">un_neighbor</span><span class="p">(</span><span class="n">gp</span><span class="p">,</span> <span class="n">nei_rel_coord</span><span class="p">,</span> <span class="n">neighborhood</span><span class="p">)</span></div>
+            
+<div class="viewcode-block" id="Grid.make_barrier"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.make_barrier">[docs]</a>    <span class="k">def</span> <span class="nf">make_barrier</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_coord</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">neighborhood_name</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;lr&#39;</span> <span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Create a barrier on the grid where interaction between adjacent grid points is blocked. </span>
+<span class="sd">        </span>
+<span class="sd">        Create a barrier in the given neighborhood_name by unwrapping gps on opposite sides </span>
+<span class="sd">        of a line that is `length` long, starts at `start_gp` and extends along `direction`</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">focal_gp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_gp</span><span class="p">(</span><span class="o">*</span><span class="n">start_coord</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;lr&#39;</span><span class="p">:</span>
+            <span class="n">opposite</span><span class="p">,</span> <span class="n">unwrap_area_forth</span><span class="p">,</span> <span class="n">unwrap_back</span><span class="p">,</span> <span class="n">proceed_direction</span> <span class="o">=</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="s1">&#39;north&#39;</span><span class="p">,</span> <span class="s1">&#39;south&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span>
+        <span class="k">elif</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;tb&#39;</span><span class="p">:</span>
+            <span class="n">opposite</span><span class="p">,</span> <span class="n">unwrap_area_forth</span><span class="p">,</span> <span class="n">unwrap_back</span><span class="p">,</span> <span class="n">proceed_direction</span> <span class="o">=</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;east&#39;</span><span class="p">,</span> <span class="s1">&#39;west&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">disconnect_direction</span><span class="p">(</span><span class="n">focal_gp</span><span class="p">,</span> <span class="n">unwrap_area_forth</span><span class="p">,</span> <span class="n">neighborhood_name</span><span class="p">)</span>
+            <span class="n">oposite_gp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_nei_gp</span><span class="p">(</span><span class="n">focal_gp</span><span class="p">,</span> <span class="n">opposite</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">disconnect_direction</span><span class="p">(</span><span class="n">oposite_gp</span><span class="p">,</span> <span class="n">unwrap_back</span><span class="p">,</span> <span class="n">neighborhood_name</span><span class="p">)</span>
+            <span class="n">focal_gp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_nei_gp</span><span class="p">(</span><span class="n">focal_gp</span><span class="p">,</span> <span class="n">proceed_direction</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Grid.grid_barriers"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.grid_barriers">[docs]</a>    <span class="k">def</span> <span class="nf">grid_barriers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rand_gen</span><span class="p">,</span> <span class="n">p_row</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">max_fraction_width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                      <span class="n">p_col</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">max_fraction_height</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">neighborhoods</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Set up barriers in the grid </span>
+<span class="sd">        </span>
+<span class="sd">        :param p_row:</span>
+<span class="sd">        :param max_fraction_width:</span>
+<span class="sd">        :param p_col:</span>
+<span class="sd">        :param max_fraction_height:</span>
+<span class="sd">        :param neighborhood:</span>
+<span class="sd">        :param rand_gen:</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">neighborhoods</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">neighborhoods</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighborhood_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="n">max_width</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">max_fraction_width</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">)</span> <span class="k">if</span> <span class="n">max_fraction_width</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">max_height</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">max_fraction_height</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">rows</span><span class="p">)</span> <span class="k">if</span> <span class="n">max_fraction_height</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rows</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">rand_gen</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">p_row</span><span class="p">:</span>
+                <span class="n">c</span> <span class="o">=</span> <span class="n">rand_gen</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">)</span>
+                <span class="n">width</span> <span class="o">=</span> <span class="n">rand_gen</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_width</span><span class="p">)</span> <span class="k">if</span> <span class="n">max_width</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">cols</span> 
+                <span class="k">for</span> <span class="n">neighborhood</span> <span class="ow">in</span> <span class="n">neighborhoods</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">make_barrier</span><span class="p">(</span><span class="n">Coord</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">r</span><span class="p">),</span> <span class="n">width</span><span class="p">,</span> <span class="n">neighborhood</span><span class="p">,</span> <span class="s1">&#39;lr&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">rand_gen</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">p_col</span><span class="p">:</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">rand_gen</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rows</span><span class="p">)</span>
+                <span class="n">height</span> <span class="o">=</span> <span class="n">rand_gen</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_height</span><span class="p">)</span> <span class="k">if</span> <span class="n">max_height</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">rows</span>
+                <span class="k">for</span> <span class="n">neighborhood</span> <span class="ow">in</span> <span class="n">neighborhoods</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">make_barrier</span><span class="p">(</span><span class="n">Coord</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">r</span><span class="p">),</span> <span class="n">height</span><span class="p">,</span> <span class="n">neighborhood</span><span class="p">,</span> <span class="s1">&#39;tb&#39;</span><span class="p">)</span></div>
+                
+<div class="viewcode-block" id="Grid.columns_iter"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.columns_iter">[docs]</a>    <span class="k">def</span> <span class="nf">columns_iter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">order</span> <span class="o">=</span> <span class="s1">&#39;tb_lr&#39;</span><span class="p">):</span>            
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Iterate over gps in the selected columns </span>
+<span class="sd">        :param cols: selected columns </span>
+<span class="sd">        :param order: the order in which gps should be iterated</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="p">(</span> <span class="n">gp</span> <span class="k">for</span> <span class="n">gp</span> <span class="ow">in</span>  <span class="bp">self</span><span class="o">.</span><span class="n">gp_iter_in_order</span><span class="p">(</span><span class="n">order</span><span class="p">)</span> <span class="k">if</span> <span class="n">gp</span><span class="o">.</span><span class="n">coord</span><span class="o">.</span><span class="n">x</span> <span class="ow">in</span> <span class="n">cols</span> <span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Grid.rows_iter"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.rows_iter">[docs]</a>    <span class="k">def</span> <span class="nf">rows_iter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;lr_tb&#39;</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Iterate over gps in the selected rows</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="p">(</span> <span class="n">gp</span> <span class="k">for</span> <span class="n">gp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">gp_iter_in_order</span><span class="p">(</span><span class="n">order</span><span class="p">)</span> <span class="k">if</span> <span class="n">gp</span><span class="o">.</span><span class="n">coord</span><span class="o">.</span><span class="n">y</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Grid.mesh_iter"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.mesh_iter">[docs]</a>    <span class="k">def</span> <span class="nf">mesh_iter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;lr_tb&#39;</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        iterate over gps in a mesh, defined by intersections of rows and cols</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="p">(</span> <span class="n">gp</span> <span class="k">for</span> <span class="n">gp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">gp_iter_in_order</span><span class="p">(</span><span class="n">order</span><span class="p">)</span> <span class="k">if</span> <span class="n">gp</span><span class="o">.</span><span class="n">coord</span><span class="o">.</span><span class="n">y</span> <span class="ow">in</span> <span class="n">rows</span> <span class="ow">and</span> <span class="n">gp</span><span class="o">.</span><span class="n">coord</span><span class="o">.</span><span class="n">x</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">)</span></div>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">content_iter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span> <span class="n">gp</span><span class="o">.</span><span class="n">content</span> <span class="k">for</span> <span class="n">gp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">gp_iter</span><span class="p">)</span>
+    
+    <span class="nd">@property</span>    
+    <span class="k">def</span> <span class="nf">gp_iter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">_x_iter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">it</span> <span class="o">=</span> <span class="p">(</span><span class="n">_</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">reverse</span><span class="p">:</span>
+            <span class="n">it</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">it</span>
+    
+    <span class="k">def</span> <span class="nf">_y_iter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">it</span> <span class="o">=</span> <span class="p">(</span><span class="n">_</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rows</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">reverse</span><span class="p">:</span>
+            <span class="n">it</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">it</span>
+        
+<div class="viewcode-block" id="Grid.gp_iter_in_order"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.gp_iter_in_order">[docs]</a>    <span class="k">def</span> <span class="nf">gp_iter_in_order</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;lr_tb&#39;</span><span class="p">):</span>
+        <span class="n">it</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">order</span> <span class="o">==</span> <span class="s1">&#39;lr_tb&#39;</span><span class="p">:</span>  <span class="c1"># left to right, top to bottom</span>
+            <span class="c1">#reverse_x, reverse_y, per_row = False, False, True</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gp_iter</span>
+        <span class="k">elif</span> <span class="n">order</span> <span class="o">==</span> <span class="s1">&#39;lr_bt&#39;</span><span class="p">:</span>
+            <span class="n">reverse_x</span><span class="p">,</span> <span class="n">reverse_y</span><span class="p">,</span> <span class="n">per_row</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span>
+        <span class="k">elif</span> <span class="n">order</span> <span class="o">==</span> <span class="s1">&#39;rl_tb&#39;</span><span class="p">:</span>
+            <span class="n">reverse_x</span><span class="p">,</span> <span class="n">reverse_y</span><span class="p">,</span> <span class="n">per_row</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span>
+        <span class="k">elif</span> <span class="n">order</span> <span class="o">==</span> <span class="s1">&#39;rl_bt&#39;</span><span class="p">:</span>
+            <span class="n">reverse_x</span><span class="p">,</span> <span class="n">reverse_y</span><span class="p">,</span> <span class="n">per_row</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span>
+        
+        <span class="k">elif</span> <span class="n">order</span> <span class="o">==</span> <span class="s1">&#39;tb_lr&#39;</span><span class="p">:</span>
+            <span class="n">reverse_x</span><span class="p">,</span> <span class="n">reverse_y</span><span class="p">,</span> <span class="n">per_row</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="n">order</span> <span class="o">==</span> <span class="s1">&#39;tb_rl&#39;</span><span class="p">:</span>
+            <span class="n">reverse_x</span><span class="p">,</span> <span class="n">reverse_y</span><span class="p">,</span> <span class="n">per_row</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="n">order</span> <span class="o">==</span> <span class="s1">&#39;bt_lr&#39;</span><span class="p">:</span>
+            <span class="n">reverse_x</span><span class="p">,</span> <span class="n">reverse_y</span><span class="p">,</span> <span class="n">per_row</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="n">order</span> <span class="o">==</span> <span class="s1">&#39;bt_rl&#39;</span><span class="p">:</span>
+            <span class="n">reverse_x</span><span class="p">,</span> <span class="n">reverse_y</span><span class="p">,</span> <span class="n">per_row</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">per_row</span><span class="p">:</span> 
+            <span class="n">it</span> <span class="o">=</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_gp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x_iter</span><span class="p">(</span><span class="n">reverse_x</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">_y_iter</span><span class="p">(</span><span class="n">reverse_y</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">it</span> <span class="o">=</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_gp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y_iter</span><span class="p">(</span><span class="n">reverse_y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x_iter</span><span class="p">(</span><span class="n">reverse_x</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">it</span></div>
+        
+<div class="viewcode-block" id="Grid.update_gp"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.update_gp">[docs]</a>    <span class="k">def</span> <span class="nf">update_gp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">val</span><span class="p">):</span>
+        <span class="n">gp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_gp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">gp</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">val</span></div>
+    
+<div class="viewcode-block" id="Grid.set_gp"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.set_gp">[docs]</a>    <span class="k">def</span> <span class="nf">set_gp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">gp</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">gp</span></div>
+        
+<div class="viewcode-block" id="Grid.get_gp"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.get_gp">[docs]</a>    <span class="k">def</span> <span class="nf">get_gp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="n">x</span><span class="p">]</span></div>
+    
+<div class="viewcode-block" id="Grid.get_nei_gp"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.get_nei_gp">[docs]</a>    <span class="k">def</span> <span class="nf">get_nei_gp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gp</span><span class="p">,</span> <span class="n">direction_vect</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">direction_vect</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">direction_vect</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">named_direction_map</span><span class="p">[</span><span class="n">direction_vect</span><span class="p">]</span>
+        <span class="n">nei_x</span><span class="p">,</span> <span class="n">nei_y</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">coord</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">direction_vect</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">gp</span><span class="o">.</span><span class="n">coord</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">direction_vect</span><span class="o">.</span><span class="n">y</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_gp</span><span class="p">(</span><span class="n">nei_x</span><span class="p">,</span> <span class="n">nei_y</span><span class="p">)</span></div>
+    
+    <span class="k">def</span> <span class="nf">_get_neighbors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gp</span><span class="p">,</span> <span class="n">neighborhood</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Get values in neighbors in &#39;neighborhood&#39;</span>
+<span class="sd">        :param neighborhood: key to neighborhood_dict in focal gp</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">gp</span><span class="o">.</span><span class="n">content</span> <span class="k">for</span> <span class="n">gp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_neighboring_gps</span><span class="p">(</span><span class="n">gp</span><span class="p">,</span> <span class="n">neighborhood</span><span class="p">,</span> <span class="n">direction</span><span class="p">)]</span>
+    
+    <span class="k">def</span> <span class="nf">_get_neighboring_gps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gp</span><span class="p">,</span> <span class="n">neighborhood_name</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">neighbor_gps</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">nei_coord</span> <span class="ow">in</span> <span class="n">gp</span><span class="o">.</span><span class="n">nei_grid_coords</span><span class="p">(</span><span class="n">neighborhood_name</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
+            <span class="n">neighbor_gps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_gp</span><span class="p">(</span><span class="n">nei_coord</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">nei_coord</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">neighbor_gps</span>   
+    
+<div class="viewcode-block" id="Grid.fill_grid"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.fill_grid">[docs]</a>    <span class="k">def</span> <span class="nf">fill_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vals</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;lr_tb&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">Iterable</span><span class="p">):</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span> <span class="n">vals</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">))]</span>
+        <span class="k">for</span> <span class="n">gp</span><span class="p">,</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gp_iter_in_order</span><span class="p">(</span><span class="n">order</span><span class="p">),</span><span class="n">vals</span><span class="p">):</span>
+            <span class="n">gp</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">l</span></div>
+            
+<div class="viewcode-block" id="Grid.toggle_gps_updated"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.toggle_gps_updated">[docs]</a>    <span class="k">def</span> <span class="nf">toggle_gps_updated</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">updated</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">gp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">gp_iter</span><span class="p">:</span>
+            <span class="n">gp</span><span class="o">.</span><span class="n">updated</span> <span class="o">=</span> <span class="n">updated</span></div>
+            
+<div class="viewcode-block" id="Grid.swap_content"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.swap_content">[docs]</a>    <span class="k">def</span> <span class="nf">swap_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gp1</span><span class="p">,</span> <span class="n">gp2</span><span class="p">):</span>
+        <span class="n">val2</span> <span class="o">=</span> <span class="n">gp2</span><span class="o">.</span><span class="n">content</span>
+        <span class="n">gp2</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">gp1</span><span class="o">.</span><span class="n">content</span>
+        <span class="n">gp1</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">val2</span></div>
+            
+<div class="viewcode-block" id="Grid.swap_gps"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.swap_gps">[docs]</a>    <span class="k">def</span> <span class="nf">swap_gps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">gp1</span><span class="p">,</span> <span class="n">gp2</span><span class="p">):</span>
+        <span class="n">coord1</span> <span class="o">=</span> <span class="n">gp1</span><span class="o">.</span><span class="n">coord</span>
+        <span class="n">coord2</span> <span class="o">=</span> <span class="n">gp2</span><span class="o">.</span><span class="n">coord</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_gp</span><span class="p">(</span><span class="n">coord1</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">coord1</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">gp2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_gp</span><span class="p">(</span><span class="n">coord2</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">coord2</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">gp1</span><span class="p">)</span>
+        <span class="n">gp1</span><span class="o">.</span><span class="n">coord</span> <span class="o">=</span> <span class="n">coord2</span>
+        <span class="n">gp2</span><span class="o">.</span><span class="n">coord</span> <span class="o">=</span> <span class="n">coord2</span></div>
+        
+<div class="viewcode-block" id="Grid.swap_pos"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.swap_pos">[docs]</a>    <span class="k">def</span> <span class="nf">swap_pos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos1</span><span class="p">,</span> <span class="n">pos2</span><span class="p">):</span>
+        <span class="n">gp1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_gp</span><span class="p">(</span><span class="o">*</span><span class="n">pos1</span><span class="p">)</span>
+        <span class="n">gp2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_gp</span><span class="p">(</span><span class="o">*</span><span class="n">pos2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">swap_gps</span><span class="p">(</span><span class="n">gp1</span><span class="p">,</span> <span class="n">gp2</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Grid.perfect_mix"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.perfect_mix">[docs]</a>    <span class="k">def</span> <span class="nf">perfect_mix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rand_gen</span><span class="p">):</span>
+        <span class="n">gps</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gp_iter</span><span class="p">)</span>
+        <span class="n">rand_gen</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">gps</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gps</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">swap_content</span><span class="p">(</span><span class="n">gps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">gps</span><span class="p">[</span><span class="o">-</span><span class="n">i</span><span class="p">])</span></div>
+            
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">as_numpy_array</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">)</span>
+            
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rows</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cols</span>
+    
+<div class="viewcode-block" id="Grid.dummy"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.environment.html#VirtualMicrobes.environment.Grid.Grid.dummy">[docs]</a>    <span class="k">def</span> <span class="nf">dummy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span> <span class="s1">&#39;dummy&#39;</span></div>
+        
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gp_iter</span>
+    
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">nei_grids</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">nei</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighborhood_dict</span><span class="p">:</span>
+            <span class="n">nei_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">nei</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="n">nei_str</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="p">[</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span> <span class="nb">str</span><span class="p">(</span><span class="n">gp</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">gp</span><span class="p">[</span><span class="n">nei</span><span class="p">])</span>  <span class="k">for</span> <span class="n">gp</span> <span class="ow">in</span> <span class="n">row</span> <span class="p">])</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="p">]</span> <span class="p">)</span>
+            <span class="n">nei_grids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nei_str</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">nei_grids</span> <span class="p">)</span></div>
+    
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">grid1</span> <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">nei_wrapped_ew</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;hgt&#39;</span><span class="p">],</span> <span class="n">nei_wrapped_ns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;hgt&#39;</span><span class="p">]</span> <span class="p">)</span>
+    <span class="nb">print</span> <span class="s1">&#39;GRID1&#39;</span>
+    <span class="k">for</span> <span class="n">gp</span> <span class="ow">in</span> <span class="n">grid1</span><span class="o">.</span><span class="n">gp_iter</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="n">gp</span><span class="p">,</span> 
+        <span class="k">for</span> <span class="n">nei_gp</span> <span class="ow">in</span> <span class="n">gp</span><span class="o">.</span><span class="n">neighbor_gps</span><span class="p">(</span><span class="s1">&#39;hgt&#39;</span><span class="p">):</span>
+            <span class="nb">print</span> <span class="n">nei_gp</span><span class="p">,</span>
+        <span class="nb">print</span>
+        
+    <span class="n">grid2</span> <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">nei_wrapped_ew</span><span class="o">=</span><span class="p">[],</span> <span class="n">nei_wrapped_ns</span><span class="o">=</span><span class="p">[]</span> <span class="p">)</span>
+    <span class="nb">print</span>
+    <span class="nb">print</span> <span class="s1">&#39;GRID2&#39;</span>
+    <span class="k">for</span> <span class="n">gp</span> <span class="ow">in</span> <span class="n">grid2</span><span class="o">.</span><span class="n">gp_iter</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="n">gp</span><span class="p">,</span> 
+        <span class="k">for</span> <span class="n">nei_gp</span> <span class="ow">in</span> <span class="n">gp</span><span class="o">.</span><span class="n">neighbor_gps</span><span class="p">(</span><span class="s1">&#39;hgt&#39;</span><span class="p">):</span>
+            <span class="nb">print</span> <span class="n">nei_gp</span><span class="p">,</span>
+        <span class="nb">print</span>
+    
+    
+    <span class="nb">print</span> <span class="n">Coord</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="n">Coord</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="n">Coord</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="n">Coord</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="n">Coord</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="n">Coord</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+    
+    <span class="kn">import</span> <span class="nn">random</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">2.</span><span class="p">,</span><span class="o">-</span><span class="mf">2.</span><span class="p">)</span>
+    <span class="c1">#grid1.make_barrier(grid1[1][4], 4, &#39;hgt&#39;, &#39;tb&#39;)</span>
+    <span class="n">grid1</span><span class="o">.</span><span class="n">grid_barriers</span><span class="p">(</span><span class="n">p_row</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">p_col</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">neighborhoods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;hgt&#39;</span><span class="p">],</span> <span class="n">rand_gen</span><span class="o">=</span><span class="n">random</span><span class="p">)</span>
+    <span class="nb">print</span>
+    <span class="nb">print</span> <span class="s1">&#39;GRID2 with Barriers&#39;</span>
+    <span class="k">for</span> <span class="n">gp</span> <span class="ow">in</span> <span class="n">grid1</span><span class="o">.</span><span class="n">gp_iter</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="n">gp</span><span class="p">,</span> 
+        <span class="k">for</span> <span class="n">nei_gp</span> <span class="ow">in</span> <span class="n">gp</span><span class="o">.</span><span class="n">neighbor_gps</span><span class="p">(</span><span class="s1">&#39;hgt&#39;</span><span class="p">):</span>
+            <span class="nb">print</span> <span class="n">nei_gp</span><span class="p">,</span>
+        <span class="nb">print</span>
+    
+    
+    <span class="nb">print</span> <span class="n">Coord</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="n">Coord</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="n">Coord</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="n">Coord</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="n">Coord</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="n">Coord</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+    
+    
+            
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Thomas Cuypers, Bram van Dijk.
+      Last updated on Oct 10, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

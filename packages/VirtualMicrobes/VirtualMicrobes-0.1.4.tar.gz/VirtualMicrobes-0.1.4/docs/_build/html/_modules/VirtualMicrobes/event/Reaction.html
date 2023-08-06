@@ -1,0 +1,652 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VirtualMicrobes.event.Reaction &mdash; Virtual Microbes Evolutionary Simulator 0.1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Virtual Microbes Evolutionary Simulator 0.1.3 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Virtual Microbes Evolutionary Simulator
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">Virtual Microbes Evolutionary Simulator</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>VirtualMicrobes.event.Reaction</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for VirtualMicrobes.event.Reaction</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">VirtualMicrobes.event.Molecule</span> <span class="k">import</span> <span class="n">MoleculeClass</span>
+<span class="c1">#from itertools import product</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">VirtualMicrobes.my_tools.utility</span> <span class="k">import</span> <span class="n">ReactionScheme</span>
+
+<div class="viewcode-block" id="BadStoichiometryException"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.BadStoichiometryException">[docs]</a><span class="k">class</span> <span class="nc">BadStoichiometryException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+
+
+<div class="viewcode-block" id="Reaction"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.Reaction">[docs]</a><span class="k">class</span> <span class="nc">Reaction</span> <span class="p">(</span><span class="nb">object</span><span class="p">):</span> 
+    <span class="c1">#TODO refactor to more easily accept alternatively MoleculeClass and</span>
+    <span class="c1">#Molecule arguments either as lists or as single arguments</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    A reaction can be associated either with individual molecular </span>
+<span class="sd">    species or with a Molecule Classes. </span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">type_</span><span class="p">,</span> <span class="n">reactants</span><span class="p">,</span> <span class="n">products</span><span class="p">,</span> <span class="n">stoichiometry</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Reactions are rules to convert Molecules to other Molecules, or Transport</span>
+<span class="sd">        Molecules from one volume to another volume. A reaction specifies its</span>
+<span class="sd">        reactants and products as MoleculeClasses or Molecules. Because a</span>
+<span class="sd">        MoleculeClass can hold multiple Molecules, one Reaction is in fact a</span>
+<span class="sd">        collection of potential molecular reactions. The actualized reactions</span>
+<span class="sd">        depend on the properties (binding affinities for specific Molecules) of</span>
+<span class="sd">        the enzymes and the availability of Molecules.</span>
+<span class="sd">        </span>
+<span class="sd">        :param reactants: list of MoleculeClass or Molecule objects, defining the Reactant set</span>
+<span class="sd">        :param products: list of </span>
+<span class="sd">        :param stoichiometry:</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type_</span> <span class="o">=</span> <span class="n">type_</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span> <span class="o">=</span> <span class="n">reactants</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">products</span> <span class="o">=</span> <span class="n">products</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">stoichiometry</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">reactants</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">products</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">BadStoichiometryException</span><span class="p">(</span><span class="s1">&#39;Stoichiometry does not match number of reactants and products&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stoichiometry</span> <span class="o">=</span> <span class="n">stoichiometry</span>    
+        
+        <span class="n">react_stois</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stoichiometry</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="p">)])</span>
+        <span class="n">prod_stois</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stoichiometry</span><span class="p">[</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">):])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reac_scheme</span> <span class="o">=</span> <span class="n">ReactionScheme</span><span class="p">(</span><span class="n">reactants</span> <span class="o">=</span> <span class="n">react_stois</span><span class="p">,</span> <span class="n">products</span><span class="o">=</span><span class="n">prod_stois</span><span class="p">)</span>
+        <span class="c1">#print &quot;reaction scheme =&quot;, self.reac_scheme</span>
+        
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>      
+        <span class="n">out</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> 
+        <span class="n">out</span> <span class="o">+=</span>  <span class="p">(</span><span class="s2">&quot; + &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;(&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">energy_level</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>   
+                             <span class="k">for</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">r</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stoichiometry</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="p">)],</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="p">)</span> <span class="p">])</span> <span class="p">)</span>
+        <span class="n">out</span> <span class="o">+=</span> <span class="s1">&#39; --&gt; &#39;</span> 
+        <span class="n">out</span> <span class="o">+=</span> <span class="p">(</span> <span class="s2">&quot; + &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;(&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">energy_level</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>  
+                             <span class="k">for</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">p</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stoichiometry</span><span class="p">[</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">):],</span> <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">)</span> <span class="p">])</span> <span class="p">)</span> 
+        <span class="k">return</span> <span class="n">out</span>
+    
+    <span class="k">def</span> <span class="nf">__copy__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    
+    <span class="k">def</span> <span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Deepcopying is overridden such that it will in fact do a shallow copy.</span>
+<span class="sd">        Because reactions appear as members in Genes. (cf. Molecules)</span>
+<span class="sd">        </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+        
+        
+<div class="viewcode-block" id="Influx"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.Influx">[docs]</a><span class="k">class</span> <span class="nc">Influx</span><span class="p">(</span><span class="n">Reaction</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">substrate</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        </span>
+<span class="sd">        :param substrate: of type Molecule</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Influx</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="s1">&#39;influx&#39;</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[</span><span class="n">substrate</span><span class="p">],</span> <span class="n">stoichiometry</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        
+<div class="viewcode-block" id="Influx.reaction_scheme"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.Influx.reaction_scheme">[docs]</a>    <span class="k">def</span> <span class="nf">reaction_scheme</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;molecule&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span></div></div>
+        
+<div class="viewcode-block" id="Diffusion"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.Diffusion">[docs]</a><span class="k">class</span> <span class="nc">Diffusion</span><span class="p">(</span><span class="n">Reaction</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">substrate</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        </span>
+<span class="sd">        :param substrate: of type Molecule</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Diffusion</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="s1">&#39;diffusion&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">substrate</span><span class="p">],</span> <span class="p">[],</span> <span class="n">stoichiometry</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        
+<div class="viewcode-block" id="Diffusion.reaction_scheme"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.Diffusion.reaction_scheme">[docs]</a>    <span class="k">def</span> <span class="nf">reaction_scheme</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">reaction_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span> <span class="c1"># NOTE: unordered ok</span>
+        <span class="n">reaction_dict</span><span class="p">[</span><span class="s2">&quot;external&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">paired</span>
+        <span class="n">reaction_dict</span><span class="p">[</span><span class="s2">&quot;internal&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">reaction_dict</span></div>
+        
+<div class="viewcode-block" id="Diffusion.sub_reactions"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.Diffusion.sub_reactions">[docs]</a>    <span class="k">def</span> <span class="nf">sub_reactions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">internal_resources</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span>
+        <span class="n">external_resources</span> <span class="o">=</span> <span class="p">[</span> <span class="n">mol</span><span class="o">.</span><span class="n">paired</span> <span class="k">for</span> <span class="n">mol</span> <span class="ow">in</span> <span class="n">internal_resources</span> <span class="p">]</span>
+        <span class="n">stoi</span><span class="p">,</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stoichiometry</span>
+        <span class="n">sub_reactions</span> <span class="o">=</span> <span class="p">[</span> <span class="p">([(</span><span class="n">ext_</span><span class="p">,</span><span class="n">stoi</span><span class="p">)],[(</span><span class="n">int_</span><span class="p">,</span><span class="n">stoi</span><span class="p">)])</span> <span class="k">for</span> <span class="n">ext_</span><span class="p">,</span><span class="n">int_</span> <span class="ow">in</span>  <span class="nb">zip</span><span class="p">(</span><span class="n">internal_resources</span><span class="p">,</span><span class="n">external_resources</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">sub_reactions</span> </div></div>
+    
+<div class="viewcode-block" id="Degradation"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.Degradation">[docs]</a><span class="k">class</span> <span class="nc">Degradation</span><span class="p">(</span><span class="n">Reaction</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">substrate</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">        :param substrate: of type Molecule</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Degradation</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="s1">&#39;degradation&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">substrate</span><span class="p">],</span> <span class="p">[],</span> <span class="n">stoichiometry</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        
+<div class="viewcode-block" id="Degradation.reaction_scheme"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.Degradation.reaction_scheme">[docs]</a>    <span class="k">def</span> <span class="nf">reaction_scheme</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;molecule&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span></div>
+    
+<div class="viewcode-block" id="Degradation.sub_reactions"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.Degradation.sub_reactions">[docs]</a>    <span class="k">def</span> <span class="nf">sub_reactions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> 
+        <span class="n">internal_resources</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span>
+        <span class="n">stoi</span><span class="p">,</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stoichiometry</span>
+        <span class="n">sub_reactions</span> <span class="o">=</span> <span class="p">[</span> <span class="p">([(</span><span class="n">sub</span><span class="p">,</span> <span class="n">stoi</span><span class="p">)],)</span> <span class="k">for</span> <span class="n">sub</span> <span class="ow">in</span> <span class="n">internal_resources</span> <span class="p">]</span>
+        <span class="k">return</span> <span class="n">sub_reactions</span></div></div>
+        
+<div class="viewcode-block" id="Transport"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.Transport">[docs]</a><span class="k">class</span> <span class="nc">Transport</span><span class="p">(</span><span class="n">Reaction</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">substrate_class</span><span class="p">,</span> <span class="n">energy_source_class</span><span class="p">,</span> <span class="n">cost</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        </span>
+<span class="sd">        :param substrate_class: of type MoleculeClass</span>
+<span class="sd">        :param energy_source_class: of type MoleculeClass</span>
+<span class="sd">        :param cost: the cost or stoichiometry of energy to imported substrate</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="sd">&#39;&#39;&#39;this implies that 1 substrate molecule will be imported by consuming  &quot;cost&quot; energy_molecules &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">energy_source_class</span> <span class="o">=</span> <span class="n">energy_source_class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">substrate_class</span> <span class="o">=</span> <span class="n">substrate_class</span>
+        <span class="n">stoichiometry</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">cost</span><span class="p">]</span> 
+        <span class="nb">super</span><span class="p">(</span><span class="n">Transport</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="s1">&#39;import&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">energy_source_class</span><span class="p">],</span> <span class="p">[</span><span class="n">substrate_class</span><span class="p">],</span> <span class="n">stoichiometry</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_sub_reaction_dicts</span><span class="p">()</span>
+        
+<div class="viewcode-block" id="Transport.init_sub_reaction_dicts"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.Transport.init_sub_reaction_dicts">[docs]</a>    <span class="k">def</span> <span class="nf">init_sub_reaction_dicts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Write out dictionaries for the sub_reactions generated by sub_reactions()</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sub_reaction_dicts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">rhs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_reactions</span><span class="p">():</span>
+            <span class="n">sub_reaction_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="s2">&quot;reactants&quot;</span><span class="p">,</span> <span class="n">OrderedDict</span><span class="p">()),(</span> <span class="s2">&quot;products&quot;</span><span class="p">,</span> <span class="n">OrderedDict</span><span class="p">())])</span>  
+            <span class="n">re</span><span class="p">,</span><span class="n">stoi</span> <span class="o">=</span> <span class="n">lhs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># NOTE: assuming that first lhs index holds the ONLY substrate</span>
+            <span class="n">sub_reaction_dict</span><span class="p">[</span><span class="s2">&quot;reactants&quot;</span><span class="p">][</span><span class="s2">&quot;substrate&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;mol&quot;</span><span class="p">:</span> <span class="n">re</span><span class="p">,</span> <span class="s2">&quot;stoi&quot;</span><span class="p">:</span> <span class="n">stoi</span><span class="p">}</span> 
+            <span class="n">re</span><span class="p">,</span><span class="n">stoi</span> <span class="o">=</span> <span class="n">lhs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># NOTE: assuming that the last lhs index holds the energy molecule</span>
+            <span class="n">sub_reaction_dict</span><span class="p">[</span><span class="s2">&quot;reactants&quot;</span><span class="p">][</span><span class="s2">&quot;energy&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;mol&quot;</span><span class="p">:</span> <span class="n">re</span><span class="p">,</span> <span class="s2">&quot;stoi&quot;</span><span class="p">:</span> <span class="n">stoi</span><span class="p">}</span>            
+            <span class="n">re</span><span class="p">,</span><span class="n">stoi</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># NOTE: rhs only holds exactly 1 product</span>
+            <span class="n">sub_reaction_dict</span><span class="p">[</span><span class="s2">&quot;products&quot;</span><span class="p">][</span><span class="s2">&quot;substrate&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;mol&quot;</span><span class="p">:</span> <span class="n">re</span><span class="p">,</span> <span class="s2">&quot;stoi&quot;</span><span class="p">:</span> <span class="n">stoi</span><span class="p">}</span> 
+            <span class="bp">self</span><span class="o">.</span><span class="n">sub_reaction_dicts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub_reaction_dict</span><span class="p">)</span>        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_reaction_dicts</span></div>
+         
+<div class="viewcode-block" id="Transport.sub_reactions"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.Transport.sub_reactions">[docs]</a>    <span class="k">def</span> <span class="nf">sub_reactions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Sub-reactions of Transporters link a specific external substrate to its</span>
+<span class="sd">        internal counterpart. Different energy sources yield combinatorial</span>
+<span class="sd">        expansion.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">internal_resources</span> <span class="o">=</span> <span class="p">[</span> <span class="n">p</span><span class="o">.</span><span class="n">molecules</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">products</span> <span class="p">]</span>
+        <span class="n">external_resources</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span> <span class="n">mol</span><span class="o">.</span><span class="n">paired</span> <span class="k">for</span> <span class="n">mol</span> <span class="ow">in</span> <span class="n">internal</span> <span class="p">]</span> <span class="k">for</span> <span class="n">internal</span> <span class="ow">in</span> <span class="n">internal_resources</span> <span class="p">]</span>
+        <span class="n">ext_int</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="p">[</span> <span class="nb">zip</span><span class="p">(</span><span class="n">external</span><span class="p">,</span><span class="n">internal</span><span class="p">)</span> <span class="k">for</span> <span class="n">external</span><span class="p">,</span><span class="n">internal</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">external_resources</span><span class="p">,</span> <span class="n">internal_resources</span><span class="p">)</span> <span class="p">])</span>
+        <span class="n">reactants</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="p">[</span> <span class="n">r</span><span class="o">.</span><span class="n">molecules</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">MoleculeClass</span><span class="p">)</span> <span class="k">else</span> <span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span> <span class="p">])</span>       
+        <span class="n">sub_stoi</span><span class="p">,</span> <span class="n">ene_stoi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stoichiometry</span>
+        <span class="n">sub_reactions</span> <span class="o">=</span> <span class="p">[</span> <span class="p">([(</span><span class="n">ext</span><span class="p">,</span> <span class="n">sub_stoi</span><span class="p">),</span> <span class="p">(</span><span class="n">en</span><span class="p">,</span> <span class="n">ene_stoi</span><span class="p">)],</span> <span class="p">[(</span><span class="n">int_</span><span class="p">,</span> <span class="n">sub_stoi</span><span class="p">)])</span>
+                         <span class="k">for</span> <span class="p">(</span><span class="n">en</span><span class="p">,</span> <span class="p">(</span><span class="n">ext</span><span class="p">,</span> <span class="n">int_</span><span class="p">))</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">reactants</span><span class="p">,</span>  <span class="nb">list</span><span class="p">(</span><span class="n">ext_int</span><span class="p">))</span> <span class="p">]</span>
+        <span class="k">return</span> <span class="n">sub_reactions</span></div>
+    
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>      
+        <span class="n">out</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> 
+        <span class="n">out</span> <span class="o">+=</span>  <span class="p">(</span><span class="s2">&quot; + &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;(&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">energy_level</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>  
+                             <span class="k">for</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">r</span><span class="p">)</span> <span class="ow">in</span>  <span class="p">[</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stoichiometry</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">]</span> <span class="p">])</span> <span class="p">)</span>
+        <span class="n">out</span> <span class="o">+=</span> <span class="s1">&#39; --&gt; &#39;</span> 
+        <span class="n">out</span> <span class="o">+=</span> <span class="p">(</span><span class="s2">&quot; + &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;(&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">energy_level</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>  
+                            <span class="k">for</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">p</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stoichiometry</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span> <span class="p">])</span> <span class="p">)</span> 
+        <span class="k">return</span> <span class="n">out</span></div>
+        
+<div class="viewcode-block" id="Convert"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.Convert">[docs]</a><span class="k">class</span> <span class="nc">Convert</span><span class="p">(</span><span class="n">Reaction</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reactants</span><span class="p">,</span> <span class="n">products</span><span class="p">,</span> <span class="n">stoichiometry</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        </span>
+<span class="sd">        :param reactants: MoleculeClasses</span>
+<span class="sd">        :param products: MoleculeClasses</span>
+<span class="sd">        :param stoichiometry:</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Convert</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="s1">&#39;conversion&#39;</span><span class="p">,</span> <span class="n">reactants</span><span class="p">,</span> <span class="n">products</span><span class="p">,</span> <span class="n">stoichiometry</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_sub_reaction_dicts</span><span class="p">()</span>       
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">reac_species</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span> <span class="n">re</span><span class="p">[</span><span class="s1">&#39;mol&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">sub_reac_dict</span>  <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_reaction_dicts</span> <span class="k">for</span> <span class="n">re</span> <span class="ow">in</span> <span class="n">sub_reac_dict</span><span class="p">[</span><span class="s1">&#39;reactants&#39;</span><span class="p">]</span> <span class="p">]</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">prod_species</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span> <span class="n">re</span><span class="p">[</span><span class="s1">&#39;mol&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">sub_reac_dict</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_reaction_dicts</span> <span class="k">for</span> <span class="n">re</span> <span class="ow">in</span> <span class="n">sub_reac_dict</span><span class="p">[</span><span class="s1">&#39;products&#39;</span><span class="p">]</span> <span class="p">]</span>
+    
+<div class="viewcode-block" id="Convert.init_sub_reaction_dicts"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.Convert.init_sub_reaction_dicts">[docs]</a>    <span class="k">def</span> <span class="nf">init_sub_reaction_dicts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Write out dictionaries for the sub_reactions generated by sub_reactions()</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sub_reaction_dicts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">rhs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_reactions</span><span class="p">():</span>
+            <span class="n">sub_reaction_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;reactants&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;products&quot;</span><span class="p">:</span> <span class="p">[]}</span>  
+            <span class="k">for</span> <span class="n">re</span><span class="p">,</span><span class="n">stoi</span> <span class="ow">in</span> <span class="n">lhs</span><span class="p">:</span> 
+                <span class="n">sub_reaction_dict</span><span class="p">[</span><span class="s2">&quot;reactants&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;mol&quot;</span><span class="p">:</span> <span class="n">re</span><span class="p">,</span> <span class="s2">&quot;stoi&quot;</span><span class="p">:</span> <span class="n">stoi</span><span class="p">})</span> 
+            
+            <span class="k">for</span> <span class="n">re</span><span class="p">,</span><span class="n">stoi</span> <span class="ow">in</span> <span class="n">rhs</span><span class="p">:</span> 
+                <span class="n">sub_reaction_dict</span><span class="p">[</span><span class="s2">&quot;products&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;mol&quot;</span><span class="p">:</span> <span class="n">re</span><span class="p">,</span> <span class="s2">&quot;stoi&quot;</span><span class="p">:</span> <span class="n">stoi</span><span class="p">})</span> 
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">sub_reaction_dicts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub_reaction_dict</span><span class="p">)</span>        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_reaction_dicts</span></div>
+        
+<div class="viewcode-block" id="Convert.sub_reactions"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.Convert.sub_reactions">[docs]</a>    <span class="k">def</span> <span class="nf">sub_reactions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Returns a list of all potential reaction schemes in the following form:</span>
+<span class="sd">        ([ (reactant, stoichiometry), .. ], [ (product, stoichiometry) ..] ).</span>
+<span class="sd">        The general scheme for reactions from and to Molecule Classes maps molecules within </span>
+<span class="sd">        a MolClass on lhs to molecules in another class on the rhs as follows:</span>
+<span class="sd">        </span>
+<span class="sd">        Reaction scheme as MoleculeClass scheme: </span>
+<span class="sd">        A + B -&gt; C , where A :{a0, a1, a2}, B:{b0, b1}, C:{c0, c1, c2*}</span>
+<span class="sd">        will be translated into:</span>
+<span class="sd">        </span>
+<span class="sd">        a0 + b0 -&gt; c0</span>
+<span class="sd">        a1 + b0 -&gt; c1</span>
+<span class="sd">        a2 + b0 -&gt; c2*</span>
+<span class="sd">        </span>
+<span class="sd">        a0 + b1 -&gt; c0</span>
+<span class="sd">        a1 + b1 -&gt; c1</span>
+<span class="sd">        a2 + b1 -&gt; c2*</span>
+<span class="sd">       </span>
+<span class="sd">        * If certain molecule species do not exist (e.g. the c2 in the previous example does not</span>
+<span class="sd">        exist, the reaction is omitted from possible sub-reactions, and will therefor not take place.  </span>
+<span class="sd">        Note that products on the rhs will always be converted in to the species corresponding</span>
+<span class="sd">        to the index of the substrate on the lhs. If there is more product than substrates, e.g.</span>
+<span class="sd">        A -&gt; C + D where D:{d0, d1}, then there will be subreactions for every possible species of D:</span>
+<span class="sd">        </span>
+<span class="sd">        a0 -&gt; c0 + d0</span>
+<span class="sd">        a0 -&gt; c0 + d1</span>
+<span class="sd">        </span>
+<span class="sd">        a1 -&gt; c1 + d0</span>
+<span class="sd">        a1 -&gt; c1 + d1</span>
+<span class="sd">        </span>
+<span class="sd">        a2 -&gt; c2 + d0</span>
+<span class="sd">        a2 -&gt; c2 + d1</span>
+<span class="sd">                </span>
+<span class="sd">        Example 2:</span>
+<span class="sd">        F + G -&gt; H + I    , where F :{f0, f1, f2}, G:{g0}, H:{h0, h1} , I:{i0, i2}</span>
+<span class="sd">        becomes:</span>
+<span class="sd">        </span>
+<span class="sd">        f0 + g0 -&gt; h0 + i0</span>
+<span class="sd">        f1 + g0 -&gt; h1 + i0</span>
+<span class="sd">        </span>
+<span class="sd">        .</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">reac_stois</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reac_scheme</span><span class="o">.</span><span class="n">reactants</span>
+        <span class="n">prod_stois</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reac_scheme</span><span class="o">.</span><span class="n">products</span>
+        <span class="n">reac_class_prod_class_pairs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># pad the reaction classes or product classes with (None,None) values</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">reac_class</span><span class="p">,</span> <span class="n">r_stoi</span><span class="p">),</span> <span class="p">(</span><span class="n">prod_class</span><span class="p">,</span> <span class="n">p_stoi</span><span class="p">)</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">izip_longest</span><span class="p">(</span><span class="n">reac_stois</span><span class="p">,</span> <span class="n">prod_stois</span><span class="p">,</span> 
+                                                                                 <span class="n">fillvalue</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="p">:</span> 
+            <span class="n">reac_mol_prod_mol_pairs</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="c1"># expand to molecule species for each Molecule Class, expanding to [] when it was padded</span>
+            <span class="n">reac_mols</span> <span class="o">=</span> <span class="n">reac_class</span><span class="o">.</span><span class="n">molecules</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">reac_class</span> <span class="o">!=</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
+            <span class="n">prod_mols</span> <span class="o">=</span> <span class="n">prod_class</span><span class="o">.</span><span class="n">molecules</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">prod_class</span> <span class="o">!=</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="n">reac_class</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">prod_class</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># pad combinations with None, to maintain general form of the mapping</span>
+                <span class="c1"># e.g. : Molecule Class reaction A + B -&gt; C, with A:{a0,a1} , B:{b0,b1}, C:{c0, c1}</span>
+                <span class="c1"># will be expanded to:</span>
+                <span class="c1"># reac_class_prod_class_pairs = </span>
+                <span class="c1"># [ </span>
+                <span class="c1">#   [ ((a0,a0_s), (c0,c0_s)), </span>
+                <span class="c1">#     ((a1,a1_s), (c1,c1_s)) ], </span>
+                <span class="c1">#   [ ((b0,b0_s), (None,None)), </span>
+                <span class="c1">#     ((b1,b1_s), (None,None)) ] </span>
+                <span class="c1"># ] </span>
+                <span class="k">for</span> <span class="n">reac_mol</span><span class="p">,</span> <span class="n">prod_mol</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">izip_longest</span><span class="p">(</span><span class="n">reac_mols</span><span class="p">,</span><span class="n">prod_mols</span><span class="p">):</span> 
+                    <span class="n">reac_mol_prod_mol_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span> <span class="p">(</span><span class="n">reac_mol</span><span class="p">,</span> <span class="n">r_stoi</span><span class="p">),</span> <span class="p">(</span><span class="n">prod_mol</span><span class="p">,</span> <span class="n">p_stoi</span><span class="p">)</span> <span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># do not pad, but zip to shortest sequence. In this way, if a reaction </span>
+                <span class="c1"># between Molecule Classes of unequal size (nr species) is modeled, </span>
+                <span class="c1"># molecules with no counter part will not have a reaction asigned.</span>
+                <span class="c1"># e.g. a reaction A + B -&gt; C + D with with A:{a0,a1} , B:{b0,b1}, C:{c0, c1},</span>
+                <span class="c1"># D: {d0} will be expanded to:</span>
+                <span class="c1"># reac_class_prod_class_pairs =</span>
+                <span class="c1"># [ </span>
+                <span class="c1">#   [ ((a0,a0_s), (c0,c0_s)), </span>
+                <span class="c1">#     ((a1,a1_s), (c1,c1_s)) ],</span>
+                <span class="c1">#   [ ((b0,b0_s), (d0,d0_s)) ]</span>
+                <span class="c1"># ] </span>
+                <span class="k">for</span> <span class="n">reac_mol</span><span class="p">,</span> <span class="n">prod_mol</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">izip</span><span class="p">(</span><span class="n">reac_mols</span><span class="p">,</span><span class="n">prod_mols</span><span class="p">):</span> 
+                    <span class="n">reac_mol_prod_mol_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span> <span class="p">(</span><span class="n">reac_mol</span><span class="p">,</span> <span class="n">r_stoi</span><span class="p">),</span> <span class="p">(</span><span class="n">prod_mol</span><span class="p">,</span> <span class="n">p_stoi</span><span class="p">)</span> <span class="p">))</span>
+            <span class="n">reac_class_prod_class_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reac_mol_prod_mol_pairs</span><span class="p">)</span>
+        
+        <span class="n">sub_reactions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># Now, make the product of all (reactant,product) pairs to make up the </span>
+        <span class="c1"># full reactions. </span>
+        <span class="k">for</span> <span class="n">rp_class_pairs</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">reac_class_prod_class_pairs</span><span class="p">):</span>
+            <span class="c1">#itertools.product(*reac_class_prod_class_pairs)</span>
+            <span class="c1"># [ ( [ [ ( (r_mol, r_stoi), (p_mol, p_stoi) ), ... ] &lt;-- r_mol-p_mol pairs , .. ] </span>
+            <span class="c1">#                                                     &lt;-- r_class-p_class pairs, .. )  ... ]</span>
+            <span class="c1">#                                                     &lt;-- cartesian prod of all r_class-p_class pairs</span>
+            <span class="n">lhs</span><span class="p">,</span> <span class="n">rhs</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+            <span class="n">sub_reaction</span> <span class="o">=</span> <span class="p">(</span><span class="n">lhs</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">r_mol</span><span class="p">,</span> <span class="n">r_stoi</span><span class="p">),</span> <span class="p">(</span><span class="n">p_mol</span><span class="p">,</span> <span class="n">p_stoi</span><span class="p">)</span> <span class="ow">in</span> <span class="n">rp_class_pairs</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">r_mol</span><span class="p">:</span>
+                    <span class="n">lhs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">r_mol</span><span class="p">,</span> <span class="n">r_stoi</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">p_mol</span><span class="p">:</span>
+                    <span class="n">rhs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">p_mol</span><span class="p">,</span> <span class="n">p_stoi</span><span class="p">))</span>
+            <span class="n">sub_reactions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub_reaction</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sub_reactions</span></div></div>
+    
+<div class="viewcode-block" id="ClassConvert"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.ClassConvert">[docs]</a><span class="k">class</span> <span class="nc">ClassConvert</span><span class="p">(</span><span class="n">Convert</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">substrate</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">product</span><span class="p">):</span>
+        <span class="n">stoichiometry</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ClassConvert</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">([</span><span class="n">substrate</span><span class="p">,</span> <span class="n">energy</span><span class="p">],</span> <span class="p">[</span><span class="n">product</span><span class="p">],</span> <span class="n">stoichiometry</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">substrate</span> <span class="o">=</span> <span class="n">substrate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">energy_class</span> <span class="o">=</span> <span class="n">energy</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">product</span> <span class="o">=</span> <span class="n">product</span>
+    
+<div class="viewcode-block" id="ClassConvert.init_sub_reaction_dicts"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.ClassConvert.init_sub_reaction_dicts">[docs]</a>    <span class="k">def</span> <span class="nf">init_sub_reaction_dicts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Write out dictionaries for the sub_reactions generated by sub_reactions()</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sub_reaction_dicts</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="p">(</span><span class="n">sub</span><span class="p">,</span> <span class="n">sub_stoi</span><span class="p">),</span> <span class="p">(</span><span class="n">ene_class</span><span class="p">,</span> <span class="n">ene_stoi</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reac_scheme</span><span class="o">.</span><span class="n">reactants</span>
+        <span class="p">(</span><span class="n">prod</span><span class="p">,</span><span class="n">prod_stoi</span><span class="p">),</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reac_scheme</span><span class="o">.</span><span class="n">products</span>
+        <span class="k">for</span> <span class="n">ene</span> <span class="ow">in</span> <span class="n">ene_class</span><span class="o">.</span><span class="n">molecules</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">sub_reaction_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;reactants&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;products&quot;</span><span class="p">:</span> <span class="p">[]}</span>     
+            <span class="n">sub_reaction_dict</span><span class="p">[</span><span class="s2">&quot;reactants&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;mol&quot;</span><span class="p">:</span> <span class="n">sub</span><span class="p">,</span> <span class="s2">&quot;stoi&quot;</span><span class="p">:</span> <span class="n">sub_stoi</span><span class="p">})</span> 
+            <span class="n">sub_reaction_dict</span><span class="p">[</span><span class="s2">&quot;reactants&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;mol&quot;</span><span class="p">:</span> <span class="n">ene</span><span class="p">,</span> <span class="s2">&quot;stoi&quot;</span><span class="p">:</span> <span class="n">ene_stoi</span><span class="p">})</span>
+            <span class="n">sub_reaction_dict</span><span class="p">[</span><span class="s2">&quot;products&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;mol&quot;</span><span class="p">:</span> <span class="n">prod</span><span class="p">,</span> <span class="s2">&quot;stoi&quot;</span><span class="p">:</span> <span class="n">prod_stoi</span><span class="p">})</span> 
+            <span class="bp">self</span><span class="o">.</span><span class="n">sub_reaction_dicts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub_reaction_dict</span><span class="p">)</span>        
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_reaction_dicts</span></div></div>
+
+<div class="viewcode-block" id="create_conversions"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.create_conversions">[docs]</a><span class="k">def</span> <span class="nf">create_conversions</span><span class="p">(</span><span class="n">reaction_stoi_combinations</span><span class="p">):</span>
+    <span class="n">reactions</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">reac_stoi</span><span class="p">,</span> <span class="n">prod_stoi</span> <span class="ow">in</span> <span class="n">reaction_stoi_combinations</span><span class="p">:</span>
+        <span class="n">reac</span><span class="p">,</span> <span class="n">r_stoi</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">reac_stoi</span><span class="p">)</span> <span class="c1"># unzipping</span>
+        <span class="n">prod</span><span class="p">,</span> <span class="n">p_stoi</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">prod_stoi</span><span class="p">)</span>
+        <span class="n">reactions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Convert</span><span class="p">(</span><span class="n">reac</span><span class="p">,</span> <span class="n">prod</span><span class="p">,</span> <span class="n">r_stoi</span> <span class="o">+</span> <span class="n">p_stoi</span><span class="p">))</span> 
+    <span class="k">return</span> <span class="n">reactions</span></div>
+
+<div class="viewcode-block" id="produces"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.produces">[docs]</a><span class="k">def</span> <span class="nf">produces</span><span class="p">(</span><span class="n">reactions</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Set of produced metabolic species.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    reactions : iterable of class:`Convert` or dict</span>
+<span class="sd">        set of reactions </span>
+<span class="sd">        </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    set of `event.Molecule.Molecule`s produced in the reaction set.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">products</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">reactions</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Convert</span><span class="p">):</span>
+            <span class="n">products</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">prod_species</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">products</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="n">re</span><span class="p">[</span><span class="s1">&#39;mol&#39;</span><span class="p">]</span> <span class="k">for</span>  <span class="n">re</span> <span class="ow">in</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;products&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">products</span></div>
+
+<div class="viewcode-block" id="consumes"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.consumes">[docs]</a><span class="k">def</span> <span class="nf">consumes</span><span class="p">(</span><span class="n">reactions</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Set of consumed metabolic species.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    reactions : iterable of class:`Convert` or dict</span>
+<span class="sd">        set of reactions </span>
+<span class="sd">        </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    set of class:`event.Molecule.Molecule`s consumed in the reaction set.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">substrates</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">reactions</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Convert</span><span class="p">):</span>
+            <span class="n">substrates</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">reac_species</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="nb">dict</span><span class="p">):</span>
+            <span class="n">substrates</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="n">re</span><span class="p">[</span><span class="s1">&#39;mol&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">re</span> <span class="ow">in</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;reactants&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">substrates</span></div>
+
+<div class="viewcode-block" id="find_metabolic_closure"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.find_metabolic_closure">[docs]</a><span class="k">def</span> <span class="nf">find_metabolic_closure</span><span class="p">(</span><span class="n">input_set</span><span class="p">,</span> <span class="n">conversions</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Find the autocatalytic closure of metabolites given a set of inputs and</span>
+<span class="sd">    reactions.</span>
+<span class="sd">    </span>
+<span class="sd">    Iteratively overlap the produced + influxed and consumed metabolites of the</span>
+<span class="sd">    set of conversion reactions, yielding a set of &#39;potentially autocatalytic</span>
+<span class="sd">    metabolites&#39;. Iterate over the set of &#39;potentially autocatalytic reactions&#39;</span>
+<span class="sd">    and require that all substrates of the reaction are in the set of</span>
+<span class="sd">    &#39;potentially autocatalytic&#39; metabolites. If not, remove the reaction </span>
+<span class="sd">    from the &#39;potentially autocatalytic&#39; reaction set.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    input_set : iterable of :class:`event.Molecule.Molecule`</span>
+<span class="sd">        initial set to start expansion of metabolic set</span>
+<span class="sd">    </span>
+<span class="sd">    conversions : iterable of :class:`Conversion`s</span>
+<span class="sd">        enzymatic reactions that convert metabolites into other metabolites</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple :( set of class:`event.Molecule.Molecule`s , set of :class:`Conversion`s)</span>
+<span class="sd">        molecules and reactions in the core autocatalytic cycle.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">potential_conversions</span> <span class="o">=</span> <span class="p">[</span> <span class="n">sub_reac</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">conversions</span> <span class="k">for</span> <span class="n">sub_reac</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">sub_reaction_dicts</span> <span class="p">]</span>
+    <span class="n">reduced</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">while</span> <span class="n">reduced</span><span class="p">:</span> <span class="c1"># keep removing reactions and metabolites until a stable set is found</span>
+        <span class="n">reduced</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">produced</span> <span class="o">=</span> <span class="n">produces</span><span class="p">(</span><span class="n">potential_conversions</span><span class="p">)</span>
+        <span class="n">consumed</span> <span class="o">=</span> <span class="n">consumes</span><span class="p">(</span><span class="n">potential_conversions</span><span class="p">)</span>
+        <span class="n">potentially_autocatalytic</span> <span class="o">=</span> <span class="p">(</span> <span class="p">(</span><span class="n">produced</span> <span class="o">|</span> <span class="n">input_set</span> <span class="p">)</span> <span class="o">&amp;</span> <span class="n">consumed</span><span class="p">)</span>  
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">potential_conversions</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">re</span><span class="p">[</span><span class="s1">&#39;mol&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">re</span> <span class="ow">in</span> <span class="n">c</span><span class="p">[</span><span class="s1">&#39;reactants&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="n">potentially_autocatalytic</span><span class="p">:</span> <span class="c1"># consumes reactant autside auto-cat set</span>
+                <span class="n">potential_conversions</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+                <span class="n">reduced</span> <span class="o">=</span> <span class="kc">True</span> 
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">consumed</span> <span class="o">&amp;</span> <span class="n">input_set</span><span class="p">:</span> <span class="c1"># no input mols are being consumed, so it cannot be sustainable</span>
+        <span class="k">return</span> <span class="nb">set</span><span class="p">(),</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">potentially_autocatalytic</span><span class="p">,</span> <span class="n">potential_conversions</span></div>
+    
+    
+
+<div class="viewcode-block" id="find_product_set"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.event.html#VirtualMicrobes.event.Reaction.find_product_set">[docs]</a><span class="k">def</span> <span class="nf">find_product_set</span><span class="p">(</span><span class="n">input_mols</span><span class="p">,</span> <span class="n">conversions</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Find metabolites that can be produced from a set of input metabolites, given a set of reactions.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    input_mols : iterable of :class:`event.Molecule.Molecule`</span>
+<span class="sd">        initial set to start expansion of metabolic set</span>
+<span class="sd">    </span>
+<span class="sd">    conversions : iterable of :class:`Conversion`s</span>
+<span class="sd">        enzymatic reactions that convert metabolites into other metabolites</span>
+<span class="sd">        </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    set of produced class:`event.Molecule.Molecule`s</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">input_mols</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">input_mols</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">input_mols</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">_auto_cat_mols</span><span class="p">,</span> <span class="n">auto_cat_conversions</span> <span class="o">=</span> <span class="n">find_metabolic_closure</span><span class="p">(</span><span class="n">input_mols</span><span class="p">,</span> <span class="n">conversions</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">produces</span><span class="p">(</span><span class="n">auto_cat_conversions</span><span class="p">)</span></div>
+    
+    
+    
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Thomas Cuypers, Bram van Dijk.
+      Last updated on Oct 10, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,1145 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VirtualMicrobes.post_analysis.lod &mdash; Virtual Microbes Evolutionary Simulator 0.1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Virtual Microbes Evolutionary Simulator 0.1.3 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Virtual Microbes Evolutionary Simulator
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">Virtual Microbes Evolutionary Simulator</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>VirtualMicrobes.post_analysis.lod</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for VirtualMicrobes.post_analysis.lod</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Created on Apr 11, 2015</span>
+
+<span class="sd">@author: thocu</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">VirtualMicrobes.cython_gsl_interface.integrate</span> <span class="k">as</span> <span class="nn">integrate</span>  
+<span class="kn">from</span> <span class="nn">VirtualMicrobes.environment.Environment</span> <span class="k">import</span> <span class="n">Locality</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">VirtualMicrobes.simulation.Simulation</span> <span class="k">as</span> <span class="nn">simu</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">VirtualMicrobes.plotting.Graphs</span> <span class="k">import</span> <span class="n">BindingNetwork</span><span class="p">,</span> <span class="n">MetabolicNetwork</span><span class="p">,</span> <span class="n">Genome</span><span class="p">,</span> <span class="n">PhyloTreeGraph</span>
+<span class="kn">import</span> <span class="nn">VirtualMicrobes.my_tools.utility</span> <span class="k">as</span> <span class="nn">util</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+
+<span class="k">def</span> <span class="nf">_plot_cell_graphs</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">GRN_grapher</span><span class="p">,</span> <span class="n">metabolome_grapher</span><span class="p">,</span> <span class="n">genome_grapher</span><span class="p">,</span> <span class="n">max_genome_size</span><span class="p">,</span> <span class="n">suffixes</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Draw all graphs for cell</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    cell : :class:`VirtualMicrobes.virtual_cell.Cell.Cell`</span>
+<span class="sd">    GRN_grapher : :class:`VirtualMicrobes.plotting.Graphs.BindingNetwork` </span>
+<span class="sd">        draws gene regulatory network graphs</span>
+<span class="sd">    metabolome_grapher : :class:`VirtualMicrobes.plotting.Graphs.MetabolicNetwork` </span>
+<span class="sd">        draws metabolic network</span>
+<span class="sd">    genome_grapher : :class:`VirtualMicrobes.plotting.Graphs.Genome` </span>
+<span class="sd">        draws genome layout graphs</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">GRN_grapher</span><span class="o">.</span><span class="n">init_network</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
+    <span class="n">GRN_grapher</span><span class="o">.</span><span class="n">layout_network_positions</span><span class="p">(</span><span class="n">prog</span><span class="o">=</span><span class="s1">&#39;nwx&#39;</span><span class="p">)</span>
+    <span class="n">GRN_grapher</span><span class="o">.</span><span class="n">redraw_network</span><span class="p">()</span>
+    <span class="n">GRN_grapher</span><span class="o">.</span><span class="n">update_figure</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">suffix</span> <span class="ow">in</span> <span class="n">suffixes</span><span class="p">:</span>
+        <span class="n">GRN_grapher</span><span class="o">.</span><span class="n">save_fig</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">time_birth</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="s1">&#39;nwx&#39;</span><span class="p">],</span> <span class="n">suffix</span><span class="o">=</span><span class="n">suffix</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+    <span class="n">GRN_grapher</span><span class="o">.</span><span class="n">layout_network_positions</span><span class="p">(</span><span class="n">prog</span><span class="o">=</span><span class="s1">&#39;dot&#39;</span><span class="p">)</span>
+    <span class="n">GRN_grapher</span><span class="o">.</span><span class="n">redraw_network</span><span class="p">()</span>
+    <span class="n">GRN_grapher</span><span class="o">.</span><span class="n">update_figure</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">suffix</span> <span class="ow">in</span> <span class="n">suffixes</span><span class="p">:</span>
+        <span class="n">GRN_grapher</span><span class="o">.</span><span class="n">save_fig</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">time_birth</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="s1">&#39;bound&#39;</span><span class="p">,</span> <span class="s1">&#39;dot&#39;</span><span class="p">],</span> <span class="n">suffix</span><span class="o">=</span><span class="n">suffix</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+    
+    <span class="n">GRN_grapher</span><span class="o">.</span><span class="n">redraw_network</span><span class="p">(</span><span class="n">edge_effect</span><span class="o">=</span><span class="s1">&#39;effect_apo&#39;</span><span class="p">)</span>
+    <span class="n">GRN_grapher</span><span class="o">.</span><span class="n">update_figure</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">suffix</span> <span class="ow">in</span> <span class="n">suffixes</span><span class="p">:</span>
+        <span class="n">GRN_grapher</span><span class="o">.</span><span class="n">save_fig</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">time_birth</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="s1">&#39;apo&#39;</span><span class="p">,</span> <span class="s1">&#39;dot&#39;</span><span class="p">],</span> <span class="n">suffix</span><span class="o">=</span><span class="n">suffix</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+    
+    <span class="n">GRN_grapher</span><span class="o">.</span><span class="n">clear_graph</span><span class="p">()</span>
+    <span class="n">metabolome_grapher</span><span class="o">.</span><span class="n">redraw_network</span><span class="p">(</span><span class="n">reactions_dict</span><span class="o">=</span><span class="n">cell</span><span class="o">.</span><span class="n">reaction_set_dict</span><span class="p">,</span>
+                                      <span class="n">building_blocks</span><span class="o">=</span><span class="n">cell</span><span class="o">.</span><span class="n">building_blocks</span><span class="p">)</span>
+    <span class="n">metabolome_grapher</span><span class="o">.</span><span class="n">update_figure</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">suffix</span> <span class="ow">in</span> <span class="n">suffixes</span><span class="p">:</span>
+        <span class="n">metabolome_grapher</span><span class="o">.</span><span class="n">save_fig</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">time_birth</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">10</span><span class="p">)],</span> <span class="n">suffix</span><span class="o">=</span><span class="n">suffix</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+    
+    <span class="n">genome_grapher</span><span class="o">.</span><span class="n">plot_genome_structure</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">time_birth</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">10</span><span class="p">)],</span>  
+                                         <span class="n">max_size</span><span class="o">=</span><span class="n">max_genome_size</span><span class="p">)</span>
+    <span class="n">genome_grapher</span><span class="o">.</span><span class="n">update_figure</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">suffix</span> <span class="ow">in</span> <span class="n">suffixes</span><span class="p">:</span>
+        <span class="n">genome_grapher</span><span class="o">.</span><span class="n">save_fig</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">time_birth</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">10</span><span class="p">)],</span> <span class="n">suffix</span><span class="o">=</span><span class="n">suffix</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_plot_cell_time_course</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">sim_graphs</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">,</span> <span class="n">suffixes</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Plot all time courses within the life span of an individual. </span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    cell : :class:`VirtualMicrobes.virtual_cell.Cell.Cell`</span>
+<span class="sd">    sim_graphs : :class:`VirtualMicrobes.plotting.Graphs.Graphs`</span>
+<span class="sd">        simulation grapher object that draws the plots</span>
+<span class="sd">    save_dir : str</span>
+<span class="sd">    suffixes : list of file suffixes</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+    <span class="n">mol_ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">321</span><span class="p">)</span>
+    <span class="n">mol_ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;internal molecule conc&#39;</span><span class="p">)</span>
+    <span class="n">prot_ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">323</span><span class="p">)</span>
+    <span class="n">prot_ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;protein concentration&#39;</span><span class="p">)</span>
+    <span class="n">size_ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">322</span><span class="p">)</span>
+    <span class="n">size_ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;cell size&#39;</span><span class="p">)</span>
+    <span class="n">tox_ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">324</span><span class="p">)</span>
+    <span class="n">tox_ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;toxicity&#39;</span><span class="p">)</span>
+    <span class="n">prod_ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">326</span><span class="p">)</span>
+    <span class="n">prod_ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;production&#39;</span><span class="p">)</span>
+    
+    <span class="n">size_dat</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">get_cell_size_time_course</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">size_dat</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]):</span>
+        <span class="k">return</span>
+    
+    <span class="n">mol_dat</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">get_mol_time_course_dict</span><span class="p">()</span>
+    <span class="n">prot_dat</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">get_gene_type_time_course_dict</span><span class="p">()</span>
+    
+    <span class="n">tox_dat</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">get_toxicity_time_course</span><span class="p">()</span>
+    <span class="n">prod_dat</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">get_raw_production_time_course</span><span class="p">()</span>
+    
+    <span class="n">sim_graphs</span><span class="o">.</span><span class="n">plot_mol_class_data</span><span class="p">(</span><span class="n">mol_ax</span><span class="p">,</span> <span class="n">mol_dat</span><span class="p">)</span>
+    <span class="n">sim_graphs</span><span class="o">.</span><span class="n">plot_prot_data</span><span class="p">(</span><span class="n">prot_ax</span><span class="p">,</span> <span class="n">prot_dat</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">size_ax</span><span class="o">.</span><span class="n">get_title</span><span class="p">()</span>
+    <span class="n">size_ax</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">size_ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">size_ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">size_dat</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span><span class="n">size_dat</span><span class="p">[</span><span class="mi">1</span><span class="p">,:])</span>
+    
+    <span class="n">title</span> <span class="o">=</span> <span class="n">tox_ax</span><span class="o">.</span><span class="n">get_title</span><span class="p">()</span>
+    <span class="n">tox_ax</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">tox_ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">tox_ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tox_dat</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">tox_dat</span><span class="p">[</span><span class="mi">1</span><span class="p">,:])</span>
+                 
+    <span class="n">title</span> <span class="o">=</span> <span class="n">prod_ax</span><span class="o">.</span><span class="n">get_title</span><span class="p">()</span>
+    <span class="n">prod_ax</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">prod_ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">prod_ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">prod_dat</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">prod_dat</span><span class="p">[</span><span class="mi">1</span><span class="p">,:])</span>
+    
+    <span class="k">for</span> <span class="n">suffix</span> <span class="ow">in</span> <span class="n">suffixes</span><span class="p">:</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span><span class="s1">&#39;time_course_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">time_birth</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">+</span><span class="n">suffix</span><span class="p">),</span> 
+                     <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_lod_time_course_data</span><span class="p">(</span><span class="n">ancestors</span><span class="p">,</span> <span class="n">base_save_dir</span><span class="p">,</span> <span class="n">viewer_path</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="mi">100</span> <span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Write time series data in the line of descent.</span>
+<span class="sd">    </span>
+<span class="sd">    Concatenates time courses of individuals along a :class:`LOD`.</span>
+<span class="sd">    Concatenations are done in *chunks* of a chosen `chunk_size`. For each chunk</span>
+<span class="sd">    **.csv** files are stored in a directory named part*n*, where *n* is the</span>
+<span class="sd">    chunk number.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ancestors : list of :class:`VirtualMicrobes.virtual_cell.Cell.Cell`\s</span>
+<span class="sd">    base_save_dir : str</span>
+<span class="sd">    viewer_path : str</span>
+<span class="sd">        path to utility files for html data viewer</span>
+<span class="sd">    chunk_size : int</span>
+<span class="sd">        length of chunks of concatenated data </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="c1"># divide the ancestors in LOD into chunks; concatenate time courses per chunk</span>
+    <span class="k">for</span> <span class="n">part</span><span class="p">,</span> <span class="n">anc_chunk</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">util</span><span class="o">.</span><span class="n">chunks</span><span class="p">(</span><span class="n">ancestors</span><span class="p">,</span> <span class="n">chunk_size</span><span class="p">)):</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">part</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">save_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_save_dir</span><span class="p">,</span> <span class="s1">&#39;part</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
+        <span class="n">util</span><span class="o">.</span><span class="n">ensure_dir</span><span class="p">(</span><span class="n">save_dir</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">viewer_path</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">)):</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">copy2</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">)</span>
+        
+        <span class="n">prod_series</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">cell_size_series</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">tox_series</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">mol_dfs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">prot_dfs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">anc</span> <span class="ow">in</span> <span class="n">anc_chunk</span><span class="p">:</span>
+            
+            <span class="c1"># production data</span>
+            <span class="n">ts_dat</span> <span class="o">=</span>  <span class="n">anc</span><span class="o">.</span><span class="n">get_raw_production_time_course</span><span class="p">()</span>
+            <span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ts_dat</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">ts_dat</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">prod_series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+            
+            <span class="c1"># cell size data</span>
+            <span class="n">ts_dat</span> <span class="o">=</span>  <span class="n">anc</span><span class="o">.</span><span class="n">get_cell_size_time_course</span><span class="p">()</span>
+            <span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ts_dat</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">ts_dat</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">cell_size_series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+            
+            <span class="c1"># toxicity data</span>
+            <span class="n">ts_dat</span> <span class="o">=</span>  <span class="n">anc</span><span class="o">.</span><span class="n">get_toxicity_time_course</span><span class="p">()</span>
+            <span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ts_dat</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">ts_dat</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">tox_series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+            
+            <span class="c1"># metabolite data</span>
+            <span class="n">mol_time_courses</span> <span class="o">=</span> <span class="n">anc</span><span class="o">.</span><span class="n">get_mol_time_course_dict</span><span class="p">()</span>
+            <span class="n">mol_series</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">mol</span><span class="p">,</span> <span class="n">tc</span> <span class="ow">in</span> <span class="n">mol_time_courses</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">mol_series</span><span class="p">[</span><span class="n">mol</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tc</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">tc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">mol</span><span class="p">)</span> 
+            <span class="n">mol_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mol_series</span><span class="p">)</span>
+            <span class="n">mol_dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mol_df</span><span class="p">)</span>
+            
+            <span class="c1"># protein data</span>
+            <span class="n">prot_time_courses</span> <span class="o">=</span> <span class="n">anc</span><span class="o">.</span><span class="n">get_total_reaction_type_time_course_dict</span><span class="p">()</span>
+            <span class="n">prot_series</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">_reac_type</span><span class="p">,</span> <span class="n">tc_dict</span> <span class="ow">in</span> <span class="n">prot_time_courses</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">reac</span><span class="p">,</span> <span class="n">tc</span> <span class="ow">in</span> <span class="n">tc_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reac</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+                        <span class="n">reac</span><span class="p">,</span> <span class="n">exp</span> <span class="o">=</span> <span class="n">reac</span>
+                        <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">reac</span><span class="p">)</span> 
+                        <span class="n">name</span> <span class="o">+=</span> <span class="s1">&#39;-e&#39;</span> <span class="k">if</span> <span class="n">exp</span> <span class="k">else</span> <span class="s1">&#39;-i&#39;</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">reac</span><span class="p">)</span>
+                    <span class="n">prot_series</span><span class="p">[</span><span class="n">name</span> <span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tc</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> 
+                                                   <span class="n">index</span><span class="o">=</span><span class="n">tc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+                                                   <span class="n">name</span><span class="o">=</span><span class="n">name</span> <span class="p">)</span> 
+            <span class="n">prot_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">prot_series</span><span class="p">)</span>
+            <span class="n">prot_dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prot_df</span><span class="p">)</span>
+            
+        <span class="c1"># concatenate each data type and write to file</span>
+        <span class="n">prod_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">prod_series</span><span class="p">)</span>
+        <span class="n">prod_series</span> <span class="o">=</span> <span class="n">prod_series</span><span class="p">[</span><span class="o">~</span><span class="n">prod_series</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;last&#39;</span><span class="p">)]</span>
+        <span class="n">ts_base_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span><span class="s1">&#39;production_time_course&#39;</span><span class="p">)</span>
+        <span class="n">prod_series</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">ts_base_name</span><span class="o">+</span><span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="n">index_label</span><span class="o">=</span><span class="s1">&#39;time point&#39;</span><span class="p">)</span>
+        
+        <span class="n">cell_size_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">cell_size_series</span><span class="p">)</span>
+        <span class="n">cell_size_series</span> <span class="o">=</span> <span class="n">cell_size_series</span><span class="p">[</span><span class="o">~</span><span class="n">cell_size_series</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;last&#39;</span><span class="p">)]</span>
+        <span class="n">ts_base_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span><span class="s1">&#39;cell_size_time_course&#39;</span><span class="p">)</span>
+        <span class="n">cell_size_series</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">ts_base_name</span><span class="o">+</span><span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="n">index_label</span><span class="o">=</span><span class="s1">&#39;time point&#39;</span><span class="p">)</span>
+        
+        <span class="n">tox_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">tox_series</span><span class="p">)</span>
+        <span class="n">tox_series</span> <span class="o">=</span> <span class="n">tox_series</span><span class="p">[</span><span class="o">~</span><span class="n">tox_series</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;last&#39;</span><span class="p">)]</span>
+        <span class="n">ts_base_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span><span class="s1">&#39;toxicity_time_course&#39;</span><span class="p">)</span>
+        <span class="n">tox_series</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">ts_base_name</span><span class="o">+</span><span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="n">index_label</span><span class="o">=</span><span class="s1">&#39;time point&#39;</span><span class="p">)</span>
+        
+        <span class="n">mol_df_combine</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">mol_dfs</span><span class="p">)</span>
+        <span class="n">mol_df_combine</span> <span class="o">=</span> <span class="n">mol_df_combine</span><span class="p">[</span><span class="o">~</span><span class="n">mol_df_combine</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;last&#39;</span><span class="p">)]</span>
+        <span class="n">df_base_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span><span class="s1">&#39;mol_time_courses&#39;</span><span class="p">)</span>
+        <span class="n">mol_df_combine</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">df_base_name</span><span class="o">+</span><span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="n">index_label</span><span class="o">=</span><span class="s1">&#39;time point&#39;</span><span class="p">)</span>
+        
+        <span class="n">prot_df_combine</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">prot_dfs</span><span class="p">)</span>
+        <span class="n">prot_df_combine</span> <span class="o">=</span> <span class="n">prot_df_combine</span><span class="p">[</span><span class="o">~</span><span class="n">prot_df_combine</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;last&#39;</span><span class="p">)]</span>
+        <span class="n">df_base_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span><span class="s1">&#39;prot_time_courses&#39;</span><span class="p">)</span>
+        <span class="n">prot_df_combine</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">df_base_name</span><span class="o">+</span><span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="n">index_label</span><span class="o">=</span><span class="s1">&#39;time point&#39;</span><span class="p">)</span>
+        
+<div class="viewcode-block" id="LOD_Analyser"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.LOD_Analyser">[docs]</a><span class="k">class</span> <span class="nc">LOD_Analyser</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Analyses the evolutionary history of a population by tracing ancestors in the</span>
+<span class="sd">    line of descent.</span>
+<span class="sd">    </span>
+<span class="sd">    Loads a simulation save from a file, keeping a reference in :attr:`ref_sim`.</span>
+<span class="sd">    From this, initialise :attr:`ref_pop_hist` as a :class:`PopulationHistory`</span>
+<span class="sd">    object that analyses  the phylogenetic tree of the population.</span>
+<span class="sd">    </span>
+<span class="sd">    The :class:`PopulationHistory` generates a :class:`LOD` for 1 or more</span>
+<span class="sd">    individuals in the saved population. For each :class:`LOD`, evolutionary</span>
+<span class="sd">    data and network and genome plots can be produced.</span>
+<span class="sd">    </span>
+<span class="sd">    It is possible to load additional simulation snapshots that preceed the</span>
+<span class="sd">    :attr:`ref_pop_hist` and compare individuals to their contemporaries present</span>
+<span class="sd">    in the preceding populations. :attr:`compare_saves` contains a list of file</span>
+<span class="sd">    names of populations-saves that should be compared.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="n">args</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&#39;&#39;&#39;config and command line arguments used for initialisation&#39;&#39;&#39;</span>
+    
+    <span class="n">ref_sim</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&#39;&#39;&#39;:class:`VirtualMicrobes.simulation.Simulation` snapshot to analyse&#39;&#39;&#39;</span>
+    
+    <span class="n">ref_pop_hist</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&#39;&#39;&#39;:class:`PopulationHistory` for the reference simulation (`ref_sim`) snapshot &#39;&#39;&#39;</span>
+    
+    <span class="n">compare_saves</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="sd">&#39;&#39;&#39;names of snapshot files to copmare to `ref_sim`&#39;&#39;&#39;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Initialize the analyzer from an argument dictionary. </span>
+<span class="sd">         </span>
+<span class="sd">        Load the population save from file :param:`args`.pop_save and initialize</span>
+<span class="sd">        special fields in its :class:`data_tools.store.DataStore` that can hold</span>
+<span class="sd">        ancestor tracing data. From :attr:`ref_sim` initialize :attr:`ref_pop_hist`</span>
+<span class="sd">        as a :class:`PopulationHistory` that can be used to generate and analyze</span>
+<span class="sd">        the evolutionary history of the population stored in :attr:`ref_sim`.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        args : dict</span>
+<span class="sd">            arguments attribute dictionary</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">ref_sim</span> <span class="o">=</span> <span class="n">simu</span><span class="o">.</span><span class="n">load_simulation</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">pop_save</span><span class="p">,</span> <span class="o">**</span><span class="nb">vars</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compare_saves</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">compare_saves</span>
+        <span class="nb">print</span> <span class="s1">&#39;historic maximum of production medium:&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ref_sim</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">historic_production_max</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_ref_history</span><span class="p">()</span>
+        
+        
+<div class="viewcode-block" id="LOD_Analyser.init_ref_history"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.LOD_Analyser.init_ref_history">[docs]</a>    <span class="k">def</span> <span class="nf">init_ref_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ref_sim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nr_lods</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                         <span class="n">prune_depth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">pop_hist_dir</span><span class="o">=</span><span class="s1">&#39;population_history&#39;</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Create a :class:`PopulationHistory` from the :attr:`ref_sim`</span>
+<span class="sd">        :class:`VirtualMicrobes.simulation.Simulation.Simulation` object.</span>
+<span class="sd">        </span>
+<span class="sd">        For the :class:`PopulationHistory` object constructs its phylogenetic tree</span>
+<span class="sd">        and prune back the tree to a maximum depth of (max_depth - prune_depth)</span>
+<span class="sd">        counted from the root. Then create :class:`LOD` objects representing</span>
+<span class="sd">        the *line of descent* of the `nr_lods` *most diverged* branches in the tree. </span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        </span>
+<span class="sd">        ref_sim : :class:`VirtualMicrobes.simulation.Simulation.Simulation` object</span>
+<span class="sd">            simulation snapshot that is the basis for `LOD` analysis</span>
+<span class="sd">        </span>
+<span class="sd">        nr_lods : int nr_lods </span>
+<span class="sd">            nr of separate (most distant) :class:`LOD`\s to initialize</span>
+<span class="sd">        </span>
+<span class="sd">        prune_depth : int </span>
+<span class="sd">            prune back the phylogenetic tree with this many timesteps </span>
+<span class="sd">        </span>
+<span class="sd">        pop_hist_dir : str </span>
+<span class="sd">            name of directory to store lod analysis output</span>
+<span class="sd">            </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">ref_sim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ref_sim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ref_sim</span>
+        <span class="k">if</span> <span class="n">nr_lods</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">nr_lods</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">nr_lods</span>
+        <span class="n">tp</span> <span class="o">=</span> <span class="n">ref_sim</span><span class="o">.</span><span class="n">run_time</span>
+        <span class="n">save_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ref_sim</span><span class="o">.</span><span class="n">save_dir</span><span class="p">,</span> <span class="n">pop_hist_dir</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">tp</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ref_pop_hist</span> <span class="o">=</span> <span class="n">PopulationHistory</span><span class="p">(</span><span class="n">sim</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ref_sim</span><span class="p">,</span> 
+                                          <span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ref_sim</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
+                                          <span class="n">save_dir</span><span class="o">=</span><span class="n">save_dir</span><span class="p">,</span>
+                                          <span class="n">prune_depth</span><span class="o">=</span><span class="n">prune_depth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ref_pop_hist</span><span class="o">.</span><span class="n">init_phylo_tree</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ref_pop_hist</span><span class="o">.</span><span class="n">init_lods</span><span class="p">(</span><span class="n">nr_lods</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ref_pop_hist</span><span class="o">.</span><span class="n">init_pop_hist_data_store</span><span class="p">()</span></div>
+                        
+<div class="viewcode-block" id="LOD_Analyser.compare_to_pops"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.LOD_Analyser.compare_to_pops">[docs]</a>    <span class="k">def</span> <span class="nf">compare_to_pops</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Compare reference simulation to a set of previous population snapshots.</span>
+
+<span class="sd">        Compares each of the simulation snapshot saves in :attr:`compare_saves`</span>
+<span class="sd">        to the :attr:`ref_pop_hist`. A :class:`PopulationHistory` is constructed for</span>
+<span class="sd">        each of the compare snapshots. Within the compare snapshot, individuals</span>
+<span class="sd">        that correspond to the are part of (any of) the :class:`LOD`(s) of the</span>
+<span class="sd">        :attr:`ref_pop_hist` will be identified. Properties of these *ancestors*</span>
+<span class="sd">        will then be compare with their statistical values for the whole</span>
+<span class="sd">        population.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># TODO check that compare saves are not older than the reference</span>
+        <span class="c1"># and raise error when it is the case: </span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">skip_store</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ref_sim</span><span class="o">.</span><span class="n">data_store</span><span class="o">.</span><span class="n">init_ancestry_compare_stores</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ref_pop_hist</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">compare_save</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compare_saves</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;.sav&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ref_pop_hist</span><span class="o">.</span><span class="n">compare_to_pop</span><span class="p">(</span><span class="n">compare_save</span><span class="p">)</span></div>
+            
+<div class="viewcode-block" id="LOD_Analyser.lod_stats"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.LOD_Analyser.lod_stats">[docs]</a>    <span class="k">def</span> <span class="nf">lod_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Write time series of evolutionary changes along all :class:`LOD`\s.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">print</span> <span class="s1">&#39;Running LOD stats&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ref_pop_hist</span><span class="o">.</span><span class="n">lod_stats</span><span class="p">()</span></div>
+        
+<div class="viewcode-block" id="LOD_Analyser.lod_network_stats"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.LOD_Analyser.lod_network_stats">[docs]</a>    <span class="k">def</span> <span class="nf">lod_network_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Write time series for evolutionary network property changes along all :class:`LOD`\s.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">print</span> <span class="s1">&#39;Running LOD Network stats&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ref_pop_hist</span><span class="o">.</span><span class="n">lod_network_stats</span><span class="p">()</span></div>
+        
+<div class="viewcode-block" id="LOD_Analyser.lod_binding_conservation"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.LOD_Analyser.lod_binding_conservation">[docs]</a>    <span class="k">def</span> <span class="nf">lod_binding_conservation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Write time series for TF binding conservation for :class:`LOD`\s.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">print</span> <span class="s1">&#39;Running LOD binding conservation&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ref_pop_hist</span><span class="o">.</span><span class="n">lod_binding_conservation</span><span class="p">()</span></div>
+            
+<div class="viewcode-block" id="LOD_Analyser.draw_ref_trees"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.LOD_Analyser.draw_ref_trees">[docs]</a>    <span class="k">def</span> <span class="nf">draw_ref_trees</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Draw a reference phylogenetic tree, with individual, selected :class:`LOD`\s marked&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ref_pop_hist</span><span class="o">.</span><span class="n">draw_ref_trees</span><span class="p">()</span></div>
+        
+<div class="viewcode-block" id="LOD_Analyser.lod_graphs"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.LOD_Analyser.lod_graphs">[docs]</a>    <span class="k">def</span> <span class="nf">lod_graphs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_interval</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lod_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">formats</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span> 
+        <span class="sd">&#39;&#39;&#39;Draw network and genome graphs for :class:`LOD`\s</span>
+<span class="sd">        </span>
+<span class="sd">        It is possible to set an interval and a range to sample individuals in</span>
+<span class="sd">        the :class:`LOD`.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        stride : int</span>
+<span class="sd">            stride in generations for sampling individuals along the :class:`LOD`</span>
+<span class="sd">        time_interval : int</span>
+<span class="sd">            interval in simulation time for sampling individuals along the</span>
+<span class="sd">            :class:`LOD`</span>
+<span class="sd">        lod_range : (float,float)</span>
+<span class="sd">            bounds in fractions of the total range of the :class:`LOD`</span>
+<span class="sd">        </span>
+<span class="sd">        Note</span>
+<span class="sd">        ----</span>
+<span class="sd">        Either use a stride or a time interval to sample individuals from the lod.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        
+        <span class="k">if</span> <span class="n">stride</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">time_interval</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;defining both lod_generation_interval and lod_time_interval is not allowed&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">stride</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">stride</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">lod_generation_interval</span>
+        <span class="k">if</span> <span class="n">time_interval</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">time_interval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">lod_time_interval</span>
+        <span class="k">if</span> <span class="n">lod_range</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">lod_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">lod_range</span>
+        <span class="k">if</span> <span class="n">formats</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">formats</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">image_formats</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ref_pop_hist</span><span class="o">.</span><span class="n">plot_lod_graphs</span><span class="p">(</span><span class="n">stride</span><span class="p">,</span> <span class="n">time_interval</span><span class="p">,</span> <span class="n">lod_range</span><span class="p">,</span> <span class="n">formats</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LOD_Analyser.lod_time_courses"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.LOD_Analyser.lod_time_courses">[docs]</a>    <span class="k">def</span> <span class="nf">lod_time_courses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lod_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Write time series of molecule concentrations within the :class:`LOD`</span>
+<span class="sd">        </span>
+<span class="sd">        It is possible to set a range to sample individuals in</span>
+<span class="sd">        the :class:`LOD`.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        lod_range : (float,float)</span>
+<span class="sd">            bounds in fractions of the total range of the :class:`LOD`</span>
+<span class="sd">        chunk_size : int</span>
+<span class="sd">            number of generations in LOD to concatenate per chunk</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">lod_range</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">lod_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">lod_range</span>
+        <span class="k">if</span> <span class="n">chunk_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">chunk_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">time_course_chunk_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ref_pop_hist</span><span class="o">.</span><span class="n">lods_time_course_data</span><span class="p">(</span><span class="n">lod_range</span><span class="p">,</span> <span class="n">chunk_size</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="LOD_Analyser.lod_time_course_plots"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.LOD_Analyser.lod_time_course_plots">[docs]</a>    <span class="k">def</span> <span class="nf">lod_time_course_plots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_interval</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lod_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">formats</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Draw time course diagrams for individuals in the :class:`LOD`\s.</span>
+<span class="sd">        </span>
+<span class="sd">        It is possible to set an interval and a range to sample individuals in</span>
+<span class="sd">        the :class:`LOD`.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        stride : int</span>
+<span class="sd">            stride in generations for sampling individuals along the :class:`LOD`</span>
+<span class="sd">        time_interval : int</span>
+<span class="sd">            interval in simulation time for sampling individuals along the</span>
+<span class="sd">            :class:`LOD`</span>
+<span class="sd">        lod_range : (float,float)</span>
+<span class="sd">            bounds in fractions of the total range of the :class:`LOD`</span>
+<span class="sd">        </span>
+<span class="sd">        Note</span>
+<span class="sd">        ----</span>
+<span class="sd">        Either use a stride or a time interval to sample individuals from the lod.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">stride</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">time_interval</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;defining both lod_generation_interval and lod_time_interval is not allowed&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">stride</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">stride</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">lod_generation_interval</span>
+        <span class="k">if</span> <span class="n">time_interval</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">time_interval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">lod_time_interval</span>
+        <span class="k">if</span> <span class="n">lod_range</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">lod_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">lod_range</span>
+        <span class="k">if</span> <span class="n">formats</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">formats</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">image_formats</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ref_pop_hist</span><span class="o">.</span><span class="n">lods_time_course_plots</span><span class="p">(</span><span class="n">stride</span><span class="p">,</span> <span class="n">time_interval</span><span class="p">,</span> <span class="n">lod_range</span><span class="p">,</span> <span class="n">formats</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="LOD_Analyser.write_newick_trees"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.LOD_Analyser.write_newick_trees">[docs]</a>    <span class="k">def</span> <span class="nf">write_newick_trees</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;write newick trees for all phylogenies in attr:`ref_pop_hist`&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ref_pop_hist</span><span class="o">.</span><span class="n">write_newick_trees</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    
+    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_type</span><span class="p">,</span> <span class="n">_value</span><span class="p">,</span> <span class="n">_traceback</span><span class="p">):</span>     
+        <span class="bp">self</span><span class="o">.</span><span class="n">ref_sim</span><span class="o">.</span><span class="n">close_phylo_shelf</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ref_pop_hist</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PopulationHistory"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.PopulationHistory">[docs]</a><span class="k">class</span> <span class="nc">PopulationHistory</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Performs and stores evolutionary history analysis of</span>
+<span class="sd">    :class:`VirtualMicrobes.simulation.Simulation.Simulation` snapshots.</span>
+<span class="sd">    </span>
+<span class="sd">    Generates :class:`LOD`\s for 1 or more individuals in the population plot the</span>
+<span class="sd">    evolutionary events along the line of descent.</span>
+<span class="sd">    </span>
+<span class="sd">    A reference :class:`PopulationHistory` can also be compared to *population</span>
+<span class="sd">    history* at earlier simulation time points. In this case the ancestors of</span>
+<span class="sd">    individuals in the reference *population history* will be identified and </span>
+<span class="sd">    compared to the rest of the population at that point in time. In this way, </span>
+<span class="sd">    evolutionary biases on the line of descent can be brought to light.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="n">sim</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&#39;&#39;&#39;The :class:`VirtualMicrobes.simulation.Simulation.Simulation` snapshot for which this pophist was made.&#39;&#39;&#39;</span>
+    
+    <span class="n">params</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&#39;&#39;&#39;The (updated) simulation parameters.&#39;&#39;&#39;</span>
+    
+    <span class="n">prune_depth</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="sd">&#39;&#39;&#39;Number of generations from leaves to prune the phylogenetic tree of the pophist.&#39;&#39;&#39;</span>
+    
+    <span class="n">population</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&#39;&#39;&#39;Short cut to :class:`VirtualMicrobes.virtual_cell.Population.Population` of `sim`.&#39;&#39;&#39;</span>
+    
+    <span class="n">environment</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&#39;&#39;&#39;Short cut to :class:`VirtualMicrobes.environment.Environment` of `sim`.&#39;&#39;&#39;</span>
+    
+    <span class="n">time_point</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&#39;&#39;&#39;Last simulation time of the `sim`.&#39;&#39;&#39;</span>
+    
+    <span class="n">tree_lods</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="sd">&#39;&#39;&#39;List of lists of :class:`LOD`\s. One list for each independent phylogenetic tree within the population.&#39;&#39;&#39;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sim</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="kc">None</span> <span class="p">,</span><span class="n">prune_depth</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Set parameters for phylogenetic analysis.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        sim : :class:`VirtualMicrobes.simulation.Simulation.Simulation</span>
+<span class="sd">        params : dict</span>
+<span class="sd">            the simulation parameters</span>
+<span class="sd">        save_dir : str</span>
+<span class="sd">            path to save analysis data to</span>
+<span class="sd">        prune_depth : int</span>
+<span class="sd">            number of generations to prune from the leafs of phylogenetic tree</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_dir</span> <span class="o">=</span> <span class="n">save_dir</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">util</span><span class="o">.</span><span class="n">ensure_dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">save_dir</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sim</span> <span class="o">=</span> <span class="n">sim</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">params</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prune_depth</span> <span class="o">=</span> <span class="n">prune_depth</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">population</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">population</span>
+        <span class="k">for</span> <span class="n">anc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">current_ancestors</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">reconstruct_grn</span><span class="p">:</span>
+                <span class="n">anc</span><span class="o">.</span><span class="n">update_grn</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">environment</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">environment</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_point</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_rand_gens</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_test_bed</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree_lods</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    
+<div class="viewcode-block" id="PopulationHistory.init_phylo_tree"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.PopulationHistory.init_phylo_tree">[docs]</a>    <span class="k">def</span> <span class="nf">init_phylo_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prune_depth</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Update the phylogenetic tree of the population.</span>
+<span class="sd">        </span>
+<span class="sd">        Clears the change in the population of the final regular simulation</span>
+<span class="sd">        step. Prunes back the tree to a maximum depth.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        prune_depth : int</span>
+<span class="sd">            number of generations to prune from the leafs of phylogenetic tree</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        
+        <span class="k">if</span> <span class="n">prune_depth</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">prune_depth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prune_depth</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">clear_pop_changes</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">update_phylogeny</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">phylo_tree</span><span class="o">.</span><span class="n">to_ete_trees</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">root_id</span><span class="p">,</span> <span class="n">ete_tree_struct</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">phylo_tree</span><span class="o">.</span><span class="n">ete_trees</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">print</span> <span class="s1">&#39;pruning ete tree&#39;</span><span class="p">,</span> <span class="n">root_id</span>
+            <span class="k">if</span> <span class="n">prune_depth</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">max_depth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">phylo_tree</span><span class="o">.</span><span class="n">max_depth</span>
+                <span class="nb">print</span> <span class="s1">&#39;tree has depth&#39;</span><span class="p">,</span> <span class="n">max_depth</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">phylo_tree</span><span class="o">.</span><span class="n">ete_prune_external</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_depth</span> <span class="o">-</span> <span class="n">prune_depth</span><span class="p">))</span></div>
+        
+<div class="viewcode-block" id="PopulationHistory.init_lods"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.PopulationHistory.init_lods">[docs]</a>    <span class="k">def</span> <span class="nf">init_lods</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nr_lods</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                  <span class="n">stride</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_interval</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lod_range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Initialize the line of descent (:class:`LOD`) container objects.</span>
+<span class="sd">        </span>
+<span class="sd">        Iterate over the phylogenetic trees of the :attr:`population` and for</span>
+<span class="sd">        each tree select `nr_lods` leaf nodes that are at maximum phylogenetic</span>
+<span class="sd">        distance. </span>
+<span class="sd">        </span>
+<span class="sd">        For each of the selected leafs, construct a line of descent object</span>
+<span class="sd">        (:class:`LOD`).</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        nr_lods : int</span>
+<span class="sd">            number of :class:`LOD` objects per phylogenetic tree</span>
+<span class="sd">        save_dir : str</span>
+<span class="sd">        stride : int</span>
+<span class="sd">            stride in generations for sampling individuals along the :class:`LOD`</span>
+<span class="sd">        time_interval : int</span>
+<span class="sd">            interval in simulation time for sampling individuals along the</span>
+<span class="sd">            :class:`LOD`</span>
+<span class="sd">        lod_range : (float,float)</span>
+<span class="sd">            bounds in fractions of the total range of the :class:`LOD`</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        
+        <span class="k">if</span> <span class="n">save_dir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">save_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_dir</span>
+        <span class="k">if</span> <span class="n">stride</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">stride</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">lod_generation_interval</span>
+        <span class="k">if</span> <span class="n">time_interval</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">time_interval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">lod_time_interval</span>
+        <span class="k">if</span> <span class="n">lod_range</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">lod_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">lod_range</span>
+        
+        <span class="c1"># iterate (potentially multiple) phylogenetic trees for the population</span>
+        <span class="k">for</span> <span class="n">root_id</span><span class="p">,</span> <span class="n">ete_tree_struct</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">phylo_tree</span><span class="o">.</span><span class="n">ete_trees</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            
+            <span class="n">tree_save_dir</span> <span class="o">=</span> <span class="n">root_id</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            
+            <span class="nb">print</span> <span class="s1">&#39;constructing lines of descent for ete tree&#39;</span><span class="p">,</span> <span class="n">root_id</span>
+            <span class="n">leafs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">phylo_tree</span><span class="o">.</span><span class="n">ete_n_most_distant_phylo_units</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">nr_lods</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span> <span class="p">[</span> <span class="ow">not</span> <span class="n">leaf</span><span class="o">.</span><span class="n">has_living_offspring</span><span class="p">()</span> <span class="k">for</span> <span class="p">(</span><span class="n">leaf</span><span class="p">,</span> <span class="n">_ete_node</span><span class="p">)</span> <span class="ow">in</span> <span class="n">leafs</span> <span class="p">]):</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;leaf with no living offspring found&#39;</span><span class="p">)</span>
+            <span class="nb">print</span> <span class="s1">&#39;done&#39;</span>
+            <span class="n">lods</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">()</span>
+            
+            <span class="c1"># print information on the phylogenetic distances between leafs</span>
+            <span class="k">for</span> <span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">,</span> <span class="n">t_dist</span><span class="p">,</span> <span class="n">top_dist</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">phylo_tree</span><span class="o">.</span><span class="n">distances</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">tree</span><span class="p">,</span><span class="n">leafs</span><span class="p">):</span>
+                <span class="nb">print</span> <span class="n">l1</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s1">&#39;--&gt;&#39;</span><span class="p">,</span> <span class="n">l2</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s1">&#39;: time_dist :&#39;</span><span class="p">,</span> <span class="n">t_dist</span><span class="p">,</span> <span class="s1">&#39;topology_dist :&#39;</span><span class="p">,</span> <span class="n">top_dist</span>
+                
+            <span class="k">for</span> <span class="n">leaf</span><span class="p">,</span> <span class="n">_ete_node</span> <span class="ow">in</span> <span class="n">leafs</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">lod</span> <span class="ow">in</span> <span class="n">leaf</span><span class="o">.</span><span class="n">lods_up</span><span class="p">():</span> <span class="c1"># in a clonal (the default) population, there is only 1 lod per leaf</span>
+                    <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">leaf</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+                    <span class="n">lod_save_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="n">tree_save_dir</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+                    <span class="n">lods</span><span class="p">[</span><span class="n">leaf</span><span class="p">]</span> <span class="o">=</span> <span class="n">LOD</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">lod</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">save_dir</span> <span class="o">=</span> <span class="n">lod_save_dir</span><span class="p">,</span>
+                                          <span class="n">stride</span><span class="o">=</span><span class="n">stride</span><span class="p">,</span> <span class="n">time_interval</span><span class="o">=</span><span class="n">time_interval</span><span class="p">,</span> <span class="n">lod_range</span><span class="o">=</span><span class="n">lod_range</span><span class="p">)</span>
+                    <span class="k">break</span> <span class="c1"># record 1 lod per leaf (in clonal pop, there is only 1 per leaf)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tree_lods</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">ete_tree_struct</span><span class="p">,</span><span class="n">lods</span><span class="p">))</span></div>
+            
+<div class="viewcode-block" id="PopulationHistory.init_pop_hist_data_store"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.PopulationHistory.init_pop_hist_data_store">[docs]</a>    <span class="k">def</span> <span class="nf">init_pop_hist_data_store</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">data_store</span><span class="o">.</span><span class="n">init_phylo_hist_stores</span><span class="p">(</span><span class="n">phylo_hist</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="PopulationHistory.identify_lod_ancestor"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.PopulationHistory.identify_lod_ancestor">[docs]</a>    <span class="k">def</span> <span class="nf">identify_lod_ancestor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">lod</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Identify the individual in the population that is on the line of descent</span>
+<span class="sd">        (lod) under consideration.</span>
+<span class="sd">          </span>
+<span class="sd">        The nodes in the ete tree corresponding to the *lod* will be annotated</span>
+<span class="sd">        with a tag.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ete_tree_struct : :class:`VirtualMicrobes.my_tools.utility.ETEtreeStruct`</span>
+<span class="sd">            container structure for phylogenetic tree representations</span>
+<span class="sd">        lod :  :class:`LOD`</span>
+<span class="sd">            line of descent</span>
+<span class="sd">            </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        (:class:`VirtualMicrobes.virtual_cell.Cell.Cell`, :class:`ete3.TreeNode`)</span>
+<span class="sd">        (oldest ancestor cell, its tree node representation) </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">last</span><span class="p">,</span> <span class="n">last_ete</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+            
+        <span class="n">phylo2ete_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">phylo_tree</span><span class="o">.</span><span class="n">ete_get_phylo2ete_dict</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">)</span>
+        <span class="n">phylo_id2phylo</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([</span> <span class="p">(</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">phylo_unit</span><span class="o">.</span><span class="n">id</span><span class="p">),</span><span class="n">phylo_unit</span><span class="o">.</span><span class="n">time_birth</span><span class="p">),</span> <span class="n">phylo_unit</span><span class="p">)</span> 
+                          <span class="k">for</span> <span class="n">phylo_unit</span> <span class="ow">in</span> <span class="n">phylo2ete_dict</span> <span class="p">])</span>
+        
+        <span class="k">for</span> <span class="n">anc</span> <span class="ow">in</span> <span class="n">lod</span><span class="o">.</span><span class="n">lod</span><span class="p">:</span> <span class="c1"># going from oldest to youngest</span>
+            <span class="n">anc_id</span> <span class="o">=</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">anc</span><span class="o">.</span><span class="n">id</span><span class="p">),</span> <span class="n">anc</span><span class="o">.</span><span class="n">time_birth</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">anc_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">phylo_id2phylo</span><span class="p">:</span>  <span class="c1"># reached an ancestor that lives later than the leafs in the tree  </span>
+                <span class="k">break</span>
+            <span class="n">last</span> <span class="o">=</span> <span class="n">phylo_id2phylo</span><span class="p">[</span><span class="n">anc_id</span><span class="p">]</span>
+            <span class="n">last_ete</span> <span class="o">=</span> <span class="n">phylo2ete_dict</span><span class="p">[</span><span class="n">last</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">ete_node</span> <span class="ow">in</span> <span class="n">phylo2ete_dict</span><span class="p">[</span><span class="n">last</span><span class="p">]:</span>
+                <span class="n">ete_node</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="s1">&#39;lod&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span> <span class="c1"># annotate the ete nodes as being on the lod</span>
+        <span class="k">return</span> <span class="n">last</span><span class="p">,</span> <span class="n">last_ete</span></div>
+                  
+<div class="viewcode-block" id="PopulationHistory.init_rand_gens"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.PopulationHistory.init_rand_gens">[docs]</a>    <span class="k">def</span> <span class="nf">init_rand_gens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rand_seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">rand_seed</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">test_rand_seed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">test_rand_seed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_rand</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">Random</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">test_rand_seed</span><span class="p">))</span></div>
+        
+<div class="viewcode-block" id="PopulationHistory.init_test_bed"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.PopulationHistory.init_test_bed">[docs]</a>    <span class="k">def</span> <span class="nf">init_test_bed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_bed</span> <span class="o">=</span> <span class="n">Locality</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
+                                 <span class="n">internal_molecules</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">internal_molecules</span><span class="p">,</span> 
+                                 <span class="n">influx_reactions</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">influx_reactions</span><span class="p">,</span> 
+                                 <span class="n">degradation_reactions</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">degradation_reactions</span><span class="p">,</span>
+                                 <span class="n">env_rand</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">test_rand</span> <span class="p">)</span></div>
+    
+<div class="viewcode-block" id="PopulationHistory.init_integrator"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.PopulationHistory.init_integrator">[docs]</a>    <span class="k">def</span> <span class="nf">init_integrator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diffusion_steps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">between_diffusion_reports</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">max_retries</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">retry_steps_factor</span><span class="o">=</span><span class="mf">2.</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">diffusion_steps</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">diffusion_steps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">diffusion_steps</span>
+        <span class="k">if</span> <span class="n">between_diffusion_reports</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">between_diffusion_reports</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">between_diffusion_reports</span>
+        <span class="n">max_time_steps_store</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">diffusion_steps</span> <span class="o">*</span> <span class="n">between_diffusion_reports</span> 
+                                <span class="o">*</span> <span class="n">retry_steps_factor</span> <span class="o">**</span> <span class="p">(</span><span class="n">max_retries</span><span class="p">)),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">integrator</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">Integrator</span><span class="p">(</span><span class="n">locality</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_bed</span><span class="p">,</span> <span class="c1"># @UndefinedVariable</span>
+                                          <span class="n">nr_time_points</span><span class="o">=</span><span class="n">max_time_steps_store</span><span class="p">,</span>
+                                          <span class="n">nr_neighbors</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                          <span class="n">num_threads</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                          <span class="n">step_function</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">step_function</span><span class="p">,</span>  
+                                          <span class="n">hstart</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">init_step_size</span><span class="p">,</span>
+                                          <span class="n">epsabs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">absolute_error</span><span class="p">,</span>
+                                          <span class="n">epsrel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">relative_error</span><span class="p">,</span>
+                                          <span class="n">init_time</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">integrator</span></div>
+    
+<div class="viewcode-block" id="PopulationHistory.write_newick_trees"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.PopulationHistory.write_newick_trees">[docs]</a>    <span class="k">def</span> <span class="nf">write_newick_trees</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">lods</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_lods</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;tree&#39;</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">name</span> 
+            <span class="n">suffix</span> <span class="o">=</span> <span class="s1">&#39;.nw&#39;</span>
+            <span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+                                       <span class="n">outfile</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">save_dir</span><span class="p">,</span> 
+                                                            <span class="n">filename</span> <span class="o">+</span> <span class="n">suffix</span><span class="p">))</span></div>
+    
+<div class="viewcode-block" id="PopulationHistory.lod_stats"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.PopulationHistory.lod_stats">[docs]</a>    <span class="k">def</span> <span class="nf">lod_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Write time series for line of descent properties such as network</span>
+<span class="sd">        connectivity, protein expression etc.</span>
+<span class="sd">        </span>
+<span class="sd">        Either use a stride or a time interval to sample individuals from the lod.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">cumulative_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">data_store</span><span class="o">.</span><span class="n">mut_stats_names</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">data_store</span><span class="o">.</span><span class="n">fit_stats_names</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;iterage&#39;</span><span class="p">]</span>
+        <span class="n">simple_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">data_store</span><span class="o">.</span><span class="n">functional_stats_names</span>
+        <span class="k">for</span> <span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">lods</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_lods</span><span class="p">:</span> 
+            <span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">annotate_phylo_tree</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="o">=</span><span class="n">ete_tree_struct</span><span class="p">,</span>
+                                                 <span class="n">features</span><span class="o">=</span><span class="n">cumulative_features</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">annotate_phylo_tree</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="o">=</span><span class="n">ete_tree_struct</span><span class="p">,</span>
+                                                 <span class="n">features</span><span class="o">=</span><span class="n">simple_features</span><span class="p">,</span> <span class="n">cummulative</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">ref</span><span class="p">,</span> <span class="n">lod</span> <span class="ow">in</span> <span class="n">lods</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="nb">print</span> <span class="n">ref</span><span class="o">.</span><span class="n">id</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">data_store</span><span class="o">.</span><span class="n">add_lod_data</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">lod</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">environment</span><span class="p">)</span>
+        <span class="nb">print</span> <span class="s1">&#39;done&#39;</span></div>
+        <span class="c1">#self.ref_sim.data_store.write_data()</span>
+    
+<div class="viewcode-block" id="PopulationHistory.lod_network_stats"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.PopulationHistory.lod_network_stats">[docs]</a>    <span class="k">def</span> <span class="nf">lod_network_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Write time series for line of descent properties such as network</span>
+<span class="sd">        connectivity, protein expression etc.</span>
+<span class="sd">        </span>
+<span class="sd">        Either use a stride or a time interval to sample individuals from the lod.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">lods</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_lods</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="s1">&#39;ete_tree&#39;</span><span class="p">,</span> <span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">name</span>
+            <span class="k">for</span> <span class="n">ref</span><span class="p">,</span> <span class="n">lod</span> <span class="ow">in</span> <span class="n">lods</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="nb">print</span> <span class="s1">&#39;lod&#39;</span><span class="p">,</span> <span class="n">ref</span><span class="o">.</span><span class="n">id</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">data_store</span><span class="o">.</span><span class="n">add_lod_network_data</span><span class="p">(</span><span class="n">lod</span><span class="p">)</span>
+        <span class="nb">print</span> <span class="s1">&#39;done&#39;</span></div>
+        
+<div class="viewcode-block" id="PopulationHistory.lod_binding_conservation"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.PopulationHistory.lod_binding_conservation">[docs]</a>    <span class="k">def</span> <span class="nf">lod_binding_conservation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Write time series for line of descent properties such as network</span>
+<span class="sd">        connectivity, protein expression etc.</span>
+<span class="sd">        </span>
+<span class="sd">        Either use a stride or a time interval to sample individuals from the lod.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">lods</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_lods</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="s1">&#39;ete_tree&#39;</span><span class="p">,</span> <span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">name</span>
+            <span class="k">for</span> <span class="n">ref</span><span class="p">,</span> <span class="n">lod</span> <span class="ow">in</span> <span class="n">lods</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="nb">print</span> <span class="s1">&#39;lod&#39;</span><span class="p">,</span> <span class="n">ref</span><span class="o">.</span><span class="n">id</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">data_store</span><span class="o">.</span><span class="n">add_lod_binding_conservation</span><span class="p">(</span><span class="n">lod</span><span class="p">)</span>
+        <span class="nb">print</span> <span class="s1">&#39;done&#39;</span></div>
+    
+<div class="viewcode-block" id="PopulationHistory.plot_lod_graphs"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.PopulationHistory.plot_lod_graphs">[docs]</a>    <span class="k">def</span> <span class="nf">plot_lod_graphs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">time_interval</span><span class="p">,</span> <span class="n">lod_range</span><span class="p">,</span> <span class="n">formats</span><span class="p">):</span>
+        <span class="n">metabolites</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">mols_per_class_dict</span>
+        <span class="n">conversions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">reactions_dict</span><span class="p">[</span><span class="s1">&#39;conversion&#39;</span><span class="p">]</span>
+        <span class="n">imports</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">reactions_dict</span><span class="p">[</span><span class="s1">&#39;import&#39;</span><span class="p">]</span>
+        
+        <span class="n">suffixes</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">fmt</span><span class="p">:</span> <span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="n">fmt</span><span class="p">,</span> <span class="n">formats</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">lods</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_lods</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="s1">&#39;ete_tree&#39;</span><span class="p">,</span> <span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">name</span>
+            <span class="k">for</span> <span class="n">ref</span><span class="p">,</span> <span class="n">lod</span> <span class="ow">in</span> <span class="n">lods</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="nb">print</span> <span class="s1">&#39;adding network graphs for lod&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">ref</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+                <span class="n">attr_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">graphs</span><span class="o">.</span><span class="n">attribute_mapper</span>
+                <span class="n">GRN_grapher</span> <span class="o">=</span> <span class="n">BindingNetwork</span><span class="p">(</span><span class="n">lod</span><span class="o">.</span><span class="n">save_dir</span><span class="p">,</span> <span class="s1">&#39;GRN&#39;</span><span class="p">,</span> <span class="n">attribute_dict</span><span class="o">=</span><span class="n">attr_dict</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="n">metabolome_grapher</span> <span class="o">=</span> <span class="n">MetabolicNetwork</span><span class="p">(</span><span class="n">lod</span><span class="o">.</span><span class="n">save_dir</span><span class="p">,</span> <span class="s1">&#39;Metabolome&#39;</span><span class="p">,</span> 
+                                                      <span class="n">mol_class_dict</span><span class="o">=</span><span class="n">metabolites</span><span class="p">,</span> 
+                                                      <span class="n">conversions</span><span class="o">=</span><span class="n">conversions</span><span class="p">,</span>
+                                                      <span class="n">imports</span><span class="o">=</span><span class="n">imports</span><span class="p">,</span> 
+                                                      <span class="n">attribute_dict</span><span class="o">=</span><span class="n">attr_dict</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="n">genome_grapher</span> <span class="o">=</span> <span class="n">Genome</span><span class="p">(</span><span class="n">lod</span><span class="o">.</span><span class="n">save_dir</span><span class="p">,</span> <span class="s1">&#39;Genome&#39;</span><span class="p">,</span> <span class="n">attribute_dict</span><span class="o">=</span><span class="n">attr_dict</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># Initialise grapher for genome structure (and make directory)</span>
+                <span class="n">ancestors</span> <span class="o">=</span> <span class="n">lod</span><span class="o">.</span><span class="n">strided_lod</span><span class="p">(</span><span class="n">stride</span><span class="p">,</span> <span class="n">time_interval</span><span class="p">,</span> <span class="n">lod_range</span><span class="p">)</span>
+                <span class="n">max_genome</span> <span class="o">=</span>  <span class="nb">max</span><span class="p">(</span> <span class="p">[</span> <span class="n">anc</span><span class="o">.</span><span class="n">genome_size</span> <span class="k">for</span> <span class="n">anc</span> <span class="ow">in</span> <span class="n">ancestors</span> <span class="p">]</span> <span class="p">)</span>
+                <span class="k">for</span> <span class="n">anc</span> <span class="ow">in</span> <span class="n">ancestors</span><span class="p">:</span>
+                    <span class="n">_plot_cell_graphs</span><span class="p">(</span><span class="n">anc</span><span class="p">,</span> <span class="n">GRN_grapher</span><span class="p">,</span> <span class="n">metabolome_grapher</span><span class="p">,</span> <span class="n">genome_grapher</span><span class="p">,</span> <span class="n">max_genome</span><span class="p">,</span> <span class="n">suffixes</span><span class="p">)</span></div>
+   
+<div class="viewcode-block" id="PopulationHistory.lods_time_course_plots"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.PopulationHistory.lods_time_course_plots">[docs]</a>    <span class="k">def</span> <span class="nf">lods_time_course_plots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">time_interval</span><span class="p">,</span> <span class="n">lod_range</span><span class="p">,</span> <span class="n">formats</span><span class="p">):</span>
+        <span class="n">suffixes</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">fmt</span><span class="p">:</span> <span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="n">fmt</span><span class="p">,</span> <span class="n">formats</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">lods</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_lods</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="s1">&#39;ete_tree&#39;</span><span class="p">,</span> <span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">name</span>
+            <span class="k">for</span> <span class="n">ref</span><span class="p">,</span> <span class="n">lod</span> <span class="ow">in</span> <span class="n">lods</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="nb">print</span> <span class="s1">&#39;lod&#39;</span><span class="p">,</span> <span class="n">ref</span><span class="o">.</span><span class="n">id</span>
+                <span class="n">save_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lod</span><span class="o">.</span><span class="n">save_dir</span><span class="p">,</span> <span class="s1">&#39;time_course_plots&#39;</span><span class="p">)</span>
+                <span class="n">util</span><span class="o">.</span><span class="n">ensure_dir</span><span class="p">(</span><span class="n">save_dir</span><span class="p">)</span>
+                <span class="n">ancestors</span> <span class="o">=</span> <span class="n">lod</span><span class="o">.</span><span class="n">strided_lod</span><span class="p">(</span><span class="n">stride</span><span class="p">,</span> <span class="n">time_interval</span><span class="p">,</span> <span class="n">lod_range</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">anc</span> <span class="ow">in</span> <span class="n">ancestors</span><span class="p">:</span>
+                    <span class="n">_plot_cell_time_course</span><span class="p">(</span><span class="n">anc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">graphs</span><span class="p">,</span> 
+                                         <span class="n">save_dir</span> <span class="o">=</span> <span class="n">save_dir</span><span class="p">,</span> <span class="n">suffixes</span><span class="o">=</span><span class="n">suffixes</span><span class="p">)</span></div>
+     
+<div class="viewcode-block" id="PopulationHistory.lods_time_course_data"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.PopulationHistory.lods_time_course_data">[docs]</a>    <span class="k">def</span> <span class="nf">lods_time_course_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lod_range</span><span class="p">,</span> <span class="n">chunk_size</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Write time series data in the line of descent.</span>
+<span class="sd">        </span>
+<span class="sd">        Concatenates time courses of individuals along a :class:`LOD`.</span>
+<span class="sd">        Concatenations are done in *chunks* of a chosen `chunk_size`. For each chunk</span>
+<span class="sd">        **.csv** files are stored in a directory named part*n*, where *n* is the</span>
+<span class="sd">        chunk number.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ancestors : list of :class:`VirtualMicrobes.virtual_cell.Cell.Cell`\s</span>
+<span class="sd">        base_save_dir : str</span>
+<span class="sd">        viewer_path : str</span>
+<span class="sd">            path to utility files for html data viewer</span>
+<span class="sd">        chunk_size : int</span>
+<span class="sd">            length of chunks of concatenated data </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">lods</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_lods</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="s1">&#39;ete_tree&#39;</span><span class="p">,</span> <span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">name</span>
+            <span class="k">for</span> <span class="n">ref</span><span class="p">,</span> <span class="n">lod</span> <span class="ow">in</span> <span class="n">lods</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="nb">print</span> <span class="s1">&#39;lod&#39;</span><span class="p">,</span> <span class="n">ref</span><span class="o">.</span><span class="n">id</span>
+                <span class="n">save_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lod</span><span class="o">.</span><span class="n">save_dir</span><span class="p">,</span> <span class="s1">&#39;time_courses&#39;</span><span class="p">)</span>
+                <span class="n">util</span><span class="o">.</span><span class="n">ensure_dir</span><span class="p">(</span><span class="n">save_dir</span><span class="p">)</span>
+                <span class="n">ancestors</span> <span class="o">=</span> <span class="n">lod</span><span class="o">.</span><span class="n">strided_lod</span><span class="p">(</span><span class="n">stride</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_interval</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lod_range</span><span class="o">=</span><span class="n">lod_range</span><span class="p">)</span>
+                <span class="n">_lod_time_course_data</span><span class="p">(</span><span class="n">ancestors</span><span class="p">,</span> <span class="n">base_save_dir</span> <span class="o">=</span> <span class="n">save_dir</span><span class="p">,</span>
+                                     <span class="n">viewer_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">utility_path</span><span class="p">,</span> <span class="s1">&#39;time_course_viewer&#39;</span><span class="p">),</span>
+                                     <span class="n">chunk_size</span><span class="o">=</span><span class="n">chunk_size</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="PopulationHistory.draw_ref_trees"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.PopulationHistory.draw_ref_trees">[docs]</a>    <span class="k">def</span> <span class="nf">draw_ref_trees</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+        <span class="k">for</span> <span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">lods</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_lods</span><span class="p">:</span>
+            <span class="n">func_features</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;metabolic_type&#39;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">metabolic_type_color</span><span class="p">}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">annotate_phylo_tree</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">,</span>
+                                                 <span class="n">func_features</span><span class="o">=</span><span class="n">func_features</span><span class="p">,</span>
+                                                  <span class="c1">#max_tree_depth=max_depth,</span>
+                                                  <span class="n">cummulative</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                                  <span class="n">prune_internal</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                                  <span class="n">to_rate</span><span class="o">=</span><span class="kc">False</span> 
+                                                  <span class="p">)</span>
+            <span class="k">for</span> <span class="n">leaf</span><span class="p">,</span> <span class="n">lod</span> <span class="ow">in</span> <span class="n">lods</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>        
+                <span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">phylo_tree</span><span class="o">.</span><span class="n">annotate_phylo_units_feature</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">,</span> 
+                                                                        <span class="n">lod</span><span class="o">.</span><span class="n">lod</span><span class="p">,</span> <span class="s1">&#39;in_lod&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">phylo_tree</span><span class="o">.</span><span class="n">annotate_leafs</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">leaf</span><span class="p">)</span>
+            
+            <span class="n">attr_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">graphs</span><span class="o">.</span><span class="n">attribute_mapper</span>
+            <span class="n">range_dic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">value_range_dict</span>
+            <span class="n">rescale_factor</span> <span class="o">=</span> <span class="mf">500.0</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">phylo_tree</span><span class="o">.</span><span class="n">ete_calc_lca_depth</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span>
+            <span class="nb">print</span> <span class="s1">&#39;rescale factor is &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rescale_factor</span><span class="p">)</span>
+    
+            <span class="n">save_loc</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">save_dir</span><span class="p">,</span>
+                                    <span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> 
+                                    <span class="s1">&#39;ancestry_plots&#39;</span><span class="p">)</span>
+            <span class="c1">#phylo_grapher = PhyloTreeGraph(save_loc, name=&#39;Phylotree&#39;, attribute_dict=attr_dict, range_dict=range_dic, show=False)</span>
+            <span class="n">phylo_grapher</span> <span class="o">=</span> <span class="n">PhyloTreeGraph</span><span class="p">(</span><span class="n">save_loc</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Phylotree&#39;</span><span class="p">,</span> <span class="n">attribute_dict</span><span class="o">=</span><span class="n">attr_dict</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>    
+            <span class="n">phylo_grapher</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span>
+            <span class="n">phylo_grapher</span><span class="o">.</span><span class="n">save_fig</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="s1">&#39;metabolic_with_lod&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;lodstree&#39;</span><span class="p">,</span> 
+                                   <span class="n">rescale</span><span class="o">=</span><span class="n">rescale_factor</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;.svg&quot;</span><span class="p">)</span>
+            <span class="nb">print</span> <span class="s1">&#39;Plotted reference tree&#39;</span></div>
+            
+<div class="viewcode-block" id="PopulationHistory.compare_to_pop"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.PopulationHistory.compare_to_pop">[docs]</a>    <span class="k">def</span> <span class="nf">compare_to_pop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">compare_save</span><span class="p">,</span> <span class="n">prune_depth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">leafs_sample_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Compare the reference :class:`PopulationHistory` to an earlier population-save. </span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        </span>
+<span class="sd">        compare_save : str</span>
+<span class="sd">            file location of population-save </span>
+<span class="sd">            </span>
+<span class="sd">        prune_depth : int </span>
+<span class="sd">            prune back phylogeny of the :param:compare_save with this many timesteps </span>
+<span class="sd">            </span>
+<span class="sd">        leafs_sample_size : int</span>
+<span class="sd">            maximum number of phylogenetic tree leafs to use for comparison</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">prune_depth</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">prune_depth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">prune_compare_pop</span>
+        <span class="k">if</span> <span class="n">leafs_sample_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">leafs_sample_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">leafs_sample_size</span>
+        
+        <span class="n">params</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">params</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="s1">&#39;temp&#39;</span><span class="p">)</span>
+        <span class="n">compare_sim</span> <span class="o">=</span> <span class="n">simu</span><span class="o">.</span><span class="n">load_simulation</span><span class="p">(</span><span class="n">compare_save</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">comp_pop_hist</span> <span class="o">=</span> <span class="n">PopulationHistory</span><span class="p">(</span><span class="n">sim</span><span class="o">=</span><span class="n">compare_sim</span><span class="p">,</span> 
+                                     <span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
+                                     <span class="n">prune_depth</span><span class="o">=</span><span class="n">prune_depth</span><span class="p">)</span>
+        <span class="n">comp_pop_hist</span><span class="o">.</span><span class="n">init_phylo_tree</span><span class="p">()</span>
+        <span class="n">comp_phylo_tree</span> <span class="o">=</span> <span class="n">comp_pop_hist</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">phylo_tree</span>
+        <span class="n">time_point</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">compare_save</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;.sav&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">cumulative_features</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">data_store</span><span class="o">.</span><span class="n">mut_stats_names</span> <span class="o">+</span> 
+                               <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">data_store</span><span class="o">.</span><span class="n">fit_stats_names</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;iterage&#39;</span><span class="p">]</span> <span class="p">)</span>
+        <span class="k">for</span> <span class="n">ref_ete_tree_struct</span><span class="p">,</span> <span class="n">ref_lods</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_lods</span><span class="p">:</span> 
+            
+            <span class="k">for</span> <span class="n">comp_ete_tree_struct</span> <span class="ow">in</span> <span class="n">comp_phylo_tree</span><span class="o">.</span><span class="n">ete_trees</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">ref_ete_tree_struct</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="n">comp_ete_tree_struct</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+                    <span class="c1"># not comparing trees with the same root</span>
+                    <span class="k">continue</span>
+                
+                <span class="n">comp_pop_hist</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">annotate_phylo_tree</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="o">=</span><span class="n">comp_ete_tree_struct</span><span class="p">,</span>
+                                                              <span class="n">features</span><span class="o">=</span><span class="n">cumulative_features</span><span class="p">)</span>
+                <span class="n">comp_dat</span> <span class="o">=</span> <span class="n">comp_ete_tree_struct</span><span class="p">,</span> <span class="n">comp_pop_hist</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">data_store</span><span class="o">.</span><span class="n">add_ancestry_data_point</span><span class="p">(</span><span class="n">comp_dat</span><span class="p">,</span> <span class="n">ref_lods</span><span class="p">,</span> 
+                                                            <span class="n">time_point</span><span class="p">,</span> 
+                                                            <span class="n">leafs_sample_size</span><span class="p">)</span>
+        <span class="n">compare_sim</span><span class="o">.</span><span class="n">close_phylo_shelf</span><span class="p">()</span></div>
+        
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span> <span class="nb">str</span><span class="p">(</span><span class="n">lod</span><span class="p">)</span> <span class="k">for</span> <span class="n">tree_lods</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_lods</span> 
+                          <span class="k">for</span> <span class="n">lod</span> <span class="ow">in</span> <span class="n">tree_lods</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">])</span></div>
+
+<div class="viewcode-block" id="LOD"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.LOD">[docs]</a><span class="k">class</span> <span class="nc">LOD</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    classdocs</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lod</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">time_interval</span><span class="p">,</span> <span class="n">lod_range</span><span class="p">,</span>  <span class="n">save_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Store the line of descent to analyse.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lod</span> <span class="o">=</span> <span class="n">lod</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stride</span> <span class="o">=</span> <span class="n">stride</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_interval</span> <span class="o">=</span> <span class="n">time_interval</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lod_range</span> <span class="o">=</span> <span class="n">lod_range</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_dir</span> <span class="o">=</span> <span class="n">save_dir</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">util</span><span class="o">.</span><span class="n">ensure_dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">save_dir</span><span class="p">)</span>
+
+<div class="viewcode-block" id="LOD.standardized_production"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.LOD.standardized_production">[docs]</a>    <span class="k">def</span> <span class="nf">standardized_production</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test_params</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lod</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">test_bed</span><span class="o">.</span><span class="n">clear_locality</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">test_bed</span><span class="o">.</span><span class="n">add_cell</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+            <span class="n">integrator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_integrator</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">run_system</span><span class="p">(</span><span class="n">integrator</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="LOD.strided_lod"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.LOD.strided_lod">[docs]</a>    <span class="k">def</span> <span class="nf">strided_lod</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">time_interval</span><span class="p">,</span> <span class="n">lod_range</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">lod_range</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">lod_range</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">stride</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">time_interval</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;defining both stride and time_interval is not allowed&#39;</span><span class="p">)</span>
+        <span class="n">lod_all</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">stride</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ancestors</span> <span class="o">=</span> <span class="n">lod_all</span><span class="p">[::</span><span class="n">stride</span><span class="p">]</span> 
+        <span class="k">elif</span> <span class="n">time_interval</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ancestors</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t_interval_iter</span><span class="p">(</span><span class="n">time_interval</span><span class="p">))</span>      
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ancestors</span> <span class="o">=</span> <span class="n">lod_all</span>
+        <span class="k">if</span> <span class="n">ancestors</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">lod_all</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">ancestors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lod_all</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        
+        <span class="n">from_root</span><span class="p">,</span> <span class="n">from_leaf</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">lod_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">ancestors</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="n">lod_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">ancestors</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">ancestors</span><span class="p">[</span><span class="n">from_root</span><span class="p">:</span><span class="n">from_leaf</span><span class="p">]</span></div>
+    
+<div class="viewcode-block" id="LOD.t_interval_iter"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.post_analysis.html#VirtualMicrobes.post_analysis.lod.LOD.t_interval_iter">[docs]</a>    <span class="k">def</span> <span class="nf">t_interval_iter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_interval</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        iterate ancestors that are approximately &#39;time_interval&#39; timesteps apart</span>
+<span class="sd">        in their time of birth.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">mod_time</span> <span class="o">=</span> <span class="n">time_interval</span>
+        <span class="k">for</span> <span class="n">anc</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="n">prev_mod_time</span> <span class="o">=</span> <span class="n">mod_time</span>
+            <span class="n">mod_time</span> <span class="o">=</span> <span class="n">anc</span><span class="o">.</span><span class="n">time_birth</span> <span class="o">%</span> <span class="n">time_interval</span>
+            <span class="k">if</span> <span class="n">mod_time</span> <span class="o">&gt;</span> <span class="n">prev_mod_time</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">yield</span> <span class="n">anc</span></div>
+            
+    
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lod</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n\t</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span> <span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lod</span> <span class="p">])</span></div>
+        
+        
+    
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Thomas Cuypers, Bram van Dijk.
+      Last updated on Oct 10, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

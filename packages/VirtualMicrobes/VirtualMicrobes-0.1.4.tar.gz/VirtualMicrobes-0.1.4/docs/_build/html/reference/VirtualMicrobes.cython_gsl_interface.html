@@ -1,0 +1,450 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VirtualMicrobes.cython_gsl_interface package &mdash; Virtual Microbes Evolutionary Simulator 0.1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Virtual Microbes Evolutionary Simulator 0.1.3 documentation" href="../index.html"/>
+        <link rel="up" title="VirtualMicrobes package" href="VirtualMicrobes.html"/>
+        <link rel="next" title="VirtualMicrobes.data_tools package" href="VirtualMicrobes.data_tools.html"/>
+        <link rel="prev" title="VirtualMicrobes.Tree package" href="VirtualMicrobes.Tree.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Virtual Microbes Evolutionary Simulator
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="VirtualMicrobes.html">VirtualMicrobes package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="VirtualMicrobes.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.Tree.html">VirtualMicrobes.Tree package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">VirtualMicrobes.cython_gsl_interface package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.data_tools.html">VirtualMicrobes.data_tools package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.environment.html">VirtualMicrobes.environment package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.event.html">VirtualMicrobes.event package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.mutate.html">VirtualMicrobes.mutate package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.my_tools.html">VirtualMicrobes.my_tools package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.plotting.html">VirtualMicrobes.plotting package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.post_analysis.html">VirtualMicrobes.post_analysis package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.simulation.html">VirtualMicrobes.simulation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.virtual_cell.html">VirtualMicrobes.virtual_cell package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="VirtualMicrobes.html#module-VirtualMicrobes">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Virtual Microbes Evolutionary Simulator</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Reference</a> &raquo;</li>
+      
+          <li><a href="VirtualMicrobes.html">VirtualMicrobes package</a> &raquo;</li>
+      
+    <li>VirtualMicrobes.cython_gsl_interface package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/reference/VirtualMicrobes.cython_gsl_interface.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="virtualmicrobes-cython-gsl-interface-package">
+<h1>VirtualMicrobes.cython_gsl_interface package<a class="headerlink" href="#virtualmicrobes-cython-gsl-interface-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-VirtualMicrobes.cython_gsl_interface.integrate">
+<span id="virtualmicrobes-cython-gsl-interface-integrate-module"></span><h2>VirtualMicrobes.cython_gsl_interface.integrate module<a class="headerlink" href="#module-VirtualMicrobes.cython_gsl_interface.integrate" title="Permalink to this headline">¶</a></h2>
+<p>Created on Nov 4, 2013</p>
+<p>&#64;author: thocu</p>
+<dl class="class">
+<dt id="VirtualMicrobes.cython_gsl_interface.integrate.Integrator">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.cython_gsl_interface.integrate.</code><code class="descname">Integrator</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.integrate.Integrator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>This will wrap the integrator from (cython)gsl, by initializing a stepper
+with the &#8216;master&#8217;-equation</p>
+<dl class="method">
+<dt id="VirtualMicrobes.cython_gsl_interface.integrate.Integrator.run_system">
+<code class="descname">run_system</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.integrate.Integrator.run_system" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.cython_gsl_interface.integrate.Integrator.sys_c">
+<code class="descname">sys_c</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.integrate.Integrator.sys_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.cython_gsl_interface.integrate.SpatialIntegrator">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.cython_gsl_interface.integrate.</code><code class="descname">SpatialIntegrator</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.integrate.SpatialIntegrator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="VirtualMicrobes.cython_gsl_interface.integrate.SpatialIntegrator.diffusion_step">
+<code class="descname">diffusion_step</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.integrate.SpatialIntegrator.diffusion_step" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.cython_gsl_interface.integrate.SpatialIntegrator.gp_to_integrators_c_dict">
+<code class="descname">gp_to_integrators_c_dict</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.integrate.SpatialIntegrator.gp_to_integrators_c_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.cython_gsl_interface.integrate.SpatialIntegrator.grid">
+<code class="descname">grid</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.integrate.SpatialIntegrator.grid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.cython_gsl_interface.integrate.SpatialIntegrator.print_spatial_sys_vars">
+<code class="descname">print_spatial_sys_vars</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.integrate.SpatialIntegrator.print_spatial_sys_vars" title="Permalink to this definition">¶</a></dt>
+<dd><p>print out all variable values</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.cython_gsl_interface.integrate.SpatialIntegrator.run_spatial_system">
+<code class="descname">run_spatial_system</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.integrate.SpatialIntegrator.run_spatial_system" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.cython_gsl_interface.integrate.SpatialIntegrator.store_nr_time_points_py">
+<code class="descname">store_nr_time_points_py</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.integrate.SpatialIntegrator.store_nr_time_points_py" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.cython_gsl_interface.integrate.SpatialIntegrator.update_diffusion_stepping">
+<code class="descname">update_diffusion_stepping</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.integrate.SpatialIntegrator.update_diffusion_stepping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.cython_gsl_interface.integrate.SpatialIntegrator.update_drivers">
+<code class="descname">update_drivers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.integrate.SpatialIntegrator.update_drivers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.cython_gsl_interface.integrate.SpatialIntegrator.update_integrators">
+<code class="descname">update_integrators</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.integrate.SpatialIntegrator.update_integrators" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-VirtualMicrobes.cython_gsl_interface.odes">
+<span id="virtualmicrobes-cython-gsl-interface-odes-module"></span><h2>VirtualMicrobes.cython_gsl_interface.odes module<a class="headerlink" href="#module-VirtualMicrobes.cython_gsl_interface.odes" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.CELL">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.cython_gsl_interface.odes.</code><code class="descname">CELL</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.CELL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>CELL is a parallel structure to the python class Cell that is
+tasked with generating the set of equations to be solved by integration procedure</p>
+<dl class="attribute">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.CELL.enzymes_c">
+<code class="descname">enzymes_c</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.CELL.enzymes_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.CELL.pumps_c">
+<code class="descname">pumps_c</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.CELL.pumps_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.CELL.py_cell">
+<code class="descname">py_cell</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.CELL.py_cell" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.CELL.small_mols_c">
+<code class="descname">small_mols_c</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.CELL.small_mols_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.CELL.tfs_c">
+<code class="descname">tfs_c</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.CELL.tfs_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.ENVIRONMENT">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.cython_gsl_interface.odes.</code><code class="descname">ENVIRONMENT</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.ENVIRONMENT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.ENVIRONMENT.py_env">
+<code class="descname">py_env</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.ENVIRONMENT.py_env" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.ENVIRONMENT.small_mols_c">
+<code class="descname">small_mols_c</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.ENVIRONMENT.small_mols_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.ENZYME">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.cython_gsl_interface.odes.</code><code class="descname">ENZYME</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.ENZYME" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.ENZYME.py_enzyme">
+<code class="descname">py_enzyme</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.ENZYME.py_enzyme" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.POPULATION">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.cython_gsl_interface.odes.</code><code class="descname">POPULATION</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.POPULATION" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.POPULATION.cells_c">
+<code class="descname">cells_c</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.POPULATION.cells_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.PUMP">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.cython_gsl_interface.odes.</code><code class="descname">PUMP</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.PUMP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.PUMP.py_pump">
+<code class="descname">py_pump</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.PUMP.py_pump" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.REG_SEQ">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.cython_gsl_interface.odes.</code><code class="descname">REG_SEQ</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.REG_SEQ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.SMALL_MOL">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.cython_gsl_interface.odes.</code><code class="descname">SMALL_MOL</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.SMALL_MOL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.SMALL_MOL.py_mol">
+<code class="descname">py_mol</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.SMALL_MOL.py_mol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.SYSTEM">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.cython_gsl_interface.odes.</code><code class="descname">SYSTEM</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.SYSTEM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.SYSTEM.env_c">
+<code class="descname">env_c</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.SYSTEM.env_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.SYSTEM.pop_c">
+<code class="descname">pop_c</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.SYSTEM.pop_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.SYSTEM.py_loc">
+<code class="descname">py_loc</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.SYSTEM.py_loc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.TF">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.cython_gsl_interface.odes.</code><code class="descname">TF</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.TF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="VirtualMicrobes.cython_gsl_interface.odes.TF.py_tf">
+<code class="descname">py_tf</code><a class="headerlink" href="#VirtualMicrobes.cython_gsl_interface.odes.TF.py_tf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-VirtualMicrobes.cython_gsl_interface">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-VirtualMicrobes.cython_gsl_interface" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="VirtualMicrobes.data_tools.html" class="btn btn-neutral float-right" title="VirtualMicrobes.data_tools package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="VirtualMicrobes.Tree.html" class="btn btn-neutral" title="VirtualMicrobes.Tree package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Thomas Cuypers, Bram van Dijk.
+      Last updated on Oct 10, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

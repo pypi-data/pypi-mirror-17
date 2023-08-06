@@ -1,0 +1,756 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VirtualMicrobes.virtual_cell.Genome &mdash; Virtual Microbes Evolutionary Simulator 0.1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Virtual Microbes Evolutionary Simulator 0.1.3 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Virtual Microbes Evolutionary Simulator
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">Virtual Microbes Evolutionary Simulator</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>VirtualMicrobes.virtual_cell.Genome</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for VirtualMicrobes.virtual_cell.Genome</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">copy</span><span class="p">,</span> <span class="n">deepcopy</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">from</span> <span class="nn">orderedset</span> <span class="k">import</span> <span class="n">OrderedSet</span> 
+<span class="kn">from</span> <span class="nn">VirtualMicrobes.my_tools.utility</span> <span class="k">import</span> <span class="n">OrderedDefaultdict</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<div class="viewcode-block" id="Genome"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Genome.Genome">[docs]</a><span class="k">class</span> <span class="nc">Genome</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">class_version</span> <span class="o">=</span> <span class="s1">&#39;1.0&#39;</span>
+        
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chromosomes</span><span class="p">,</span> <span class="n">min_bind_score</span><span class="p">):</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">class_version</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_chromosomes</span><span class="p">(</span><span class="n">chromosomes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_regulatory_network</span><span class="p">(</span><span class="n">min_bind_score</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">genes_removed</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chromosomes_removed</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        
+    <span class="nd">@property</span>        
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__len__</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">tfs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span> <span class="n">g</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span> <span class="k">if</span> <span class="n">g</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;tf&#39;</span> <span class="p">)</span> 
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">enzymes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span> <span class="n">g</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span> <span class="k">if</span> <span class="n">g</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;enz&#39;</span> <span class="p">)</span> 
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">pumps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span> <span class="n">g</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span> <span class="k">if</span> <span class="n">g</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;pump&#39;</span> <span class="p">)</span>  
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">eff_pumps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span> <span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pumps</span> <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;exporting&#39;</span><span class="p">]</span> <span class="p">]</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">inf_pumps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span> <span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pumps</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;exporting&#39;</span><span class="p">]</span> <span class="p">]</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">copy_number_dist</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span>  <span class="bp">self</span><span class="o">.</span><span class="n">copy_numbers</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="p">)</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">copy_numbers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span> <span class="p">[</span> <span class="n">ge</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">ge</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">major_id</span><span class="p">)</span> <span class="k">for</span> <span class="n">ge</span> <span class="ow">in</span> <span class="bp">self</span> <span class="p">])</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">copy_numbers_tfs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span> <span class="p">[</span> <span class="nb">str</span><span class="p">(</span><span class="n">ge</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">major_id</span><span class="p">)</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">ge</span><span class="o">.</span><span class="n">ligand_class</span><span class="p">)</span> <span class="k">for</span> <span class="n">ge</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tfs</span> <span class="p">])</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">copy_numbers_enzymes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span> <span class="p">[</span> <span class="nb">str</span><span class="p">(</span><span class="n">ge</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">major_id</span><span class="p">)</span> <span class="k">for</span> <span class="n">ge</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">enzymes</span> <span class="p">])</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">copy_numbers_inf_pumps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span> <span class="p">[</span> <span class="nb">str</span><span class="p">(</span><span class="n">ge</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">major_id</span><span class="p">)</span> <span class="k">for</span> <span class="n">ge</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">inf_pumps</span> <span class="p">])</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">copy_numbers_eff_pumps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span> <span class="p">[</span> <span class="nb">str</span><span class="p">(</span><span class="n">ge</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">major_id</span><span class="p">)</span> <span class="k">for</span> <span class="n">ge</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">eff_pumps</span> <span class="p">])</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">operators</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">OrderedSet</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">operator</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">)</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">binding_sequences</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">OrderedSet</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">binding_sequence</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tfs</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="Genome.init_chromosomes"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Genome.Genome.init_chromosomes">[docs]</a>    <span class="k">def</span> <span class="nf">init_chromosomes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chromosomes</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Initialize chromosomes.</span>
+<span class="sd">        </span>
+<span class="sd">        Add preinitialized chromosomes to the genome.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        chromosomes : iterable of class:`virtual_cell.Chromosome.Chromosome`</span>
+<span class="sd">            chromosomes to add</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chromosomes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">chrom</span> <span class="ow">in</span> <span class="n">chromosomes</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_chromosome</span><span class="p">(</span><span class="n">chrom</span><span class="p">)</span></div>
+            
+<div class="viewcode-block" id="Genome.add_chromosome"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Genome.Genome.add_chromosome">[docs]</a>    <span class="k">def</span> <span class="nf">add_chromosome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">chrom</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Add a chromosome to the list of chromosomes.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="s2">&quot;adding chromosome&quot;</span><span class="p">,</span> <span class="n">chrom</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chromosomes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chrom</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Genome.del_chromosome"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Genome.Genome.del_chromosome">[docs]</a>    <span class="k">def</span> <span class="nf">del_chromosome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">chrom</span><span class="p">,</span> <span class="n">remove_genes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span> 
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Delete a chromosome.</span>
+<span class="sd">        </span>
+<span class="sd">        Remove a chromosome from the list of chromosomes. If `remove_genes` is</span>
+<span class="sd">        True the genome will be further updated to reflect deletion of genes.</span>
+<span class="sd">        E.g. the sequence bindings should be updated when genes are removed from</span>
+<span class="sd">        the genome. It may be useful to defer updating if it is already known</span>
+<span class="sd">        that the genes will be readded immediately. This may be the case when a</span>
+<span class="sd">        chromosome is split (fission) or fused and no genes will be actually</span>
+<span class="sd">        lost from the genome.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        chrom : class:`virtual_cell.Chromosome.Chromosome`</span>
+<span class="sd">            chromosome to be removed</span>
+<span class="sd">        remove_genes : bool</span>
+<span class="sd">            if True update the genome</span>
+<span class="sd">        verbose : bool</span>
+<span class="sd">            be verbose</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="s2">&quot;deleting chromosome&quot;</span><span class="p">,</span> <span class="n">chrom</span>   
+        <span class="bp">self</span><span class="o">.</span><span class="n">chromosomes</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">chrom</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">remove_genes</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">chromosomes_removed</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chrom</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_genome_removed_genes</span><span class="p">(</span><span class="n">chrom</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Genome.bs_to_tfs_dict"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Genome.Genome.bs_to_tfs_dict">[docs]</a>    <span class="k">def</span> <span class="nf">bs_to_tfs_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Create mapping from binding sequences to tfs. </span>
+<span class="sd">        </span>
+<span class="sd">        For each binding sequence in the genome map to the set of tfs that </span>
+<span class="sd">        contain this binding sequence</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        mapping from class:`virtual_cell.Sequence.BindingSequence` to set </span>
+<span class="sd">        of class:`virtual_cell.Gene.TranscriptionFactor</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">bs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">binding_sequences</span><span class="p">:</span>
+            <span class="n">d</span><span class="p">[</span><span class="n">bs</span><span class="p">]</span> <span class="o">=</span> <span class="n">OrderedSet</span><span class="p">(</span><span class="n">tf</span> <span class="k">for</span> <span class="n">tf</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tfs</span> <span class="k">if</span> <span class="n">tf</span><span class="o">.</span><span class="n">binding_sequence</span> <span class="o">==</span> <span class="n">bs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">d</span> </div>
+    
+<div class="viewcode-block" id="Genome.op_to_tfs_scores_dict"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Genome.Genome.op_to_tfs_scores_dict">[docs]</a>    <span class="k">def</span> <span class="nf">op_to_tfs_scores_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Create mapping from operators to the tfs that bind them, with their scores.</span>
+<span class="sd">        </span>
+<span class="sd">        For each operator in the genome map the set of tfs, together with their</span>
+<span class="sd">        binding scores.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        mapping from class:`virtual_cell.Sequence.Operator` to set </span>
+<span class="sd">        of class:`virtual_cell.Gene.TranscriptionFactor, binding-score (float) tuples.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">op_to_tfs_scores</span> <span class="o">=</span> <span class="n">OrderedDefaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="n">bs_to_tf_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bs_to_tfs_dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">operators</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">bs</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">op</span><span class="o">.</span><span class="n">binding_sequences</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">tf</span> <span class="ow">in</span> <span class="n">bs_to_tf_dict</span><span class="p">[</span><span class="n">bs</span><span class="p">]:</span>
+                    <span class="n">op_to_tfs_scores</span><span class="p">[</span><span class="n">op</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">tf</span><span class="p">,</span><span class="n">score</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">op_to_tfs_scores</span></div>
+        
+<div class="viewcode-block" id="Genome.binding_tfs_scores"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Genome.Genome.binding_tfs_scores">[docs]</a>    <span class="k">def</span> <span class="nf">binding_tfs_scores</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Return tfs that bind this operator and their scores.</span>
+<span class="sd">         </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        op : class:`virtual_cell.Sequence.Operator`</span>
+<span class="sd">            operator sequence </span>
+<span class="sd">            </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of class:`virtual_cell.Gene.TranscriptionFactor`, float tuples</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">tfs_scores</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="n">bs_to_tf_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bs_to_tfs_dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">bs</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">op</span><span class="o">.</span><span class="n">binding_sequences</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">tf</span> <span class="ow">in</span> <span class="n">bs_to_tf_dict</span><span class="p">[</span><span class="n">bs</span><span class="p">]:</span>
+                <span class="n">tfs_scores</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">tf</span><span class="p">,</span><span class="n">score</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">tfs_scores</span></div>
+    
+<div class="viewcode-block" id="Genome.update_regulatory_network"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Genome.Genome.update_regulatory_network">[docs]</a>    <span class="k">def</span> <span class="nf">update_regulatory_network</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">min_bind_score</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Update the binding state of the regulatory network.</span>
+<span class="sd">        </span>
+<span class="sd">        Iterate over all Sequences in the genome and if their check_binding flag</span>
+<span class="sd">        is set, match the sequence against all potential binders in the genome.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        min_bind_score : float</span>
+<span class="sd">            minimum binding score for sequence matching</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">operators</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">op</span><span class="o">.</span><span class="n">check_binding</span><span class="p">:</span>
+                <span class="n">op</span><span class="o">.</span><span class="n">update_binding_sequences</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">binding_sequences</span><span class="p">,</span> <span class="n">min_bind_score</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">bs</span> <span class="ow">in</span> <span class="n">op</span><span class="o">.</span><span class="n">binding_sequences</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">bs</span><span class="o">.</span><span class="n">bound_operators</span>
+        <span class="k">for</span> <span class="n">bs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">binding_sequences</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">bs</span><span class="o">.</span><span class="n">check_binding</span><span class="p">:</span>
+                <span class="n">bs</span><span class="o">.</span><span class="n">match_operators</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">operators</span><span class="p">,</span> <span class="n">min_bind_score</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">bs</span><span class="o">.</span><span class="n">bound_operators</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="n">bs</span> <span class="ow">in</span> <span class="n">op</span><span class="o">.</span><span class="n">binding_sequences</span></div>
+    
+<div class="viewcode-block" id="Genome.reset_regulatory_network"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Genome.Genome.reset_regulatory_network">[docs]</a>    <span class="k">def</span> <span class="nf">reset_regulatory_network</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">min_bind_score</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Reset the binding state of the regulatory network.</span>
+<span class="sd">        </span>
+<span class="sd">        Iterate over all Sequences in the genome and clear all bindings. </span>
+<span class="sd">        Then re-initialize the regulatory network.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        min_bind_score : float</span>
+<span class="sd">            minimum binding score for sequence matching</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">bs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">binding_sequences</span><span class="p">:</span>
+            <span class="n">bs</span><span class="o">.</span><span class="n">clear_bound_operators</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">operators</span><span class="p">:</span>
+            <span class="n">op</span><span class="o">.</span><span class="n">clear_binding_sequences</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_regulatory_network</span><span class="p">(</span><span class="n">min_bind_score</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Genome.init_regulatory_network"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Genome.Genome.init_regulatory_network">[docs]</a>    <span class="k">def</span> <span class="nf">init_regulatory_network</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">min_bind_score</span><span class="p">):</span> 
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Initialize the binding state of the regulatory network.</span>
+<span class="sd">        </span>
+<span class="sd">        Iterate over all class:`virtual_cell.Sequence.Operator`s in the genome</span>
+<span class="sd">        and match them against all</span>
+<span class="sd">        class:`virtual_cell.Sequence.BindingSequence`s.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        min_bind_score : float</span>
+<span class="sd">            minimum binding score for sequence matching</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">operators</span><span class="p">:</span>
+            <span class="n">op</span><span class="o">.</span><span class="n">update_binding_sequences</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">binding_sequences</span><span class="p">,</span> <span class="n">min_bind_score</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">bs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">binding_sequences</span><span class="p">:</span>
+            <span class="n">bs</span><span class="o">.</span><span class="n">check_binding</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1">#because all TFs have been updated simultaneously </span></div>
+            
+<div class="viewcode-block" id="Genome.tf_connections_dict"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Genome.Genome.tf_connections_dict">[docs]</a>    <span class="k">def</span> <span class="nf">tf_connections_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A dictionry of TFs to sets of downstream bound genes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span> <span class="c1"># NOTE: unordered ok, use for output only</span>
+        <span class="n">op_to_tfs_scores_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_to_tfs_scores_dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">tf</span><span class="p">,</span><span class="n">_score</span> <span class="ow">in</span> <span class="n">op_to_tfs_scores_dict</span><span class="p">[</span><span class="n">g</span><span class="o">.</span><span class="n">operator</span><span class="p">]:</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">tf</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">d</span></div>
+        
+    <span class="k">def</span> <span class="nf">_inform_lost_bs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">binding_sequence</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;When a binding sequence is lost (due to deletion) it informs operators it was bound to.</span>
+<span class="sd">        </span>
+<span class="sd">        A single binding sequence that was removed may or not be present in</span>
+<span class="sd">        another gene (copy) in the genome. Only if it was the last of its type,</span>
+<span class="sd">        should the operators that it was binding to be informed about its</span>
+<span class="sd">        removal. These operators remove the binding_sequence from their internal</span>
+<span class="sd">        bound binding_sequence dictionaries.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        binding_sequence : class:`virtual_cell.Sequence.BindingSequence`</span>
+<span class="sd">            binding_sequence to check</span>
+<span class="sd">        </span>
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        func:`_inform_lost_operator`</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">binding_sequence</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">binding_sequences</span><span class="p">:</span>
+            <span class="n">binding_sequence</span><span class="o">.</span><span class="n">inform_operators</span><span class="p">()</span>
+            
+    <span class="k">def</span> <span class="nf">_inform_lost_operator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        If an operator is lost from the genome inform its binding sequences.</span>
+<span class="sd">        </span>
+<span class="sd">        Tells class:`virtual_cell.Sequence.BindingSequence`s of the `operator` to </span>
+<span class="sd">        remove `operator`.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        operator : class:`virtual_cell.Sequence.Operator`</span>
+<span class="sd">            operator to check</span>
+<span class="sd">        </span>
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        func:`_inform_lost_bs`</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">operator</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">operators</span><span class="p">:</span>
+            <span class="n">operator</span><span class="o">.</span><span class="n">inform_bss</span><span class="p">()</span>
+            
+<div class="viewcode-block" id="Genome.update_genome_removed_gene"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Genome.Genome.update_genome_removed_gene">[docs]</a>    <span class="k">def</span> <span class="nf">update_genome_removed_gene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gene</span><span class="p">):</span> 
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Remove a gene from the genome if no more copies exist in the genome. </span>
+<span class="sd">        </span>
+<span class="sd">        Updates the genome </span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        gene : class:`virtual_cell.GenomicElement.GenomicElement`</span>
+<span class="sd">            gene to be removed</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="n">gene</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;tf&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_inform_lost_bs</span><span class="p">(</span><span class="n">gene</span><span class="o">.</span><span class="n">binding_sequence</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">gene</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">genes_removed</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gene</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_inform_lost_operator</span><span class="p">(</span><span class="n">gene</span><span class="o">.</span><span class="n">operator</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Genome.update_genome_removed_genes"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Genome.Genome.update_genome_removed_genes">[docs]</a>    <span class="k">def</span> <span class="nf">update_genome_removed_genes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">genes</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Update the genome to reflect gene deletions. </span>
+<span class="sd">       </span>
+<span class="sd">        After the deletion of (part of) a chromosome, the genome has to be</span>
+<span class="sd">        updated to reflect the change. Because exact copies of deleted genes may</span>
+<span class="sd">        still be present in another part of the genome a check has to be</span>
+<span class="sd">        performed before definitive removal.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        genes : iterable of class:`virtual_cell.GenomicElement.GenomicElement`</span>
+<span class="sd">            genes that were targeted by a deletion operation.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">genes</span><span class="p">):</span> <span class="c1"># NOTE: unordered ok</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_genome_removed_gene</span><span class="p">(</span><span class="n">g</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Genome.die"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Genome.Genome.die">[docs]</a>    <span class="k">def</span> <span class="nf">die</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Record death of phylogenetic units in the genome.</span>
+<span class="sd">        </span>
+<span class="sd">        Typically called from the cell when it dies. All phylogenetic units in</span>
+<span class="sd">        the genome are instructed to record their death. When phylogenetic units</span>
+<span class="sd">        are no longer alive, they may be pruned from their respective</span>
+<span class="sd">        phylogenetic trees if there are no more living descendants of the</span>
+<span class="sd">        phylogenetic unit.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        time : float</span>
+<span class="sd">            simulation time</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">die</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">chrom</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">chromosomes</span><span class="p">:</span>
+            <span class="n">chrom</span><span class="o">.</span><span class="n">die</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">genes_removed</span><span class="p">:</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">die</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">chromosomes_removed</span><span class="p">:</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">die</span><span class="p">(</span><span class="n">time</span><span class="p">)</span></div>
+        <span class="c1">#clear the sequences bindings to decrease references to (dead) sequences</span>
+        <span class="c1">#=======================================================================</span>
+        <span class="c1"># for op in self.operators:</span>
+        <span class="c1">#     op.clear_binding_sequences()</span>
+        <span class="c1"># for bs in self.binding_sequences:</span>
+        <span class="c1">#     bs.clear_bound_operators()</span>
+        <span class="c1">#=======================================================================</span>
+            
+<div class="viewcode-block" id="Genome.prune_genomic_ancestries"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Genome.Genome.prune_genomic_ancestries">[docs]</a>    <span class="k">def</span> <span class="nf">prune_genomic_ancestries</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Prune the phylogenetic trees of phylogenetic units in the genome.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        tuple (set of class:`virtual_cell.Chromosome.Chromosome` , </span>
+<span class="sd">        set of class:`virtual_cell.GenomicElement.GenomicElement`)</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">pruned_genes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prune_gene_ancestries</span><span class="p">()</span>
+        <span class="n">pruned_chromosomes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prune_chromosome_ancestries</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">pruned_chromosomes</span><span class="p">,</span> <span class="n">pruned_genes</span></div>
+    
+    <span class="k">def</span> <span class="nf">_prune_gene_ancestries</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pruned_genes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">|</span> <span class="bp">self</span><span class="o">.</span><span class="n">genes_removed</span><span class="p">:</span>
+            <span class="n">pruned_genes</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">prune_dead_branch</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">pruned_genes</span>
+    
+    <span class="k">def</span> <span class="nf">_prune_chromosome_ancestries</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pruned_chromosomes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">chrom</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chromosomes</span><span class="p">)</span> <span class="o">|</span> <span class="bp">self</span><span class="o">.</span><span class="n">chromosomes_removed</span> <span class="p">:</span>
+            <span class="n">pruned_chromosomes</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">chrom</span><span class="o">.</span><span class="n">prune_dead_branch</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">pruned_chromosomes</span>
+    
+    <span class="k">def</span> <span class="nf">_reproduction_copy_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operators</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Make copy of operators present in the genome during reproduction.</span>
+<span class="sd">        </span>
+<span class="sd">        Copies each operator and stores the originals and copies in a map. This</span>
+<span class="sd">        map is used as a reference when genes are copied and the new gene copy&#39;s </span>
+<span class="sd">        reference to its operator is updated to the newly created operator copy.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        operators : iterable of class:`virtual_cell.Sequence.Operators` </span>
+<span class="sd">            parent operators</span>
+<span class="sd">        time : float</span>
+<span class="sd">            simulation time point</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        mapping of parent to child operators     </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orig_copy_operator_map</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span> <span class="c1"># NOTE: unordered ok</span>
+        <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">operators</span><span class="p">:</span>
+            <span class="n">copy</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">_reproduction_copy</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">orig_copy_operator_map</span><span class="p">[</span><span class="n">op</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_copy_operator_map</span>
+    
+    <span class="k">def</span> <span class="nf">_reproduction_copy_binding_sequences</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">binding_sequences</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Make copy of binding sequences present in the genome during reproduction.</span>
+<span class="sd">        </span>
+<span class="sd">        Copies each operator and stores the originals and copies in a map. This</span>
+<span class="sd">        map is used as a reference when genes are copied and the new gene copy&#39;s </span>
+<span class="sd">        reference to its binding sequence is updated to the newly created operator copy.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        binding_sequences : iterable of class:`virtual_cell.Sequence.BindingSequence`</span>
+<span class="sd">            parent binding sequences</span>
+<span class="sd">        time : float</span>
+<span class="sd">             simulation time point</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        mapping of parent to child binding sequences</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orig_copy_binding_sequence_map</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span> <span class="c1"># NOTE: unordered ok</span>
+        <span class="k">for</span> <span class="n">bs</span> <span class="ow">in</span> <span class="n">binding_sequences</span><span class="p">:</span>
+            <span class="n">copy</span> <span class="o">=</span> <span class="n">bs</span><span class="o">.</span><span class="n">_reproduction_copy</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">orig_copy_binding_sequence_map</span><span class="p">[</span><span class="n">bs</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_copy_binding_sequence_map</span>
+    
+    <span class="k">def</span> <span class="nf">_update_bind_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Update bindings from parent to child sequences.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">bs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">binding_sequences</span><span class="p">:</span>
+            <span class="n">bs</span><span class="o">.</span><span class="n">_update_bound_operators</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">orig_copy_operator_map</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">operators</span><span class="p">:</span>
+            <span class="n">op</span><span class="o">.</span><span class="n">_update_binding_sequences</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">orig_copy_binding_sequence_map</span><span class="p">)</span>
+       
+    <span class="k">def</span> <span class="nf">_reproduction_copy_genes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent_genome</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Make copy of the parent_genome.</span>
+<span class="sd">        </span>
+<span class="sd">        Copies each gene and stores the originals and copies in a map. This map</span>
+<span class="sd">        is used as a reference when chromosomes are copied and the new</span>
+<span class="sd">        chromosome copy&#39;s references to genes in the parent_genome is updated</span>
+<span class="sd">        to the newly created gene copies.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        parent_genome : class:`Genome` </span>
+<span class="sd">            genome of parent</span>
+<span class="sd">        time : float </span>
+<span class="sd">            simulation time point</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        mapping from parent genes to gene copies belonging to this offspring </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orig_copy_genes_map</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># NOTE: unordered ok</span>
+        
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">parent_genome</span><span class="p">:</span>
+            <span class="n">copy</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">_reproduction_copy</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+            <span class="n">copy</span><span class="o">.</span><span class="n">operator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_copy_operator_map</span><span class="p">[</span><span class="n">g</span><span class="o">.</span><span class="n">operator</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">copy</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;tf&#39;</span><span class="p">:</span>
+                <span class="n">copy</span><span class="o">.</span><span class="n">binding_sequence</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_copy_binding_sequence_map</span><span class="p">[</span><span class="n">g</span><span class="o">.</span><span class="n">binding_sequence</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">orig_copy_genes_map</span><span class="p">[</span><span class="n">g</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_copy_genes_map</span>
+
+    <span class="k">def</span> <span class="nf">_reproduction_copy_chromosomes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">chromosomes</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">chrom</span> <span class="ow">in</span> <span class="n">chromosomes</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">chromosomes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chrom</span><span class="o">.</span><span class="n">_reproduction_copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">orig_copy_genes_map</span><span class="p">,</span> <span class="n">time</span><span class="p">))</span>
+       
+    <span class="k">def</span> <span class="nf">_reproduction_copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">cls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span> <span class="s2">&quot;enzymes&quot;</span><span class="p">,</span> <span class="s2">&quot;pumps&quot;</span><span class="p">,</span> <span class="s2">&quot;tfs&quot;</span><span class="p">,</span> <span class="s2">&quot;binding_sequences&quot;</span><span class="p">,</span> <span class="s2">&quot;operators&quot;</span><span class="p">,</span> <span class="s1">&#39;orig_copy_genes_map&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;orig_copy_operator_map&#39;</span><span class="p">,</span> <span class="s1">&#39;orig_copy_binding_sequence_map&#39;</span><span class="p">]</span> <span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">elif</span> <span class="n">k</span> <span class="ow">in</span>  <span class="p">[</span><span class="s2">&quot;genes_per_type&quot;</span><span class="p">,</span> <span class="s2">&quot;chromosomes&quot;</span><span class="p">,</span> 
+                         <span class="s1">&#39;genes_removed&#39;</span><span class="p">,</span> <span class="s1">&#39;chromosomes_removed&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;removed_bss&#39;</span><span class="p">,</span> <span class="s1">&#39;removed_operators&#39;</span><span class="p">]:</span>
+                <span class="n">atr_cls</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">__class__</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">atr_cls</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">atr_cls</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;version&#39;</span><span class="p">]:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">k</span> <span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>    
+                <span class="nb">print</span> <span class="s2">&quot;deepcopying&quot;</span><span class="p">,</span> <span class="n">k</span> <span class="p">,</span> <span class="s2">&quot;of genome&quot;</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">_reproduction_copy_operators</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">operators</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">_reproduction_copy_binding_sequences</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">binding_sequences</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">_reproduction_copy_genes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">_reproduction_copy_chromosomes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chromosomes</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">_update_bind_mapping</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+<div class="viewcode-block" id="Genome.toJSON"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Genome.Genome.toJSON">[docs]</a>    <span class="k">def</span> <span class="nf">toJSON</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">children</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chromosomes</span><span class="p">):</span>
+            <span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">toJSON</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+        
+        <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;genome&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;description&#39;</span><span class="p">:</span><span class="s1">&#39;genome&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;colour&#39;</span><span class="p">:</span> <span class="n">mpl</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">rgb2hex</span><span class="p">(</span><span class="n">mpl</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">colorConverter</span><span class="o">.</span><span class="n">to_rgb</span><span class="p">(</span><span class="s1">&#39;grey&#39;</span><span class="p">)),</span>
+             <span class="s1">&#39;children&#39;</span><span class="p">:</span> <span class="n">children</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">d</span></div>
+    
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span> <span class="nb">str</span><span class="p">(</span><span class="n">chrom</span><span class="p">)</span> <span class="k">for</span> <span class="n">chrom</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">chromosomes</span><span class="p">])</span>
+    
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">chromosomes</span><span class="p">))</span>
+    
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Iterate over all positions in all chromosomes.</span>
+<span class="sd">        </span>
+<span class="sd">        Yields</span>
+<span class="sd">        ------</span>
+<span class="sd">        :class:`virtual_cell.GenomicElement.GenomicElement`</span>
+<span class="sd">            Genomic elements in the order of the chromosomes in the genome and positions in chromosomes.  </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">chromosomes</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="Genome.update"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Genome.Genome.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;version&#39;</span><span class="p">,</span> <span class="s1">&#39;0.0&#39;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">version</span> <span class="o">&lt;</span> <span class="mf">1.0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;genes_per_type&#39;</span><span class="p">,</span> <span class="s1">&#39;operators&#39;</span><span class="p">,</span> <span class="s1">&#39;binding_sequences&#39;</span><span class="p">,</span> <span class="s1">&#39;removed_bss&#39;</span><span class="p">,</span> <span class="s1">&#39;removed_operators&#39;</span><span class="p">]:</span>
+                <span class="k">del</span> <span class="n">state</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span></div>
+            
+<div class="viewcode-block" id="Genome.upgrade"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Genome.Genome.upgrade">[docs]</a>    <span class="k">def</span> <span class="nf">upgrade</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
+        <span class="n">version</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_version</span>
+        <span class="nb">print</span> <span class="s1">&#39;upgrade class&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
+        <span class="nb">print</span> <span class="s1">&#39;from version&#39;</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="s1">&#39;to version&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span>
+        <span class="k">if</span> <span class="n">version</span> <span class="o">&lt;</span> <span class="mf">1.0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">genes_removed</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">chromosomes_removed</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span></div>
+            
+    
+    <span class="k">def</span> <span class="nf">__setstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span> <span class="o">=</span> <span class="n">state</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;0.0&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_version</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">upgrade</span><span class="p">()</span></div>
+        
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Thomas Cuypers, Bram van Dijk.
+      Last updated on Oct 10, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

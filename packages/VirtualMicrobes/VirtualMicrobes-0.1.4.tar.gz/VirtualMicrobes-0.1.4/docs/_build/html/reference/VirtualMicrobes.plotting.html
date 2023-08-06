@@ -1,0 +1,933 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VirtualMicrobes.plotting package &mdash; Virtual Microbes Evolutionary Simulator 0.1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Virtual Microbes Evolutionary Simulator 0.1.3 documentation" href="../index.html"/>
+        <link rel="up" title="VirtualMicrobes package" href="VirtualMicrobes.html"/>
+        <link rel="next" title="VirtualMicrobes.post_analysis package" href="VirtualMicrobes.post_analysis.html"/>
+        <link rel="prev" title="VirtualMicrobes.my_tools package" href="VirtualMicrobes.my_tools.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Virtual Microbes Evolutionary Simulator
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="VirtualMicrobes.html">VirtualMicrobes package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="VirtualMicrobes.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.Tree.html">VirtualMicrobes.Tree package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.cython_gsl_interface.html">VirtualMicrobes.cython_gsl_interface package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.data_tools.html">VirtualMicrobes.data_tools package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.environment.html">VirtualMicrobes.environment package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.event.html">VirtualMicrobes.event package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.mutate.html">VirtualMicrobes.mutate package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.my_tools.html">VirtualMicrobes.my_tools package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">VirtualMicrobes.plotting package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.post_analysis.html">VirtualMicrobes.post_analysis package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.simulation.html">VirtualMicrobes.simulation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.virtual_cell.html">VirtualMicrobes.virtual_cell package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="VirtualMicrobes.html#module-VirtualMicrobes">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Virtual Microbes Evolutionary Simulator</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Reference</a> &raquo;</li>
+      
+          <li><a href="VirtualMicrobes.html">VirtualMicrobes package</a> &raquo;</li>
+      
+    <li>VirtualMicrobes.plotting package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/reference/VirtualMicrobes.plotting.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="virtualmicrobes-plotting-package">
+<h1>VirtualMicrobes.plotting package<a class="headerlink" href="#virtualmicrobes-plotting-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-VirtualMicrobes.plotting.Graphs">
+<span id="virtualmicrobes-plotting-graphs-module"></span><h2>VirtualMicrobes.plotting.Graphs module<a class="headerlink" href="#module-VirtualMicrobes.plotting.Graphs" title="Permalink to this headline">¶</a></h2>
+<p>Created on Sep 13, 2014
+&#64;author: thocu</p>
+<dl class="class">
+<dt id="VirtualMicrobes.plotting.Graphs.AttributeMap">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.plotting.Graphs.</code><code class="descname">AttributeMap</code><span class="sig-paren">(</span><em>mol_class_dict</em>, <em>reactions_dict</em>, <em>species_markers</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#AttributeMap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.AttributeMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.AttributeMap.activation_color">
+<code class="descname">activation_color</code><span class="sig-paren">(</span><em>effect</em>, <em>domain=(-1</em>, <em>1)</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#AttributeMap.activation_color"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.AttributeMap.activation_color" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.AttributeMap.color_mol">
+<code class="descname">color_mol</code><span class="sig-paren">(</span><em>mol</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#AttributeMap.color_mol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.AttributeMap.color_mol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.AttributeMap.color_mol_class">
+<code class="descname">color_mol_class</code><span class="sig-paren">(</span><em>mc</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#AttributeMap.color_mol_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.AttributeMap.color_mol_class" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.AttributeMap.color_protein">
+<code class="descname">color_protein</code><span class="sig-paren">(</span><em>g</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#AttributeMap.color_protein"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.AttributeMap.color_protein" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.AttributeMap.color_reaction">
+<code class="descname">color_reaction</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#AttributeMap.color_reaction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.AttributeMap.color_reaction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.AttributeMap.init_color_maps">
+<code class="descname">init_color_maps</code><span class="sig-paren">(</span><em>species_markers</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#AttributeMap.init_color_maps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.AttributeMap.init_color_maps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.AttributeMap.init_mol_class_color_dict">
+<code class="descname">init_mol_class_color_dict</code><span class="sig-paren">(</span><em>mol_class_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#AttributeMap.init_mol_class_color_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.AttributeMap.init_mol_class_color_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.AttributeMap.protein_type_line_style">
+<code class="descname">protein_type_line_style</code><span class="sig-paren">(</span><em>type_</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#AttributeMap.protein_type_line_style"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.AttributeMap.protein_type_line_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.plotting.Graphs.BindingNetwork">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.plotting.Graphs.</code><code class="descname">BindingNetwork</code><span class="sig-paren">(</span><em>base_save_dir</em>, <em>name</em>, <em>attribute_dict=None</em>, <em>size=(35</em>, <em>35)</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#BindingNetwork"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.BindingNetwork" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.plotting.Graphs.Network" title="VirtualMicrobes.plotting.Graphs.Network"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.plotting.Graphs.Network</span></code></a></p>
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.BindingNetwork.draw_network">
+<code class="descname">draw_network</code><span class="sig-paren">(</span><em>self_marker=None</em>, <em>edge_effect='effect'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#BindingNetwork.draw_network"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.BindingNetwork.draw_network" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.BindingNetwork.init_network">
+<code class="descname">init_network</code><span class="sig-paren">(</span><em>cell</em>, <em>with_self_marker=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#BindingNetwork.init_network"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.BindingNetwork.init_network" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.BindingNetwork.layout_network_positions">
+<code class="descname">layout_network_positions</code><span class="sig-paren">(</span><em>prog</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#BindingNetwork.layout_network_positions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.BindingNetwork.layout_network_positions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute and store node positions using a layout algorithm.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>prog</strong> (<em>str</em>) &#8211; layout algorithm</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.plotting.Graphs.Genome">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.plotting.Graphs.</code><code class="descname">Genome</code><span class="sig-paren">(</span><em>base_save_dir</em>, <em>name</em>, <em>attribute_dict</em>, <em>size=(10</em>, <em>10)</em>, <em>show=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Genome"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Genome" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.plotting.Graphs.Grapher" title="VirtualMicrobes.plotting.Graphs.Grapher"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.plotting.Graphs.Grapher</span></code></a></p>
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Genome.plot_genome_structure">
+<code class="descname">plot_genome_structure</code><span class="sig-paren">(</span><em>cell</em>, <em>labels</em>, <em>video=None</em>, <em>max_size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Genome.plot_genome_structure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Genome.plot_genome_structure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Render the genome structure as a circular (plasmid-like) representation.
+:param cell: which genome is plotted</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="VirtualMicrobes.plotting.Graphs.GraphNotFoundError">
+<em class="property">exception </em><code class="descclassname">VirtualMicrobes.plotting.Graphs.</code><code class="descname">GraphNotFoundError</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#GraphNotFoundError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.GraphNotFoundError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.plotting.Graphs.GraphingError" title="VirtualMicrobes.plotting.Graphs.GraphingError"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.plotting.Graphs.GraphingError</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.plotting.Graphs.Grapher">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.plotting.Graphs.</code><code class="descname">Grapher</code><span class="sig-paren">(</span><em>base_save_dir</em>, <em>name</em>, <em>show=True</em>, <em>attribute_dict=None</em>, <em>clean=True</em>, <em>create=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Grapher"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Grapher" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Grapher.backup_plots">
+<code class="descname">backup_plots</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Grapher.backup_plots"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Grapher.backup_plots" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Grapher.change_save_location">
+<code class="descname">change_save_location</code><span class="sig-paren">(</span><em>base_dir=None</em>, <em>name=None</em>, <em>clean=False</em>, <em>create=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Grapher.change_save_location"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Grapher.change_save_location" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.plotting.Graphs.Grapher.class_version">
+<code class="descname">class_version</code><em class="property"> = '1.0'</em><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Grapher.class_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Grapher.init_attribute_mapper">
+<code class="descname">init_attribute_mapper</code><span class="sig-paren">(</span><em>mol_class_dict</em>, <em>reactions_dict</em>, <em>species_markers</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Grapher.init_attribute_mapper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Grapher.init_attribute_mapper" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Grapher.init_save_dir">
+<code class="descname">init_save_dir</code><span class="sig-paren">(</span><em>clean=False</em>, <em>create=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Grapher.init_save_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Grapher.init_save_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.plotting.Graphs.Grapher.save_dir">
+<code class="descname">save_dir</code><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Grapher.save_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Grapher.save_fig">
+<code class="descname">save_fig</code><span class="sig-paren">(</span><em>name=None</em>, <em>labels=[]</em>, <em>title=None</em>, <em>suffix='.svg'</em>, <em>copy_labels=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Grapher.save_fig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Grapher.save_fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Render and save a figure.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>str</em>) &#8211; base name of the figure</li>
+<li><strong>labels</strong> (<em>iterable</em>) &#8211; additional labels in file name</li>
+<li><strong>title</strong> (<em>str</em>) &#8211; printable title of figure</li>
+<li><strong>suffix</strong> (<em>str</em>) &#8211; file extension suffix</li>
+<li><strong>copy_labels</strong> (<em>iterable</em>) &#8211; additional labels for the filename of a copy of the figure</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list of filenames of the saved figure(s)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Grapher.save_fig2">
+<code class="descname">save_fig2</code><span class="sig-paren">(</span><em>ext</em>, <em>name=None</em>, <em>title=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Grapher.save_fig2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Grapher.save_fig2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Render and save a figure.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>str</em>) &#8211; base name of the figure</li>
+<li><strong>title</strong> (<em>str</em>) &#8211; printable title of figure</li>
+<li><strong>suffix</strong> (<em>str</em>) &#8211; file extension suffix</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">filename of the saved figure</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Grapher.save_video">
+<code class="descname">save_video</code><span class="sig-paren">(</span><em>video=None</em>, <em>frame=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Grapher.save_video"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Grapher.save_video" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Grapher.update_figure">
+<code class="descname">update_figure</code><span class="sig-paren">(</span><em>show=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Grapher.update_figure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Grapher.update_figure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Grapher.upgrade">
+<code class="descname">upgrade</code><span class="sig-paren">(</span><em>odict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Grapher.upgrade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Grapher.upgrade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upgrading from older pickled version of class to latest version. Version
+information is saved as class variable and should be updated when class
+invariants (e.g. fields) are added. (see also __setstate__)</p>
+<p>Adapted from recipe at <a class="reference external" href="http://code.activestate.com/recipes/521901-upgradable-pickles/">http://code.activestate.com/recipes/521901-upgradable-pickles/</a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="VirtualMicrobes.plotting.Graphs.GraphingError">
+<em class="property">exception </em><code class="descclassname">VirtualMicrobes.plotting.Graphs.</code><code class="descname">GraphingError</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#GraphingError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.GraphingError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.plotting.Graphs.</code><code class="descname">Graphs</code><span class="sig-paren">(</span><em>base_save_dir</em>, <em>name</em>, <em>utility_path</em>, <em>mol_class_dict</em>, <em>reactions_dict</em>, <em>population_markers</em>, <em>species_markers</em>, <em>show</em>, <em>clean=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.plotting.Graphs.Grapher" title="VirtualMicrobes.plotting.Graphs.Grapher"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.plotting.Graphs.Grapher</span></code></a></p>
+<p>Produces static and online graphs of simulated data.</p>
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.add_grid_graphs_data">
+<code class="descname">add_grid_graphs_data</code><span class="sig-paren">(</span><em>time_point</em>, <em>pop_grid_data_dict</em>, <em>small_mol_names</em>, <em>data_store</em>, <em>scaling_dict_updates</em>, <em>markers_range_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.add_grid_graphs_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.add_grid_graphs_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.add_mol_evo_time_course_data">
+<code class="descname">add_mol_evo_time_course_data</code><span class="sig-paren">(</span><em>time_point</em>, <em>ext_res_conc_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.add_mol_evo_time_course_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.add_mol_evo_time_course_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.add_multigraph">
+<code class="descname">add_multigraph</code><span class="sig-paren">(</span><em>graph</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.add_multigraph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.add_multigraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.add_pop_stats_data">
+<code class="descname">add_pop_stats_data</code><span class="sig-paren">(</span><em>time</em>, <em>most_fecundant_death_rate</em>, <em>most_fecundant_production</em>, <em>data_store</em>, <em>high_freq_cutoff=10</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.add_pop_stats_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.add_pop_stats_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.change_save_location">
+<code class="descname">change_save_location</code><span class="sig-paren">(</span><em>base_save_dir=None</em>, <em>name=None</em>, <em>clean=False</em>, <em>create=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.change_save_location"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.change_save_location" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.init_binding_network">
+<code class="descname">init_binding_network</code><span class="sig-paren">(</span><em>show=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.init_binding_network"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.init_binding_network" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.init_genome_structure">
+<code class="descname">init_genome_structure</code><span class="sig-paren">(</span><em>show=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.init_genome_structure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.init_genome_structure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.init_grid_graphs">
+<code class="descname">init_grid_graphs</code><span class="sig-paren">(</span><em>mol_class_dict</em>, <em>markers=[]</em>, <em>nr_cols_markers=3</em>, <em>show=None</em>, <em>mol_classes_per_row=4</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.init_grid_graphs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.init_grid_graphs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.init_metabolic_network">
+<code class="descname">init_metabolic_network</code><span class="sig-paren">(</span><em>metabolites</em>, <em>conversions</em>, <em>imports</em>, <em>show=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.init_metabolic_network"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.init_metabolic_network" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.init_phylo_tree">
+<code class="descname">init_phylo_tree</code><span class="sig-paren">(</span><em>show=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.init_phylo_tree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.init_phylo_tree" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.init_pop_stats">
+<code class="descname">init_pop_stats</code><span class="sig-paren">(</span><em>species_markers</em>, <em>reactions_dict</em>, <em>mol_class_dict</em>, <em>show=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.init_pop_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.init_pop_stats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.init_scaling_dict">
+<code class="descname">init_scaling_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.init_scaling_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.init_scaling_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.init_time_course_graph">
+<code class="descname">init_time_course_graph</code><span class="sig-paren">(</span><em>show=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.init_time_course_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.init_time_course_graph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.line_colors">
+<code class="descname">line_colors</code><span class="sig-paren">(</span><em>name</em>, <em>nr</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.line_colors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.line_colors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.plot_binding_network">
+<code class="descname">plot_binding_network</code><span class="sig-paren">(</span><em>obj</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.plot_binding_network"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.plot_binding_network" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cell</strong> &#8211; Who to plot</li>
+<li><strong>prog</strong> &#8211; (???)</li>
+<li><strong>save</strong> &#8211; Save the figure Y/N</li>
+<li><strong>write</strong> &#8211; Save the network file (gml, dot, json, etc.)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Nodes:
+Pumping enzymes are BLUE squares (ip = importing pump, e-p = exporting pump)
+Generic enzymes are BLUE / TURQUOISE circles
+Specific enzymes are GREEN / YELLOW / RED circles
+TFs are BROWN diamonds
+Thick borders indicates self-binding</p>
+<p>Node-labels:
+Labels:
+Metabolites with brackets are building blocks
+Metabolites with asterisks are energy carriers</p>
+<p>Edges:
+Width shows the basal level of transcription for the TF
+Colours distinquish inhibiting (blue) vs activating (red) effects. Intermediates are white-ish.</p>
+<p>!! Note: still needs the ReST references worked out !!</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.plot_genome_structure">
+<code class="descname">plot_genome_structure</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.plot_genome_structure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.plot_genome_structure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.plot_grid_concentrations">
+<code class="descname">plot_grid_concentrations</code><span class="sig-paren">(</span><em>dat</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.plot_grid_concentrations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.plot_grid_concentrations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.plot_grid_graphs">
+<code class="descname">plot_grid_graphs</code><span class="sig-paren">(</span><em>obj</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.plot_grid_graphs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.plot_grid_graphs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.plot_metabolic_network">
+<code class="descname">plot_metabolic_network</code><span class="sig-paren">(</span><em>obj</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.plot_metabolic_network"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.plot_metabolic_network" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.plot_mol_class_data">
+<code class="descname">plot_mol_class_data</code><span class="sig-paren">(</span><em>ax</em>, <em>mol_tc_dict</em>, <em>**plot_params</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.plot_mol_class_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.plot_mol_class_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.plot_phylo_tree">
+<code class="descname">plot_phylo_tree</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.plot_phylo_tree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.plot_phylo_tree" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.plot_pop_stats">
+<code class="descname">plot_pop_stats</code><span class="sig-paren">(</span><em>obj</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.plot_pop_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.plot_pop_stats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.plot_prot_data">
+<code class="descname">plot_prot_data</code><span class="sig-paren">(</span><em>ax</em>, <em>prot_pert_type_tc_dict</em>, <em>**plot_params</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.plot_prot_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.plot_prot_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Graphs.plot_time_course">
+<code class="descname">plot_time_course</code><span class="sig-paren">(</span><em>obj</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Graphs.plot_time_course"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Graphs.plot_time_course" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.plotting.Graphs.MetabolicNetwork">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.plotting.Graphs.</code><code class="descname">MetabolicNetwork</code><span class="sig-paren">(</span><em>base_save_dir</em>, <em>name</em>, <em>mol_class_dict</em>, <em>conversions</em>, <em>imports</em>, <em>size=(30</em>, <em>30)</em>, <em>attribute_dict=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MetabolicNetwork"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MetabolicNetwork" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.plotting.Graphs.Network" title="VirtualMicrobes.plotting.Graphs.Network"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.plotting.Graphs.Network</span></code></a></p>
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.MetabolicNetwork.color_reactions">
+<code class="descname">color_reactions</code><span class="sig-paren">(</span><em>conversions</em>, <em>imports</em>, <em>building_blocks=[]</em>, <em>self_marker=None</em>, <em>reac_color_func=None</em>, <em>mol_color_func=None</em>, <em>edge_color_func=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MetabolicNetwork.color_reactions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MetabolicNetwork.color_reactions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.MetabolicNetwork.draw_network">
+<code class="descname">draw_network</code><span class="sig-paren">(</span><em>reactions_dict=None</em>, <em>self_marker=None</em>, <em>building_blocks=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MetabolicNetwork.draw_network"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MetabolicNetwork.draw_network" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.MetabolicNetwork.init_network">
+<code class="descname">init_network</code><span class="sig-paren">(</span><em>mol_class_dict</em>, <em>conversions</em>, <em>imports</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MetabolicNetwork.init_network"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MetabolicNetwork.init_network" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.MetabolicNetwork.layout_network_positions">
+<code class="descname">layout_network_positions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MetabolicNetwork.layout_network_positions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MetabolicNetwork.layout_network_positions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGraph">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.plotting.Graphs.</code><code class="descname">MultiGraph</code><span class="sig-paren">(</span><em>base_save_dir</em>, <em>name</em>, <em>rows</em>, <em>cols</em>, <em>row_heigth=2</em>, <em>col_width=4</em>, <em>attribute_dict=None</em>, <em>show=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MultiGraph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.plotting.Graphs.Grapher" title="VirtualMicrobes.plotting.Graphs.Grapher"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.plotting.Graphs.Grapher</span></code></a></p>
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGraph.add_axis">
+<code class="descname">add_axis</code><span class="sig-paren">(</span><em>name</em>, <em>pos</em>, <em>rows=1</em>, <em>cols=1</em>, <em>min_max_y=None</em>, <em>nr_lines=0</em>, <em>auto_scale=True</em>, <em>**plot_params</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MultiGraph.add_axis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGraph.add_axis" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGraph.add_lines">
+<code class="descname">add_lines</code><span class="sig-paren">(</span><em>ax_name</em>, <em>nr_lines</em>, <em>**line_customization</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MultiGraph.add_lines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGraph.add_lines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGraph.append_data">
+<code class="descname">append_data</code><span class="sig-paren">(</span><em>axes_name</em>, <em>xdata</em>, <em>ydata</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MultiGraph.append_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGraph.append_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGraph.append_to_axes">
+<code class="descname">append_to_axes</code><span class="sig-paren">(</span><em>axes_name</em>, <em>xdata</em>, <em>ydata</em>, <em>line_in=[]</em>, <em>autoscale=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MultiGraph.append_to_axes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGraph.append_to_axes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGraph.append_to_lines">
+<code class="descname">append_to_lines</code><span class="sig-paren">(</span><em>axes_name</em>, <em>xdat</em>, <em>ydata_dict</em>, <em>autoscale=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MultiGraph.append_to_lines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGraph.append_to_lines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGraph.colors">
+<code class="descname">colors</code><em class="property"> = array([[ 0.        ,  0.        ,  0.5       ,  1.        ],        [ 0.        ,  0.        ,  0.58912656,  1.        ],        [ 0.        ,  0.        ,  0.67825312,  1.        ],        [ 0.        ,  0.        ,  0.76737968,  1.        ],        [ 0.        ,  0.        ,  0.85650624,  1.        ],        [ 0.        ,  0.        ,  0.96345811,  1.        ],        [ 0.        ,  0.        ,  1.        ,  1.        ],        [ 0.        ,  0.06470588,  1.        ,  1.        ],        [ 0.        ,  0.14313725,  1.        ,  1.        ],        [ 0.        ,  0.2372549 ,  1.        ,  1.        ],        [ 0.        ,  0.31568627,  1.        ,  1.        ],        [ 0.        ,  0.39411765,  1.        ,  1.        ],        [ 0.        ,  0.47254902,  1.        ,  1.        ],        [ 0.        ,  0.55098039,  1.        ,  1.        ],        [ 0.        ,  0.64509804,  1.        ,  1.        ],        [ 0.        ,  0.72352941,  1.        ,  1.        ],        [ 0.        ,  0.80196078,  1.        ,  1.        ],        [ 0.        ,  0.88039216,  0.98355471,  1.        ],        [ 0.06008855,  0.9745098 ,  0.90765338,  1.        ],        [ 0.12333966,  1.        ,  0.84440228,  1.        ],        [ 0.18659077,  1.        ,  0.78115117,  1.        ],        [ 0.24984187,  1.        ,  0.71790006,  1.        ],        [ 0.31309298,  1.        ,  0.65464896,  1.        ],        [ 0.38899431,  1.        ,  0.57874763,  1.        ],        [ 0.45224541,  1.        ,  0.51549652,  1.        ],        [ 0.51549652,  1.        ,  0.45224541,  1.        ],        [ 0.57874763,  1.        ,  0.38899431,  1.        ],        [ 0.65464896,  1.        ,  0.31309298,  1.        ],        [ 0.71790006,  1.        ,  0.24984187,  1.        ],        [ 0.78115117,  1.        ,  0.18659077,  1.        ],        [ 0.84440228,  1.        ,  0.12333966,  1.        ],        [ 0.90765338,  1.        ,  0.06008855,  1.        ],        [ 0.98355471,  0.94480755,  0.        ,  1.        ],        [ 1.        ,  0.87218591,  0.        ,  1.        ],        [ 1.        ,  0.79956427,  0.        ,  1.        ],        [ 1.        ,  0.72694263,  0.        ,  1.        ],        [ 1.        ,  0.63979666,  0.        ,  1.        ],        [ 1.        ,  0.56717502,  0.        ,  1.        ],        [ 1.        ,  0.49455338,  0.        ,  1.        ],        [ 1.        ,  0.42193174,  0.        ,  1.        ],        [ 1.        ,  0.34931009,  0.        ,  1.        ],        [ 1.        ,  0.26216412,  0.        ,  1.        ],        [ 1.        ,  0.18954248,  0.        ,  1.        ],        [ 1.        ,  0.11692084,  0.        ,  1.        ],        [ 0.96345811,  0.0442992 ,  0.        ,  1.        ],        [ 0.85650624,  0.        ,  0.        ,  1.        ],        [ 0.76737968,  0.        ,  0.        ,  1.        ],        [ 0.67825312,  0.        ,  0.        ,  1.        ],        [ 0.58912656,  0.        ,  0.        ,  1.        ],        [ 0.5       ,  0.        ,  0.        ,  1.        ]])</em><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGraph.colors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGraph.cols">
+<code class="descname">cols</code><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGraph.cols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGraph.customize_lines">
+<code class="descname">customize_lines</code><span class="sig-paren">(</span><em>lines</em>, <em>markers=None</em>, <em>line_styles=None</em>, <em>marker_sizes=None</em>, <em>marker_edge_widths=None</em>, <em>colors=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MultiGraph.customize_lines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGraph.customize_lines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGraph.fill_grid">
+<code class="descname">fill_grid</code><span class="sig-paren">(</span><em>pos</em>, <em>rows</em>, <em>cols</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MultiGraph.fill_grid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGraph.fill_grid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGraph.grid_free">
+<code class="descname">grid_free</code><span class="sig-paren">(</span><em>pos</em>, <em>rows</em>, <em>cols</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MultiGraph.grid_free"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGraph.grid_free" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGraph.line_markers">
+<code class="descname">line_markers</code><em class="property"> = (u'o', u'v', u'^', u'&lt;', u'&gt;', u'8', u's', u'p', u'*', u'h', u'H', u'D', u'd')</em><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGraph.line_markers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGraph.line_styles">
+<code class="descname">line_styles</code><em class="property"> = ['-', ':', '--', '-.']</em><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGraph.line_styles" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGraph.marker_edge_widths">
+<code class="descname">marker_edge_widths</code><em class="property"> = [0.1]</em><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGraph.marker_edge_widths" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGraph.marker_sizes">
+<code class="descname">marker_sizes</code><em class="property"> = [2.0]</em><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGraph.marker_sizes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGraph.rows">
+<code class="descname">rows</code><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGraph.rows" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGraph.tight_layout">
+<code class="descname">tight_layout</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MultiGraph.tight_layout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGraph.tight_layout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGraph.within_grid">
+<code class="descname">within_grid</code><span class="sig-paren">(</span><em>pos</em>, <em>rows</em>, <em>cols</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MultiGraph.within_grid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGraph.within_grid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGridGraph">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.plotting.Graphs.</code><code class="descname">MultiGridGraph</code><span class="sig-paren">(</span><em>base_save_dir</em>, <em>name</em>, <em>rows</em>, <em>cols</em>, <em>row_heigth=4</em>, <em>col_width=4</em>, <em>attribute_dict=None</em>, <em>show=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MultiGridGraph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGridGraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.plotting.Graphs.MultiGraph" title="VirtualMicrobes.plotting.Graphs.MultiGraph"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.plotting.Graphs.MultiGraph</span></code></a></p>
+<p>classdocs</p>
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGridGraph.add_axis">
+<code class="descname">add_axis</code><span class="sig-paren">(</span><em>name</em>, <em>pos</em>, <em>rows=1</em>, <em>cols=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MultiGridGraph.add_axis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGridGraph.add_axis" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGridGraph.append_data">
+<code class="descname">append_data</code><span class="sig-paren">(</span><em>axes_name</em>, <em>time_point</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MultiGridGraph.append_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGridGraph.append_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGridGraph.append_to_axes">
+<code class="descname">append_to_axes</code><span class="sig-paren">(</span><em>axes_name</em>, <em>time_point</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MultiGridGraph.append_to_axes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGridGraph.append_to_axes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGridGraph.plot_in_axes">
+<code class="descname">plot_in_axes</code><span class="sig-paren">(</span><em>axes_name</em>, <em>cm_name</em>, <em>matrix_data=None</em>, <em>data_range=None</em>, <em>color_bar=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MultiGridGraph.plot_in_axes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGridGraph.plot_in_axes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.MultiGridGraph.set_data_range">
+<code class="descname">set_data_range</code><span class="sig-paren">(</span><em>axes_name</em>, <em>_range</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#MultiGridGraph.set_data_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.MultiGridGraph.set_data_range" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.plotting.Graphs.Network">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.plotting.Graphs.</code><code class="descname">Network</code><span class="sig-paren">(</span><em>base_save_dir</em>, <em>name</em>, <em>attribute_dict</em>, <em>size=(10</em>, <em>10)</em>, <em>show=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Network"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Network" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.plotting.Graphs.Grapher" title="VirtualMicrobes.plotting.Graphs.Grapher"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.plotting.Graphs.Grapher</span></code></a></p>
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Network.add_self">
+<code class="descname">add_self</code><span class="sig-paren">(</span><em>marker</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Network.add_self"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Network.add_self" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Network.clear_graph">
+<code class="descname">clear_graph</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Network.clear_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Network.clear_graph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Network.color_edge_direction">
+<code class="descname">color_edge_direction</code><span class="sig-paren">(</span><em>i</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Network.color_edge_direction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Network.color_edge_direction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Network.e_attr_list">
+<code class="descname">e_attr_list</code><span class="sig-paren">(</span><em>attr</em>, <em>selectors=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Network.e_attr_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Network.e_attr_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Network.edges_with_attr_list">
+<code class="descname">edges_with_attr_list</code><span class="sig-paren">(</span><em>selectors=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Network.edges_with_attr_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Network.edges_with_attr_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Network.gene_node_id">
+<code class="descname">gene_node_id</code><span class="sig-paren">(</span><em>gene</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Network.gene_node_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Network.gene_node_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Network.gene_node_label">
+<code class="descname">gene_node_label</code><span class="sig-paren">(</span><em>gene_node_id</em>, <em>depth=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Network.gene_node_label"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Network.gene_node_label" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Network.init_network">
+<code class="descname">init_network</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Network.init_network"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Network.init_network" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Network.metabolite_edge_width">
+<code class="descname">metabolite_edge_width</code><span class="sig-paren">(</span><em>bb</em>, <em>cell_bb=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Network.metabolite_edge_width"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Network.metabolite_edge_width" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Network.n_attr_list">
+<code class="descname">n_attr_list</code><span class="sig-paren">(</span><em>attr</em>, <em>selectors=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Network.n_attr_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Network.n_attr_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Network.nodes_with_attr_list">
+<code class="descname">nodes_with_attr_list</code><span class="sig-paren">(</span><em>selectors=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Network.nodes_with_attr_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Network.nodes_with_attr_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Network.redraw_network">
+<code class="descname">redraw_network</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Network.redraw_network"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Network.redraw_network" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Network.type_shape">
+<code class="descname">type_shape</code><span class="sig-paren">(</span><em>reac_type</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Network.type_shape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Network.type_shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.Network.write_to_file">
+<code class="descname">write_to_file</code><span class="sig-paren">(</span><em>name=None</em>, <em>labels=[]</em>, <em>suffix='.gml'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#Network.write_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.Network.write_to_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.plotting.Graphs.PhyloTreeGraph">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.plotting.Graphs.</code><code class="descname">PhyloTreeGraph</code><span class="sig-paren">(</span><em>base_save_dir</em>, <em>name</em>, <em>attribute_dict</em>, <em>show=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#PhyloTreeGraph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.PhyloTreeGraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.plotting.Graphs.Grapher" title="VirtualMicrobes.plotting.Graphs.Grapher"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.plotting.Graphs.Grapher</span></code></a></p>
+<p>Plot phylogenetic trees and represent the data in nodes with different layout styles.</p>
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.compress_root_branch">
+<code class="descname">compress_root_branch</code><span class="sig-paren">(</span><em>root_branch_dist=20</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#PhyloTreeGraph.compress_root_branch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.compress_root_branch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.init_tree_style_dict">
+<code class="descname">init_tree_style_dict</code><span class="sig-paren">(</span><em>layouts=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#PhyloTreeGraph.init_tree_style_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.init_tree_style_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.make_tree_style">
+<code class="descname">make_tree_style</code><span class="sig-paren">(</span><em>layout=None</em>, <em>mode='c'</em>, <em>leaf_names=False</em>, <em>face_overlap=True</em>, <em>arc_span=360</em>, <em>scale=None</em>, <em>branch_lengths=False</em>, <em>branch_vertical_margin=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#PhyloTreeGraph.make_tree_style"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.make_tree_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.metabolic_type_layout">
+<code class="descname">metabolic_type_layout</code><span class="sig-paren">(</span><em>node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#PhyloTreeGraph.metabolic_type_layout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.metabolic_type_layout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.metabolic_with_lod_layout">
+<code class="descname">metabolic_with_lod_layout</code><span class="sig-paren">(</span><em>node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#PhyloTreeGraph.metabolic_with_lod_layout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.metabolic_with_lod_layout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.mutation_rates_layout">
+<code class="descname">mutation_rates_layout</code><span class="sig-paren">(</span><em>node</em>, <em>mut_type</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#PhyloTreeGraph.mutation_rates_layout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.mutation_rates_layout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.node_layouts">
+<code class="descname">node_layouts</code><em class="property"> = ['metabolism', 'trophic_type', 'metabolic_with_lod']</em><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.node_layouts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.rate_features">
+<code class="descname">rate_features</code><em class="property"> = ['point_mut_rate', 'chromosomal_mut_rate', 'stretch_mut_rate', 'sequence_mut_rate', 'chromosome_dup_rate', 'chromosome_del_rate', 'tandem_dup_rate', 'stretch_del_rate', 'external_hgt_rate', 'internal_hgt_rate']</em><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.rate_features" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.save_fig">
+<code class="descname">save_fig</code><span class="sig-paren">(</span><em>feature='metabolism'</em>, <em>name=None</em>, <em>labels=[]</em>, <em>suffix='.svg'</em>, <em>rescale=None</em>, <em>dpi=10</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#PhyloTreeGraph.save_fig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.save_fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Render tree with layout function depending on the selected feature for tree representation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>feature</strong> &#8211; feature selects for a specific layout function, determining node style</li>
+<li><strong>name</strong> &#8211; name for saving</li>
+<li><strong>labels</strong> &#8211; labels to appear in save file name</li>
+<li><strong>suffix</strong> &#8211; suffix of save file name</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.select_layout_fn">
+<code class="descname">select_layout_fn</code><span class="sig-paren">(</span><em>data_type</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#PhyloTreeGraph.select_layout_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.select_layout_fn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.trophic_type_layout">
+<code class="descname">trophic_type_layout</code><span class="sig-paren">(</span><em>node</em>, <em>trophic_type</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#PhyloTreeGraph.trophic_type_layout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.trophic_type_layout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>tree</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#PhyloTreeGraph.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set new ete_tree.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.update_figure">
+<code class="descname">update_figure</code><span class="sig-paren">(</span><em>show=None</em>, <em>feature='metabolism'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#PhyloTreeGraph.update_figure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.update_figure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.write_to_file">
+<code class="descname">write_to_file</code><span class="sig-paren">(</span><em>name=None</em>, <em>labels=[]</em>, <em>suffix='.nw'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#PhyloTreeGraph.write_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.PhyloTreeGraph.write_to_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="VirtualMicrobes.plotting.Graphs.PositionOutsideGridError">
+<em class="property">exception </em><code class="descclassname">VirtualMicrobes.plotting.Graphs.</code><code class="descname">PositionOutsideGridError</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/plotting/Graphs.html#PositionOutsideGridError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.plotting.Graphs.PositionOutsideGridError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.plotting.Graphs.GraphingError" title="VirtualMicrobes.plotting.Graphs.GraphingError"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.plotting.Graphs.GraphingError</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-VirtualMicrobes.plotting">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-VirtualMicrobes.plotting" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="VirtualMicrobes.post_analysis.html" class="btn btn-neutral float-right" title="VirtualMicrobes.post_analysis package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="VirtualMicrobes.my_tools.html" class="btn btn-neutral" title="VirtualMicrobes.my_tools package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Thomas Cuypers, Bram van Dijk.
+      Last updated on Oct 10, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

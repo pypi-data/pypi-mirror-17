@@ -1,0 +1,395 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VirtualMicrobes.virtual_cell.Chromosome &mdash; Virtual Microbes Evolutionary Simulator 0.1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Virtual Microbes Evolutionary Simulator 0.1.3 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Virtual Microbes Evolutionary Simulator
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">Virtual Microbes Evolutionary Simulator</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>VirtualMicrobes.virtual_cell.Chromosome</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for VirtualMicrobes.virtual_cell.Chromosome</h1><div class="highlight"><pre>
+<span></span><span class="c1">#from virtual_cell.GenomicElement import *</span>
+<span class="c1">#from virtual_cell.Position import *</span>
+<span class="c1">#from compiler.ast import List</span>
+<span class="c1">#from auxiliary import *</span>
+<span class="kn">from</span> <span class="nn">VirtualMicrobes.virtual_cell.PhyloUnit</span> <span class="k">import</span> <span class="n">AddInheritanceType</span><span class="p">,</span> <span class="n">PhyloUnit</span>
+<span class="kn">import</span> <span class="nn">VirtualMicrobes.simulation.class_settings</span> <span class="k">as</span> <span class="nn">cs</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">from</span> <span class="nn">VirtualMicrobes.my_tools</span> <span class="k">import</span> <span class="n">utility</span> <span class="k">as</span> <span class="n">util</span>
+<span class="k">def</span> <span class="nf">_gen_id_func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+<div class="viewcode-block" id="Chromosome"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Chromosome.Chromosome">[docs]</a><span class="k">class</span> <span class="nc">Chromosome</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">     A list with all the positions on the chromosome. So far it is not apparent</span>
+<span class="sd">     why there should be an additional encapsulation of GenomicElements in</span>
+<span class="sd">     Position wrappers. If they do not provide a sufficient benefit in a real</span>
+<span class="sd">     usecase, this layere may be taken out.</span>
+<span class="sd">     </span>
+<span class="sd">    positions</span>
+
+<span class="sd">    :version:</span>
+<span class="sd">    :author:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">AddInheritanceType</span>
+    <span class="n">__phylo_type</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">phylo_types</span><span class="p">[</span><span class="s1">&#39;Chromosome&#39;</span><span class="p">]</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;positions&#39;</span><span class="p">]</span>
+  
+    <span class="n">uid</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gene_list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
+                 <span class="n">positions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                 <span class="n">time_birth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">circular</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Chromosome</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">time_birth</span><span class="o">=</span><span class="n">time_birth</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">positions</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">positions</span> <span class="o">=</span> <span class="n">positions</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">init_positions</span><span class="p">(</span><span class="n">circular</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">gene_list</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">gene_list</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">append_gene</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Chromosome.init_positions"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Chromosome.Chromosome.init_positions">[docs]</a>    <span class="k">def</span> <span class="nf">init_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">circular</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">circular</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">positions</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">CircularList</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">positions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Chromosome.append_gene"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Chromosome.Chromosome.append_gene">[docs]</a>    <span class="k">def</span> <span class="nf">append_gene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">g</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">g</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Chromosome.translocate_stretch"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Chromosome.Chromosome.translocate_stretch">[docs]</a>    <span class="k">def</span> <span class="nf">translocate_stretch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">end_pos</span><span class="p">,</span> <span class="n">target_pos</span><span class="p">,</span> <span class="n">target_chrom</span><span class="p">):</span>
+        <span class="n">stretch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="n">start_pos</span><span class="p">:</span><span class="n">end_pos</span><span class="p">]</span>
+        <span class="n">prev_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_chrom</span><span class="p">)</span>
+        <span class="n">target_chrom</span><span class="o">.</span><span class="n">insert_stretch</span><span class="p">(</span><span class="n">stretch</span><span class="p">,</span> <span class="n">target_pos</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_chrom</span><span class="p">)</span> <span class="o">==</span> <span class="n">prev_len</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">stretch</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Chromosome.invert"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Chromosome.Chromosome.invert">[docs]</a>    <span class="k">def</span> <span class="nf">invert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">start_pos</span><span class="p">,</span> <span class="n">end_pos</span><span class="p">):</span>
+        <span class="n">len_prev</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span>
+        <span class="n">stretch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="n">start_pos</span><span class="p">:</span><span class="n">end_pos</span><span class="p">]</span>
+        <span class="n">stretch</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="n">start_pos</span><span class="p">:</span><span class="n">end_pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">stretch</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span> <span class="o">==</span> <span class="n">len_prev</span>
+        <span class="k">return</span> <span class="n">stretch</span></div>
+    
+<div class="viewcode-block" id="Chromosome.tandem_duplicate"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Chromosome.Chromosome.tandem_duplicate">[docs]</a>    <span class="k">def</span> <span class="nf">tandem_duplicate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">end_pos</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Duplicates a stretch of genes &#39;in place&#39;, right after end_pos </span>
+<span class="sd">        i.e. played on this chromosome.</span>
+<span class="sd">        :param start_pos:</span>
+<span class="sd">        :param end_pos:</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">stretch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="n">start_pos</span><span class="p">:</span><span class="n">end_pos</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">insert_stretch</span><span class="p">(</span><span class="n">stretch</span><span class="p">,</span> <span class="n">end_pos</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">stretch</span></div>
+    
+<div class="viewcode-block" id="Chromosome.insert_stretch"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Chromosome.Chromosome.insert_stretch">[docs]</a>    <span class="k">def</span> <span class="nf">insert_stretch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stretch</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Insert a list of nodes at (=after) pos.</span>
+<span class="sd">        :param stretch:</span>
+<span class="sd">        :param pos:</span>
+<span class="sd">        :param verbose:</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">prev_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="n">pos</span><span class="p">:</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">stretch</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="n">prev_len</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">stretch</span><span class="p">)</span> </div>
+        
+<div class="viewcode-block" id="Chromosome.delete_stretch"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Chromosome.Chromosome.delete_stretch">[docs]</a>    <span class="k">def</span> <span class="nf">delete_stretch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">end_pos</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Deletes a stretch of genes &#39;in place&#39;, i.e. played on this chromosome.</span>
+<span class="sd">        :param start_pos:</span>
+<span class="sd">        :param end_pos:</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">prev_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">stretch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="n">start_pos</span><span class="p">:</span><span class="n">end_pos</span><span class="p">]</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="n">start_pos</span><span class="p">:</span><span class="n">end_pos</span><span class="p">]</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span> <span class="o">==</span> <span class="n">prev_len</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">stretch</span><span class="p">)</span> 
+        <span class="k">return</span> <span class="n">stretch</span></div>
+        
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Chromosome.fuse"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Chromosome.Chromosome.fuse">[docs]</a>    <span class="k">def</span> <span class="nf">fuse</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">chrom1</span><span class="p">,</span> <span class="n">chrom2</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">end1</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">end2</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">positions1</span> <span class="o">=</span> <span class="n">chrom1</span><span class="o">.</span><span class="n">positions</span><span class="p">[:]</span> 
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">end2</span><span class="p">:</span> <span class="n">positions1</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+        <span class="n">positions2</span> <span class="o">=</span> <span class="n">chrom2</span><span class="o">.</span><span class="n">positions</span><span class="p">[:]</span>
+        <span class="k">if</span> <span class="n">end2</span><span class="p">:</span> <span class="n">positions2</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+        <span class="n">new_chrom</span> <span class="o">=</span> <span class="n">Chromosome</span><span class="p">(</span><span class="n">time_birth</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span> <span class="n">positions1</span><span class="o">+</span><span class="n">positions2</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_chrom</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">chrom1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">chrom2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">chrom1</span><span class="p">,</span> <span class="n">PhyloUnit</span><span class="p">):</span>
+            <span class="n">new_chrom</span><span class="o">.</span><span class="n">set_ancestor</span><span class="p">(</span><span class="n">chrom1</span><span class="p">)</span>
+            <span class="n">new_chrom</span><span class="o">.</span><span class="n">set_ancestor</span><span class="p">(</span><span class="n">chrom2</span><span class="p">)</span>
+        <span class="n">new_chrom</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">from_parent</span><span class="p">(</span><span class="n">chrom1</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">new_chrom</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">chrom1</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">chrom2</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span>
+        <span class="n">chrom1</span><span class="o">.</span><span class="n">die</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="n">chrom2</span><span class="o">.</span><span class="n">die</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">new_chrom</span></div>
+                    
+<div class="viewcode-block" id="Chromosome.fiss"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Chromosome.Chromosome.fiss">[docs]</a>    <span class="k">def</span> <span class="nf">fiss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pos</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span> <span class="c1">#creating shallow copies of list positions by slicing</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="s2">&quot;fision of chromosome at position&quot;</span><span class="p">,</span> <span class="n">pos</span>
+        <span class="n">subchrom1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mutation_copy</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">with_positions</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> 
+        <span class="n">subchrom1</span><span class="o">.</span><span class="n">positions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">[:</span><span class="n">pos</span><span class="p">]</span>
+        <span class="n">subchrom2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mutation_copy</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">with_positions</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> 
+        <span class="n">subchrom2</span><span class="o">.</span><span class="n">positions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="n">pos</span><span class="p">:]</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">subchrom1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">subchrom2</span><span class="p">)</span> 
+        <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">subchrom1</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">subchrom2</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">die</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">subchrom1</span><span class="p">,</span><span class="n">subchrom2</span> </div>
+
+<div class="viewcode-block" id="Chromosome.duplicate"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Chromosome.Chromosome.duplicate">[docs]</a>    <span class="k">def</span> <span class="nf">duplicate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">copy1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mutation_copy</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
+        <span class="n">copy2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mutation_copy</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">die</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="s2">&quot;ids: parent&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">),</span> <span class="s2">&quot;copy1:&quot;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">copy1</span><span class="o">.</span><span class="n">id</span><span class="p">),</span> <span class="s2">&quot;copy2:&quot;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">copy2</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">copy1</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">copy2</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">copy1</span><span class="p">,</span><span class="n">copy2</span></div>
+        
+    <span class="k">def</span> <span class="nf">_reproduction_copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orig_copy_genes_map</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Make a copy of the chromosome when reproducing a cell. This copy should</span>
+<span class="sd">        be independent of its ancestor so that changes in a child will not</span>
+<span class="sd">        affect the parent. Copying of the &quot;positions&quot; attribute (containing genes)</span>
+<span class="sd">        assumes that the genes in the list have</span>
+<span class="sd">        already been copied ( _reproduction_copy(gene) ) so that the</span>
+<span class="sd">        &quot;children&quot; attribute of the parental copy holds the newly produced</span>
+<span class="sd">        &quot;reproduction-copy&quot; of the gene. These are then used to re-instantiate the</span>
+<span class="sd">        positions of the new &quot;reproduction-copy&quot; of the chromosome.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">copied</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">Chromosome</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_copy</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">new_id</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">copied</span><span class="o">.</span><span class="n">init_positions</span><span class="p">(</span><span class="n">circular</span><span class="o">=</span><span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">,</span> <span class="n">util</span><span class="o">.</span><span class="n">CircularList</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">:</span>
+            <span class="n">new_copy</span> <span class="o">=</span> <span class="n">orig_copy_genes_map</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+            <span class="n">copied</span><span class="o">.</span><span class="n">positions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_copy</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">copied</span>
+    
+    <span class="k">def</span> <span class="nf">_mutation_copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">with_positions</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">mutant</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">Chromosome</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_copy</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">flat_id</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">with_positions</span><span class="p">:</span>
+            <span class="n">mutant</span><span class="o">.</span><span class="n">positions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">[:]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">atr_cls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="o">.</span><span class="n">__class__</span>
+            <span class="n">mutant</span><span class="o">.</span><span class="n">positions</span> <span class="o">=</span> <span class="n">atr_cls</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">atr_cls</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">mutant</span>
+    
+<div class="viewcode-block" id="Chromosome.toJSON"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Chromosome.Chromosome.toJSON">[docs]</a>    <span class="k">def</span> <span class="nf">toJSON</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">children</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">g</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">):</span>
+            <span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">toJSON</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+                    
+        <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Chr. &#39;</span> <span class="o">+</span> <span class="s2">&quot; #&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
+             <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Chromosome &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">),</span> 
+             <span class="s1">&#39;colour&#39;</span><span class="p">:</span> <span class="n">mpl</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">rgb2hex</span><span class="p">(</span><span class="n">mpl</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">colorConverter</span><span class="o">.</span><span class="n">to_rgb</span><span class="p">(</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">)),</span>
+             <span class="s1">&#39;children&#39;</span><span class="p">:</span> <span class="n">children</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">d</span> </div>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">out_str</span> <span class="o">=</span> <span class="s2">&quot;chr&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">:</span>
+            <span class="n">out_str</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span>
+        <span class="k">return</span> <span class="n">out_str</span>
+    
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span></div>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">chrom</span> <span class="o">=</span> <span class="n">Chromosome</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">,</span> <span class="n">time_birth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="nb">type</span><span class="p">(</span><span class="n">chrom</span><span class="o">.</span><span class="n">positions</span><span class="p">[:])</span>
+    <span class="nb">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">chrom</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="n">chrom</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">14</span><span class="p">]</span>
+    <span class="nb">print</span> <span class="n">chrom</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="mi">9</span><span class="p">:</span><span class="mi">14</span><span class="p">]</span>
+    <span class="nb">print</span> <span class="n">chrom</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">chrom</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:</span><span class="o">-</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="n">chrom</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+    <span class="nb">print</span> <span class="n">chrom</span><span class="o">.</span><span class="n">positions</span>
+    <span class="nb">print</span> <span class="n">chrom</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span>
+    
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Thomas Cuypers, Bram van Dijk.
+      Last updated on Oct 10, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

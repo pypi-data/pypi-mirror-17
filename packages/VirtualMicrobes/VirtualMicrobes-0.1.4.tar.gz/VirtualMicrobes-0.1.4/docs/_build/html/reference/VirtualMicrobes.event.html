@@ -1,0 +1,635 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VirtualMicrobes.event package &mdash; Virtual Microbes Evolutionary Simulator 0.1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Virtual Microbes Evolutionary Simulator 0.1.3 documentation" href="../index.html"/>
+        <link rel="up" title="VirtualMicrobes package" href="VirtualMicrobes.html"/>
+        <link rel="next" title="VirtualMicrobes.mutate package" href="VirtualMicrobes.mutate.html"/>
+        <link rel="prev" title="VirtualMicrobes.environment package" href="VirtualMicrobes.environment.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Virtual Microbes Evolutionary Simulator
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="VirtualMicrobes.html">VirtualMicrobes package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="VirtualMicrobes.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.Tree.html">VirtualMicrobes.Tree package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.cython_gsl_interface.html">VirtualMicrobes.cython_gsl_interface package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.data_tools.html">VirtualMicrobes.data_tools package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.environment.html">VirtualMicrobes.environment package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">VirtualMicrobes.event package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.mutate.html">VirtualMicrobes.mutate package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.my_tools.html">VirtualMicrobes.my_tools package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.plotting.html">VirtualMicrobes.plotting package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.post_analysis.html">VirtualMicrobes.post_analysis package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.simulation.html">VirtualMicrobes.simulation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.virtual_cell.html">VirtualMicrobes.virtual_cell package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="VirtualMicrobes.html#module-VirtualMicrobes">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Virtual Microbes Evolutionary Simulator</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Reference</a> &raquo;</li>
+      
+          <li><a href="VirtualMicrobes.html">VirtualMicrobes package</a> &raquo;</li>
+      
+    <li>VirtualMicrobes.event package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/reference/VirtualMicrobes.event.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="virtualmicrobes-event-package">
+<h1>VirtualMicrobes.event package<a class="headerlink" href="#virtualmicrobes-event-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-VirtualMicrobes.event.Molecule">
+<span id="virtualmicrobes-event-molecule-module"></span><h2>VirtualMicrobes.event.Molecule module<a class="headerlink" href="#module-VirtualMicrobes.event.Molecule" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="VirtualMicrobes.event.Molecule.Molecule">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.event.Molecule.</code><code class="descname">Molecule</code><span class="sig-paren">(</span><em>name</em>, <em>toxic_level=None</em>, <em>is_internal=True</em>, <em>pair=True</em>, <em>is_building_block=False</em>, <em>is_gene_product=False</em>, <em>mol_class=None</em>, <em>is_energy=False</em>, <em>environment=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Molecule.html#Molecule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Molecule.Molecule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<blockquote>
+<div>Small molecules of the system. Can exist internally or externally.
+Some are metabolites that can take place in (enzymatic) reactions.
+Can diffuse over membranes and may be transported into or out of the cell.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Version:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Author:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="VirtualMicrobes.event.Molecule.Molecule.class_version">
+<code class="descname">class_version</code><em class="property"> = '1.0'</em><a class="headerlink" href="#VirtualMicrobes.event.Molecule.Molecule.class_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.event.Molecule.Molecule.energy_level">
+<code class="descname">energy_level</code><a class="headerlink" href="#VirtualMicrobes.event.Molecule.Molecule.energy_level" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.event.Molecule.Molecule.environment">
+<code class="descname">environment</code><a class="headerlink" href="#VirtualMicrobes.event.Molecule.Molecule.environment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.event.Molecule.Molecule.index">
+<code class="descname">index</code><em class="property"> = 0</em><a class="headerlink" href="#VirtualMicrobes.event.Molecule.Molecule.index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.event.Molecule.Molecule.is_building_block">
+<code class="descname">is_building_block</code><a class="headerlink" href="#VirtualMicrobes.event.Molecule.Molecule.is_building_block" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.event.Molecule.Molecule.is_energy">
+<code class="descname">is_energy</code><a class="headerlink" href="#VirtualMicrobes.event.Molecule.Molecule.is_energy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.event.Molecule.Molecule.is_gene_product">
+<code class="descname">is_gene_product</code><a class="headerlink" href="#VirtualMicrobes.event.Molecule.Molecule.is_gene_product" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.event.Molecule.Molecule.is_influxed">
+<code class="descname">is_influxed</code><a class="headerlink" href="#VirtualMicrobes.event.Molecule.Molecule.is_influxed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.event.Molecule.Molecule.is_internal">
+<code class="descname">is_internal</code><a class="headerlink" href="#VirtualMicrobes.event.Molecule.Molecule.is_internal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.event.Molecule.Molecule.mol_class">
+<code class="descname">mol_class</code><a class="headerlink" href="#VirtualMicrobes.event.Molecule.Molecule.mol_class" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.event.Molecule.Molecule.pair_up">
+<code class="descname">pair_up</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Molecule.html#Molecule.pair_up"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Molecule.Molecule.pair_up" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a paired molecule for self on the other side of the Cell
+membrane. When updating a property of self, the property of the paired molecule
+is automatically updated (if appropriate; e.g. toxic_level or is_energy)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.event.Molecule.Molecule.set_building_block">
+<code class="descname">set_building_block</code><span class="sig-paren">(</span><em>val=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Molecule.html#Molecule.set_building_block"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Molecule.Molecule.set_building_block" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.event.Molecule.Molecule.toxic_level">
+<code class="descname">toxic_level</code><a class="headerlink" href="#VirtualMicrobes.event.Molecule.Molecule.toxic_level" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="VirtualMicrobes.event.Molecule.Molecule.unique_index">
+<em class="property">classmethod </em><code class="descname">unique_index</code><span class="sig-paren">(</span><em>increase=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Molecule.html#Molecule.unique_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Molecule.Molecule.unique_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.event.Molecule.Molecule.upgrade">
+<code class="descname">upgrade</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Molecule.html#Molecule.upgrade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Molecule.Molecule.upgrade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upgrading from older pickled version of class to latest version. Version
+information is saved as class variable and should be updated when class
+invariants (e.g. fields) are added.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.event.Molecule.MoleculeClass">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.event.Molecule.</code><code class="descname">MoleculeClass</code><span class="sig-paren">(</span><em>name</em>, <em>molecule_species=None</em>, <em>energy_level=1</em>, <em>is_energy=False</em>, <em>has_building_block=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Molecule.html#MoleculeClass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Molecule.MoleculeClass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="VirtualMicrobes.event.Molecule.MoleculeClass.add_molecule">
+<code class="descname">add_molecule</code><span class="sig-paren">(</span><em>molecule</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Molecule.html#MoleculeClass.add_molecule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Molecule.MoleculeClass.add_molecule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a molecule to this molecule class. We will put the &#8216;internal&#8217;
+variants in the class; Internal variants of molecules reference the
+external molecules.
+:param molecule:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.event.Molecule.MoleculeClass.product_in_reaction">
+<code class="descname">product_in_reaction</code><span class="sig-paren">(</span><em>reaction</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Molecule.html#MoleculeClass.product_in_reaction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Molecule.MoleculeClass.product_in_reaction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.event.Molecule.MoleculeClass.reactant_in_reaction">
+<code class="descname">reactant_in_reaction</code><span class="sig-paren">(</span><em>reaction</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Molecule.html#MoleculeClass.reactant_in_reaction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Molecule.MoleculeClass.reactant_in_reaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a reaction that has a molecule of this class as one of its
+reactants.
+:param reaction: the reaction</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.event.Molecule.MoleculeIndexer">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.event.Molecule.</code><code class="descname">MoleculeIndexer</code><a class="reference internal" href="../_modules/VirtualMicrobes/event/Molecule.html#MoleculeIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Molecule.MoleculeIndexer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-VirtualMicrobes.event.Reaction">
+<span id="virtualmicrobes-event-reaction-module"></span><h2>VirtualMicrobes.event.Reaction module<a class="headerlink" href="#module-VirtualMicrobes.event.Reaction" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="VirtualMicrobes.event.Reaction.BadStoichiometryException">
+<em class="property">exception </em><code class="descclassname">VirtualMicrobes.event.Reaction.</code><code class="descname">BadStoichiometryException</code><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#BadStoichiometryException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.BadStoichiometryException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.event.Reaction.ClassConvert">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.event.Reaction.</code><code class="descname">ClassConvert</code><span class="sig-paren">(</span><em>substrate</em>, <em>energy</em>, <em>product</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#ClassConvert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.ClassConvert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.event.Reaction.Convert" title="VirtualMicrobes.event.Reaction.Convert"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.event.Reaction.Convert</span></code></a></p>
+<dl class="method">
+<dt id="VirtualMicrobes.event.Reaction.ClassConvert.init_sub_reaction_dicts">
+<code class="descname">init_sub_reaction_dicts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#ClassConvert.init_sub_reaction_dicts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.ClassConvert.init_sub_reaction_dicts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write out dictionaries for the sub_reactions generated by sub_reactions()</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.event.Reaction.Convert">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.event.Reaction.</code><code class="descname">Convert</code><span class="sig-paren">(</span><em>reactants</em>, <em>products</em>, <em>stoichiometry</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#Convert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.Convert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.event.Reaction.Reaction" title="VirtualMicrobes.event.Reaction.Reaction"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.event.Reaction.Reaction</span></code></a></p>
+<dl class="method">
+<dt id="VirtualMicrobes.event.Reaction.Convert.init_sub_reaction_dicts">
+<code class="descname">init_sub_reaction_dicts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#Convert.init_sub_reaction_dicts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.Convert.init_sub_reaction_dicts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write out dictionaries for the sub_reactions generated by sub_reactions()</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.event.Reaction.Convert.prod_species">
+<code class="descname">prod_species</code><a class="headerlink" href="#VirtualMicrobes.event.Reaction.Convert.prod_species" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.event.Reaction.Convert.reac_species">
+<code class="descname">reac_species</code><a class="headerlink" href="#VirtualMicrobes.event.Reaction.Convert.reac_species" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.event.Reaction.Convert.sub_reactions">
+<code class="descname">sub_reactions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#Convert.sub_reactions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.Convert.sub_reactions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of all potential reaction schemes in the following form:
+([ (reactant, stoichiometry), .. ], [ (product, stoichiometry) ..] ).
+The general scheme for reactions from and to Molecule Classes maps molecules within
+a MolClass on lhs to molecules in another class on the rhs as follows:</p>
+<p>Reaction scheme as MoleculeClass scheme:
+A + B -&gt; C , where A :{a0, a1, a2}, B:{b0, b1}, C:{c0, c1, c2*}
+will be translated into:</p>
+<p>a0 + b0 -&gt; c0
+a1 + b0 -&gt; c1
+a2 + b0 -&gt; c2*</p>
+<p>a0 + b1 -&gt; c0
+a1 + b1 -&gt; c1
+a2 + b1 -&gt; c2*</p>
+<ul class="simple">
+<li>If certain molecule species do not exist (e.g. the c2 in the previous example does not</li>
+</ul>
+<p>exist, the reaction is omitted from possible sub-reactions, and will therefor not take place.
+Note that products on the rhs will always be converted in to the species corresponding
+to the index of the substrate on the lhs. If there is more product than substrates, e.g.
+A -&gt; C + D where D:{d0, d1}, then there will be subreactions for every possible species of D:</p>
+<p>a0 -&gt; c0 + d0
+a0 -&gt; c0 + d1</p>
+<p>a1 -&gt; c1 + d0
+a1 -&gt; c1 + d1</p>
+<p>a2 -&gt; c2 + d0
+a2 -&gt; c2 + d1</p>
+<p>Example 2:
+F + G -&gt; H + I    , where F :{f0, f1, f2}, G:{g0}, H:{h0, h1} , I:{i0, i2}
+becomes:</p>
+<p>f0 + g0 -&gt; h0 + i0
+f1 + g0 -&gt; h1 + i0</p>
+<p>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.event.Reaction.Degradation">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.event.Reaction.</code><code class="descname">Degradation</code><span class="sig-paren">(</span><em>substrate</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#Degradation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.Degradation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.event.Reaction.Reaction" title="VirtualMicrobes.event.Reaction.Reaction"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.event.Reaction.Reaction</span></code></a></p>
+<dl class="method">
+<dt id="VirtualMicrobes.event.Reaction.Degradation.reaction_scheme">
+<code class="descname">reaction_scheme</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#Degradation.reaction_scheme"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.Degradation.reaction_scheme" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.event.Reaction.Degradation.sub_reactions">
+<code class="descname">sub_reactions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#Degradation.sub_reactions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.Degradation.sub_reactions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.event.Reaction.Diffusion">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.event.Reaction.</code><code class="descname">Diffusion</code><span class="sig-paren">(</span><em>substrate</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#Diffusion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.Diffusion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.event.Reaction.Reaction" title="VirtualMicrobes.event.Reaction.Reaction"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.event.Reaction.Reaction</span></code></a></p>
+<dl class="method">
+<dt id="VirtualMicrobes.event.Reaction.Diffusion.reaction_scheme">
+<code class="descname">reaction_scheme</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#Diffusion.reaction_scheme"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.Diffusion.reaction_scheme" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.event.Reaction.Diffusion.sub_reactions">
+<code class="descname">sub_reactions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#Diffusion.sub_reactions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.Diffusion.sub_reactions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.event.Reaction.Influx">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.event.Reaction.</code><code class="descname">Influx</code><span class="sig-paren">(</span><em>substrate</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#Influx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.Influx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.event.Reaction.Reaction" title="VirtualMicrobes.event.Reaction.Reaction"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.event.Reaction.Reaction</span></code></a></p>
+<dl class="method">
+<dt id="VirtualMicrobes.event.Reaction.Influx.reaction_scheme">
+<code class="descname">reaction_scheme</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#Influx.reaction_scheme"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.Influx.reaction_scheme" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.event.Reaction.Reaction">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.event.Reaction.</code><code class="descname">Reaction</code><span class="sig-paren">(</span><em>type_</em>, <em>reactants</em>, <em>products</em>, <em>stoichiometry</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#Reaction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.Reaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>A reaction can be associated either with individual molecular
+species or with a Molecule Classes.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.event.Reaction.Transport">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.event.Reaction.</code><code class="descname">Transport</code><span class="sig-paren">(</span><em>substrate_class</em>, <em>energy_source_class</em>, <em>cost</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#Transport"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.Transport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.event.Reaction.Reaction" title="VirtualMicrobes.event.Reaction.Reaction"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.event.Reaction.Reaction</span></code></a></p>
+<dl class="method">
+<dt id="VirtualMicrobes.event.Reaction.Transport.init_sub_reaction_dicts">
+<code class="descname">init_sub_reaction_dicts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#Transport.init_sub_reaction_dicts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.Transport.init_sub_reaction_dicts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write out dictionaries for the sub_reactions generated by sub_reactions()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.event.Reaction.Transport.sub_reactions">
+<code class="descname">sub_reactions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#Transport.sub_reactions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.Transport.sub_reactions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sub-reactions of Transporters link a specific external substrate to its
+internal counterpart. Different energy sources yield combinatorial
+expansion.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.event.Reaction.consumes">
+<code class="descclassname">VirtualMicrobes.event.Reaction.</code><code class="descname">consumes</code><span class="sig-paren">(</span><em>reactions</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#consumes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.consumes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set of consumed metabolic species.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reactions</strong> (iterable of class:<cite>Convert</cite> or dict) &#8211; set of reactions</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>set of class</strong></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a href="#id1"><span class="problematic" id="id2">`</span></a>event.Molecule.Molecule`s consumed in the reaction set.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.event.Reaction.create_conversions">
+<code class="descclassname">VirtualMicrobes.event.Reaction.</code><code class="descname">create_conversions</code><span class="sig-paren">(</span><em>reaction_stoi_combinations</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#create_conversions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.create_conversions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.event.Reaction.find_metabolic_closure">
+<code class="descclassname">VirtualMicrobes.event.Reaction.</code><code class="descname">find_metabolic_closure</code><span class="sig-paren">(</span><em>input_set</em>, <em>conversions</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#find_metabolic_closure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.find_metabolic_closure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the autocatalytic closure of metabolites given a set of inputs and
+reactions.</p>
+<p>Iteratively overlap the produced + influxed and consumed metabolites of the
+set of conversion reactions, yielding a set of &#8216;potentially autocatalytic
+metabolites&#8217;. Iterate over the set of &#8216;potentially autocatalytic reactions&#8217;
+and require that all substrates of the reaction are in the set of
+&#8216;potentially autocatalytic&#8217; metabolites. If not, remove the reaction
+from the &#8216;potentially autocatalytic&#8217; reaction set.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>input_set</strong> (iterable of <code class="xref py py-class docutils literal"><span class="pre">event.Molecule.Molecule</span></code>) &#8211; initial set to start expansion of metabolic set</li>
+<li><strong>conversions</strong> (iterable of :class:<a href="#id3"><span class="problematic" id="id4">`</span></a>Conversion`s) &#8211; enzymatic reactions that convert metabolites into other metabolites</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>tuple</strong> &#8211; molecules and reactions in the core autocatalytic cycle.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">( set of class:<a href="#id5"><span class="problematic" id="id6">`</span></a>event.Molecule.Molecule`s , set of :class:<a href="#id7"><span class="problematic" id="id8">`</span></a>Conversion`s)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.event.Reaction.find_product_set">
+<code class="descclassname">VirtualMicrobes.event.Reaction.</code><code class="descname">find_product_set</code><span class="sig-paren">(</span><em>input_mols</em>, <em>conversions</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#find_product_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.find_product_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find metabolites that can be produced from a set of input metabolites, given a set of reactions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>input_mols</strong> (iterable of <code class="xref py py-class docutils literal"><span class="pre">event.Molecule.Molecule</span></code>) &#8211; initial set to start expansion of metabolic set</li>
+<li><strong>conversions</strong> (iterable of :class:<a href="#id9"><span class="problematic" id="id10">`</span></a>Conversion`s) &#8211; enzymatic reactions that convert metabolites into other metabolites</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>set of produced class</strong></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a href="#id11"><span class="problematic" id="id12">`</span></a>event.Molecule.Molecule`s</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.event.Reaction.produces">
+<code class="descclassname">VirtualMicrobes.event.Reaction.</code><code class="descname">produces</code><span class="sig-paren">(</span><em>reactions</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/event/Reaction.html#produces"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.event.Reaction.produces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set of produced metabolic species.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reactions</strong> (iterable of class:<cite>Convert</cite> or dict) &#8211; set of reactions</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">set of <a href="#id13"><span class="problematic" id="id14">`</span></a>event.Molecule.Molecule`s produced in the reaction set.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-VirtualMicrobes.event">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-VirtualMicrobes.event" title="Permalink to this headline">¶</a></h2>
+<p>Created on Nov 12, 2013</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">author:</th><td class="field-body">thocu</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="VirtualMicrobes.mutate.html" class="btn btn-neutral float-right" title="VirtualMicrobes.mutate package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="VirtualMicrobes.environment.html" class="btn btn-neutral" title="VirtualMicrobes.environment package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Thomas Cuypers, Bram van Dijk.
+      Last updated on Oct 10, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

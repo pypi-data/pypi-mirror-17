@@ -1,0 +1,967 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VirtualMicrobes.Tree package &mdash; Virtual Microbes Evolutionary Simulator 0.1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Virtual Microbes Evolutionary Simulator 0.1.3 documentation" href="../index.html"/>
+        <link rel="up" title="VirtualMicrobes package" href="VirtualMicrobes.html"/>
+        <link rel="next" title="VirtualMicrobes.cython_gsl_interface package" href="VirtualMicrobes.cython_gsl_interface.html"/>
+        <link rel="prev" title="VirtualMicrobes package" href="VirtualMicrobes.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Virtual Microbes Evolutionary Simulator
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="VirtualMicrobes.html">VirtualMicrobes package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="VirtualMicrobes.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">VirtualMicrobes.Tree package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.cython_gsl_interface.html">VirtualMicrobes.cython_gsl_interface package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.data_tools.html">VirtualMicrobes.data_tools package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.environment.html">VirtualMicrobes.environment package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.event.html">VirtualMicrobes.event package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.mutate.html">VirtualMicrobes.mutate package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.my_tools.html">VirtualMicrobes.my_tools package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.plotting.html">VirtualMicrobes.plotting package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.post_analysis.html">VirtualMicrobes.post_analysis package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.simulation.html">VirtualMicrobes.simulation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.virtual_cell.html">VirtualMicrobes.virtual_cell package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="VirtualMicrobes.html#module-VirtualMicrobes">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Virtual Microbes Evolutionary Simulator</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Reference</a> &raquo;</li>
+      
+          <li><a href="VirtualMicrobes.html">VirtualMicrobes package</a> &raquo;</li>
+      
+    <li>VirtualMicrobes.Tree package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/reference/VirtualMicrobes.Tree.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="virtualmicrobes-tree-package">
+<h1>VirtualMicrobes.Tree package<a class="headerlink" href="#virtualmicrobes-tree-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-VirtualMicrobes.Tree.PhyloTree">
+<span id="virtualmicrobes-tree-phylotree-module"></span><h2>VirtualMicrobes.Tree.PhyloTree module<a class="headerlink" href="#module-VirtualMicrobes.Tree.PhyloTree" title="Permalink to this headline">¶</a></h2>
+<p>Created on Nov 11, 2014</p>
+<p>&#64;author: thocu</p>
+<dl class="class">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloNode">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.Tree.PhyloTree.</code><code class="descname">PhyloNode</code><span class="sig-paren">(</span><em>val</em>, <em>time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloNode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Version:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Author:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloNode.add_root">
+<code class="descname">add_root</code><span class="sig-paren">(</span><em>root_node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloNode.add_root"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloNode.add_root" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloNode.children">
+<code class="descname">children</code><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloNode.children" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloNode.connect_phylo_offspring">
+<code class="descname">connect_phylo_offspring</code><span class="sig-paren">(</span><em>offspring</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloNode.connect_phylo_offspring"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloNode.connect_phylo_offspring" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloNode.dist_to_parent">
+<code class="descname">dist_to_parent</code><span class="sig-paren">(</span><em>parent</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloNode.dist_to_parent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloNode.dist_to_parent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloNode.excise">
+<code class="descname">excise</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloNode.excise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloNode.excise" title="Permalink to this definition">¶</a></dt>
+<dd><p>remove references to this node from other tree nodes
+and reconnect remaining nodes.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloNode.has_root">
+<code class="descname">has_root</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloNode.has_root"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloNode.has_root" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloNode.id">
+<code class="descname">id</code><em class="property"> = 0</em><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloNode.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloNode.inherit_root">
+<code class="descname">inherit_root</code><span class="sig-paren">(</span><em>node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloNode.inherit_root"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloNode.inherit_root" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloNode.is_leaf">
+<code class="descname">is_leaf</code><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloNode.is_leaf" title="Permalink to this definition">¶</a></dt>
+<dd><p>is this a leaf of the tree</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloNode.iter_prepostorder">
+<code class="descname">iter_prepostorder</code><span class="sig-paren">(</span><em>is_leaf_fn=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloNode.iter_prepostorder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloNode.iter_prepostorder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate over all nodes in a tree yielding every node in both
+pre and post order. Each iteration returns a postorder flag
+(True if node is being visited in postorder) and a node
+instance.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloNode.max_node_depth">
+<code class="descname">max_node_depth</code><em class="property"> = 0</em><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloNode.max_node_depth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloNode.newick_id">
+<code class="descname">newick_id</code><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloNode.newick_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>id tag used in new hampshire (newick) tree format</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloNode.nh_format_nr">
+<code class="descname">nh_format_nr</code><span class="sig-paren">(</span><em>_format='newick'</em>, <em>formatter=&lt;function nh_branch&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloNode.nh_format_nr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloNode.nh_format_nr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format a newick string non-recursively.
+:param with_leafs:
+:param _format:
+:param formatter:</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloNode.nhx_features">
+<code class="descname">nhx_features</code><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloNode.nhx_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>additional node features used in the &#8216;extended&#8217; newick format (nhx)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloNode.parents">
+<code class="descname">parents</code><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloNode.parents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloNode.push_onto_internal_child">
+<code class="descname">push_onto_internal_child</code><span class="sig-paren">(</span><em>child</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloNode.push_onto_internal_child"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloNode.push_onto_internal_child" title="Permalink to this definition">¶</a></dt>
+<dd><p>makes this node an internal parent node of child
+:param child:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloNode.push_up_root">
+<code class="descname">push_up_root</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloNode.push_up_root"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloNode.push_up_root" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iteratively push up the root to the internal_parent_node.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloNode.remove_root_stem">
+<code class="descname">remove_root_stem</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloNode.remove_root_stem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloNode.remove_root_stem" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.Tree.PhyloTree.</code><code class="descname">PhyloTree</code><span class="sig-paren">(</span><em>supertree=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Primary use is a phylogenetic tree, representing reproduction/speciation
+events at particular points in time. Because generations are overlapping, a
+parent may have offspring at various time points. Therefore Nodes are not
+strictly parents, but rather, parent-reproduction-time tuples.</p>
+<dl class="class">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.SuperNode">
+<em class="property">class </em><code class="descname">SuperNode</code><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.SuperNode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.SuperNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.add_leaf">
+<code class="descclassname">PhyloTree.</code><code class="descname">add_leaf</code><span class="sig-paren">(</span><em>leaf</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.add_leaf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.add_leaf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.add_node">
+<code class="descclassname">PhyloTree.</code><code class="descname">add_node</code><span class="sig-paren">(</span><em>phylo_unit</em>, <em>time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.add_node"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.add_node" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.add_phylo_history">
+<code class="descclassname">PhyloTree.</code><code class="descname">add_phylo_history</code><span class="sig-paren">(</span><em>phylo_unit</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.add_phylo_history"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.add_phylo_history" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.annotate_leafs">
+<code class="descclassname">PhyloTree.</code><code class="descname">annotate_leafs</code><span class="sig-paren">(</span><em>ete_tree_struct</em>, <em>leaf</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.annotate_leafs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.annotate_leafs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Annotate leaf labels</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.annotate_phylo_units_feature">
+<code class="descclassname">PhyloTree.</code><code class="descname">annotate_phylo_units_feature</code><span class="sig-paren">(</span><em>ete_tree_struct</em>, <em>phylo_units</em>, <em>feature_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.annotate_phylo_units_feature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.annotate_phylo_units_feature" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.class_version">
+<code class="descclassname">PhyloTree.</code><code class="descname">class_version</code><em class="property"> = '1.0'</em><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.class_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.clear">
+<code class="descclassname">PhyloTree.</code><code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.clear" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.coalescent">
+<code class="descclassname">PhyloTree.</code><code class="descname">coalescent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.coalescent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.coalescent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find coalescent node and depth in the tree.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>(class</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><cite>Tree.PhyloTree.PhyloNode</cite>, time) : LCA, depth</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.connect_internal_node">
+<code class="descclassname">PhyloTree.</code><code class="descname">connect_internal_node</code><span class="sig-paren">(</span><em>int_node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.connect_internal_node"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.connect_internal_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connect internal node &#8216;int_node&#8217; with nodes above and below it on its
+own branch (representing births and/or death in this phylogenetic unit&#8217;s
+life history branch)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>int_node</strong> &#8211; newly made internal node that should get connected up</td>
+</tr>
+</tbody>
+</table>
+<p>and down in the tree.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.connect_leaf">
+<code class="descclassname">PhyloTree.</code><code class="descname">connect_leaf</code><span class="sig-paren">(</span><em>leaf_node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.connect_leaf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.connect_leaf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.connect_phylo_parent_child">
+<code class="descclassname">PhyloTree.</code><code class="descname">connect_phylo_parent_child</code><span class="sig-paren">(</span><em>phylo_parent_node</em>, <em>phylo_child_node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.connect_phylo_parent_child"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.connect_phylo_parent_child" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.create_leaf">
+<code class="descclassname">PhyloTree.</code><code class="descname">create_leaf</code><span class="sig-paren">(</span><em>phylo_unit</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.create_leaf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.create_leaf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.create_root_stem">
+<code class="descclassname">PhyloTree.</code><code class="descname">create_root_stem</code><span class="sig-paren">(</span><em>phylo_root</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.create_root_stem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.create_root_stem" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.create_stems">
+<code class="descclassname">PhyloTree.</code><code class="descname">create_stems</code><span class="sig-paren">(</span><em>phylo_unit</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.create_stems"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.create_stems" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.delete_empty_phylo_stems">
+<code class="descclassname">PhyloTree.</code><code class="descname">delete_empty_phylo_stems</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.delete_empty_phylo_stems"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.delete_empty_phylo_stems" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.delete_node">
+<code class="descclassname">PhyloTree.</code><code class="descname">delete_node</code><span class="sig-paren">(</span><em>tree_node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.delete_node"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.delete_node" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.delete_phylo_hist">
+<code class="descclassname">PhyloTree.</code><code class="descname">delete_phylo_hist</code><span class="sig-paren">(</span><em>phylo_unit</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.delete_phylo_hist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.delete_phylo_hist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the branch representing the phylogenetic unit and disconnect it
+from all sub-branches (children) in the tree.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>phylo_unit</strong> &#8211; </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.distances">
+<code class="descclassname">PhyloTree.</code><code class="descname">distances</code><span class="sig-paren">(</span><em>ete_tree</em>, <em>nodes</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.distances"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.distances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pairwise distances between all nodes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ete_tree</strong> (class:<cite>ete3.TreeNode</cite>) &#8211; ete tree root node</li>
+<li><strong>nodes</strong> (<em>sequence of (phylo_node, ete_node) pairs</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><ul class="simple">
+<li>tree_dist is phylogenetic distance.</li>
+<li>top_dist is topological distance</li>
+</ul>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">sequence of (phylo_node1, phylo_node2, tree_dist, top_dist)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_annotate_tree">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_annotate_tree</code><span class="sig-paren">(</span><em>ete_tree_struct</em>, <em>features=[]</em>, <em>func_features={}</em>, <em>ete_root=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.ete_annotate_tree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_annotate_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Annotate the phylogenetic tree with cell data for tree plotting.</p>
+<p>Assumes that the ete_tree has been constructed/updated. Creates a
+dictionary of feature dictionaries, keyed by the cells in the tree.
+Attaches the feature dictionaries to nodes in the ete_tree
+(annotate_ete_tree). Transforms some data to cummulative data along the
+branches of the tree. Optionally, prunes internal tree nodes (this will
+greatly simplify the tree drawing algorithm). Finally, transforms some
+data to rate of change data, using branch length for rate calculation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>prune_internal</strong> &#8211; if True, nodes with 1 offspring only will be</td>
+</tr>
+</tbody>
+</table>
+<p>removed/collapsed and their branch length added to the preceding node on
+the branch.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_calc_lca_depth">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_calc_lca_depth</code><span class="sig-paren">(</span><em>ete_tree</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.ete_calc_lca_depth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_calc_lca_depth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the distance from the last common ancestor to the farthest
+leaf in an ete tree.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ete_tree</strong> (<em>TreeNode</em>) &#8211; ete tree root node</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>int</strong></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">depth of LCA</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_convert_feature_to_cummulative">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_convert_feature_to_cummulative</code><span class="sig-paren">(</span><em>ete_tree_struct</em>, <em>feature</em>, <em>ete_root</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.ete_convert_feature_to_cummulative"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_convert_feature_to_cummulative" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert annotated feature values to cummulative values.</p>
+<p>By starting at the root, values further down the tree can be computed by
+adding values calculated for the parent node. It is useful when for
+example the aim is to prune away internal nodes and rates of change of a
+feature need to be calculated on the pruned tree.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_convert_feature_to_rate">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_convert_feature_to_rate</code><span class="sig-paren">(</span><em>ete_root</em>, <em>feature</em>, <em>replace_tup=('count'</em>, <em>'rate')</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.ete_convert_feature_to_rate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_convert_feature_to_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an annotated feature on the tree nodes to a rate.</p>
+<p>The function assumes cummulative values of the feature. The rate is
+calculated by dividing the difference of the feature value between a
+parent and child by the corresponding branch length.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_cummulative_features">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_cummulative_features</code><span class="sig-paren">(</span><em>ete_tree_struct</em>, <em>features=[]</em>, <em>func_features={}</em>, <em>ete_root=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.ete_cummulative_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_cummulative_features" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_get_lca">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_get_lca</code><span class="sig-paren">(</span><em>ete_tree</em>, <em>nodes=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.ete_get_lca"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_get_lca" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return last common ancestor (LCA) for a set of nodes.</p>
+<p>(default: all
+leafs of the current tree)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ete_tree</strong> (<em>TreeNode</em>) &#8211; ete tree root node</li>
+<li><strong>nodes</strong> (list of class:<cite>ete3.TreeNode</cite>) &#8211; nodes in tree for which to find LCA</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>TreeNode</strong></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">the last common ancestor</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_get_phylo2ete_dict">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_get_phylo2ete_dict</code><span class="sig-paren">(</span><em>ete_tree_struct</em>, <em>nodes=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.ete_get_phylo2ete_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_get_phylo2ete_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return mapping from ete PhyloUnits to lists of ete TreeNode objects.</p>
+<p>The mapping is constructed for a set of TreeNodes <em>nodes</em>. The default
+action is to map all the TreeNodes in the current ete_tree.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>nodes</strong> (<a class="reference internal" href="VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Sequence.Sequence.sequence" title="VirtualMicrobes.virtual_cell.Sequence.Sequence.sequence"><em>sequence</em></a>) &#8211; sequence of TreeNodes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>dictionary from class</strong></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a href="#id1"><span class="problematic" id="id2">`</span></a>virtual_cell.PhyloUnit.PhyloUnit`s to list of class:<a href="#id3"><span class="problematic" id="id4">`</span></a>ete3.TreeNode`s</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_init_mappings">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_init_mappings</code><span class="sig-paren">(</span><em>ete_tree</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.ete_init_mappings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_init_mappings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct helper dictionaries for converting TreeNode names to TreeNodes
+and TreeNode names to PhyloUnits.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_n_most_distant_leafs">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_n_most_distant_leafs</code><span class="sig-paren">(</span><em>ete_root</em>, <em>n</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.ete_n_most_distant_leafs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_n_most_distant_leafs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find n leafs that are most diverged from eachother.</p>
+<p>First, the oldest n subtrees are determined. Then, for all subtrees the
+farthest lying leaf is returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>n</strong> &#8211; number of leafs</li>
+<li><strong>root</strong> &#8211; starting point for search (default is the ete_tree root)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_n_most_distant_phylo_units">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_n_most_distant_phylo_units</code><span class="sig-paren">(</span><em>ete_tree_struct</em>, <em>n=2</em>, <em>root=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.ete_n_most_distant_phylo_units"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_n_most_distant_phylo_units" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience function to return phylo units after finding
+&#8216;ete_n_most_distant_leafs&#8217; (see below)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>root</strong> &#8211; phylo unit used as root</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_n_oldest_subtrees">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_n_oldest_subtrees</code><span class="sig-paren">(</span><em>ete_root</em>, <em>n</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.ete_n_oldest_subtrees"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_n_oldest_subtrees" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find n oldest subtrees under root.</p>
+<p>Iteratively expands the oldest subtree root into its children until the
+desired number of subtrees is in the list. Return as a list of tuples of
+(subtree, distance-from-root).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>n</strong> (<em>int</em>) &#8211; number of subtrees</li>
+<li><strong>root</strong> (<em>TreeNode</em>) &#8211; start point for subtree search</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>subtrees</strong></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">a list of (TreeNode, distance)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_named_node_dict">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_named_node_dict</code><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_named_node_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the ete_named_node_dict belonging to the first ete tree.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><code class="xref py py-obj docutils literal"><span class="pre">func</span></code></dt>
+<dd><cite>ete_tree</cite></dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_node_name_to_phylo_node">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_node_name_to_phylo_node</code><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_node_name_to_phylo_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the ete_node_name_to_phylo_node belonging to the first ete tree.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><code class="xref py py-obj docutils literal"><span class="pre">func</span></code></dt>
+<dd><cite>ete_tree</cite></dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_node_to_phylo_unit">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_node_to_phylo_unit</code><span class="sig-paren">(</span><em>ete_tree_struct</em>, <em>ete_node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.ete_node_to_phylo_unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_node_to_phylo_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maps TreeNode to PhyloUnit.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ete_node</strong> (<em>TreeNode</em>) &#8211; node to map</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="VirtualMicrobes.virtual_cell.html#module-VirtualMicrobes.virtual_cell.PhyloUnit" title="VirtualMicrobes.virtual_cell.PhyloUnit">PhyloUnit</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_nodes_to_phylo_units">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_nodes_to_phylo_units</code><span class="sig-paren">(</span><em>ete_tree_struct</em>, <em>nodes=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.ete_nodes_to_phylo_units"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_nodes_to_phylo_units" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtain a list of all the phylo units that are represented in the ete
+tree.</p>
+<p>The ete_tree is traversed and ete node names are mapped first to
+PhyloTree nodes. The PhyloNodes have a reference to the PhyloUnit in
+their &#8216;val&#8217; attribute.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_phylo_to_ete_birth_nodes">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_phylo_to_ete_birth_nodes</code><span class="sig-paren">(</span><em>ete_tree_struct</em>, <em>phylo_unit</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.ete_phylo_to_ete_birth_nodes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_phylo_to_ete_birth_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return iterator over birth nodes in the ete tree for a phylo unit.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>phylo_unit</strong> (class:<cite>virtual_cell.PhyloUnit.PhyloUnit</cite>) &#8211; phylounit to map</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>iterator of class</strong></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><cite>ete3.TreeNode</cite></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_phylo_to_ete_death_node">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_phylo_to_ete_death_node</code><span class="sig-paren">(</span><em>ete_tree_struct</em>, <em>phylo_unit</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.ete_phylo_to_ete_death_node"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_phylo_to_ete_death_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return TreeNode representing the death of a phylo_unit.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_phylo_to_ete_stem_nodes">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_phylo_to_ete_stem_nodes</code><span class="sig-paren">(</span><em>ete_tree_struct</em>, <em>phylo_unit</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.ete_phylo_to_ete_stem_nodes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_phylo_to_ete_stem_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return iterator over stem nodes in the ete tree for a phylo unit.</p>
+<p>The stem nodes represent replication and death of the phylounit.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>phylo_unit</strong> (class:<cite>virtual_cell.PhyloUnit.PhyloUnit</cite>) &#8211; phylounit to map</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>iterator of class</strong></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><cite>ete3.TreeNode</cite></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_prune_external">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_prune_external</code><span class="sig-paren">(</span><em>ete_tree_struct</em>, <em>prune_depth</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.ete_prune_external"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_prune_external" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_prune_internal">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_prune_internal</code><span class="sig-paren">(</span><em>ete_tree_struct</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.ete_prune_internal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_prune_internal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Excise all internal nodes that have a single child, while preserving the
+length of the branch.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_prune_leafs">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_prune_leafs</code><span class="sig-paren">(</span><em>ete_struct</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.ete_prune_leafs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_prune_leafs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prune the external nodes of an &#8216;ete tree&#8217;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ete_struct</strong> (class:<cite>my_tools.utility.ETEtreeStruct</cite>) &#8211; struct holding data for the ete tree</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_rate_features">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_rate_features</code><span class="sig-paren">(</span><em>ete_tree_struct</em>, <em>features=[]</em>, <em>func_features={}</em>, <em>ete_root=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.ete_rate_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_rate_features" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_tree">
+<code class="descclassname">PhyloTree.</code><code class="descname">ete_tree</code><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the first &#8216;ete tree&#8217; in the ete trees dict if it exists.</p>
+<p>This is an adapter function during the transition to working with the
+multiple ete tree dictionary.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.find_lca">
+<code class="descclassname">PhyloTree.</code><code class="descname">find_lca</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.find_lca"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.find_lca" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the last common ancestor in the tree.</p>
+<p>Start at the single root and go up until a branching point in the tree
+is found.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>PhyloNode</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">LCA if it exists else None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.nh_formats">
+<code class="descclassname">PhyloTree.</code><code class="descname">nh_formats</code><span class="sig-paren">(</span><em>roots=None</em>, <em>supertree=None</em>, <em>_format='newick'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.nh_formats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.nh_formats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.nodes_iter">
+<code class="descclassname">PhyloTree.</code><code class="descname">nodes_iter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.nodes_iter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.nodes_iter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.phylo_to_ete_nodes">
+<code class="descclassname">PhyloTree.</code><code class="descname">phylo_to_ete_nodes</code><span class="sig-paren">(</span><em>ete_tree_struct</em>, <em>phylo_unit</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.phylo_to_ete_nodes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.phylo_to_ete_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return TreeNode objects in the ete_tree representing the birth and death
+nodes for this phylo_unit (e.g. cell or gene).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ete_tree_struct</strong> (class:<cite>my_tools.utility.ETEtreeStruct</cite>) &#8211; ete tree struct in which to find the phylo_unit</li>
+<li><strong>phylo_unit</strong> (class:<cite>virtual_cell.PhyloUnit.PhyloUnit</cite>) &#8211; phylounit to map</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>list of class</strong></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>ete3.TreeNode</cite></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.recalc_max_leaf_depth">
+<code class="descclassname">PhyloTree.</code><code class="descname">recalc_max_leaf_depth</code><span class="sig-paren">(</span><em>leafs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.recalc_max_leaf_depth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.recalc_max_leaf_depth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.reconnect_internal_nodes">
+<code class="descclassname">PhyloTree.</code><code class="descname">reconnect_internal_nodes</code><span class="sig-paren">(</span><em>internal_parent</em>, <em>internal_child</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.reconnect_internal_nodes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.reconnect_internal_nodes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.to_ete_trees">
+<code class="descclassname">PhyloTree.</code><code class="descname">to_ete_trees</code><span class="sig-paren">(</span><em>with_leafs=False</em>, <em>supertree=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.to_ete_trees"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.to_ete_trees" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct TreeNode representations for all roots in the PhyloTree.</p>
+<p>ete3.TreeNode representations can be used for advanced plotting and tree
+analysis.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>with_leafs</strong> (<em>bool</em>) &#8211; construct with or without terminal nodes</li>
+<li><strong>supertree</strong> (<em>bool</em>) &#8211; use a supernode as an artificial root node (useful when simulation
+starts from independent lineages)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>OrderedDict of name -&gt; TreeNode</strong></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">TreeNodes by name for all phylo roots</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.update">
+<code class="descclassname">PhyloTree.</code><code class="descname">update</code><span class="sig-paren">(</span><em>new_phylo_units=[]</em>, <em>removed_phylo_units=[]</em>, <em>new_roots=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.Tree.PhyloTree.PhyloTree.upgrade">
+<code class="descclassname">PhyloTree.</code><code class="descname">upgrade</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#PhyloTree.upgrade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.PhyloTree.upgrade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upgrading from older pickled version of class to latest version. Version
+information is saved as class variable and should be updated when class
+invariants (e.g. fields) are added.
+Adapted from recipe at <a class="reference external" href="http://code.activestate.com/recipes/521901-upgradable-pickles/">http://code.activestate.com/recipes/521901-upgradable-pickles/</a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.Tree.PhyloTree.newick">
+<code class="descclassname">VirtualMicrobes.Tree.PhyloTree.</code><code class="descname">newick</code><span class="sig-paren">(</span><em>_id</em>, <em>time</em>, <em>branch_length</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#newick"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.newick" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.Tree.PhyloTree.nh_branch">
+<code class="descclassname">VirtualMicrobes.Tree.PhyloTree.</code><code class="descname">nh_branch</code><span class="sig-paren">(</span><em>_id</em>, <em>branch_length</em>, <em>features=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#nh_branch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.nh_branch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.Tree.PhyloTree.nhx">
+<code class="descclassname">VirtualMicrobes.Tree.PhyloTree.</code><code class="descname">nhx</code><span class="sig-paren">(</span><em>_id</em>, <em>time</em>, <em>branch_length</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/Tree/PhyloTree.html#nhx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.Tree.PhyloTree.nhx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-VirtualMicrobes.Tree">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-VirtualMicrobes.Tree" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="VirtualMicrobes.cython_gsl_interface.html" class="btn btn-neutral float-right" title="VirtualMicrobes.cython_gsl_interface package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="VirtualMicrobes.html" class="btn btn-neutral" title="VirtualMicrobes package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Thomas Cuypers, Bram van Dijk.
+      Last updated on Oct 10, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

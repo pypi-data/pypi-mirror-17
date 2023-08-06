@@ -1,0 +1,815 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VirtualMicrobes.post_analysis package &mdash; Virtual Microbes Evolutionary Simulator 0.1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Virtual Microbes Evolutionary Simulator 0.1.3 documentation" href="../index.html"/>
+        <link rel="up" title="VirtualMicrobes package" href="VirtualMicrobes.html"/>
+        <link rel="next" title="VirtualMicrobes.simulation package" href="VirtualMicrobes.simulation.html"/>
+        <link rel="prev" title="VirtualMicrobes.plotting package" href="VirtualMicrobes.plotting.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Virtual Microbes Evolutionary Simulator
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="VirtualMicrobes.html">VirtualMicrobes package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="VirtualMicrobes.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.Tree.html">VirtualMicrobes.Tree package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.cython_gsl_interface.html">VirtualMicrobes.cython_gsl_interface package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.data_tools.html">VirtualMicrobes.data_tools package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.environment.html">VirtualMicrobes.environment package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.event.html">VirtualMicrobes.event package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.mutate.html">VirtualMicrobes.mutate package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.my_tools.html">VirtualMicrobes.my_tools package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.plotting.html">VirtualMicrobes.plotting package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">VirtualMicrobes.post_analysis package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.simulation.html">VirtualMicrobes.simulation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.virtual_cell.html">VirtualMicrobes.virtual_cell package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="VirtualMicrobes.html#module-VirtualMicrobes">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Virtual Microbes Evolutionary Simulator</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Reference</a> &raquo;</li>
+      
+          <li><a href="VirtualMicrobes.html">VirtualMicrobes package</a> &raquo;</li>
+      
+    <li>VirtualMicrobes.post_analysis package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/reference/VirtualMicrobes.post_analysis.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="virtualmicrobes-post-analysis-package">
+<h1>VirtualMicrobes.post_analysis package<a class="headerlink" href="#virtualmicrobes-post-analysis-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-VirtualMicrobes.post_analysis.lod">
+<span id="virtualmicrobes-post-analysis-lod-module"></span><h2>VirtualMicrobes.post_analysis.lod module<a class="headerlink" href="#module-VirtualMicrobes.post_analysis.lod" title="Permalink to this headline">¶</a></h2>
+<p>Created on Apr 11, 2015</p>
+<p>&#64;author: thocu</p>
+<dl class="class">
+<dt id="VirtualMicrobes.post_analysis.lod.LOD">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.post_analysis.lod.</code><code class="descname">LOD</code><span class="sig-paren">(</span><em>lod</em>, <em>name</em>, <em>stride</em>, <em>time_interval</em>, <em>lod_range</em>, <em>save_dir=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#LOD"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.LOD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>classdocs</p>
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.LOD.standardized_production">
+<code class="descname">standardized_production</code><span class="sig-paren">(</span><em>test_params</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#LOD.standardized_production"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.LOD.standardized_production" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.LOD.strided_lod">
+<code class="descname">strided_lod</code><span class="sig-paren">(</span><em>stride</em>, <em>time_interval</em>, <em>lod_range</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#LOD.strided_lod"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.LOD.strided_lod" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.LOD.t_interval_iter">
+<code class="descname">t_interval_iter</code><span class="sig-paren">(</span><em>time_interval</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#LOD.t_interval_iter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.LOD.t_interval_iter" title="Permalink to this definition">¶</a></dt>
+<dd><p>iterate ancestors that are approximately &#8216;time_interval&#8217; timesteps apart
+in their time of birth.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.post_analysis.lod.LOD_Analyser">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.post_analysis.lod.</code><code class="descname">LOD_Analyser</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#LOD_Analyser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Analyses the evolutionary history of a population by tracing ancestors in the
+line of descent.</p>
+<p>Loads a simulation save from a file, keeping a reference in <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser.ref_sim" title="VirtualMicrobes.post_analysis.lod.LOD_Analyser.ref_sim"><code class="xref py py-attr docutils literal"><span class="pre">ref_sim</span></code></a>.
+From this, initialise <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser.ref_pop_hist" title="VirtualMicrobes.post_analysis.lod.LOD_Analyser.ref_pop_hist"><code class="xref py py-attr docutils literal"><span class="pre">ref_pop_hist</span></code></a> as a <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory" title="VirtualMicrobes.post_analysis.lod.PopulationHistory"><code class="xref py py-class docutils literal"><span class="pre">PopulationHistory</span></code></a>
+object that analyses  the phylogenetic tree of the population.</p>
+<p>The <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory" title="VirtualMicrobes.post_analysis.lod.PopulationHistory"><code class="xref py py-class docutils literal"><span class="pre">PopulationHistory</span></code></a> generates a <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a> for 1 or more
+individuals in the saved population. For each <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a>, evolutionary
+data and network and genome plots can be produced.</p>
+<p>It is possible to load additional simulation snapshots that preceed the
+<a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser.ref_pop_hist" title="VirtualMicrobes.post_analysis.lod.LOD_Analyser.ref_pop_hist"><code class="xref py py-attr docutils literal"><span class="pre">ref_pop_hist</span></code></a> and compare individuals to their contemporaries present
+in the preceding populations. <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser.compare_saves" title="VirtualMicrobes.post_analysis.lod.LOD_Analyser.compare_saves"><code class="xref py py-attr docutils literal"><span class="pre">compare_saves</span></code></a> contains a list of file
+names of populations-saves that should be compared.</p>
+<dl class="attribute">
+<dt id="VirtualMicrobes.post_analysis.lod.LOD_Analyser.args">
+<code class="descname">args</code><em class="property"> = None</em><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser.args" title="Permalink to this definition">¶</a></dt>
+<dd><p>config and command line arguments used for initialisation</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.post_analysis.lod.LOD_Analyser.compare_saves">
+<code class="descname">compare_saves</code><em class="property"> = []</em><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser.compare_saves" title="Permalink to this definition">¶</a></dt>
+<dd><p>names of snapshot files to copmare to <cite>ref_sim</cite></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.LOD_Analyser.compare_to_pops">
+<code class="descname">compare_to_pops</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#LOD_Analyser.compare_to_pops"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser.compare_to_pops" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compare reference simulation to a set of previous population snapshots.</p>
+<p>Compares each of the simulation snapshot saves in <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser.compare_saves" title="VirtualMicrobes.post_analysis.lod.LOD_Analyser.compare_saves"><code class="xref py py-attr docutils literal"><span class="pre">compare_saves</span></code></a>
+to the <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser.ref_pop_hist" title="VirtualMicrobes.post_analysis.lod.LOD_Analyser.ref_pop_hist"><code class="xref py py-attr docutils literal"><span class="pre">ref_pop_hist</span></code></a>. A <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory" title="VirtualMicrobes.post_analysis.lod.PopulationHistory"><code class="xref py py-class docutils literal"><span class="pre">PopulationHistory</span></code></a> is constructed for
+each of the compare snapshots. Within the compare snapshot, individuals
+that correspond to the are part of (any of) the <code class="xref py py-class docutils literal"><span class="pre">LOD`(s)</span> <span class="pre">of</span> <span class="pre">the</span>
+<span class="pre">:attr:`ref_pop_hist</span></code> will be identified. Properties of these <em>ancestors</em>
+will then be compare with their statistical values for the whole
+population.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.LOD_Analyser.draw_ref_trees">
+<code class="descname">draw_ref_trees</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#LOD_Analyser.draw_ref_trees"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser.draw_ref_trees" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw a reference phylogenetic tree, with individual, selected <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a>s marked</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.LOD_Analyser.init_ref_history">
+<code class="descname">init_ref_history</code><span class="sig-paren">(</span><em>ref_sim=None</em>, <em>nr_lods=None</em>, <em>prune_depth=0</em>, <em>pop_hist_dir='population_history'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#LOD_Analyser.init_ref_history"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser.init_ref_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory" title="VirtualMicrobes.post_analysis.lod.PopulationHistory"><code class="xref py py-class docutils literal"><span class="pre">PopulationHistory</span></code></a> from the <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser.ref_sim" title="VirtualMicrobes.post_analysis.lod.LOD_Analyser.ref_sim"><code class="xref py py-attr docutils literal"><span class="pre">ref_sim</span></code></a>
+<a class="reference internal" href="VirtualMicrobes.simulation.html#VirtualMicrobes.simulation.Simulation.Simulation" title="VirtualMicrobes.simulation.Simulation.Simulation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.simulation.Simulation.Simulation</span></code></a> object.</p>
+<p>For the <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory" title="VirtualMicrobes.post_analysis.lod.PopulationHistory"><code class="xref py py-class docutils literal"><span class="pre">PopulationHistory</span></code></a> object constructs its phylogenetic tree
+and prune back the tree to a maximum depth of (max_depth - prune_depth)
+counted from the root. Then create <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a> objects representing
+the <em>line of descent</em> of the <cite>nr_lods</cite> <em>most diverged</em> branches in the tree.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ref_sim</strong> (<a class="reference internal" href="VirtualMicrobes.simulation.html#VirtualMicrobes.simulation.Simulation.Simulation" title="VirtualMicrobes.simulation.Simulation.Simulation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.simulation.Simulation.Simulation</span></code></a> object) &#8211; simulation snapshot that is the basis for <cite>LOD</cite> analysis</li>
+<li><strong>nr_lods</strong> (<em>int nr_lods</em>) &#8211; nr of separate (most distant) <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a>s to initialize</li>
+<li><strong>prune_depth</strong> (<em>int</em>) &#8211; prune back the phylogenetic tree with this many timesteps</li>
+<li><strong>pop_hist_dir</strong> (<em>str</em>) &#8211; name of directory to store lod analysis output</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.LOD_Analyser.lod_binding_conservation">
+<code class="descname">lod_binding_conservation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#LOD_Analyser.lod_binding_conservation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser.lod_binding_conservation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write time series for TF binding conservation for <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a>s.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.LOD_Analyser.lod_graphs">
+<code class="descname">lod_graphs</code><span class="sig-paren">(</span><em>stride=None</em>, <em>time_interval=None</em>, <em>lod_range=None</em>, <em>formats=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#LOD_Analyser.lod_graphs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser.lod_graphs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw network and genome graphs for <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a>s</p>
+<p>It is possible to set an interval and a range to sample individuals in
+the <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>stride</strong> (<em>int</em>) &#8211; stride in generations for sampling individuals along the <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a></li>
+<li><strong>time_interval</strong> (<em>int</em>) &#8211; interval in simulation time for sampling individuals along the
+<a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a></li>
+<li><strong>lod_range</strong> (<em>(float,float)</em>) &#8211; bounds in fractions of the total range of the <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Either use a stride or a time interval to sample individuals from the lod.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.LOD_Analyser.lod_network_stats">
+<code class="descname">lod_network_stats</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#LOD_Analyser.lod_network_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser.lod_network_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write time series for evolutionary network property changes along all <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a>s.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.LOD_Analyser.lod_stats">
+<code class="descname">lod_stats</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#LOD_Analyser.lod_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser.lod_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write time series of evolutionary changes along all <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a>s.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.LOD_Analyser.lod_time_course_plots">
+<code class="descname">lod_time_course_plots</code><span class="sig-paren">(</span><em>stride=None</em>, <em>time_interval=None</em>, <em>lod_range=None</em>, <em>formats=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#LOD_Analyser.lod_time_course_plots"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser.lod_time_course_plots" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw time course diagrams for individuals in the <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a>s.</p>
+<p>It is possible to set an interval and a range to sample individuals in
+the <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>stride</strong> (<em>int</em>) &#8211; stride in generations for sampling individuals along the <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a></li>
+<li><strong>time_interval</strong> (<em>int</em>) &#8211; interval in simulation time for sampling individuals along the
+<a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a></li>
+<li><strong>lod_range</strong> (<em>(float,float)</em>) &#8211; bounds in fractions of the total range of the <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Either use a stride or a time interval to sample individuals from the lod.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.LOD_Analyser.lod_time_courses">
+<code class="descname">lod_time_courses</code><span class="sig-paren">(</span><em>lod_range=None</em>, <em>chunk_size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#LOD_Analyser.lod_time_courses"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser.lod_time_courses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write time series of molecule concentrations within the <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a></p>
+<p>It is possible to set a range to sample individuals in
+the <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>lod_range</strong> (<em>(float,float)</em>) &#8211; bounds in fractions of the total range of the <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a></li>
+<li><strong>chunk_size</strong> (<em>int</em>) &#8211; number of generations in LOD to concatenate per chunk</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.post_analysis.lod.LOD_Analyser.ref_pop_hist">
+<code class="descname">ref_pop_hist</code><em class="property"> = None</em><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser.ref_pop_hist" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory" title="VirtualMicrobes.post_analysis.lod.PopulationHistory"><code class="xref py py-class docutils literal"><span class="pre">PopulationHistory</span></code></a> for the reference simulation (<cite>ref_sim</cite>) snapshot</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.post_analysis.lod.LOD_Analyser.ref_sim">
+<code class="descname">ref_sim</code><em class="property"> = None</em><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser.ref_sim" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="VirtualMicrobes.simulation.html#module-VirtualMicrobes.simulation.Simulation" title="VirtualMicrobes.simulation.Simulation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.simulation.Simulation</span></code></a> snapshot to analyse</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.LOD_Analyser.write_newick_trees">
+<code class="descname">write_newick_trees</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#LOD_Analyser.write_newick_trees"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.LOD_Analyser.write_newick_trees" title="Permalink to this definition">¶</a></dt>
+<dd><p>write newick trees for all phylogenies in attr:<cite>ref_pop_hist</cite></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.post_analysis.lod.</code><code class="descname">PopulationHistory</code><span class="sig-paren">(</span><em>sim</em>, <em>params</em>, <em>save_dir=None</em>, <em>prune_depth=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#PopulationHistory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Performs and stores evolutionary history analysis of
+<a class="reference internal" href="VirtualMicrobes.simulation.html#VirtualMicrobes.simulation.Simulation.Simulation" title="VirtualMicrobes.simulation.Simulation.Simulation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.simulation.Simulation.Simulation</span></code></a> snapshots.</p>
+<p>Generates <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a>s for 1 or more individuals in the population plot the
+evolutionary events along the line of descent.</p>
+<p>A reference <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory" title="VirtualMicrobes.post_analysis.lod.PopulationHistory"><code class="xref py py-class docutils literal"><span class="pre">PopulationHistory</span></code></a> can also be compared to <em>population
+history</em> at earlier simulation time points. In this case the ancestors of
+individuals in the reference <em>population history</em> will be identified and
+compared to the rest of the population at that point in time. In this way,
+evolutionary biases on the line of descent can be brought to light.</p>
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.compare_to_pop">
+<code class="descname">compare_to_pop</code><span class="sig-paren">(</span><em>compare_save</em>, <em>prune_depth=None</em>, <em>leafs_sample_size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#PopulationHistory.compare_to_pop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.compare_to_pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compare the reference <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory" title="VirtualMicrobes.post_analysis.lod.PopulationHistory"><code class="xref py py-class docutils literal"><span class="pre">PopulationHistory</span></code></a> to an earlier population-save.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>compare_save</strong> (<em>str</em>) &#8211; file location of population-save</li>
+<li><strong>prune_depth</strong> (<em>int</em>) &#8211; prune back phylogeny of the :param:compare_save with this many timesteps</li>
+<li><strong>leafs_sample_size</strong> (<em>int</em>) &#8211; maximum number of phylogenetic tree leafs to use for comparison</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.draw_ref_trees">
+<code class="descname">draw_ref_trees</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#PopulationHistory.draw_ref_trees"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.draw_ref_trees" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.environment">
+<code class="descname">environment</code><em class="property"> = None</em><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.environment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short cut to <a class="reference internal" href="VirtualMicrobes.environment.html#module-VirtualMicrobes.environment.Environment" title="VirtualMicrobes.environment.Environment"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.environment.Environment</span></code></a> of <cite>sim</cite>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.identify_lod_ancestor">
+<code class="descname">identify_lod_ancestor</code><span class="sig-paren">(</span><em>ete_tree_struct</em>, <em>lod</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#PopulationHistory.identify_lod_ancestor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.identify_lod_ancestor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Identify the individual in the population that is on the line of descent
+(lod) under consideration.</p>
+<p>The nodes in the ete tree corresponding to the <em>lod</em> will be annotated
+with a tag.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ete_tree_struct</strong> (<a class="reference internal" href="VirtualMicrobes.my_tools.html#VirtualMicrobes.my_tools.utility.ETEtreeStruct" title="VirtualMicrobes.my_tools.utility.ETEtreeStruct"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.my_tools.utility.ETEtreeStruct</span></code></a>) &#8211; container structure for phylogenetic tree representations</li>
+<li><strong>lod</strong> (<a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a>) &#8211; line of descent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li>(<a class="reference internal" href="VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Cell.Cell" title="VirtualMicrobes.virtual_cell.Cell.Cell"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.virtual_cell.Cell.Cell</span></code></a>, <code class="xref py py-class docutils literal"><span class="pre">ete3.TreeNode</span></code>)</li>
+<li><em>(oldest ancestor cell, its tree node representation)</em></li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.init_integrator">
+<code class="descname">init_integrator</code><span class="sig-paren">(</span><em>diffusion_steps=None</em>, <em>between_diffusion_reports=None</em>, <em>max_retries=3</em>, <em>retry_steps_factor=2.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#PopulationHistory.init_integrator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.init_integrator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.init_lods">
+<code class="descname">init_lods</code><span class="sig-paren">(</span><em>nr_lods</em>, <em>save_dir=None</em>, <em>stride=None</em>, <em>time_interval=None</em>, <em>lod_range=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#PopulationHistory.init_lods"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.init_lods" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the line of descent (<a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a>) container objects.</p>
+<p>Iterate over the phylogenetic trees of the <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.population" title="VirtualMicrobes.post_analysis.lod.PopulationHistory.population"><code class="xref py py-attr docutils literal"><span class="pre">population</span></code></a> and for
+each tree select <cite>nr_lods</cite> leaf nodes that are at maximum phylogenetic
+distance.</p>
+<p>For each of the selected leafs, construct a line of descent object
+(<a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>nr_lods</strong> (<em>int</em>) &#8211; number of <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a> objects per phylogenetic tree</li>
+<li><strong>save_dir</strong> (<em>str</em>) &#8211; </li>
+<li><strong>stride</strong> (<em>int</em>) &#8211; stride in generations for sampling individuals along the <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a></li>
+<li><strong>time_interval</strong> (<em>int</em>) &#8211; interval in simulation time for sampling individuals along the
+<a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a></li>
+<li><strong>lod_range</strong> (<em>(float,float)</em>) &#8211; bounds in fractions of the total range of the <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.init_phylo_tree">
+<code class="descname">init_phylo_tree</code><span class="sig-paren">(</span><em>prune_depth=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#PopulationHistory.init_phylo_tree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.init_phylo_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the phylogenetic tree of the population.</p>
+<p>Clears the change in the population of the final regular simulation
+step. Prunes back the tree to a maximum depth.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>prune_depth</strong> (<em>int</em>) &#8211; number of generations to prune from the leafs of phylogenetic tree</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.init_pop_hist_data_store">
+<code class="descname">init_pop_hist_data_store</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#PopulationHistory.init_pop_hist_data_store"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.init_pop_hist_data_store" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.init_rand_gens">
+<code class="descname">init_rand_gens</code><span class="sig-paren">(</span><em>rand_seed=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#PopulationHistory.init_rand_gens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.init_rand_gens" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.init_test_bed">
+<code class="descname">init_test_bed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#PopulationHistory.init_test_bed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.init_test_bed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.lod_binding_conservation">
+<code class="descname">lod_binding_conservation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#PopulationHistory.lod_binding_conservation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.lod_binding_conservation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write time series for line of descent properties such as network
+connectivity, protein expression etc.</p>
+<p>Either use a stride or a time interval to sample individuals from the lod.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.lod_network_stats">
+<code class="descname">lod_network_stats</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#PopulationHistory.lod_network_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.lod_network_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write time series for line of descent properties such as network
+connectivity, protein expression etc.</p>
+<p>Either use a stride or a time interval to sample individuals from the lod.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.lod_stats">
+<code class="descname">lod_stats</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#PopulationHistory.lod_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.lod_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write time series for line of descent properties such as network
+connectivity, protein expression etc.</p>
+<p>Either use a stride or a time interval to sample individuals from the lod.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.lods_time_course_data">
+<code class="descname">lods_time_course_data</code><span class="sig-paren">(</span><em>lod_range</em>, <em>chunk_size</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#PopulationHistory.lods_time_course_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.lods_time_course_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write time series data in the line of descent.</p>
+<p>Concatenates time courses of individuals along a <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a>.
+Concatenations are done in <em>chunks</em> of a chosen <cite>chunk_size</cite>. For each chunk
+<strong>.csv</strong> files are stored in a directory named part*n*, where <em>n</em> is the
+chunk number.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ancestors</strong> (list of <a class="reference internal" href="VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Cell.Cell" title="VirtualMicrobes.virtual_cell.Cell.Cell"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.virtual_cell.Cell.Cell</span></code></a>s) &#8211; </li>
+<li><strong>base_save_dir</strong> (<em>str</em>) &#8211; </li>
+<li><strong>viewer_path</strong> (<em>str</em>) &#8211; path to utility files for html data viewer</li>
+<li><strong>chunk_size</strong> (<em>int</em>) &#8211; length of chunks of concatenated data</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.lods_time_course_plots">
+<code class="descname">lods_time_course_plots</code><span class="sig-paren">(</span><em>stride</em>, <em>time_interval</em>, <em>lod_range</em>, <em>formats</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#PopulationHistory.lods_time_course_plots"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.lods_time_course_plots" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.params">
+<code class="descname">params</code><em class="property"> = None</em><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.params" title="Permalink to this definition">¶</a></dt>
+<dd><p>The (updated) simulation parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.plot_lod_graphs">
+<code class="descname">plot_lod_graphs</code><span class="sig-paren">(</span><em>stride</em>, <em>time_interval</em>, <em>lod_range</em>, <em>formats</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#PopulationHistory.plot_lod_graphs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.plot_lod_graphs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.population">
+<code class="descname">population</code><em class="property"> = None</em><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short cut to <a class="reference internal" href="VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Population.Population" title="VirtualMicrobes.virtual_cell.Population.Population"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.virtual_cell.Population.Population</span></code></a> of <cite>sim</cite>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.prune_depth">
+<code class="descname">prune_depth</code><em class="property"> = 0</em><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.prune_depth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of generations from leaves to prune the phylogenetic tree of the pophist.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.sim">
+<code class="descname">sim</code><em class="property"> = None</em><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.sim" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="VirtualMicrobes.simulation.html#VirtualMicrobes.simulation.Simulation.Simulation" title="VirtualMicrobes.simulation.Simulation.Simulation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.simulation.Simulation.Simulation</span></code></a> snapshot for which this pophist was made.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.time_point">
+<code class="descname">time_point</code><em class="property"> = None</em><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.time_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Last simulation time of the <cite>sim</cite>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.tree_lods">
+<code class="descname">tree_lods</code><em class="property"> = []</em><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.tree_lods" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of lists of <a class="reference internal" href="#VirtualMicrobes.post_analysis.lod.LOD" title="VirtualMicrobes.post_analysis.lod.LOD"><code class="xref py py-class docutils literal"><span class="pre">LOD</span></code></a>s. One list for each independent phylogenetic tree within the population.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.post_analysis.lod.PopulationHistory.write_newick_trees">
+<code class="descname">write_newick_trees</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/lod.html#PopulationHistory.write_newick_trees"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.lod.PopulationHistory.write_newick_trees" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-VirtualMicrobes.post_analysis.network_funcs">
+<span id="virtualmicrobes-post-analysis-network-funcs-module"></span><h2>VirtualMicrobes.post_analysis.network_funcs module<a class="headerlink" href="#module-VirtualMicrobes.post_analysis.network_funcs" title="Permalink to this headline">¶</a></h2>
+<p>Created on Feb 18, 2016</p>
+<p>&#64;author: thocu</p>
+<dl class="function">
+<dt id="VirtualMicrobes.post_analysis.network_funcs.prune_GRN">
+<code class="descclassname">VirtualMicrobes.post_analysis.network_funcs.</code><code class="descname">prune_GRN</code><span class="sig-paren">(</span><em>grn</em>, <em>log_dif_effect=0.5</em>, <em>rescue_regulated=True</em>, <em>iterative=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/network_funcs.html#prune_GRN"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.network_funcs.prune_GRN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-VirtualMicrobes.post_analysis.network_properties">
+<span id="virtualmicrobes-post-analysis-network-properties-module"></span><h2>VirtualMicrobes.post_analysis.network_properties module<a class="headerlink" href="#module-VirtualMicrobes.post_analysis.network_properties" title="Permalink to this headline">¶</a></h2>
+<p>Created on Feb 9, 2016</p>
+<p>&#64;author: thocu</p>
+<dl class="class">
+<dt id="VirtualMicrobes.post_analysis.network_properties.PhyloGeneticAnalysis">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.post_analysis.network_properties.</code><code class="descname">PhyloGeneticAnalysis</code><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/network_properties.html#PhyloGeneticAnalysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.network_properties.PhyloGeneticAnalysis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Analyze biological networks</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.post_analysis.network_properties.calculate_overlap">
+<code class="descclassname">VirtualMicrobes.post_analysis.network_properties.</code><code class="descname">calculate_overlap</code><span class="sig-paren">(</span><em>tf_connections</em>, <em>connections_of_homologous_tfs</em>, <em>closest_bound_homologs_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/network_properties.html#calculate_overlap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.network_properties.calculate_overlap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the overlap in bound genes between tf homologs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tf_connections</strong> (list of <a class="reference internal" href="VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Gene.Gene" title="VirtualMicrobes.virtual_cell.Gene.Gene"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.virtual_cell.Gene.Gene</span></code></a>s) &#8211; Downstream connections of the reference TF</li>
+<li><strong>connections_of_homologous_tfs</strong> (list of sets of <a class="reference internal" href="VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Gene.Gene" title="VirtualMicrobes.virtual_cell.Gene.Gene"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.virtual_cell.Gene.Gene</span></code></a>s) &#8211; List of sets of downstream genes for each homolog of the reference TF</li>
+<li><strong>closest_bound_homologs_dict</strong> (dict of sets of <a class="reference internal" href="VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Gene.Gene" title="VirtualMicrobes.virtual_cell.Gene.Gene"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.virtual_cell.Gene.Gene</span></code></a>s) &#8211; Mapping of each original downstream gene of the reference TF to sets of
+homologs of these downstream genes.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple of fractions:
+[0]: Fraction of downstream genes who&#8217;s homologs are bound by a homolog of
+the reference TF.
+[1]: Fraction of new connections (averaged over tf homologs) per original
+connection of the reference TF.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float,float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.post_analysis.network_properties.find_homolog_distances">
+<code class="descclassname">VirtualMicrobes.post_analysis.network_properties.</code><code class="descname">find_homolog_distances</code><span class="sig-paren">(</span><em>gene</em>, <em>genome</em>, <em>closest_homolog=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/network_properties.html#find_homolog_distances"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.network_properties.find_homolog_distances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find homologs and their distance for a gene in a target genome.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>gene</strong> (<a class="reference internal" href="VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.GenomicElement.GenomicElement" title="VirtualMicrobes.virtual_cell.GenomicElement.GenomicElement"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.virtual_cell.GenomicElement.GenomicElement</span></code></a>) &#8211; Reference gene for homology search.</li>
+<li><strong>genome</strong> (<a class="reference internal" href="VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Genome.Genome" title="VirtualMicrobes.virtual_cell.Genome.Genome"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.virtual_cell.Genome.Genome</span></code></a>) &#8211; Genome in which to search for homologs.</li>
+<li><strong>closest_homolog</strong> (<em>bool</em>) &#8211; Flag to filter found homologs to those that have the shortest
+phylogenetic distance to the <cite>gene</cite>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.post_analysis.network_properties.find_homologs">
+<code class="descclassname">VirtualMicrobes.post_analysis.network_properties.</code><code class="descname">find_homologs</code><span class="sig-paren">(</span><em>gene</em>, <em>genome</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/network_properties.html#find_homologs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.network_properties.find_homologs" title="Permalink to this definition">¶</a></dt>
+<dd><p>For a gene, find all its homologs in a given genome.</p>
+<p>This is a naive approach that uses a combination of the gene&#8217;s type and its
+<a class="reference internal" href="VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Identifier.Identifier" title="VirtualMicrobes.virtual_cell.Identifier.Identifier"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.virtual_cell.Identifier.Identifier</span></code></a> attribute to
+detect common descent.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>gene</strong> (<a class="reference internal" href="VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.GenomicElement.GenomicElement" title="VirtualMicrobes.virtual_cell.GenomicElement.GenomicElement"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.virtual_cell.GenomicElement.GenomicElement</span></code></a>) &#8211; Reference gene for homology search.</li>
+<li><strong>genome</strong> (<a class="reference internal" href="VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Genome.Genome" title="VirtualMicrobes.virtual_cell.Genome.Genome"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.virtual_cell.Genome.Genome</span></code></a>) &#8211; Genome in which to search for homologs.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">The set of homologs of <cite>gene</cite> in the <cite>genome</cite>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.post_analysis.network_properties.tf_binding_overlap">
+<code class="descclassname">VirtualMicrobes.post_analysis.network_properties.</code><code class="descname">tf_binding_overlap</code><span class="sig-paren">(</span><em>cell1</em>, <em>cell2</em>, <em>closest_homolog=False</em>, <em>no_phylogeny=False</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/network_properties.html#tf_binding_overlap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.network_properties.tf_binding_overlap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Measure the overlap in target genes for tf homologs in phylogenetically
+related individuals.</p>
+<dl class="docutils">
+<dt>cell1</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier"><a class="reference internal" href="VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Cell.Cell" title="VirtualMicrobes.virtual_cell.Cell.Cell"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.virtual_cell.Cell.Cell</span></code></a></span><dd>Reference individual for which to find homologs</dd>
+<dt>cell2</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier"><a class="reference internal" href="VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Cell.Cell" title="VirtualMicrobes.virtual_cell.Cell.Cell"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.virtual_cell.Cell.Cell</span></code></a></span><dd>Homologs of TFs and downstream targets will be detected in this individual.</dd>
+<dt>closest_homolog</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">bool</span><dd>Flag to filter found homologs to those that have the shortest
+phylogenetic distance to the <cite>gene</cite>.</dd>
+<dt>verbose</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">bool</span><dd>Print messages about homologs found.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Mapping from <a class="reference internal" href="VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Gene.TranscriptionFactor" title="VirtualMicrobes.virtual_cell.Gene.TranscriptionFactor"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.virtual_cell.Gene.TranscriptionFactor</span></code></a> to (maximum)
+binding overlap score.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-VirtualMicrobes.post_analysis">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-VirtualMicrobes.post_analysis" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="VirtualMicrobes.simulation.html" class="btn btn-neutral float-right" title="VirtualMicrobes.simulation package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="VirtualMicrobes.plotting.html" class="btn btn-neutral" title="VirtualMicrobes.plotting package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Thomas Cuypers, Bram van Dijk.
+      Last updated on Oct 10, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

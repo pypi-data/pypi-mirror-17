@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VirtualMicrobes.virtual_cell.Identifier &mdash; Virtual Microbes Evolutionary Simulator 0.1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Virtual Microbes Evolutionary Simulator 0.1.3 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Virtual Microbes Evolutionary Simulator
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">Virtual Microbes Evolutionary Simulator</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>VirtualMicrobes.virtual_cell.Identifier</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for VirtualMicrobes.virtual_cell.Identifier</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Created on Nov 14, 2013</span>
+
+<span class="sd">@author: thocu</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1">#TODO: make an efficient deepcopy override function</span>
+
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">Counter</span>
+
+<div class="viewcode-block" id="increment"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Identifier.increment">[docs]</a><span class="k">def</span> <span class="nf">increment</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span></div>
+
+<div class="viewcode-block" id="Identifier"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Identifier.Identifier">[docs]</a><span class="k">class</span> <span class="nc">Identifier</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;offspring_count&#39;</span><span class="p">,</span> <span class="s1">&#39;versioned_id&#39;</span><span class="p">,</span><span class="s1">&#39;increment_func&#39;</span><span class="p">]</span>
+    <span class="n">unique_unit_dict</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span> <span class="c1">#FIXME: this one is not pickled and so counting restarts upon reload</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">obj</span><span class="p">,</span> <span class="n">versioned_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">increment_func</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">increment_func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">increment_func</span> <span class="o">=</span> <span class="n">increment</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">count_class_types</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">versioned_id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">increment_func</span> <span class="o">=</span> <span class="n">increment_func</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">offspring_count</span><span class="o">=</span><span class="mi">0</span>
+     
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Identifier.count_class_types"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Identifier.Identifier.count_class_types">[docs]</a>    <span class="k">def</span> <span class="nf">count_class_types</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span><span class="n">obj</span><span class="p">):</span>
+        <span class="n">cls</span><span class="o">.</span><span class="n">unique_unit_dict</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)]</span> <span class="o">+=</span> <span class="mi">1</span> </div>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">major_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the first part (highest order) of identifier.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        int (or other id format)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">versioned_id</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">minor_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return version part of the identifier.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of int (or other id format)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">versioned_id</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">versioned_id</span><span class="p">)</span> <span class="k">else</span> <span class="p">[]</span>
+    
+<div class="viewcode-block" id="Identifier.is_copy"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Identifier.Identifier.is_copy">[docs]</a>    <span class="k">def</span> <span class="nf">is_copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test if identifier and self are different copies of the same</span>
+<span class="sd">        major_id. </span>
+<span class="sd">        </span>
+<span class="sd">        identifier : `Identifier`</span>
+<span class="sd">            Identifier to compare to.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">identifier</span><span class="o">.</span><span class="n">major_id</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">major_id</span></div>
+        
+<div class="viewcode-block" id="Identifier.clear_offspring"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Identifier.Identifier.clear_offspring">[docs]</a>    <span class="k">def</span> <span class="nf">clear_offspring</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">offspring_count</span> <span class="o">=</span> <span class="mi">0</span></div>
+        
+<div class="viewcode-block" id="Identifier.increment_offspring"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Identifier.Identifier.increment_offspring">[docs]</a>    <span class="k">def</span> <span class="nf">increment_offspring</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">offspring_count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">increment_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">offspring_count</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Identifier.parse"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Identifier.Identifier.parse">[docs]</a>    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">versioned_id</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">versioned_id</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">list</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">versioned_id</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">versioned_id</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">versioned_id</span> <span class="o">=</span> <span class="p">[</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>  <span class="nb">str</span><span class="p">(</span><span class="n">versioned_id</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span> <span class="p">]</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="nb">print</span> <span class="s2">&quot;invalid versioned_id initialization&quot;</span><span class="p">,</span> <span class="n">versioned_id</span>
+                <span class="k">raise</span>   
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">versioned_id</span></div>
+    
+<div class="viewcode-block" id="Identifier.from_parent"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.virtual_cell.html#VirtualMicrobes.virtual_cell.Identifier.Identifier.from_parent">[docs]</a>    <span class="k">def</span> <span class="nf">from_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">pos</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set an Identifier from a parent id. </span>
+<span class="sd">        </span>
+<span class="sd">        If id is incremented in a &#39;flat&#39; way, the new id is the unique count of</span>
+<span class="sd">        objects of the (parent) type that this id belongs to. Else, the id increment</span>
+<span class="sd">        is done in a &#39;versioned&#39; manner. If parent has 0 offspring ids so far, the parent</span>
+<span class="sd">        id is simply copied and no increment is done. If parent already has &gt; 0 offspring ids, </span>
+<span class="sd">        then a version element is added that indicates this id as the &quot;n&#39;th&quot; offspring of the </span>
+<span class="sd">        parent id. E.g. if parent id is 2.3 and it has 2 offspring already: </span>
+<span class="sd">        from_parent(parent, flat=False) -&gt; 2.3.2  </span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        parent : object with an `Identifier` attribute</span>
+<span class="sd">            The parent of this Identifier.</span>
+<span class="sd">        flat : bool</span>
+<span class="sd">            If True, set versioned id position as the total number of counted</span>
+<span class="sd">            objects of a the type of `parent`. Else, add versioned id</span>
+<span class="sd">            information.</span>
+<span class="sd">        pos : int (index)</span>
+<span class="sd">            index of the version bit to update</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="sd">&quot;&quot;&quot;Increments the count of objects of a specific type&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">count_class_types</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span> 
+        
+        <span class="k">if</span> <span class="n">flat</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">versioned_id</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unique_unit_dict</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">parent</span><span class="p">)]</span>
+        <span class="k">elif</span> <span class="n">parent</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">offspring_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">versioned_id</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parent</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">offspring_count</span><span class="p">)</span>
+        <span class="n">parent</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">increment_offspring</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clear_offspring</span><span class="p">()</span></div>
+                
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">versioned_id</span><span class="p">])</span></div>
+        
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Thomas Cuypers, Bram van Dijk.
+      Last updated on Oct 10, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

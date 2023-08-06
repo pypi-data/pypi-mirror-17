@@ -1,0 +1,495 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VirtualMicrobes.simulation.start &mdash; Virtual Microbes Evolutionary Simulator 0.1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Virtual Microbes Evolutionary Simulator 0.1.3 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Virtual Microbes Evolutionary Simulator
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">Virtual Microbes Evolutionary Simulator</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>VirtualMicrobes.simulation.start</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for VirtualMicrobes.simulation.start</h1><div class="highlight"><pre>
+<span></span><span class="ch">#! /usr/bin/env python</span>
+<span class="c1"># encoding: utf-8</span>
+
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">argparse</span> <span class="k">import</span> <span class="n">ArgumentParser</span><span class="p">,</span> <span class="n">RawDescriptionHelpFormatter</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<div class="viewcode-block" id="parse_fixed_opts"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.simulation.html#VirtualMicrobes.simulation.start.parse_fixed_opts">[docs]</a><span class="k">def</span> <span class="nf">parse_fixed_opts</span><span class="p">(</span><span class="n">opt_strings</span><span class="p">):</span>
+    <span class="n">opt_set</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">opt</span> <span class="ow">in</span> <span class="n">opt_strings</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">opt</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># split on the first occurrence of &#39;:&#39; leaving subsequent &#39;:&#39; in the vals part</span>
+            <span class="n">opt_set</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">opt</span><span class="p">,</span><span class="n">val</span><span class="p">))</span>
+            
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="c1"># options will be interpreted as a flag. </span>
+            <span class="n">opt_set</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">(</span><span class="n">opt</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">))</span> 
+    <span class="k">return</span> <span class="n">opt_set</span></div>
+
+<div class="viewcode-block" id="parse_combining_opts"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.simulation.html#VirtualMicrobes.simulation.start.parse_combining_opts">[docs]</a><span class="k">def</span> <span class="nf">parse_combining_opts</span><span class="p">(</span><span class="n">opt_strings</span><span class="p">):</span>
+    <span class="n">opt_sets</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">opt</span> <span class="ow">in</span> <span class="n">opt_strings</span><span class="p">:</span>
+        <span class="n">opt_set</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">opt</span><span class="p">,</span> <span class="n">vals</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># split on the first occurrence of &#39;:&#39; leaving subsequent &#39;:&#39; in the vals part</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">vals</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)</span> <span class="c1"># use &#39;+&#39; to give different values to be run separately</span>
+            <span class="c1"># should you want to specify an option that can take multiple arguments and the arguments should be </span>
+            <span class="c1"># run simultaneously, you can put the complete argument set between quotes. E.g. the --mutation-rates </span>
+            <span class="c1"># option can take multiple arguments for different mutations. To specify different sets of mutation arguments </span>
+            <span class="c1"># that should be run together, do something like this:</span>
+            <span class="c1"># start.py -a mutation_rates:&quot;chrom_dup=0.01 chrom_del=0.01 point_mutation=0.02&quot;+&quot;chrom_dup=0.02 chrom_del=0.02 point_mutation=0.02&quot; ... start</span>
+            <span class="c1"># this will start runs with either the first full set or the last full set of mutation rate parameters </span>
+                        
+            <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">:</span>
+                <span class="n">delims</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">delims</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">*</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="n">delims</span><span class="p">)):</span>
+                        <span class="n">opt_set</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">opt</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">opt_set</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">opt</span><span class="p">,</span><span class="n">val</span><span class="p">))</span>
+            
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="c1"># options will be interpreted as a flag. </span>
+            <span class="c1"># add options to run with and without the opt-flag.</span>
+            <span class="n">opt_set</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">(</span><span class="n">opt</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">))</span> 
+            <span class="n">opt_set</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">))</span>
+        <span class="n">opt_sets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">opt_set</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">opt_sets</span></div>
+
+<div class="viewcode-block" id="to_argparse_opts"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.simulation.html#VirtualMicrobes.simulation.start.to_argparse_opts">[docs]</a><span class="k">def</span> <span class="nf">to_argparse_opts</span><span class="p">(</span><span class="n">opts</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">parse_opt</span><span class="p">(</span><span class="n">opt_string</span><span class="p">):</span>
+        <span class="n">opt</span><span class="p">,</span><span class="n">val</span> <span class="o">=</span> <span class="n">opt_string</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">opt</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">opt</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">opt</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">val</span>
+        <span class="k">return</span> <span class="s1">&#39;--&#39;</span> <span class="o">+</span> <span class="n">opt</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">val</span>
+    <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span> <span class="n">parse_opt</span><span class="p">(</span><span class="n">opt</span><span class="p">)</span> <span class="k">for</span> <span class="n">opt</span> <span class="ow">in</span> <span class="n">opts</span> <span class="p">])</span></div>
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.simulation.html#VirtualMicrobes.simulation.start.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span> <span class="c1"># IGNORE:C0111</span>
+    <span class="k">if</span> <span class="n">argv</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">argv</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span>
+        
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;start.log&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">start_log</span><span class="p">:</span>
+        <span class="n">start_log</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="si">{time}</span><span class="s1"> : </span><span class="si">{cl}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;[%H:%M:%S] [%m-</span><span class="si">%d</span><span class="s2">]&quot;</span><span class="p">),</span>
+                                                   <span class="n">cl</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">))</span>
+                        <span class="p">)</span>
+    <span class="c1"># Setup argument parser</span>
+    <span class="n">desc</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Start a batch of runs. &#39;</span>
+            <span class="s1">&#39; Lets you define sets or ranges of parameters for which to run evolutionary simulations.&#39;</span>
+            <span class="s1">&#39; All combinations of parameters will be initialized&#39;</span>
+            <span class="p">)</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="n">desc</span><span class="p">,</span> <span class="n">formatter_class</span><span class="o">=</span><span class="n">RawDescriptionHelpFormatter</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;--copy-source&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="s1">&#39;~/vermicelli_source&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;copy the vermicelli source path to the current directory. Compile and run local script.&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-c&#39;</span><span class="p">,</span> <span class="s1">&#39;--force-recompile&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="s1">&#39;./vermicelli_source&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;force recompilation of a local vermicelli source and run local script.&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-l&#39;</span><span class="p">,</span> <span class="s1">&#39;--local-vermicelli&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="s1">&#39;./vermicelli_source/simulation/vermicelli.py&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> 
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;use a (precompiled) local vermicelli.py to run.&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-e&#39;</span><span class="p">,</span> <span class="s1">&#39;--run-config&#39;</span> <span class="p">,</span> 
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;full path to run type specific configuration file (should start with run-type option)&#39;</span>
+                        <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-g&#39;</span><span class="p">,</span> <span class="s1">&#39;--gen-config&#39;</span> <span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;full path to general configuration file.&#39;</span>
+                        <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-n&#39;</span><span class="p">,</span> <span class="s1">&#39;--name&#39;</span><span class="p">,</span> 
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;simulation identification name&#39;</span>
+                        <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-a&#39;</span><span class="p">,</span> <span class="s1">&#39;--gen-opts&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span>
+                        <span class="n">default</span><span class="o">=</span><span class="p">[],</span> 
+                        <span class="n">help</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;A list of general simulation options [with parameter values (ranges)]. Specify as &#39;</span>
+                              <span class="s1">&#39; option-name:val1+val2+val3 OR option-name:start-end OR option-name &#39;</span>
+                              <span class="s1">&#39; (without values). e.g. : -a base-death-rate:0.1+0.3+0.5 perfect-mix non:1-3. &#39;</span>
+                              <span class="s1">&#39; NOTE: ranges should be integer ranges; they are [start-end) &#39;</span>
+                              <span class="p">)</span>
+                        <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-b&#39;</span><span class="p">,</span> <span class="s1">&#39;--fixed-gen-opts&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span>
+                        <span class="n">default</span><span class="o">=</span><span class="p">[],</span> 
+                        <span class="n">help</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;A list of fixed general simulation options [with parameter values (ranges)]. Specify as &#39;</span>
+                              <span class="s1">&#39; option-name:val1+val2+val3 OR option-name:start-end OR option-name &#39;</span>
+                              <span class="s1">&#39; (without values). e.g. : -a base-death-rate:0.1+0.3+0.5 perfect-mix non:1-3. &#39;</span>
+                              <span class="s1">&#39; NOTE: ranges should be integer ranges; they are [start-end) &#39;</span>
+                              <span class="p">)</span>
+                        <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-y&#39;</span><span class="p">,</span> <span class="s1">&#39;--fixed-run-opts&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span>
+                        <span class="n">default</span><span class="o">=</span><span class="p">[],</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;A list of run-type specific options (see --gen-opts for details)&#39;</span>
+                        <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-z&#39;</span><span class="p">,</span> <span class="s1">&#39;--run-opts&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span>
+                        <span class="n">default</span><span class="o">=</span><span class="p">[],</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;A list of run-type specific options (see --gen-opts for details)&#39;</span>
+                        <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--cores&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--dry-run&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> 
+                        <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;dry run the start script, without actually starting simulations.&#39;</span>
+                        <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--no-screen&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_false&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;screen&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;__dummy&#39;</span><span class="p">,</span>   <span class="c1"># dummy option to parsing of subcommand positional argument</span>
+                        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">SUPPRESS</span><span class="p">)</span>
+    
+    <span class="n">subparsers</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_subparsers</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s1">&#39;sub-command specific arguments&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;run_type&#39;</span><span class="p">)</span>
+    
+    <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;start new sims&#39;</span><span class="p">)</span>
+    
+    <span class="n">continue_parser</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s1">&#39;cont&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;continue a set of saved simulations&#39;</span><span class="p">)</span>
+    <span class="n">continue_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;load_files&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> 
+                                 <span class="n">help</span><span class="o">=</span><span class="s1">&#39;simulation saves to be reloaded and continued&#39;</span><span class="p">)</span>
+    <span class="n">continue_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="s1">&#39;--flat&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
+                                 <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                 <span class="n">help</span><span class="o">=</span><span class="s1">&#39;continue a simulation in place, in the original directory&#39;</span> 
+                                 <span class="p">)</span>
+    <span class="n">continue_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-i&#39;</span><span class="p">,</span> <span class="s1">&#39;--in-place&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> 
+                                 <span class="n">help</span><span class="o">=</span><span class="s1">&#39;create the new simulation dir within the dir of the load file.&#39;</span>
+                                 <span class="p">)</span>
+    
+    <span class="n">ancestry_parser</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s1">&#39;lod&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;analyze ancestry of a set of saved simulations&#39;</span>
+                                            <span class="p">)</span>
+    <span class="n">ancestry_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;load_files&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> 
+                                 <span class="n">help</span><span class="o">=</span><span class="s1">&#39;simulation saves to be reloaded and continued&#39;</span>
+                                 <span class="p">)</span>
+    <span class="n">ancestry_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="s1">&#39;--flat&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
+                                 <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                 <span class="n">help</span><span class="o">=</span><span class="s1">&#39;continue a simulation in place, in the original directory&#39;</span> 
+                                 <span class="p">)</span>
+    
+    <span class="c1"># Process arguments</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="nb">print</span>
+    <span class="nb">print</span> <span class="s1">&#39;args parsed&#39;</span><span class="p">,</span> <span class="n">args</span>
+    <span class="nb">print</span>
+    
+    <span class="c1">###### copy and/or build source if requested ########</span>
+    
+    <span class="n">vermicelli</span> <span class="o">=</span> <span class="s1">&#39;vermicelli.py&#39;</span>
+    
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">copy_source</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">distutils.dir_util</span> <span class="k">import</span> <span class="n">copy_tree</span>
+        <span class="n">source</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">copy_source</span><span class="p">)</span>
+        <span class="n">dir_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+        <span class="n">dest</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">dir_name</span><span class="p">)</span>
+        <span class="n">copy_tree</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">dest</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">dest</span><span class="p">))</span>
+        <span class="kn">import</span> <span class="nn">setup</span>
+        <span class="n">setup</span><span class="o">.</span><span class="n">do_setup</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="s1">&#39;start.py&#39;</span><span class="p">,</span> <span class="s1">&#39;build_ext&#39;</span><span class="p">,</span> <span class="s1">&#39;--inplace&#39;</span><span class="p">)</span>
+        <span class="n">vermicelli</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span><span class="s1">&#39;simulation&#39;</span><span class="p">,</span> <span class="n">vermicelli</span><span class="p">)</span>
+        
+    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">force_recompile</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">dest</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">force_recompile</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dest</span><span class="p">)</span>
+        <span class="kn">import</span> <span class="nn">setup</span>
+        <span class="n">setup</span><span class="o">.</span><span class="n">do_setup</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="s1">&#39;start.py&#39;</span><span class="p">,</span> <span class="s1">&#39;build_ext&#39;</span><span class="p">,</span> <span class="s1">&#39;--inplace&#39;</span><span class="p">)</span>
+        <span class="n">vermicelli</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span><span class="s1">&#39;simulation&#39;</span><span class="p">,</span> <span class="n">vermicelli</span><span class="p">)</span>
+        
+    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">local_vermicelli</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">vermicelli</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">local_vermicelli</span>
+    
+    <span class="c1">#####################################################</span>
+    <span class="n">fixed_gen_opts</span> <span class="o">=</span> <span class="n">parse_fixed_opts</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">fixed_gen_opts</span><span class="p">)</span>
+    <span class="n">fixed_run_opts</span> <span class="o">=</span> <span class="n">parse_fixed_opts</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">fixed_run_opts</span><span class="p">)</span>
+    
+    <span class="n">gen_opt_sets</span> <span class="o">=</span> <span class="n">parse_combining_opts</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">gen_opts</span><span class="p">)</span>
+    <span class="n">gen_opt_combis</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">gen_opt_sets</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">gen_opt_sets</span><span class="p">)</span> <span class="k">else</span> <span class="p">[()]</span>
+    <span class="n">run_opt_sets</span> <span class="o">=</span> <span class="n">parse_combining_opts</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">run_opts</span><span class="p">)</span>
+    <span class="n">run_opt_combis</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">run_opt_sets</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">run_opt_sets</span><span class="p">)</span> <span class="k">else</span> <span class="p">[()]</span>
+    <span class="n">all_opt_combis</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">gen_opt_combis</span><span class="p">,</span> <span class="n">run_opt_combis</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">run_type</span><span class="o">==</span><span class="s1">&#39;cont&#39;</span> <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">flat</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_opt_combis</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Can not run multiple option combinations in the same simulation directory.&#39;</span>
+                     <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">opt-combinations:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">all_opt_combis</span><span class="p">))</span>
+    
+    
+    <span class="n">sys_commands</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">screen</span><span class="p">:</span>
+        <span class="n">sys_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="s1">&#39;screen -d  -L -t </span><span class="si">{screen_name}</span><span class="s1"> -S </span><span class="si">{screen_name}</span><span class="s1"> -m&#39;</span> <span class="p">)</span>
+    <span class="n">sys_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;xvfb-run --auto-servernum --server-args=&#39;-screen 0 1024x768x24&#39;&quot;</span> <span class="p">)</span>
+    <span class="n">sys_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vermicelli</span><span class="p">)</span>
+    
+    
+    <span class="n">run_name</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s1">&#39;vm&#39;</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">run_type</span><span class="o">==</span><span class="s1">&#39;cont&#39;</span>  <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">load_files</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">run_name</span> <span class="o">+=</span> <span class="s1">&#39;-cont&#39;</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">run_type</span><span class="o">==</span><span class="s1">&#39;lod&#39;</span>  <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">load_files</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">run_name</span> <span class="o">+=</span> <span class="s1">&#39;-lod&#39;</span>
+    <span class="k">for</span> <span class="n">comb_gen_opts</span><span class="p">,</span> <span class="n">comb_run_opts</span> <span class="ow">in</span> <span class="n">all_opt_combis</span><span class="p">:</span>
+        <span class="n">gen_opt_strings</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">run_opt_strings</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="n">name</span> <span class="o">=</span> <span class="n">run_name</span>
+        <span class="n">opts_suf</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span> <span class="n">opt</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;-&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39; &quot;</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="k">for</span> <span class="p">(</span><span class="n">opt</span><span class="p">,</span><span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="n">comb_gen_opts</span> <span class="o">+</span> <span class="n">comb_run_opts</span> <span class="p">])</span>
+        <span class="k">if</span> <span class="n">opts_suf</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">+=</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">opts_suf</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">gen_config</span><span class="p">:</span>
+            <span class="n">gen_opt_strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="s1">&#39;@&#39;</span> <span class="o">+</span> <span class="n">args</span><span class="o">.</span><span class="n">gen_config</span><span class="p">)</span> 
+        <span class="n">gen_opt_strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;--proctitle </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">run_name</span><span class="p">))</span>
+        <span class="n">gen_opt_strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">to_argparse_opts</span><span class="p">(</span><span class="n">fixed_gen_opts</span><span class="p">))</span>
+        <span class="n">gen_opt_strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">to_argparse_opts</span><span class="p">(</span><span class="n">comb_gen_opts</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">cores</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">gen_opt_strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;-n </span><span class="si">{cores}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cores</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">cores</span><span class="p">))</span>
+            
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">run_type</span> <span class="o">==</span> <span class="s1">&#39;lod&#39;</span><span class="p">:</span>
+            <span class="n">run_opt_strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;- ancestry </span><span class="si">{load_file}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">run_type</span> <span class="o">==</span> <span class="s1">&#39;start&#39;</span> <span class="ow">or</span> <span class="n">args</span><span class="o">.</span><span class="n">run_type</span> <span class="o">==</span> <span class="s1">&#39;cont&#39;</span><span class="p">:</span>
+            <span class="n">run_opt_strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;- evo&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">run_config</span><span class="p">:</span>
+            <span class="n">run_opt_strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="s1">&#39;@&#39;</span> <span class="o">+</span> <span class="n">args</span><span class="o">.</span><span class="n">run_config</span><span class="p">)</span>
+            
+        <span class="n">run_opt_strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">to_argparse_opts</span><span class="p">(</span><span class="n">fixed_run_opts</span><span class="p">))</span>
+        <span class="n">run_opt_strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">to_argparse_opts</span><span class="p">(</span><span class="n">comb_run_opts</span><span class="p">))</span>
+        
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">run_type</span><span class="o">==</span><span class="s1">&#39;start&#39;</span>  <span class="ow">or</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">run_type</span><span class="o">==</span><span class="s1">&#39;cont&#39;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">flat</span><span class="p">):</span>
+            <span class="n">run_opt_strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;--name </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+        
+        <span class="c1"># continue a run </span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">run_type</span><span class="o">==</span><span class="s1">&#39;cont&#39;</span>  <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">load_files</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">lf</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">load_files</span><span class="p">:</span>
+                <span class="n">lf_gen_opt_strings</span> <span class="o">=</span> <span class="n">gen_opt_strings</span><span class="p">[:]</span>
+                <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">in_place</span><span class="p">:</span>
+                    <span class="n">load_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">lf</span><span class="p">)</span>
+                    <span class="n">lf_gen_opt_strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;--base-dir </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">load_path</span><span class="p">))</span>
+                
+                <span class="n">path_components</span> <span class="o">=</span> <span class="n">lf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">path_components</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">simulation_id</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">name</span><span class="p">,</span> <span class="n">path_components</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">simulation_id</span> <span class="o">=</span> <span class="n">name</span>
+                    
+                <span class="n">commands</span> <span class="o">=</span> <span class="n">sys_commands</span> <span class="o">+</span> <span class="n">lf_gen_opt_strings</span> <span class="o">+</span> <span class="n">run_opt_strings</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;--load-file &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lf</span><span class="p">)]</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">screen</span><span class="p">:</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&gt; </span><span class="si">{simulation_id}</span><span class="s1">.log 2&gt;&amp;1 &amp;&#39;</span><span class="p">)</span>
+                    <span class="n">command</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">commands</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">simulation_id</span><span class="o">=</span><span class="n">simulation_id</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">command</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">commands</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">screen_name</span><span class="o">=</span><span class="n">simulation_id</span><span class="p">)</span>
+                <span class="nb">print</span> <span class="n">command</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">dry_run</span><span class="p">:</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># wait a bit for setup</span>
+                
+        <span class="c1"># start lod analysis        </span>
+        <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">run_type</span><span class="o">==</span><span class="s1">&#39;lod&#39;</span> <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">load_files</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">lf</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">load_files</span><span class="p">:</span>
+                <span class="n">path_components</span> <span class="o">=</span> <span class="n">lf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">path_components</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">simulation_id</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">name</span><span class="p">,</span> <span class="n">path_components</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">simulation_id</span> <span class="o">=</span> <span class="n">name</span>
+                <span class="n">commands</span> <span class="o">=</span> <span class="n">sys_commands</span> <span class="o">+</span> <span class="n">gen_opt_strings</span> <span class="o">+</span> <span class="n">run_opt_strings</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">screen</span><span class="p">:</span>
+                    <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&gt; </span><span class="si">{simulation_id}</span><span class="s1">.log 2&gt;&amp;1 &amp;&#39;</span><span class="p">)</span> 
+                    <span class="n">command</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">commands</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">load_file</span><span class="o">=</span><span class="n">lf</span><span class="p">,</span> <span class="n">simulation_id</span><span class="o">=</span><span class="n">simulation_id</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">command</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">commands</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">load_file</span><span class="o">=</span><span class="n">lf</span><span class="p">,</span> <span class="n">screen_name</span><span class="o">=</span><span class="n">simulation_id</span><span class="p">)</span>
+                <span class="nb">print</span> <span class="n">command</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">dry_run</span><span class="p">:</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># wait a bit for setup</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">commands</span> <span class="o">=</span> <span class="n">sys_commands</span> <span class="o">+</span> <span class="n">gen_opt_strings</span> <span class="o">+</span><span class="n">run_opt_strings</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">screen</span><span class="p">:</span>
+                <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&gt; </span><span class="si">{simulation_id}</span><span class="s1">.log 2&gt;&amp;1 &amp;&#39;</span><span class="p">)</span> 
+                <span class="n">command</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">commands</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">simulation_id</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">command</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">commands</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">screen_name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+            <span class="nb">print</span> <span class="n">command</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">dry_run</span><span class="p">:</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># wait a bit for setup</span>
+    <span class="k">return</span> <span class="mi">0</span>    </div>
+    
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Thomas Cuypers, Bram van Dijk.
+      Last updated on Oct 10, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,1312 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VirtualMicrobes.Tree.PhyloTree &mdash; Virtual Microbes Evolutionary Simulator 0.1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Virtual Microbes Evolutionary Simulator 0.1.3 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Virtual Microbes Evolutionary Simulator
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">Virtual Microbes Evolutionary Simulator</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>VirtualMicrobes.Tree.PhyloTree</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for VirtualMicrobes.Tree.PhyloTree</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Created on Nov 11, 2014</span>
+
+<span class="sd">@author: thocu</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">VirtualMicrobes.my_tools.utility</span> <span class="k">import</span> <span class="n">OrderedDefaultdict</span>
+<span class="kn">from</span> <span class="nn">sortedcontainers.sorteddict</span> <span class="k">import</span> <span class="n">SortedDict</span>
+<span class="kn">from</span> <span class="nn">ete3</span> <span class="k">import</span> <span class="n">TreeNode</span> <span class="c1">#TODO: try upgrade to ete3.3 (fork git repo to allow merging in updates to local copy)</span>
+<span class="kn">import</span> <span class="nn">VirtualMicrobes.my_tools.utility</span> <span class="k">as</span> <span class="nn">util</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span><span class="p">,</span> <span class="n">deque</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="c1">#import warnings</span>
+
+<div class="viewcode-block" id="nh_branch"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.nh_branch">[docs]</a><span class="k">def</span> <span class="nf">nh_branch</span><span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="n">branch_length</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">nhx_tag</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">features</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">nhx_tag</span> <span class="o">=</span> <span class="s1">&#39;[&amp;&amp;NHX:&#39;</span> <span class="o">+</span>   <span class="s1">&#39;:&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="p">[</span> <span class="s1">&#39;=&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">features</span> <span class="p">])</span> <span class="o">+</span> <span class="s1">&#39;]&#39;</span>
+    <span class="n">branch_length_tag</span> <span class="o">=</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">branch_length</span><span class="p">)</span> <span class="k">if</span> <span class="n">branch_length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">_id</span> <span class="o">+</span> <span class="n">branch_length_tag</span> <span class="o">+</span> <span class="n">nhx_tag</span></div>
+
+<div class="viewcode-block" id="newick"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.newick">[docs]</a><span class="k">def</span> <span class="nf">newick</span><span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">branch_length</span><span class="p">):</span>
+    <span class="n">branch_length_tag</span> <span class="o">=</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">branch_length</span><span class="p">)</span> <span class="k">if</span> <span class="n">branch_length</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">return</span>  <span class="nb">str</span><span class="p">(</span><span class="n">_id</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="o">+</span> <span class="n">branch_length_tag</span></div>
+
+<div class="viewcode-block" id="nhx"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.nhx">[docs]</a><span class="k">def</span> <span class="nf">nhx</span><span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">branch_length</span><span class="p">):</span>
+    <span class="n">nhx_tag</span> <span class="o">=</span> <span class="s1">&#39;[&amp;&amp;NHX:&#39;</span> <span class="o">+</span> <span class="s1">&#39;ID=&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;:TIME=&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;]&#39;</span>
+    <span class="k">return</span>  <span class="n">newick</span><span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">branch_length</span><span class="p">)</span> <span class="o">+</span> <span class="n">nhx_tag</span></div>
+
+<div class="viewcode-block" id="PhyloNode"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloNode">[docs]</a><span class="k">class</span> <span class="nc">PhyloNode</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">     </span>
+<span class="sd">    :version:</span>
+<span class="sd">    :author:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="sd">&quot;&quot;&quot; ATTRIBUTES</span>
+
+<span class="sd">    parent  (private)</span>
+<span class="sd">     this holds the actual object</span>
+<span class="sd">    children  (private)</span>
+<span class="sd">    the_object  (private)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">max_node_depth</span><span class="o">=</span><span class="mi">0</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="k">if</span> <span class="n">time</span> <span class="o">&gt;</span> <span class="n">PhyloNode</span><span class="o">.</span><span class="n">max_node_depth</span><span class="p">:</span>
+            <span class="n">PhyloNode</span><span class="o">.</span><span class="n">max_node_depth</span> <span class="o">=</span> <span class="n">time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">offspring_nodes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ancestor_nodes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">internal_child_node</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">internal_parent_node</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">PhyloNode</span><span class="o">.</span><span class="n">id</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">PhyloNode</span><span class="o">.</span><span class="n">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_root</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="kc">None</span>
+ 
+<div class="viewcode-block" id="PhyloNode.add_root"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloNode.add_root">[docs]</a>    <span class="k">def</span> <span class="nf">add_root</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root_node</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">root_node</span>
+        <span class="n">root_node</span><span class="o">.</span><span class="n">internal_child_node</span> <span class="o">=</span> <span class="bp">self</span></div>
+        
+<div class="viewcode-block" id="PhyloNode.excise"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloNode.excise">[docs]</a>    <span class="k">def</span> <span class="nf">excise</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        remove references to this node from other tree nodes </span>
+<span class="sd">        and reconnect remaining nodes.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1">#print &#39;excising&#39;, self</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">internal_parent_node</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">internal_child_node</span><span class="p">:</span> <span class="c1">#crosconnect child with parent</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">internal_child_node</span><span class="o">.</span><span class="n">_connect_internal_parent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">internal_parent_node</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">internal_parent_node</span><span class="p">:</span> <span class="c1"># internal parent should no longer reference self</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">internal_parent_node</span><span class="o">.</span><span class="n">_remove_internal_child</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">internal_child_node</span><span class="p">:</span> <span class="c1">#child inherits the ancestors of self and ancestors </span>
+            <span class="c1"># replace references to self with child</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">internal_child_node</span><span class="o">.</span><span class="n">_inherit_ancestors_from</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_root</span><span class="p">():</span> <span class="c1">#child inherits reference to root</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">internal_child_node</span><span class="o">.</span><span class="n">inherit_root</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">internal_child_node</span><span class="o">.</span><span class="n">_remove_internal_parent</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># remove all references to self at the ancestors</span>
+            <span class="k">for</span> <span class="n">anc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ancestor_nodes</span><span class="p">:</span>
+                <span class="n">anc</span><span class="o">.</span><span class="n">offspring_nodes</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">internal_parent_node</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">internal_child_node</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="PhyloNode.push_onto_internal_child"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloNode.push_onto_internal_child">[docs]</a>    <span class="k">def</span> <span class="nf">push_onto_internal_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>  <span class="c1"># takes PhyloNode objects </span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        makes this node an internal parent node of child</span>
+<span class="sd">        :param child:</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">child</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;trying to make </span><span class="si">{}</span><span class="s1"> a child of itself&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">child</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_inherit_ancestors_from</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="c1">#self.internal_child_node = child #NOTE should be redundant with line below </span>
+        <span class="n">child</span><span class="o">.</span><span class="n">_connect_internal_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">has_root</span><span class="p">():</span>
+            <span class="n">child</span><span class="o">.</span><span class="n">push_up_root</span><span class="p">()</span></div>
+        
+    <span class="k">def</span> <span class="nf">_connect_internal_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>  <span class="c1"># takes PhyloNode objects </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">internal_parent_node</span> <span class="o">=</span> <span class="n">parent</span>
+        <span class="n">parent</span><span class="o">.</span><span class="n">internal_child_node</span> <span class="o">=</span> <span class="bp">self</span>
+    
+    <span class="k">def</span> <span class="nf">_disconnect_internal_child</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">internal_child_node</span><span class="o">.</span><span class="n">_remove_internal_parent</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">internal_child_node</span> <span class="o">=</span> <span class="kc">None</span>
+        
+    <span class="k">def</span> <span class="nf">_remove_internal_child</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">internal_child_node</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    <span class="k">def</span> <span class="nf">_remove_internal_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">internal_parent_node</span> <span class="o">=</span> <span class="kc">None</span>
+    
+<div class="viewcode-block" id="PhyloNode.connect_phylo_offspring"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloNode.connect_phylo_offspring">[docs]</a>    <span class="k">def</span> <span class="nf">connect_phylo_offspring</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">offspring</span><span class="p">):</span>  <span class="c1"># takes PhyloNode objects </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_phylo_offspring</span><span class="p">(</span><span class="n">offspring</span><span class="p">)</span>
+        <span class="n">offspring</span><span class="o">.</span><span class="n">_add_phylo_ancestor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+        
+    <span class="k">def</span> <span class="nf">_add_phylo_offspring</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">offspring</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">offspring_nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">offspring</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">_add_phylo_ancestor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ancestor</span><span class="p">):</span>  <span class="c1"># takes PhyloNode objects </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ancestor_nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ancestor</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">_inherit_ancestors_from</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>   
+        <span class="k">for</span> <span class="n">anc</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">ancestor_nodes</span><span class="p">[:]:</span>
+            <span class="n">anc</span><span class="o">.</span><span class="n">offspring_nodes</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+            <span class="n">anc</span><span class="o">.</span><span class="n">connect_phylo_offspring</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">ancestor_nodes</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">anc</span><span class="p">)</span>
+    
+    <span class="nd">@property</span>        
+    <span class="k">def</span> <span class="nf">children</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">internal</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">internal_child_node</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">internal_child_node</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="n">internal</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">offspring_nodes</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">parents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">internal</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">internal_parent_node</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">internal_parent_node</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="n">internal</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">ancestor_nodes</span>
+    
+<div class="viewcode-block" id="PhyloNode.push_up_root"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloNode.push_up_root">[docs]</a>    <span class="k">def</span> <span class="nf">push_up_root</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Iteratively push up the root to the internal_parent_node.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">internal_parent_node</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">internal_parent_node</span><span class="o">.</span><span class="n">inherit_root</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">internal_parent_node</span><span class="o">.</span><span class="n">push_up_root</span><span class="p">()</span></div>
+    
+<div class="viewcode-block" id="PhyloNode.inherit_root"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloNode.inherit_root">[docs]</a>    <span class="k">def</span> <span class="nf">inherit_root</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">root</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">internal_child_node</span> <span class="o">=</span> <span class="bp">self</span></div>
+    
+<div class="viewcode-block" id="PhyloNode.has_root"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloNode.has_root">[docs]</a>    <span class="k">def</span> <span class="nf">has_root</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="k">else</span> <span class="kc">False</span></div>
+    
+    <span class="k">def</span> <span class="nf">_remove_root</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="kc">None</span>
+    
+<div class="viewcode-block" id="PhyloNode.remove_root_stem"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloNode.remove_root_stem">[docs]</a>    <span class="k">def</span> <span class="nf">remove_root_stem</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_root</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Trying to remove root stem of non-root node&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">internal_child_node</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">internal_child_node</span><span class="o">.</span><span class="n">_remove_root</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_root</span> <span class="o">=</span> <span class="kc">False</span></div>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_leaf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">         is this a leaf of the tree</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">False</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">internal_child_node</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">offspring_nodes</span> <span class="k">else</span> <span class="kc">True</span>
+    
+<div class="viewcode-block" id="PhyloNode.dist_to_parent"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloNode.dist_to_parent">[docs]</a>    <span class="k">def</span> <span class="nf">dist_to_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">parent</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parents</span><span class="p">:</span>
+            <span class="n">dist</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">-</span> <span class="n">parent</span><span class="o">.</span><span class="n">time</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="ow">and</span> <span class="n">parent</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">dist</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">time</span>
+        <span class="k">return</span> <span class="n">dist</span></div>
+    
+<div class="viewcode-block" id="PhyloNode.nh_format_nr"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloNode.nh_format_nr">[docs]</a>    <span class="k">def</span> <span class="nf">nh_format_nr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_format</span><span class="o">=</span><span class="s1">&#39;newick&#39;</span><span class="p">,</span> <span class="n">formatter</span><span class="o">=</span><span class="n">nh_branch</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Format a newick string non-recursively.</span>
+<span class="sd">        :param with_leafs:</span>
+<span class="sd">        :param _format:</span>
+<span class="sd">        :param formatter:</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">newick</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">postorder</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iter_prepostorder</span><span class="p">():</span>
+            <span class="c1">#print newick</span>
+            <span class="n">features</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">nhx_features</span> <span class="k">if</span> <span class="n">_format</span> <span class="o">==</span> <span class="s1">&#39;NHX&#39;</span> <span class="k">else</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">postorder</span><span class="p">:</span>
+                <span class="n">newick</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;)&quot;</span><span class="p">)</span>
+                <span class="n">newick</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">formatter</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">newick_id</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">dist_to_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">),</span> <span class="n">features</span><span class="p">))</span> 
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span> <span class="ow">and</span> <span class="n">node</span> <span class="o">!=</span> <span class="n">parent</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                    <span class="n">newick</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">is_leaf</span><span class="p">:</span>
+                    <span class="n">newick</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">formatter</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">newick_id</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">dist_to_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">),</span> <span class="n">features</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">newick</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;(&quot;</span><span class="p">)</span>
+        <span class="n">newick</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">newick</span><span class="p">)</span></div>
+                
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">newick_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        id tag used in new hampshire (newick) tree format</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">val</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">nhx_features</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        additional node features used in the &#39;extended&#39; newick format (nhx)</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="p">[(</span><span class="s1">&#39;ID&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">val</span><span class="o">.</span><span class="n">id</span><span class="p">)),</span> <span class="p">(</span><span class="s1">&#39;TIME&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">)]</span> 
+    
+<div class="viewcode-block" id="PhyloNode.iter_prepostorder"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloNode.iter_prepostorder">[docs]</a>    <span class="k">def</span> <span class="nf">iter_prepostorder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">is_leaf_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Iterate over all nodes in a tree yielding every node in both</span>
+<span class="sd">        pre and post order. Each iteration returns a postorder flag</span>
+<span class="sd">        (True if node is being visited in postorder) and a node</span>
+<span class="sd">        instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">to_visit</span> <span class="o">=</span> <span class="p">[(</span><span class="kc">None</span><span class="p">,</span><span class="bp">self</span><span class="p">)]</span>
+
+        <span class="k">while</span> <span class="n">to_visit</span><span class="p">:</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">to_visit</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">_</span> <span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">node</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="c1">#if isinstance()</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="c1"># PREORDER ACTIONS</span>
+                <span class="n">parent</span><span class="p">,</span> <span class="n">node</span> <span class="o">=</span> <span class="n">node</span>
+                <span class="k">yield</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="o">.</span><span class="n">is_leaf</span><span class="p">:</span>
+                    <span class="c1"># ADD CHILDREN</span>
+                    <span class="n">to_visit</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span> <span class="p">[</span> <span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span> <span class="p">]</span> <span class="o">+</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">node</span><span class="p">]]</span> <span class="p">)</span> <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1">#POSTORDER ACTIONS</span>
+                <span class="k">yield</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span></div>
+                
+    <span class="k">def</span> <span class="nf">_iter_descendants_levelorder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">is_leaf_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">        Iterate over all desdecendant nodes. </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tovisit</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="bp">self</span><span class="p">])</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">tovisit</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">tovisit</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+            <span class="k">yield</span> <span class="n">node</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">is_leaf_fn</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">is_leaf_fn</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+                <span class="n">tovisit</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">children</span> <span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">internal_child_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">internal_child_node</span><span class="o">.</span><span class="n">id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">internal_child_node</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">internal_parent_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">internal_parent_node</span><span class="o">.</span><span class="n">id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">internal_parent_node</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;TN&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;{int_child_TN:&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">internal_child_id</span><span class="p">)</span><span class="o">+</span>
+                <span class="s2">&quot;, int_parent_TN:&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">internal_parent_id</span><span class="p">)</span><span class="o">+</span>
+                <span class="s2">&quot; external_offspring_TN:[&quot;</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">offspring_nodes</span><span class="p">])</span><span class="o">+</span>
+                <span class="s2">&quot;], external_ancestor_TN:[&quot;</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ancestor_nodes</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;, id:&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">val</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;, t:&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="s1">&#39;root:&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;}&#39;</span> <span class="p">)</span></div>
+
+<div class="viewcode-block" id="PhyloTree"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree">[docs]</a><span class="k">class</span> <span class="nc">PhyloTree</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Primary use is a phylogenetic tree, representing reproduction/speciation</span>
+<span class="sd">    events at particular points in time. Because generations are overlapping, a</span>
+<span class="sd">    parent may have offspring at various time points. Therefore Nodes are not</span>
+<span class="sd">    strictly parents, but rather, parent-reproduction-time tuples.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">class_version</span> <span class="o">=</span> <span class="s1">&#39;1.0&#39;</span>
+    
+<div class="viewcode-block" id="PhyloTree.SuperNode"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.SuperNode">[docs]</a>    <span class="k">class</span> <span class="nc">SuperNode</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="s1">&#39;ROOT&#39;</span></div>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">supertree</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">class_version</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span> <span class="o">=</span> <span class="n">OrderedDefaultdict</span><span class="p">(</span><span class="n">SortedDict</span><span class="p">)</span> <span class="c1">#using SortedDict the maintain time ordered TreeNodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">leafs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_leaf_depth</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">roots</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1">#self.ete_tree = None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ete_trees</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lca</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">supertree</span> <span class="o">=</span> <span class="n">supertree</span>
+        
+<div class="viewcode-block" id="PhyloTree.clear"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.clear">[docs]</a>    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span> <span class="o">=</span> <span class="n">OrderedDefaultdict</span><span class="p">(</span><span class="n">SortedDict</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">leafs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_leaf_depth</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">roots</span> <span class="o">=</span> <span class="p">[]</span>     </div>
+                
+<div class="viewcode-block" id="PhyloTree.create_root_stem"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.create_root_stem">[docs]</a>    <span class="k">def</span> <span class="nf">create_root_stem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phylo_root</span><span class="p">):</span>
+        <span class="n">new_root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">phylo_root</span><span class="p">,</span> <span class="n">phylo_root</span><span class="o">.</span><span class="n">time_birth</span><span class="p">)</span> 
+        <span class="c1">#print &#39;adding root&#39;, new_root</span>
+        <span class="k">if</span> <span class="n">new_root</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connect_internal_node</span><span class="p">(</span><span class="n">new_root</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">roots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_root</span><span class="p">)</span>
+            <span class="n">new_root</span><span class="o">.</span><span class="n">is_root</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">phylo_root</span><span class="o">.</span><span class="n">time_death</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_root</span><span class="p">]</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">phylo_root</span><span class="o">.</span><span class="n">time_death</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">create_leaf</span><span class="p">(</span><span class="n">phylo_root</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">new_root</span></div>
+    
+    <span class="k">def</span> <span class="nf">_connect_root</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root_node</span><span class="p">):</span>
+        <span class="n">root_child</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">root_node</span><span class="o">.</span><span class="n">val</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span> <span class="c1">#internal node entries for phylo_unit exist in nodes_dict</span>
+            <span class="n">internal_phylo_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">root_node</span><span class="o">.</span><span class="n">val</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">root_child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">root_node</span><span class="o">.</span><span class="n">val</span><span class="p">][</span><span class="n">internal_phylo_time</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">root_child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_leaf</span><span class="p">(</span><span class="n">root_node</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
+        <span class="n">root_child</span><span class="o">.</span><span class="n">add_root</span><span class="p">(</span><span class="n">root_node</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">_remove_root</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root_node</span><span class="p">):</span>
+        <span class="n">root_node</span><span class="o">.</span><span class="n">remove_root_stem</span><span class="p">()</span>
+        <span class="c1">#print &#39;removing root&#39;, root_node</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">roots</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">root_node</span><span class="p">)</span>
+                    
+<div class="viewcode-block" id="PhyloTree.add_leaf"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.add_leaf">[docs]</a>    <span class="k">def</span> <span class="nf">add_leaf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">leaf</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">leafs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">leaf</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">leaf</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_leaf_depth</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">max_leaf_depth</span> <span class="o">=</span> <span class="n">leaf</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">leaf</span></div>
+        
+<div class="viewcode-block" id="PhyloTree.update"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_phylo_units</span><span class="o">=</span><span class="p">[],</span> <span class="n">removed_phylo_units</span><span class="o">=</span><span class="p">[],</span> <span class="n">new_roots</span><span class="o">=</span><span class="p">[]):</span>
+        
+        <span class="k">for</span> <span class="n">new_root</span> <span class="ow">in</span> <span class="n">new_roots</span><span class="p">:</span>
+            <span class="n">new_root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_root_stem</span><span class="p">(</span><span class="n">new_root</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">phylo_unit</span> <span class="ow">in</span> <span class="n">new_phylo_units</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_phylo_history</span><span class="p">(</span><span class="n">phylo_unit</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">phylo_unit</span> <span class="ow">in</span> <span class="n">removed_phylo_units</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">delete_phylo_hist</span><span class="p">(</span><span class="n">phylo_unit</span><span class="p">)</span></div>
+                
+<div class="viewcode-block" id="PhyloTree.add_phylo_history"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.add_phylo_history">[docs]</a>    <span class="k">def</span> <span class="nf">add_phylo_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phylo_unit</span><span class="p">):</span>
+        <span class="n">new_leaf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_leaf</span><span class="p">(</span><span class="n">phylo_unit</span><span class="p">)</span>
+        <span class="n">phylo_parent_nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_stems</span><span class="p">(</span><span class="n">phylo_unit</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">phylo_parent_node</span> <span class="ow">in</span> <span class="n">phylo_parent_nodes</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connect_phylo_parent_child</span><span class="p">(</span><span class="n">phylo_parent_node</span><span class="p">,</span> <span class="n">new_leaf</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">phylo_parent_nodes</span><span class="p">,</span> <span class="n">new_leaf</span> </div>
+    
+<div class="viewcode-block" id="PhyloTree.create_leaf"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.create_leaf">[docs]</a>    <span class="k">def</span> <span class="nf">create_leaf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phylo_unit</span><span class="p">):</span>
+        <span class="n">time_death</span> <span class="o">=</span> <span class="n">phylo_unit</span><span class="o">.</span><span class="n">time_death</span>
+        <span class="n">new_leaf</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_unit</span><span class="p">]</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">time_death</span><span class="p">):</span>
+            <span class="n">new_leaf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">phylo_unit</span><span class="p">,</span> <span class="n">time_death</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_leaf</span><span class="p">(</span><span class="n">new_leaf</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connect_leaf</span><span class="p">(</span><span class="n">new_leaf</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new_leaf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_unit</span><span class="p">][</span><span class="n">time_death</span><span class="p">]</span>
+            <span class="nb">print</span> <span class="s1">&#39;WARNING: Node already in tree&#39;</span><span class="p">,</span> <span class="n">new_leaf</span> 
+        <span class="k">return</span> <span class="n">new_leaf</span></div>
+
+<div class="viewcode-block" id="PhyloTree.connect_leaf"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.connect_leaf">[docs]</a>    <span class="k">def</span> <span class="nf">connect_leaf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">leaf_node</span><span class="p">):</span> <span class="c1"># a cell death node</span>
+        <span class="n">connected</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="p">(</span><span class="n">phylo_unit</span><span class="p">,</span> <span class="n">time_death</span><span class="p">)</span> <span class="o">=</span> <span class="n">leaf_node</span><span class="o">.</span><span class="n">val</span><span class="p">,</span> <span class="n">leaf_node</span><span class="o">.</span><span class="n">time</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_unit</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span> <span class="c1">#there are more internal nodes</span>
+            <span class="n">leaf_node_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_unit</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">time_death</span><span class="p">)</span>
+            <span class="n">internal_parent_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_unit</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">leaf_node_index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">internal_parent_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_unit</span><span class="p">][</span><span class="n">internal_parent_time</span><span class="p">]</span>
+            <span class="n">internal_parent_node</span><span class="o">.</span><span class="n">push_onto_internal_child</span><span class="p">(</span><span class="n">leaf_node</span><span class="p">)</span>
+            <span class="n">connected</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="n">connected</span></div>
+        
+<div class="viewcode-block" id="PhyloTree.create_stems"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.create_stems">[docs]</a>    <span class="k">def</span> <span class="nf">create_stems</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phylo_unit</span><span class="p">):</span>
+        <span class="n">time_birth</span> <span class="o">=</span> <span class="n">phylo_unit</span><span class="o">.</span><span class="n">time_birth</span>
+        <span class="n">phylo_parent_nodes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">new_internal_nodes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">phylo_parent</span> <span class="ow">in</span> <span class="n">phylo_unit</span><span class="o">.</span><span class="n">parents</span><span class="p">:</span> <span class="c1"># add parent nodes as needed</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_parent</span><span class="p">]</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">time_birth</span><span class="p">):</span>
+                <span class="n">phylo_parent_nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_parent</span><span class="p">][</span><span class="n">time_birth</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">new_internal_nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">phylo_parent</span><span class="p">,</span> <span class="n">time_birth</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">int_node</span> <span class="ow">in</span> <span class="n">new_internal_nodes</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connect_internal_node</span><span class="p">(</span><span class="n">int_node</span><span class="p">)</span>
+            <span class="n">phylo_parent_nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">int_node</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">phylo_parent_nodes</span></div>
+    
+<div class="viewcode-block" id="PhyloTree.connect_phylo_parent_child"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.connect_phylo_parent_child">[docs]</a>    <span class="k">def</span> <span class="nf">connect_phylo_parent_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phylo_parent_node</span><span class="p">,</span> <span class="n">phylo_child_node</span><span class="p">):</span>
+        <span class="n">phylo_child_node_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_child_node</span><span class="o">.</span><span class="n">val</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">phylo_child_node</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">phylo_child_node_pos</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">phylo_parent_node</span><span class="o">.</span><span class="n">connect_phylo_offspring</span><span class="p">(</span><span class="n">phylo_child_node</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">first_phylo_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_child_node</span><span class="o">.</span><span class="n">val</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">phylo_parent_node</span><span class="o">.</span><span class="n">connect_phylo_offspring</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_child_node</span><span class="o">.</span><span class="n">val</span><span class="p">][</span><span class="n">first_phylo_time</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="PhyloTree.add_node"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.add_node">[docs]</a>    <span class="k">def</span> <span class="nf">add_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phylo_unit</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span>
+        <span class="n">new_node</span> <span class="o">=</span> <span class="n">PhyloNode</span><span class="p">(</span><span class="n">phylo_unit</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">new_node</span><span class="o">.</span><span class="n">val</span><span class="p">]</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">new_node</span><span class="o">.</span><span class="n">time</span><span class="p">):</span>
+            <span class="n">new_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">new_node</span><span class="o">.</span><span class="n">val</span><span class="p">][</span><span class="n">new_node</span><span class="o">.</span><span class="n">time</span><span class="p">]</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;reassigning existing node to tree:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">new_node</span><span class="o">.</span><span class="n">val</span><span class="p">][</span><span class="n">new_node</span><span class="o">.</span><span class="n">time</span><span class="p">],</span>
+                                                                               <span class="n">new_node</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">new_node</span><span class="o">.</span><span class="n">val</span><span class="p">][</span><span class="n">new_node</span><span class="o">.</span><span class="n">time</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_node</span>
+        <span class="k">return</span> <span class="n">new_node</span></div>
+        
+<div class="viewcode-block" id="PhyloTree.reconnect_internal_nodes"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.reconnect_internal_nodes">[docs]</a>    <span class="k">def</span> <span class="nf">reconnect_internal_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">internal_parent</span><span class="p">,</span> <span class="n">internal_child</span><span class="p">):</span>
+        <span class="n">internal_child_orig</span> <span class="o">=</span> <span class="n">internal_parent</span><span class="o">.</span><span class="n">internal_child_node</span>
+        <span class="k">if</span> <span class="n">internal_child_orig</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">internal_child</span><span class="o">.</span><span class="n">push_onto_internal_child</span><span class="p">(</span><span class="n">internal_child_orig</span><span class="p">)</span>
+        <span class="n">internal_parent</span><span class="o">.</span><span class="n">push_onto_internal_child</span><span class="p">(</span><span class="n">internal_child</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="PhyloTree.connect_internal_node"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.connect_internal_node">[docs]</a>    <span class="k">def</span> <span class="nf">connect_internal_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">int_node</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Connect internal node &#39;int_node&#39; with nodes above and below it on its</span>
+<span class="sd">        own branch (representing births and/or death in this phylogenetic unit&#39;s</span>
+<span class="sd">        life history branch)</span>
+<span class="sd">         </span>
+<span class="sd">        :param int_node: newly made internal node that should get connected up</span>
+<span class="sd">        and down in the tree.</span>
+<span class="sd">        </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">connected_up</span><span class="p">,</span> <span class="n">connected_down</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span>
+        <span class="p">(</span><span class="n">phylo_unit</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span> <span class="o">=</span> <span class="n">int_node</span><span class="o">.</span><span class="n">val</span><span class="p">,</span> <span class="n">int_node</span><span class="o">.</span><span class="n">time</span>
+        <span class="n">new_node_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_unit</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="c1"># get its index in dict</span>
+        <span class="n">orig_dict_entries</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_unit</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">new_node_index</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># this indicates that other (earlier) internal nodes exist, and int_node has to be connected to them</span>
+            <span class="n">internal_parent_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_unit</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">new_node_index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">internal_parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_unit</span><span class="p">][</span><span class="n">internal_parent_time</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reconnect_internal_nodes</span><span class="p">(</span><span class="n">internal_parent</span><span class="p">,</span> <span class="n">int_node</span><span class="p">)</span>
+            <span class="n">connected_up</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="n">orig_dict_entries</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">new_node_index</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span> <span class="c1">#there are also later nodes in the</span>
+                <span class="n">connected_down</span> <span class="o">=</span> <span class="kc">True</span> 
+        <span class="k">elif</span> <span class="n">orig_dict_entries</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">new_node_index</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span> <span class="c1"># this indicates that it is the &#39;earliest&#39; internal node; reconnect to internal children</span>
+            <span class="n">internal_child_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_unit</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">new_node_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">internal_child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_unit</span><span class="p">][</span><span class="n">internal_child_time</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reconnect_internal_nodes</span><span class="p">(</span><span class="n">int_node</span><span class="p">,</span> <span class="n">internal_child</span><span class="p">)</span>
+            <span class="n">connected_down</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">connected_up</span><span class="p">,</span> <span class="n">connected_down</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="PhyloTree.delete_phylo_hist"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.delete_phylo_hist">[docs]</a>    <span class="k">def</span> <span class="nf">delete_phylo_hist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phylo_unit</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Remove the branch representing the phylogenetic unit and disconnect it</span>
+<span class="sd">        from all sub-branches (children) in the tree.</span>
+<span class="sd">        </span>
+<span class="sd">        :param phylo_unit:</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">birth</span><span class="p">,</span> <span class="n">death</span> <span class="o">=</span> <span class="n">phylo_unit</span><span class="o">.</span><span class="n">time_birth</span><span class="p">,</span> <span class="n">phylo_unit</span><span class="o">.</span><span class="n">time_death</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_unit</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># internal node entries for phylo_unit exist in nodes_dict (phylo_unit reproduced)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;could not find internal node for </span><span class="si">{}</span><span class="s1">, </span><span class="si">{}</span><span class="s1">, </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">phylo_unit</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">birth</span><span class="p">,</span> <span class="n">death</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span>  <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_unit</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">delete_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span></div>
+            
+<div class="viewcode-block" id="PhyloTree.delete_node"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.delete_node">[docs]</a>    <span class="k">def</span> <span class="nf">delete_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree_node</span><span class="p">):</span>
+        <span class="n">tree_node</span><span class="o">.</span><span class="n">excise</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">phylo_parent</span> <span class="ow">in</span> <span class="n">tree_node</span><span class="o">.</span><span class="n">ancestor_nodes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">phylo_parent</span><span class="o">.</span><span class="n">offspring_nodes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">phylo_parent</span><span class="o">.</span><span class="n">has_root</span><span class="p">():</span>
+                <span class="n">phylo_parent</span><span class="o">.</span><span class="n">excise</span><span class="p">()</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_parent</span><span class="o">.</span><span class="n">val</span><span class="p">][</span><span class="n">phylo_parent</span><span class="o">.</span><span class="n">time</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_parent</span><span class="o">.</span><span class="n">val</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1">#pass</span>
+                    <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_parent</span><span class="o">.</span><span class="n">val</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">phylo_child</span> <span class="ow">in</span> <span class="n">tree_node</span><span class="o">.</span><span class="n">offspring_nodes</span><span class="p">:</span>
+            <span class="n">phylo_child</span><span class="o">.</span><span class="n">ancestor_nodes</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">tree_node</span><span class="p">)</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">tree_node</span><span class="o">.</span><span class="n">val</span><span class="p">][</span><span class="n">tree_node</span><span class="o">.</span><span class="n">time</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">tree_node</span><span class="o">.</span><span class="n">val</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">tree_node</span><span class="o">.</span><span class="n">val</span><span class="p">]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">leafs</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">tree_node</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">if</span> <span class="n">tree_node</span><span class="o">.</span><span class="n">is_root</span> <span class="ow">and</span> <span class="n">tree_node</span><span class="o">.</span><span class="n">is_leaf</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_remove_root</span><span class="p">(</span><span class="n">tree_node</span><span class="p">)</span></div>
+                
+<div class="viewcode-block" id="PhyloTree.delete_empty_phylo_stems"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.delete_empty_phylo_stems">[docs]</a>    <span class="k">def</span> <span class="nf">delete_empty_phylo_stems</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">phylo_unit</span><span class="p">,</span> <span class="n">times_dict</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">times_dict</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_unit</span><span class="p">]</span></div>
+              
+<div class="viewcode-block" id="PhyloTree.recalc_max_leaf_depth"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.recalc_max_leaf_depth">[docs]</a>    <span class="k">def</span> <span class="nf">recalc_max_leaf_depth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">leafs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">leafs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">leafs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">leafs</span>
+        <span class="n">max_leaf_depth</span><span class="p">,</span> <span class="n">leaf_node</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">leaf</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">leafs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">leaf</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;</span> <span class="n">max_leaf_depth</span><span class="p">:</span>
+                <span class="n">max_leaf_depth</span><span class="p">,</span> <span class="n">leaf_node</span> <span class="o">=</span> <span class="n">leaf</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">leaf</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_leaf_depth</span> <span class="o">=</span> <span class="p">(</span><span class="n">max_leaf_depth</span><span class="p">,</span> <span class="n">leaf_node</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="PhyloTree.find_lca"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.find_lca">[docs]</a>    <span class="k">def</span> <span class="nf">find_lca</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Find the last common ancestor in the tree.</span>
+<span class="sd">        </span>
+<span class="sd">        Start at the single root and go up until a branching point in the tree</span>
+<span class="sd">        is found.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        PhyloNode : LCA if it exists else None</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">roots</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">roots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">children</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">offspring_nodes</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">children</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">children</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">internal_child_node</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">node</span><span class="o">.</span><span class="n">internal_child_node</span><span class="o">.</span><span class="n">is_leaf</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">node</span> <span class="o">=</span> <span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">children</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="o">.</span><span class="n">internal_child_node</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">internal_child_node</span>
+        <span class="k">return</span> <span class="n">node</span></div>
+    
+<div class="viewcode-block" id="PhyloTree.coalescent"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.coalescent">[docs]</a>    <span class="k">def</span> <span class="nf">coalescent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Find coalescent node and depth in the tree.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        (class:`Tree.PhyloTree.PhyloNode`, time) : LCA, depth</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lca</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_lca</span><span class="p">()</span>
+        <span class="n">lca_depth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lca</span><span class="o">.</span><span class="n">time</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lca</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="n">max_depth</span><span class="p">,</span> <span class="n">_leaf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_leaf_depth</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lca</span><span class="p">,</span> <span class="n">max_depth</span> <span class="o">-</span> <span class="n">lca_depth</span><span class="p">)</span> </div>
+                    
+<div class="viewcode-block" id="PhyloTree.nh_formats"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.nh_formats">[docs]</a>    <span class="k">def</span> <span class="nf">nh_formats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roots</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">supertree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_format</span><span class="o">=</span><span class="s1">&#39;newick&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">supertree</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">supertree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">supertree</span>
+        <span class="n">nh_trees</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">roots</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">roots</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">roots</span>
+        <span class="k">if</span> <span class="n">supertree</span><span class="p">:</span>
+            <span class="n">supernodeval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">SuperNode</span><span class="p">()</span>
+            <span class="n">supernode</span> <span class="o">=</span> <span class="n">PhyloNode</span><span class="p">(</span><span class="n">supernodeval</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">root</span> <span class="ow">in</span> <span class="n">roots</span><span class="p">:</span>
+                <span class="n">supernode</span><span class="o">.</span><span class="n">_add_phylo_offspring</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">supernode</span><span class="o">.</span><span class="n">nh_format_nr</span><span class="p">(</span><span class="n">_format</span><span class="o">=</span><span class="n">_format</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">root</span> <span class="ow">in</span> <span class="n">roots</span><span class="p">:</span>
+            <span class="n">nh_trees</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">nh_format_nr</span><span class="p">(</span> <span class="n">_format</span><span class="o">=</span><span class="n">_format</span><span class="p">))</span> 
+        <span class="k">return</span> <span class="n">nh_trees</span> </div>
+    
+<div class="viewcode-block" id="PhyloTree.nodes_iter"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.nodes_iter">[docs]</a>    <span class="k">def</span> <span class="nf">nodes_iter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="k">yield</span> <span class="n">node</span></div>
+        
+    
+            
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Functions pertaining to ete3-tree representation. PhyloTree can be</span>
+<span class="sd">    (approximately) converted to a representation of trees in the ete3 module.</span>
+<span class="sd">    This is useful for drawing routines and various tree algorithms and</span>
+<span class="sd">    functions.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ete_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Return the first &#39;ete tree&#39; in the ete trees dict if it exists.</span>
+<span class="sd">        </span>
+<span class="sd">        This is an adapter function during the transition to working with the</span>
+<span class="sd">        multiple ete tree dictionary. </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ete_trees</span><span class="o">.</span><span class="n">values</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tree</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ete_named_node_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Return the ete_named_node_dict belonging to the first ete tree. </span>
+<span class="sd">        </span>
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        func:`ete_tree` </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ete_trees</span><span class="o">.</span><span class="n">values</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">named_node_dict</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ete_node_name_to_phylo_node</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Return the ete_node_name_to_phylo_node belonging to the first ete tree. </span>
+<span class="sd">        </span>
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        func:`ete_tree` </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ete_trees</span><span class="o">.</span><span class="n">values</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">node_name_to_phylo_node</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+    
+<div class="viewcode-block" id="PhyloTree.to_ete_trees"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.to_ete_trees">[docs]</a>    <span class="k">def</span> <span class="nf">to_ete_trees</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">with_leafs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">supertree</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Construct TreeNode representations for all roots in the PhyloTree. </span>
+<span class="sd">        </span>
+<span class="sd">        ete3.TreeNode representations can be used for advanced plotting and tree</span>
+<span class="sd">        analysis.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        with_leafs : bool</span>
+<span class="sd">            construct with or without terminal nodes</span>
+<span class="sd">        supertree : bool</span>
+<span class="sd">            use a supernode as an artificial root node (useful when simulation</span>
+<span class="sd">            starts from independent lineages)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        OrderedDict of name -&gt; TreeNode : TreeNodes by name for all phylo roots</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">print</span> <span class="s1">&#39;writing NHX format&#39;</span>
+        <span class="n">nhxs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nh_formats</span><span class="p">(</span><span class="n">supertree</span><span class="o">=</span><span class="n">supertree</span><span class="p">,</span>  <span class="n">_format</span><span class="o">=</span><span class="s1">&#39;NHX&#39;</span><span class="p">)</span>
+        <span class="c1">#print nhx</span>
+        <span class="nb">print</span> <span class="s1">&#39;constructing ETE trees for roots:&#39;</span><span class="p">,</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">ete_trees</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">nhx</span> <span class="ow">in</span> <span class="n">nhxs</span><span class="p">:</span>
+            <span class="n">tree</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">nhx</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">named_node_dict</span><span class="p">,</span> <span class="n">node_name_to_phylo_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ete_init_mappings</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+            <span class="n">tree_struct</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">ETEtreeStruct</span><span class="p">(</span><span class="n">tree</span><span class="o">=</span><span class="n">tree</span><span class="p">,</span>
+                                             <span class="n">named_node_dict</span><span class="o">=</span><span class="n">named_node_dict</span><span class="p">,</span>
+                                             <span class="n">node_name_to_phylo_node</span><span class="o">=</span><span class="n">node_name_to_phylo_node</span>
+                                             <span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">with_leafs</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ete_prune_leafs</span><span class="p">(</span><span class="n">tree_struct</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ete_trees</span><span class="p">[</span><span class="n">tree</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">tree_struct</span>
+            <span class="nb">print</span> <span class="n">tree</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> 
+        <span class="nb">print</span> <span class="s1">&#39;done&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ete_trees</span></div>
+            
+<div class="viewcode-block" id="PhyloTree.ete_init_mappings"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_init_mappings">[docs]</a>    <span class="k">def</span> <span class="nf">ete_init_mappings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_tree</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Construct helper dictionaries for converting TreeNode names to TreeNodes</span>
+<span class="sd">        and TreeNode names to PhyloUnits.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">ete_named_node_dict</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span> <span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span>  <span class="n">ete_tree</span><span class="o">.</span><span class="n">traverse</span><span class="p">())</span>
+        <span class="n">ete_node_name_to_phylo_node</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">([</span> <span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">newick_id</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_iter</span><span class="p">()</span> <span class="p">])</span>
+        <span class="k">return</span> <span class="n">ete_named_node_dict</span><span class="p">,</span> <span class="n">ete_node_name_to_phylo_node</span></div>
+        
+<div class="viewcode-block" id="PhyloTree.ete_get_lca"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_get_lca">[docs]</a>    <span class="k">def</span> <span class="nf">ete_get_lca</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_tree</span><span class="p">,</span> <span class="n">nodes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Return last common ancestor (LCA) for a set of nodes. </span>
+<span class="sd">        </span>
+<span class="sd">        (default: all</span>
+<span class="sd">        leafs of the current tree)</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ete_tree : TreeNode</span>
+<span class="sd">            ete tree root node</span>
+<span class="sd">        nodes : list of class:`ete3.TreeNode` </span>
+<span class="sd">            nodes in tree for which to find LCA</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        TreeNode : the last common ancestor</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">nodes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">nodes</span> <span class="o">=</span> <span class="n">ete_tree</span><span class="o">.</span><span class="n">get_leaves</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">ete_tree</span><span class="o">.</span><span class="n">get_common_ancestor</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span></div>
+    
+<div class="viewcode-block" id="PhyloTree.ete_calc_lca_depth"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_calc_lca_depth">[docs]</a>    <span class="k">def</span> <span class="nf">ete_calc_lca_depth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_tree</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Calculate the distance from the last common ancestor to the farthest</span>
+<span class="sd">        leaf in an ete tree.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ete_tree : TreeNode</span>
+<span class="sd">            ete tree root node</span>
+<span class="sd">            </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        int : depth of LCA</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">lca</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ete_get_lca</span><span class="p">(</span><span class="n">ete_tree</span><span class="p">)</span>
+        <span class="n">lca_depth</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">lca</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_max_node</span><span class="p">,</span> <span class="n">lca_depth</span> <span class="o">=</span> <span class="n">lca</span><span class="o">.</span><span class="n">get_farthest_leaf</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">lca_depth</span></div>
+            
+<div class="viewcode-block" id="PhyloTree.distances"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.distances">[docs]</a>    <span class="k">def</span> <span class="nf">distances</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_tree</span><span class="p">,</span> <span class="n">nodes</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Pairwise distances between all nodes.</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ete_tree : class:`ete3.TreeNode` </span>
+<span class="sd">            ete tree root node</span>
+<span class="sd">        nodes : sequence of (phylo_node, ete_node) pairs</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        sequence of (phylo_node1, phylo_node2, tree_dist, top_dist)</span>
+<span class="sd">            - tree_dist is phylogenetic distance.</span>
+<span class="sd">            - top_dist is topological distance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pairwise_distances</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">pn1</span><span class="p">,</span> <span class="n">en1</span><span class="p">),</span> <span class="p">(</span><span class="n">pn2</span><span class="p">,</span> <span class="n">en2</span><span class="p">)</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="n">t_dist</span> <span class="o">=</span> <span class="n">ete_tree</span><span class="o">.</span><span class="n">get_distance</span><span class="p">(</span><span class="n">en1</span><span class="p">,</span> <span class="n">en2</span><span class="p">)</span>
+            <span class="n">top_dist</span> <span class="o">=</span> <span class="n">ete_tree</span><span class="o">.</span><span class="n">get_distance</span><span class="p">(</span><span class="n">en1</span><span class="p">,</span> <span class="n">en2</span><span class="p">,</span> <span class="n">topology_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">pairwise_distances</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">(</span><span class="n">pn1</span><span class="p">,</span><span class="n">pn2</span><span class="p">,</span> <span class="n">t_dist</span><span class="p">,</span> <span class="n">top_dist</span> <span class="p">))</span>
+        <span class="k">return</span> <span class="n">pairwise_distances</span></div>
+              
+<div class="viewcode-block" id="PhyloTree.ete_n_most_distant_phylo_units"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_n_most_distant_phylo_units">[docs]</a>    <span class="k">def</span> <span class="nf">ete_n_most_distant_phylo_units</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Convenience function to return phylo units after finding</span>
+<span class="sd">        &#39;ete_n_most_distant_leafs&#39; (see below)</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        :param root: phylo unit used as root</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        
+        <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ete_phylo_to_ete_birth_nodes</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">root</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">root</span> <span class="o">=</span> <span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">tree</span>
+        <span class="k">return</span> <span class="p">[</span> <span class="p">(</span><span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">node_name_to_phylo_node</span><span class="p">[</span><span class="n">n</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> 
+                <span class="k">for</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">_</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ete_n_most_distant_leafs</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="p">]</span></div>
+        
+<div class="viewcode-block" id="PhyloTree.ete_n_most_distant_leafs"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_n_most_distant_leafs">[docs]</a>    <span class="k">def</span> <span class="nf">ete_n_most_distant_leafs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_root</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Find n leafs that are most diverged from eachother. </span>
+<span class="sd">        </span>
+<span class="sd">        First, the oldest n subtrees are determined. Then, for all subtrees the</span>
+<span class="sd">        farthest lying leaf is returned.</span>
+<span class="sd">        </span>
+<span class="sd">        :param n: number of leafs</span>
+<span class="sd">        :param root: starting point for search (default is the ete_tree root)</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span> <span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">ete_root</span><span class="o">.</span><span class="n">get_leaves</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span><span class="o">.</span><span class="n">name</span> <span class="p">)[</span><span class="mi">0</span><span class="p">],</span><span class="kc">None</span> <span class="p">)</span> <span class="p">]</span>
+        <span class="k">return</span> <span class="p">[</span> <span class="n">s</span><span class="o">.</span><span class="n">get_farthest_leaf</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span><span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ete_n_oldest_subtrees</span><span class="p">(</span><span class="n">ete_root</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="p">]</span></div>
+        
+<div class="viewcode-block" id="PhyloTree.ete_n_oldest_subtrees"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_n_oldest_subtrees">[docs]</a>    <span class="k">def</span> <span class="nf">ete_n_oldest_subtrees</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_root</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Find n oldest subtrees under root. </span>
+<span class="sd">        </span>
+<span class="sd">        Iteratively expands the oldest subtree root into its children until the</span>
+<span class="sd">        desired number of subtrees is in the list. Return as a list of tuples of </span>
+<span class="sd">        (subtree, distance-from-root).</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n : int</span>
+<span class="sd">            number of subtrees </span>
+<span class="sd">        root : TreeNode</span>
+<span class="sd">            start point for subtree search</span>
+<span class="sd">            </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        subtrees : a list of (TreeNode, distance) </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">subtrees</span> <span class="o">=</span> <span class="p">[</span> <span class="p">(</span><span class="n">ete_root</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="p">]</span>
+        <span class="n">oldest_subtree</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">subtrees</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+            <span class="n">oldest_subtree</span><span class="p">,</span> <span class="n">subtree_age</span> <span class="o">=</span> <span class="n">subtrees</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">oldest_subtree</span><span class="o">.</span><span class="n">is_leaf</span><span class="p">():</span> <span class="c1"># oldest subtree is a leaf, nothing left to expand </span>
+                <span class="k">break</span>
+            <span class="n">subtrees</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># oldest is replaced by its children in the subtrees list</span>
+            <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">oldest_subtree</span><span class="o">.</span><span class="n">get_children</span><span class="p">():</span>
+                <span class="n">subtrees</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">subtree_age</span> <span class="o">+</span> <span class="n">child</span><span class="o">.</span><span class="n">dist</span><span class="p">)</span> <span class="p">)</span> 
+            <span class="n">subtrees</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span> <span class="n">subtrees</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">subtrees</span><span class="p">[:</span><span class="n">n</span><span class="p">]</span> <span class="c1"># because multifurcations exist, there may be more than n subtrees in the list</span></div>
+    
+    <span class="k">def</span> <span class="nf">_node_ids_to_ete_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">node_ids</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Iterator that maps ete node ids to TreeNode objects using a precompiled map.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        node_ids : list</span>
+<span class="sd">            list of ete node ids</span>
+<span class="sd">        </span>
+<span class="sd">        Yields</span>
+<span class="sd">        ------</span>
+<span class="sd">        TreeNode : the mapped ete node</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">_id</span> <span class="ow">in</span> <span class="n">node_ids</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">named_node_dict</span><span class="p">[</span><span class="n">_id</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span> <span class="c1"># We want to catch this, because the ete_tree may have </span>
+                <span class="c1"># had been pruned  </span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Node id </span><span class="si">{}</span><span class="s1"> not found in the ete_named_node_dict. Perhaps the ete_tree was pruned.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_id</span><span class="p">))</span>
+                <span class="k">pass</span>
+                
+<div class="viewcode-block" id="PhyloTree.ete_phylo_to_ete_birth_nodes"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_phylo_to_ete_birth_nodes">[docs]</a>    <span class="k">def</span> <span class="nf">ete_phylo_to_ete_birth_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">phylo_unit</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Return iterator over birth nodes in the ete tree for a phylo unit.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        phylo_unit: class:`virtual_cell.PhyloUnit.PhyloUnit`</span>
+<span class="sd">            phylounit to map</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        iterator of class:`ete3.TreeNode`</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">node_ids</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">phylo_unit</span><span class="o">.</span><span class="n">parents</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">parent</span> <span class="ow">in</span> <span class="n">phylo_unit</span><span class="o">.</span><span class="n">parents</span><span class="p">:</span>
+                <span class="n">birth_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">parent</span><span class="p">][</span><span class="n">phylo_unit</span><span class="o">.</span><span class="n">time_birth</span><span class="p">]</span>
+                <span class="n">node_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">birth_node</span><span class="o">.</span><span class="n">newick_id</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">birth_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">parent</span><span class="p">][</span><span class="n">phylo_unit</span><span class="o">.</span><span class="n">time_birth</span><span class="p">]</span>
+            <span class="n">node_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">birth_node</span><span class="o">.</span><span class="n">newick_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_node_ids_to_ete_nodes</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">node_ids</span><span class="p">))</span></div>
+    
+<div class="viewcode-block" id="PhyloTree.ete_phylo_to_ete_stem_nodes"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_phylo_to_ete_stem_nodes">[docs]</a>    <span class="k">def</span> <span class="nf">ete_phylo_to_ete_stem_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">phylo_unit</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Return iterator over stem nodes in the ete tree for a phylo unit.</span>
+<span class="sd">        </span>
+<span class="sd">        The stem nodes represent replication and death of the phylounit.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        phylo_unit: class:`virtual_cell.PhyloUnit.PhyloUnit`</span>
+<span class="sd">            phylounit to map</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        ------_</span>
+<span class="sd">        iterator of class:`ete3.TreeNode`</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">node_ids</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">_tp</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_unit</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">node_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">newick_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_node_ids_to_ete_nodes</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">node_ids</span><span class="p">))</span></div>
+    
+<div class="viewcode-block" id="PhyloTree.ete_phylo_to_ete_death_node"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_phylo_to_ete_death_node">[docs]</a>    <span class="k">def</span> <span class="nf">ete_phylo_to_ete_death_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">phylo_unit</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Return TreeNode representing the death of a phylo_unit.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">phylo_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="p">[</span><span class="n">phylo_unit</span><span class="p">][</span><span class="n">phylo_unit</span><span class="o">.</span><span class="n">time_death</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">named_node_dict</span><span class="p">[</span><span class="n">phylo_node</span><span class="o">.</span><span class="n">newick_id</span><span class="p">]</span></div>
+    
+<div class="viewcode-block" id="PhyloTree.phylo_to_ete_nodes"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.phylo_to_ete_nodes">[docs]</a>    <span class="k">def</span> <span class="nf">phylo_to_ete_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">phylo_unit</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Return TreeNode objects in the ete_tree representing the birth and death</span>
+<span class="sd">        nodes for this phylo_unit (e.g. cell or gene).</span>
+<span class="sd">         </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ete_tree_struct : class:`my_tools.utility.ETEtreeStruct`</span>
+<span class="sd">            ete tree struct in which to find the phylo_unit</span>
+<span class="sd">        phylo_unit: class:`virtual_cell.PhyloUnit.PhyloUnit`</span>
+<span class="sd">            phylounit to map</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        ------</span>
+<span class="sd">        list of class:`ete3.TreeNode`</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">nodes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">nodes</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ete_phylo_to_ete_birth_nodes</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">phylo_unit</span><span class="p">)</span>
+        <span class="n">nodes</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ete_phylo_to_ete_stem_nodes</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">phylo_unit</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">death_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ete_phylo_to_ete_death_node</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">phylo_unit</span><span class="p">)</span>
+            <span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">death_node</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">return</span> <span class="n">nodes</span></div>
+            
+<div class="viewcode-block" id="PhyloTree.ete_node_to_phylo_unit"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_node_to_phylo_unit">[docs]</a>    <span class="k">def</span> <span class="nf">ete_node_to_phylo_unit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">ete_node</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Maps TreeNode to PhyloUnit.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ete_node : TreeNode</span>
+<span class="sd">            node to map</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        PhyloUnit</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">node_name_to_phylo_node</span><span class="p">[</span><span class="n">ete_node</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">val</span></div>
+    
+<div class="viewcode-block" id="PhyloTree.ete_nodes_to_phylo_units"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_nodes_to_phylo_units">[docs]</a>    <span class="k">def</span> <span class="nf">ete_nodes_to_phylo_units</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">nodes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Obtain a list of all the phylo units that are represented in the ete</span>
+<span class="sd">        tree.</span>
+<span class="sd">        </span>
+<span class="sd">        The ete_tree is traversed and ete node names are mapped first to</span>
+<span class="sd">        PhyloTree nodes. The PhyloNodes have a reference to the PhyloUnit in</span>
+<span class="sd">        their &#39;val&#39; attribute.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ete_get_phylo2ete_dict</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">nodes</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span></div>
+    
+<div class="viewcode-block" id="PhyloTree.ete_get_phylo2ete_dict"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_get_phylo2ete_dict">[docs]</a>    <span class="k">def</span> <span class="nf">ete_get_phylo2ete_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">nodes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Return mapping from ete PhyloUnits to lists of ete TreeNode objects.</span>
+<span class="sd">        </span>
+<span class="sd">        The mapping is constructed for a set of TreeNodes *nodes*. The default</span>
+<span class="sd">        action is to map all the TreeNodes in the current ete_tree.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        nodes : sequence</span>
+<span class="sd">            sequence of TreeNodes</span>
+<span class="sd">            </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dictionary from class:`virtual_cell.PhyloUnit.PhyloUnit`s to list of class:`ete3.TreeNode`s</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        
+        <span class="k">if</span> <span class="n">nodes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">traverse</span><span class="p">())</span>
+        <span class="n">phylo2ete</span> <span class="o">=</span> <span class="n">OrderedDefaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">ete_node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+            <span class="n">phylo_unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ete_node_to_phylo_unit</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">ete_node</span><span class="p">)</span>
+            <span class="n">phylo2ete</span><span class="p">[</span><span class="n">phylo_unit</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ete_node</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">phylo2ete</span></div>
+    
+<div class="viewcode-block" id="PhyloTree.ete_prune_leafs"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_prune_leafs">[docs]</a>    <span class="k">def</span> <span class="nf">ete_prune_leafs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_struct</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Prune the external nodes of an &#39;ete tree&#39;.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ete_struct : class:`my_tools.utility.ETEtreeStruct`</span>
+<span class="sd">            struct holding data for the ete tree</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">to_prune</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">ete_struct</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">get_leaves</span><span class="p">():</span>
+            <span class="n">to_prune</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">to_prune</span><span class="p">:</span>
+            <span class="n">l</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+            <span class="k">del</span> <span class="n">ete_struct</span><span class="o">.</span><span class="n">named_node_dict</span><span class="p">[</span><span class="n">l</span><span class="o">.</span><span class="n">name</span><span class="p">]</span></div>
+    
+<div class="viewcode-block" id="PhyloTree.ete_prune_internal"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_prune_internal">[docs]</a>    <span class="k">def</span> <span class="nf">ete_prune_internal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_tree_struct</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Excise all internal nodes that have a single child, while preserving the</span>
+<span class="sd">        length of the branch.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">to_prune</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">traverse</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">is_leaf</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">is_root</span><span class="p">():</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">children</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">to_prune</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">to_prune</span><span class="p">:</span>
+            <span class="n">n</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">prevent_nondicotomic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">preserve_branch_length</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">del</span> <span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">named_node_dict</span><span class="p">[</span><span class="n">n</span><span class="o">.</span><span class="n">name</span><span class="p">]</span></div>
+        
+<div class="viewcode-block" id="PhyloTree.ete_prune_external"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_prune_external">[docs]</a>    <span class="k">def</span> <span class="nf">ete_prune_external</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">prune_depth</span><span class="p">):</span>
+        <span class="nb">print</span> <span class="s1">&#39;pruning tree to max depth&#39;</span><span class="p">,</span> <span class="n">prune_depth</span><span class="p">,</span>
+        <span class="n">to_detach</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">iter_leaves</span><span class="p">(</span><span class="n">is_leaf_fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> 
+                                                     <span class="bp">self</span><span class="o">.</span><span class="n">ete_node_to_phylo_unit</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">,</span>
+                                                                                 <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">time_birth</span> <span class="o">&gt;</span> <span class="n">prune_depth</span><span class="p">):</span>
+            <span class="nb">print</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span>
+            <span class="n">to_detach</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">to_detach</span><span class="p">:</span>
+            <span class="n">n</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+            <span class="k">del</span> <span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">named_node_dict</span><span class="p">[</span><span class="n">n</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+        <span class="nb">print</span> <span class="s1">&#39;done&#39;</span></div>
+    
+<div class="viewcode-block" id="PhyloTree.ete_annotate_tree"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_annotate_tree">[docs]</a>    <span class="k">def</span> <span class="nf">ete_annotate_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="p">[],</span> <span class="n">func_features</span><span class="o">=</span><span class="nb">dict</span><span class="p">(),</span> <span class="n">ete_root</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Annotate the phylogenetic tree with cell data for tree plotting.</span>
+<span class="sd">        </span>
+<span class="sd">        Assumes that the ete_tree has been constructed/updated. Creates a</span>
+<span class="sd">        dictionary of feature dictionaries, keyed by the cells in the tree.</span>
+<span class="sd">        Attaches the feature dictionaries to nodes in the ete_tree</span>
+<span class="sd">        (annotate_ete_tree). Transforms some data to cummulative data along the</span>
+<span class="sd">        branches of the tree. Optionally, prunes internal tree nodes (this will</span>
+<span class="sd">        greatly simplify the tree drawing algorithm). Finally, transforms some</span>
+<span class="sd">        data to rate of change data, using branch length for rate calculation.</span>
+<span class="sd">        </span>
+<span class="sd">        :param prune_internal: if True, nodes with 1 offspring only will be</span>
+<span class="sd">        removed/collapsed and their branch length added to the preceding node on</span>
+<span class="sd">        the branch.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">ete_root</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ete_root</span> <span class="o">=</span> <span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">tree</span>
+        <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">ete_nodes</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ete_get_phylo2ete_dict</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">ete_root</span><span class="o">.</span><span class="n">traverse</span><span class="p">())</span><span class="o">.</span><span class="n">items</span><span class="p">():</span> 
+            <span class="n">feature_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># NOTE: unordered ok</span>
+            <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+                <span class="n">feature_dict</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">feature</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">feature</span><span class="p">,</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">func_features</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">feature_dict</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">ete_node</span> <span class="ow">in</span> <span class="n">ete_nodes</span><span class="p">:</span>
+                <span class="n">ete_node</span><span class="o">.</span><span class="n">add_features</span><span class="p">(</span><span class="o">**</span><span class="n">feature_dict</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="PhyloTree.ete_cummulative_features"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_cummulative_features">[docs]</a>    <span class="k">def</span> <span class="nf">ete_cummulative_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="p">[],</span> 
+                                 <span class="n">func_features</span><span class="o">=</span><span class="nb">dict</span><span class="p">(),</span> <span class="n">ete_root</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">ete_root</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ete_root</span> <span class="o">=</span> <span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">tree</span>
+        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span> <span class="o">+</span> <span class="n">func_features</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ete_convert_feature_to_cummulative</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">feature</span><span class="p">,</span> <span class="n">ete_root</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="PhyloTree.ete_rate_features"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_rate_features">[docs]</a>    <span class="k">def</span> <span class="nf">ete_rate_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="p">[],</span> 
+                          <span class="n">func_features</span><span class="o">=</span><span class="nb">dict</span><span class="p">(),</span> <span class="n">ete_root</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">ete_root</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ete_root</span> <span class="o">=</span> <span class="n">ete_tree_struct</span><span class="o">.</span><span class="n">tree</span>
+        <span class="n">max_rate_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span> <span class="o">+</span> <span class="n">func_features</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">max_rate</span><span class="p">,</span> <span class="n">rate_feature</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ete_convert_feature_to_rate</span><span class="p">(</span><span class="n">ete_root</span><span class="o">=</span><span class="n">ete_root</span><span class="p">,</span>
+                                                                      <span class="n">feature</span><span class="o">=</span><span class="n">feature</span><span class="p">)</span>
+            <span class="n">max_rate_dict</span><span class="p">[</span><span class="n">rate_feature</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_rate</span>
+        <span class="k">return</span> <span class="n">max_rate_dict</span></div>
+    
+<div class="viewcode-block" id="PhyloTree.ete_convert_feature_to_cummulative"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_convert_feature_to_cummulative">[docs]</a>    <span class="k">def</span> <span class="nf">ete_convert_feature_to_cummulative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">feature</span><span class="p">,</span> <span class="n">ete_root</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Convert annotated feature values to cummulative values.</span>
+<span class="sd">        </span>
+<span class="sd">        By starting at the root, values further down the tree can be computed by</span>
+<span class="sd">        adding values calculated for the parent node. It is useful when for</span>
+<span class="sd">        example the aim is to prune away internal nodes and rates of change of a</span>
+<span class="sd">        feature need to be calculated on the pruned tree.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">ete_root</span><span class="o">.</span><span class="n">traverse</span><span class="p">(</span><span class="s1">&#39;levelorder&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="ow">is</span> <span class="n">ete_root</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">parent</span> <span class="o">=</span> <span class="n">n</span><span class="o">.</span><span class="n">up</span>
+            <span class="c1">#if parent is not None:</span>
+            <span class="n">new_val</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">feature</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ete_node_to_phylo_unit</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> 
+                <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">ete_node_to_phylo_unit</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">parent</span><span class="p">)):</span>
+                <span class="c1"># don&#39;t add the value if we&#39;re looking at an identical phylo_unit</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">new_val</span> <span class="o">+=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">feature</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                    <span class="nb">print</span> <span class="n">feature</span><span class="p">,</span> <span class="s1">&#39;not found for&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">.</span><span class="n">name</span>
+                    <span class="c1">#raise  </span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">feature</span><span class="p">,</span> <span class="n">new_val</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="PhyloTree.ete_convert_feature_to_rate"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.ete_convert_feature_to_rate">[docs]</a>    <span class="k">def</span> <span class="nf">ete_convert_feature_to_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_root</span><span class="p">,</span> <span class="n">feature</span><span class="p">,</span> 
+                                    <span class="n">replace_tup</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">,</span><span class="s1">&#39;rate&#39;</span><span class="p">)):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Convert an annotated feature on the tree nodes to a rate. </span>
+<span class="sd">        </span>
+<span class="sd">        The function assumes cummulative values of the feature. The rate is</span>
+<span class="sd">        calculated by dividing the difference of the feature value between a</span>
+<span class="sd">        parent and child by the corresponding branch length.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">max_rate</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">rate_feature</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="o">*</span><span class="n">replace_tup</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">ete_root</span><span class="o">.</span><span class="n">traverse</span><span class="p">(</span><span class="s1">&#39;levelorder&#39;</span><span class="p">):</span>
+            <span class="n">rate</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">ete_root</span><span class="p">:</span> <span class="c1">#n.up is not None:</span>
+                <span class="n">branch_length</span> <span class="o">=</span> <span class="n">n</span><span class="o">.</span><span class="n">get_distance</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">up</span><span class="p">)</span>
+                <span class="n">parent_val</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">up</span><span class="p">,</span> <span class="n">feature</span><span class="p">)</span>
+                <span class="n">my_val</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">feature</span><span class="p">)</span>
+                <span class="n">distance</span> <span class="o">=</span> <span class="n">my_val</span> <span class="o">-</span> <span class="n">parent_val</span>
+                
+                <span class="k">if</span> <span class="n">branch_length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">rate</span> <span class="o">=</span> <span class="n">distance</span><span class="o">/</span> <span class="n">branch_length</span>
+                <span class="k">if</span> <span class="n">rate</span> <span class="o">&gt;</span> <span class="n">max_rate</span><span class="p">:</span>
+                    <span class="n">max_rate</span> <span class="o">=</span> <span class="n">rate</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">rate_feature</span><span class="p">,</span> <span class="n">rate</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">max_rate</span><span class="p">,</span> <span class="n">rate_feature</span></div>
+    
+<div class="viewcode-block" id="PhyloTree.annotate_phylo_units_feature"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.annotate_phylo_units_feature">[docs]</a>    <span class="k">def</span> <span class="nf">annotate_phylo_units_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">phylo_units</span><span class="p">,</span> <span class="n">feature_name</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">phylo_units</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">phylo_units</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">phylo_units</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">phylo_to_ete_nodes</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">cell</span><span class="p">):</span>
+                <span class="n">has_feat</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">feature_name</span><span class="p">):</span> <span class="c1"># Check if this wasn&#39;t already annotated</span>
+                    <span class="n">node</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">feature_name</span><span class="p">,</span> <span class="n">has_feat</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="PhyloTree.annotate_leafs"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.annotate_leafs">[docs]</a>    <span class="k">def</span> <span class="nf">annotate_leafs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">leaf</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Annotate leaf labels </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">phylo_to_ete_nodes</span><span class="p">(</span><span class="n">ete_tree_struct</span><span class="p">,</span> <span class="n">leaf</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">is_leaf</span><span class="p">():</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="s1">&#39;leaflabel&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">leaf</span><span class="o">.</span><span class="n">id</span><span class="p">))</span></div>
+    
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">phylo_unit</span><span class="p">,</span> <span class="n">tp_dict</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">out</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">phylo_unit</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;:</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="k">for</span> <span class="n">tp</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">tp_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">out</span> <span class="o">+=</span> <span class="s2">&quot;  t=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">tp</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="k">return</span> <span class="s1">&#39;ROOTS:</span><span class="se">\n</span><span class="s1"> &#39;</span><span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="k">for</span> <span class="n">root</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">roots</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">out</span>
+    
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span> <span class="k">for</span> <span class="n">nodes</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="p">]</span> <span class="p">)</span>
+    
+<div class="viewcode-block" id="PhyloTree.upgrade"><a class="viewcode-back" href="../../../reference/VirtualMicrobes.Tree.html#VirtualMicrobes.Tree.PhyloTree.PhyloTree.upgrade">[docs]</a>    <span class="k">def</span> <span class="nf">upgrade</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Upgrading from older pickled version of class to latest version. Version</span>
+<span class="sd">        information is saved as class variable and should be updated when class</span>
+<span class="sd">        invariants (e.g. fields) are added. </span>
+<span class="sd">        Adapted from recipe at http://code.activestate.com/recipes/521901-upgradable-pickles/</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">version</span> <span class="o">&lt;</span> <span class="mf">1.</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ete_trees</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_version</span>
+        <span class="k">if</span> <span class="n">version</span> <span class="o">&gt;</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">class_version</span><span class="p">):</span>
+            <span class="nb">print</span> <span class="s1">&#39;upgraded class&#39;</span><span class="p">,</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="s1">&#39;reset class&#39;</span><span class="p">,</span> 
+        <span class="nb">print</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="s1">&#39; from version&#39;</span><span class="p">,</span> <span class="n">version</span> <span class="p">,</span><span class="s1">&#39;to version&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span></div>
+
+    <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">odict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">odict</span>
+        
+    <span class="k">def</span> <span class="nf">__setstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span> <span class="o">=</span> <span class="n">d</span>
+        <span class="c1"># upgrade class if it has an older version</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;0.0&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_version</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">upgrade</span><span class="p">()</span></div>
+    
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Thomas Cuypers, Bram van Dijk.
+      Last updated on Oct 10, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

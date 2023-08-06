@@ -1,0 +1,51 @@
+<html>
+<head>
+  <!-- Dygraph library -->
+<script type="text/javascript" src="dygraph-combined-dev.js"></script>
+<script type="text/javascript" src="synchronizer.js"></script>
+<!-- JQUERY -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+<!-- Magnification lib -->
+<script type="text/javascript" src="magnify.js"></script>
+
+<title> Virtual cell ecology </title>
+  <link href="viewer.css" rel="stylesheet">
+
+
+
+</head>
+<body>
+<center>
+<div class="title-banner"> <center><p class="title">Field dynamics</p></center><script src="drawmenu.js"></script></div>
+</div>
+
+<div class="help">?</div>
+<br>
+<br>
+
+<div align="center" class="description">On this page, heatmaps are displayed to 
+show the concentrations of metabolites on the grid. Also information regarding to
+the lineage, metabolic type, production, death rate, crossfeeding and cell-size are 
+displayed.
+<br><br>
+Hover over the images to show a zoombox. Press 't' to hide/show the zoombox.</div>
+</center> 
+
+
+<br>
+
+
+<div class="magnify" style="overflow:hidden">
+	<!-- This is the magnifying glass which will contain the original/large version -->
+	<a href="../plots/grid%20views/grid_views.png"><div class="large" style="background:url('../plots/grid%20views/grid_views.png') no-repeat; "></div></a>
+	
+	<!-- This is the small image -->
+	<img class="small" src="../plots/grid%20views/grid_views.png" width="1600px">
+</div>
+<br>
+<center><a href="grid_movie.html">Click here to see the movie</a></center>
+
+
+</body>
+</html>

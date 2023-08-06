@@ -1,0 +1,819 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VirtualMicrobes.simulation package &mdash; Virtual Microbes Evolutionary Simulator 0.1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Virtual Microbes Evolutionary Simulator 0.1.3 documentation" href="../index.html"/>
+        <link rel="up" title="VirtualMicrobes package" href="VirtualMicrobes.html"/>
+        <link rel="next" title="VirtualMicrobes.virtual_cell package" href="VirtualMicrobes.virtual_cell.html"/>
+        <link rel="prev" title="VirtualMicrobes.post_analysis package" href="VirtualMicrobes.post_analysis.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Virtual Microbes Evolutionary Simulator
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="VirtualMicrobes.html">VirtualMicrobes package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="VirtualMicrobes.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.Tree.html">VirtualMicrobes.Tree package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.cython_gsl_interface.html">VirtualMicrobes.cython_gsl_interface package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.data_tools.html">VirtualMicrobes.data_tools package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.environment.html">VirtualMicrobes.environment package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.event.html">VirtualMicrobes.event package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.mutate.html">VirtualMicrobes.mutate package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.my_tools.html">VirtualMicrobes.my_tools package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.plotting.html">VirtualMicrobes.plotting package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.post_analysis.html">VirtualMicrobes.post_analysis package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">VirtualMicrobes.simulation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.virtual_cell.html">VirtualMicrobes.virtual_cell package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="VirtualMicrobes.html#module-VirtualMicrobes">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Virtual Microbes Evolutionary Simulator</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Reference</a> &raquo;</li>
+      
+          <li><a href="VirtualMicrobes.html">VirtualMicrobes package</a> &raquo;</li>
+      
+    <li>VirtualMicrobes.simulation package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/reference/VirtualMicrobes.simulation.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="virtualmicrobes-simulation-package">
+<h1>VirtualMicrobes.simulation package<a class="headerlink" href="#virtualmicrobes-simulation-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-VirtualMicrobes.simulation.Simulation">
+<span id="virtualmicrobes-simulation-simulation-module"></span><h2>VirtualMicrobes.simulation.Simulation module<a class="headerlink" href="#module-VirtualMicrobes.simulation.Simulation" title="Permalink to this headline">¶</a></h2>
+<p>&#8216;
+Top level Simulation class that contains all objects and parameters of the
+simulation. Has a simulate method that executes the simulation loop, methods to
+save and reload, as well as initiate data storage and plotting.</p>
+<dl class="class">
+<dt id="VirtualMicrobes.simulation.Simulation.EvoSystem">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.simulation.Simulation.</code><code class="descname">EvoSystem</code><span class="sig-paren">(</span><em>params</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#EvoSystem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.EvoSystem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Sets up the Environment and the Population.</p>
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.EvoSystem.reinit_system_params">
+<code class="descname">reinit_system_params</code><span class="sig-paren">(</span><em>params</em>, <em>**param_updates</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#EvoSystem.reinit_system_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.EvoSystem.reinit_system_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.EvoSystem.setup_environment">
+<code class="descname">setup_environment</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#EvoSystem.setup_environment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.EvoSystem.setup_environment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.simulation.Simulation.ODE_simulation">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.simulation.Simulation.</code><code class="descname">ODE_simulation</code><span class="sig-paren">(</span><em>params</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#ODE_simulation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.ODE_simulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.simulation.Simulation.Simulation" title="VirtualMicrobes.simulation.Simulation.Simulation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.simulation.Simulation.Simulation</span></code></a></p>
+<p>Set up a simulation. Initialize an EvoSystem and an Integrator. EvoSystem
+consists of a Population and Environment that are co-dependent. This is
+because a Cell in a Population can only choose its Reactions once the
+environment is set up and the reaction space is ready, while the reaction
+space can only be fully known, when all internal molecules have been defined
+in relation to Cells in the Population. To circumvent the problem, internal
+molecules will only exist as &#8216;ideal&#8217; type molecules and then every Cell will
+contain a mapping from &#8216;ideal&#8217; molecules to actual variables of the system.</p>
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.ODE_simulation.init_spatial_integrator">
+<code class="descname">init_spatial_integrator</code><span class="sig-paren">(</span><em>diffusion_steps=None</em>, <em>report_frequency=None</em>, <em>step_function=None</em>, <em>init_step_size=None</em>, <em>absolute_error=None</em>, <em>relative_error=None</em>, <em>global_time=0.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#ODE_simulation.init_spatial_integrator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.ODE_simulation.init_spatial_integrator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.ODE_simulation.simulation_burn_in">
+<code class="descname">simulation_burn_in</code><span class="sig-paren">(</span><em>burn_in_time=None</em>, <em>simulation_steps=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#ODE_simulation.simulation_burn_in"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.ODE_simulation.simulation_burn_in" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.ODE_simulation.simulation_step">
+<code class="descname">simulation_step</code><span class="sig-paren">(</span><em>global_time=None</em>, <em>diffusion_steps=None</em>, <em>delta_t_between_diff=None</em>, <em>report_frequency=None</em>, <em>release_delay=None</em>, <em>update_relative_error=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#ODE_simulation.simulation_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.ODE_simulation.simulation_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>A simulation step will run the integration of
+cycle of a cell&#8217;s life:</p>
+<ul class="simple">
+<li>setup the variables_map needed</li>
+<li>simulate internal dynamics</li>
+<li>save variables states back to python objects (if no errors occured or &gt; maxtries)</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.simulation.Simulation.</code><code class="descname">Simulation</code><span class="sig-paren">(</span><em>params</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Base class for Simulation objects.</p>
+<p>Stores the simulation parameters.</p>
+<p>Initializes output and storage paths and file for stdout and stderr logging.</p>
+<p>Initializes a data store class for storing data points and time series.</p>
+<p>Initializes a graphs class for output graphing, that will be fed with data points from the data store.</p>
+<p>Has method for the main simulation loop.</p>
+<p>Stores simulation snapshots that can be reloaded for further simulation or post analysis.</p>
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.add_data_point">
+<code class="descname">add_data_point</code><span class="sig-paren">(</span><em>time_point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.add_data_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.add_data_point" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.add_graphs_data">
+<code class="descname">add_graphs_data</code><span class="sig-paren">(</span><em>time_point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.add_graphs_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.add_graphs_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.auto_restart_opts">
+<code class="descname">auto_restart_opts</code><span class="sig-paren">(</span><em>retry_list=None</em>, <em>time=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.auto_restart_opts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.auto_restart_opts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Automatically restart the simulation after the population became extinct.</p>
+<p>A simulation can be automatically restarted from a previous save point.
+The save points to retry from in the <cite>retry_list</cite> are updated such that
+the most recent point is retried first and removed from this list. This
+ensures that a subsequent restart will not be attempted from the same
+save point, but will instead skip back to a preceding save point. When
+restarting the simulation, new parameter values will be chosen for a
+selected set of parameters, by applying a scaling factor <cite>v</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>retry_list</strong> (<em>list</em>) &#8211; list of population snapshots that can still be retried for restart</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(population save to retry, new parameter settings for retry)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.backup_pop_stats">
+<code class="descname">backup_pop_stats</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.backup_pop_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.backup_pop_stats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.class_version">
+<code class="descname">class_version</code><em class="property"> = '2.5'</em><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.class_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.close_phylo_shelf">
+<code class="descname">close_phylo_shelf</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.close_phylo_shelf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.close_phylo_shelf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.copy_config_files">
+<code class="descname">copy_config_files</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.copy_config_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.copy_config_files" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.describe_environment">
+<code class="descname">describe_environment</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.describe_environment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.describe_environment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.init_data_store">
+<code class="descname">init_data_store</code><span class="sig-paren">(</span><em>clean=True</em>, <em>create=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.init_data_store"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.init_data_store" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a DataStore object for storage of simulation data. Data are
+kept in storage for retrieval by plotting functions until a call is made
+to write the raw data to a file (write_data).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.init_error_log_file">
+<code class="descname">init_error_log_file</code><span class="sig-paren">(</span><em>save_dir=None</em>, <em>name='log'</em>, <em>suffix='.err'</em>, <em>labels=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.init_error_log_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.init_error_log_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.init_ffmpeg">
+<code class="descname">init_ffmpeg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.init_ffmpeg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.init_ffmpeg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.init_graphs">
+<code class="descname">init_graphs</code><span class="sig-paren">(</span><em>show=None</em>, <em>graphs_single_core=None</em>, <em>clean=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.init_graphs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.init_graphs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a Graphs object that is a container for all online graphs
+generated during simulation.
+:param show: plot graphs on the X (blocking)
+:param graphs_single_core: generate graphs in the main process (no subprocesses)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.init_log_file">
+<code class="descname">init_log_file</code><span class="sig-paren">(</span><em>save_dir=None</em>, <em>name='log'</em>, <em>suffix='.out'</em>, <em>labels=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.init_log_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.init_log_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.init_log_files">
+<code class="descname">init_log_files</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.init_log_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.init_log_files" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.init_phylo_linker_dict">
+<code class="descname">init_phylo_linker_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.init_phylo_linker_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.init_phylo_linker_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a linker dict that maps phylogenetic units (PhyloUnit) to unique
+indices. This linker dict is used to mediate parent-child relations,
+while preventing that pickling recurses (heavily) on the phylogeny (no
+direct references to the objects)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.init_save_dir">
+<code class="descname">init_save_dir</code><span class="sig-paren">(</span><em>clean=None, remove_globs=['*.txt', '*.sav', '*.pck', '*.log', '*.err']</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.init_save_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.init_save_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.init_unique_phylo_key">
+<code class="descname">init_unique_phylo_key</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.init_unique_phylo_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.init_unique_phylo_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a generator for unique keys for use in the linker dict (see
+above).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.open_log_file">
+<code class="descname">open_log_file</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.open_log_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.open_log_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.open_phylo_shelf">
+<code class="descname">open_phylo_shelf</code><span class="sig-paren">(</span><em>name</em>, <em>flag</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.open_phylo_shelf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.open_phylo_shelf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open a Shelf like database object that can store (part of) phylogenetic
+units (PhyloUnit) to disk.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.plot_and_save_graphs">
+<code class="descname">plot_and_save_graphs</code><span class="sig-paren">(</span><em>time_point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.plot_and_save_graphs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.plot_and_save_graphs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depending on the initialization parameter &#8216;graphs_single_core&#8217; this will
+either run all plotting in functions in sequence (appending None to
+processes) or construct a list of job processes/ task tuples, to be run
+in parallel batch processes, separate from the main thread. These
+processes will be either put in a job queue or separately started by
+&#8216;_start_parallel_jobs&#8217;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>time_point</strong> &#8211; simulation time point</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.plot_and_save_phylo_graphs">
+<code class="descname">plot_and_save_phylo_graphs</code><span class="sig-paren">(</span><em>max_tree_depth</em>, <em>time_point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.plot_and_save_phylo_graphs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.plot_and_save_phylo_graphs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.plot_best_genome_structure">
+<code class="descname">plot_best_genome_structure</code><span class="sig-paren">(</span><em>time_point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.plot_best_genome_structure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.plot_best_genome_structure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.plot_grid_graphs">
+<code class="descname">plot_grid_graphs</code><span class="sig-paren">(</span><em>time_point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.plot_grid_graphs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.plot_grid_graphs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.plot_networks">
+<code class="descname">plot_networks</code><span class="sig-paren">(</span><em>time_point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.plot_networks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.plot_networks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.plot_phylo_tree">
+<code class="descname">plot_phylo_tree</code><span class="sig-paren">(</span><em>max_tree_depth</em>, <em>labels</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.plot_phylo_tree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.plot_phylo_tree" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.plot_pop_stats">
+<code class="descname">plot_pop_stats</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.plot_pop_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.plot_pop_stats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.plot_time_course">
+<code class="descname">plot_time_course</code><span class="sig-paren">(</span><em>time_point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.plot_time_course"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.plot_time_course" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.print_system_details">
+<code class="descname">print_system_details</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.print_system_details"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.print_system_details" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.prune_data_store_files">
+<code class="descname">prune_data_store_files</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.prune_data_store_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.prune_data_store_files" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.reload_unique_count">
+<code class="descname">reload_unique_count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.reload_unique_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.reload_unique_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.reopen_phylo_shelf">
+<code class="descname">reopen_phylo_shelf</code><span class="sig-paren">(</span><em>save_file=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.reopen_phylo_shelf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.reopen_phylo_shelf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>time=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the simulation state as a snapshot.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>time</strong> (<em>simulation time point</em>) &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">filename of simulation save</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.save_dir">
+<code class="descname">save_dir</code><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.save_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the simulation save path.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.save_phylo_shelf">
+<code class="descname">save_phylo_shelf</code><span class="sig-paren">(</span><em>name=None</em>, <em>labels=[]</em>, <em>suffix='.pck'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.save_phylo_shelf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.save_phylo_shelf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a snapshot of the phylo_shelf, the global store of PhyloUnit objects.</p>
+<p>Creating the snapshot enables reloading simulation saves with a correct
+state of the phylo_shelf.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.set_phylo_shelf_file_name">
+<code class="descname">set_phylo_shelf_file_name</code><span class="sig-paren">(</span><em>name=None</em>, <em>suffix='.pck'</em>, <em>labels=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.set_phylo_shelf_file_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.set_phylo_shelf_file_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.simulate">
+<code class="descname">simulate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.simulate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.simulate" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main simulation loop.</p>
+<p>Clear the population changes from previous iteration.
+Run the ode system.
+Apply HGT.
+Calculate death rates, determine deaths.
+Compete and reproduce.
+Mutate the offspring.
+Update the phylogeny.
+Store data and plot.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.store_command_line_string">
+<code class="descname">store_command_line_string</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.store_command_line_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.store_command_line_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.store_previous_save_dir">
+<code class="descname">store_previous_save_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.store_previous_save_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.store_previous_save_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the location for data storage presently used in the simulation.</p>
+<p>Useful to keep a history of save locations when simulations are reloaded
+and run with different data storage locations.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.update_data_location">
+<code class="descname">update_data_location</code><span class="sig-paren">(</span><em>save_dir=None</em>, <em>graphs_name='plots'</em>, <em>data_name='data'</em>, <em>clean=False</em>, <em>copy_data=True</em>, <em>create=True</em>, <em>current_save_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.update_data_location"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.update_data_location" title="Permalink to this definition">¶</a></dt>
+<dd><p>Moves existing data to a new location (e.g. when name of project has
+changed after propagating an existing population)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.update_shelf_location">
+<code class="descname">update_shelf_location</code><span class="sig-paren">(</span><em>current_save_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.update_shelf_location"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.update_shelf_location" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.update_sim_params">
+<code class="descname">update_sim_params</code><span class="sig-paren">(</span><em>params_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.update_sim_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.update_sim_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update simulation parameters with values in an update dict.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>params_dict</strong> (<em>dict</em>) &#8211; dict with updated parameter values</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.upgrade">
+<code class="descname">upgrade</code><span class="sig-paren">(</span><em>odict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.upgrade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.upgrade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upgrading from older pickled version of class to latest version. Version
+information is saved as class variable and should be updated when class
+invariants (e.g. fields) are added. (see also __setstate__)</p>
+<p>Adapted from recipe at <a class="reference external" href="http://code.activestate.com/recipes/521901-upgradable-pickles/">http://code.activestate.com/recipes/521901-upgradable-pickles/</a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.upgrade_graphs">
+<code class="descname">upgrade_graphs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.upgrade_graphs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.upgrade_graphs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.write_data">
+<code class="descname">write_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.write_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.write_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.simulation.Simulation.Simulation.write_params_to_file">
+<code class="descname">write_params_to_file</code><span class="sig-paren">(</span><em>save_dir=None</em>, <em>name='params'</em>, <em>suffix='.txt'</em>, <em>labels=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#Simulation.write_params_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.Simulation.write_params_to_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.Simulation.create_simulation">
+<code class="descclassname">VirtualMicrobes.simulation.Simulation.</code><code class="descname">create_simulation</code><span class="sig-paren">(</span><em>**param_updates</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#create_simulation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.create_simulation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.Simulation.default_params">
+<code class="descclassname">VirtualMicrobes.simulation.Simulation.</code><code class="descname">default_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#default_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.default_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.Simulation.load_sim">
+<code class="descclassname">VirtualMicrobes.simulation.Simulation.</code><code class="descname">load_sim</code><span class="sig-paren">(</span><em>file_name</em>, <em>verbose=False</em>, <em>**param_updates</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#load_sim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.load_sim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a pickled representation of a saved simulation state.</p>
+<p>Complementary method to :save_sim: to load and restore a simulation
+state. There is a possibility to update simulation parameters. The first
+stage of unpickling will reload the simulation parameters. This is
+necessary, because we need to set the &#8216;as_subprocess&#8217; parameter for
+decorating Graph methods to be set before class initialization, by
+retrieving the &#8216;graphs_single_core&#8217; parameter from the simulation
+&#8216;temp_params&#8217; prior to reloading and recreating the pickled Graphs instance
+in the simulation object.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.Simulation.load_sim_params">
+<code class="descclassname">VirtualMicrobes.simulation.Simulation.</code><code class="descname">load_sim_params</code><span class="sig-paren">(</span><em>file_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#load_sim_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.load_sim_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.Simulation.load_simulation">
+<code class="descclassname">VirtualMicrobes.simulation.Simulation.</code><code class="descname">load_simulation</code><span class="sig-paren">(</span><em>file_name</em>, <em>**param_updates</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#load_simulation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.load_simulation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.Simulation.mut_func_single_param">
+<code class="descclassname">VirtualMicrobes.simulation.Simulation.</code><code class="descname">mut_func_single_param</code><span class="sig-paren">(</span><em>val</em>, <em>rand_g</em>, <em>mut_par_space</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#mut_func_single_param"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.mut_func_single_param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.Simulation.mut_ks_dict_func">
+<code class="descclassname">VirtualMicrobes.simulation.Simulation.</code><code class="descname">mut_ks_dict_func</code><span class="sig-paren">(</span><em>kss</em>, <em>rand_gen</em>, <em>mut_par_space</em>, <em>mut_func_single_param</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#mut_ks_dict_func"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.mut_ks_dict_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.Simulation.partial_mut_func_single_param">
+<code class="descclassname">VirtualMicrobes.simulation.Simulation.</code><code class="descname">partial_mut_func_single_param</code><span class="sig-paren">(</span><em>val</em>, <em>rand</em>, <em>mut_par_space</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#partial_mut_func_single_param"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.partial_mut_func_single_param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.Simulation.partial_mut_ks_dict_func">
+<code class="descclassname">VirtualMicrobes.simulation.Simulation.</code><code class="descname">partial_mut_ks_dict_func</code><span class="sig-paren">(</span><em>val</em>, <em>rand</em>, <em>mut_par_space</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#partial_mut_ks_dict_func"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.partial_mut_ks_dict_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.Simulation.pump_exporting_mut_func">
+<code class="descclassname">VirtualMicrobes.simulation.Simulation.</code><code class="descname">pump_exporting_mut_func</code><span class="sig-paren">(</span><em>val</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#pump_exporting_mut_func"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.pump_exporting_mut_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.Simulation.save_pop_cells">
+<code class="descclassname">VirtualMicrobes.simulation.Simulation.</code><code class="descname">save_pop_cells</code><span class="sig-paren">(</span><em>sim</em>, <em>name=None</em>, <em>save_dir=None</em>, <em>labels=[]</em>, <em>suffix='.sav'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#save_pop_cells"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.save_pop_cells" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.Simulation.save_sim">
+<code class="descclassname">VirtualMicrobes.simulation.Simulation.</code><code class="descname">save_sim</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#save_sim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.save_sim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a pickled save state of the simulation.</p>
+<p>It (nearly) completely creates a pickle representation of the
+simulation, from which the simulation can be reloaded and continued,
+with parameters and state fully restored. Because a global linker dict
+with database functionality is used to store phylogenetic elements such
+as Genes, Chromosomes and Cells, a snapshot of this database needs to be
+created simultaneously. The snapshot of the DB is remembered within the
+simulation, to allow it to be reloaded when the saved simulation state
+is reloaded.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.Simulation.save_single_cell">
+<code class="descclassname">VirtualMicrobes.simulation.Simulation.</code><code class="descname">save_single_cell</code><span class="sig-paren">(</span><em>sim</em>, <em>cell</em>, <em>name=None</em>, <em>save_dir=None</em>, <em>labels=[]</em>, <em>suffix='.sav'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#save_single_cell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.save_single_cell" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.Simulation.tf_ext_sense_mut_func">
+<code class="descclassname">VirtualMicrobes.simulation.Simulation.</code><code class="descname">tf_ext_sense_mut_func</code><span class="sig-paren">(</span><em>val</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#tf_ext_sense_mut_func"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.tf_ext_sense_mut_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.Simulation.update_default_params">
+<code class="descclassname">VirtualMicrobes.simulation.Simulation.</code><code class="descname">update_default_params</code><span class="sig-paren">(</span><em>keep_unrecognized=False</em>, <em>verbose=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/Simulation.html#update_default_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.Simulation.update_default_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use simulate_params, pop_params and env_params as defaults and overwrite
+them with kwargs to construct a parameter dictionary. Warn for all kwargs
+that have not been consumed. ( default_params() generates all default
+parameters )</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>simulate_params</strong> &#8211; dictionary with general simulation parameters</li>
+<li><strong>pop_params</strong> &#8211; dictionary with population specific parameters</li>
+<li><strong>env_params</strong> &#8211; dictionary with environment specific params</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-VirtualMicrobes.simulation.class_settings">
+<span id="virtualmicrobes-simulation-class-settings-module"></span><h2>VirtualMicrobes.simulation.class_settings module<a class="headerlink" href="#module-VirtualMicrobes.simulation.class_settings" title="Permalink to this headline">¶</a></h2>
+<p>Created on Dec 16, 2014</p>
+<p>&#64;author: thocu</p>
+</div>
+<div class="section" id="module-VirtualMicrobes.simulation.continue">
+<span id="virtualmicrobes-simulation-continue-module"></span><h2>VirtualMicrobes.simulation.continue module<a class="headerlink" href="#module-VirtualMicrobes.simulation.continue" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.continue.main">
+<code class="descclassname">VirtualMicrobes.simulation.continue.</code><code class="descname">main</code><span class="sig-paren">(</span><em>argv=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/continue.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.continue.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.continue.parse_opts">
+<code class="descclassname">VirtualMicrobes.simulation.continue.</code><code class="descname">parse_opts</code><span class="sig-paren">(</span><em>opt_strings</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/continue.html#parse_opts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.continue.parse_opts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.continue.to_argparse_opts">
+<code class="descclassname">VirtualMicrobes.simulation.continue.</code><code class="descname">to_argparse_opts</code><span class="sig-paren">(</span><em>opts</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/continue.html#to_argparse_opts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.continue.to_argparse_opts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-VirtualMicrobes.simulation.start">
+<span id="virtualmicrobes-simulation-start-module"></span><h2>VirtualMicrobes.simulation.start module<a class="headerlink" href="#module-VirtualMicrobes.simulation.start" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.start.main">
+<code class="descclassname">VirtualMicrobes.simulation.start.</code><code class="descname">main</code><span class="sig-paren">(</span><em>argv=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/start.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.start.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.start.parse_combining_opts">
+<code class="descclassname">VirtualMicrobes.simulation.start.</code><code class="descname">parse_combining_opts</code><span class="sig-paren">(</span><em>opt_strings</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/start.html#parse_combining_opts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.start.parse_combining_opts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.start.parse_fixed_opts">
+<code class="descclassname">VirtualMicrobes.simulation.start.</code><code class="descname">parse_fixed_opts</code><span class="sig-paren">(</span><em>opt_strings</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/start.html#parse_fixed_opts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.start.parse_fixed_opts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.start.to_argparse_opts">
+<code class="descclassname">VirtualMicrobes.simulation.start.</code><code class="descname">to_argparse_opts</code><span class="sig-paren">(</span><em>opts</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/start.html#to_argparse_opts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.start.to_argparse_opts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-VirtualMicrobes.simulation.start_multi">
+<span id="virtualmicrobes-simulation-start-multi-module"></span><h2>VirtualMicrobes.simulation.start_multi module<a class="headerlink" href="#module-VirtualMicrobes.simulation.start_multi" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.start_multi.main">
+<code class="descclassname">VirtualMicrobes.simulation.start_multi.</code><code class="descname">main</code><span class="sig-paren">(</span><em>argv=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/start_multi.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.start_multi.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.start_multi.parse_combining_opts">
+<code class="descclassname">VirtualMicrobes.simulation.start_multi.</code><code class="descname">parse_combining_opts</code><span class="sig-paren">(</span><em>opt_strings</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/start_multi.html#parse_combining_opts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.start_multi.parse_combining_opts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.start_multi.parse_fixed_opts">
+<code class="descclassname">VirtualMicrobes.simulation.start_multi.</code><code class="descname">parse_fixed_opts</code><span class="sig-paren">(</span><em>opt_strings</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/start_multi.html#parse_fixed_opts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.start_multi.parse_fixed_opts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.simulation.start_multi.to_argparse_opts">
+<code class="descclassname">VirtualMicrobes.simulation.start_multi.</code><code class="descname">to_argparse_opts</code><span class="sig-paren">(</span><em>opts</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/simulation/start_multi.html#to_argparse_opts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.simulation.start_multi.to_argparse_opts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-VirtualMicrobes.simulation.vermicelli">
+<span id="virtualmicrobes-simulation-vermicelli-module"></span><h2>VirtualMicrobes.simulation.vermicelli module<a class="headerlink" href="#module-VirtualMicrobes.simulation.vermicelli" title="Permalink to this headline">¶</a></h2>
+<p>Command Line Interface to the Virtual Microbes Evolutionary Simulator package.</p>
+<p>&#64;copyright:  2014 Theoretical Biology and Bioinformatics. All rights reserved.</p>
+<p>&#64;license:    MIT licence</p>
+<p>&#64;contact:    <a class="reference external" href="mailto:thomas&#46;cuypers&#37;&#52;&#48;gmail&#46;com">thomas<span>&#46;</span>cuypers<span>&#64;</span>gmail<span>&#46;</span>com</a>
+&#64;deffield    updated: Updated</p>
+</div>
+<div class="section" id="module-VirtualMicrobes.simulation">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-VirtualMicrobes.simulation" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="VirtualMicrobes.virtual_cell.html" class="btn btn-neutral float-right" title="VirtualMicrobes.virtual_cell package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="VirtualMicrobes.post_analysis.html" class="btn btn-neutral" title="VirtualMicrobes.post_analysis package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Thomas Cuypers, Bram van Dijk.
+      Last updated on Oct 10, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

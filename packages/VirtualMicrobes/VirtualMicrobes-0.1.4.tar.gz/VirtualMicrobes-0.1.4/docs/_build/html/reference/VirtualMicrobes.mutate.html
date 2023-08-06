@@ -1,0 +1,706 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VirtualMicrobes.mutate package &mdash; Virtual Microbes Evolutionary Simulator 0.1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Virtual Microbes Evolutionary Simulator 0.1.3 documentation" href="../index.html"/>
+        <link rel="up" title="VirtualMicrobes package" href="VirtualMicrobes.html"/>
+        <link rel="next" title="VirtualMicrobes.mutate.test package" href="VirtualMicrobes.mutate.test.html"/>
+        <link rel="prev" title="VirtualMicrobes.event package" href="VirtualMicrobes.event.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Virtual Microbes Evolutionary Simulator
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="VirtualMicrobes.html">VirtualMicrobes package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="VirtualMicrobes.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.Tree.html">VirtualMicrobes.Tree package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.cython_gsl_interface.html">VirtualMicrobes.cython_gsl_interface package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.data_tools.html">VirtualMicrobes.data_tools package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.environment.html">VirtualMicrobes.environment package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.event.html">VirtualMicrobes.event package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">VirtualMicrobes.mutate package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.my_tools.html">VirtualMicrobes.my_tools package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.plotting.html">VirtualMicrobes.plotting package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.post_analysis.html">VirtualMicrobes.post_analysis package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.simulation.html">VirtualMicrobes.simulation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VirtualMicrobes.virtual_cell.html">VirtualMicrobes.virtual_cell package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="VirtualMicrobes.html#module-VirtualMicrobes">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Virtual Microbes Evolutionary Simulator</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Reference</a> &raquo;</li>
+      
+          <li><a href="VirtualMicrobes.html">VirtualMicrobes package</a> &raquo;</li>
+      
+    <li>VirtualMicrobes.mutate package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/reference/VirtualMicrobes.mutate.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="virtualmicrobes-mutate-package">
+<h1>VirtualMicrobes.mutate package<a class="headerlink" href="#virtualmicrobes-mutate-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="VirtualMicrobes.mutate.test.html">VirtualMicrobes.mutate.test package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="VirtualMicrobes.mutate.test.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VirtualMicrobes.mutate.test.html#module-VirtualMicrobes.mutate.test.TestMutate">VirtualMicrobes.mutate.test.TestMutate module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VirtualMicrobes.mutate.test.html#module-VirtualMicrobes.mutate.test">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-VirtualMicrobes.mutate.Mutation">
+<span id="virtualmicrobes-mutate-mutation-module"></span><h2>VirtualMicrobes.mutate.Mutation module<a class="headerlink" href="#module-VirtualMicrobes.mutate.Mutation" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="VirtualMicrobes.mutate.Mutation.ChromosomalMutation">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.mutate.Mutation.</code><code class="descname">ChromosomalMutation</code><span class="sig-paren">(</span><em>chromosomes</em>, <em>genome</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#ChromosomalMutation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.ChromosomalMutation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.mutate.Mutation.Mutation" title="VirtualMicrobes.mutate.Mutation.Mutation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.mutate.Mutation.Mutation</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.mutate.Mutation.ChromosomeDeletion">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.mutate.Mutation.</code><code class="descname">ChromosomeDeletion</code><span class="sig-paren">(</span><em>chromosome</em>, <em>genome</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#ChromosomeDeletion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.ChromosomeDeletion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.mutate.Mutation.ChromosomalMutation" title="VirtualMicrobes.mutate.Mutation.ChromosomalMutation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.mutate.Mutation.ChromosomalMutation</span></code></a></p>
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.ChromosomeDeletion.mutate">
+<code class="descname">mutate</code><span class="sig-paren">(</span><em>time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#ChromosomeDeletion.mutate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.ChromosomeDeletion.mutate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.ChromosomeDeletion.reapply">
+<code class="descname">reapply</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#ChromosomeDeletion.reapply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.ChromosomeDeletion.reapply" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.ChromosomeDeletion.rewind">
+<code class="descname">rewind</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#ChromosomeDeletion.rewind"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.ChromosomeDeletion.rewind" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.mutate.Mutation.ChromosomeDuplication">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.mutate.Mutation.</code><code class="descname">ChromosomeDuplication</code><span class="sig-paren">(</span><em>chromosome</em>, <em>genome</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#ChromosomeDuplication"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.ChromosomeDuplication" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.mutate.Mutation.ChromosomalMutation" title="VirtualMicrobes.mutate.Mutation.ChromosomalMutation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.mutate.Mutation.ChromosomalMutation</span></code></a></p>
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.ChromosomeDuplication.mutate">
+<code class="descname">mutate</code><span class="sig-paren">(</span><em>time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#ChromosomeDuplication.mutate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.ChromosomeDuplication.mutate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.ChromosomeDuplication.reapply">
+<code class="descname">reapply</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#ChromosomeDuplication.reapply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.ChromosomeDuplication.reapply" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.ChromosomeDuplication.rewind">
+<code class="descname">rewind</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#ChromosomeDuplication.rewind"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.ChromosomeDuplication.rewind" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.mutate.Mutation.Fission">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.mutate.Mutation.</code><code class="descname">Fission</code><span class="sig-paren">(</span><em>chromosome</em>, <em>genome</em>, <em>pos</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Fission"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Fission" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.mutate.Mutation.ChromosomalMutation" title="VirtualMicrobes.mutate.Mutation.ChromosomalMutation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.mutate.Mutation.ChromosomalMutation</span></code></a></p>
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.Fission.mutate">
+<code class="descname">mutate</code><span class="sig-paren">(</span><em>time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Fission.mutate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Fission.mutate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.mutate.Mutation.Fission.pos">
+<code class="descname">pos</code><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Fission.pos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.Fission.reapply">
+<code class="descname">reapply</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Fission.reapply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Fission.reapply" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.Fission.rewind">
+<code class="descname">rewind</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Fission.rewind"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Fission.rewind" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.mutate.Mutation.Fusion">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.mutate.Mutation.</code><code class="descname">Fusion</code><span class="sig-paren">(</span><em>chrom1</em>, <em>chrom2</em>, <em>genome</em>, <em>end1</em>, <em>end2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Fusion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Fusion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.mutate.Mutation.ChromosomalMutation" title="VirtualMicrobes.mutate.Mutation.ChromosomalMutation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.mutate.Mutation.ChromosomalMutation</span></code></a></p>
+<dl class="attribute">
+<dt id="VirtualMicrobes.mutate.Mutation.Fusion.end1">
+<code class="descname">end1</code><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Fusion.end1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.mutate.Mutation.Fusion.end2">
+<code class="descname">end2</code><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Fusion.end2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.Fusion.mutate">
+<code class="descname">mutate</code><span class="sig-paren">(</span><em>time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Fusion.mutate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Fusion.mutate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.Fusion.reapply">
+<code class="descname">reapply</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Fusion.reapply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Fusion.reapply" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.Fusion.rewind">
+<code class="descname">rewind</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Fusion.rewind"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Fusion.rewind" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.mutate.Mutation.Insertion">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.mutate.Mutation.</code><code class="descname">Insertion</code><span class="sig-paren">(</span><em>chromosome</em>, <em>genome</em>, <em>stretch</em>, <em>insert_pos</em>, <em>is_external</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Insertion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Insertion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.mutate.Mutation.StretchMutation" title="VirtualMicrobes.mutate.Mutation.StretchMutation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.mutate.Mutation.StretchMutation</span></code></a></p>
+<p>Insertion of a stretch of exogenous genomic material</p>
+<dl class="attribute">
+<dt id="VirtualMicrobes.mutate.Mutation.Insertion.insert_pos">
+<code class="descname">insert_pos</code><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Insertion.insert_pos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.mutate.Mutation.Insertion.is_external">
+<code class="descname">is_external</code><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Insertion.is_external" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.Insertion.mutate">
+<code class="descname">mutate</code><span class="sig-paren">(</span><em>time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Insertion.mutate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Insertion.mutate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.Insertion.reapply">
+<code class="descname">reapply</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Insertion.reapply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Insertion.reapply" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.Insertion.rewind">
+<code class="descname">rewind</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Insertion.rewind"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Insertion.rewind" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.mutate.Mutation.Inversion">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.mutate.Mutation.</code><code class="descname">Inversion</code><span class="sig-paren">(</span><em>chromosome</em>, <em>genome</em>, <em>start_pos</em>, <em>end_pos</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Inversion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Inversion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.mutate.Mutation.StretchMutation" title="VirtualMicrobes.mutate.Mutation.StretchMutation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.mutate.Mutation.StretchMutation</span></code></a></p>
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.Inversion.mutate">
+<code class="descname">mutate</code><span class="sig-paren">(</span><em>time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Inversion.mutate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Inversion.mutate" title="Permalink to this definition">¶</a></dt>
+<dd><p>The invert is in place, hence pre- and post- mutation will appear the same</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.Inversion.reapply">
+<code class="descname">reapply</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Inversion.reapply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Inversion.reapply" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.Inversion.rewind">
+<code class="descname">rewind</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Inversion.rewind"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Inversion.rewind" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.mutate.Mutation.Mutation">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.mutate.Mutation.</code><code class="descname">Mutation</code><span class="sig-paren">(</span><em>target</em>, <em>genomic_unit</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Mutation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Mutation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Version:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Author:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="VirtualMicrobes.mutate.Mutation.Mutation.applied">
+<code class="descname">applied</code><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Mutation.applied" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.mutate.Mutation.Mutation.genomic_target">
+<code class="descname">genomic_target</code><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Mutation.genomic_target" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.mutate.Mutation.Mutation.genomic_unit">
+<code class="descname">genomic_unit</code><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Mutation.genomic_unit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.Mutation.mutate">
+<code class="descname">mutate</code><span class="sig-paren">(</span><em>time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Mutation.mutate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Mutation.mutate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.mutate.Mutation.Mutation.post_mutation">
+<code class="descname">post_mutation</code><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Mutation.post_mutation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.Mutation.reapply">
+<code class="descname">reapply</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Mutation.reapply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Mutation.reapply" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.Mutation.rewind">
+<code class="descname">rewind</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Mutation.rewind"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Mutation.rewind" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Go back to the ancestral state by patching the mutated cell with the unmutated
+genomic state.
+It should make a check that the genomic element is a part of this cell.</div></blockquote>
+<p>:param virtual_cell.Cell mutant : On which cell do we play the reversal?
+:return  :
+:author</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.mutate.Mutation.Mutation.time">
+<code class="descname">time</code><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Mutation.time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.mutate.Mutation.Mutation.uid">
+<code class="descname">uid</code><em class="property"> = 0</em><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Mutation.uid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="VirtualMicrobes.mutate.Mutation.MutationAlreadyAppliedError">
+<em class="property">exception </em><code class="descclassname">VirtualMicrobes.mutate.Mutation.</code><code class="descname">MutationAlreadyAppliedError</code><span class="sig-paren">(</span><em>value=&quot;Cannot 'reapply' if already applied&quot;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#MutationAlreadyAppliedError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.MutationAlreadyAppliedError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.mutate.Mutation.MutationError" title="VirtualMicrobes.mutate.Mutation.MutationError"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.mutate.Mutation.MutationError</span></code></a></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="VirtualMicrobes.mutate.Mutation.MutationError">
+<em class="property">exception </em><code class="descclassname">VirtualMicrobes.mutate.Mutation.</code><code class="descname">MutationError</code><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#MutationError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.MutationError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="VirtualMicrobes.mutate.Mutation.MutationNotAppliedError">
+<em class="property">exception </em><code class="descclassname">VirtualMicrobes.mutate.Mutation.</code><code class="descname">MutationNotAppliedError</code><span class="sig-paren">(</span><em>value=&quot;Cannot 'rewind' if not already applied&quot;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#MutationNotAppliedError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.MutationNotAppliedError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.mutate.Mutation.OperatorInsertion">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.mutate.Mutation.</code><code class="descname">OperatorInsertion</code><span class="sig-paren">(</span><em>gene</em>, <em>chromosome</em>, <em>new_val</em>, <em>pos</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#OperatorInsertion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.OperatorInsertion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.mutate.Mutation.SingleGeneMutation" title="VirtualMicrobes.mutate.Mutation.SingleGeneMutation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.mutate.Mutation.SingleGeneMutation</span></code></a></p>
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.OperatorInsertion.mutate">
+<code class="descname">mutate</code><span class="sig-paren">(</span><em>time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#OperatorInsertion.mutate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.OperatorInsertion.mutate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.mutate.Mutation.OperatorInsertion.new_val">
+<code class="descname">new_val</code><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.OperatorInsertion.new_val" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.mutate.Mutation.OperatorInsertion.par">
+<code class="descname">par</code><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.OperatorInsertion.par" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.OperatorInsertion.reapply">
+<code class="descname">reapply</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#OperatorInsertion.reapply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.OperatorInsertion.reapply" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.OperatorInsertion.rewind">
+<code class="descname">rewind</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#OperatorInsertion.rewind"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.OperatorInsertion.rewind" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.mutate.Mutation.PointMutation">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.mutate.Mutation.</code><code class="descname">PointMutation</code><span class="sig-paren">(</span><em>gene</em>, <em>chromosome</em>, <em>par</em>, <em>new_val</em>, <em>pos</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#PointMutation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.PointMutation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.mutate.Mutation.SingleGeneMutation" title="VirtualMicrobes.mutate.Mutation.SingleGeneMutation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.mutate.Mutation.SingleGeneMutation</span></code></a></p>
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.PointMutation.mutate">
+<code class="descname">mutate</code><span class="sig-paren">(</span><em>time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#PointMutation.mutate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.PointMutation.mutate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.mutate.Mutation.PointMutation.new_val">
+<code class="descname">new_val</code><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.PointMutation.new_val" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.mutate.Mutation.PointMutation.par">
+<code class="descname">par</code><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.PointMutation.par" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.PointMutation.reapply">
+<code class="descname">reapply</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#PointMutation.reapply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.PointMutation.reapply" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.PointMutation.rewind">
+<code class="descname">rewind</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#PointMutation.rewind"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.PointMutation.rewind" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.mutate.Mutation.SGDeletion">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.mutate.Mutation.</code><code class="descname">SGDeletion</code><span class="sig-paren">(</span><em>gene</em>, <em>chromosome</em>, <em>pos</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#SGDeletion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.SGDeletion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.mutate.Mutation.SingleGeneMutation" title="VirtualMicrobes.mutate.Mutation.SingleGeneMutation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.mutate.Mutation.SingleGeneMutation</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.mutate.Mutation.SGDuplication">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.mutate.Mutation.</code><code class="descname">SGDuplication</code><span class="sig-paren">(</span><em>gene</em>, <em>chromosome</em>, <em>pos</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#SGDuplication"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.SGDuplication" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.mutate.Mutation.SingleGeneMutation" title="VirtualMicrobes.mutate.Mutation.SingleGeneMutation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.mutate.Mutation.SingleGeneMutation</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.mutate.Mutation.SingleGeneMutation">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.mutate.Mutation.</code><code class="descname">SingleGeneMutation</code><span class="sig-paren">(</span><em>gene</em>, <em>chromosome</em>, <em>pos</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#SingleGeneMutation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.SingleGeneMutation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.mutate.Mutation.Mutation" title="VirtualMicrobes.mutate.Mutation.Mutation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.mutate.Mutation.Mutation</span></code></a></p>
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.SingleGeneMutation.mutate">
+<code class="descname">mutate</code><span class="sig-paren">(</span><em>time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#SingleGeneMutation.mutate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.SingleGeneMutation.mutate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.mutate.Mutation.SingleGeneMutation.pos">
+<code class="descname">pos</code><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.SingleGeneMutation.pos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.SingleGeneMutation.reapply">
+<code class="descname">reapply</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#SingleGeneMutation.reapply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.SingleGeneMutation.reapply" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.SingleGeneMutation.rewind">
+<code class="descname">rewind</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#SingleGeneMutation.rewind"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.SingleGeneMutation.rewind" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.mutate.Mutation.StretchDeletion">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.mutate.Mutation.</code><code class="descname">StretchDeletion</code><span class="sig-paren">(</span><em>chromosome</em>, <em>genome</em>, <em>start_pos</em>, <em>end_pos</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#StretchDeletion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.StretchDeletion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.mutate.Mutation.StretchMutation" title="VirtualMicrobes.mutate.Mutation.StretchMutation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.mutate.Mutation.StretchMutation</span></code></a></p>
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.StretchDeletion.mutate">
+<code class="descname">mutate</code><span class="sig-paren">(</span><em>time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#StretchDeletion.mutate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.StretchDeletion.mutate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.StretchDeletion.reapply">
+<code class="descname">reapply</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#StretchDeletion.reapply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.StretchDeletion.reapply" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.StretchDeletion.rewind">
+<code class="descname">rewind</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#StretchDeletion.rewind"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.StretchDeletion.rewind" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.mutate.Mutation.StretchMutation">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.mutate.Mutation.</code><code class="descname">StretchMutation</code><span class="sig-paren">(</span><em>chromosome</em>, <em>genome</em>, <em>start_pos=None</em>, <em>end_pos=None</em>, <em>stretch=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#StretchMutation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.StretchMutation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.mutate.Mutation.Mutation" title="VirtualMicrobes.mutate.Mutation.Mutation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.mutate.Mutation.Mutation</span></code></a></p>
+<dl class="attribute">
+<dt id="VirtualMicrobes.mutate.Mutation.StretchMutation.end_pos">
+<code class="descname">end_pos</code><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.StretchMutation.end_pos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.StretchMutation.positive_positions">
+<code class="descname">positive_positions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#StretchMutation.positive_positions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.StretchMutation.positive_positions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.mutate.Mutation.StretchMutation.start_pos">
+<code class="descname">start_pos</code><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.StretchMutation.start_pos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.mutate.Mutation.StretchMutation.stretch">
+<code class="descname">stretch</code><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.StretchMutation.stretch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.mutate.Mutation.TandemDuplication">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.mutate.Mutation.</code><code class="descname">TandemDuplication</code><span class="sig-paren">(</span><em>chromosome</em>, <em>genome</em>, <em>start_pos</em>, <em>end_pos</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#TandemDuplication"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.TandemDuplication" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.mutate.Mutation.StretchMutation" title="VirtualMicrobes.mutate.Mutation.StretchMutation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.mutate.Mutation.StretchMutation</span></code></a></p>
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.TandemDuplication.mutate">
+<code class="descname">mutate</code><span class="sig-paren">(</span><em>time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#TandemDuplication.mutate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.TandemDuplication.mutate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.TandemDuplication.reapply">
+<code class="descname">reapply</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#TandemDuplication.reapply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.TandemDuplication.reapply" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.TandemDuplication.rewind">
+<code class="descname">rewind</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#TandemDuplication.rewind"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.TandemDuplication.rewind" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="VirtualMicrobes.mutate.Mutation.Translocation">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.mutate.Mutation.</code><code class="descname">Translocation</code><span class="sig-paren">(</span><em>chromosome</em>, <em>genome</em>, <em>start_pos</em>, <em>end_pos</em>, <em>target_chrom</em>, <em>insert_pos</em>, <em>invert</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Translocation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Translocation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VirtualMicrobes.mutate.Mutation.StretchMutation" title="VirtualMicrobes.mutate.Mutation.StretchMutation"><code class="xref py py-class docutils literal"><span class="pre">VirtualMicrobes.mutate.Mutation.StretchMutation</span></code></a></p>
+<dl class="attribute">
+<dt id="VirtualMicrobes.mutate.Mutation.Translocation.insert_pos">
+<code class="descname">insert_pos</code><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Translocation.insert_pos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="VirtualMicrobes.mutate.Mutation.Translocation.invert">
+<code class="descname">invert</code><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Translocation.invert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.Translocation.mutate">
+<code class="descname">mutate</code><span class="sig-paren">(</span><em>time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Translocation.mutate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Translocation.mutate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.Translocation.positive_positions">
+<code class="descname">positive_positions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Translocation.positive_positions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Translocation.positive_positions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.Translocation.reapply">
+<code class="descname">reapply</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Translocation.reapply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Translocation.reapply" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="VirtualMicrobes.mutate.Mutation.Translocation.rewind">
+<code class="descname">rewind</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/mutate/Mutation.html#Translocation.rewind"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.mutate.Mutation.Translocation.rewind" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-VirtualMicrobes.mutate">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-VirtualMicrobes.mutate" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="VirtualMicrobes.mutate.test.html" class="btn btn-neutral float-right" title="VirtualMicrobes.mutate.test package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="VirtualMicrobes.event.html" class="btn btn-neutral" title="VirtualMicrobes.event package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Thomas Cuypers, Bram van Dijk.
+      Last updated on Oct 10, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
