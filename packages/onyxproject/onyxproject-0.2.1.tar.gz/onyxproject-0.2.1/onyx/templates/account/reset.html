@@ -1,0 +1,24 @@
+{% extends "layout/login.html" %}
+{% block body %}
+
+ <div class="login-page">
+ {% if mail == True %}
+  <form class="register-form" method=post action=""> 
+  <div class="form">  
+ 
+      <img style="max-width: 100%; height:250px; " src="{{ url_for('static' , filename='images/logo.png') }}">
+
+      <input type="email" id="email" name="email" class="input-xlarge"
+            placeholder="Adresse Email" value="{{ request.form.email }}"
+            required>
+
+      <button>Mot de passe oublié</button>
+ 
+    </form>
+  </div>
+  {% else %}
+  <h4>Pour retrouvez votre mot de passe demandez à votre administrateur de changer de mot de passe</h4>
+  {% endif %}
+
+</div>
+{% endblock %}

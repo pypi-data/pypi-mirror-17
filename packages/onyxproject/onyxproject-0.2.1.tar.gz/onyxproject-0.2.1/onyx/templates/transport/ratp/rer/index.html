@@ -1,0 +1,16 @@
+{% extends "layout/default.html" %}
+{% block body %} 
+  <div class="card-panel blue-grey lighten-4">
+	<form method="post" class="form-inline" action="" id="metro-list">
+     		 <label for="metroServiceStationForm_station">Nom du RER : </label> 
+
+     		 <select name="rerline" class="browser-default" >
+     		<option value="--Choisissez votre station--">--Choisissez votre RER--</option>
+			<option value="RA">RER A</option>
+			<option value="RB">RER B</option>	
+			</select>
+			<input type="submit" class="btn {{ buttonColor }}">
+</form>
+</div>
+
+{% endblock %}

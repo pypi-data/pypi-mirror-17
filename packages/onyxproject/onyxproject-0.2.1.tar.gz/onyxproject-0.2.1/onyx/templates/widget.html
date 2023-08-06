@@ -1,0 +1,160 @@
+{% extends "layout/default.html" %}
+{% block body %}
+
+
+   <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.gridster.js') }}"></script>
+  <script type="text/javascript" src="http://gridster.net/dist/jquery.gridster.js"></script>
+        
+    
+        </script>
+
+        <div class="clock_display" >
+        <div id="clock" class="dark">
+        <div class="display">
+            <div class="weekdays"></div>
+            <div class="ampm"></div>
+            <div class="alarm"></div>
+            <div class="digits"></div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+
+ <style type="text/css">
+        *  {
+  margin: 0;
+  padding: 0;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
+[hidden] { display: none; }
+
+
+
+.m_txt {
+    padding: 38px;
+}
+
+.m_txt p,
+.m_txt ul,
+.m_txt ol,
+.m_txt dl {
+    font-size: 1.6em;
+    text-shadow: 1px 0 0 #FFF;
+    padding-bottom: 2em;
+    line-height: 1.4em;
+}
+
+.m_txt ul li {
+    padding-bottom: 0.2em;
+}
+
+.m_txt :last-child:not(a) {
+    padding-bottom: 0;
+}
+
+.m_txt .gist {
+    margin-top: -10px;
+    margin-bottom: 40px;
+    font-size: 1.4em;
+    line-height: 1.3em;
+}
+
+.m_txt .heading-xl {
+    padding-top: 1em;
+}
+
+.m_txt dl {
+    padding-top: 10px;
+    padding-left: 30px;
+}
+
+.m_txt dt {
+    color: #333;
+    font-weight: bold;
+    padding-bottom:.4em;
+}
+
+.m_txt dt em{
+    color: #666666;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.m_txt dd {
+    padding-bottom: 1em;
+}
+
+.m_txt hr {
+    margin-bottom: 30px;
+    border-width: 1px 0 0 0 0;
+    border-top: 1px solid #CCC;
+}
+
+
+/* tags */
+
+.m_tags {
+    margin-bottom: 30px;
+}
+
+.m_tags li {
+    padding-bottom:4px;
+}
+
+.m_tags li,
+.m_tags a {
+    display: inline-block;
+}
+
+.m_tags li {
+    margin-right: 4px;
+}
+
+.m_tags a {
+    color: #666666;
+    font-size: 1.6em;
+    background: #FFF;
+    padding: .3em .6em;
+    text-decoration: none;
+}
+
+.m_tags a:hover {
+    color: #FFF;
+    background-color: #004756;
+}
+
+.gridster {
+    
+    margin: 0 auto;
+}
+
+.gridster .gs-w {
+    background: #FFF;
+    cursor: pointer;
+    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+.gridster .player {
+    -webkit-box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+}
+
+
+.gridster .preview-holder {
+    border: none!important;
+    border-radius: 0!important;
+    background: rgba(255,255,255,.2)!important;
+}
+
+
+
+
+
+    </style>
+
+{% endblock %}
+

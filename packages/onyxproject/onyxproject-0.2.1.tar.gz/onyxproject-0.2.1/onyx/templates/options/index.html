@@ -1,0 +1,17 @@
+{% extends "layout/default.html" %}
+{% block body %}
+
+	<h1>Options</h1>
+
+
+	{% if currentAdmin == 1 %}
+		<a href="{{ url_for('maj') }}" class="btn {{ buttonColor }}">Mettre à jour Onyx</a><br><br>
+		<a href="{{ url_for('accountdel') }}" class="btn {{ buttonColor }}">Supprimez des comptes</a>
+	{% endif %}
+
+
+{% endblock %}
+{% block script %}
+
+
+{% endblock %}

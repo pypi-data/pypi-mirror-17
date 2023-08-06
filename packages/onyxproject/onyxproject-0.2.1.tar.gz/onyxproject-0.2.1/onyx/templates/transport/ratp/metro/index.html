@@ -1,0 +1,32 @@
+{% extends "layout/default.html" %}
+{% block body %} 
+  <div class="card-panel blue-grey lighten-4">
+ <div class="browser-default col s12">
+	<form method="post" class="form-inline" action="" id="metro-list">
+     		 <label for="metroServiceStationForm_station">Nom du Metro : </label> 
+
+     		 <select name="metroline" class="browser-default">
+     		 <option value="--Choisissez votre station--">--Choisissez votre metro--</option>
+			<option value="M1">1</option>
+			<option value="M2">2</option>
+			<option value="M3">3</option>
+			<option value="M3b">3 bis</option>
+			<option value="M4">4</option>
+			<option value="M5">5</option>
+			<option value="M6">6</option>
+			<option value="M7">7</option>
+			<option value="M7b">7 bis</option>
+			<option value="M8">8</option>
+			<option value="M9">9</option>
+			<option value="M10">10</option>
+			<option value="M11">11</option>
+			<option value="M12">12</option>
+			<option value="M13">13</option>
+			<option value="M14">14</option>		
+			</select>
+			<input type="submit" class="btn {{ buttonColor }}">
+</form>
+</div>
+</div>
+
+{% endblock %}
