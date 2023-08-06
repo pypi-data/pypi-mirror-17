@@ -1,0 +1,14 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import sys
+from PyQt5 import QtWidgets
+from bubble.bclient import wbubblec
+
+app = QtWidgets.QApplication(sys.argv)
+app.setOrganizationName('Dubble')
+app.setOrganizationDomain('esrf.eu')
+app.setApplicationName('bubble')
+wbubble = wbubblec.WBubble()
+wbubble.show()
+sys.exit(app.exec_())
