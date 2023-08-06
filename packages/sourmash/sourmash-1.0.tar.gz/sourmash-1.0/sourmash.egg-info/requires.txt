@@ -1,0 +1,17 @@
+screed>=0.9
+PyYAML>=3.11
+
+[doc]
+sphinx
+
+[demo]
+jupyter
+jupyter_client
+ipython
+
+[test]
+pytest
+pytest-cov
+numpy
+matplotlib
+scipy
