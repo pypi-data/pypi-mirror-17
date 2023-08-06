@@ -1,0 +1,3 @@
+[console_scripts]
+sumchecker = sumchecker.sumchecker:cli
+
