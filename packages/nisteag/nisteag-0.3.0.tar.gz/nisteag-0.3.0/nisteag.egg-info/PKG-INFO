@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: nisteag
+Version: 0.3.0
+Summary: An implementation of recommendations from the NIST Electronic Authentication Guideline
+Home-page: https://github.com/yougov/nisteag
+Author: Diogo Baeder
+Author-email: diogo.baeder@yougov.com
+License: MIT
+Description: UNKNOWN
+Keywords: nist electronic authentication guideline password security
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Security
