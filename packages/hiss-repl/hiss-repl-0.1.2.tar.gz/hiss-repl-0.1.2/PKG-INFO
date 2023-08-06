@@ -1,0 +1,36 @@
+Metadata-Version: 1.1
+Name: hiss-repl
+Version: 0.1.2
+Summary: A simple and easily configured iPython-based python repl
+Home-page: https://github.com/sixninetynine/hiss
+Author: Loren Carvalho
+Author-email: me@loren.pizza
+License: MIT license
+Description: ===============================
+        hiss ( still a work in progress )
+        ===============================
+        
+        
+        .. image:: https://img.shields.io/pypi/v/hiss.svg
+                :target: https://pypi.python.org/pypi/hiss_repl
+        
+        
+        A simplified, stripped down iPython-based repl with sane defaults and easy dotfiles configuration
+        
+        
+        * Free software: MIT license
+        * Documentation: https://hiss.readthedocs.io.
+        
+Keywords: hiss
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
