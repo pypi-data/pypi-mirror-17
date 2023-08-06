@@ -1,0 +1,3 @@
+[console_scripts]
+expression-cli = j1bz.expression.scripts.expression:main
+
