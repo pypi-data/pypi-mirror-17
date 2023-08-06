@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: wagtail-hallo-plugins
+Version: 1.0.0
+Summary: A collection of plugins one can easily enable for wagtail's rich text editor - hallo.
+Home-page: https://gitlab.com/thelabnyc/wagtail_hallo_plugins
+Author: David Burke
+Author-email: david@thelabnyc.com
+License: Apache License
+Description: UNKNOWN
+Keywords: django wagtail hallo
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
