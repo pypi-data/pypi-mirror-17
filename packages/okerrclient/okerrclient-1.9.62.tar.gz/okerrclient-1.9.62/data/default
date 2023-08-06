@@ -1,0 +1,12 @@
+textid='MyName' # project TextID
+myname=`hostname`
+secret=''
+keypath="servers:$myname|conf:anyserver" 
+keyuser='client'
+keypass=''
+safebins="dpkg dig uname"
+customscript="/usr/local/bin/okerr-local" # optional, no problem if it's missing
+ocbin='/usr/local/bin/okerrclient'
+readfiles=""
+verbose="" # "" or "-v" for verbosity
+local_args=""
