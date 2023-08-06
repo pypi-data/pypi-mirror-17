@@ -1,0 +1,9 @@
+argh
+lxml
+requests
+requests-ntlm
+
+[test]
+pytest>=3.0.3
+flake8>=3.0.4
+coverage>=4.2
