@@ -1,0 +1,11 @@
+django_rsync_storage-0.0.5.dist-info/DESCRIPTION.rst,sha256=jg6t-n7cPSwl6Bgazvs1pZoXMtgPjK0ftT3yif5br4Y,451
+django_rsync_storage-0.0.5.dist-info/METADATA,sha256=DEYr8oj1wDUCxaoZN5wneMYJt6LnPV-KnqZT7aIwGqI,1213
+django_rsync_storage-0.0.5.dist-info/RECORD,,
+django_rsync_storage-0.0.5.dist-info/WHEEL,sha256=bee59qcPjkyXfMaxNWjl2CGotqfumWx9pC1hlVLr2mM,92
+django_rsync_storage-0.0.5.dist-info/metadata.json,sha256=vp82wAHoZ8tfC5CZsZJaFeKuMse0QheJ1qHNRE2beZc,911
+django_rsync_storage-0.0.5.dist-info/top_level.txt,sha256=GBwDLjJ03xGQzjiZCBT2hvzpsOBAFbF23kTiK0QruQ8,14
+rsync_storage/__init__.py,sha256=s3EslcHudXIIOqMpQvFa1QTGJKzg_eGLJ7rHGFk-jdw,30
+rsync_storage/rsync.py,sha256=7PgO35lFhTafHUW8zWWIAGkzNA2rvgaji8IGtW7fEWA,2031
+rsync_storage/settings.rsync_sample.py,sha256=CprCLv6yDGMTzWkQu89QPnG87iVqC2W0BWDuirIItMM,163
+rsync_storage/settings_rsync_sample.py,sha256=CprCLv6yDGMTzWkQu89QPnG87iVqC2W0BWDuirIItMM,163
+rsync_storage/tasks.py,sha256=p_ocwYkxWkRVZUuuWI556By2_pEAIEf6OgZ7vIHyKB0,901
