@@ -1,0 +1,96 @@
+Metadata-Version: 1.1
+Name: django-file-validator
+Version: 0.0.6
+Summary: Simple project to validate FileFields/ImageFields, like max size of uploaded files.
+Home-page: https://github.com/adrianoveiga/django-file-validator.git
+Author: Adriano Veiga
+Author-email: profpardal.88@gmail.com
+License: MIT
+Description: .. image:: https://travis-ci.org/adrianoveiga/django-file-validator.svg?branch=master
+            :target: https://travis-ci.org/adrianoveiga/django-file-validator
+        
+        .. image:: https://badge.fury.io/py/django-file-validator.svg
+            :target: https://badge.fury.io/py/django-file-validator
+        
+        
+        django-file-validator
+        ------------------------
+        
+        Simple project to validate FileFields/ImageFields, like max size of uploaded file.
+        
+        Until now, there is only one validator: MaxSizeValidator.
+        
+        NOT WORKING WITH NEW DJANGO 1.10.
+        
+        Dependencies
+        ------------
+        
+        - Django 1.8 or higher (not tested on previous versions) but lower than 1.10!!
+        
+        
+        Installation
+        ------------
+        
+        .. code-block:: python
+        
+           pip install django-file-validator
+        
+        
+        Usage
+        -----
+        
+        In your models, import and use MaxSizeValidator:
+        
+        .. code-block:: python
+        
+            from django_file_validator.validators import MaxSizeValidator
+        
+            class YourModel(models.Model):
+                
+                . . .
+        
+                image = models.ImageField( null=True, blank=True, upload_to='uploads/yourmodel/img/', validators=[MaxSizeValidator()])
+        
+                . . . 
+        
+        
+        You can change the max size value passing a parameter on each attibute:
+        
+        .. code-block:: python
+        
+            from django_file_validator.validators import MaxSizeValidator
+        
+            class YourModel(models.Model):
+                
+                . . .
+        
+                default_image = models.ImageField( null=True, blank=True, upload_to='uploads/yourmodel/img/', validators=[MaxSizeValidator()])
+                big_image = models.ImageField( null=True, blank=True, upload_to='uploads/yourmodel/img/', validators=[MaxSizeValidator(2048)])
+                small_image = models.ImageField( null=True, blank=True, upload_to='uploads/yourmodel/img/', validators=[MaxSizeValidator(256)])
+        
+                . . . 
+        
+        
+        
+        Configurations
+        --------------
+        
+        - FILE_SIZE_LIMIT_IN_KILOBYTES
+            You can change the default max size limit of uploaded files, just putting this variable on settings.py. Default value is 512 kB.
+        
+            .. code-block:: python
+                
+                FILE_SIZE_LIMIT_IN_KILOBYTES=512
+        
+        
+Keywords: django file validator max size upload
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
