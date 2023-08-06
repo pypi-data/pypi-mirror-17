@@ -1,0 +1,15 @@
+MANIFEST.in
+README.txt
+setup.py
+merge_spreadsheets.egg-info/PKG-INFO
+merge_spreadsheets.egg-info/SOURCES.txt
+merge_spreadsheets.egg-info/dependency_links.txt
+merge_spreadsheets.egg-info/entry_points.txt
+merge_spreadsheets.egg-info/requires.txt
+merge_spreadsheets.egg-info/top_level.txt
+src/__init__.py
+src/gui_merge_spreadsheets.py
+src/spreadsheets.py
+tests/__init__.py
+tests/example.xlsx
+tests/test_spreadsheets.py
