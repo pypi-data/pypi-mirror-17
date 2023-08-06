@@ -1,0 +1,31 @@
+Metadata-Version: 1.1
+Name: pyelastix
+Version: 1.1
+Summary: Python wrapper for the Elastix nonrigid registration toolkit
+Home-page: https://github.com/almarklein/pyelastix
+Author: Almar Klein
+Author-email: almar.klein@gmail.com
+License: MIT
+Description: 
+        PyElastix - Python wrapper for the Elastix nonrigid registration toolkit
+        
+        This Python module wraps the Elastix registration toolkit. For it to
+        work, the Elastix command line application needs to be installed on
+        your computer. You can obtain a copy at http://elastix.isi.uu.nl/.
+        Further, this module depends on numpy.
+        
+        https://github.com/almarklein/pyelastix
+        
+Keywords: image registration deformation nonrigid elastic elastix
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Provides: pyelastix
