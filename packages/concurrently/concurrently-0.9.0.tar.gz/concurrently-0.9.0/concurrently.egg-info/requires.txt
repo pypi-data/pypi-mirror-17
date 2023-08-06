@@ -1,0 +1,12 @@
+typing>=3.5.2
+
+[develop]
+tox
+pytest
+pytest-cov
+pytest-asyncio
+Sphinx
+gevent
+
+[gevent]
+gevent
