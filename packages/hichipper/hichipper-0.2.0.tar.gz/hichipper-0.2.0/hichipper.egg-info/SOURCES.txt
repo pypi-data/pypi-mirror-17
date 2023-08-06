@@ -1,0 +1,13 @@
+LICENSE.txt
+MANIFEST.in
+setup.cfg
+setup.py
+hichipper/__init__.py
+hichipper/cli.py
+hichipper.egg-info/PKG-INFO
+hichipper.egg-info/SOURCES.txt
+hichipper.egg-info/dependency_links.txt
+hichipper.egg-info/entry_points.txt
+hichipper.egg-info/not-zip-safe
+hichipper.egg-info/requires.txt
+hichipper.egg-info/top_level.txt
