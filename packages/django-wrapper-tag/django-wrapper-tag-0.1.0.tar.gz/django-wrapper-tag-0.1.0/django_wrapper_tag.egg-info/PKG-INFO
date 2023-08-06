@@ -1,0 +1,87 @@
+Metadata-Version: 1.1
+Name: django-wrapper-tag
+Version: 0.1.0
+Summary: Wrapping template tag for django
+Home-page: https://github.com/phonkee/django-wrapper-tag
+Author: Peter Vrba
+Author-email: phonkee@phonkee.eu
+License: MIT
+Description: =============================
+        wrapper_tag
+        =============================
+        
+        .. image:: https://badge.fury.io/py/django-wrapper-tag.png
+            :target: https://badge.fury.io/py/django-wrapper-tag
+        
+        .. image:: https://travis-ci.org/phonkee/django-wrapper-tag.png?branch=master
+            :target: https://travis-ci.org/phonkee/django-wrapper-tag
+        
+        Wrapping template tag for django
+        
+        Documentation
+        -------------
+        
+        The full documentation is at https://django-wrapper-tag.readthedocs.org.
+        
+        Quickstart
+        ----------
+        
+        Install wrapper_tag::
+        
+            pip install django-wrapper-tag
+        
+        Then use it in a project::
+        
+            import wrapper_tag
+        
+        Features
+        --------
+        
+        * TODO
+        
+        Running Tests
+        --------------
+        
+        Does the code actually work?
+        
+        ::
+        
+            source <YOURVIRTUALENV>/bin/activate
+            (myenv) $ pip install -r requirements_test.txt
+            (myenv) $ python runtests.py
+        
+        Credits
+        ---------
+        
+        Tools used in rendering this package:
+        
+        *  Cookiecutter_
+        *  `cookiecutter-djangopackage`_
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _`cookiecutter-djangopackage`: https://github.com/pydanny/cookiecutter-djangopackage
+        
+        
+        
+        
+        History
+        -------
+        
+        0.1.0 (2016-09-29)
+        ++++++++++++++++++
+        
+        * First release on PyPI.
+        
+Keywords: django-wrapper-tag
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.10
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
