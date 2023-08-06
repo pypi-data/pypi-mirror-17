@@ -1,0 +1,10 @@
+attrs
+funcsigs
+requests-mock
+
+[release]
+wheel
+zest.releaser
+
+[test]
+flake8
