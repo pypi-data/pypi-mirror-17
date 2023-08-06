@@ -1,0 +1,5 @@
+include LICENSE
+include ODBL
+include CHANGELOG
+include test/__init__.py
+include test/data/schwarzrheindorf.osm

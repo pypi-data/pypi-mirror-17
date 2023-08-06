@@ -1,0 +1,30 @@
+Changelog for OSMAlchemy
+========================
+
+0.1.1.post2
+-----------
+
+ * Fix test discovery
+
+0.1.1.post1
+-----------
+
+ * Include test data
+ * Include changelog in sdist
+ * Fix encoding bug in setup.py
+ * Fix major bug in OSM data importing
+ * Fix test suite execution
+
+0.1.post1
+---------
+
+ * Changes for PyPI and other tools
+   + Convert README to reStructuredText
+   + Move tests/ to test/
+ * Add credits to README
+ * Clean up some code
+
+0.1
+---
+
+ * Initial release
