@@ -1,0 +1,11 @@
+setup.cfg
+setup.py
+confipy/__init__.py
+confipy/converter.py
+confipy/parser.py
+confipy/reader.py
+confipy.egg-info/PKG-INFO
+confipy.egg-info/SOURCES.txt
+confipy.egg-info/dependency_links.txt
+confipy.egg-info/requires.txt
+confipy.egg-info/top_level.txt
