@@ -1,0 +1,29 @@
+Metadata-Version: 1.1
+Name: data-migration
+Version: 0.1
+Summary: lighweight, interoperable and simple data migration tool
+Home-page: https://git.canopsis.net/jvanglabeke/data_migration.git
+Author: lyly
+Author-email: julievangla@gmail.com
+License: GNU Affero General Public License v3
+Description: UNKNOWN
+Keywords: schema migration lightweight interoperability patch
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Natural Language :: French
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Utilities
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.0
+Classifier: Programming Language :: Python :: 3.1
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: CPython
