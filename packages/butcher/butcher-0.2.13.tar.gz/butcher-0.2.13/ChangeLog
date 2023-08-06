@@ -1,0 +1,116 @@
+CHANGES
+=======
+
+0.2.13
+------
+
+* More docs work
+* Fill in setup.cfg
+* Convert README from markdown to rst, because pypi
+* Of course there's one more
+* Cleanup old makefile and gems stuff
+* Fix markdown url syntax (why can't I ever remember this?)
+* README update
+* WIP, got it partially working again
+* WIP cleanup
+* re-namespace
+* Add the missing license info
+* Reformat to 4 space indents for some reason
+* Reconfigure to work without the commons repo
+* Handle ~ expansion in --map_repo paths
+* Whitespace and linter cleanups
+* v0.2.12: gendeb .changes files include epoch
+* Ignore deb *.changes and *.upload files
+* Release: 0.2.11
+* gendeb enhancements: ownership, metadata, etc
+* Move version number inside butcher's BUILD file
+* Butcher 0.2.10: Dump all rubygems manipulation
+* Package iteration bump: 0.2.9-2 release
+* Use bundler to manage the fpm installation
+* Add --outdir: butcher will put outputs there
+* Release: Butcher 0.2.7-1
+* Flatten glob()s directly into file lists
+* Filter to target and transitive deps when drawing
+* Butcher 0.2.6: packaging changes, bugfixes
+* Tweak genrule_test and genrule; move regexes
+* Filter bare directories out of srcs gathering
+* Gendeb now generates .changes files along with deb
+* Add rubygems wrapper module, install our own gems
+* Canonicalize directories given to --map_repo
+* Switch to using glob2 for extended globbing
+* Fixup: pants deps fix, kill graph.py, version bump
+* Move notes into a notes file, kill dead code
+* Mostly bugfixes, some new tweaks
+* Genrules: cmd var expansion, plus tests!
+* Don't exit 0 unless the build was successful!
+* Provide a method of bootstrapping with make
+* Bugfix: gendeb extra_requires works now
+* Bring 3rdparty deps definitions into this repo
+* Add .gitreview
+* Dedupe cached objects by their sha1 checksum
+* Default BUILD rather than OCS_BUILD.data filename
+* Beginnings of a readme file with release notes
+* Remove redundant input checks, add homepage line
+* Implemented maintainer scripts support in gendeb
+* config files in pkgfilegroups work in gendebs now
+* Made gendeb work! Still missing some features
+* Speed optimizations: cache metahash, use hardlinks
+* Bugfix: pkgfilegroup now works in module subdirs
+* New command: butcher rebuild
+* pkgfilegroup now mostly functional
+* Progress on gendeb, validation, pkg_symlink
+* Begin implementing gendeb
+* PYTHON BUILDFILES WORK NOW
+* inching along on internal dsl
+* WIP: implementing internal DSL for build files
+* pkgfilegroup works w/relative rule addresses now
+* Return [] instead of None for outputs
+* Rename directory: buildy -> butcher
+* New rule type: filegroup
+* Caching is ready for action
+* Begin implementing cache retrieval. Unfinished
+* List paths to the final output files at completion
+* Add a simple address.new() for neater invocation
+* pkgfilegroup works!
+* Rename BuildTarget to Address. Seems clearer
+* Progress toward getting pkgfilegroup working
+* More hacking on things
+* New stuff, new fixes, new bugs
+* Started adding object caching. And various fixes
+* GENRULE WORKS NOW OMFG
+* Inch genrule ever closer to working correctly
+* Kill off the dead nodes module
+* Remove spurious prints and dead imports
+* genrule targets might actually work now!
+* Slightly neater debug output from Build()
+* Almost ready to *actually* build things
+* Started implementing build rules
+* Wednesday iteration:
+* WIP: Starting on a python-based BUILD and builder
+* Add :all virtual nodes, start implementing Build()
+* Bugfix: Correctly compose dependency addresses
+* Graph and git improvements
+* UI improvements
+* Fix: works without any pinned repos again
+* blahblah fixing things. also drawing graphs
+* Finished refactor of dependency graph crazyshit!
+* Non-working checkpoint
+* Tuesday checkpoint 3
+* Tuesday checkpoint 2
+* Monday night checkpoint
+* Monday checkpoint 2: new Target class
+* Monday checkpoint
+* Continuing saga
+* WIP build system experimentation
+* UI improvements
+* Fix: works without any pinned repos again
+* blahblah fixing things. also drawing graphs
+* Finished refactor of dependency graph crazyshit!
+* Non-working checkpoint
+* Tuesday checkpoint 3
+* Tuesday checkpoint 2
+* Monday night checkpoint
+* Monday checkpoint 2: new Target class
+* Monday checkpoint
+* Continuing saga
+* WIP build system experimentation
