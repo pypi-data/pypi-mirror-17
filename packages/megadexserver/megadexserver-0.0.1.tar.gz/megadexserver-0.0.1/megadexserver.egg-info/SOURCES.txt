@@ -1,0 +1,10 @@
+MANIFEST.in
+setup.py
+bin/megadex-server
+megadexserver/__init__.py
+megadexserver/megadex.py
+megadexserver.egg-info/PKG-INFO
+megadexserver.egg-info/SOURCES.txt
+megadexserver.egg-info/dependency_links.txt
+megadexserver.egg-info/requires.txt
+megadexserver.egg-info/top_level.txt
