@@ -1,0 +1,10 @@
+MANIFEST.in
+setup.py
+bad_functions/dummy.py
+bad_functions/funcs.c
+bad_functions/funcs.h
+bad_functions/funcs_module.c
+bad_functions.egg-info/PKG-INFO
+bad_functions.egg-info/SOURCES.txt
+bad_functions.egg-info/dependency_links.txt
+bad_functions.egg-info/top_level.txt
