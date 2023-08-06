@@ -1,0 +1,10 @@
+
+#notebook_name {
+  font-family: "Sorts Mill Goudy", Garamond, Palatino, serif;
+  font-variant: small-caps;
+  letter-spacing: 0.15em;
+}
+
+div.text_cell.rendered {
+  font-family: "Sorts Mill Goudy", Garamond, Palatino, serif;
+}

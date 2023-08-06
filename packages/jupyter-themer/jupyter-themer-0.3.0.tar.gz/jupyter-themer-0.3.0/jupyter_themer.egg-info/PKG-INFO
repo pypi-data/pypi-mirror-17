@@ -1,0 +1,18 @@
+Metadata-Version: 1.0
+Name: jupyter-themer
+Version: 0.3.0
+Summary: Custom CSS themer for jupyter notebooks
+Home-page: https://github.com/transcranial/jupyter-themer
+Author: Leon Chen
+Author-email: lchen3@gmail.com
+License: MIT
+Description: Apply custom CSS styling to your jupyter notebooks.
+        
+        Mix and match themes by:
+        
+        - color
+        - layout
+        - typography
+        
+Keywords: jupyter,ipython,notebook,themes,css
+Platform: UNKNOWN

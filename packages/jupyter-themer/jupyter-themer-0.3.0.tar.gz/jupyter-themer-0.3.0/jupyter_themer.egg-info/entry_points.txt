@@ -1,0 +1,3 @@
+[console_scripts]
+jupyter-themer = jupythemer.jupythemer:run
+
