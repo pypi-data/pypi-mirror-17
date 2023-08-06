@@ -1,0 +1,373 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VirtualMicrobes.post_analysis package &mdash; Virtual Microbes Evolutionary Simulator 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Virtual Microbes Evolutionary Simulator 0.1.0 documentation" href="../index.html"/>
+        <link rel="up" title="VirtualMicrobes package" href="VirtualMicrobes.html"/>
+        <link rel="next" title="VirtualMicrobes.simulation package" href="VirtualMicrobes.simulation.html"/>
+        <link rel="prev" title="VirtualMicrobes.plotting package" href="VirtualMicrobes.plotting.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Virtual Microbes Evolutionary Simulator
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="VirtualMicrobes.html">VirtualMicrobes package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="VirtualMicrobes.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="VirtualMicrobes.Tree.html">VirtualMicrobes.Tree package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VirtualMicrobes.cython_gsl_interface.html">VirtualMicrobes.cython_gsl_interface package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VirtualMicrobes.data_tools.html">VirtualMicrobes.data_tools package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VirtualMicrobes.environment.html">VirtualMicrobes.environment package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VirtualMicrobes.event.html">VirtualMicrobes.event package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VirtualMicrobes.mutate.html">VirtualMicrobes.mutate package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VirtualMicrobes.my_tools.html">VirtualMicrobes.my_tools package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VirtualMicrobes.plotting.html">VirtualMicrobes.plotting package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">VirtualMicrobes.post_analysis package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#virtualmicrobes-post-analysis-lod-module">VirtualMicrobes.post_analysis.lod module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-VirtualMicrobes.post_analysis.network_funcs">VirtualMicrobes.post_analysis.network_funcs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-VirtualMicrobes.post_analysis.network_properties">VirtualMicrobes.post_analysis.network_properties module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-VirtualMicrobes.post_analysis">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="VirtualMicrobes.simulation.html">VirtualMicrobes.simulation package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VirtualMicrobes.virtual_cell.html">VirtualMicrobes.virtual_cell package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="VirtualMicrobes.html#module-VirtualMicrobes">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Virtual Microbes Evolutionary Simulator</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="VirtualMicrobes.html">VirtualMicrobes package</a> &raquo;</li>
+      
+    <li>VirtualMicrobes.post_analysis package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/reference/VirtualMicrobes.post_analysis.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="virtualmicrobes-post-analysis-package">
+<h1>VirtualMicrobes.post_analysis package<a class="headerlink" href="#virtualmicrobes-post-analysis-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="virtualmicrobes-post-analysis-lod-module">
+<h2>VirtualMicrobes.post_analysis.lod module<a class="headerlink" href="#virtualmicrobes-post-analysis-lod-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-VirtualMicrobes.post_analysis.network_funcs">
+<span id="virtualmicrobes-post-analysis-network-funcs-module"></span><h2>VirtualMicrobes.post_analysis.network_funcs module<a class="headerlink" href="#module-VirtualMicrobes.post_analysis.network_funcs" title="Permalink to this headline">¶</a></h2>
+<p>Created on Feb 18, 2016</p>
+<p>&#64;author: thocu</p>
+<dl class="function">
+<dt id="VirtualMicrobes.post_analysis.network_funcs.prune_GRN">
+<code class="descclassname">VirtualMicrobes.post_analysis.network_funcs.</code><code class="descname">prune_GRN</code><span class="sig-paren">(</span><em>grn</em>, <em>log_dif_effect=0.5</em>, <em>rescue_regulated=True</em>, <em>iterative=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/network_funcs.html#prune_GRN"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.network_funcs.prune_GRN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-VirtualMicrobes.post_analysis.network_properties">
+<span id="virtualmicrobes-post-analysis-network-properties-module"></span><h2>VirtualMicrobes.post_analysis.network_properties module<a class="headerlink" href="#module-VirtualMicrobes.post_analysis.network_properties" title="Permalink to this headline">¶</a></h2>
+<p>Created on Feb 9, 2016</p>
+<p>&#64;author: thocu</p>
+<dl class="class">
+<dt id="VirtualMicrobes.post_analysis.network_properties.PhyloGeneticAnalysis">
+<em class="property">class </em><code class="descclassname">VirtualMicrobes.post_analysis.network_properties.</code><code class="descname">PhyloGeneticAnalysis</code><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/network_properties.html#PhyloGeneticAnalysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.network_properties.PhyloGeneticAnalysis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Analyze biological networks</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.post_analysis.network_properties.calculate_overlap">
+<code class="descclassname">VirtualMicrobes.post_analysis.network_properties.</code><code class="descname">calculate_overlap</code><span class="sig-paren">(</span><em>tf_connections</em>, <em>connections_of_homologous_tfs</em>, <em>closest_bound_homologs_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/network_properties.html#calculate_overlap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.network_properties.calculate_overlap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the overlap in bound genes between tf homologs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tf_connections</strong> (list of <code class="xref py py-class docutils literal"><span class="pre">virtual_cell.Gene.Gene</span></code>) &#8211; Downstream connections of the reference TF</li>
+<li><strong>connections_of_homologous_tfs</strong> (list of sets of :class:<a href="#id1"><span class="problematic" id="id2">`</span></a>virtual_cell.Gene.Gene`s) &#8211; List of sets of downstream genes for each homolog of the reference TF</li>
+<li><strong>closest_bound_homologs_dict</strong> (dict of sets of :class:<a href="#id3"><span class="problematic" id="id4">`</span></a>virtual_cell.Gene.Gene`s) &#8211; Mapping of each original downstream gene of the reference TF to sets of
+homologs of these downstream genes.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple of fractions:
+[0]: Fraction of downstream genes who&#8217;s homologs are bound by a homolog of
+the reference TF.
+[1]: Fraction of new connections (averaged over tf homologs) per original
+connection of the reference TF.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float,float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.post_analysis.network_properties.find_homolog_distances">
+<code class="descclassname">VirtualMicrobes.post_analysis.network_properties.</code><code class="descname">find_homolog_distances</code><span class="sig-paren">(</span><em>gene</em>, <em>genome</em>, <em>closest_homolog=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/network_properties.html#find_homolog_distances"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.network_properties.find_homolog_distances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find homologs and their distance for a gene in a target genome.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>gene</strong> (<code class="xref py py-class docutils literal"><span class="pre">virtual_cell.GenomicElement.GenomicElement</span></code>) &#8211; Reference gene for homology search.</li>
+<li><strong>genome</strong> (<code class="xref py py-class docutils literal"><span class="pre">virtual_cell.Genome.Genome</span></code>) &#8211; Genome in which to search for homologs.</li>
+<li><strong>closest_homolog</strong> (<em>bool</em>) &#8211; Flag to filter found homologs to those that have the shortest
+phylogenetic distance to the <cite>gene</cite>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.post_analysis.network_properties.find_homologs">
+<code class="descclassname">VirtualMicrobes.post_analysis.network_properties.</code><code class="descname">find_homologs</code><span class="sig-paren">(</span><em>gene</em>, <em>genome</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/network_properties.html#find_homologs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.network_properties.find_homologs" title="Permalink to this definition">¶</a></dt>
+<dd><p>For a gene, find all its homologs in a given genome.</p>
+<p>This is a naive approach that uses a combination of the gene&#8217;s type and its
+<code class="xref py py-class docutils literal"><span class="pre">virtual_cell.Identifier.Identifier</span></code> attribute to detect common
+descent.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>gene</strong> (<code class="xref py py-class docutils literal"><span class="pre">virtual_cell.GenomicElement.GenomicElement</span></code>) &#8211; Reference gene for homology search.</li>
+<li><strong>genome</strong> (<code class="xref py py-class docutils literal"><span class="pre">virtual_cell.Genome.Genome</span></code>) &#8211; Genome in which to search for homologs.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The set of homologs of <cite>gene</cite> in the <cite>genome</cite>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="VirtualMicrobes.my_tools.html#VirtualMicrobes.my_tools.monkey.TransformWrapper.set" title="VirtualMicrobes.my_tools.monkey.TransformWrapper.set">set</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="VirtualMicrobes.post_analysis.network_properties.tf_binding_overlap">
+<code class="descclassname">VirtualMicrobes.post_analysis.network_properties.</code><code class="descname">tf_binding_overlap</code><span class="sig-paren">(</span><em>cell1</em>, <em>cell2</em>, <em>closest_homolog=False</em>, <em>no_phylogeny=False</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/VirtualMicrobes/post_analysis/network_properties.html#tf_binding_overlap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VirtualMicrobes.post_analysis.network_properties.tf_binding_overlap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Measure the overlap in target genes for tf homologs in phylogenetically
+related individuals.</p>
+<dl class="docutils">
+<dt>cell1</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier"><code class="xref py py-class docutils literal"><span class="pre">virtual_cell.Cell.Cell</span></code></span><dd>Reference individual for which to find homologs</dd>
+<dt>cell2</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier"><code class="xref py py-class docutils literal"><span class="pre">virtual_cell.Cell.Cell</span></code></span><dd>Homologs of TFs and downstream targets will be detected in this individual.</dd>
+<dt>closest_homolog</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">bool</span><dd>Flag to filter found homologs to those that have the shortest
+phylogenetic distance to the <cite>gene</cite>.</dd>
+<dt>verbose</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">bool</span><dd>Print messages about homologs found.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Mapping from <code class="xref py py-class docutils literal"><span class="pre">virtual_cell.Gene.TranscriptionFactor</span></code> to (maximum)
+binding overlap score.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-VirtualMicrobes.post_analysis">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-VirtualMicrobes.post_analysis" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="VirtualMicrobes.simulation.html" class="btn btn-neutral float-right" title="VirtualMicrobes.simulation package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="VirtualMicrobes.plotting.html" class="btn btn-neutral" title="VirtualMicrobes.plotting package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Thomas Cuypers, Bram van Dijk.
+      Last updated on Oct 07, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

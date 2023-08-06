@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<META HTTP-EQUIV="refresh" CONTENT="10">
+</head>
+<body>
+<!-- external svg -->
+<center><font family="verdana" style="font-size:50pt"> Vermicelli </font><br></center>
+<center>
+<table style="width:1350pt" border=0>
+<tr>
+<td align="center" valign="top" colspan=1>
+<center><font family="verdana" style="font-size:20pt"> Population Stats </font><br>
+<object type="image/svg+xml" data="./population stats/population_stats.svg" width=800>
+<img src="empty.svg" />
+</object>
+</center>
+</td>
+<td align="center">
+
+<center><font family="verdana" style="font-size:20pt"> GRN </font><br>
+<object type="image/svg+xml" data="./GRN/GRN.svg" width=400>
+<img src="empty.svg" />
+</object>
+</center>
+
+
+<table>
+
+<tr>
+
+<td align="center">
+<center><font family="verdana" style="font-size:20pt"> Metabolome </font><br></center>
+<object type="image/svg+xml" data="./Metabolome/Metabolome.svg" width=300>
+<img src="empty.svg" />
+</object>
+</td>
+
+<td align="center">
+<center><font family="verdana" style="font-size:20pt"> Pan Metabolome </font><br></center>
+<object type="image/svg+xml" data="./Metabolome/Metabolome_pan.svg" width=300>
+<img src="empty.svg" />
+</object>
+</td>
+
+</tr>
+
+</table>
+
+</td>
+</tr>
+
+<tr>
+<td align="center">
+<center><font family="verdana" style="font-size:20pt"> time course </font><br>
+<object type="image/svg+xml" data="./time course/time_course.svg" width=800>
+<img src="empty.svg" />
+</object>
+</center>
+</td>
+
+<td align="center" valign="top">
+<center><font family="verdana" style="font-size:20pt"> Species phylogeny </font><br></center>
+<object type="image/png" data="./PhyloTree/PhyloTree.png" width=400>
+<img src="empty.svg" />
+</object>
+</td>
+</tr>
+<tr>
+
+
+</tr>
+</table>
+</center>
+</body>
+</html>

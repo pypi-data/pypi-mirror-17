@@ -1,0 +1,69 @@
+<html>
+<head>
+	<!-- Dygraph library -->
+	<script type="text/javascript" src="dygraph-combined-dev.js"></script>
+	<script type="text/javascript" src="synchronizer.js"></script>
+	<!-- JQUERY -->
+	<script type="text/javascript" src="jquery.js"></script>
+
+
+	<title> Virtual cell ecology </title>
+	<link href="viewer.css" rel="stylesheet">
+</head>
+<body >
+	<center>
+	<div class="title-banner"> <center><p class="title">Diversity stats</p></center><script src="drawmenu.js"></script></div>
+
+<!-- Help thingy start -->
+<div class="help">?</div>
+<br>
+
+<div align="center" class="description">On this page, diversity related data is displayed.<br><br>Drag to zoom, and double-click to zoom out. </div>
+<!-- Help thingy end -->
+
+<br><br>
+
+
+
+
+	<!-- Very often, this species graph is too heavy. Therefor it has been removed. It can now be requested seperately if needed. -->
+	<!-- Species 
+	<div id="wrapper" style="display:inline-block;">
+	<div id="graph_spec" style="width:1400px; height:300px;"></div>
+	<div id="legend_spec"  style="width:1400px; height:20px;align:center;visibility:hidden;"></div>
+	</div> 
+	-->
+
+	<!-- Import counts -->
+	<div id="wrapper" style="display:inline-block;">
+	<div id="graph_import_counts" style="width:1400px; height:300px;"></div>
+	<div id="legend_import_counts"  style="width:1400px; height:40px;align:center;visibility:auto;"></div>
+	</div>
+
+	<!-- Conversion counts -->
+	<div id="wrapper" style="display:inline-block;">
+	<div id="graph_conversion_counts" style="width:1400px; height:300px;"></div>
+	<div id="legend_conversion_counts"  style="width:1400px; height:40px;align:center;visibility:auto;"></div>
+	</div>
+
+	<!-- Export counts -->
+	<div id="wrapper" style="display:inline-block;">
+	<div id="graph_export_counts" style="width:1400px; height:300px;"></div>
+	<div id="legend_export_counts"  style="width:1400px; height:40px;align:center;visibility:auto;"></div>
+	</div>
+
+
+	<script type="text/javascript">
+	gs = []; 			// Empty vector of graphs (used to store them for synchronization)
+	var blockRedraw = false;	// Used for synchronization of zooming
+	var initialized = false;	// "	"	"	"	"
+	</script>
+	
+
+
+	<script type="text/javascript" src="conversions.js"></script>
+	<script type="text/javascript" src="import.js"></script>
+	<script type="text/javascript" src="export.js"></script>
+
+</body>
+</html>
