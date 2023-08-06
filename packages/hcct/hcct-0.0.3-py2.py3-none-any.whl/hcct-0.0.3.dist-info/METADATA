@@ -1,0 +1,17 @@
+Metadata-Version: 2.0
+Name: hcct
+Version: 0.0.3
+Summary: A plugin for Hachi to detect contacts.
+Home-page: https://github.com/guokr/Hachi
+Author: MomingCoder
+Author-email: a398445075@gmail.com
+License: MIT
+Keywords: filter,Hachi,plugin,contact
+Platform: UNKNOWN
+Classifier: Topic :: Text Processing
+Requires-Dist: cnprep
+Requires-Dist: xpinyin
+
+UNKNOWN
+
+
