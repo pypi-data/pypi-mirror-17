@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Exordium Music Library &mdash; Exordium 1.0.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Exordium 1.0.0 documentation" href="#"/>
+        <link rel="next" title="Assumptions and Limitations" href="assumptions_limitations.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> Exordium
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Exordium Music Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assumptions_limitations.html">Assumptions and Limitations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="screenshots.html">Screenshots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wsgi_deployments.html">WSGI Deployment Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">Migration from Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apache_deployment_howto.html">CentOS 7 Apache/WSGI Deployment HOWTO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="#">Exordium</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="#">Docs</a> &raquo;</li>
+      
+    <li>Exordium Music Library</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="toctree-wrapper compound">
+</div>
+<div class="section" id="exordium-music-library">
+<h1>Exordium Music Library<a class="headerlink" href="#exordium-music-library" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Exordium is a read-only web-based music library system for Django.
+Exordium will read mp3 and ogg files from the host filesystem and provide
+an online interface to browse, download (as zipfiles or otherwise), and
+stream.</p>
+<p>The HTML5 media player <a class="reference external" href="http://jplayer.org/">jPlayer</a> is used to provide
+arbitrary streaming of music.</p>
+<div class="figure align-center" id="id1">
+<img alt="Exordium Main Screen" src="_images/main_thumb.png" />
+<p class="caption"><span class="caption-text">Exordium Main Screen</span></p>
+</div>
+<p>Exordium was built with a very specific set of operational goals and does
+not attempt to be a generic library suitable for widespread use.  There are,
+in fact, no configuration options beyond those to define the file paths/URLs
+necessary for basic usage.  Patches to add/change functionality will be
+happily received so long as they don&#8217;t interfere with or disable the current
+functionality by default, but there is no internal development goal to make
+Exordium a generic solution.</p>
+</div>
+<div class="section" id="download">
+<h2>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+<p>Exordium sourcecode is hosted at <a class="reference external" href="https://github.com/apocalyptech/exordium/">GitHub</a>.</p>
+<p>Sourcecode and <a class="reference external" href="https://pypi.python.org/pypi/wheel">Wheel</a> distributions are
+available at both PyPI and Github:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://pypi.python.org/pypi/django-exordium/">https://pypi.python.org/pypi/django-exordium/</a></li>
+<li><a class="reference external" href="https://github.com/apocalyptech/exordium/releases">https://github.com/apocalyptech/exordium/releases</a></li>
+</ul>
+</div></blockquote>
+<p>Documentation is included in the project&#8217;s <code class="docutils literal"><span class="pre">docs/</span></code> directory, but
+is also uploaded to:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="http://apocalyptech.com/exordium/">http://apocalyptech.com/exordium/</a></li>
+<li><a class="reference external" href="http://exordium.readthedocs.io/">http://exordium.readthedocs.io/</a></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="detailed-documentation">
+<h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="assumptions_limitations.html"><span class="doc">Assumptions and Limitations</span></a> provides information about
+how Exordium does things, and would be a good place to determine if
+Exordium is a good operational fit for the kind of web library
+app you&#8217;re looking for.</p>
+<p><a class="reference internal" href="screenshots.html"><span class="doc">Screenshots</span></a> contains screenshots of all of Exordium&#8217;s main
+pages, and is probably the best place to look to get a feel for how
+Exordium operates from a user perspective.</p>
+<p>See <a class="reference internal" href="requirements.html"><span class="doc">Requirements</span></a> for Exordium&#8217;s requirements, <a class="reference internal" href="quick_start.html"><span class="doc">Quick Start</span></a>
+for installation instructions onto an existing Django project, and
+<a class="reference internal" href="administration.html"><span class="doc">Administration</span></a> for information on administration and library
+upkeep.</p>
+<p>If deploying via Apache, <a class="reference internal" href="wsgi_deployments.html"><span class="doc">WSGI Deployment Issues</span></a> contains some information
+that might be useful.  <a class="reference internal" href="apache_deployment_howto.html"><span class="doc">CentOS 7 Apache/WSGI Deployment HOWTO</span></a> is a complete guide to
+how Django is deployed for my own use.</p>
+</div>
+<div class="section" id="other-information">
+<h2>Other Information<a class="headerlink" href="#other-information" title="Permalink to this headline">¶</a></h2>
+<p>The name &#8220;Exordium&#8221; comes from the fictional technology of the same name in
+Alastair Reynolds&#8217; &#8220;Revelation Space&#8221; novels.  It&#8217;s not a perfect name for
+the app, given that the Revelation Space <em>Exordium</em> would make a pretty
+lousy music library, but at least there&#8217;s some element of data storage and
+retrieval.  Exordium the <em>web-based music library</em>, as opposed to its
+fictional counterpart, is only capable of retrieving music which has been
+imported to it in the past.  I&#8217;ll be sure to contact all the major news
+organizations if I figure out a way to get it to retrieve music stored in the
+future.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="assumptions_limitations.html" class="btn btn-neutral float-right" title="Assumptions and Limitations" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, CJ Kucera.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

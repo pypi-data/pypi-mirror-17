@@ -1,0 +1,369 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Assumptions and Limitations &mdash; Exordium 1.0.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Exordium 1.0.0 documentation" href="index.html"/>
+        <link rel="next" title="Requirements" href="requirements.html"/>
+        <link rel="prev" title="Exordium Music Library" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Exordium
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Exordium Music Library</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Assumptions and Limitations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#assumptions">Assumptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#limitations">Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="screenshots.html">Screenshots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wsgi_deployments.html">WSGI Deployment Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">Migration from Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apache_deployment_howto.html">CentOS 7 Apache/WSGI Deployment HOWTO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Exordium</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Assumptions and Limitations</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/assumptions_limitations.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="assumptions-and-limitations">
+<h1>Assumptions and Limitations<a class="headerlink" href="#assumptions-and-limitations" title="Permalink to this headline">¶</a></h1>
+<p>As mentioned on the main page, Exordium does not really attempt to be
+a general-purpose web music library suitable for widespread use.  The
+only configuration options currently available are those necessary for
+basic operation.  Exordium was bourne out of my persistent
+dissatisfaction with existing web music library applications.  I&#8217;ve
+been using various library applications over the years but have always
+ended up maintaining my own patchsets to alter their behavior to suit
+what I like, and in the end I figured it would be more rewarding to
+just write my own.</p>
+<p>So, Exordium represents essentially my own personal ideal of a web
+music library application, and its design decisions and operational
+goals reflect a very specific set of requirements: my own.  If your
+ideal music library differs from my own in even moderate ways, other
+music library apps are much more likely to be to your liking.</p>
+<p>I would, of course, be happy to accept patches which add, extend, or
+modify Exordium behavior, so long as the current functionality remains
+the default.  I certainly don&#8217;t actually <em>expect</em> any patches, of course,
+given that Exordium&#8217;s target market is exactly one individual.</p>
+<div class="section" id="assumptions">
+<h2>Assumptions<a class="headerlink" href="#assumptions" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Except for the Javascript necessary to hook into jPlayer, all content is
+generated server-side.  There is no other Javascript, and the application is
+quite usable from text-based browsers.</p>
+</li>
+<li><p class="first">Music files must be accessible via the local filesystem on which Django
+is running, and stored as either mp3 or ogg vorbis.</p>
+</li>
+<li><p class="first">The entire music library must be available from a single directory
+prefix.  If subdirs of this root dir span multiple volumes (or network
+mounts), that&#8217;s fine, but there is NO support for multiple libraries in
+Exordium.</p>
+</li>
+<li><p class="first">All music files (and album art) are managed outside of Exordium.  Exordium
+itself will never attempt to write to your library directory for any reason.
+It requires read access only.  (Write access to a directory on the filesystem
+is required for zipfile downloads, but that directory need not be in your
+music library.)</p>
+</li>
+<li><p class="first">Music files should be, in general, arranged scrupulously: All files
+within a single directory belong to the same album, and an album should
+never span multiple directories.  There&#8217;s actually plenty of wiggle room
+here, and Exordium should correctly deal with directories full of
+&#8220;miscellaneous&#8221; files, etc, but in general the library should be
+well-ordered and have albums contained in their own directories.  This
+becomes more important when rearranging your filesystem layout or
+updating music with fresh tags.</p>
+<ul class="simple">
+<li>Directory containment is the primary method through which Various Artists
+albums are collated.  A group of files in the same directory with different
+artists but the same album name will be sorted into a single &#8220;Various&#8221;
+album containing all those tracks.  Conversely, if an album name is shared
+by tracks from different directories (each dir&#8217;s files with a different
+artist name), multiple albums will be created.</li>
+<li>Tracks without an album tag will be sorted into a &#8220;virtual&#8221; album entitled
+&#8220;Non-Album Tracks: Band Name&#8221; - this is the one case where it&#8217;s expected that
+this virtual &#8220;album&#8221; might span multiple directories.</li>
+</ul>
+</li>
+<li><p class="first">The artwork for albums should be contained in gif/jpg/png files stored
+alongside the mp3s/oggs, or in the immediate parent folder (in the case
+of multi-disc albums, for instance).  Filenames which start with &#8220;cover&#8221;
+will be preferred over other graphics in the directory.</p>
+</li>
+<li><p class="first">Artwork thumbnails will be stored directly in Django&#8217;s database, in
+blatant disregard for Django best practices.  IMO the benefits far
+outweigh the performance concerns, given the scale of data involved.</p>
+</li>
+<li><p class="first">Music files should be available directly via HTTP/HTTPS, using the same
+directory structure as the library.  This does not have to be on the same
+port or even server as Django, but the direct download and streaming
+functionality rely on having a direct URL to the files.  Album downloads
+via zipfiles will still work even if this is not the case.</p>
+</li>
+<li><p class="first">Album zipfile downloads, similarly, require that the zipfile directory be
+accessible directly over the web.  As with the music files, this does not
+need to be on the same port or even server as Django, but Django will not
+serve the zipfile itself.  The reason for this is that I want zipfile
+downloads to be easily resumable in the event they&#8217;re accidentally
+cancelled before they&#8217;re finished.  The text on the download page
+mentions that zipfiles are kept for around 48 hours, but that cleanup is
+actually not a function of Exordium itself.  Instead, I just have a
+cronjob set on the box like so:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="mi">2</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">find</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">audio</span><span class="o">/</span><span class="n">exordiumzips</span> <span class="o">-</span><span class="nb">type</span> <span class="n">f</span> <span class="o">-</span><span class="n">name</span> <span class="s2">&quot;*.zip&quot;</span> <span class="o">-</span><span class="n">mtime</span> <span class="o">+</span><span class="mi">2</span> <span class="o">-</span><span class="nb">print</span> <span class="o">-</span><span class="n">exec</span> <span class="n">unzip</span> <span class="o">-</span><span class="n">v</span> <span class="p">{}</span> \<span class="p">;</span> <span class="o">-</span><span class="n">exec</span> <span class="n">rm</span> <span class="p">{}</span> \<span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Tags for information commonly associated with classical music are
+supported, namely: Group/Ensemble, Conductor, and Composer.  <em>(For ID3
+tags: TPE2, TPE3, and TCOM, respectively.  In Ogg Vorbis, the more
+sensible ENSEMBLE, CONDUCTOR, and COMPOSER.)</em>  Albums will still be
+defined by their main Artist/Album association, though, and Artist is
+always a required field, whereas Group/Conductor/Composer are all
+optional.  Internally, these are all stored as &#8220;artists,&#8221; and Exordium
+should do the right thing and show you all albums containing an artist,
+whether they showed up as an Artist or as an Ensemble, for instance.</p>
+</li>
+<li><p class="first">There are many live concert recordings in my personal library, which I&#8217;ve
+uniformly tagged with an album name starting with &#8220;YYYY.MM.DD - Live&#8221;.
+Given the volume of these albums, Exordium will automatically tag any
+album matching that name as a &#8220;live&#8221; album.  <em>(Dashes and underscores are
+also acceptable inbetween the date components.)</em>  By default, Exordium
+will hide those live albums from its display, since they otherwise often
+get in the way.  A checkbox is available in the lefthand column to turn
+on live album display, though, and it can be toggled at any time.</p>
+</li>
+<li><p class="first">The &#8220;addition date&#8221; of albums into the library is an important data point;
+Exordium&#8217;s main view is the twenty most recently-added albums.  To that
+point, updates of the music files will allow the album records to be
+updated while keeping the addition time intact.  Some specific cases in
+which this is ensured:</p>
+<ul class="simple">
+<li>Fixing typos in album names / artist names</li>
+<li>Moving music files from one directory to another</li>
+</ul>
+<p>Combining the two may, however, result in the album being deleted from
+the library and then re-added.  If the tags on a collection of files are
+updated (so that the file&#8217;s checksum changes), <strong>and</strong> the files are
+moved into a separate directory, the album will end up being re-added,
+since there&#8217;s no reasonable way to associate the updated files with the
+old ones.</p>
+<p>The most common case of that would be if there was a typo in the album
+or artist name for an album, and that typo was replicated in the directory
+structure containing the files.  Fixing the typo would involve changing
+both the tags and the directory names.  In order to keep the addition time
+intact in this case, you would have to perform both steps separately, running
+an update after each one.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="limitations">
+<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
+<p>There are some inherent limitations of Exordium, based on the assumptions
+that have been made during its development (and in my own music library).</p>
+<ul class="simple">
+<li>The artist name &#8220;Various&#8221; is reserved.  Tracks with an artist tag of
+&#8220;Various&#8221; will not be added to the library.</li>
+<li>If two Various Artists albums with the same title exist in the library,
+they&#8217;ll end up stored as one single album in the DB.</li>
+<li>If two directories contain files which seem to be in the same album (by
+the same artist), you&#8217;ll end up with an album which spans directories.
+Behavior may not be well-defined in that case.</li>
+<li>Exordium completely ignores genre tags.  I&#8217;ve personally always been
+lousy at putting reasonable values in there on my media, and so that&#8217;s
+been very unimportant to me.  It&#8217;d probably be good to support them
+anyway, though.</li>
+<li>Exordium only supports mp3 and ogg currently, though m4a and other
+support should be reasonably simple to add in, so long as Mutagen
+supports the format.</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="requirements.html" class="btn btn-neutral float-right" title="Requirements" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Exordium Music Library" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, CJ Kucera.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

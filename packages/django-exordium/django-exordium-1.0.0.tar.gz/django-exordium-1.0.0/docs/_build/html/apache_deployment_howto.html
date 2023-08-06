@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CentOS 7 Apache/WSGI Deployment HOWTO &mdash; Exordium 1.0.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Exordium 1.0.0 documentation" href="index.html"/>
+        <link rel="next" title="Changelog" href="changelog.html"/>
+        <link rel="prev" title="Migration from Other Libraries" href="migration.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Exordium
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Exordium Music Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assumptions_limitations.html">Assumptions and Limitations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="screenshots.html">Screenshots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wsgi_deployments.html">WSGI Deployment Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">Migration from Other Libraries</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CentOS 7 Apache/WSGI Deployment HOWTO</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#system-preparation">System Preparation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#virtenv-creation-django-installation">Virtenv Creation / Django Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#django-configuration-settings-py">Django Configuration / settings.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wsgi-configuration-in-apache">WSGI Configuration in Apache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-minor-tweaks">Other Minor Tweaks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Exordium</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>CentOS 7 Apache/WSGI Deployment HOWTO</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/apache_deployment_howto.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="centos-7-apache-wsgi-deployment-howto">
+<h1>CentOS 7 Apache/WSGI Deployment HOWTO<a class="headerlink" href="#centos-7-apache-wsgi-deployment-howto" title="Permalink to this headline">¶</a></h1>
+<p>Exordium is my first application written in Django, and served as
+my introduction to Django in general.  This page is more for my own
+reference than anyone else&#8217;s, though perhaps it will come in
+useful for someone else with similar requirements who&#8217;s unfamiliar
+with Django.</p>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>I have a CentOS 7 server which runs Apache and MySQL (well, MariaDB)
+which serves a variety of web-based applications (mostly PHP-based),
+primarily for my own personal use.  Apache is already set up to handle user
+authentication itself, via Apache&#8217;s native <code class="docutils literal"><span class="pre">Auth*</span></code> configuration
+directives, and all my webapps share that common authentication
+mechanism.</p>
+<p>I have one vhost on SSL which is where the actual webapps live, but
+I also have another vhost which uses plain HTTP (and no authentication),
+and a subdirectory of that had already been set up in the past to
+provide direct access to my music library.  I&#8217;ve always enjoyed having
+that in place, because URLs to songs can be constructed which don&#8217;t
+require authentication, can be plugged into .m3u playlists for remote
+music listening, and are generally just easier to deal with.  The
+directory doesn&#8217;t have directory indexing enabled, so there&#8217;s a bit
+of obscurity there, though given a link to a single track it wouldn&#8217;t
+be hard to guess my naming conventions and figure out links to other
+media.  C&#8217;est la vie!</p>
+<p>Regardless, there&#8217;s a couple of differences to a &#8220;stock&#8221; Django deployment
+here, namely that I don&#8217;t want to use Django&#8217;s default user authentication
+methods, and I&#8217;d like to continue to use MariaDB instead of Django&#8217;s
+recommended PostgreSQL.  Fortunately, both are quite easy to configure
+in Django.</p>
+</div>
+<div class="section" id="system-preparation">
+<h2>System Preparation<a class="headerlink" href="#system-preparation" title="Permalink to this headline">¶</a></h2>
+<p>The default Python provided by CentOS is still 2.7, and I&#8217;d wanted to use
+Python 3 for this project.  I used the <a class="reference external" href="https://ius.io/GettingStarted/">IUS Repository</a>
+to give me the version I wanted, and used <code class="docutils literal"><span class="pre">python34u</span></code> at the time.  The
+full list of packages I installed, after activating IUS, was:</p>
+<ul class="simple">
+<li>python34u</li>
+<li>python34u-pip</li>
+<li>python34u-mod_wsgi <em>(this package was actually only in ius-devel at the time)</em></li>
+<li>python34u-devel</li>
+<li>mariadb-devel</li>
+</ul>
+<p>The last two packages were required at one point for building the mysql client
+library that Python used - it&#8217;s possible that those aren&#8217;t required anymore.</p>
+</div>
+<div class="section" id="virtenv-creation-django-installation">
+<h2>Virtenv Creation / Django Installation<a class="headerlink" href="#virtenv-creation-django-installation" title="Permalink to this headline">¶</a></h2>
+<p>The next step was to create a virtual environment to hold all the necessary
+Django code, and Exordium dependencies.  I chose to put that under a
+<code class="docutils literal"><span class="pre">/var/www/django</span></code> directory (which is of course not actually inside my
+Apache web root).  My initial steps for this were just:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd /var/www/django
+$ pyvenv-3.4 virtenv
+$ source virtenv/bin/activate
+$ pip install django
+$ pip install mysqlclient
+</pre></div>
+</div>
+<p>That last step, I believe, is what required the <code class="docutils literal"><span class="pre">python34u-devel</span></code> and <code class="docutils literal"><span class="pre">mariadb-devel</span></code>
+packages above.</p>
+<p>I decided to name my Django project &#8220;hex&#8221;, and created it like so:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ pwd
+/var/www/django
+$ django-admin startproject hex
+</pre></div>
+</div>
+<p>At that point, inside <code class="docutils literal"><span class="pre">/var/www/django</span></code> I had a &#8220;virtenv&#8221; directory
+containing a Python virtenv, and a &#8220;hex&#8221; directory containing the Django
+project.</p>
+</div>
+<div class="section" id="django-configuration-settings-py">
+<h2>Django Configuration / settings.py<a class="headerlink" href="#django-configuration-settings-py" title="Permalink to this headline">¶</a></h2>
+<p>Here are the relevant values in <code class="docutils literal"><span class="pre">settings.py</span></code> which I&#8217;d changed/modified
+(I&#8217;d also updated <code class="docutils literal"><span class="pre">TIME_ZONE</span></code>, <code class="docutils literal"><span class="pre">DEBUG</span></code>, etc, but that&#8217;s irrelevant):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;servername&#39;</span><span class="p">]</span>
+
+<span class="n">AUTHENTICATION_BACKENDS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;django.contrib.auth.backends.RemoteUserBackend&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;django.db.backends.mysql&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;hex&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;USER&#39;</span><span class="p">:</span> <span class="s1">&#39;hex&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;HOST&#39;</span><span class="p">:</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;PORT&#39;</span><span class="p">:</span> <span class="s1">&#39;3306&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OPTIONS&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;init_command&#39;</span><span class="p">:</span> <span class="s2">&quot;SET sql_mode=&#39;STRICT_TRANS_TABLES&#39;&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s1">&#39;/hex/static/&#39;</span>
+<span class="n">STATIC_ROOT</span> <span class="o">=</span> <span class="s1">&#39;/var/www/django/hex/static&#39;</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>ALLOWED_HOSTS</dt>
+<dd>I believe I had to set this, rather than leave it blank, to get Django
+to respond properly via Apache, though I don&#8217;t actually recall.</dd>
+<dt>AUTHENTICATION_BACKENDS</dt>
+<dd>This is the section which lets Django use Apache&#8217;s already-configured
+authentication mechanisms which other apps are using as well.</dd>
+<dt>DATABASES</dt>
+<dd>Simple MySQL configuration.  The <code class="docutils literal"><span class="pre">OPTIONS</span></code> line lets you avoid some
+warnings which will otherwise pop up while using MySQL in Django.</dd>
+<dt>STATIC_URL and STATIC_ROOT</dt>
+<dd>Static file configuration for Django.</dd>
+</dl>
+</div>
+<div class="section" id="wsgi-configuration-in-apache">
+<h2>WSGI Configuration in Apache<a class="headerlink" href="#wsgi-configuration-in-apache" title="Permalink to this headline">¶</a></h2>
+<p>Next up was configuring WSGI/Django inside Apache, so it&#8217;s accessible.  The
+full config section that I used in my SSL-enabled virtual host, including
+Django static file configuration, was:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">WSGIDaemonProcess</span> <span class="n">servername</span> <span class="n">socket</span><span class="o">-</span><span class="n">timeout</span><span class="o">=</span><span class="mi">480</span> <span class="n">processes</span><span class="o">=</span><span class="mi">1</span> <span class="n">threads</span><span class="o">=</span><span class="mi">15</span> <span class="n">display</span><span class="o">-</span><span class="n">name</span><span class="o">=</span><span class="n">django</span> <span class="n">python</span><span class="o">-</span><span class="n">path</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">django</span><span class="o">/</span><span class="nb">hex</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">django</span><span class="o">/</span><span class="n">virtenv</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">4</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span> <span class="n">lang</span><span class="o">=</span><span class="s1">&#39;en_US.UTF-8&#39;</span> <span class="n">locale</span><span class="o">=</span><span class="s1">&#39;en_US.UTF-8&#39;</span>
+<span class="n">WSGIProcessGroup</span> <span class="n">servername</span>
+<span class="n">WSGIScriptAlias</span> <span class="o">/</span><span class="nb">hex</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">django</span><span class="o">/</span><span class="nb">hex</span><span class="o">/</span><span class="nb">hex</span><span class="o">/</span><span class="n">wsgi</span><span class="o">.</span><span class="n">py</span>
+
+<span class="n">Alias</span> <span class="o">/</span><span class="nb">hex</span><span class="o">/</span><span class="n">static</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">django</span><span class="o">/</span><span class="nb">hex</span><span class="o">/</span><span class="n">static</span>
+<span class="o">&lt;</span><span class="n">Directory</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">django</span><span class="o">/</span><span class="n">static</span><span class="o">&gt;</span>
+    <span class="n">Require</span> <span class="nb">all</span> <span class="n">granted</span>
+<span class="o">&lt;/</span><span class="n">Directory</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>A few notes on some of those options:</p>
+<dl class="docutils">
+<dt>socket-timeout</dt>
+<dd>This is actually just a holdover from before I started using
+<code class="docutils literal"><span class="pre">HttpStreamingResponse</span></code> for the library add/update functions, which
+was causing those pages to take a long time to respond.  Leaving it
+out of the line should be fine since Exordium is pretty responsive
+now.</dd>
+<dt>processes</dt>
+<dd>I&#8217;d originally had this set to <code class="docutils literal"><span class="pre">2</span></code>, but as mentioned elsewhere in
+these docs, if you set <code class="docutils literal"><span class="pre">processes</span></code> to a value greater than 1, changing
+Exordium&#8217;s preferences (library paths, zipfile paths, etc) will only
+change the preference effectively in the process it was actually set
+on, which can lead to inconsistency.  I&#8217;d like to figure that out
+eventually, but for now I&#8217;ve been happy enough with <code class="docutils literal"><span class="pre">1</span></code>.</dd>
+<dt>threads</dt>
+<dd>Number of threads to use.  Not sure where I got <code class="docutils literal"><span class="pre">15</span></code> from, really.</dd>
+<dt>python-path</dt>
+<dd>These are important for ensuring that WSGI is using our virtenv properly.</dd>
+<dt>lang and locale</dt>
+<dd>By default, WSGI will operate using a <code class="docutils literal"><span class="pre">$LANG</span></code> value of <code class="docutils literal"><span class="pre">C</span></code>, which
+makes the default locale only really accept ASCII characters.  If those
+are left to their default values, Exordium will have problems if any files
+it tries to process contain non-ASCII characters in the filenames, and it&#8217;ll
+be difficult to track down.  See <a class="reference internal" href="wsgi_deployments.html"><span class="doc">WSGI Deployment Issues</span></a> for a bit more
+information.</dd>
+</dl>
+</div>
+<div class="section" id="other-minor-tweaks">
+<h2>Other Minor Tweaks<a class="headerlink" href="#other-minor-tweaks" title="Permalink to this headline">¶</a></h2>
+<p>At this point, after an <code class="docutils literal"><span class="pre">apachectl</span> <span class="pre">graceful</span></code> (and running Django migrations,
+etc), Django itself was working properly.  Other apps (such as Exordium itself)
+can be installed with the virtenv active with simple <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">foo</span></code> commands.</p>
+<p>One more thing I&#8217;ve done which required some Googling to figure out is that I wanted
+Django&#8217;s base project URL to redirect to Exordium, since Exordium is currently my
+only Django app.  My project&#8217;s <code class="docutils literal"><span class="pre">urls.py</span></code> looks like this, now, to support that:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="k">import</span> <span class="n">include</span><span class="p">,</span> <span class="n">url</span>
+<span class="kn">from</span> <span class="nn">django.contrib</span> <span class="k">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.views.generic.base</span> <span class="k">import</span> <span class="n">RedirectView</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;^/?$&#39;</span><span class="p">,</span> <span class="n">RedirectView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="n">pattern_name</span><span class="o">=</span><span class="s1">&#39;exordium:index&#39;</span><span class="p">)),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;^exordium/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s1">&#39;exordium.urls&#39;</span><span class="p">)),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;^admin/&#39;</span><span class="p">,</span> <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="changelog.html" class="btn btn-neutral float-right" title="Changelog" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="migration.html" class="btn btn-neutral" title="Migration from Other Libraries" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, CJ Kucera.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
