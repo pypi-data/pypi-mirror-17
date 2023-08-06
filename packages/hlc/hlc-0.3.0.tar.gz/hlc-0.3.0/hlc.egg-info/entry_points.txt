@@ -1,0 +1,3 @@
+[console_scripts]
+hlc = hlc.cli:main
+

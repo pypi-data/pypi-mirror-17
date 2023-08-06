@@ -1,0 +1,6 @@
+netaddr>=0.7.18
+
+[test]
+nose
+nose2
+tox
