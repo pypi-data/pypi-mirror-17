@@ -1,0 +1,140 @@
+import textwrap
+
+from enaml.core.api import Conditional, Looper
+from enaml.layout.api import vbox, align
+from enaml.widgets.api import DockItem, Container, Label, PushButton, MultilineField
+from enaml.widgets.timer import Timer
+from enaml.styling import StyleSheet, Style, Setter
+
+from angr.errors import AngrError
+
+from .block import Block
+from ..widgets.api import FlowGraph
+from .notify import notify_update
+from .wkitem import WorkspaceItem
+from ..data.jobs import CFGGenerationJob
+from ..data.function_graph import FunctionGraph
+
+
+# enamldef CFGNode(Container):
+#     attr proj
+#     attr node
+
+#     Label:
+#         font = '10pt Courier'
+#         text = str(get_block(proj, node).capstone) if not proj.is_hooked(node) else str(proj._sim_procedures[node][0].__name__)
+
+def get_header(node, function):
+    if node.addr == function.addr:
+        s = [ ]
+        if function.name:
+            s.append("%s:" % function.name)
+        else:
+            s.append("sub_%x:" % function.addr)
+        if function.is_simprocedure:
+            s.append('[SimProcedure]')
+        if function.is_plt:
+            s.append('[PLT]')
+        return "\n".join(s)
+    else:
+        return "loc_%#x:" % node.addr
+
+
+enamldef CFGNode(Container): cfgnode:
+    attr proj
+    attr function
+    attr node
+    attr addr
+    attr func_addr
+    attr state = None
+    attr wk
+
+    style_class = 'cfg_node'
+
+    StyleSheet:
+        Style:
+            style_class = 'cfg_node'
+            Setter:
+                field = 'border'
+                value = '2px solid black'
+
+    Block:
+        blocks = [ proj.factory.block(n.addr) for n in node.cfg_nodes ]
+        header = get_header(node, function)
+        state = cfgnode.state
+        wk = cfgnode.wk
+
+
+def get_block(proj, address):
+    try:
+        block = proj.factory.block(address)
+        return block
+    except AngrError:
+        return None
+
+def find_vfg_state(wk, func_addr, block_addr):
+    vfg = wk.inst.vfgs.get(func_addr, None)
+    if vfg is None:
+        return None
+
+    try:
+        return next(node.final_states[0] for node in vfg._graph.nodes() if node.addr == block_addr)
+    except StopIteration:
+        return None
+
+enamldef CFGItem(WorkspaceItem): cfgi:
+    title = "CFG"
+
+    Conditional:
+        condition << wk.selected_function is not None
+
+        Container:
+            constraints << [
+                vbox(graph),
+                (width == 500) | 'weak'
+                ]
+
+            FlowGraph: graph:
+                func_graph << FunctionGraph(function=wk.selected_function)
+                func_graph ::
+                    graph.visible = False
+
+                Looper:
+                    iterable << func_graph.supergraph.nodes()
+
+                    iterable ::
+                        update_timer.start()
+
+                    Conditional:
+                        condition << loop_item != 0
+
+                        CFGNode:
+                            function = wk.selected_function
+                            name = str(loop_item.addr)
+                            addr = loop_item.addr
+                            node = loop_item
+                            func_addr = wk.selected_function.addr
+                            proj = wk.proj
+                            state = find_vfg_state(wk, wk.selected_function.addr, loop_item)
+                            wk = cfgi.wk
+
+            Timer: update_timer:
+                interval = 30
+                single_shot = True
+                timeout ::
+                    graph.request_relayout()
+                    graph.visible = True
+
+    Conditional:
+        condition << wk.inst.cfg is None
+
+        Container: container:
+            constraints = [
+                align('h_center', container, cmd_gencfg),
+                align('v_center', container, cmd_gencfg),
+                (width == 500) | 'weak',
+            ]
+
+            PushButton: cmd_gencfg:
+                text = "Generate CFG"
+                clicked :: wk.inst.add_job(CFGGenerationJob())
