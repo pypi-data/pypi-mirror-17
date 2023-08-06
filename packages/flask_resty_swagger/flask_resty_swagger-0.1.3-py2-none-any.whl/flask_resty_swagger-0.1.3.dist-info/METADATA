@@ -1,0 +1,25 @@
+Metadata-Version: 2.0
+Name: flask-resty-swagger
+Version: 0.1.3
+Summary: Generate swagger documentation from flask-resty service
+Home-page: UNKNOWN
+Author: Giacomo Tagliabue
+Author-email: giacomo.tag@gmail.com
+License: MIT
+Keywords: rest flask swagger
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Framework :: Flask
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: apispec (>=0.14.0)
+Requires-Dist: flask-resty (>=0.6.0)
+Requires-Dist: marshmallow (>=2.4.2)
+
+UNKNOWN
+
+
