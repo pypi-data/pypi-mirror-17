@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: py-sql-ext
+Version: 0.1
+Summary: 扩展了SqlAlchemy,支持声明式事务和手写SQL
+Home-page: http://xiangyang.li/project/py_sql_ext
+Author: bac
+Author-email: wo@xiangyang.li
+License: Apache License
+Description: UNKNOWN
+Keywords: sql,sqlalchemy,transaction,sql ext,render
+Platform: any
