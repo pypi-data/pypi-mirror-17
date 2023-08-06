@@ -1,0 +1,3 @@
+[console_scripts]
+piazza = cloudmesh_piazza.piazza:main
+
