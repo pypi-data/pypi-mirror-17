@@ -1,0 +1,99 @@
+from __future__ import absolute_import
+
+import os
+
+from celery import Celery
+
+from django.conf import settings
+# #for crossbar(twisted)
+from txcelery.defer import CeleryClient
+
+# TO ACCESS DB MODELS
+from django.apps import apps
+from django.core import serializers
+
+"""
+To run celery:
+
+Using django
+./manage.py runserver
+./manage.py celeryd -E  -l info
+./manage.py celery beat
+./manage.py celerycam
+"""
+
+# USEFUL DOC : http://www.caktusgroup.com/blog/2014/06/23/scheduling-tasks-celery/
+
+#from cc import tasks
+
+# set the default Django settings module for the 'celery' program.
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', '{{projdir}}.settings')
+
+#app = Celery('sbextrader', broker='amqp://guest@localhost//')
+app = Celery('{{projdir}}')
+
+# Using a string here means the worker will not have to
+# pickle the object when using Windows.
+app.config_from_object('django.conf:settings')
+app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
+
+
+@app.task(bind=True)
+def debug_task(self):
+    print('Request: {0!r}'.format(self.request))
+
+
+@CeleryClient
+@app.task
+def data_get_list_task(
+        app, model, fields, filter_fields, filter_value, filter_or=None,
+        caller_session_id=None):
+    """
+    A generic task for get_list
+    """
+
+    db = apps.get_model(app_label=app, model_name=model)
+    # try:
+    d = db.objects.all()
+    if filter_value:
+        # filter the filter dict by filter_fields
+        filter_keys = list(set(filter_fields) & set(filter_value.keys()))
+        if len(filter_keys) > 0:
+            filter_dict = {filter_key: filter_value[filter_key] for filter_key in filter_keys}
+            d = d.filter(**filter_dict)
+    # except db.DoesNotExist:
+        # dosomething
+    return serializers.serialize("json", d, fields=fields)  # fields
+
+
+@CeleryClient
+@app.task
+def data_get_detail_task(app, model, fields, item_id, caller_session_id=None):
+    """
+    A generic task for get_detail
+    """
+    db = apps.get_model(app_label=app, model_name=model)
+    d = db.objects.get(id=item_id)
+    return serializers.serialize("json", d, fields=fields)  # fields
+
+
+@CeleryClient
+@app.task
+def data_create_task(app, model, fields, create_dict, caller_session_id=None):
+    """
+    A generic task for create
+    """
+
+    db = apps.get_model(app_label=app, model_name=model)
+    # try:
+    if create_dict:
+        # filter the filter dict by filter_fields
+        create_keys = list(set(fields) & set(create_dict.keys()))
+        if len(create_keys) > 0:
+            create_dict_s = { create_key: create_dict[create_key] for create_key in create_keys }
+            d = db.objects.create(**create_dict_s)
+            return d.id
+        else:
+            return False
+    # except db.DoesNotExist:
+        # dosomething
