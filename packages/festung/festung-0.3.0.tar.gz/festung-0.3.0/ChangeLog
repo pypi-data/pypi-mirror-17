@@ -1,0 +1,32 @@
+CHANGES
+=======
+
+0.3.0
+-----
+
+* Exceptions have to be exposed through the DBAPI module
+* Raise an exception if statement produces a result
+* Add executemany() implmentation and basic test
+* Fix linter errors
+* Fix usage of warngins.warn. Warning type goes last!
+
+0.2.0
+-----
+
+* Release 0.2.0
+* Add support for passwords
+* Add badges to README
+
+0.1.1
+-----
+
+* Install setuptools explicitly
+* Ignore build and dist dirs
+* Add pbr to the to be installed dependencies
+* Add travis configuration
+* Add complex object casting
+
+0.1.0
+-----
+
+* Initial commit
