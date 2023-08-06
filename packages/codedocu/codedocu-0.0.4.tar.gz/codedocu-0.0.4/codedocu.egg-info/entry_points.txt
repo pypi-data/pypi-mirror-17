@@ -1,0 +1,4 @@
+[console_scripts]
+codedoc = codedocu.__init__:first
+codedoc generate = codedocu.html_report1:main
+
