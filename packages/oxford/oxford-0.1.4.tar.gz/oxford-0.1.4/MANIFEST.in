@@ -1,0 +1,6 @@
+include DESCRIPTION.rst
+include README.md
+include LICENSE
+# Include the test suite
+recursive-include tests *
+global-exclude *.pyc 
