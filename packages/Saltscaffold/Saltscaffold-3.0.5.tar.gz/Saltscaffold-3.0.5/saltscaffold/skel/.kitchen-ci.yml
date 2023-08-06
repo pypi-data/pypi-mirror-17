@@ -1,0 +1,34 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+driver:
+  name: linode
+
+busser:
+  sudo: false
+
+provisioner:
+  name: salt_solo
+  is_file_root: true
+  sudo: false
+  state_top:
+    base:
+      "*":
+        - test.mockup
+        - ${formula_name}
+
+platforms:
+  - name: debian_jessie
+
+suites:
+  - name: default
+
+  - name: custom
+    provisioner:
+      pillars-from-files:
+        ${formula_name}.sls: pillar-custom.sls
+      pillars:
+        top.sls:
+          base:
+            "*":
+              - ${formula_name}
