@@ -1,0 +1,27 @@
+MANIFEST.in
+setup.py
+simple_ml/__init__.py
+simple_ml.egg-info/PKG-INFO
+simple_ml.egg-info/SOURCES.txt
+simple_ml.egg-info/dependency_links.txt
+simple_ml.egg-info/not-zip-safe
+simple_ml.egg-info/requires.txt
+simple_ml.egg-info/top_level.txt
+simple_ml/common/__init__.py
+simple_ml/common/__init__.pyc
+simple_ml/common/gradient_check.py
+simple_ml/common/gradient_check.pyc
+simple_ml/common/math.py
+simple_ml/common/math.pyc
+simple_ml/logistic_regression/__init__.py
+simple_ml/logistic_regression/__init__.pyc
+simple_ml/logistic_regression/adult.ipynb
+simple_ml/logistic_regression/blood.ipynb
+simple_ml/logistic_regression/logistic_regression.py
+simple_ml/logistic_regression/logistic_regression.pyc
+simple_ml/nn/__init__.py
+simple_ml/nn/__init__.pyc
+simple_ml/nn/neural network.ipynb
+simple_ml/nn/neural_net.pyc
+simple_ml/nn/nn.py
+simple_ml/nn/nn.pyc
