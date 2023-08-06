@@ -1,0 +1,448 @@
+{% extends 'veriport_dashboard/base.html' %}
+{% load i18n static humanize %}
+
+{% block title %}{% trans 'Dashboard' %}{% endblock %}
+
+{% block dashboard_active %}active{% endblock %}
+
+{% block content %}
+<!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>{% trans 'Monthly Revenue Volume' %}</h1>
+    </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <!-- Main row -->
+    <div class="row">
+      <!-- Left col -->
+      <section class="col-lg-12 connectedSortable">
+        <div class="box box-solid">
+          <div class="box-header">
+              <i class="fa fa-bar-chart-o"></i>
+
+              <h3 class="box-title">{% trans 'Reports Released' %}</h3>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body">
+              <div class="chart">
+                  <canvas id="reportReleasedChart"></canvas>
+              </div>
+          </div>
+          <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+
+      </section>
+      <!-- /.Left col -->
+    </div>
+    <!-- /.row (main row) -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h3>{% trans 'Activity Board' %}</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-4">
+          <div class="box box-solid">
+            <div class="box-header">
+              <i class="fa fa-bar-chart-o"></i>
+
+              <h3 class="box-title">{% trans 'Average Time to Review' %}</h3>
+
+              <div class="box-tools pull-right">
+                <a href="{% url 'dashboard:reports' %}?duration=review" class="btn btn-default btn-sm"><i class="fa fa-pie-chart"></i></a>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="row">
+                <div class="text-center">
+                  <input type="text" class="knob review-knob" value="0" data-skin="tron" data-thickness="0.2" data-width="120" data-height="120" data-fgColor="#3c8dbc" data-readOnly="true">
+                  <div class="knob-label review-label">0 {% trans 'days' %}</div>
+                </div>
+                <!-- ./col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <div class="box box-solid">
+            <div class="box-header">
+              <i class="fa fa-bar-chart-o"></i>
+
+              <h3 class="box-title">{% trans 'Average Time to Interview' %}</h3>
+
+              <div class="box-tools pull-right">
+                <a href="{% url 'dashboard:reports' %}?duration=interview" class="btn btn-default btn-sm"><i class="fa fa-pie-chart"></i></a>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="row">
+                <div class="text-center">
+                  <input type="text" class="knob interview-knob" value="0" data-skin="tron" data-thickness="0.2" data-width="120" data-height="120" data-fgColor="#f56954" data-readOnly="true">
+
+                  <div class="knob-label interview-label">0 {% trans 'days' %}</div>
+                </div>
+                <!-- ./col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+
+        <div class="col-xs-4">
+          <div class="box box-solid">
+            <div class="box-header">
+              <i class="fa fa-bar-chart-o"></i> {% trans 'Average Time to CCF Match' %}
+            </div>
+            <!-- Custom Tabs (Pulled to the right) -->
+            <div class="nav-tabs-custom">
+              <ul class="nav nav-tabs pull-right">
+                <li><a href="#tab_1-1" data-toggle="tab">{% trans 'This Month' %}</a></li>
+                <li><a href="#tab_2-2" data-toggle="tab">{% trans 'Last 7' %}</a></li>
+                <li class="active"><a href="#tab_3-2" data-toggle="tab">{% trans 'Last 30' %}</a></li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane this-month-tab" id="tab_1-1">
+                  <div class="text-center">
+                    <input type="text" class="knob ccf-this-month-knob" value="0" data-skin="tron" data-thickness="0.2" data-width="120" data-height="120" data-fgColor="#00a65a" data-readOnly="true">
+                    <div class="knob-label ccf-this-month-label">0 {% trans 'days' %}</div>
+                  </div>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane last-seven-tab" id="tab_2-2">
+                  <div class="text-center">
+                    <input type="text" class="knob ccf-last-seven-knob" value="0" data-skin="tron" data-thickness="0.2" data-width="120" data-height="120" data-fgColor="#00a65a" data-readOnly="true">
+                    <div class="knob-label ccf-last-seven-label">0 {% trans 'days' %}</div>
+                  </div>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane active" id="tab_3-2">
+                  <div class="text-center">
+                    <input type="text" class="knob ccf-knob" value="0" data-skin="tron" data-thickness="0.2" data-width="120" data-height="120" data-fgColor="#00a65a" data-readOnly="true">
+                    <div class="knob-label ccf-label">0 {% trans 'days' %}</div>
+                  </div>
+                </div>
+                <!-- /.tab-pane -->
+              </div>
+              <!-- /.tab-content -->
+            </div>
+            <!-- nav-tabs-custom -->
+          </div>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+        <div class="col-xs-4">
+          <div class="box box-solid">
+            <div class="box-header">
+              <i class="fa fa-bar-chart-o"></i>
+
+              <h3 class="box-title">{% trans 'non-DOT Test Positive Rate' %}</h3>
+
+              <div class="box-tools pull-right">
+                <a href="" class="btn btn-default btn-sm"><i class="fa fa-pie-chart"></i></a>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="row">
+                <div class="text-center">
+                  <input type="text" class="knob positive-non-dot-knob" value="0" data-skin="tron" data-thickness="0.2" data-width="120" data-height="120" data-fgColor="#39CCCC" data-readOnly="true">
+                  <div class="knob-label positive-non-dot-label">0 {% trans 'Rate Match' %}</div>
+                </div>
+                <!-- ./col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <div class="box box-solid">
+            <div class="box-header">
+              <i class="fa fa-bar-chart-o"></i>
+
+              <h3 class="box-title">{% trans 'DOT Test Positive Rate' %}</h3>
+
+              <div class="box-tools pull-right">
+                <a href="" class="btn btn-default btn-sm"><i class="fa fa-pie-chart"></i></a>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="row">
+                <div class="text-center">
+                  <input type="text" class="knob positive-dot-knob" value="0" data-skin="tron" data-thickness="0.2" data-width="120" data-height="120" data-fgColor="#932ab6" data-readOnly="true">
+
+                  <div class="knob-label positive-dot-label">0 {% trans 'Rate Match' %}</div>
+                </div>
+                <!-- ./col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <div class="box box-solid">
+            <div class="box-header">
+              <i class="fa fa-bar-chart-o"></i>
+
+              <h3 class="box-title">{% trans 'Average Time to Release' %}</h3>
+
+              <div class="box-tools pull-right">
+                <a href="{% url 'dashboard:reports' %}?duration=release" class="btn btn-default btn-sm"><i class="fa fa-pie-chart"></i></a>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="row">
+                <div class="text-center">
+                  <input type="text" class="knob release-knob" value="0" data-skin="tron" data-thickness="0.2" data-width="120" data-height="120" data-fgColor="#00c0ef" data-readOnly="true">
+                  <div class="knob-label release-label">0 {% trans 'days' %}</div>
+                </div>
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="box box-solid">
+                <div class="box-header">
+                    <i class="fa fa-bar-chart-o"></i>
+
+                    <h3 class="box-title">{% trans 'Top Accounts' %}</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-pie-chart"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="chart">
+                        <canvas id="barChart" style="height:230px"></canvas>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+
+        <div class="col-xs-6">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <i class="fa fa-comment"></i>
+
+                    <h3 class="box-title">{% trans 'System Messages' %}</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <ul class="todo-list">
+                        {% for msg in system_messages %}
+                            <li>
+                                <!-- todo text -->
+                                <span class="text">{{ msg.content|safe }}</span>
+                                <!-- Emphasis label -->
+                                <small class="label label-danger"><i class="fa fa-clock-o"></i> {{ msg.date_created|naturaltime }}</small>
+                            </li>
+                        {% empty %}
+                            <li>
+                                <!-- todo text -->
+                                <span class="text">{% trans 'No messages for you yet.' %}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+    <!-- /.row -->
+
+  </section>
+  <!-- /.content -->
+{% endblock %}
+
+{% block extra_js %}
+    <!-- ChartJS 1.0.1 -->
+    <script src="{% static 'plugins/chartjs/Chart.min.js' %}"></script>
+    <script type="text/javascript">
+        $(function() {
+
+            $(".knob").knob({
+              /*change : function (value) {
+               //console.log("change : " + value);
+               },
+               release : function (value) {
+               console.log("release : " + value);
+               },
+               cancel : function () {
+               console.log("cancel : " + this.value);
+               },*/
+              draw: function () {
+
+                // "tron" case
+                if (this.$.data('skin') == 'tron') {
+
+                  var a = this.angle(this.cv)  // Angle
+                      , sa = this.startAngle          // Previous start angle
+                      , sat = this.startAngle         // Start angle
+                      , ea                            // Previous end angle
+                      , eat = sat + a                 // End angle
+                      , r = true;
+
+                  this.g.lineWidth = this.lineWidth;
+
+                  this.o.cursor
+                  && (sat = eat - 0.3)
+                  && (eat = eat + 0.3);
+
+                  if (this.o.displayPrevious) {
+                    ea = this.startAngle + this.angle(this.value);
+                    this.o.cursor
+                    && (sa = ea - 0.3)
+                    && (ea = ea + 0.3);
+                    this.g.beginPath();
+                    this.g.strokeStyle = this.previousColor;
+                    this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sa, ea, false);
+                    this.g.stroke();
+                  }
+
+                  this.g.beginPath();
+                  this.g.strokeStyle = r ? this.o.fgColor : this.fgColor;
+                  this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sat, eat, false);
+                  this.g.stroke();
+
+                  this.g.lineWidth = 2;
+                  this.g.strokeStyle = this.o.fgColor;
+                  this.g.beginPath();
+                  this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
+                  this.g.stroke();
+
+                  return false;
+                }
+              }
+            });
+            /* END JQUERY KNOB */
+
+            //-------------
+            //- BAR CHART -
+            //-------------
+            var barChartCanvas = $("#barChart").get(0).getContext("2d");
+            var lineChartCanvas = $("#reportReleasedChart").get(0).getContext("2d");
+            // var barChartData = {
+            //   // labels: ["January", "February", "March", "April", "May", "June", "July"],
+            //   // datasets: [
+            //   //   {
+            //   //     label: "Electronics",
+            //   //     backgroundColor: "#00a65a",
+            //   //     strokeColor: "#00a65a",
+            //   //     pointColor: "#00a65a",
+            //   //     pointStrokeColor: "#c1c7d1",
+            //   //     pointHighlightFill: "#fff",
+            //   //     pointHighlightStroke: "rgba(220,220,220,1)",
+            //   //     data: [65, 59, 80, 81, 56, 55, 40]
+            //   //   },
+            //     // {
+            //     //   label: "Digital Goods",
+            //     //   backgroundColor: "rgba(60,141,188,0.9)",
+            //     //   strokeColor: "rgba(60,141,188,0.8)",
+            //     //   pointColor: "#3b8bba",
+            //     //   pointStrokeColor: "rgba(60,141,188,1)",
+            //     //   pointHighlightFill: "#fff",
+            //     //   pointHighlightStroke: "rgba(60,141,188,1)",
+            //     //   data: [28, 48, 40, 19, 86, 27, 90]
+            //     // }
+            //   // ]
+            // };
+
+            $.ajax({
+                "url": "{% url 'dashboard:top-accounts' %}",
+                "type": "GET",
+                "success": function(result) {
+                    var chartData = result.chart_data;
+                    var barChart = new Chart(barChartCanvas, {
+                        type: 'horizontalBar',
+                        data: chartData
+                    });
+                }
+            });
+
+            $.ajax({
+                "url": "{% url 'dashboard:reports-released' %}",
+                "type": "GET",
+                "success": function(result) {
+                    var chartData = result.chart_data;
+                    var barChart = new Chart(lineChartCanvas, {
+                        type: 'line',
+                        data: chartData
+                    });
+                }
+            });
+
+            {% for average_type in average_types %}
+                $.ajax({
+                    "url": "{% url 'dashboard:reports-average' average_type %}",
+                    "type": "GET",
+                    "success": function(result) {
+                        var average = result.average;
+                        $(".{{ average_type }}-knob").val(average);
+                        $(".{{ average_type }}-knob").trigger("change");
+                        $(".{{ average_type }}-label").html(average + " {% trans 'Rate Match' %}");
+                    }
+                });
+            {% endfor %}
+
+            $.ajax({
+                "url": "{% url 'dashboard:reports-average' 'ccf' %}?range=last7",
+                "type": "GET",
+                "success": function(result) {
+                    var average = result.average;
+                    $(".ccf-last-seven-knob").val(average);
+                    $(".ccf-last-seven-knob").trigger("change");
+                    $(".ccf-last-seven-label").html(average + " {% trans 'Rate Match' %}");
+                }
+            });
+
+            $.ajax({
+                "url": "{% url 'dashboard:reports-average' 'ccf' %}?range=thismonth",
+                "type": "GET",
+                "success": function(result) {
+                    var average = result.average;
+                    $(".ccf-this-month-knob").val(average);
+                    $(".ccf-this-month-knob").trigger("change");
+                    $(".ccf-this-month-label").html(average + " {% trans 'Rate Match' %}");
+                }
+            });
+            
+        });
+    </script>
+{% endblock %}
