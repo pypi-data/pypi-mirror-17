@@ -1,0 +1,3 @@
+[letsencrypt.plugins]
+auth = letsencrypt_route53.authenticator:Authenticator
+
