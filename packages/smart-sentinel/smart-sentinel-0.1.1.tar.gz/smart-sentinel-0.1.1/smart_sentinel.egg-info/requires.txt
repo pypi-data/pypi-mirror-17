@@ -1,0 +1,13 @@
+redis>=2.10,<2.11
+
+[tests]
+mock
+nose
+nose-focus
+coverage
+yanc
+preggy
+tox
+ipdb
+coveralls
+sphinx
