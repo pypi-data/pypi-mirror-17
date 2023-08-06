@@ -1,0 +1,3 @@
+[console_scripts]
+ip6words = ip6w.src.__main__:main
+
