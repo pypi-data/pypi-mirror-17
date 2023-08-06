@@ -1,0 +1,15 @@
+Metadata-Version: 1.0
+Name: sw_billing
+Version: 0.0.1
+Summary: Soft-Way billing
+Home-page: https://gitlab.soft-way.biz/soft-way/billing
+Author: nick1994209
+Author-email: nick1994209@gmail.com
+License: MIT
+Description: # Библиотека для интеграции биллинговой системой СофтВэй
+        
+        install sw_billing
+        
+            python setup.py install
+        
+Platform: UNKNOWN

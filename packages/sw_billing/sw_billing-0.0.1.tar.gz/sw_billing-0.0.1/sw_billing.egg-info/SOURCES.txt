@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+sw_billing/__init__.py
+sw_billing/models.py
+sw_billing.egg-info/PKG-INFO
+sw_billing.egg-info/SOURCES.txt
+sw_billing.egg-info/dependency_links.txt
+sw_billing.egg-info/top_level.txt
+sw_billing/migrations/0001_initial.py
+sw_billing/migrations/__init__.py
