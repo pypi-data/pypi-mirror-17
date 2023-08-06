@@ -1,0 +1,8 @@
+MANIFEST.in
+setup.py
+GitLarder.egg-info/PKG-INFO
+GitLarder.egg-info/SOURCES.txt
+GitLarder.egg-info/dependency_links.txt
+GitLarder.egg-info/requires.txt
+GitLarder.egg-info/top_level.txt
+git_larder/__init__.py
