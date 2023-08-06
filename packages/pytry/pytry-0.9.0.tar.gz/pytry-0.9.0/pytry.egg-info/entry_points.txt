@@ -1,0 +1,3 @@
+[console_scripts]
+pytry = pytry.cmdline:run
+
