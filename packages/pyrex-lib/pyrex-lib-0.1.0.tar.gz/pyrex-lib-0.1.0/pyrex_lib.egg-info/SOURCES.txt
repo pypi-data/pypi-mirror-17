@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+VERSION
+setup.py
+pyrex/__init__.py
+pyrex/email.py
+pyrex_lib.egg-info/PKG-INFO
+pyrex_lib.egg-info/SOURCES.txt
+pyrex_lib.egg-info/dependency_links.txt
+pyrex_lib.egg-info/pbr.json
+pyrex_lib.egg-info/top_level.txt
+test/test_email.py
