@@ -1,0 +1,30 @@
+Metadata-Version: 2.0
+Name: sagbescheid
+Version: 0.3.0
+Summary: systemd notification daemon
+Home-page: ['http://github.com/mineo/sagbescheid']
+Author: Wieland Hoffmann
+Author-email: themineo@gmail.com
+License: MIT
+Download-URL: ['https://github.com/mineo/sagbescheid/tarball/master']
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Requires-Dist: Twisted[tls] (>=15.2.0)
+Requires-Dist: enum34 (==1.0.4)
+Requires-Dist: txdbus (==1.0.11)
+Requires-Dist: zope.interface (==4.1.2)
+Provides-Extra: docs
+Requires-Dist: sphinx; extra == 'docs'
+Requires-Dist: sphinxcontrib-autoprogram; extra == 'docs'
+
+===========
+sagbescheid
+===========
+
+* Documentation: https://sagbescheid.rtfd.org
+
+
