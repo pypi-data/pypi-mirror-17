@@ -1,0 +1,55 @@
+{% load i18n %}
+<div class="assetmanager-file">
+  <input type="hidden" class="file" id="{{ name }}" name="{{ name }}" value="{{ value_as_json }}"/>
+  <a class="related-widget-wrapper-link change-related asset-manager-link" id="change_{{ name }}"
+     href="/admin/assetmanager/file/list/?{{ url_params }}"
+     title="{% blocktrans %}Change file{% endblocktrans %}">
+    {% blocktrans %}Change file{% endblocktrans %}
+  </a>
+  <div id="preview_{{ name }}" class="preview" {% if not value %}style="display: none;"{% endif %}>
+    <a href="{{ value.url }}" target="_blank">
+      {% if images_only %}
+        <img class="url" src="{{ value.url }}" width="200"/>
+        <div class="name"><span>{{ value.file_original_name }}</span> <i class="fontello-icon-popup"></i></div>
+      {% else %}
+        <div class="name"><span>{{ value.file_original_name }}</span> <i class="fontello-icon-popup"></i></div>
+      {% endif %}
+    </a>
+  </div>
+  {% if not is_required %}
+  <a class="clear"
+     {% if not value %}style="display: none;"{% endif %}
+     href="#">Clear</a>
+  {% endif %}
+</div>
+<script type="application/javascript">
+  (function(globals, $) {
+    'use strict';
+
+    $("#{{ name }}").on('change', function() {
+      var $this = $(this);
+      var id = parseInt($this.val());
+      if (id) {
+        $.getJSON('/admin/assetmanager/file/detail/' + id + '/', function(result) {
+          $this.val(JSON.stringify(result));
+
+          document.dispatchEvent(new Event('tt.imageSelected'));
+
+          var preview = $('#preview_{{ name }}');
+          preview.find('a').attr('href', result.url);
+          preview.find('img').attr('src', result.url);
+          preview.find('.name span').html(result.file_original_name);
+          preview.show();
+        });
+      }
+    });
+
+    var container = $(document);
+    container.on('click', '.assetmanager-file .clear', function(event) {
+      $(this).hide();
+      $(this).siblings('.file').val('');
+      previewElement.hide();
+      event.preventDefault();
+    });
+  })(window, jet.jQuery);
+</script>
