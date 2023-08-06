@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+django_key_generator.egg-info/PKG-INFO
+django_key_generator.egg-info/SOURCES.txt
+django_key_generator.egg-info/dependency_links.txt
+django_key_generator.egg-info/requires.txt
+django_key_generator.egg-info/top_level.txt
+keygenerator/__init__.py
+keygenerator/management/__init__.py
+keygenerator/management/commands/__init__.py
+keygenerator/management/commands/generatekey.py
