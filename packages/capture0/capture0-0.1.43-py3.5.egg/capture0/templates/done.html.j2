@@ -1,0 +1,12 @@
+{% extends "layout.html.j2" %}
+
+{% block title %}All done!{% endblock %}
+
+{% block header %}
+    <h1>{{ messages.get("thanks_header") }}</h1>
+{% endblock %}
+
+{% block body %}
+    {{ messages.get("thanks_message") }}
+
+{% endblock %}
