@@ -1,0 +1,3 @@
+[console_scripts]
+dictman = doctor.main:main
+
