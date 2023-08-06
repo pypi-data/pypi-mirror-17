@@ -1,0 +1,87 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_urls %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <style>
+        .object-tools .delete-draft a {
+            background: red;
+            color: white;
+        }
+        .object-tools .create-draft a,
+        .object-tools .publish-draft a {
+            background: green;
+            color: white;
+        }
+    </style>
+{% endblock %}
+
+{% block messages %}
+    {{ block.super }}
+    {% if not original.is_draft and original.has_draft_instance %}
+        <ul class="messagelist">
+            <li class="error">
+                {% url opts|admin_urlname:'change' original.get_draft_instance.pk as url %}
+
+                <strong>{% trans "DRAFT VERSION ACTIVE" %}</strong>
+                {% blocktrans with published_title=original.get_draft_instance.title %}
+                    This instance can not be edited because there is a draft version active.
+                    You can view the <a href="{{ url }}">draft version ({{ published_title }})</a> here.
+                {% endblocktrans %}
+            </li>
+        </ul>
+    {% endif %}
+
+    {% if original.is_draft and original.draft_of %}
+        <ul class="messagelist">
+            <li class="warning">
+                {% url opts|admin_urlname:'change' original.draft_of.pk as url %}
+
+                <strong>{% trans "DRAFT VERSION" %}</strong>&nbsp;&nbsp;&nbsp;
+                {% blocktrans with draft_of_title=original.draft_of.title %}
+                    This instance is a draft.
+                    You can view the <a href="{{ url }}">published version ({{ draft_of_title }})</a> here.
+                {% endblocktrans %}
+            </li>
+        </ul>
+    {% endif %}
+
+{% endblock %}
+
+{% block object-tools-items %}
+    {{ block.super }}
+    
+    {# draft #}
+    {% if original.is_draft and original.draft_of %}
+        <li class="show-published">
+            <a href="{% url opts|admin_urlname:'change' original.draft_of.pk %}">{% trans "Show Published Version" %}</a>
+        </li>
+    {% endif %}
+
+    {# draft and unpublished #}
+    {% if original.is_draft %}
+        <li class="delete-draft">
+            <a href="{% url 'admin:unpublish' pk=original.pk %}">{% trans "Delete Draft" %}</a>
+        </li>
+        <li class="publish-draft">
+            <a href="{% url 'admin:publish' pk=original.pk %}">{% trans "Publish this Version" %}</a>
+        </li>
+    {% endif %}
+
+    {# draft #}
+    {% if original.has_draft_instance %}
+        <li class="show-draft">
+            <a href="{% url opts|admin_urlname:'change' original.get_draft_instance.pk %}">
+                {% trans "Show Draft Version" %}
+            </a>
+        </li>
+    {% endif %}
+
+    {# published, without draft #}
+    {% if not original.is_draft and not original.has_draft_instance %}
+        <li class="create-draft">
+            <a href="{% url 'admin:create_draft' pk=original.pk %}">{% trans "Create draft" %}</a>
+        </li>
+    {% endif %}
+
+{% endblock %}

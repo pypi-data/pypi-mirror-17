@@ -1,0 +1,4 @@
+include LICENSE.txt
+include README.rst
+recursive-include publishing/static *.txt *.html
+recursive-include publishing/templates *.txt *.html

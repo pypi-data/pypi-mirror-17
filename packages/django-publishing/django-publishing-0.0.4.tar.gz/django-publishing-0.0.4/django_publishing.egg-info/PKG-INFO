@@ -1,0 +1,40 @@
+Metadata-Version: 1.1
+Name: django-publishing
+Version: 0.0.4
+Summary: A simple django app to publish models with a workflow and permissions
+Home-page: https://github.com/domenikjones/django-publishing
+Author: Scholz & Volkmer (Domenik Jones)
+Author-email: d.jones@s-v.de
+License: MIT License
+Download-URL: https://github.com/domenikjones/django-publishing/tarball/0.1
+Description: ==========
+        PUBLISHING
+        ==========
+        
+        Publishing is a simple publishing tool for django to make changes on your
+        models based on a workflow.
+        
+        Detailed documentation is in the "docs" directory.
+        
+        Quick start
+        -----------
+        
+        1. Add "publishing" to your INSTALLED_APPS setting like this::
+        
+            INSTALLED_APPS = [
+                ...
+                'publishing',
+            ]
+        
+        2. Add the model mixin `PublishModelMixin` to your model class.
+        
+        3. Add the admin mixin `PublishAdminMixin` to your admin class.
+        
+        4. Run `python manage.py migrate` to add publishing related fields to models.
+        
+Keywords: django model moderation editorial development
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.4
