@@ -1,0 +1,18 @@
+# Compiled
+*.pyc
+
+# Tests
+/tests/test_project/compressor/
+/.coverage
+/coverage.xml
+/htmlcov/
+
+# Dist
+/dist/
+/*.egg-info/
+/.eggs/
+/.cache/
+
+# Vagrant
+/.vagrant/
+/Vagrantfile
