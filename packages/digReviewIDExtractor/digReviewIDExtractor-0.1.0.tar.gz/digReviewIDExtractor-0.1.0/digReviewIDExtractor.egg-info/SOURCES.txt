@@ -1,0 +1,11 @@
+setup.py
+digReviewIDExtractor/__init__.py
+digReviewIDExtractor/digride.py
+digReviewIDExtractor/review_id_extractor.py
+digReviewIDExtractor.egg-info/PKG-INFO
+digReviewIDExtractor.egg-info/SOURCES.txt
+digReviewIDExtractor.egg-info/dependency_links.txt
+digReviewIDExtractor.egg-info/requires.txt
+digReviewIDExtractor.egg-info/top_level.txt
+test/__init__.py
+test/test_review_id_extractor.py
