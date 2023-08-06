@@ -1,0 +1,9 @@
+{% if entries.9 %}
+  <button
+    is="bulbs-load-more"
+    class="liveblog-more-button"
+    src="{% url 'liveblog-more-entries' pk=content.pk cursor_entry=entries.9.id %}"
+  >
+    SHOW MORE
+  </button>
+{% endif %}
