@@ -1,0 +1,25 @@
+Metadata-Version: 2.0
+Name: cnr-server
+Version: 0.0.1
+Summary: cloud-native app registry server
+Home-page: https://github.com/ant31/cn-app-registry/cnr-server
+Author: Antoine Legrand
+Author-email: 2t.antoine@gmail.com
+License: Apache License version 2
+Keywords: cnr,cnrpy,kubernetes
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Requires-Dist: Flask (>=0.10.1)
+Requires-Dist: flask
+Requires-Dist: flask-cors
+Requires-Dist: futures
+Requires-Dist: python-etcd
+Requires-Dist: semantic-version
+
+
+
+
