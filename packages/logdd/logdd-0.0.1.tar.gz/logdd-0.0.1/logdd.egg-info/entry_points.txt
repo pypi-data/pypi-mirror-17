@@ -1,0 +1,3 @@
+[console_scripts]
+logdd = logdd.cli:cli
+

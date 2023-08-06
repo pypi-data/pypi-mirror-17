@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: logdd
+Version: 0.0.1
+Summary: Extract metrics from logs and pass it to datadog statsd
+Home-page: https://github.com/facemetric/logdd
+Author: Dmitry Sorokin
+Author-email: dmitry.sorokin@gmail.com
+License: MIT License
+Description: UNKNOWN
+Keywords: datadog statsd log
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: Implementation :: CPython

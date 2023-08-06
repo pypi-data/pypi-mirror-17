@@ -1,0 +1,14 @@
+MANIFEST.in
+requirements.txt
+setup.cfg
+setup.py
+logdd/__init__.py
+logdd/cli.py
+logdd/dd.py
+logdd/parse.py
+logdd.egg-info/PKG-INFO
+logdd.egg-info/SOURCES.txt
+logdd.egg-info/dependency_links.txt
+logdd.egg-info/entry_points.txt
+logdd.egg-info/requires.txt
+logdd.egg-info/top_level.txt
