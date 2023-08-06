@@ -1,0 +1,6 @@
+[console_scripts]
+uarm-calibrate = pyuarm.tools.calibrate:main
+uarm-firmware = pyuarm.tools.firmware_helper:main
+uarm-listport = pyuarm.tools.list_uarms:main
+uarm-miniterm = pyuarm.tools.miniterm:main
+
