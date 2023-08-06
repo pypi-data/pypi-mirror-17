@@ -1,0 +1,10 @@
+setuptools
+ftw.dashboard.dragndrop
+ftw.upgrade
+plone.api
+
+[tests]
+plone.app.testing
+ftw.testing
+ftw.builder
+ftw.testbrowser
