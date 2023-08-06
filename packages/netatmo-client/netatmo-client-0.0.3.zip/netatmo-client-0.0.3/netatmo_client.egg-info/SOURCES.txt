@@ -1,0 +1,17 @@
+MANIFEST.in
+README.rst
+requirements.txt
+setup.py
+main/netatmo_client/__init__.py
+main/netatmo_client/client.py
+netatmo_client.egg-info/PKG-INFO
+netatmo_client.egg-info/SOURCES.txt
+netatmo_client.egg-info/dependency_links.txt
+netatmo_client.egg-info/requires.txt
+netatmo_client.egg-info/top_level.txt
+netatmo_client.egg-info/zip-safe
+test/test_common.py
+test/test_public.py
+test/test_station.py
+test/test_thermostat.py
+test/test_welcome.py
