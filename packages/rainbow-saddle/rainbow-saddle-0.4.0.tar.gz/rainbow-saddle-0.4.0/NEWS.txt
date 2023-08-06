@@ -1,0 +1,23 @@
+News
+====
+
+0.4.0
+-----
+
+Support new binary upgrade method used by Gunicorn, since version 19.6.0. Drops
+support for all previous versions of Gunicorn. See commit
+benoitc/gunicorn@418f140 for more info, thanks to Jacob Magnusson.
+
+0.3.1
+-----
+
+Minor Python3 compatibility fix, thanks to Justin Locsei.
+
+0.3.0
+-----
+
+Thanks to Rafael Floriano da Silva for the following:
+
+* add --gunicorn-pidfile
+* fix race condition for slow starting apps
+* update psutil
