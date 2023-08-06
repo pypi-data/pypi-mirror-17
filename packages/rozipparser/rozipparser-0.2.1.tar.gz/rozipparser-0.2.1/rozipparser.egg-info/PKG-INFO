@@ -1,0 +1,77 @@
+Metadata-Version: 1.1
+Name: rozipparser
+Version: 0.2.1
+Summary: Parse official zip code documents from the Romanian Government
+Home-page: https://github.com/macostea/RoZipParser
+Author: Mihai Costea
+Author-email: mihai.andrei.costea@icloud.com
+License: MIT
+Description: RO Zip Data Parser
+        ==================
+        
+        |Build Status|
+        
+        This project is used to parse zip code files from the official Romanian
+        government website.
+        
+        You can find the official xls files following this link:
+        http://data.gov.ro/dataset/coduri-postale-romania
+        
+        Installation
+        ------------
+        
+        ``pip install rozipparser``
+        
+        Usage
+        -----
+        
+        This project can be used standalone to parse and convert the official
+        documents or as a module inside another application.
+        
+        **Important!** The official data file is in the old xls format
+        (Microsoft Excel <2007). The file **MUST** be converted in Office Open
+        XML file format (Microsoft Excel 2007 - xlsx).
+        
+        Command line
+        ~~~~~~~~~~~~
+        
+        Convert to csv ``python parser.py <inputfile> --csv <output.csv>``
+        
+        Module
+        ~~~~~~
+        
+        .. code:: python
+        
+            from codeparser import CodeParser
+        
+            parser = CodeParser("<PATH TO XLSX FILE")
+            codes = parser.get_codes()
+        
+        Each entry in the returned list is a model.Code instance.
+        
+        Please see the test files for additional usage information.
+        
+        License
+        -------
+        
+        CoduriPostaleDataParser is released under the MIT license. See LICENSE
+        for details
+        
+        Contact
+        =======
+        
+        Follow me on twitter [@mcostea](https://twitter.com/mcostea)
+        
+        .. |Build Status| image:: https://travis-ci.org/macostea/CoduriPostaleDataParser.svg?branch=develop
+           :target: https://travis-ci.org/macostea/CoduriPostaleDataParser
+        
+Keywords: zip code development parser romania
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
