@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: xcute
+Version: 0.0.1
+Summary: xcode utilitiy
+Home-page: https://github.com/schwa/xcute
+Author: schwa
+Author-email: jwight@mac.com
+License: MIT
+Description: UNKNOWN
+Keywords: build,xcode,iOS,cocoa,macOS
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: MacOS X
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Software Development :: Build Tools
