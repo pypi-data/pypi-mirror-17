@@ -1,0 +1,10 @@
+setup.cfg
+setup.py
+crox/__init__.py
+crox/__main__.py
+crox/core.py
+crox.egg-info/PKG-INFO
+crox.egg-info/SOURCES.txt
+crox.egg-info/dependency_links.txt
+crox.egg-info/top_level.txt
+scripts/crox
