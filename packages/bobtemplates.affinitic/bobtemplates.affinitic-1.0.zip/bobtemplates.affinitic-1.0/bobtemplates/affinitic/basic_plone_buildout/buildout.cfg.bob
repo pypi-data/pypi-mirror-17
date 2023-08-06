@@ -1,0 +1,18 @@
+[buildout]
+extends =
+    https://raw.githubusercontent.com/affinitic/affinitic.dist/master/plone-base.cfg
+    http://dist.plone.org/release/{{{ plone.version }}}/versions.cfg
+    https://raw.githubusercontent.com/affinitic/affinitic.dist/master/plone{{{ plone.version|replace(".", "") }}}.cfg
+
+[instance]
+http-address = {{{ plone.port }}}
+
+[sources]
+# Put your sources here, like :
+# affinitic.caching = git https://github.com/affinitic/affinitic.caching.git
+{{% if git.hoster == 'Gitlab' %}}
+
+[remotes]
+affinitic = http://automation:${password:automation}@git.affinitic.be/clients
+affinitic_push = git@git.affinitic.be:clients
+{{% endif %}}
