@@ -1,0 +1,8 @@
+mistune
+iospec
+ejudge
+
+[dev]
+python-boilerplate
+invoke>=0.13
+pytest
