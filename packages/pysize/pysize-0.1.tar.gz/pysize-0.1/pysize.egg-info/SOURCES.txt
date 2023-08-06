@@ -1,0 +1,9 @@
+MANIFEST.in
+README.md
+setup.py
+pysize/__init__.py
+pysize/registry.py
+pysize.egg-info/PKG-INFO
+pysize.egg-info/SOURCES.txt
+pysize.egg-info/dependency_links.txt
+pysize.egg-info/top_level.txt
