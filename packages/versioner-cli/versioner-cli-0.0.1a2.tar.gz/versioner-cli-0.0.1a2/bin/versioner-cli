@@ -1,0 +1,11 @@
+#!/usr/bin/env python
+from versioner_cli.cli import
+from future.utils import raise_
+import sys
+
+def main():
+    traceback = sys.exc_info()[2]
+    raise_(NotImplemented, 'Work in Progress', traceback)
+
+if __name__ == '__main__':
+    main()
