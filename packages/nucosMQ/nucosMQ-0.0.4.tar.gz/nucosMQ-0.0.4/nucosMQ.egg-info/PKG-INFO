@@ -1,0 +1,23 @@
+Metadata-Version: 1.1
+Name: nucosMQ
+Version: 0.0.4
+Summary: nucosMQ - a pure python message module
+Home-page: https://github.com/DocBO/nucosMQ
+Author: Oliver Braun
+Author-email: oliver.braun@nucos.de
+License: MIT
+Download-URL: https://github.com/DocBO/nucosMQ/tarball/0.0.1
+Description: ##Recommended test runner
+        nose2 --plugin nose2.plugins.junitxml --junit-xml
+Keywords: message queue zeroMQ snakeMQ
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
