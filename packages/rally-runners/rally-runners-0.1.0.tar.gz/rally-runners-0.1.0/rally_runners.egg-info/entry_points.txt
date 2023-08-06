@@ -1,0 +1,4 @@
+[console_scripts]
+rally-reliability = rally_runners.reliability.runner:main
+rally-reliability-report = rally_runners.reliability.report:main
+
