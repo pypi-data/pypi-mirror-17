@@ -1,0 +1,8 @@
+#!/usr/bin/env python
+from css_scale.scale import scale
+
+if __name__ == '__main__':
+    with open('scale.css', 'r') as fp:
+        css = scale(fp.read())
+    with open('scale.css', 'w') as fp:
+        fp.write(css)
