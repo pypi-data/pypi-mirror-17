@@ -1,0 +1,75 @@
+JNJ To-Do
+=========
+
+x html/e_type_admin.jnj:
+
+  x `delete` uses GET instead of POST request
+
+  x Change this
+
+- Don't use `h<i>` for navigation
+
+  http://www.456bereastreet.com/archive/201103/html5_sectioning_elements_headings_and_document_outlines/
+
+x CSS fragments:
+
+  x .Object-List
+
+  x .Object-Editor
+
+  x @media "print"
+
+x global function for retrieving a macro from a template:
+
+  x def get_macro (macro_name, template_name = None):
+      if `template_name` is None :
+          template_name, macro_name = macro_name.split (".", 1)
+      ...
+
+x Onion
+
+x Functions available for templates
+
+  x tel_uri
+
+  x email_uri
+
+  x obfuscated_email_uri [implemented as `email_uri (..., obfuscated = True)`]
+
+x Media
+
+x Environment.HTML: wrapper for jinja2.Environment
+
+  x Map standard templates into `std/<name>.jnj`, too
+
+  x `kw` map into `globals` of newly created Environment
+
+  x `Media`
+
+  x `html_version`
+
+- Template subdirectory `html`:
+
+  x macro-templates for html5 (`5.jnj`) and xhtml (`x.jnj`)
+
+  * HTML Macros to implement:
+
+    x section
+    x nav
+    + article
+    + aside
+    + hgroup
+    x header
+    x footer
+    + time
+    + mark
+
+    x input_XXX
+
+      x for html5, implement all the fancy `type=XXX` variants
+
+      x select
+
+x Macro-template `form.jnj`: for rendering forms, fields, field-groups, ...
+
+### __END__ to-do
