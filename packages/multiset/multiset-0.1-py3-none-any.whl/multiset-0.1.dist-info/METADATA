@@ -1,0 +1,23 @@
+Metadata-Version: 2.0
+Name: multiset
+Version: 0.1
+Summary: An implementation of a multiset.
+Home-page: https://github.com/wheerd/multiset
+Author: Manuel Krebber
+Author-email: admin@wheerd.de
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: typing (>=3.5); python_version == "3.3"
+Requires-Dist: typing (>=3.5); python_version == "3.4"
+
+A multiset implementatiion for python.
+
+
