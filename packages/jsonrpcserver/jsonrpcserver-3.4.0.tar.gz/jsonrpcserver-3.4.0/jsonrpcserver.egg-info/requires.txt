@@ -1,0 +1,15 @@
+jsonschema
+six
+funcsigs
+
+[examples]
+aiohttp
+flask
+flask-socketio
+tornado
+werkzeug
+pyzmq
+
+[tox]
+tox
+pylint
