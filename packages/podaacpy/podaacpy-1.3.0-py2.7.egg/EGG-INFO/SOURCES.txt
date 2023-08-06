@@ -1,0 +1,17 @@
+README.rst
+setup.cfg
+setup.py
+podaac/__init__.py
+podaac/mcc.py
+podaac/podaac.py
+podaac/podaac_utils.py
+podaac/tests/__init__.py
+podaac/tests/mcc_test.py
+podaac/tests/podaac_test.py
+podaacpy.egg-info/PKG-INFO
+podaacpy.egg-info/SOURCES.txt
+podaacpy.egg-info/dependency_links.txt
+podaacpy.egg-info/namespace_packages.txt
+podaacpy.egg-info/requires.txt
+podaacpy.egg-info/top_level.txt
+podaacpy.egg-info/zip-safe
