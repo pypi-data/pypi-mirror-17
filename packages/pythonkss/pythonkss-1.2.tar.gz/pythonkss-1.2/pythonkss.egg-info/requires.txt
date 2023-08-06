@@ -1,0 +1,10 @@
+Markdown
+Pygments
+beautifulsoup4
+html5lib
+pyyaml
+
+[tests]
+flake8
+mock
+pytest
