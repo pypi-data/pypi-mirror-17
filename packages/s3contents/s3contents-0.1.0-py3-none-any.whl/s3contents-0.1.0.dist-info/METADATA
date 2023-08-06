@@ -1,0 +1,16 @@
+Metadata-Version: 2.0
+Name: s3contents
+Version: 0.1.0
+Summary: A S3-backed ContentsManager implementation for Jupyter
+Home-page: https://github.com/danielfrg/s3contents
+Author: Daniel Rodriguez
+Author-email: df.rodriguez143@gmail.com
+License: Apache 2.0
+Platform: UNKNOWN
+Requires-Dist: boto3
+Requires-Dist: jupyter
+Requires-Dist: requests
+
+UNKNOWN
+
+
