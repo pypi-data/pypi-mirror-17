@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tryton>
+    <data>
+        <!-- Packaging Type-->
+        <record id="packaging_fedex_10kg_box" model="carrier.box_type">
+            <field name="name">10Kg Box</field>
+            <field name="code">FEDEX_10KG_BOX</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="packaging_fedex_25kg_box" model="carrier.box_type">
+            <field name="name">25Kg Box</field>
+            <field name="code">FEDEX_25KG_BOX</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="packaging_fedex_box" model="carrier.box_type">
+            <field name="name">Box</field>
+            <field name="code">FEDEX_BOX</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="packaging_fedex_envelope" model="carrier.box_type">
+            <field name="name">Envelope</field>
+            <field name="code">FEDEX_ENVELOPE</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="packaging_fedex_pak" model="carrier.box_type">
+            <field name="name">Pak</field>
+            <field name="code">FEDEX_PAK</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="packaging_fedex_tube" model="carrier.box_type">
+            <field name="name">Tube</field>
+            <field name="code">FEDEX_TUBE</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="packaging_fedex_your" model="carrier.box_type">
+            <field name="name">Your Packaging</field>
+            <field name="code">YOUR_PACKAGING</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+    </data>
+</tryton>
+
