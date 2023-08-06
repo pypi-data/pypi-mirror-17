@@ -1,0 +1,20 @@
+Metadata-Version: 2.0
+Name: simuvex
+Version: 5.6.10.12
+Summary: A symbolic execution engine for the VEX IR
+Home-page: https://github.com/angr/simuvex
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: ana
+Requires-Dist: archinfo
+Requires-Dist: bintrees
+Requires-Dist: claripy
+Requires-Dist: cooldict
+Requires-Dist: dpkt-fix
+Requires-Dist: pyvex
+
+UNKNOWN
+
+
