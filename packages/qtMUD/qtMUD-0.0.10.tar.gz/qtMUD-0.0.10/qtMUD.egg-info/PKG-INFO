@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: qtMUD
+Version: 0.0.10
+Summary: framework for building and running MUDs
+Home-page: http://github.com/emsenn/qtmud
+Author: emsenn
+Author-email: morgan.sennhauser@gmail.com
+License: WTFPL
+Description: qtMUD is a framework for developing and hosting MUDs, or Multi-User Dungeons; text-based MMORPGs.
+Keywords: mud mmo mmorpg game
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: License :: Freeware
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Communications :: Chat
+Classifier: Topic :: Games/Entertainment :: Multi-User Dungeons (MUD)

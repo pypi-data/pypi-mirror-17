@@ -1,0 +1,15 @@
+MANIFEST.in
+README.md
+setup.py
+bin/qtmud_run
+qtMUD.egg-info/PKG-INFO
+qtMUD.egg-info/SOURCES.txt
+qtMUD.egg-info/dependency_links.txt
+qtMUD.egg-info/not-zip-safe
+qtMUD.egg-info/requires.txt
+qtMUD.egg-info/top_level.txt
+qtmud/__init__.py
+qtmud/cmds.py
+qtmud/services.py
+qtmud/subscriptions.py
+qtmud/txt.py
