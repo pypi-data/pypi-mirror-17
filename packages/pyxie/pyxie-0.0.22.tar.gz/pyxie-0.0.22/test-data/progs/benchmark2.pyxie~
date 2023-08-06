@@ -1,0 +1,6 @@
+countdown = 214748364#7
+print "COUNTING DOWN"
+while countdown:
+    countdown = countdown - 1
+
+print "BLASTOFF"
