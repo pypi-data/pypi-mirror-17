@@ -1,0 +1,12 @@
+setup.py
+textpipeliner/__init__.py
+textpipeliner/context.py
+textpipeliner/engine.py
+textpipeliner.egg-info/PKG-INFO
+textpipeliner.egg-info/SOURCES.txt
+textpipeliner.egg-info/dependency_links.txt
+textpipeliner.egg-info/requires.txt
+textpipeliner.egg-info/top_level.txt
+textpipeliner.egg-info/zip-safe
+textpipeliner/pipes/__init__.py
+textpipeliner/pipes/pipe.py
