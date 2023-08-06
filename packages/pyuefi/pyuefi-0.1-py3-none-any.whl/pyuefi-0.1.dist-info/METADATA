@@ -1,0 +1,26 @@
+Metadata-Version: 2.0
+Name: pyuefi
+Version: 0.1
+Summary: A pure Python tool for extracting UEFI partition information and layout from hard drives
+Home-page: https://bitbucket.org/mmabey/pyuefi
+Author: Mike Mabey
+Author-email: mmabey@ieee.org
+License: MIT
+Download-URL: https://bitbucket.org/mmabey/pyuefi/get/0.1.tar.gz
+Keywords: Master Boot Record,UEFI,partitions,hard drive
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: docopt
+Requires-Dist: six
+
+UNKNOWN
+
+
