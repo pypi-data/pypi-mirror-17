@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: zappa-file-widget
+Version: 0.1.5
+Summary: Django Admin File Wiget for Zappa based admin panels
+Home-page: https://github.com/anush0247/zappa-file-widget
+Author: Aneesh Kumar
+Author-email: anush0247@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: zappa-file-widget
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.10
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
