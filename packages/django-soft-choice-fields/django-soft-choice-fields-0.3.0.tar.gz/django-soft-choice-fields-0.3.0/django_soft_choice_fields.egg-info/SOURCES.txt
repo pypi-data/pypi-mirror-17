@@ -1,0 +1,17 @@
+setup.cfg
+setup.py
+django_soft_choice_fields.egg-info/PKG-INFO
+django_soft_choice_fields.egg-info/SOURCES.txt
+django_soft_choice_fields.egg-info/dependency_links.txt
+django_soft_choice_fields.egg-info/top_level.txt
+softchoice/__init__.py
+softchoice/fields/__init__.py
+softchoice/fields/currency.py
+softchoice/fields/language.py
+softchoice/fields/timezone.py
+tests/__init__.py
+tests/models.py
+tests/settings.py
+tests/test_stuff.py
+tests/urls.py
+tests/migrations/__init__.py
