@@ -1,0 +1,12 @@
+18-08-16 18:36:26 pyemma.coordinates.clustering.kmeans.KmeansClustering[0] INFO     The number of cluster centers was not specified, using min(sqrt(N), 5000)=17 as n_clusters.
+18-08-16 18:38:04 pyemma.coordinates.transform.tica.TICA[1] DEBUG    using 2 moments for 3 chunks
+18-08-16 18:38:04 pyemma.coordinates.transform.tica.TICA[1] DEBUG    diagonalize Cov and Cov_tau.
+18-08-16 18:38:04 pyemma.coordinates.transform.tica.TICA[1] DEBUG    finished diagonalisation.
+18-08-16 18:38:04 pyemma.coordinates.clustering.kmeans.KmeansClustering[0] DEBUG    Accumulated all data, running kmeans on (300, 2)
+18-08-16 18:38:04 pyemma.coordinates.clustering.kmeans.KmeansClustering[0] INFO     Cluster centers converged after 10 steps.
+18-08-16 18:38:20 pyemma.coordinates.clustering.kmeans.KmeansClustering[0] DEBUG    nchunks :3, chunksize=1000
+18-08-16 18:39:09 pyemma.coordinates.clustering.kmeans.KmeansClustering[0] DEBUG    Accumulated all data, running kmeans on (300, 2)
+18-08-16 18:39:09 pyemma.coordinates.clustering.kmeans.KmeansClustering[0] INFO     Algorithm did not reach convergence criterion of 1e-05 in 10 iterations. Consider increasing max_iter.
+18-08-16 18:43:41 pyemma.coordinates.clustering.kmeans.KmeansClustering[2] INFO     The number of cluster centers was not specified, using min(sqrt(N), 5000)=17 as n_clusters.
+18-08-16 18:43:41 pyemma.coordinates.clustering.kmeans.KmeansClustering[2] DEBUG    Accumulated all data, running kmeans on (300, 2)
+18-08-16 18:43:41 pyemma.coordinates.clustering.kmeans.KmeansClustering[2] INFO     Cluster centers converged after 6 steps.

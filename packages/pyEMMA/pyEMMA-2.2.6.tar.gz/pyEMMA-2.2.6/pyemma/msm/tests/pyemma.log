@@ -1,0 +1,38 @@
+22-09-16 12:13:25 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Ignoring lag times that exceed the longest trajectory: [5 6 7 8]
+22-09-16 12:13:25 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+22-09-16 12:13:54 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Ignoring lag times that exceed the longest trajectory: [5 6 7 8]
+22-09-16 12:13:54 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+22-09-16 14:59:59 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+22-09-16 15:00:03 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[1] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+22-09-16 15:00:07 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[2] WARNING  Ignoring lag times that exceed the longest trajectory: [5 6 7 8]
+22-09-16 15:00:07 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[2] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+22-09-16 15:25:41 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] WARNING  Ignored error during estimation: 
+22-09-16 15:25:44 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[1] WARNING  Estimation has failed at lagtimes: [50]. Run single-lag estimation at these lags to track down the error.
+22-09-16 15:25:51 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Ignoring lag times that exceed the longest trajectory: [5 6 7 8]
+22-09-16 15:25:51 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+22-09-16 15:26:14 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[2] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+22-09-16 15:26:19 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[3] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+22-09-16 15:26:26 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[4] WARNING  Ignoring lag times that exceed the longest trajectory: [5 6 7 8]
+22-09-16 15:26:26 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[4] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+22-09-16 15:26:31 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Ignoring lag times that exceed the longest trajectory: [5 6 7 8]
+22-09-16 15:26:31 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+22-09-16 16:45:41 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] INFO     estimation params: 
+{}
+22-09-16 16:45:41 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] INFO     reversible before MLMSM est: True
+22-09-16 16:45:41 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] INFO     reversible after MLMSM est: True
+22-09-16 16:45:41 pyemma.msm.estimators.bayesian_msm.BayesianMSM[1] INFO     estimation params: 
+{'lag': 40}
+22-09-16 16:45:41 pyemma.msm.estimators.bayesian_msm.BayesianMSM[1] INFO     reversible before MLMSM est: False
+22-09-16 16:45:42 pyemma.msm.estimators.bayesian_msm.BayesianMSM[1] INFO     reversible after MLMSM est: False
+22-09-16 16:45:42 pyemma.msm.estimators.bayesian_msm.BayesianMSM[2] INFO     estimation params: 
+{'lag': 400}
+22-09-16 16:45:42 pyemma.msm.estimators.bayesian_msm.BayesianMSM[2] INFO     reversible before MLMSM est: False
+22-09-16 16:45:43 pyemma.msm.estimators.bayesian_msm.BayesianMSM[2] INFO     reversible after MLMSM est: False
+22-09-16 16:45:58 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] INFO     estimation params: 
+{}
+22-09-16 16:45:58 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] INFO     reversible before MLMSM est: True
+22-09-16 16:45:58 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] INFO     reversible after MLMSM est: True
+22-09-16 16:48:48 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] INFO     estimation params: 
+{}
+22-09-16 16:48:48 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] INFO     reversible before MLMSM est: True
+22-09-16 16:48:49 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] INFO     reversible after MLMSM est: True
