@@ -1,0 +1,9 @@
+MANIFEST.in
+README.markdown
+setup.py
+py_daemon/__init__.py
+py_daemon/py_daemon.py
+py_daemon.egg-info/PKG-INFO
+py_daemon.egg-info/SOURCES.txt
+py_daemon.egg-info/dependency_links.txt
+py_daemon.egg-info/top_level.txt
