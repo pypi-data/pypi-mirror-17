@@ -1,0 +1,11 @@
+MANIFEST.in
+README.rst
+setup.py
+botvac_tools/__init__.py
+botvac_tools.egg-info/PKG-INFO
+botvac_tools.egg-info/SOURCES.txt
+botvac_tools.egg-info/dependency_links.txt
+botvac_tools.egg-info/entry_points.txt
+botvac_tools.egg-info/not-zip-safe
+botvac_tools.egg-info/requires.txt
+botvac_tools.egg-info/top_level.txt

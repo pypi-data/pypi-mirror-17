@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: botvac_tools
+Version: 0.1
+Summary: A package of utilities for developingwith the Neato Botvac.
+Home-page: http://github.com/griswaldbrooks/botvac_tools
+Author: Griswald Brooks
+Author-email: griswald.brooks@gmail.com
+License: MIT
+Description: Botvac Tools
+        
+Keywords: neato robotics botvac tools
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Scientific/Engineering
