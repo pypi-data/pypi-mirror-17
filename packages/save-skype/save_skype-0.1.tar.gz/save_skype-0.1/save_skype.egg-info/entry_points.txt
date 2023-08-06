@@ -1,0 +1,3 @@
+[console_scripts]
+save_skype = save_skype.extract:cmd
+
