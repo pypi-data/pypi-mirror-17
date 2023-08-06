@@ -1,0 +1,21 @@
+{
+  "name" : "",
+  "config":{
+    "staging":{
+      "url": "",
+      "ssl_certs":{
+        "cert_file": "",
+        "key_cert_file": "",
+        "bundle": ""
+      }
+    },
+    "production": {
+      "url": "",
+      "ssl_certs":{
+        "cert_file": "",
+        "key_cert_file": "",
+        "bundle": ""
+      }
+    }
+  }
+}
