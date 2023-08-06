@@ -1,0 +1,158 @@
+22-09-16 12:13:25 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Ignoring lag times that exceed the longest trajectory: [5 6 7 8]
+22-09-16 12:13:25 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+22-09-16 12:13:54 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Ignoring lag times that exceed the longest trajectory: [5 6 7 8]
+22-09-16 12:13:54 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+22-09-16 14:59:59 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+22-09-16 15:00:03 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[1] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+22-09-16 15:00:07 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[2] WARNING  Ignoring lag times that exceed the longest trajectory: [5 6 7 8]
+22-09-16 15:00:07 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[2] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+22-09-16 15:25:41 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] WARNING  Ignored error during estimation: 
+22-09-16 15:25:44 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[1] WARNING  Estimation has failed at lagtimes: [50]. Run single-lag estimation at these lags to track down the error.
+22-09-16 15:25:51 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Ignoring lag times that exceed the longest trajectory: [5 6 7 8]
+22-09-16 15:25:51 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+22-09-16 15:26:14 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[2] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+22-09-16 15:26:19 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[3] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+22-09-16 15:26:26 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[4] WARNING  Ignoring lag times that exceed the longest trajectory: [5 6 7 8]
+22-09-16 15:26:26 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[4] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+22-09-16 15:26:31 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Ignoring lag times that exceed the longest trajectory: [5 6 7 8]
+22-09-16 15:26:31 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+22-09-16 16:45:41 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] INFO     estimation params: 
+{}
+22-09-16 16:45:41 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] INFO     reversible before MLMSM est: True
+22-09-16 16:45:41 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] INFO     reversible after MLMSM est: True
+22-09-16 16:45:41 pyemma.msm.estimators.bayesian_msm.BayesianMSM[1] INFO     estimation params: 
+{'lag': 40}
+22-09-16 16:45:41 pyemma.msm.estimators.bayesian_msm.BayesianMSM[1] INFO     reversible before MLMSM est: False
+22-09-16 16:45:42 pyemma.msm.estimators.bayesian_msm.BayesianMSM[1] INFO     reversible after MLMSM est: False
+22-09-16 16:45:42 pyemma.msm.estimators.bayesian_msm.BayesianMSM[2] INFO     estimation params: 
+{'lag': 400}
+22-09-16 16:45:42 pyemma.msm.estimators.bayesian_msm.BayesianMSM[2] INFO     reversible before MLMSM est: False
+22-09-16 16:45:43 pyemma.msm.estimators.bayesian_msm.BayesianMSM[2] INFO     reversible after MLMSM est: False
+22-09-16 16:45:58 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] INFO     estimation params: 
+{}
+22-09-16 16:45:58 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] INFO     reversible before MLMSM est: True
+22-09-16 16:45:58 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] INFO     reversible after MLMSM est: True
+22-09-16 16:48:48 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] INFO     estimation params: 
+{}
+22-09-16 16:48:48 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] INFO     reversible before MLMSM est: True
+22-09-16 16:48:49 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] INFO     reversible after MLMSM est: True
+26-09-16 11:55:41 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] WARNING  Ignored error during estimation: Sparsity patterns of C and X are different.
+26-09-16 11:55:42 pyemma.msm.estimators.bayesian_msm.BayesianMSM[1] WARNING  Ignored error during estimation: Sparsity patterns of C and X are different.
+26-09-16 11:56:11 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[2] WARNING  Estimation has failed at lagtimes: [1 2]. Run single-lag estimation at these lags to track down the error.
+26-09-16 11:56:14 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[2] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 11:56:14 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[2] ERROR    During saving the object ("The "<class 'pyemma.msm.estimators.implied_timescales.ImpliedTimescales'>" should define a static "_serialize_version" attribute.") the following error occurred
+Traceback (most recent call last):
+  File "/home/marscher/workspace/pyemma/pyemma/_base/serialization/serialization.py", line 92, in save
+    flattened = jsonpickle.dumps(self)
+  File "/home/marscher/workspace/pyemma/pyemma/_ext/jsonpickle/__init__.py", line 135, in encode
+    numeric_keys=numeric_keys)
+  File "/home/marscher/workspace/pyemma/pyemma/_ext/jsonpickle/pickler.py", line 44, in encode
+    return backend.encode(context.flatten(value, reset=reset))
+  File "/home/marscher/workspace/pyemma/pyemma/_ext/jsonpickle/pickler.py", line 157, in flatten
+    return self._flatten(obj)
+  File "/home/marscher/workspace/pyemma/pyemma/_ext/jsonpickle/pickler.py", line 161, in _flatten
+    return self._pop(self._flatten_obj(obj))
+  File "/home/marscher/workspace/pyemma/pyemma/_ext/jsonpickle/pickler.py", line 177, in _flatten_obj
+    return flatten_func(obj)
+  File "/home/marscher/workspace/pyemma/pyemma/_ext/jsonpickle/pickler.py", line 235, in _ref_obj_instance
+    return self._flatten_obj_instance(obj)
+  File "/home/marscher/workspace/pyemma/pyemma/_ext/jsonpickle/pickler.py", line 338, in _flatten_obj_instance
+    state = obj.__getstate__()
+  File "/home/marscher/workspace/pyemma/pyemma/_base/serialization/serialization.py", line 219, in __getstate__
+    .format(klass=self.__class__))
+pyemma._base.serialization.serialization.DeveloperError: The "<class 'pyemma.msm.estimators.implied_timescales.ImpliedTimescales'>" should define a static "_serialize_version" attribute.
+26-09-16 12:05:58 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] WARNING  Ignored error during estimation: Sparsity patterns of C and X are different.
+26-09-16 12:05:58 pyemma.msm.estimators.bayesian_msm.BayesianMSM[1] WARNING  Ignored error during estimation: Sparsity patterns of C and X are different.
+26-09-16 12:06:15 pyemma.msm.estimators.bayesian_msm.BayesianMSM[2] WARNING  Ignored error during estimation: 
+26-09-16 12:06:21 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] WARNING  Ignored error during estimation: Sparsity patterns of C and X are different.
+26-09-16 12:06:22 pyemma.msm.estimators.bayesian_msm.BayesianMSM[1] WARNING  Ignored error during estimation: Sparsity patterns of C and X are different.
+26-09-16 12:06:45 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[2] WARNING  Estimation has failed at lagtimes: [1 2]. Run single-lag estimation at these lags to track down the error.
+26-09-16 12:06:45 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[2] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 12:06:45 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[2] ERROR    During saving the object ("The "<class 'pyemma.msm.estimators.implied_timescales.ImpliedTimescales'>" should define a static "_serialize_version" attribute.") the following error occurred
+Traceback (most recent call last):
+  File "/home/marscher/workspace/pyemma/pyemma/_base/serialization/serialization.py", line 92, in save
+    flattened = jsonpickle.dumps(self)
+  File "/home/marscher/workspace/pyemma/pyemma/_ext/jsonpickle/__init__.py", line 135, in encode
+    numeric_keys=numeric_keys)
+  File "/home/marscher/workspace/pyemma/pyemma/_ext/jsonpickle/pickler.py", line 44, in encode
+    return backend.encode(context.flatten(value, reset=reset))
+  File "/home/marscher/workspace/pyemma/pyemma/_ext/jsonpickle/pickler.py", line 157, in flatten
+    return self._flatten(obj)
+  File "/home/marscher/workspace/pyemma/pyemma/_ext/jsonpickle/pickler.py", line 161, in _flatten
+    return self._pop(self._flatten_obj(obj))
+  File "/home/marscher/workspace/pyemma/pyemma/_ext/jsonpickle/pickler.py", line 177, in _flatten_obj
+    return flatten_func(obj)
+  File "/home/marscher/workspace/pyemma/pyemma/_ext/jsonpickle/pickler.py", line 235, in _ref_obj_instance
+    return self._flatten_obj_instance(obj)
+  File "/home/marscher/workspace/pyemma/pyemma/_ext/jsonpickle/pickler.py", line 338, in _flatten_obj_instance
+    state = obj.__getstate__()
+  File "/home/marscher/workspace/pyemma/pyemma/_base/serialization/serialization.py", line 219, in __getstate__
+    .format(klass=self.__class__))
+pyemma._base.serialization.serialization.DeveloperError: The "<class 'pyemma.msm.estimators.implied_timescales.ImpliedTimescales'>" should define a static "_serialize_version" attribute.
+26-09-16 12:07:45 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] WARNING  Ignored error during estimation: Sparsity patterns of C and X are different.
+26-09-16 12:07:46 pyemma.msm.estimators.bayesian_msm.BayesianMSM[1] WARNING  Ignored error during estimation: Sparsity patterns of C and X are different.
+26-09-16 12:08:08 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[2] WARNING  Estimation has failed at lagtimes: [1 2]. Run single-lag estimation at these lags to track down the error.
+26-09-16 12:08:08 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[2] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 12:09:07 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 12:09:52 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 12:11:24 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 14:27:30 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 14:29:31 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 14:36:21 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 14:36:30 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 14:39:00 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 14:39:29 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 14:39:38 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 14:40:12 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 14:40:20 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 14:40:27 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 14:41:07 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 14:43:49 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 14:45:03 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 14:45:09 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 14:46:29 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 14:49:26 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 14:50:12 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 14:54:06 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 14:54:42 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 14:55:19 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 15:00:44 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 15:02:16 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 15:02:24 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 15:06:16 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 15:11:41 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 15:11:45 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 15:12:31 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 15:13:08 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 15:18:46 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 15:23:06 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 15:23:35 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 15:25:02 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 15:30:37 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 15:30:49 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 15:35:17 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[0] WARNING  Some timescales could not be computed. Timescales array is smaller than expected or contains NaNs
+26-09-16 15:42:20 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] WARNING  Ignored error during estimation: Sparsity patterns of C and X are different.
+26-09-16 15:42:21 pyemma.msm.estimators.bayesian_msm.BayesianMSM[1] WARNING  Ignored error during estimation: Sparsity patterns of C and X are different.
+26-09-16 15:42:22 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[2] WARNING  Estimation has failed at lagtimes: [1 2]. Run single-lag estimation at these lags to track down the error.
+26-09-16 15:46:10 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] WARNING  Ignored error during estimation: Sparsity patterns of C and X are different.
+26-09-16 15:46:11 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[1] WARNING  Estimation has failed at lagtimes: [1]. Run single-lag estimation at these lags to track down the error.
+26-09-16 15:46:18 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] WARNING  Ignored error during estimation: Sparsity patterns of C and X are different.
+26-09-16 15:46:19 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[1] WARNING  Estimation has failed at lagtimes: [1]. Run single-lag estimation at these lags to track down the error.
+26-09-16 15:46:27 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] WARNING  Ignored error during estimation: Sparsity patterns of C and X are different.
+26-09-16 15:46:28 pyemma.msm.estimators.implied_timescales.ImpliedTimescales[1] WARNING  Estimation has failed at lagtimes: [1]. Run single-lag estimation at these lags to track down the error.
+05-10-16 16:02:05 pyemma.msm.estimators.bayesian_msm.BayesianMSM[0] WARNING  Ignored error during estimation: Invalid parameter n_samples for estimator BayesianMSM
+05-10-16 16:34:06 pyemma.msm.estimators.maximum_likelihood_msm.MaximumLikelihoodMSM[0] WARNING  Ignored error during estimation: Invalid parameter show_progress for estimator MaximumLikelihoodMSM
+05-10-16 16:36:55 pyemma.msm.estimators.lagged_model_validators.ChapmanKolmogorovValidator[0] WARNING  Changed mlags as some mlags exceeded maximum trajectory length.
+05-10-16 16:36:55 pyemma.msm.estimators.maximum_likelihood_hmsm.MaximumLikelihoodHMSM[1] WARNING  Ignored error during estimation: Trying to initialize 2-state HMM from smaller 1-state MSM.
+05-10-16 16:36:55 pyemma.msm.estimators.maximum_likelihood_hmsm.MaximumLikelihoodHMSM[2] WARNING  Ignored error during estimation: Trying to initialize 2-state HMM from smaller 1-state MSM.
+05-10-16 16:36:55 pyemma.msm.estimators.maximum_likelihood_hmsm.MaximumLikelihoodHMSM[3] WARNING  Ignored error during estimation: Trying to initialize 2-state HMM from smaller 1-state MSM.
+05-10-16 16:36:55 pyemma.msm.estimators.maximum_likelihood_hmsm.MaximumLikelihoodHMSM[4] WARNING  Ignored error during estimation: Illegal lag time 8 exceeds longest trajectory length
+05-10-16 16:36:55 pyemma.msm.estimators.lagged_model_validators.ChapmanKolmogorovValidator[5] WARNING  Changed mlags as some mlags exceeded maximum trajectory length.
+05-10-16 16:36:55 pyemma.msm.estimators.maximum_likelihood_hmsm.MaximumLikelihoodHMSM[6] WARNING  Ignored error during estimation: Trying to initialize 2-state HMM from smaller 1-state MSM.
+05-10-16 16:37:14 pyemma.msm.estimators.lagged_model_validators.ChapmanKolmogorovValidator[0] WARNING  Changed mlags as some mlags exceeded maximum trajectory length.
+05-10-16 16:37:14 pyemma.msm.estimators.maximum_likelihood_hmsm.MaximumLikelihoodHMSM[1] WARNING  Ignored error during estimation: Trying to initialize 2-state HMM from smaller 1-state MSM.
+05-10-16 16:37:14 pyemma.msm.estimators.maximum_likelihood_hmsm.MaximumLikelihoodHMSM[2] WARNING  Ignored error during estimation: Trying to initialize 2-state HMM from smaller 1-state MSM.
+05-10-16 16:37:14 pyemma.msm.estimators.maximum_likelihood_hmsm.MaximumLikelihoodHMSM[3] WARNING  Ignored error during estimation: Trying to initialize 2-state HMM from smaller 1-state MSM.
+05-10-16 16:37:14 pyemma.msm.estimators.maximum_likelihood_hmsm.MaximumLikelihoodHMSM[4] WARNING  Ignored error during estimation: Illegal lag time 8 exceeds longest trajectory length
+05-10-16 16:37:14 pyemma.msm.estimators.lagged_model_validators.ChapmanKolmogorovValidator[5] WARNING  Changed mlags as some mlags exceeded maximum trajectory length.
+05-10-16 16:37:14 pyemma.msm.estimators.maximum_likelihood_hmsm.MaximumLikelihoodHMSM[6] WARNING  Ignored error during estimation: Trying to initialize 2-state HMM from smaller 1-state MSM.
