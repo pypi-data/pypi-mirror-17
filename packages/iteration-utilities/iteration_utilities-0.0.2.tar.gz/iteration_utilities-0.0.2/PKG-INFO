@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: iteration_utilities
+Version: 0.0.2
+Summary: some utilities for iterations.
+Home-page: https://github.com/MSeifert04/iteration_utilities
+Author: Michael Seifert
+Author-email: michaelseifert04@yahoo.de
+License: MIT
+Description: Itertools recipes from the python package docs and additional optimized utilities for iterations.
+Keywords: itertools performance iteration
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5

@@ -1,0 +1,14 @@
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+iteration_utilities/__init__.py
+iteration_utilities.egg-info/PKG-INFO
+iteration_utilities.egg-info/SOURCES.txt
+iteration_utilities.egg-info/dependency_links.txt
+iteration_utilities.egg-info/not-zip-safe
+iteration_utilities.egg-info/top_level.txt
+iteration_utilities/recipes/__init__.py
+iteration_utilities/recipes/additional.py
+iteration_utilities/recipes/core.py
+iteration_utilities/recipes/py2_compat.py
