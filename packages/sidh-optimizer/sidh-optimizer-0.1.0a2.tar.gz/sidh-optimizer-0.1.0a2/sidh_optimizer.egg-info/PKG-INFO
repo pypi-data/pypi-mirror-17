@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: sidh-optimizer
+Version: 0.1.0a2
+Summary: A library to explore computational strategies for the SIDH cryptosystem
+Home-page: https://github.com/sidh-crypto/sidh-optimizer
+Author: Luca De Feo
+Author-email: UNKNOWN
+License: MIT
+Description: For usage instructions, see `this Jupyter notebook <https://github.com/sidh-crypto/sidh-optimizer/blob/master/examples.ipynb>`_.
+Keywords: cryptography isogeny
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3

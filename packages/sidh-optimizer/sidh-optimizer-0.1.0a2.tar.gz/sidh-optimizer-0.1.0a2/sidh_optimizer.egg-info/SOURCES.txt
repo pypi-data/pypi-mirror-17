@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+examples.ipynb
+setup.cfg
+setup.py
+sidh_optimizer/__init__.py
+sidh_optimizer/formulas.py
+sidh_optimizer/key_exchange.py
+sidh_optimizer/paths.py
+sidh_optimizer.egg-info/PKG-INFO
+sidh_optimizer.egg-info/SOURCES.txt
+sidh_optimizer.egg-info/dependency_links.txt
+sidh_optimizer.egg-info/requires.txt
+sidh_optimizer.egg-info/top_level.txt
