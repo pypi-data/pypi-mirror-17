@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: mysqlbisect
+Version: 1.1
+Summary: Perform a binary search in a large number of MySQL database dumps
+Home-page: https://github.com/raphaelm/mysql-bisect
+Author: Raphael Michel
+Author-email: mail@raphaelmichel.de
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: database,backup,bisect,search,mysqldump
+Platform: UNKNOWN
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: System :: Archiving :: Backup
+Classifier: Topic :: Database
