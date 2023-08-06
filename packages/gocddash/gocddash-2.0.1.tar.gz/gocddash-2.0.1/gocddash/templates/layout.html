@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description"
+          content="Dashboard for Thoughtworks Go Continuous Delivery, Go.CD, CoCD">
+    <meta name="author" content="magnus@thinkware.se">
+    <title>Go.CD Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/{{ theme }}/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('gocddash.static', filename='dash.css') }}" rel="stylesheet">
+
+    {% block bokehstuff %}{% endblock %}
+</head>
+
+<body>
+
+
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ go_server_url }}" target="_blank">{{ go_server_url }}</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active" title="Show only failing builds"><a href="{{ url_for('gocddash.dashboard') }}?which=failing">Failing</a></li>
+                <li class="active" title="Show failing and building"><a href="{{ url_for('gocddash.dashboard') }}?which=progress">Progress</a></li>
+                <li class="active" title="Show all builds"><a href="{{ url_for('gocddash.dashboard') }}?which=all">All</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More/Config <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url_for('gocddash.stats') }}">Graph overview</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li title="Select which pipeline groups to monitor"><a href="{{ url_for('gocddash.select') }}">Select pipeline groups / Config</a></li>
+                        <li title="Select which bootstrap theme to use"><a href="{{ url_for('gocddash.select_theme') }}">Select theme</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <p class="navbar-text navbar-right">Last refresh: {{ now | tm }} | <span id="seconds">00</span> seconds</p>
+                </li>
+            </ul>
+
+
+        </div>
+    </div>
+</nav>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <!-- <strong>Title</strong> --> {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+{% block content %}{% endblock %}
+
+<div class="container">
+    <p></p>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well well-sm small text-center">{{ footer }}</div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+
+
+<script type="text/javascript">
+    var applicationRoot = "{{ application_root }}";
+</script>
+
+<script src="{{ url_for('gocddash.static', filename='dash.js') }}"></script>
+
+
+{% block scripts %}{% endblock %}
+
+</body>
+</html>
