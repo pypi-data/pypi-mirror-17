@@ -1,0 +1,34 @@
+.. vim: set fileencoding=utf-8 :
+.. Sushil Bhattacharjee <sushil.bhattacharjee@idiap.ch>
+.. Sat 17 Sep 20:01:00 2016
+
+
+=====================================================
+Reproducing results of paper published in BioSIG 2016
+=====================================================
+
+This package is part of the Bob_ toolkit. Scripts in this package can be used to reproduce face-PAD results the following paper::
+
+    @inproceedings{costaBiosig2016,
+    author = {A. Costa-Pazo and S. Bhattacharjee and E. Vazquez-Fernandez and S. Marcel},
+    title = {The Replay-Mobile Face Presentation Attack Database},
+    year = {2016},
+    month = sep,
+    booktitle = {Proceedings of the 15th International Conference of the Biometrics Special Interest Group (BIOSIG)},
+    address = {Darmstadt, Germany},
+    }
+
+If you use this package and/or its results, please cite the paper.
+
+
+Installation
+------------
+To install this package -- alone or together with other `Packages of Bob <https://github.com/idiap/bob/wiki/Packages>`_ -- please read the `Installation Instructions <https://github.com/idiap/bob/wiki/Installation>`_.
+For Bob_ to be able to work properly, some dependent packages are required to be installed.
+Please make sure that you have read the `Dependencies <https://github.com/idiap/bob/wiki/Dependencies>`_ for your operating system.
+
+Documentation
+-------------
+For a list of tutorials on this or the other packages of Bob_, or information on submitting issues, asking questions and starting discussions, please visit its website.
+
+.. _bob: https://www.idiap.ch/software/bob
