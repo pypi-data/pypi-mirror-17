@@ -1,0 +1,23 @@
+Metadata-Version: 2.0
+Name: wasp-gateway
+Version: 0.0.1
+Summary: API Gateway: Central access point into a microservice based system
+Home-page: https://github.com/WickedAsyncServicesPlatform/wasp-gateway
+Author: Matt Rasband, Nick Humrich
+Author-email: matt.rasband@gmail.com
+License: Apache-2.0
+Download-URL: https://github.com/WickedAsyncServicesPlatform/wasp-gateway/releases
+Keywords: microservice,gateway,api,asyncio,aiohttp
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.5
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Intended Audience :: Developers
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Topic :: Software Development
+Requires-Dist: aiohttp (>=1.0)
+Provides-Extra: recommends
+Requires-Dist: uvloop; extra == 'recommends'
+
+UNKNOWN
+
+
