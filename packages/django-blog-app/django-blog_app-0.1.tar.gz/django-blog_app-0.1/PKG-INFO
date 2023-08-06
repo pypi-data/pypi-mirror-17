@@ -1,0 +1,48 @@
+Metadata-Version: 1.1
+Name: django-blog_app
+Version: 0.1
+Summary: A simple Django blog app.
+Home-page: http://www.qranger.com/
+Author: Uros Marolt
+Author-email: uros.marolt@gmail.com
+License: BSD License
+Description: =====
+        Blog
+        =====
+        
+        Blog is a Django blog app 
+        Detailed documentation is in the "docs" directory.
+        
+        Quick start
+        -----------
+        
+        1. Add "blog" to your INSTALLED_APPS setting like this::
+        
+               INSTALLED_APPS = [
+                       ...
+                               'blog',
+                                   ]
+        
+                                2. Include the polls URLconf in your project urls.py like this::
+        
+                                url(r'^', include('blog.urls', namespace='blog', app_name='blog')),
+                                    
+                                    3. Run `python manage.py migrate` to create the polls models.
+        
+                                    4. Start the development server and visit http://127.0.0.1:8000/admin/
+                                          to create blog posts (you'll need the Admin app enabled).
+        
+        
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.9
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
