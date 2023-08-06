@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: hamtools
+Version: 0.3
+Summary: N1YWB Python Ham Radio Tools
+Home-page: https://github.com/n1ywb/python-hamtools
+Author: Jeff Laughlin
+Author-email: jeff@jefflaughlinconsulting.com
+License: UNKNOWN
+Download-URL: https://github.com/n1ywb/python-hamtools/archive/0.3.zip
+Description: Collection of amateur radio tools. Includes ability to read ADIF and
+        Cabrillo log files, cty.dat files, georeference callsigns via QRZ.com,
+        callook, and ctydat, and output GIS data in GeoJSON and KML formats.
+Keywords: ham,amateur,qrz,adif,cabrillo,kml,geojson,ctydat
+Platform: UNKNOWN

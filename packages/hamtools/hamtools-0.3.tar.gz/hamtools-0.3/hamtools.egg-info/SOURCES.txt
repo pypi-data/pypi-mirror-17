@@ -1,0 +1,17 @@
+geolog
+setup.cfg
+setup.py
+vk
+hamtools/__init__.py
+hamtools/adif.py
+hamtools/ctydat.py
+hamtools/geolog.py
+hamtools/kml.py
+hamtools/qrz.py
+hamtools/ziplocs.py
+hamtools.egg-info/PKG-INFO
+hamtools.egg-info/SOURCES.txt
+hamtools.egg-info/dependency_links.txt
+hamtools.egg-info/requires.txt
+hamtools.egg-info/top_level.txt
+hamtools/ctydat/cty.dat
