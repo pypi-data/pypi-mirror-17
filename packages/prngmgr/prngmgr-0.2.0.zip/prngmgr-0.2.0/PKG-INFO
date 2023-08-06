@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: prngmgr
+Version: 0.2.0
+Summary: Django webapp for peering session management using PeeringDB API
+Home-page: https://github.com/wolcomm/prngmgr
+Author: Workonline Communications
+Author-email: communications@workonkonline.co.za
+License: LICENSE
+Download-URL: https://github.com/prngmgr/0.2.0
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Internet
