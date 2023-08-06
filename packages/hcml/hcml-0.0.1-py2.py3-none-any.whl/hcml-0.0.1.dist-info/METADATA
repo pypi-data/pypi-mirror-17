@@ -1,0 +1,16 @@
+Metadata-Version: 2.0
+Name: hcml
+Version: 0.0.1
+Summary: A plugin for Hachi to detect meaningless sentences.
+Home-page: https://github.com/guokr/Hachi
+Author: MomingCoder
+Author-email: a398445075@gmail.com
+License: MIT
+Keywords: filter,Hachi,plugin,meaningless
+Platform: UNKNOWN
+Classifier: Topic :: Text Processing
+Requires-Dist: jieba
+
+UNKNOWN
+
+
