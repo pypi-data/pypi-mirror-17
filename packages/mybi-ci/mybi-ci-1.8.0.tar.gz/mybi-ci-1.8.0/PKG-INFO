@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: mybi-ci
+Version: 1.8.0
+Summary: Mybi CI (continuous integration) build tool
+Home-page: https://www.mybi.es
+Author: Marco Antonio Albero Albero
+Author-email: marco@mybi.es
+License: Apache License, Version 2.0
+Description: This tool is intended to provide a continuous integration tool for building projects of your choice.
+        
+Keywords: CI,build,devops,sysadmin
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 2.7
