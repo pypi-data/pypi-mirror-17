@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: djangodeletes
+Version: 0.6
+Summary: A fully functional soft deletes (logical deletes) for django.
+Home-page: https://github.com/upgrad/django-deletes
+Author: Ankit Mittal
+Author-email: ankit@upgrad.com
+License: MIT License
+Description: A fully functional soft deletes for django
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.9
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content

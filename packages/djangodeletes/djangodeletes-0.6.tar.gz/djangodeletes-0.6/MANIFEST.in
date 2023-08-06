@@ -1,0 +1,4 @@
+include LICENSE
+include djangodeletes/README.md
+include djangodeletes/README.rst
+recursive-include djangodeletes/docs *
