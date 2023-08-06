@@ -1,0 +1,13 @@
+MANIFEST.in
+README.rst
+setup.py
+porto/__init__.py
+porto/api.py
+porto/exceptions.py
+porto/rpc_pb2.py
+portopy.egg-info/PKG-INFO
+portopy.egg-info/SOURCES.txt
+portopy.egg-info/dependency_links.txt
+portopy.egg-info/not-zip-safe
+portopy.egg-info/requires.txt
+portopy.egg-info/top_level.txt
