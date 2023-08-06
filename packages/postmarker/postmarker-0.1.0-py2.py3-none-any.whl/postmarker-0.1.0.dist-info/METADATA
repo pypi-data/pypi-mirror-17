@@ -1,0 +1,27 @@
+Metadata-Version: 2.0
+Name: postmarker
+Version: 0.1.0
+Summary: Python client library for Postmark API
+Home-page: https://github.com/FriendlyCoders/postmarker
+Author: FriendlyCoders
+Author-email: UNKNOWN
+License: MIT
+Keywords: postmark,api,client
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Dist: requests
+
+UNKNOWN
+
+
