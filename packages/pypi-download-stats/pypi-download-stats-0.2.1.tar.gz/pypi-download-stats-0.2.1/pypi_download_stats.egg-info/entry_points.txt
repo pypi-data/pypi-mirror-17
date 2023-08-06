@@ -1,0 +1,4 @@
+
+    [console_scripts]
+    pypi-download-stats = pypi_download_stats.runner:main
+    
