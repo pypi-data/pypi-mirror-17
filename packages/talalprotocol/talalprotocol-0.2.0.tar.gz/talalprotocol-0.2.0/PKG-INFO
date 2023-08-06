@@ -1,0 +1,87 @@
+Metadata-Version: 1.1
+Name: talalprotocol
+Version: 0.2.0
+Summary: Deep Layered Encryption
+Home-page: https://github.com/s3nu/talalprotocol
+Author: Team Standy
+Author-email: teamstandyy@gmail.com
+License: Team Standy License
+Description: ===============================
+        TalalProtocol
+        ===============================
+        
+        TalalProtocol_.
+            .. _TalalProtocol: http://www.talalprotocol.com
+        
+        
+        Deep Layered Encryption
+        
+        .. figure:: docs/images/readme.jpg
+        
+        Features
+        --------
+        
+        This module provides various encryption algorithms.
+        
+        Current ciphers:
+        
+        a. Vigenere Cipher: encryption and decryption options.
+        
+        b. Caesar Cipher: encryption and decryption options.
+        
+        c. Custom Binary Encryption Algorithm: ENCRYPTION ONLY!
+        
+        More features to be added within the next release cycle.
+        
+        Credits
+        ---------
+        
+        Package Writers:
+            - Talal Khalil (Creator&Architect)
+            - Anahit Sarao (Lead Dev)
+        
+        
+        ===============================
+        TalalProtocol
+        ===============================
+        
+        
+        =======
+        History
+        =======
+        
+        0.1.0 (2016-09-15)
+        ------------------
+        
+        * First release code name: Apollo
+        
+        0.1.2 (2016-09-15)
+        ------------------
+        
+        * Patches and Bug fixes
+        
+        0.2.0 (2016-09-20)
+        ------------------
+        
+        * Custom Binary Encryption algorithm added
+        
+        * Caesar Cipher patched and completely optimized
+        
+        * Vigenere Cipher patched
+        
+        * Run time improvement
+        
+        
+        
+        
+        
+Keywords: encryption talalprotocol python3
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
