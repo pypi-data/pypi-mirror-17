@@ -1,0 +1,54 @@
+Metadata-Version: 2.0
+Name: MetaProfile
+Version: 0.1.0
+Summary: Python package that facilitates making gene meta-profiles.
+Home-page: https://github.com/guma44/MetaProfile
+Author: Rafal Gumienny
+Author-email: guma44@gmail.com
+License: ISCL
+Keywords: MetaProfile
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: ISC License (ISCL)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+
+===============================
+MetaProfile
+===============================
+
+.. image:: https://img.shields.io/travis/guma44/MetaProfile.svg
+        :target: https://travis-ci.org/guma44/MetaProfile
+
+.. image:: https://img.shields.io/pypi/v/MetaProfile.svg
+        :target: https://pypi.python.org/pypi/MetaProfile
+
+
+Python package that facilitates making gene meta-profiles.
+
+* Free software: GPL license
+* Documentation: https://MetaProfile.readthedocs.org.
+
+Features
+--------
+
+* TODO
+
+
+
+
+History
+-------
+
+0.1.0 (2015-09-20)
+---------------------
+
+* First release on PyPI.
+
+
