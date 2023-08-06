@@ -1,0 +1,31 @@
+Metadata-Version: 2.0
+Name: django-facebook-pixel-code
+Version: 0.0.2
+Summary: Easily include your Facebook Pixel Code tag in your django site
+Home-page: https://github.com/AlessioBazzanella/django-facebook-pixel-code.git
+Author: Alessio Bazzanella
+Author-email: alessio.bazzanella@me.com
+License: MIT
+Keywords: django generic-views
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: MIT License
+
+django-facebook-pixel-code
+==========================
+
+Template tag to install your Facebook Pixel Code account in your
+templates (https://www.facebook.com/business/help/www/651294705016616/)
+
+## Installation and Usage
+
+1. run `pip install django-facebook-pixel-code`
+2. add `'facebook_pixel_code'` to your `INSTALLED_APPS` setting.
+3. set `FACEBOOK_PIXEL_CODE_ID` to your Facebook Pixel Code Id.
+4. In your templates (probably in your base template) you `{% load
+   fpc_tags %}` and then `{% fpc %}` between the `<head>` and `</head>`
+   tags.
+5. Profit
+
+
