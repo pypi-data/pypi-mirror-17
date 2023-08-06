@@ -1,0 +1,6 @@
+django>=1.8
+
+[dev]
+python-boilerplate
+invoke>=0.13
+pytest
