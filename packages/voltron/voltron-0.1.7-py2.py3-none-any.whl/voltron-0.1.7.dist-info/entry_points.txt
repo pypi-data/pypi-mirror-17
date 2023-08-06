@@ -1,0 +1,17 @@
+[console_scripts]
+voltron = voltron:main
+
+[pygments.lexers]
+capstone_intel = voltron.lexers:CapstoneIntelLexer
+gdb_att = voltron.lexers:GDBATTLexer
+gdb_intel = voltron.lexers:GDBIntelLexer
+lldb_att = voltron.lexers:LLDBATTLexer
+lldb_intel = voltron.lexers:LLDBIntelLexer
+vdb_att = voltron.lexers:VDBATTLexer
+vdb_intel = voltron.lexers:VDBIntelLexer
+windbg_att = voltron.lexers:WinDbgATTLexer
+windbg_intel = voltron.lexers:WinDbgIntelLexer
+
+[pygments.styles]
+volarized = voltron.styles:VolarizedStyle
+
