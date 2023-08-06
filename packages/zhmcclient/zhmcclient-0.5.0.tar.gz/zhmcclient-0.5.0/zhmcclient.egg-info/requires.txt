@@ -1,0 +1,6 @@
+six
+pbr>=1.8
+requests>=2.10.0
+decorator
+tabulate
+progressbar2
