@@ -1,0 +1,5 @@
+<div
+    class="dfp dfp-slot-{{ ad_unit }}{% if css_class %} {{ css_class }}{% endif %}"
+    data-ad-unit="{{ ad_unit }}"
+    {% if targeting %}data-targeting='{{ targeting|safe }}'{% endif %}>
+</div>
