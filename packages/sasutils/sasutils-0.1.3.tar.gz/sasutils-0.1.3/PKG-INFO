@@ -1,0 +1,25 @@
+Metadata-Version: 1.1
+Name: sasutils
+Version: 0.1.3
+Summary: Serial Attached SCSI (SAS) Linux utilities
+Home-page: https://github.com/stanford-rc/sasutils
+Author: Stephane Thiell
+Author-email: sthiell@stanford.edu
+License: Apache Software License
+Description: sasutils - Serial Attached SCSI (SAS) Linux utilities
+        =====================================================
+        
+        :Author: Stephane Thiell
+        :License: `Apache License 2.0`_
+        :Version: 0.1.3
+        
+        .. _Apache License 2.0: https://www.apache.org/licenses/LICENSE-2.0
+        
+Keywords: SAS,SCSI,storage
+Platform: GNU/Linux
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: System Administrators
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Topic :: System :: Systems Administration
