@@ -1,0 +1,17 @@
+setup.cfg
+setup.py
+zerolog/__init__.py
+zerolog/forwarder.py
+zerolog/receiver.py
+zerolog/worker.py
+zerolog.egg-info/PKG-INFO
+zerolog.egg-info/SOURCES.txt
+zerolog.egg-info/dependency_links.txt
+zerolog.egg-info/entry_points.txt
+zerolog.egg-info/requires.txt
+zerolog.egg-info/top_level.txt
+zerolog/commands/__init__.py
+zerolog/commands/forwarder.py
+zerolog/commands/main.py
+zerolog/commands/receiver.py
+zerolog/commands/worker.py
