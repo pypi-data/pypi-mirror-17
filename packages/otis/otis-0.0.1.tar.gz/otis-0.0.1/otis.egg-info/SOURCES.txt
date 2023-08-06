@@ -1,0 +1,10 @@
+setup.py
+bin/otis
+otis/__init__.py
+otis.egg-info/PKG-INFO
+otis.egg-info/SOURCES.txt
+otis.egg-info/dependency_links.txt
+otis.egg-info/requires.txt
+otis.egg-info/top_level.txt
+otis/bin/__init__.py
+otis/bin/cli.py
