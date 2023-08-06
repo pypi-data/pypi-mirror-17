@@ -1,0 +1,16 @@
+ipfsapi/__init__.py,sha256=FLMeZExsVb_XtQSjNyFueIqJTV2Fjz290-j4ZOG0aDY,350
+ipfsapi/client.py,sha256=B5hWE3EEFPGPWmbrwaPk4SSYsYSGgq3eyh7q1rvRgyw,66715
+ipfsapi/encoding.py,sha256=OOAkZux6gQuELNtJ0Bk5rNlukmhE55ISP-MUNGQADno,5135
+ipfsapi/exceptions.py,sha256=h3dk9hqHo0qMpOHhdcH_O9uIFJpZGG1u_HbK-RfpDnk,3360
+ipfsapi/http.py,sha256=r1sfz0lhVCAP7fm44gV_2BEhSuIDaNeaksn_cBFoMHc,7727
+ipfsapi/http_aiohttp.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+ipfsapi/http_requests.py,sha256=r1sfz0lhVCAP7fm44gV_2BEhSuIDaNeaksn_cBFoMHc,7727
+ipfsapi/multipart.py,sha256=kcHHTrsC7ePW3H01ofBE419XXgV2-h7LI6yqGI_8rTQ,17662
+ipfsapi/utils.py,sha256=IzNV82FgbviLmfHRENBqO6YvEuHErEm6WWBmnBCzeuQ,3941
+ipfsapi/version.py,sha256=VTxWpEFH_Je6DY0-mUBodpajk5rx0OUQIyHFiHDEfEU,548
+ipfsapi-0.4.0.dist-info/DESCRIPTION.rst,sha256=qur5cCkTAwc6lNN856sRWq83JQoPnNA--_FtrZlsIJs,5853
+ipfsapi-0.4.0.dist-info/METADATA,sha256=uDfAdQOdQ8q-fsxZSWG5vQmNjxtcSLaNYyY8fmzd-eo,6919
+ipfsapi-0.4.0.dist-info/RECORD,,
+ipfsapi-0.4.0.dist-info/WHEEL,sha256=o2k-Qa-RMNIJmUdIc7KU6VWR_ErNRbWNlxDIpl7lm34,110
+ipfsapi-0.4.0.dist-info/metadata.json,sha256=Bs2qz46rIWMXsMN5t8tJmSLm1StMMPw7x_RktMNthdk,1145
+ipfsapi-0.4.0.dist-info/top_level.txt,sha256=EB4vgNnR2fDjEZQEcs5GpanBVwuo0_Mv8NytoIJ3GLc,8
