@@ -1,0 +1,8 @@
+global-include *.txt
+global-include *.md
+global-include *.py
+global-include .gitkeep
+recursive-include mosfit/jupyter *
+recursive-include mosfit/modules *
+recursive-include mosfit/tests *
+recursive-include mosfit/models *
