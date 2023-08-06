@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+bopomofo/__init__.py
+bopomofo/__version__.py
+bopomofo/dictionrary.py
+bopomofo.egg-info/PKG-INFO
+bopomofo.egg-info/SOURCES.txt
+bopomofo.egg-info/dependency_links.txt
+bopomofo.egg-info/requires.txt
+bopomofo.egg-info/top_level.txt
