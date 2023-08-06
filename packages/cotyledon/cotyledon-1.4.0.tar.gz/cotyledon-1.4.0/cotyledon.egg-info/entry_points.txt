@@ -1,0 +1,3 @@
+[oslo.config.opts]
+cotyledon.service = cotyledon.oslo_config_glue:list_opts
+
