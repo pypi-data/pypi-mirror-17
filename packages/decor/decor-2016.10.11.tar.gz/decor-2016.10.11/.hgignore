@@ -1,0 +1,13 @@
+syntax: glob
+*.pyc
+.idea/*
+*.so
+.kdev*
+*.o
+*.lib
+*.pyd
+Makefile
+cryio.kdev4
+*.kate-swp
+dist/*
+decor.egg-info/*
