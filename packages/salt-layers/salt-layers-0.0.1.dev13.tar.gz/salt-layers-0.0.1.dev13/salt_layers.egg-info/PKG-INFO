@@ -1,0 +1,24 @@
+Metadata-Version: 1.1
+Name: salt-layers
+Version: 0.0.1.dev13
+Summary: Salt Layers - Use Salt effectively (and fully optionally) as a part of your Docker image build process
+Home-page: UNKNOWN
+Author: Trevor Joynson
+Author-email: pypi@trevor.joynson.io
+License: GPL3
+Description: salt-layers
+        ===========
+        
+        
+Keywords: salt
+saltstack
+layers
+docker
+container
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python

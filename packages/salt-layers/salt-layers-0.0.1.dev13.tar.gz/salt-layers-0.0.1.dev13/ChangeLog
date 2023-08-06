@@ -1,0 +1,17 @@
+CHANGES
+=======
+
+* Add README
+* Packaging
+* Default to stdout stream
+* Revert "Make sure to add pillar files in the right order"
+* Make sure to add pillar files in the right order
+* Hard code path to python2
+* Explicitly specify we want python2
+* Allow namespacing based upon given path's relativity to LAYERS_ROOT
+* Allow for bad rets from Salt
+* Run image cleanup at end of run; also cleanup and document a bit
+* Support grabbing the retcode
+* change /usr/bin/env to /usr/bin/python so we always can reference salt libraries
+* Force color output by default
+* Rearrange a bit

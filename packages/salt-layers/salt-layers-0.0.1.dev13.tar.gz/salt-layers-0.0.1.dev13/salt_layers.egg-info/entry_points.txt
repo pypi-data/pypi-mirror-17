@@ -1,0 +1,3 @@
+[console_scripts]
+salt-apply-state-layer = salt_layers.apply:main
+
