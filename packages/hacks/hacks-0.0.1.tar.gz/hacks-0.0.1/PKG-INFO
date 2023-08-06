@@ -1,0 +1,31 @@
+Metadata-Version: 1.1
+Name: hacks
+Version: 0.0.1
+Summary: hacks, a Python plugin library that doesn't play by the rules
+Home-page: https://github.com/t184256/hacks
+Author: Alexander Sosedkin
+Author-email: monk@unboiled.info
+License: MIT
+Description: hacks, a Python plugin library that doesn't play by the rules
+        -------------------------------------------------------------
+        
+        `hacks` is distributed under the terms of the MIT License;
+        see [LICENSE.txt](LICENSE.txt).
+        
+        This package currently lacks nice documentation.
+        
+        Please see [`test_hacks.py`](./test_hacks.py) for usage examples.
+        
+        In a nutshell, it allows extending code explicitly,
+        but encourages practices that are usually frowned upon.
+        
+        
+Keywords: plugins
+hacks
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
