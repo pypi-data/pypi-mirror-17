@@ -1,0 +1,101 @@
+abcd - AeroGear build cli for Digger
+====================================
+
+|Build Status| |License|
+
+Usage
+-----
+
+Full documentation at
+`http://digger-build-cli.readthedocs.io <http://digger-build-cli.readthedocs.io/en/latest/>`__.
+
+Requirements
+~~~~~~~~~~~~
+
+If running outside a container:
+
+Download and install conda: http://conda.pydata.org/miniconda.html
+
+After cloning the repository run:
+
+.. code:: sh
+
+    conda env create -f env.yaml python=3.5.1
+
+To activate the environment run (might need a new terminal window or
+reload bashrc/bash\_profile):
+
+::
+
+    source activate digger
+
+You will also need Node 4.x, NPM, Cordova >=6 and Java 8 on your
+machine.
+
+Some requirements are needed to run it outside of a container:
+
+Installation
+~~~~~~~~~~~~
+
+.. code:: sh
+
+    python setup.py install
+
+Tests
+~~~~~
+
+Requirements
+^^^^^^^^^^^^
+
+Installing development dependencies:
+
+.. code:: sh
+
+    pip install -r requirements.txt
+
+Tests will download all templates from their Github repository (master
+branch) and will try to build it.
+
+If running outside of the container
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Prepare
+^^^^^^^
+
+.. code:: sh
+
+    # create a folder for Gradle cache
+    mkdir /gradle-cache
+    # make sure you have write permissions
+    chown -R ${USER} /gradle-cache
+
+Also, make sure you have Android SDK on your machine and
+``$ANDROID_HOME`` is set.
+
+setup.py
+^^^^^^^^
+
+.. code:: sh
+
+    python setup.py test
+
+using py.test directly (from digger project root folder)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: sh
+
+    py.test -s
+
+Running an individual test
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For example:
+
+.. code:: sh
+
+    py.test -s tests/test_build.py
+
+.. |Build Status| image:: https://travis-ci.org/aerogear/digger-build-cli.png
+   :target: https://travis-ci.org/aerogear/digger-build-cli
+.. |License| image:: https://img.shields.io/:license-Apache2-blue.svg
+   :target: http://www.apache.org/licenses/LICENSE-2.0
