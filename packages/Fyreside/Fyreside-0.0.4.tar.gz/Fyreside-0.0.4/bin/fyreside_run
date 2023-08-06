@@ -1,0 +1,72 @@
+#!/usr/bin/python3
+""" Fireside Startup SCript
+"""
+
+import argparse
+import configparser
+import sys
+
+import logging
+
+if __name__ == '__main__':
+    conf_locations = ['./fyreside.conf', './.fyreside.conf', '~/fyreside.conf',
+                      '~/.fyreside.conf']
+    count = 0
+    conf_file = None
+    config = configparser.ConfigParser()
+    parser = argparse.ArgumentParser(description='https://qtmud.rtfd.io')
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('-v', '--verbose',
+                       help='show all logging messages',
+                       action="store_true")
+    group.add_argument('-q', '--quiet',
+                       help='show only warning & more severe messages',
+                       action="store_true")
+    parser.add_argument('--mudlib')
+    parser.add_argument('--qtmud')
+    parser.add_argument('--conf',
+                        help=('config file to use, example: '
+                              'qtmud_run --conf fyreside.conf'))
+
+    args = parser.parse_args()
+    if args.qtmud:
+        sys.path.append(args.qtmud)
+    try:
+        import qtmud
+    except ImportError as err:
+        print('qtMUD isn\'t installed.')
+        raise SystemExit
+    if args.quiet:
+        qtmud.console.setLevel(logging.WARNING)
+    elif args.verbose:
+        qtmud.console.setLevel(logging.DEBUG)
+    if args.conf:
+        config.read(str(args.conf))
+    while not config.sections():
+        try:
+            config.read(conf_locations[count])
+        except IndexError:
+            break
+        count += 1
+    if not config.sections():
+        qtmud.log.warning('No valid config found, using default values')
+    else:
+        for section in config.sections():
+            for key in config[section]:
+                qtmud.__dict__[key] = config[section][key]
+                qtmud.log.debug('{} set to {} from config file'
+                                ''.format(key, config[section][key]))
+    if args.mudlib:
+        sys.path.append(args.mudlib)
+    try:
+        import fyreside
+        qtmud.MUDLIB = fyreside
+    except Exception as err:
+        print('failed to import fyreside: %s', err)
+        raise SystemExit
+    if qtmud.load():
+        if fyreside.load():
+            if qtmud.start():
+                qtmud.run()
+
+
