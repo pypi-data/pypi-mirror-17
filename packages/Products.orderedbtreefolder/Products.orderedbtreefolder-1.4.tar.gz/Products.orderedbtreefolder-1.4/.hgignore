@@ -1,0 +1,15 @@
+syntax: glob
+
+*.egg-info
+*.pyc
+*.pyo
+.DS_Store
+.cache
+.coveragerc
+.installed.cfg
+.mr.developer.cfg
+auto-checkout-sources
+bin
+develop-eggs
+parts
+pytest.ini
