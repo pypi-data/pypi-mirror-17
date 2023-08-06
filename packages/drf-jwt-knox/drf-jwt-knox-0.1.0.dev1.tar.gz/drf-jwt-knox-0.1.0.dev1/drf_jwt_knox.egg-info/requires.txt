@@ -1,0 +1,12 @@
+djangorestframework~=3.4
+django-rest-knox~=2.2
+PyJWT~=1.4
+six~=1.10
+
+[dev]
+pypandoc~=1.2
+
+[test]
+coverage~=4.2
+pytest~=3.0.2
+tox~=2.3
