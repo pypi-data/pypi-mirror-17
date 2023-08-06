@@ -1,0 +1,8 @@
+setuptools
+sqlparse>=0.2.1,<0.3.0
+toposort
+
+[dev]
+readme
+pygments
+sphinx
