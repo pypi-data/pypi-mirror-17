@@ -1,0 +1,79 @@
+Metadata-Version: 1.1
+Name: ecs-pipeline-deploy
+Version: 0.1.1
+Summary: An opinionated deployment application for ECS services
+Home-page: UNKNOWN
+Author: Gavin M. Roy
+Author-email: gavinmroy@gmail.com
+License: Copyright (c) 2016 AWeber Communications
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+ * Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+ * Neither the name of Sprockets nor the names of its contributors may be used to
+   endorse or promote products derived from this software without specific
+   prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Description: ECS Deploy
+        ==========
+        An opinionated deployment application for ECS services.
+        
+        The stages of the deployment pipeline are:
+        
+        - test - The test environment represents the state of master in a git repository
+            or the ``latest`` tag for a Docker image.
+        - stage - The stage environment represents a tag in a git repository or a tagged
+            revision of a Docker image.
+        - production - The production environment is deployed using task definitions
+            that were created in promoting ``test`` to ``stage``.
+        
+        ``ecs-deploy`` is used in the deployment pipeline for an ECS service. It expects
+        a stable base task definition that is always running in the ``test``
+        environment. This task definition should point to the ``latest`` tag for a
+        Docker image.  If invoked for the ``test`` environment, ``ecs-deploy`` simply
+        any running tasks.
+        
+        When invoked for the ``stage`` environment, the current task definition for
+        the ``test`` environment is downloaded and modified to replace the ``latest``
+        tag for the Docker image with the specified tag revision.
+        
+        When invoked for the ``production`` environment, it will update the service
+        to use a task definition using the specified tag version.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Environment :: MacOS X
+Classifier: Environment :: No Input/Output (Daemon)
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: POSIX :: BSD
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
