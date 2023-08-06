@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+setup.py
+django_sortedmanytomany.egg-info/PKG-INFO
+django_sortedmanytomany.egg-info/SOURCES.txt
+django_sortedmanytomany.egg-info/dependency_links.txt
+django_sortedmanytomany.egg-info/not-zip-safe
+django_sortedmanytomany.egg-info/requires.txt
+django_sortedmanytomany.egg-info/top_level.txt
+sortedmanytomany/__init__.py
+sortedmanytomany/forms.py
+sortedmanytomany/models.py
+sortedmanytomany/widgets.py
+sortedmanytomany/static/sortedmanytomany/css/widget.css
+sortedmanytomany/static/sortedmanytomany/js/SortedSelectBox.js
+sortedmanytomany/static/sortedmanytomany/js/SortedSelectFilter.js
