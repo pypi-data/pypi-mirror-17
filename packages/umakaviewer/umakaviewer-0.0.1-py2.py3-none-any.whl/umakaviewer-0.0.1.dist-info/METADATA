@@ -1,0 +1,23 @@
+Metadata-Version: 2.0
+Name: umakaviewer
+Version: 0.0.1
+Summary: UNKNOWN
+Home-page: https://github.com/dbcls/umakaviewer
+Author: fumiya-kubota
+Author-email: fumiya.kubota@glucose.jp
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: click (==6.6)
+Requires-Dist: isodate (==0.5.4)
+Requires-Dist: pyparsing (==2.1.9)
+Requires-Dist: rdflib (==4.2.1)
+
+UNKNOWN
+
+
