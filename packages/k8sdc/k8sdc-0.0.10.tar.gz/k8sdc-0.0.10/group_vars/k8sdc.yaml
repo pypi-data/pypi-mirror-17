@@ -1,0 +1,46 @@
+---
+# Solutions - Call a seperate task yaml file in roles/solutions/system.yaml,
+#             infra.yaml, etc, i.e. dns.yaml, ceph.yaml
+#             Variables for the solution are stored with the solution yaml and
+#             included at runtime.
+
+
+fileserver_http_proxy:  ''
+fileserver_https_proxy: ''
+
+docker_repo_cache_http_proxy: ''
+docker_repo_cache_https_proxy: ''
+
+system:
+  namespace: kube-system
+  solutions:
+    - name: dns
+      use:  true
+    
+    - name: helm
+      use:  true
+
+    - name: dashboard
+      use:  true
+
+
+infrastructure:
+  namespace: infra
+  solutions:
+    - name: storage-ceph
+      use:  true
+
+
+development:
+  namespace: devel
+  solutions:
+    - name: artifactory
+      use:  true
+
+
+productivity:
+
+
+# User defined solutions, roles/user/
+user:
+  namespace: user
