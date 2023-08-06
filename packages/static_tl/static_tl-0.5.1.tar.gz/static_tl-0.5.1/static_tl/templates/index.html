@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>All tweets</title>
+</head>
+
+<body>
+  <h1>All tweets</h1>
+
+  <h2>Users</h2>
+
+  <ul>
+    {% for user_name in user_names %}
+    <li>
+      <a href="{{ user_name }}/index.html">{{ user_name }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+
+
+{% include "footer.html" %}
+
+</body>
+
+</html>
