@@ -1,0 +1,3 @@
+[console_scripts]
+ooktools = ooktools.console:cli
+
