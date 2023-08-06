@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.md
+adventurelib.py
+demo_game.py
+setup.py
+adventurelib.egg-info/PKG-INFO
+adventurelib.egg-info/SOURCES.txt
+adventurelib.egg-info/dependency_links.txt
+adventurelib.egg-info/top_level.txt
+doc/Makefile
+doc/commands.rst
+doc/conf.py
+doc/index.rst
+doc/installing.rst
+doc/rooms.rst
