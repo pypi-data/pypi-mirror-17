@@ -1,0 +1,24 @@
+Metadata-Version: 2.0
+Name: django-diffs
+Version: 0.0.1
+Summary: Keep a record of diffs made to a Django model or collection of models
+Home-page: https://github.com/linuxlewis/django-diffs
+Author: Sam Bolgert
+Author-email: sbolgert@gmail.com
+License: GNU
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.10
+Classifier: Framework :: Django :: 1.8
+Classifier: Framework :: Django :: 1.9
+Requires-Dist: Django (>=1.8)
+Requires-Dist: django-dirtyfields (>=1.2)
+Requires-Dist: psycopg2 (>=2.6)
+
+UNKNOWN
+
+
