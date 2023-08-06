@@ -1,0 +1,5 @@
+Pillow
+six
+
+[:sys_platform == "linux"]
+python-xlib >=0.17
