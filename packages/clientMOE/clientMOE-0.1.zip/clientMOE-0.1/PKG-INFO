@@ -1,0 +1,36 @@
+Metadata-Version: 1.1
+Name: clientMOE
+Version: 0.1
+Summary: Metric Optimization Engine
+Home-page: https://github.com/Yelp/MOE
+Author: Scott Clark and Eric Liu
+Author-email: opensource+moe@yelp.com
+License: UNKNOWN
+Description: Client side code for MOE. 
+        
+        Install MOE with docker and call it using python REST interface   
+        
+        See https://github.com/Yelp/MOE/issues/461
+        
+        [MOE](https://github.com/Yelp/MOE) A global, black box optimization engine for real world metric optimization.
+        
+        
+        ## Install
+        `pip install git+https://github.com/mulyoved/clientMOE.git@master`
+        
+        ## Eaxmples
+        * python [start_moe_example.py](https://github.com/mulyoved/clientMOE/blob/master/start_moe_example.py) 
+        * jupyter notebook [example.ipynb](https://github.com/mulyoved/clientMOE/blob/master/jupyter-examples/example.ipynb) 
+        
+        
+        
+Keywords: bayesian global optimization optimal learning expected improvement experiment design
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development
+Classifier: Topic :: Scientific/Engineering
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
