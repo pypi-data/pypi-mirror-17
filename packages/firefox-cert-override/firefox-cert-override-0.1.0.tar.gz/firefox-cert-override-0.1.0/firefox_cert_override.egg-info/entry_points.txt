@@ -1,0 +1,3 @@
+[console_scripts]
+firefox-cert-override = firefox_cert_override.cli:generate
+

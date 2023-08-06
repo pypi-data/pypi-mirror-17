@@ -1,0 +1,6 @@
+click
+pyOpenSSL
+
+[test]
+pytest
+flake8
