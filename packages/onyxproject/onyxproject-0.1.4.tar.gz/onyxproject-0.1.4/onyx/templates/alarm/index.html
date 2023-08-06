@@ -1,0 +1,95 @@
+{% extends "layout/default.html" %}
+
+{% block body %}
+
+
+		
+  <div class="card-panel grey lighten-3">
+		        <h2>Mes Réveils</h2>
+		    <a href="{{ url_for('reveildel') }}" class="{{ buttonColor }} btn">Modifier mes Reveils</a>
+			<table  class="table table-striped">	
+				 <tbody id="table_alarmes">
+				<tr>
+					<th>Heure</th>
+					<th>Réveil</th>
+					<th>Statut</th>
+					<th>Répéter</th>
+					<th>Enregistrer</th>
+				</tr>
+				<tr>
+				<form method="post" class="form-inline" action="" id="getAlarm">
+					<td><input type="text" id="time" name="time" class="timepicker" value="{{ request.form.time }}"/></td>
+					<td> 
+  					<select class="browser-default" name="ring">
+    					<option value="" disabled selected>Choisissez votre réveil</option>
+    					{% for tab in ring %}<option value="{{ tab }}">{{ tab }}</option>{% endfor %}   					
+  					</select></td>
+					<td> 
+						<select class="browser-default" name="active">
+    					<option value="" disabled selected>Statut</option>
+    					<option value="1">Activé</option> 
+    					<option value="0">Désactivé</option> 					
+  					</select>
+					</td>
+					<td>
+						  <input type="checkbox" name="recure" id="no" value="no"/><label for="no">Pas de récurence</label><br/>
+						  <input type="checkbox" name="recure" id="1" value="1"/><label for="1">Lundi </label><br/>
+    					  <input type="checkbox" name="recure" id="2" value="2"/><label for="2">Mardi </label><br/>
+    				      <input type="checkbox" name="recure" id="3" value="3"/><label for="3">Mercredi </label><br/>
+    				      <input type="checkbox" name="recure" id="4" value="4"/><label for="4">Jeudi </label><br/>
+    					  <input type="checkbox" name="recure" id="5" value="5"/><label for="5">Vendredi </label><br/>
+    				      <input type="checkbox" name="recure" id="6" value="6"/><label for="6">Samedi </label><br/>
+    				      <input type="checkbox" name="recure" id="0" value="0"/><label for="0">Dimanche </label><br/>
+					</td>
+					<td><input type="submit" id="submit" class="{{ buttonColor }} btn" value="Enregistrer"/></td>
+				</form>
+				</tr>
+			</tbody>
+			</table>
+			</br>
+			<h3>Ajoutez une nouvelle sonnerie</h3>
+  <form action="" method="post" enctype="multipart/form-data">
+    <div class="file-field input-field">
+      <div class="{{ buttonColor }} btn">
+        <span>File</span>
+        <input id="ringfile" type="file" name="ringfile">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+    <input id="btsub" type="submit" class="{{ buttonColor }} btn" value="Envoyer" />
+  </form>
+
+  </br>
+
+  <h3>Supprimer des réveils</h3>
+
+		<table  class="table table-striped">	
+				 <tbody>
+				<tr>
+					<th>Fichier</th>
+					<th>Supprimer</th>
+				</tr>
+				<tr>
+		
+					<td>{% for tab in ring %}{{ tab }}</br>{% endfor %}</td>
+					<td>
+					{% for tab in ring %}
+					<a href="{{ url_for('delete_ring' , ring_delete=tab) }}"><i class="fa fa-times" aria-hidden="true"></i></a></br>
+					{% endfor %}
+					</td>
+				
+				</tr>
+			</tbody>
+			</table>
+
+		   	</div>
+
+
+
+		
+
+
+   
+{% endblock %}
