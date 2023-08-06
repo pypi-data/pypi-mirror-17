@@ -1,0 +1,24 @@
+Metadata-Version: 1.1
+Name: zorg-gpio
+Version: 0.0.3
+Summary: GPIO drivers for Zorg robots.
+Home-page: https://github.com/zorg/zorg-gpio
+Author: Zorg Group
+Author-email: gunthercx@gmail.com
+License: MIT
+Description: ['zorg-gpio\n', '=========\n', '\n', '|Join the chat at https://gitter.im/zorg/zorg| |Package Version|\n', '|Requirements Status| |Build Status| |Code Climate| |Coverage Status|\n', '\n', 'Zorg (https://zorg.github.io/) is a Python framework for robotics and\n', 'physical computing.\n', '\n', 'This module provides drivers for `General Purpose Input/Output\n', '(GPIO) <https://en.wikipedia.org/wiki/General_Purpose_Input/Output>`__\n', 'devices. Typically, this library is registered by an adaptor class such\n', 'as ```zorg-edison`` <https://github.com/zorg/zorg-edison>`__ that\n', 'supports the needed interfaces for GPIO devices.\n', '\n', 'Getting Started\n', '---------------\n', '\n', 'Install the module with: ``pip install zorg zorg-gpio``\n', '\n', '`Documentation <http://zorg-gpio.readthedocs.org/>`__\n', '-----------------------------------------------------\n', '\n', 'Example\n', '-------\n', '\n', '.. code:: python\n', '\n', '    import time\n', '    import zorg\n', '\n', '\n', '    def blink_led(my):\n', '        while True:\n', '            my.led.toggle()\n', '            time.sleep(100)\n', '\n', '    robot = zorg.robot({\n', '        "name": "Test",\n', '        "connections": {\n', '            "edison": {\n', '                "adaptor": "zorg_edison.Edison",\n', '            },\n', '        },\n', '        "devices": {\n', '            "led": {\n', '                "connection": "edison",\n', '                "driver": "zorg_gpio.Led",\n', '                "pin": 4, # Digital pin 4\n', '            },\n', '        },\n', '        "work": blink_led,\n', '    })\n', '\n', '    robot.start()\n', '\n', 'Hardware Support\n', '----------------\n', '\n', 'Zorg has a extensible system for connecting to hardware devices. The\n', 'following GPIO devices are currently supported:\n', '\n', '-  `Light sensor <docs/light_sensor.md>`__\n', '-  `Button <docs/button.md>`__\n', '-  `Analog Sensor <docs/analog_sensor.md>`__\n', '-  `Digital Sensor <docs/digital_sensor.md>`__\n', '-  `LED <docs/led.md>`__\n', '-  `Relay <docs/relay.md>`__\n', '-  `Buzzer <docs/buzzer.md>`__\n', '\n', '`Open a new issue <https://github.com/zorg/zorg-gpio/issues/new>`__ to\n', 'request support for additional components.\n', '\n', 'License\n', '-------\n', '\n', '`Copyright (c) 2015 Team\n', 'Zorg <https://github.com/zorg/zorg/blob/master/LICENSE.md>`__\n', '\n', '.. |Join the chat at https://gitter.im/zorg/zorg| image:: https://badges.gitter.im/Join%20Chat.svg\n', '   :target: https://gitter.im/zorg/zorg?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge\n', '.. |Package Version| image:: https://img.shields.io/pypi/v/zorg-gpio.svg\n', '   :target: https://pypi.python.org/pypi/zorg-gpio/\n', '.. |Requirements Status| image:: https://requires.io/github/zorg/zorg-gpio/requirements.svg?branch=master\n', '   :target: https://requires.io/github/zorg/zorg-gpio/requirements/?branch=master\n', '.. |Build Status| image:: https://travis-ci.org/zorg/zorg-gpio.svg?branch=master\n', '   :target: https://travis-ci.org/zorg/zorg-gpio\n', '.. |Code Climate| image:: https://codeclimate.com/github/zorg/zorg-gpio/badges/gpa.svg\n', '   :target: https://codeclimate.com/github/zorg/zorg-gpio\n', '.. |Coverage Status| image:: https://coveralls.io/repos/github/zorg/zorg-gpio/badge.svg?branch=master\n', '   :target: https://coveralls.io/github/zorg/zorg-gpio?branch=master\n']
+Keywords: zorg,gpio
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Environment :: Console
+Classifier: Environment :: Web Environment
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
