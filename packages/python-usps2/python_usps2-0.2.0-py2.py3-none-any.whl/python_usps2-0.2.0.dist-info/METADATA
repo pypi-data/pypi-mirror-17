@@ -1,0 +1,22 @@
+Metadata-Version: 2.0
+Name: python-usps2
+Version: 0.2.0
+Summary: A python wrapper to the USPS api, currently only supports address validation
+Home-page: http://github.com/dstegelman/python-usps
+Author: Derek Stegelman
+Author-email: email@stegelman.com
+License: New BSD License
+Keywords: usps api shipping
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Classifier: Natural Language :: English
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+
+A python wrapper to the USPS api, currently only supports address validation
+
+
