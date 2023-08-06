@@ -1,0 +1,8 @@
+#Tests and data
+recursive-include tests *
+
+#Scripts
+recursive-include hichipper *
+
+#Misc
+include LICENSE.txt
