@@ -1,0 +1,27 @@
+Metadata-Version: 1.1
+Name: SSHA512Hasher
+Version: 0.5
+Summary: Simple SSHA512 hasher with Dovecot format support
+Home-page: https://github.com/ioparaskev/ssha512_hasher
+Author: John Paraskevopoulos
+Author-email: ioparaskev@gmail.com
+License: GPL-3.0
+Description: SSHA512 Hasher with Dovecot compatibility
+        ==============
+        
+        Overview
+        --------
+        
+        Basic hasher and decoder for SSHA512 that supports Dovecot format
+        
+        Dependencies
+        ------------
+        None
+        
+        HowTo Run
+        ------------
+        Run run_hasher.py or import from the module that suits your needs
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
