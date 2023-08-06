@@ -1,0 +1,45 @@
+Metadata-Version: 2.0
+Name: nlgen
+Version: 0.0.5
+Summary: natural language generator
+Home-page: UNKNOWN
+Author: Yusuke Tsutsumi
+Author-email: yusuke@tsutsumi.io
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 2
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: grako
+
+=====
+nlgen
+=====
+
+.. image::https://travis-ci.org/toumorokoshi/nlgen/settings#
+    :alt: build status
+    :target: https://travis-ci.org/toumorokoshi/nlgen
+
+Natural Language Generator for Python
+
+-------
+Summary
+-------
+
+nlgen provides tools that help with natural language generation. nlgen currently features:
+
+- a featured context free grammar representation and generator.
+
+------------
+Documentation
+------------
+
+Currently, nlgen is in a very early alpha. The best documentation at this time is the unit tests:
+
+How to use the context-free grammar programatically:
+
+- CFG example: https://github.com/toumorokoshi/nlgen/blob/master/nlgen/tests/cfg/test_full.py
+- Using the text representation of a CFG: https://github.com/toumorokoshi/nlgen/blob/master/nlgen/tests/cfg/test_markup_parser.py
+
+
