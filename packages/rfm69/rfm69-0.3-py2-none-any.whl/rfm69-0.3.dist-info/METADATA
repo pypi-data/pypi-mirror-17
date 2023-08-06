@@ -1,0 +1,16 @@
+Metadata-Version: 2.0
+Name: rfm69
+Version: 0.3
+Summary: Library for accessing the HopeRF RFM69-series radio modules via GPIO/SPI.
+Home-page: http://github.com/russss/rfm69-python
+Author: Russ Garrett
+Author-email: russ@garrett.co.uk
+License: MIT
+Platform: any
+Requires-Dist: RPi.GPIO (>=0.6.0)
+Requires-Dist: enum (>=0.4.6)
+Requires-Dist: spidev (>=3.0)
+
+UNKNOWN
+
+
