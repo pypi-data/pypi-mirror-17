@@ -1,0 +1,34 @@
+#compdef buku
+#
+# Completion definition for buku.
+#
+# Author:
+#   Arun Prakash Jana <engineerarun@gmail.com>
+#
+
+setopt localoptions noshwordsplit noksharrays
+local -a args
+args=(
+    '(-a --add)'{-a,--add}'[add bookmark]:URL tags'
+    '(-c --comment)'{-c,--comment}'[comment on bookmark]'
+    '(--deep)--deep[search matching substrings]'
+    '(-d --delete)'{-d,--delete}'[delete bookmark]'
+    '(-e --export)'{-e,--export}'[export bookmarks]:html output file'
+    '(-h --help)'{-h,--help}'[show help]'
+    '(-i --import)'{-i,--import}'[import bookmarks]:html imput file'
+    '(-k --unlock)'{-k,--unlock}'[decrypt database]'
+    '(-l --lock)'{-l,--lock}'[encrypt database]'
+    '(--merge)--merge[merge another buku database]:buku db file'
+    '(--noprompt)--noprompt[noninteractive mode]'
+    '(-o --open)'{-o,--open}'[open bookmark in browser]:bookmark index'
+    '(-p --print)'{-p,--print}'[show bookmark details]'
+    '(-r --replace)'{-r,--replace}'[replace a tag]:tag to replace'
+    '(-s --sany)'{-s,--sany}'[search any keyword]:keyword(s)'
+    '(-s --sall)'{-s,--sall}'[search all keywords]:keyword(s)'
+    '(-st --stag)'{--st,--stag}'[search by tag or show tags]'
+    '(--tag)--tag[set tags, use + to append]'
+    '(-t --title)'{-t,--title}'[set custom title]'
+    '(-u --update)'{-u,--update}'[update bookmark]'
+    '(--url)--url[set url]'
+)
+_arguments -S -s $args
