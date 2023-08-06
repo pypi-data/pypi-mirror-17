@@ -1,0 +1,102 @@
+<module area="" description="SPI Serial port controller" issues="" name="SPI_HS" purpose="SPI Serial port controller" speed="" title="SPI Serial controller" tool="13.1" version="1.0">
+  <services>
+    <offered alias="SPI_HS" name="SPI_HS">
+         <map actual="FlitWidth" formal="FlitWidth"/>
+<!--         <map actual="Header" formal="Header"/>-->
+<!--         <map actual="Payload" formal="Payload"/>-->
+         
+         <map actual="cs_spi"  formal="cs_spi"/>
+         <map actual="clk_spi" formal="clk_spi"/>
+         <map actual="di_spi"  formal="di_spi"/>
+         <map actual="do_spi"  formal="do_spi"/>
+         <map actual="LedRead" formal="LedRead"/>
+         <map actual="NcWire"  formal="NcWire"/>
+         
+         <map actual="Rx" formal="Rx"/>
+         <map actual="AckRx" formal="AckRx"/>
+         <map actual="DataIn" formal="DataIn"/>
+         <map actual="Tx" formal="Tx"/>
+         <map actual="AckTx" formal="AckTx"/>
+         <map actual="DataOut" formal="DataOut"/>
+    </offered>
+  </services>
+
+  
+  <parameter default="16" name="FlitWidth" type="numeric"/>
+<!--  <parameter default="1" name="Payload" type="numeric"/>-->
+<!--  <parameter default="0" name="Header" size="FlitWidth" type="logic"/>-->
+  <input  name="cs_spi"   size="1" type="logic"/>
+  <input  name="clk_spi"  size="1" type="logic"/>
+  <input  name="di_spi"   size="1" type="logic"/>
+  <output name="do_spi"   size="1" type="logic"/>
+  
+  <output name="LedRead"  size="1" type="logic"/>
+  <output name="NcWire"   size="1" type="logic"/>
+  
+  <input  name="Rx" size="1" type="logic"/>
+  <output name="AckRx" size="1" type="logic"/>
+  <input  name="DataIn" size="FlitWidth" type="logic"/>
+  
+  <output name="Tx" size="1" type="logic"/>
+  <input  name="AckTx" size="1" type="logic"/>
+  <output name="DataOut" size="FlitWidth" type="logic"/>
+  
+  <features>
+    <fpga id="XC6VLX240T">
+	<resources lut="33" register="32" ram="128"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+  </features>
+  
+    <!--                  ROUTER CORE                  -->
+  <services> 
+    <required name="HandShakeToFifo" type="simple" version="1.0">
+<!--      <map formal="rst" actual="leds"/>-->
+      <map formal="fifo_write"  actual="SPI.dv_i"/>
+      <map formal="fifo_datain" actual="SPI.Data_i"/>
+      <map formal="fifo_isfull" actual="SPI.r_busy_o"/>
+      <map formal="hs_rx"       actual="Rx"/>
+      <map formal="hs_ackrx"    actual="AckRx"/>
+      <map formal="hs_datain"   actual="DataIn"/>
+    </required>  
+    <required name="SPI" type="simple" version="1.0">
+      <map formal="cs_spi"   actual="cs_spi"/>
+      <map formal="di_spi"   actual="di_spi"/>
+      <map formal="do_spi"   actual="do_spi"/>
+      <map formal="clk_spi"  actual="clk_spi"/>
+      <map formal="r_dv_o"   actual="r_dv_o"   />
+      <map formal="r_q"      actual="r_q"/>
+      <map formal="Data_i"   actual="Data_i"/>
+      <map formal="dv_i"     actual="dv_i"/>
+      <map formal="r_busy_o" actual="r_busy_o"/>
+      <map formal="LedRead"  actual="LedRead"/>
+      <map formal="NcWire"   actual="NcWire"/>
+    </required>  
+    <required name="FIFO" type="simple" version="1.0">
+         <map formal="BufferWidth" actual="FlitWidth" />  
+         <map formal="BufferDepth" actual="8"/>    
+         <map formal="DataIn"      actual="SPI.r_q"/>
+         <map formal="Write"       actual="SPI.r_dv_o"/>
+<!--         <map formal="AckWr"       actual=""/>-->
+<!--         <map formal="IsFull"      actual=""/>-->
+         <map formal="DataOut"     actual="FifoToHandShake.fifo_dataout"/>
+         <map formal="Read"        actual="FifoToHandShake.fifo_read"/>
+<!--         <map formal="AckRd"       actual=""/>-->
+         <map formal="IsEmpty"     actual="FifoToHandShake.fifo_isempty"/>
+    </required>  
+    <required name="FifoToHandShake" type="simple" version="1.0">
+<!--      <map formal="rst" actual="leds"/>-->
+      <map formal="fifo_dataout" actual="fifo_dataout"/>
+      <map formal="fifo_read"    actual="fifo_read"/>
+      <map formal="fifo_isempty" actual="fifo_isempty"/>
+      <map formal="hs_tx"        actual="Tx"/>
+      <map formal="hs_acktx"     actual="AckTx"/>
+      <map formal="hs_dataout"   actual="DataOut"/>
+    </required>  
+  </services>
+  
+  
+</module>
+
+
+

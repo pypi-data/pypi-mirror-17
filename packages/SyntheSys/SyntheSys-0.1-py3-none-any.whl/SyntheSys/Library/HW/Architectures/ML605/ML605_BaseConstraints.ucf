@@ -1,0 +1,21 @@
+############------------++++++++++++++++----------------#########
+NET "led_o<0>" LOC = "AE23"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; ## 2 on LED DS10, 4 on J62
+NET "led_o<1>" LOC = "AC24"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; ## 2 on LED DS11, 2 on J62
+NET "led_o<2>" LOC = "AE22"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; ## 2 on LED DS9, 3 on J62
+##################################################################
+
+NET "sysclk_p" LOC = "J9" ;
+NET "sysclk_n" LOC = "H9" ;
+
+
+NET "clk_spi" LOC = "AD14" | IOSTANDARD = LVCMOS25 ; # 4   on J41 - LCD_DB4_LS 
+NET "cs_spi"  LOC = "AJ11" | IOSTANDARD = LVCMOS25 ; # 2   on J41 - LCD_DB5_LS 
+NET "di_spi"  LOC = "AK11" | IOSTANDARD = LVCMOS25 ; # 3   on J41 - LCD_DB5_LS 
+NET "do_spi"  LOC = "AE12" | IOSTANDARD = LVCMOS25 ; # 1   on J41 - LCD_DB7_LS 
+
+
+NET "rst_ext_i" LOC = "D22"   | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; ## 1 on SW1 DIP switch (active-High) NET "GPIO_DIP_SW1"
+NET "led_rst_o" LOC = "AC22"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; ## 2 on LED DS12, 1 on J62
+
+# Contraintes de timing sur les traces
+#NET "trce_i*" OFFSET = IN 5ns BEFORE clk_matrix; 

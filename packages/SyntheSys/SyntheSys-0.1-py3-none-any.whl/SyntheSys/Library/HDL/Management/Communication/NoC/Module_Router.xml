@@ -1,0 +1,144 @@
+<module area="" description="" issues="" name="Router" purpose="" speed="" title="" tool="" version="">
+  <services>
+    <offered alias="Router" name="Router">
+         <map actual="FlitWidth" formal="FlitWidth"/>
+         <map actual="NbInputs" formal="NbInputs"/>
+         <map actual="NbOutputs" formal="NbOutputs"/>
+         <map actual="X_Local" formal="X"/>
+         <map actual="Y_Local" formal="Y"/>
+         <map actual="InputFifoDepth" formal="InputFifoDepth"/>
+         <map actual="HS_Rx" formal="Rx"/>
+         <map actual="HS_AckRx" formal="AckRx"/>
+         <map actual="HS_DataIn" formal="DataIn"/>
+         <map actual="HS_Tx" formal="Tx"/>
+         <map actual="HS_AckTx" formal="AckTx"/>
+         <map actual="HS_DataOut" formal="DataOut"/>
+    </offered>
+  </services>
+  
+  <parameter default="16" name="FlitWidth" type="numeric"/>
+  <parameter default="5" name="NbInputs"  type="numeric"/>
+  <parameter default="5" name="NbOutputs" type="numeric"/>
+  <parameter default="0" name="X_Local" type="numeric" />
+  <parameter default="0" name="Y_Local" type="numeric" />
+  <parameter default="16" name="InputFifoDepth" type="numeric"/>
+  
+  <input  name="HS_Rx" size="NbInputs" type="logic"/>
+  <output name="HS_AckRx" size="NbInputs" type="logic"/>
+  <input  name="HS_DataIn" size="NbInputs" type="FlitWidth*logic" typeimport="FLITS"/>
+  
+  <output name="HS_Tx" size="NbOutputs" type="logic"/>
+  <input  name="HS_AckTx" size="NbOutputs" type="logic"/>
+  <output name="HS_DataOut" size="NbOutputs" type="FlitWidth*logic" typeimport="FLITS"/>
+  
+  <features>
+	<fpga id="XC7VX485T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC6VLX240T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC6SLX150">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC5VSX50T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+  </features>
+  
+  
+  <loop index="i=[0,NbInputs[">
+    <services> 
+    <!--                  INPUT PORT                  -->
+      <required name="HandShakeToFifo:i" type="simple" version="1.0">
+        <map formal="FlitWidth" actual="FlitWidth"/>
+        <map formal="fifo_write" actual="FIFO_IN:i.Write"/>
+        <map formal="fifo_isfull" actual="FIFO_IN:i.IsFull"/>
+        <map formal="fifo_datain" actual="FIFO_IN:i.DataIn"/>
+      
+        <map formal="hs_rx" actual="HS_Rx:i"/>
+        <map formal="hs_ackrx" actual="HS_AckRx:i"/>
+        <map formal="hs_datain" actual="HS_DataIn:i"/>
+      </required> 
+      <required name="FIFO:i" type="simple" version="1.0" alias="FIFO_IN">
+        <map formal="BufferDepth" actual="InputFifoDepth"/>
+        <map formal="BufferWidth" actual="FlitWidth"/>
+        <map formal="DataIn" actual="DataIn"/>
+        <map formal="Write" actual="Write"/>
+        <map formal="IsFull" actual="IsFull"/>
+        
+        <map formal="DataOut" actual="DataOut"/>
+        <map formal="Read" actual="Read"/>
+        <map formal="IsEmpty" actual="IsEmpty"/>	
+      </required>  
+      <required name="TransfertController:i" type="simple" version="1.0">
+        <map formal="FlitWidth" actual="FlitWidth"/>
+        <map formal="HS_DataOut" actual="Crossbar.Input_DataOut:i"/>
+        <map formal="HS_Tx" actual="Crossbar.Input_Tx:i"/>
+        <map formal="HS_AckTx" actual="Crossbar.Input_AckTx:i"/>
+        <map formal="fifoin_isempty" actual="FIFO_IN:i.IsEmpty"/>
+        <map formal="fifoin_dataout" actual="FIFO_IN:i.DataOut"/>
+        <map formal="fifoin_read" actual="FIFO_IN:i.Read"/>
+        <map formal="InputRequests" actual="Arbiter.RequestTable:i"/>
+        <map formal="InputConnected" actual="RoutingTable.Connected:i"/>
+      </required> 
+    </services>
+  </loop>
+    
+    <!--                  ROUTER CORE                  -->
+  <services> 
+    <required name="Arbiter" type="simple" version="1.0">
+      <map formal="NbInputs" actual="NbInputs"/>
+      <map formal="RequestTable" actual="RequestTable"/>
+      <map formal="Selected" actual="selectedport"/>
+      <map formal="ConnectionTable" actual="RoutingTable.Connected"/>
+    </required>  
+    <required name="RoutingControl" type="simple" version="1.0">
+      <map formal="FlitWidth" actual="FlitWidth"/>
+      <map formal="NbInputs" actual="NbInputs"/>
+      <map formal="X_Local" actual="X_Local"/>
+      <map formal="Y_Local" actual="Y_Local"/>
+      <map formal="outputport" actual="RoutingTable.outputport"/>
+      <map formal="fifo_dataout_list" actual="Crossbar.Input_DataOut"/>
+      <map formal="selectedinput" actual="Arbiter.selectedport"/>
+      <map formal="StartRouting" actual="Arbiter.RequestTable"/>
+      <map formal="RoutingReady" actual="RoutingTable.RoutingReady"/>
+    </required> 
+    <required name="RoutingTable" type="simple" version="1.0">
+      <map formal="NbOutputs" actual="NbOutputs"/>
+      <map formal="NbInputs" actual="NbInputs"/>
+      <map formal="RoutingReady" actual="RoutingReady"/>
+      <map formal="Requests" actual="Arbiter.RequestTable"/>
+      <map formal="Connected" actual="Connected"/>
+      <map formal="outputconnections" actual="Crossbar.outputconnections"/>
+      <map formal="inputconnections" actual="Crossbar.inputconnections"/>
+      <map formal="outputport" actual="outputport"/>
+      <map formal="selectedinput" actual="Arbiter.selectedport"/>
+    </required>
+    <required name="Crossbar" type="simple" version="1.0">
+      <map actual="NbOutputs" formal="NbOutputs"/>
+      <map actual="NbInputs" formal="NbInputs"/>
+      <map actual="FlitWidth" formal="FlitWidth"/>
+      <map formal="Input_DataOut" actual="Input_DataOut"/>
+      <map formal="Input_Tx" actual="Input_Tx"/>
+      <map formal="Input_AckTx" actual="Input_AckTx"/>
+         
+      <map formal="Output_DataOut" actual="HS_DataOut"/>
+      <map formal="Output_Tx" actual="HS_Tx"/>
+      <map formal="Output_AckTx" actual="HS_AckTx"/>
+         
+      <map formal="outputconnections" actual="outputconnections"/>
+      <map formal="inputconnections" actual="inputconnections"/>
+    </required>  
+  </services>
+    
+</module>
+
+
+
+
+

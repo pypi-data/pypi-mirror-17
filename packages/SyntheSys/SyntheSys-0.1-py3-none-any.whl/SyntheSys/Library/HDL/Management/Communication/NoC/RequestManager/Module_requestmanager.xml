@@ -1,0 +1,56 @@
+<module area="" description="" issues="" name="RequestManager" purpose="" speed="" title="" tool="" version="">
+  <services>
+    <offered alias="RequestManager" name="RequestManager">
+      <map actual="NbInputs" formal="NbInputs"/>
+      <map actual="FifosAreEmpty" formal="FifosAreEmpty"/>
+      <map actual="FifosAreEmpty_clean" formal="FifosAreEmpty_clean"/>
+      <map actual="RequestTable" formal="RequestTable"/>
+      <map actual="FifosRead" formal="FifosRead"/>
+      <map actual="FifosRead_clean" formal="FifosRead_clean"/>
+    </offered>
+  </services>
+  
+  <parameter default="5" name="NbInputs" size="" type="numeric"/>
+  
+  <input  name="Clk" size="1" type="logic"/>
+  <input  name="Rst" size="1" type="logic"/>
+  <output name="FifosAreEmpty" size="NbInputs" type="logic"/>
+  <input  name="FifosAreEmpty_clean" size="NbInputs" type="logic"/>
+  <input  name="RequestTable" size="NbInputs" type="logic"/>
+  <output name="FifosRead" size="NbInputs" type="logic"/>
+  <input  name="FifosRead_clean" size="NbInputs" type="logic"/>
+  
+  <services> 
+    <required name="clock" type="orthogonal" version="1.0">
+      <map formal="clock" actual="Clk"/>
+<!--      <map formal="freq" actual="50"/>-->
+    </required>  	
+    <required name="reset" type="orthogonal" version="1.0">
+      <map formal="reset" actual="Rst"/>
+<!--      <map formal="delay" actual="0"/>-->
+    </required> 
+  </services>
+  <core>
+    <rtl path="./RequestManager.vhd"/>
+  </core>
+
+  <features>
+	<fpga id="XC7VX485T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC6VLX240T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC6SLX150">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC5VSX50T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+  </features>
+  
+</module>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<service name="ControlVerif_Loopback" type="simple" version="1.0" category="Test">
+
+	<output name="Outputs" size="96" type="logic"/>
+	<input  name="Inputs"  size="95" type="logic"/>
+	<input  name="Reset"   size="1" type="logic"/>
+	<input  name="Clock"   size="1" type="logic"/>
+
+</service>
+
+
+

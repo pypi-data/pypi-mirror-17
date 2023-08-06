@@ -1,0 +1,55 @@
+<module area="" description="Add" issues="" name="Add" purpose="Add two integers" speed="" title="Add" tool="ISE 13.1" version="1.0" typesignature="integer integer">
+
+  <services>
+    <offered alias="Add" name="__add__">
+         <map actual="DataWidth" formal="DataWidth"/>
+         <map actual="A" formal="A"/>
+         <map actual="B" formal="B"/>
+         <map actual="R" formal="R"/>
+    </offered>
+  </services>
+  
+  <parameter default="64" name="DataWidth" type="numeric"/>
+  
+  <input name="Clk" size="1" type="logic"/>
+  <input name="Rst" size="1" type="logic"/>
+  
+  <input name="A" size="DataWidth" type="logic"/>
+  <input name="B" size="DataWidth" type="logic"/>
+  <output name="R" size="DataWidth" type="logic"/>
+  
+  <features>
+    <design Latency="1" DataIntroductionInterval="1"/>
+    <fpga id="XC7VX485T">
+	<resources lut="64" register="0" ram="0"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC6VLX240T">
+	<resources lut="64" register="0" ram="0"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC6SLX150">
+	<resources lut="64" register="0" ram="0"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC5VSX50T">
+	<resources lut="64" register="0" ram="0"/>
+	<clock MaxFreq="200"/>
+    </fpga>
+  </features>
+  
+  <services>
+    <required name="reset" type="orthogonal" version="1.0">
+      <map actual="Rst" formal="reset"/>
+<!--      <map actual="0" formal="delay"/>-->
+    </required>
+    <required name="clock" type="orthogonal" version="1.0">
+      <map actual="Clk" formal="clock"/>
+<!--      <map actual="50" formal="freq"/>-->
+    </required>
+  </services>
+  
+  <core>
+    <rtl path="./src/Add.vhd"/>
+  </core>
+</module>

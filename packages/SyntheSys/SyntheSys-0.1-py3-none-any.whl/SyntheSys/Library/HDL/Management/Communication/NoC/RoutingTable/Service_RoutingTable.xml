@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<service name="RoutingTable" type="simple" version="1.0" category="Communication.NoC.AdOCNet.Router.RoutingTable">
+
+  <parameter default="5" name="NbOutputs" size="1" type="numeric"/>
+  <parameter default="5" name="NbInputs" size="1" type="numeric"/>
+  
+  <input name="RoutingReady" size="1" type="logic"/>
+  <input name="Requests" size="NbInputs" type="logic"/>
+  <input name="Connected" size="NbInputs" type="logic"/>
+  <output name="outputconnections" size="NbOutputs" type="numeric" typeimport="RoutePack.NATURALS"/>
+  <input name="outputport" size="" type="numeric"/>
+  <input name="selectedinput" size="" type="numeric"/>
+  <output name="inputconnections" size="NbInputs" type="numeric" typeimport="RoutePack.NATURALS"/>
+
+</service>

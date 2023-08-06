@@ -1,0 +1,11 @@
+
+# MODULES COMPILATION
+vhpcomp -work work "./ControlVerif_Loopback_96_96_0.vhd"
+vhpcomp -work work "./ControlVerif_Loopback_96_96_0_TB.vhd"
+
+# COMPILE THE PROJECT TESTBENCH
+fuse work.ControlVerif_Loopback_96_96_0_TB -L unisim -o ./ControlVerif_Loopback_96_96_0_TB_with_isim.exe
+
+# Run the simulation script previously generated
+source '/opt/Xilinx/13.1/ISE_DS/settings64.sh' && ./ControlVerif_Loopback_96_96_0_TB_with_isim.exe -sdfnoerror -wdb Results_LOOPBACK -tclbatch ./TCLScript_LOOPBACK.tcl
+

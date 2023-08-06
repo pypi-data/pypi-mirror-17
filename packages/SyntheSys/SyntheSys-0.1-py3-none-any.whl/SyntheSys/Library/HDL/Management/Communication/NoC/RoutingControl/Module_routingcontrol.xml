@@ -1,0 +1,51 @@
+<module area="" description="" issues="" name="routingcontrol" purpose="" speed="" title="" tool="" version="">
+  <services>
+    <offered alias="RoutingControl" name="RoutingControl">
+      <map actual="FlitWidth" formal="FlitWidth"/>
+      <map actual="NbInputs" formal="NbInputs"/>
+      <map actual="NbOutputs" formal="NbOutputs"/>
+      <map actual="X_Local" formal="X_Local"/>
+      <map actual="Y_Local" formal="Y_Local"/>
+      <map actual="outputport" formal="outputport"/>
+      <map actual="fifo_dataout_list" formal="fifo_dataout_list"/>
+      <map actual="selectedinput" formal="selectedinput"/>
+      <map actual="StartRouting" formal="StartRouting"/>
+      <map actual="RoutingReady" formal="RoutingReady"/>
+    </offered>
+  </services>
+  <parameter default="16" name="FlitWidth" size="" type="numeric"/>
+  <parameter default="5" name="NbInputs" size="" type="numeric"/>
+  <parameter default="5" name="NbOutputs" size="" type="numeric"/>
+  <parameter default="0" name="X_Local" size="" type="numeric"/>
+  <parameter default="0" name="Y_Local" size="" type="numeric"/>
+  <output default="0" name="RoutingReady" size="1" type="logic"/>
+  <output default="0" name="StartRouting" size="NbInputs" type="logic"/>
+  <output default="" name="outputport" size="" type="numeric"/>
+  <input default="" name="fifo_dataout_list" size="NbInputs" type="FlitWidth*logic" typeimport="CrossPack.FLITS"/>
+  <input default="" name="selectedinput" size="1" type="logic"/>
+
+  <features>
+	<fpga id="XC7VX485T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC6VLX240T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC6SLX150">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC5VSX50T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+  </features>
+  
+  <core>
+<!--    <rtl path="./RoutePack.vhd"/>-->
+    <rtl path="./RoutingControl.vhd"/>
+    <rtl type="package" name="RoutePack" path="./RoutePack.vhd"/>
+  </core>
+</module>

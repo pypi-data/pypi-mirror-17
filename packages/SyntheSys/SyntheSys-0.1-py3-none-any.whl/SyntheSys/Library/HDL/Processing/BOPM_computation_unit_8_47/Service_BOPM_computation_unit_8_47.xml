@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<service name="BOPM_computation_unit_8_47" type="simple" version="1.0" category="DSP">
+  
+  <input  name="d_stim"            size="56" type="logic"/>
+  <input  name="K_min_stim"        size="56" type="logic"/>
+  <input  name="rp_stim"           size="56" type="logic"/>
+  <input  name="rp_min_stim"       size="56" type="logic"/>
+  <input  name="S_k_stim"          size="56" type="logic"/>
+  <input  name="V_k_call_stim"     size="56" type="logic"/>
+  <input  name="V_k_min_call_stim" size="56" type="logic"/>
+  <input  name="V_k_put_stim"      size="56" type="logic"/>
+  <input  name="V_k_min_put_stim"  size="56" type="logic"/>
+  
+  <output name="S_k_trace"         size="56" type="logic"/>
+  <output name="V_k_call_trace"    size="56" type="logic"/>
+  <output name="V_k_put_trace"     size="56" type="logic"/>
+  
+  <interface name="BOPM_Unit" direction="INOUT" number="1" pipeline="9">
+    <data  name="d_stim"/>
+    <data  name="K_min_stim"/>
+    <data  name="rp_stim"/>
+    <data  name="rp_min_stim"/>
+    <data  name="S_k_stim"/>
+    <data  name="V_k_call_stim"/>
+    <data  name="V_k_min_call_stim"/>
+    <data  name="V_k_put_stim"/>
+    <data  name="V_k_min_put_stim"/>
+    
+    <data name="S_k_trace"/>
+    <data name="V_k_call_trace"/>
+    <data name="V_k_put_trace"/>
+    <protocol label="SetStimuli" position="0" signals="d_stim, K_min_stim, rp_min_stim, rp_min_stim, S_k_stim, V_k_call_stim, V_k_min_call_stim, V_k_put_stim, V_k_min_put_stim"/>
+    <protocol label="GetTrace" position="1" signals="S_k_trace, V_k_call_trace, V_k_put_trace"/>
+  </interface>
+
+</service>

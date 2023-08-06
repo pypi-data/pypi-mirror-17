@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<module name="reset" version="1.0" title="Reset Manager" purpose="Provide circuit with reset signals" description="Depending on hw architecture drive reset signals." tool="Xilinx ISE (13.1)" speed="-" issues="Not implemented">
+
+  <services>
+    <offered name="reset">
+      <map formal="reset" actual="reset"/>
+    </offered>
+  </services>
+
+  <output name="reset"   size="1" type="logic"/>
+	
+<!--  <services>-->
+<!--    <required name="FPGAPads" type="orthogonal" version="1.0">-->
+<!--      <map actual="reset" formal="reset"/>-->
+<!--    </required>-->
+<!--  </services>-->
+	
+</module>
+	
+	
+	
+	
+<!-- No implementation => interpreted by netlist generator
+	<core>
+		<behavioral path="./example01/src/a.vhd"/>
+		<rtl path="./example01/src/a.vhd"/>
+	</core>
+-->
+<!-- 
+	<services> 
+		<required name="IO" type="simple" version="1.0">
+			<map actual="clock_n"/>
+			<map actual="clock_p"/>
+		</required> 	
+	</services>
+-->
+
+<!--
+	<resources>
+		<fpga name="XC6VLX240T" lut="33" register="32"/>
+	</resources>
+
+-->

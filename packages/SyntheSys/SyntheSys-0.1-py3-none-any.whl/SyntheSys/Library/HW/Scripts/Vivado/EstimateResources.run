@@ -1,0 +1,17 @@
+#! /bin/bash
+
+# THIS COMMANDS GENERATE A BINARY FROM SOURCES, UCF AND TOP_ENTITY PARAMETERS
+#------------------------------------
+#         TO BE SETUP BY SOFT
+#------------------------------------
+#FPGA        = xc6slx150-fgg484-2
+#CONSTRAINTS = ../../../HDL/dev/UCF/MiniX_Spartan6_Target.ucf
+#TOPENTITY   = calculus8bit
+#SRCLIST     = dut.prj
+#SETUPFILE   = dut.prj
+#------------------------------------
+
+vivado -mode batch -messageDb vivado.pb -log vivado.vdi -source SetupSources.tcl -source ./EstimateResources.tcl
+
+
+

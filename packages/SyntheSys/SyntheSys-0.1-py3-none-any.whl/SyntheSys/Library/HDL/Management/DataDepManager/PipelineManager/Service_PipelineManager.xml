@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<service name="PipelineManager" type="simple" version="1.0" category="Communication.Control.PipelineManager">
+  
+  <parameter default="10" name="PipelineLength" type="numeric"/>
+  <parameter default="16" name="NbTaskBitWidth" type="numeric"/>
+  
+  <input  name="BBInputValid" size="1" type="logic"/>
+  <output name="BBOutputValid" size="1" type="logic"/>
+  
+  <input  name="InputTaskID" size="NbTaskBitWidth" type="logic"/>
+  <output name="OutputTaskID" size="NbTaskBitWidth" type="logic"/>
+
+<!-- ============================================================= -->
+  <interface name="PipelineFilling" direction="IN" number="1">
+    <control name="BBInputValid" target="BBInputValid" />
+    <protocol label="Trigger pipeline" position="1" signals="BBInputValid"/>
+  </interface>
+<!-- ============================================================= -->
+
+<!-- ============================================================= -->
+  <interface name="PipelineStatus" direction="OUT" number="1">
+    <control name="BBOutputValid" target="BBOutputValid" />
+    <protocol label="Data output available" position="1" signals="BBOutputValid"/>
+  </interface>
+<!-- ============================================================= -->
+
+</service>

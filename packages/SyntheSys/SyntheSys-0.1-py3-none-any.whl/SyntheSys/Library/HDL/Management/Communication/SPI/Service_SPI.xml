@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<service name="SPI" type="simple" version="1.0" category="Communication">
+
+  <parameter default="16" name="DataWidth" type="numeric"/>
+  <parameter default="1" name="Payload" type="numeric"/>
+  <parameter default="0" name="Header" size="DataWidth" type="logic"/>
+  
+  <input  name="cs_spi"   size="1" type="logic"/>
+  <input  name="clk_spi"  size="1" type="logic"/>
+  <input  name="di_spi"   size="1" type="logic"/>
+  <output name="do_spi"   size="1" type="logic"/>
+  
+  <output name="r_dv_o"   size="1" type="logic"/>
+  <output name="r_q"      size="16" type="logic"/>
+  
+  <input  name="Data_i"   size="16" type="logic"/>
+  <input  name="dv_i"     size="1" type="logic"/>
+  <output name="r_busy_o" size="1" type="logic"/>
+  
+  <output name="LedRead"  size="1" type="logic"/>
+  <output name="NcWire"   size="1" type="logic"/>
+  
+  <input  name="Rx" size="1" type="logic"/>
+  <output name="AckRx" size="1" type="logic"/>
+  <input  name="DataIn" size="DataWidth" type="logic"/>
+  
+  <output name="Tx" size="1" type="logic"/>
+  <input  name="AckTx" size="1" type="logic"/>
+  <output name="DataOut" size="DataWidth" type="logic"/>
+  
+  <interface name="SPI" direction="INOUT" number="1">
+    <control name="clk_spi" target="clk_spi"/>
+    <control name="cs_spi"  target="cs_spi"/>
+    <data name="do_spi" target="di_spi" serialization="FlitWidth"/>
+    <data name="di_spi" target="do_spi" serialization="FlitWidth"/>
+    <protocol position="0" label="SPI serial data bit output" signals="do_spi, di_spi" values=""/>
+  </interface>
+  
+<!--  <interface name="SPI" direction="in" number="1">-->
+<!--    <data name="di_spi" target="do_spi"/>-->
+<!--  </interface>-->
+<!--  <interface name="SPI" direction="out" number="1">-->
+<!--    <data name="do_spi" target="di_spi"/>-->
+<!--  </interface>-->
+<!--  <interface name="Debug" direction="out" number="1">-->
+<!--    <data name="leds" target="SPI_LEDs"/>-->
+<!--  </interface>-->
+  
+</service>
+
+
+

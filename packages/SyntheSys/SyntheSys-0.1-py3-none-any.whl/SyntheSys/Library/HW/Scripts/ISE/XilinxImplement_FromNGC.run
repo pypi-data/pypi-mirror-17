@@ -1,0 +1,58 @@
+############################################################################
+# ADACSYS SAS
+#
+# (C) Copyright, ADACSYS SAS 2008 - 2012
+# All Rights Reserved
+# Licensed Materials - ADACSYS SAS
+#
+# No part of this file may be reproduced, stored in a retrieval system,
+# or transmitted in any form or by any means --- electronic, mechanical,
+# photocopying, recording, or otherwise --- without prior written
+# permission of ADACSYS SAS
+#
+# WARRANTY:
+# Use all material in this file at your own risk. ADACSYS SAS
+# makes no claims about any material contained in this file.
+#############################################################################
+
+# THIS COMMANDS GENERATE A BINARY FROM NGC, UCF AND TOP_ENTITY PARAMETERS
+#------------------------------------
+#         TO BE SETUP BY SOFT
+#------------------------------------
+#FPGA       = xc6slx150-fgg484-2
+#CONSTRAINT = ../../../HDL/dev/UCF/MiniX_Spartan6_Target.ucf
+#TOPENTITY  = calculus8bit
+#SETUPFILE  = dut.prj
+#------------------------------------
+
+#------------------------------------
+NGC     = $BASENAME.ngc
+NGD     = $BASENAME.ngd
+NCD_MAP = $BASENAME-map.ncd
+NCD_PAR = $BASENAME-par.ncd
+PCF     = $BASENAME.pcf
+BINARY  = $BASENAME.bit
+#------------------------------------
+
+#Comment
+# Do the synthesis phase
+# the Xilinx log file is: $TOPENTITY.srp
+#xst -intstyle silent -ifn  $SETUPFILE 
+
+# ngbuild run # -intstyle silent
+ngdbuild -uc $BASE_CONSTRAINTS -uc $CONSTRAINTS -dd _ngo -p "$FPGA" $NGC  $NGD 
+
+# map build
+map -w -p "$FPGA" $NGD -o $NCD_MAP  
+
+# place&route phase
+par -w $NCD_MAP $NCD_PAR  
+
+# Timing Reporter And Circuit Evaluator (TRACE)
+trce $NCD_PAR $PCF  
+
+#bitstream generation
+bitgen -w $NCD_PAR $BINARY 
+
+
+

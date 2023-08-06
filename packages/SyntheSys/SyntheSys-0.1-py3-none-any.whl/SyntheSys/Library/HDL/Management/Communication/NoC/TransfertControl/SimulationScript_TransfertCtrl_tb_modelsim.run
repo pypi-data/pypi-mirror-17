@@ -1,0 +1,17 @@
+#! /bin/bash
+
+rm -rf ./work
+USER=`whoami`
+# MODULES COMPILATION
+source "/home/$USER/altera/13.1/modelsim_ase/Setup.sh" && vlib ./work
+source "/home/$USER/altera/13.1/modelsim_ase/Setup.sh" && vmap work ./work
+source "/home/$USER/altera/13.1/modelsim_ase/Setup.sh" && vcom -work work "./TransfertControl.vhd"
+#source "/home/$USER/altera/13.1/modelsim_ase/Setup.sh" && vcom -work work "./RiffaToHS_loopback.vhd"
+source "/home/$USER/altera/13.1/modelsim_ase/Setup.sh" && vcom -work work "./TransfertControl_tb.vhd"
+#source "/home/$USER/altera/13.1/modelsim_ase/Setup.sh" && vcom -work work "./RiffaToHS_loopback_tb.vhd"
+
+# COMPILE THE PROJECT TESTBENCH
+source "/home/$USER/altera/13.1/modelsim_ase/Setup.sh" && vsim -gui work.TransfertControl_tb
+
+
+

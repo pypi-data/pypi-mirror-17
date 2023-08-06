@@ -1,0 +1,108 @@
+# Reading /home/payet/altera/13.1/modelsim_ase/tcl/vsim/pref.tcl 
+# vsim -gui work.TransfertControl_tb 
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.transfertcontrol_tb(behavioral)
+# Loading work.transfertcontrol(rtl)
+add wave -position insertpoint sim:/transfertcontrol_tb/TransfertControl_1/*
+run -all
+# *** Start TransfertControl test ***** Warning: (vsim-100) Real literal has no dot.
+#    Time: 0 ps  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 0 ps  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 5 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 10 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 15 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 20 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 25 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 30 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 35 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 40 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 45 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 50 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 55 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 60 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 65 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 70 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 75 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 80 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 85 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 90 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 95 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 100 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 105 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 110 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 115 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 120 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 125 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 130 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 135 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 140 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 145 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 150 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 155 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 160 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 165 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 170 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 175 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 180 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 185 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 190 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 195 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 200 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 205 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 210 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 215 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 220 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Warning: (vsim-100) Real literal has no dot.
+#    Time: 225 ns  Iteration: 0  Instance: /transfertcontrol_tb
+# ** Error: *** Test complete ***
+#    Time: 230 ns  Iteration: 0  Instance: /transfertcontrol_tb

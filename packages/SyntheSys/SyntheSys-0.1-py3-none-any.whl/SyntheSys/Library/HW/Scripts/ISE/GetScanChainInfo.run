@@ -1,0 +1,8 @@
+# Create the "~/.adacsys/XScanChain.ini" file containing Xilinx scan chain info
+
+# Set variables
+TCLScript = $ADACSYS_ROOT/$ADACSYS_TOOL/$ADACSYS_VERSION/lib/Scripts/Xilinx/ScanChainInfo.tcl
+
+# Execute TCL script with Xilinx tcl interpreter
+xtclsh $TCLScript $OutputConfigPath $SpecificDevice
+

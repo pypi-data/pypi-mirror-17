@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<service name="a_calculus4bit" type="simple" version="1.0" category="DSP">
+  
+  <parameter default="16" name="FlitWidth" type="numeric"/>
+  <parameter default="0" name="Header" size="FlitWidth" type="logic"/>
+    
+  <output name="Tx" size="1" type="logic"/>
+  <input  name="AckTx" size="1" type="logic"/>
+  <output name="DataOut" size="FlitWidth" type="logic"/>
+  
+  <input  name="Rx" size="1" type="logic"/>
+  <output name="AckRx" size="1" type="logic"/>
+  <input  name="DataIn" size="FlitWidth" type="logic"/>
+  
+  <interface name="HandShake" direction="out" number="1">
+    <control name="Tx" target="Rx"/>
+    <control name="AckTx" target="AckRx"/>
+    <data name="DataOut" target="DataIn"/>
+  </interface>
+  <interface name="HandShake" direction="in" number="1">
+    <control name="Rx" target="Tx"/>
+    <control name="AckRx" target="AckTx"/>
+    <data name="DataIn" target="DataOut"/>
+  </interface>
+
+</service>

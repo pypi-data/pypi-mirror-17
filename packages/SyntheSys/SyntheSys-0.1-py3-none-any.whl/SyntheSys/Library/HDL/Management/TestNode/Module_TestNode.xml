@@ -1,0 +1,96 @@
+<module area="" description="TestNode port controller" issues="" name="TestNode" purpose="TestNode port controller" speed="" title="TestNode controller" tool="13.1" version="1.0">
+
+  <services>
+    <offered alias="TestNode" name="TestNode">
+         <map actual="FlitWidth"     formal="FlitWidth"/>
+         <map actual="ComHeader"     formal="ComHeader"/>
+         
+         <map actual="DataOut"       formal="DataOut"/>
+         <map actual="Tx"            formal="Tx"/>
+         <map actual="AckTx"         formal="AckTx"/>
+         
+         <map actual="DataIn"        formal="DataIn"/>
+         <map actual="Rx"            formal="Rx"/>
+         <map actual="AckRx"         formal="AckRx"/>
+         
+<!--         <map actual="LED"           formal="LED"/>-->
+    </offered>
+  </services>
+
+<!--  <parameter default="64"  name="C_PCI_DATA_WIDTH"   type="numeric"/>-->
+<!--  <parameter default="8"   name="C_NUM_LANES"        type="numeric"/>-->
+  <parameter default="16"  name="FlitWidth" type="numeric"/>
+  <parameter default="0"   name="ComHeader" type="logic" size="FlitWidth"/>
+
+<!--  <output name="LED"         size="8" type="logic"/>-->
+
+  <input  name="Clock"     size="1" type="logic"/>
+  <input  name="Reset"     size="1" type="logic"/>
+  
+  <output name="Tx"      size="1" type="logic"/>
+  <input  name="AckTx"   size="1" type="logic"/>
+  <output name="DataOut" size="FlitWidth" type="logic"/>
+  
+  <input  name="Rx"      size="1" type="logic"/>
+  <output name="AckRx"   size="1" type="logic"/>
+  <input  name="DataIn"  size="FlitWidth" type="logic"/>
+  
+  <features>
+    <design Latency="1" DataIntroductionInterval="1"/>
+    <fpga id="XC7VX485T">
+	<resources lut="16" register="0" ram="0"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+  </features>
+  
+  <services>
+    <required name="reset" type="orthogonal" version="1.0" alias="UserRst">
+      <map actual="Reset" formal="reset"/>
+<!--      <map actual="0" formal="delay"/>-->
+    </required>
+    <required name="clock" type="orthogonal" version="1.0" alias="UserClk">
+      <map actual="Clock" formal="clock"/>
+<!--      <map actual="100" formal="freq"/>-->
+    </required>
+    
+<!--    <required name="FPGAPads" type="orthogonal" version="1.0" alias="LEDs">-->
+<!--      <map formal="LED"  actual="LED"/>-->
+      <!-- Constraints are provided as source files -->
+<!--      <map formal="constraints" actual="ignore"/>-->
+<!--    </required>-->
+    
+    <required name="FIFO" type="simple" version="1.0"/>
+<!--      <map actual="Rx"     formal="hs_rx"/>-->
+<!--      <map actual="AckRx"  formal="hs_ackrx"/>-->
+<!--      <map actual="Datain" formal="hs_datain"/>-->
+<!--      <map actual="0" formal="delay"/>-->
+<!--    </required>-->
+    
+    <required name="NetworkAdapter" type="simple" version="1.0" alias="NetworkAdapter">
+<!--      <map actual="FlitWidth"   formal="FlitWidth"/>-->
+<!--      <map actual="fifo_write"  formal="fifo_write"/>-->
+<!--      <map actual="fifo_isfull" formal="fifo_isfull"/>-->
+<!--      <map actual="fifo_datain" formal="fifo_datain"/>-->
+      
+<!--      <map actual="Tx"     formal="hs_tx"/>-->
+<!--      <map actual="AckTx"  formal="hs_acktx"/>-->
+<!--      <map actual="DataOut" formal="hs_dataout"/>-->
+<!--      <map actual="0" formal="delay"/>-->
+    </required>
+  </services>
+  
+  <core>
+    <rtl path="./TestNode.vhd"/>
+    
+<!--CONSTRAINTS FILES-->
+<!--    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/synth/PCIeGen1x8If64_ooc.xdc"/>-->
+<!--    <constraints path="./VC707_Gen1x8If64/constr/VC707_Top.xdc"/>-->
+<!--    <constraints path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64-PCIE_X1Y0.xdc"/>-->
+  </core>
+  
+</module>
+
+
+
+
+

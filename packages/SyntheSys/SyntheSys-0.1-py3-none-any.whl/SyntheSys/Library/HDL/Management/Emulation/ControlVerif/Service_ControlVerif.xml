@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<service name="ControlVerif" type="simple" version="1.0" category="Test">
+
+	<output name="DUT_Traces"  size="96" type="logic"/>
+	<input  name="DUT_Stimuli" size="96" type="logic"/>
+	<input  name="DUT_Clock"   size="1"  type="logic"/>
+
+</service>
+
+
+

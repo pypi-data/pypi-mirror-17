@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<service name="TrafficGenerator" type="simple" version="1.0" category="Communication.NoC.TrafficGenerator">
+
+  <parameter default="16" name="FlitWidth" type="numeric"/>
+  <parameter default="9" name="NbRouters" type="numeric"/>
+  <parameter default="2" name="LocalAddr_x" type="numeric"/>
+  <parameter default="2" name="LocalAddr_x" type="numeric"/>
+  
+  <output name="Tx" size="1" type="logic"/>
+  <input  name="AckTx"  size="1" type="logic"/>
+  <output name="DataOut" size="FlitWidth" type="logic"/>  
+  
+  <input  name="DestNB"   size="1" type="logic"/>
+  <input  name="DestSelect" size="NbRouters" type="logic"/>
+  <input  name="PackSize" size="1" type="numeric"/>
+  <input  name="PackNB"   size="1" type="numeric"/>
+  <input  name="IdleTime" size="1" type="numeric"/>
+  
+  <interface name="HandShake" direction="out" number="1">
+    <control name="Tx" target="Rx"/>
+    <control name="AckTx" target="AckRx"/>
+    <data name="DataOut" target="DataIn"/>
+  </interface>
+  
+  <interface name="TGConfig" direction="in" number="1">
+    <data name="DestNB" target="DestNB"/>
+    <data name="DestSelect" target="DestSelect"/>
+    <data name="PackSize" target="PackSize"/>
+    <data name="PackNB" target="PackSize"/>
+    <data name="IdleTime" target="IdleTime"/>
+  </interface>
+
+</service>

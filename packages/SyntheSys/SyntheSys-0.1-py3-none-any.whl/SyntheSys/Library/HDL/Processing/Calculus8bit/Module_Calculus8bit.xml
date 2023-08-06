@@ -1,0 +1,52 @@
+<module area="" description="a_calculus4bit" issues="" name="a_calculus4bit" purpose="Calculus4bit" speed="" title="Calculus4bit" tool="ISE 13.1" version="1.0">
+
+  <services>
+    <offered alias="Calc" name="a_calculus4bit">
+         <map actual="a" formal="a"/>
+         <map actual="b" formal="b"/>
+         <map actual="sel" formal="sel"/>
+         <map actual="r" formal="r"/>
+    </offered>
+  </services>
+  
+  
+  <input  name="a"   size="8" type="logic"/>
+  <input  name="b"   size="8" type="logic"/>
+  <input  name="sel" size="2" type="logic"/>
+  <output name="r"   size="16" type="logic"/>
+  
+  <features>
+	<design Latency="1" DataIntroductionInterval="1" />
+	<fpga id="XC6VLX240T">
+		<resources lut="33" register="32" ram="128"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC5VSX50T">
+		<resources lut="33" register="32" ram="128"/>
+		<clock MaxFreq="200"/>
+	</fpga>
+  </features>
+  
+  <services>
+    <required name="clock" type="orthogonal" version="1.0">
+      <map actual="Clk" formal="clock"/>
+<!--      <map actual="50" formal="freq"/>-->
+    </required>
+  </services>
+  
+  <core>
+    <rtl path="./src/calculus8bit.vhd"/>
+    <rtl path="./src/add8bit.vhd"/>
+    <rtl path="./src/mux8bit.vhd"/>
+    <rtl path="./src/p_mux8bit.vhd"/>
+    <rtl path="./src/sub8bit.vhd"/>
+    <rtl path="./src/shift8bit.vhd"/>
+    <rtl path="./src/ChooseResult.vhd"/>
+<!--    <rtl path="./src/TB_calculus8bit.vhd"/>-->
+  
+  </core>
+</module>
+
+
+
+

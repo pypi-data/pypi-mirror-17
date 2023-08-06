@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<service name="FIFO" type="simple" version="1.0" category="Communication.NoC.AdOCNet.Router.FIFO">
+
+  <parameter name="BufferWidth" type="numeric" default="16"/>
+  <parameter name="BufferDepth" type="numeric" default="8"/>
+  
+  <output name="AckWr" size="1" type="logic"/>
+  <output name="DataOut" size="BufferWidth" type="logic"/>
+  <input  name="Write" size="1" type="logic"/>
+  <output name="AckRd" size="1" type="logic"/>
+  <input  name="Read" size="1" type="logic"/>
+  <input  name="DataIn" size="BufferWidth" type="logic"/>
+  <output name="IsEmpty" size="1" type="logic"/>
+  <output name="IsFull" size="1" type="logic"/>
+
+<!-- ============================================================= -->
+  <interface name="FIFO_Light" direction="IN" number="1">
+    <control name="Write" target="Read" />
+    <data name="DataIn" target="DataOut" />
+    <protocol label="Write input" position="1" signals="Write, DataIn"/>
+  </interface>
+<!-- ============================================================= -->
+  <interface direction="OUT" name="FIFO_Light" number="1">
+    <control name="Read" target="Write"/>
+    <data name="DataOut" target="DataIn"/>
+    <protocol label="Read request" position="1" signals="Read" values=""/>
+    <protocol label="Output available" position="2"  signals="DataOut" values=""/>
+  </interface>
+<!-- ============================================================= -->
+
+</service>

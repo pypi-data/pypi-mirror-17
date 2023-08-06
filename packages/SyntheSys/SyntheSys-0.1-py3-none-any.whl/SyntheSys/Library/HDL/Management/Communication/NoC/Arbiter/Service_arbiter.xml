@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<service name="Arbiter" type="simple" version="1.0" category="Communication.NoC.AdOCNet.Router.Arbiter">
+
+  <parameter default="5" name="NbInputs"  size="" type="numeric"/>
+			
+  <input name="RequestTable"    size="NbInputs" type="logic" default="0"/>
+  <input name="ConnectionTable" size="NbInputs" type="logic" default="0"/>
+  <output name="Selected" size="" type="numeric" default="open"/>
+
+
+</service>

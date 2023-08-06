@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<service name="DistanceRGB" type="simple" version="1.0" category="DSP">
+  
+<!--  <input name="Start" size="1" type="logic"/>-->
+<!--  <input name="DataRead" size="1" type="logic"/>-->
+  
+  <input  name="R1"  size="64" type="logic"/>
+  <input  name="R2"  size="64" type="logic"/>
+  <input  name="G1"  size="64" type="logic"/>
+  <input  name="G2"  size="64" type="logic"/>
+  <input  name="B1"  size="64" type="logic"/>
+  <input  name="B2"  size="64" type="logic"/>
+  
+  <output name="deta_E" size="64" type="logic"/>
+  
+  
+  <interface name="BasicBlock" direction="INOUT" number="1" pipeline="79">
+   
+<!--    <control name="Start" target="start"/>-->
+<!--    <control name="DataRead" target="DataRead"/>-->
+    <data name="R1" serialization="1"/>
+    <data name="R2" serialization="1"/>
+    <data name="G1" serialization="1"/>
+    <data name="G2" serialization="1"/>
+    <data name="B1" serialization="1"/>
+    <data name="B2" serialization="1"/>
+    <data name="deta_E" serialization="1"/>
+    <protocol label="SetStimuli" position="0" signals="Tab1, Tab2"/>
+    <protocol label="GetTrace" position="1" signals="deta_E"/>
+  </interface>
+
+</service>
+
+

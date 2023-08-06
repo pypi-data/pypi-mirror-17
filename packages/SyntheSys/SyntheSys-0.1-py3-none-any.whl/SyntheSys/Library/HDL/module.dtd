@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT parameter EMPTY>
+<!ATTLIST parameter 
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED
+	size CDATA #IMPLIED
+	typeimport CDATA #IMPLIED
+	default CDATA #IMPLIED> 
+<!ELEMENT offered (map)+>
+<!ATTLIST offered 
+	alias CDATA #IMPLIED
+	name CDATA #REQUIRED>
+<!ELEMENT input EMPTY>
+<!ATTLIST input 
+	name CDATA #REQUIRED
+	size CDATA #REQUIRED
+	type CDATA #REQUIRED
+	typeimport CDATA #IMPLIED
+	default CDATA #IMPLIED>
+<!ELEMENT output EMPTY>
+<!ATTLIST output 
+	name CDATA #REQUIRED
+	size CDATA #REQUIRED
+	type CDATA #REQUIRED
+	typeimport CDATA #IMPLIED
+	default CDATA #IMPLIED>
+<!ELEMENT map EMPTY>
+<!ATTLIST map 
+	formal CDATA #IMPLIED
+	actual CDATA #REQUIRED
+	when CDATA #IMPLIED>
+<!ELEMENT required (map)*>
+<!ATTLIST required 
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED
+	version CDATA #REQUIRED
+	alias CDATA #IMPLIED>
+<!ELEMENT services ((offered)*|(required)*)+>
+
+<!ELEMENT behavioral EMPTY>
+<!ATTLIST behavioral
+	path CDATA #REQUIRED>
+	
+<!ELEMENT rtl EMPTY>
+<!ATTLIST rtl 
+	type CDATA #IMPLIED
+	name CDATA #IMPLIED
+	path CDATA #REQUIRED>
+	
+<!ELEMENT constraints EMPTY>
+<!ATTLIST constraints 
+	type CDATA #IMPLIED
+	name CDATA #IMPLIED
+	path CDATA #REQUIRED>
+	
+<!ELEMENT core (behavioral*|rtl*|constraints*)+>
+
+<!ELEMENT resources EMPTY>
+<!ATTLIST resources
+	lut      CDATA #IMPLIED
+	register CDATA #IMPLIED
+	ram      CDATA #IMPLIED>
+<!ELEMENT clock EMPTY>
+<!ATTLIST clock
+	MaxFreq CDATA #REQUIRED>
+
+<!ELEMENT fpga (resources, clock)+>
+<!ATTLIST fpga
+	id ID #REQUIRED>
+
+<!ELEMENT design EMPTY>
+<!ATTLIST design
+	Latency CDATA #REQUIRED
+	DataIntroductionInterval CDATA #REQUIRED>
+<!ELEMENT features (fpga*|design?)*>
+
+<!ELEMENT module (services+|parameter*|(input|output)+|core*|features?|loop*)+>
+<!ATTLIST module 
+	name CDATA #REQUIRED
+	typesignature CDATA #IMPLIED
+	version CDATA #REQUIRED
+	title CDATA #IMPLIED
+	purpose CDATA #IMPLIED
+	description CDATA #IMPLIED
+	tool CDATA #IMPLIED
+	area CDATA #IMPLIED
+	speed CDATA #IMPLIED
+	issues CDATA #IMPLIED>
+
+<!ELEMENT loop (services+|parameter*|(input|output)+|core*|resources*|loop*)+>
+<!ATTLIST loop 
+	index CDATA #REQUIRED>
+	
+	

@@ -1,0 +1,67 @@
+<module area="" description="" issues="" name="fifo" purpose="" speed="" title="" tool="" version="">
+  <services>
+    <offered alias="FIFO" name="FIFO">     
+         <map actual="largeur" formal="BufferWidth"/>  
+         <map actual="profondeur" formal="BufferDepth"/>    
+         <map actual="data_in" formal="DataIn"/>
+         <map actual="wr" formal="Write"/>
+         <map actual="ack_wr" formal="AckWr"/>
+         <map actual="IsFull" formal="IsFull"/>
+         
+         <map actual="data_out" formal="DataOut"/>
+         <map actual="rd" formal="Read"/>
+         <map actual="ack_rd" formal="AckRd"/>
+         <map actual="IsEmpty" formal="IsEmpty"/>
+    </offered>
+  </services>
+  <parameter default="64" name="largeur" type="numeric"/>
+  <parameter default="16" name="profondeur" type="numeric"/>
+  <input name="reset" size="1" type="logic"/>
+  <output name="ack_wr" size="1" type="logic"/>
+  <input name="clock_in" size="1" type="logic"/>
+  <output name="data_out" size="largeur" type="logic"/>
+  <input name="clock_out" size="1" type="logic"/>
+  <input name="wr" size="1" type="logic"/>
+  <output name="ack_rd" size="1" type="logic"/>
+  <input name="rd" size="1" type="logic"/>
+  <input name="data_in" size="largeur" type="logic"/>
+  <output name="IsEmpty" size="1" type="logic"/>
+  <output name="IsFull" size="1" type="logic"/>
+  
+  <features>
+	<fpga id="XC7VX485T">
+		<resources lut="8" register="64" ram="1"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC6VLX240T">
+		<resources lut="8" register="64" ram="1"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC6SLX150">
+		<resources lut="8" register="64" ram="1"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC5VSX50T">
+		<resources lut="8" register="64" ram="1"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+  </features>
+  
+  <services>
+    <required alias="ClkIn" name="clock" type="orthogonal" version="1.0">
+      <map formal="clock" actual="clock_in"/>
+<!--      <map formal="freq" actual="50"/>-->
+    </required> 	
+    <required alias="ClkOut" name="clock" type="orthogonal" version="1.0">
+      <map formal="clock" actual="clock_out"/>
+<!--      <map formal="freq" actual="50"/>-->
+    </required> 	
+    <required name="reset" type="orthogonal" version="1.0">
+      <map formal="reset" actual="reset"/>
+<!--      <map formal="delay" actual="0"/>-->
+    </required> 
+  </services>	
+  <core>
+    <rtl path="./Fifo.vhd"/>
+  </core>
+</module>

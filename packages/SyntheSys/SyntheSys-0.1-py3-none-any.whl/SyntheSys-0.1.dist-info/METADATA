@@ -1,0 +1,53 @@
+Metadata-Version: 2.0
+Name: SyntheSys
+Version: 0.1
+Summary: High Level Synthesis tool for FPGA using NoCs.
+Home-page: https://github.com/pypa/sampleproject
+Author: Matthieu PAYET
+Author-email: matthieu.payet@free.fr
+License: GPLv3
+Keywords: HLS synthesis FPGA reconfigurable VHDL circuit NoC system dataflow architecture
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: bitstring
+Requires-Dist: caironumpy
+Requires-Dist: gi
+Requires-Dist: lxml
+Requires-Dist: networkx (>=1.9)
+Requires-Dist: openpyxl
+Requires-Dist: pygraphviz
+Requires-Dist: python-dateutil
+Requires-Dist: scipy
+Requires-Dist: sklearn
+Requires-Dist: xlrd
+Provides-Extra: dev
+Requires-Dist: check-manifest; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: coverage; extra == 'test'
+
+
+SyntheSys  
+=========
+
+SyntheSys is a Python module for generating network on chip (NoC) based systems from Python3 programs. It is specially design for reconfigurable computing, i.e. using FPGA to accelerate parts of programs. It has a extensible library for any type of FPGA and uses NoC properties to be scalable.
+
+This is the README file for the project.
+
+----
+SyntheSys is distributed with a GPLv3 license.
+See LICENSE.txt for details.
+----
+
+Matthieu PAYET <matthieu.payet@free.fr>
+More on `Matthieu's website <http://mpayet.net>`_
+
+
+
+

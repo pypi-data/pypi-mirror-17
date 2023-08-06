@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<service name="clock" type="orthogonal" version="1.0"  category="Common.Clocking" shared="True">
+
+	<parameter name="freq"  type="numeric" size="32" default="50"/>
+	<output    name="clock" type="logic"   size="1"  modifier="freq"/>
+	<!-- [modifier] is used to duplicate signals that have different properties -->
+	<!-- [share] indicates that when propagating upward do not duplicate signal but connect them together -->
+</service>

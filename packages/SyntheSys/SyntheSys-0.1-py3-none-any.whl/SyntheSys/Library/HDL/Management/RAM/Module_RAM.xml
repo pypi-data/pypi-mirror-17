@@ -1,0 +1,58 @@
+<module area="" description="" issues="" name="a_sram_param" purpose="" speed="" title="" tool="" version="">
+  <services>
+    <offered alias="RAM" name="RAM">     
+         <map actual="SIZE_ADDR_MEM" formal="SIZE_ADDR_MEM"/>  
+         <map actual="SIZE_PORT_MEM" formal="SIZE_PORT_MEM"/>    
+         <map actual="data" formal="data"/>
+         <map actual="we" formal="we"/>
+         <map actual="wclk" formal="wclk"/>
+         <map actual="rclk" formal="rclk"/>
+         <map actual="wraddr" formal="wraddr"/>
+         <map actual="rdaddr" formal="rdaddr"/>
+         <map actual="q" formal="q"/>
+    </offered>
+  </services>
+  
+  <parameter default="10" name="SIZE_ADDR_MEM" type="numeric"/>
+  <parameter default="16" name="SIZE_PORT_MEM" type="numeric"/>
+  <input name="data" size="SIZE_PORT_MEM" type="logic"/>
+  <input name="we" size="1" type="logic"/>
+  <input name="wclk" size="1" type="logic"/>
+  <input name="rclk" size="1" type="logic"/>
+  <input name="wraddr" size="SIZE_ADDR_MEM" type="logic"/>
+  <input name="rdaddr" size="SIZE_ADDR_MEM" type="logic"/>
+  <output name="q" size="SIZE_PORT_MEM" type="logic"/>
+  
+  <features>
+    <fpga id="XC7VX485T">
+	<resources lut="0" register="0" ram="1"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC6VLX240T">
+	<resources lut="0" register="0" ram="1"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+	<fpga id="XC6SLX150">
+		<resources lut="0" register="0" ram="1"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC5VSX50T">
+		<resources lut="0" register="0" ram="1"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+  </features>
+  
+  <services>
+    <required alias="ClkIn" name="clock" type="orthogonal" version="1.0">
+      <map formal="clock" actual="wclk"/>
+<!--      <map formal="freq" actual="50"/>-->
+    </required> 	
+    <required alias="ClkOut" name="clock" type="orthogonal" version="1.0">
+      <map formal="clock" actual="rclk"/>
+<!--      <map formal="freq" actual="50"/>-->
+    </required> 	
+  </services>	
+  <core>
+    <rtl path="./RAM.vhd"/>
+  </core>
+</module>

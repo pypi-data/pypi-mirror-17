@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<module name="userclock" version="1.0" title="Clock Manager" purpose="Provide circuit with clock signals" description="Depending on hw architecture drive clock signals." tool="Xilinx ISE (13.1)" speed="-" issues="Not implemented">
+
+  <services>
+    <offered name="userclock">
+      <map formal="clock" actual="clock"/>
+    </offered>
+  </services>
+
+  <output name="clock"   size="1" type="logic"/>
+<!--  <input  name="FPGA_clock_pad"    size="1" type="logic" default="0"/>-->
+	
+<!--  <services>-->
+<!--    <required name="FPGAPads" type="orthogonal" version="1.0" alias="SingleClk">-->
+<!--      <map actual="FPGA_clock_pad" formal="FPGA_clock_pad"/>-->
+<!--    </required>-->
+<!--  </services>-->
+
+<!--  <input  name="clock" size="1" type="logic" default="0"/>-->
+<!--	-->
+<!--  <services>-->
+<!--    <required name="FPGA_Input" type="simple" version="1.0">-->
+<!--      <map actual="clock" formal="Input"/>-->
+<!--    </required>-->
+<!--  </services>-->
+<!--  -->
+</module>
+  
+  
+  
+  
+<!-- No implementation => interpreted by netlist generator
+	<core>
+		<behavioral path="./example01/src/a.vhd"/>
+		<rtl path="./example01/src/a.vhd"/>
+	</core>
+-->
+<!-- 
+	<services> 
+		<required name="IO" type="simple" version="1.0">
+			<map actual="clock_n"/>
+			<map actual="clock_p"/>
+		</required> 	
+	</services>
+-->
+
+<!--
+	<resources>
+		<fpga name="XC6VLX240T" lut="33" register="32"/>
+	</resources>
+
+-->

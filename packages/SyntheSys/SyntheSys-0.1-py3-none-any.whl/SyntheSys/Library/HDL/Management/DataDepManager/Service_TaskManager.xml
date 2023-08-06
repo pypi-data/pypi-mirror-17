@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<service name="TaskManager" type="simple" version="1.0" category="Communication.Control.TaskManager">
+  
+  <parameter default="16" name="FlitWidth" type="numeric"/>
+  <parameter default="16" name="BBInputWidth" type="numeric"/>
+  <parameter default="16" name="BBOutputWidth" type="numeric"/>
+  <parameter default="0"  name="ComHeader" type="logic" size="FlitWidth"/>
+  <parameter default="2"  name="PipelineLength" type="numeric"/>
+  <parameter default="[1, 1]" name="InputSerialization" size="(BBInputWidth/FlitWidth)" type="numeric"  typeimport="crossbar.NATURALS"/>
+  <parameter default="[1, 1]" name="OutputSerialization" size="(BBOutputWidth/FlitWidth)" type="numeric"  typeimport="crosspack.NATURALS"/>
+  
+  <output name="OutputData"     size="FlitWidth" type="logic"/>
+  <input  name="InputData"      size="FlitWidth" type="logic"/>
+  <input  name="InputDataValid" size="1" type="logic"/>
+  <input  name="Transmitted"    size="1" type="logic"/>
+<!--  <output name="ReadProgram" size="1" type="logic"/>-->
+
+  <output name="Start"    size="1" type="logic"/>
+  <input  name="DataRead" size="1" type="logic"/>
+  
+  <output name="BBInputs"     size="BBInputWidth" type="logic"/>
+<!--  <output name="BBInputValid" size="1" type="logic"/>-->
+  <input  name="BBOutput"     size="BBOutputWidth" type="logic"/>
+  
+<!--  <input  name="HeaderReceived" size="FlitWidth" type="logic"/>-->
+  <input  name="HeaderValid"    size="1" type="logic"/>
+  
+<!--  <input default="" name="PayloadReceived" size="FlitWidth" type="logic"/>-->
+  <input default="" name="PayloadValid"    size="1" type="logic"/>
+  
+  <output name="HeaderTransmitted"  size="FlitWidth" type="logic"/>
+  <output name="PayloadTransmitted" size="FlitWidth" type="logic"/>
+  
+  <output name="SendBack"     size="1" type="logic"/>
+  <output name="TerminalBusy" size="1" type="logic"/>
+  
+  <input name="ReadHeaderFifo" size="1" type="logic"/>
+  <input name="OutputRead" size="1" type="logic"/>
+  <output name="OutputFifoEmpty" size="1" type="logic"/>
+<!-- ============================================================= -->
+<!--  <interface name="HeaderReception" direction="IN" number="1">-->
+<!--    <data name="HeaderReceived"  target="HeaderReceived"/>-->
+<!--    <protocol label="Header Reception" position="1" signals="HeaderReceived"/>-->
+<!--  </interface>-->
+<!-- ============================================================= -->
+  
+<!-- ============================================================= -->
+  <interface name="PacketTransmition" direction="IN" number="1">
+    <control name="Transmitted"  target="Transmitted"/>
+    <protocol label="Packet transmitted" position="1" signals="Transmitted"/>
+  </interface>
+<!-- ============================================================= -->
+  <interface name="HeaderSelection" direction="OUT" number="1">
+    <data name="HeaderTransmitted"  target="HeaderTransmitted"/>
+    <protocol label="Select target header" position="1" signals="HeaderTransmitted"/>
+  </interface>
+<!-- ============================================================= -->
+  <interface name="PayloadSelection" direction="OUT" number="1">
+    <data name="PayloadTransmitted"  target="PayloadTransmitted"/>
+    <protocol label="Select target payload" position="1" signals="PayloadTransmitted"/>
+  </interface>
+<!-- ============================================================= -->
+  
+<!-- ============================================================= -->
+  <interface name="FIFO_Light" direction="IN" number="1">
+<!--    <control name="InputDataValid" target="InputDataValid" />-->
+    <data name="InputData" target="OutputData" />
+    <protocol label="Setup Input" position="1" signals="InputData"/>
+  </interface>
+<!-- ============================================================= -->
+
+<!-- ============================================================= -->
+  <interface name="BasicBlockLoad" direction="OUT" number="1">
+    <data name="BBInputs"/>
+    <protocol label="Setup Basic Block input" position="1" signals="BBInputs"/>
+  </interface>
+<!-- ============================================================= -->
+
+<!-- ============================================================= -->
+<!--  <interface name="PipelineFilling" direction="OUT" number="1">-->
+<!--    <control name="BBInputValid" target="BBInputValid" />-->
+<!--    <protocol label="Fill pipeline" position="1" signals="BBInputValid"/>-->
+<!--  </interface>-->
+<!-- ============================================================= -->
+
+</service>
+
+
+
+
+
+

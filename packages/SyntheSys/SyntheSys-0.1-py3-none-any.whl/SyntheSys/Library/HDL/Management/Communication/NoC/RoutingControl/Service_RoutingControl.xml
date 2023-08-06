@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<service name="RoutingControl" type="simple" version="1.0" category="Communication.NoC.AdOCNet.Router.RoutingControl">
+
+  <parameter name="FlitWidth" size="" type="numeric"/>
+  <parameter name="NbInputs" size="" type="numeric"/>
+  <parameter name="NbOutputs" size="" type="numeric"/>
+  <parameter name="X_Local" size="" type="numeric"/>
+  <parameter name="Y_Local" size="" type="numeric"/>
+  <output name="outputport" size="" type="numeric"/>
+  <output name="StartRouting" size="NbInputs" type="logic"/>
+  <output name="RoutingReady" size="1" type="logic"/>
+  
+  <input name="fifo_dataout_list" size="NbInputs" type="FlitWidth*logic" typeimport="CrossPack.FLITS"/>
+  <input name="selectedinput" size="1" type="logic"/>
+
+</service>

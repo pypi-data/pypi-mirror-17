@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<module area="" description="Receive packets through on-chip network multiple sources and process latencies." issues="" name="TrafficReceptor" purpose="Receive packets through on-chip network multiple sources and process latencies." speed="" title="Traffic receptor for NoC" tool="Xilinx 13.1" version="1.0">
+  <services>
+    <offered alias="TR" name="TrafficReceptor">
+      <map actual="FlitWidth" formal="FlitWidth"/>
+      <map actual="Rx" formal="Rx"/>
+      <map actual="AckRx" formal="AckRx"/>
+      <map actual="DataIn" formal="DataIn"/>
+      <map actual="ReceivedPackNB" formal="ReceivedPackNB"/>
+      <map actual="TotalLatency" formal="TotalLatency"/>
+      <map actual="EndCnt" formal="EndCnt"/>
+    </offered>
+  </services>
+  
+  <parameter default="16" name="FlitWidth" type="numeric"/>
+  
+  <output name="Rx" size="1" type="logic"/>
+  <input  name="AckRx"  size="1" type="logic"/>
+  <output name="DataIn" size="FlitWidth" type="logic"/>  
+  
+  <input  name="ReceivedPackNB"   size="FlitWidth" type="numeric"/>
+  <output name="TotalLatency" size="FlitWidth*2" type="numeric"/>
+  <output name="EndCnt" size="FlitWidth" type="numeric"/>
+  
+  <services>
+    <required name="reset" type="orthogonal" version="1.0">
+      <map actual="Rst" formal="reset"/>
+<!--      <map actual="20" formal="delay"/>-->
+    </required>
+    <required name="clock" type="orthogonal" version="1.0">
+      <map actual="Clk" formal="clock"/>
+<!--      <map actual="50" formal="freq"/>-->
+    </required>
+  </services>
+  
+  <features>
+    <design Latency="9" DataIntroductionInterval="1" />
+    <fpga id="XC6VLX240T">
+	<resources lut="33" register="32" ram="128"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+  </features>
+  
+  <core>
+    <rtl path="./TrafficReceptor.vhd"/>
+  </core>
+  
+</module>
+
+
+
+
+

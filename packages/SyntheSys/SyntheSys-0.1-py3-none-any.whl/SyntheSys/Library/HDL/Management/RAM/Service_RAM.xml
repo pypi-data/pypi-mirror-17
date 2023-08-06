@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<service name="RAM" type="simple" version="1.0" category="Standard.RAM">
+
+  <parameter default="10" name="SIZE_ADDR_MEM" type="numeric"/>
+  <parameter default="16" name="SIZE_PORT_MEM" type="numeric"/>
+  
+  <input name="data" size="SIZE_PORT_MEM" type="logic"/>
+  <input name="we" size="1" type="logic"/>
+  <input name="wclk" size="1" type="logic"/>
+  <input name="rclk" size="1" type="logic"/>
+  <input name="wraddr" size="SIZE_ADDR_MEM" type="logic"/>
+  <input name="rdaddr" size="SIZE_ADDR_MEM" type="logic"/>
+  <output name="q" size="SIZE_PORT_MEM" type="logic"/>
+
+</service>

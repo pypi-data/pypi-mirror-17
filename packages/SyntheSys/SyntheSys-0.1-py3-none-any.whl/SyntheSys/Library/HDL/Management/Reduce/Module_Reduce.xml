@@ -1,0 +1,68 @@
+<module area="" description="" issues="" name="Reduce" purpose="" speed="" title="" tool="" version="">
+  <services>
+    <offered alias="Reduce" name="Reduce">
+      <map actual="ComHeader" formal="ComHeader"/>
+      <map actual="FlitWidth" formal="FlitWidth"/>
+      <map actual="NbInputMax" formal="NbInputMax"/>
+         
+      <map actual="DataOut" formal="DataOut"/>
+      <map actual="Tx" formal="Tx"/>
+      <map actual="AckTx" formal="AckTx"/>
+      
+      <map actual="DataIn" formal="DataIn"/>
+      <map actual="Rx" formal="Rx"/>
+      <map actual="AckRx" formal="AckRx"/>
+         
+    </offered>
+  </services>
+  
+  <parameter default="16" name="FlitWidth" type="numeric"/>
+  <parameter default="15" name="NbInputMax" type="numeric"/>
+  <parameter default="0" name="ComHeader" type="logic" size="FlitWidth"/>
+  
+  <input name="Clock" size="1" type="logic"/>
+  <input name="Reset" size="1" type="logic"/>
+
+  <input default="1" name="DataIn" size="FlitWidth" type="logic"/>
+  <input default="0" name="Rx" size="1" type="logic"/>
+  <input default="1" name="AckTx" size="1" type="logic"/>
+  
+  <output default="1" name="DataOut" size="FlitWidth" type="logic"/>
+  <output default="1" name="AckRx" size="1" type="logic"/>
+  <output default="1" name="Tx" size="1" type="logic"/>
+  
+  
+  
+  <services>
+    <required name="reset" type="orthogonal" version="1.0">
+      <map actual="Reset" formal="reset"/>
+<!--      <map actual="0" formal="delay"/>-->
+    </required>
+    <required name="clock" type="orthogonal" version="1.0">
+      <map actual="Clock" formal="clock"/>
+<!--      <map actual="50" formal="freq"/>-->
+    </required>
+    <required name="FIFO" type="simple" version="1.0"/>
+    <required name="RAM" type="simple" version="1.0"/>
+  </services>
+  
+  <features>
+    <design Latency="9" DataIntroductionInterval="1"/>
+    <fpga id="XC7VX485T">
+	<resources lut="273" register="47" ram="0"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC6VLX240T">
+	<resources lut="33" register="32" ram="128"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+  </features>
+  
+  <core>
+    <rtl path="./ReduceCore/ReduceOutputCtrl.vhd"/>
+    <rtl path="./ReduceCore/ReduceStatus.vhd"/>
+    <rtl path="./ReduceCore/ReduceCore.vhd"/>
+    <rtl path="./Reduce.vhd"/>
+  </core>
+  
+</module>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<service name="RequestManager" type="simple" version="1.0" category="Communication.NoC.AdOCNet.Router.RequestManager">
+
+  <parameter default="5" name="NbInputs" size="" type="numeric"/>
+ 
+  <output name="FifosAreEmpty" size="NbInputs" type="logic"/>
+  <input  name="FifosAreEmpty_clean" size="NbInputs" type="logic"/>
+  <input  name="RequestTable" size="NbInputs" type="logic"/>
+  <output name="FifosRead" size="NbInputs" type="logic"/>
+  <input  name="FifosRead_clean" size="NbInputs" type="logic"/>
+
+</service>

@@ -1,0 +1,65 @@
+<module area="" description="" issues="" name="PipelineManager" purpose="" speed="" title="" tool="" version="">
+  <services>
+    <offered alias="PipelineManager" name="PipelineManager">
+         <map actual="PipelineLength" formal="PipelineLength"/>
+         <map actual="NbTaskBitWidth" formal="NbTaskBitWidth"/>
+         
+         <map actual="Clk" formal="Clk"/>
+         <map actual="Rst" formal="Rst"/>
+         
+         <map actual="BBInputValid" formal="BBInputValid"/>
+         <map actual="BBOutputValid" formal="BBOutputValid"/>
+         
+         <map actual="InputTaskID" formal="InputTaskID"/>
+         <map actual="OutputTaskID" formal="OutputTaskID"/>
+    </offered>
+  </services>
+  
+  <parameter default="10" name="PipelineLength" type="numeric"/>
+  <parameter default="64" name="NbTaskBitWidth" type="numeric"/>
+  
+  <input name="clock" size="1" type="logic"/>
+  <input name="reset" size="1" type="logic"/>
+  
+  <input name="BBInputValid" size="1" type="logic"/>
+  <output name="BBOutputValid" size="1" type="logic"/>
+  
+  <input name="InputTaskID" size="NbTaskBitWidth" type="logic"/>
+  <output name="OutputTaskID" size="NbTaskBitWidth" type="logic"/>
+  
+  <services>
+    <required name="reset" type="orthogonal" version="1.0">
+      <map actual="reset" formal="reset"/>
+<!--      <map actual="0" formal="delay"/>-->
+    </required>
+    <required name="clock" type="orthogonal" version="1.0">
+      <map actual="clock" formal="clock"/>
+<!--      <map actual="50" formal="freq"/>-->
+    </required>
+    <required name="FIFO" type="simple" version="1.0"/>
+  </services>
+  
+  <features>
+    <fpga id="XC7VX485T">
+	<resources lut="14" register="24" ram="1"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC6VLX240T">
+	<resources lut="14" register="24" ram="1"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+	<fpga id="XC6SLX150">
+		<resources lut="14" register="24" ram="1"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC5VSX50T">
+		<resources lut="14" register="24" ram="1"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+  </features>
+  
+  <core>
+    <rtl path="./PipelineManager.vhd"/>
+  </core>
+  
+</module>

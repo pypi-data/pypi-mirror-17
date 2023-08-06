@@ -1,0 +1,129 @@
+<module area="" description="" issues="" name="TaskManager" purpose="" speed="" title="" tool="" version="">
+  <services>
+    <offered alias="TaskManager" name="TaskManager">
+         <map actual="ComHeader" formal="ComHeader"/>
+         <map actual="FlitWidth" formal="FlitWidth"/>
+         <map actual="BBInputWidth" formal="BBInputWidth"/>
+         <map actual="BBOutputWidth" formal="BBOutputWidth"/>
+         <map actual="PipelineLength" formal="PipelineLength"/>
+         <map actual="InputSerialization" formal="InputSerialization"/>
+         <map actual="OutputSerialization" formal="OutputSerialization"/>
+         
+<!--         <map actual="Clk" formal="Clk"/>-->
+<!--         <map actual="Rst" formal="Rst"/>-->
+         
+         <map actual="InputData" formal="InputData"/>
+         <map actual="InputDataValid" formal="InputDataValid"/>
+         <map actual="BBOutput" formal="BBOutput"/>
+         <map actual="Transmitted" formal="Transmitted"/>
+         
+         <map actual="OutputData" formal="OutputData"/>
+         
+         <map actual="BBInputs" formal="BBInputs"/>
+<!--         <map actual="BBInputValid" formal="BBInputValid"/>-->
+         
+<!--         <map actual="HeaderReceived" formal="HeaderReceived"/>-->
+         <map actual="HeaderValid" formal="HeaderValid"/>
+         
+<!--         <map actual="PayloadReceived" formal="PayloadReceived"/>-->
+         <map actual="PayloadValid" formal="PayloadValid"/>
+         
+         <map actual="HeaderTransmitted" formal="HeaderTransmitted"/>
+         <map actual="PayloadTransmitted" formal="PayloadTransmitted"/>
+         
+         <map actual="SendBack" formal="SendBack"/>
+         <map actual="TerminalBusy" formal="TerminalBusy"/>
+         
+         <map actual="ReadHeaderFifo" formal="ReadHeaderFifo"/>
+         <map actual="OutputRead" formal="OutputRead"/>
+         <map actual="OutputFifoEmpty" formal="OutputFifoEmpty"/>
+         
+         <map actual="Start"    formal="Start"/>
+         <map actual="DataRead" formal="DataRead"/>
+    </offered>
+  </services>
+  
+  <parameter default="64" name="FlitWidth" type="numeric"/>
+  <parameter default="128" name="BBInputWidth" type="numeric"/>
+  <parameter default="64" name="BBOutputWidth" type="numeric"/>
+  <parameter default="0" name="ComHeader" type="logic" size="FlitWidth"/>
+  <parameter default="2" name="PipelineLength" type="numeric"/>
+  <parameter default="[1, 1]" name="InputSerialization"  size="(BBInputWidth/FlitWidth)" type="numeric"  typeimport="crosspack.NATURALS"/>
+  <parameter default="[1, 1]" name="OutputSerialization" size="(BBOutputWidth/FlitWidth)" type="numeric"  typeimport="crosspack.NATURALS"/>
+  
+  <input name="Clock" size="1" type="logic"/>
+  <input name="Reset" size="1" type="logic"/>
+  
+  <output name="Start"    size="1" type="logic"/>
+  <input  name="DataRead" size="1" type="logic"/>
+  
+  <input name="InputData" size="FlitWidth" type="logic"/>
+  <input name="InputDataValid" size="1" type="logic"/>
+  <input name="HeaderValid" size="1" type="logic"/>
+  <input name="PayloadValid" size="1" type="logic"/>
+  
+  <input name="Transmitted" size="1" type="logic"/>
+  <output name="HeaderTransmitted" size="FlitWidth" type="logic"/>
+  <output name="PayloadTransmitted" size="FlitWidth" type="logic"/>
+  
+  <output name="BBInputs" size="BBInputWidth" type="logic"/>
+  <input  name="BBOutput" size="BBOutputWidth" type="logic"/>
+<!--  <output name="BBInputValid" size="1" type="logic"/>-->
+<!--  <output name="ReadProgram" size="1" type="logic"/>-->
+  
+  <output name="SendBack" size="1" type="logic"/>
+  <output name="TerminalBusy" size="1" type="logic"/>
+<!--  <input  name="HeaderReceived" size="FlitWidth" type="logic"/>-->
+  
+<!--  <input default="" name="PayloadReceived" size="FlitWidth" type="logic"/>-->
+  <output name="OutputData" size="FlitWidth" type="logic"/>
+  
+  <input name="ReadHeaderFifo" size="1" type="logic"/>
+  <input name="OutputRead" size="1" type="logic"/>
+  <output name="OutputFifoEmpty" size="1" type="logic"/>
+  
+  
+  <services>
+    <required name="reset" type="orthogonal" version="1.0">
+      <map actual="Reset" formal="reset"/>
+<!--      <map actual="0" formal="delay"/>-->
+    </required>
+    <required name="clock" type="orthogonal" version="1.0">
+      <map actual="Clock" formal="clock"/>
+<!--      <map actual="50" formal="freq"/>-->
+    </required>
+    <required name="FIFO" type="simple" version="1.0"/>
+    <required name="RAM" type="simple" version="1.0"/>
+    <required name="PipelineManager" type="simple" version="1.0"/>
+  </services>
+  
+  <features>
+    <design Latency="9" DataIntroductionInterval="1"/>
+    <fpga id="XC7VX485T">
+	<resources lut="273" register="47" ram="2"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC6VLX240T">
+	<resources lut="273" register="47" ram="2"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC6SLX150">
+	<resources lut="273" register="47" ram="2"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC5VSX50T">
+	<resources lut="273" register="47" ram="2"/>
+	<clock MaxFreq="200"/>
+    </fpga>
+  </features>
+  
+  <core>
+<!--    <rtl path="../RAM/a_sram_param.vhd"/>-->
+<!--    <rtl path="./HeaderTable/HeaderTable.vhd"/>-->
+    <rtl path="../Utilities.vhd"/>
+    <rtl path="./OutputCtrl/OutputCtrl.vhd"/>
+    <rtl path="./InputTable/InputTable.vhd"/>
+    <rtl path="./TaskManager.vhd"/>
+  </core>
+  
+</module>

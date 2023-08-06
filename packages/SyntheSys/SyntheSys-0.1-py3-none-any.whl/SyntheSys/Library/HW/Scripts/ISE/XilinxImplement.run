@@ -1,0 +1,44 @@
+#! /bin/bash
+
+# THIS COMMANDS GENERATE A BINARY FROM NGC, UCF AND TOP_ENTITY PARAMETERS
+#------------------------------------
+#         TO BE SETUP BY SOFT
+#------------------------------------
+#FPGA        = xc6slx150-fgg484-2
+#CONSTRAINTS = ../../../HDL/dev/UCF/MiniX_Spartan6_Target.ucf
+#TOPENTITY   = calculus8bit
+#SRCLIST     = dut.prj
+#SETUPFILE   = dut.prj
+#------------------------------------
+
+#------------------------------------
+NGC     = $TOPENTITY.ngc
+NGD     = $TOPENTITY.ngd
+NCD_MAP = $TOPENTITY-map.ncd
+NCD_PAR = $TOPENTITY-par.ncd
+PCF     = $TOPENTITY.pcf
+BINARY  = $TOPENTITY.bit
+#------------------------------------
+
+#Comment
+# Do the synthesis phase
+# the Xilinx log file is: $TOPENTITY.srp
+xst -intstyle silent -ifn  $SETUPFILE 
+
+# ngbuild run # -intstyle silent
+ngdbuild -uc $CONSTRAINTS -dd _ngo -p $FPGA $NGC $NGD 
+
+# map build
+map -w -p $FPGA $NGD -o $NCD_MAP  
+
+# place&route phase
+par -w $NCD_MAP $NCD_PAR  
+
+# Timing Reporter And Circuit Evaluator (TRACE)
+trce $NCD_PAR $PCF  
+
+#bitstream generation
+bitgen -w $NCD_PAR $BINARY 
+
+
+

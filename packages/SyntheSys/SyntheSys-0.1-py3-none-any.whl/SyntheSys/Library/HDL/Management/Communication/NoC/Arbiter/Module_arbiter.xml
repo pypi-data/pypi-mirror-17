@@ -1,0 +1,49 @@
+<module area="" description="" issues="" name="Arbiter" purpose="" speed="" title="" tool="" version="1.0">
+  <services>
+    <offered alias="Arbiter" name="Arbiter">
+      <map actual="NbInputs" formal="NbInputs"/>
+      <map actual="RequestTable" formal="RequestTable"/>
+      <map actual="ConnectionTable" formal="ConnectionTable"/>
+      <map actual="SelectedPort" formal="Selected"/>
+    </offered>
+  </services>
+  <parameter default="5" name="NbInputs" size="1" type="numeric"/>
+  <input name="Rst" size="1" type="logic"/>
+  <input name="Clk" size="1" type="logic"/>
+  <input name="RequestTable"    size="NbInputs" type="logic"/>
+  <input name="ConnectionTable" size="NbInputs" type="logic"/>
+  <output name="SelectedPort" size="" type="numeric"/>
+  
+  <features>
+	<fpga id="XC7VX485T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC6VLX240T">
+		<resources lut="33" register="32" ram="128"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC6SLX150">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC5VSX50T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+  </features>
+  
+  <services> 
+    <required name="clock" type="orthogonal" version="1.0">
+      <map formal="clock" actual="Clk"/>
+<!--      <map formal="freq" actual="50"/>-->
+    </required>  	
+    <required name="reset" type="orthogonal" version="1.0">
+      <map formal="reset" actual="Rst"/>
+<!--      <map formal="delay" actual="0"/>-->
+    </required> 
+  </services>
+  <core>
+    <rtl path="./Arbiter.vhd"/>
+  </core>
+</module>

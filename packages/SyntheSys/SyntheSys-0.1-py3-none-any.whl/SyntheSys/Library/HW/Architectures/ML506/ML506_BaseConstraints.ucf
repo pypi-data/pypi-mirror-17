@@ -1,0 +1,239 @@
+#! /bin/bash
+
+############------------++++++++++++++++----------------#########
+NET "led_o<0>" LOC = "AD26"  | IOB = TRUE | DRIVE = 24; ## LED 3
+NET "led_o<1>" LOC = "L18"   | IOB = TRUE | DRIVE = 24; ## LED 1
+NET "led_o<2>" LOC = "G15"   | IOB = TRUE | DRIVE = 24; ## LED 2
+
+# led_o[0] = Spi
+# led_o[3] = r_clk_prog_o
+# led_o[4] = r_run_verif_o
+# led_o[5] = run_verif_o
+# led_o[6] = r_start_run_verif_o
+# led_o[7] = ctrl_trace_o
+# led_o[8] = r_mode_pas_a_pas_o & nc
+# led_o[9] = rst_n_o
+# led_o[10] = clk_ref
+##################################################################
+
+NET "Clk100M"   LOC = "AH15" ;
+NET "Clk200M_P" LOC = "L19"   | DIFF_TERM=true;
+NET "Clk200M_N" LOC = "K19"   | DIFF_TERM=true;
+
+
+NET "clk_spi" LOC = "H33"  | IOSTANDARD = LVCMOS25 ; # FMC_HB00_CC_P => XM105 J2:1
+NET "cs_spi"  LOC = "F34"  | IOSTANDARD = LVCMOS25 ; # FMC_HB00_CC_N => XM105 J2:3
+NET "di_spi"  LOC = "G33"  | IOSTANDARD = LVCMOS25 ; # FMC_HB10_N => XM105 J2:4
+NET "do_spi"  LOC = "H34"  | IOSTANDARD = LVCMOS25 ; # FMC_HB10_P => XM105 J2:2
+
+
+NET "rst_ext_i" LOC = "U25"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; ## 1 on SW1 DIP switch (active-High) NET "GPIO_DIP_SW1"
+NET "led_rst_o" LOC = "H18"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; ## LED 0
+
+
+
+###################################################################
+#NET "clk_matrix"  LOC = "AG30" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # J6 - 64
+###################################################################
+#Contraintes de timing sur les traces
+#NET "trce_i*" OFFSET = IN 5ns BEFORE clk_matrix; 
+
+# Constraints for AVA-Test with Control: 'ML605'
+# Automatically generated file (date: 2014-05-06 at 10:06:14)
+
+#NET "stim_o<95>"  LOC = "AN33" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HB06_CC_N" # J6 - 64
+#NET "stim_o<94>"  LOC = "AN34" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HB06_CC_P" # J6 - 62
+#NET "stim_o<93>"  LOC = "AM32" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HB17_CC_N" # J6 - 60
+#NET "stim_o<92>"  LOC = "AJ34" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA10_P" # J6 - 58
+#NET "stim_o<91>"  LOC = "AM33" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA33_N" # J6 - 56
+#NET "stim_o<90>"  LOC = "AL33" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA23_N" # J6 - 54
+#NET "stim_o<89>"  LOC = "AL34" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA23_P" # J6 - 52
+#NET "stim_o<88>"  LOC = "AK32" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA10_N" # J6 - 50
+#NET "stim_o<87>"  LOC = "AJ32" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA33_P" # J6 - 48
+#NET "stim_o<85>"  LOC = "AK33" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA02_P" # J6 - 46
+#NET "stim_o<85>"  LOC = "AK34" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HB17_CC_P" # J6 - 44
+#NET "stim_o<84>"  LOC = "AH32" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA02_N" # J6 - 42
+#NET "stim_o<83>"  LOC = "AG32" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA18_N" # J6 - 40
+#NET "stim_o<82>"  LOC = "AE32" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA14_P" # J6 - 38
+#NET "stim_o<81>"  LOC = "AH34" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_LA30_P" # J6 - 36
+#NET "stim_o<80>"  LOC = "W32"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA29_P" # J6 - 34
+#NET "stim_o<79>"  LOC = "Y32"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HB00_CC_P"
+
+#NET "stim_o<78>"  LOC = "Y32"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA18_CC_N" # J6 - 32
+#NET "stim_o<77>"  LOC = "AB33" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA16_N" # J6 - 30
+#NET "stim_o<76>"  LOC = "AF33" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA00_CC_N" # J6 - 
+#NET "stim_o<75>"  LOC = "M27"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA30_N" # J4 - 64
+#NET "stim_o<74>"  LOC = "AM23" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_LA15_P" # J4 - 64
+#NET "stim_o<73>"  LOC = "M26"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA30_P" # J4 - 64
+#NET "stim_o<72>"  LOC = "AL23" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_LA15_N" # J4 - 64
+#NET "stim_o<71>"  LOC = "AE33" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA00_CC_P" # J4 - 64
+#NET "stim_o<70>"  LOC = "AC33" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA16_P" # J4 - 64
+#NET "stim_o<69>"  LOC = "P34"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA29_N" # J4 - 64
+#NET "stim_o<68>"  LOC = "AA31" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA14_N" # J4 - 64
+#NET "stim_o<67>"  LOC = "T33"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA18_P" # J4 - 64
+#NET "stim_o<66>"  LOC = "T26"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA21_N" # J4 - 64
+#NET "stim_o<65>"  LOC = "M33"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA28_N"
+#NET "stim_o<64>"  LOC = "AN25" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_LA19_P"
+#NET "stim_o<63>"  LOC = "J30"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA08_P"
+#NET "stim_o<62>"  LOC = "AM18" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_LA09_P"
+#NET "stim_o<61>"  LOC = "R31"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA27_P"
+#NET "stim_o<60>"  LOC = "AC28" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA04_N"
+#NET "stim_o<59>"  LOC = "R32"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA27_N"
+#NET "stim_o<58>"  LOC = "AL18" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_LA09_N"
+#NET "stim_o<57>"  LOC = "K29"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA08_N"
+#NET "stim_o<56>"  LOC = "AN24" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_LA19_N"
+#NET "stim_o<55>"  LOC = "R26"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA21_P"
+#NET "stim_o<54>"  LOC = "N33"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA28_P"
+#NET "stim_o<53>"  LOC = "AL33" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HB04_N"
+#NET "stim_o<52>"  LOC = "AA29" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA06_N"
+#NET "stim_o<51>"  LOC = "P30"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA25_N"
+#NET "stim_o<50>"  LOC = "AG31" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA08_P"
+#NET "stim_o<49>"  LOC = "AP32" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HB02_P"
+#NET "stim_o<48>"  LOC = "AP33" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HB02_N"
+#NET "stim_o<47>"  LOC = "P27"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA22_N"
+#NET "stim_o<46>"  LOC = "AE32" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA12_N"
+#NET "stim_o<45>"  LOC = "AF31" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA08_N"
+#NET "stim_o<44>"  LOC = "AM33" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HB04_P"
+#NET "stim_o<43>"  LOC = "AA28" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA06_P"
+#NET "stim_o<42>"  LOC = "C33"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA14_P"
+#NET "stim_o<41>"  LOC = "AK23" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_LA20_P"
+#NET "stim_o<40>"  LOC = "AK34" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HB09_N"
+#NET "stim_o<39>"  LOC = "N30"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA19_N"
+#NET "stim_o<38>"  LOC = "B33"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA16_N"
+#NET "stim_o<37>"  LOC = "AP26" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_LA22_N"
+#NET "stim_o<36>"  LOC = "AM32" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HB01_N"
+#NET "stim_o<35>"  LOC = "AD31" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA13_N"
+#NET "stim_o<34>"  LOC = "AD32" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA12_P"
+#NET "stim_o<33>"  LOC = "AN32" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HB01_P"
+#NET "stim_o<32>"  LOC = "A33"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA16_P"
+#NET "stim_o<31>"  LOC = "AP27" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_LA22_P"
+#NET "stim_o<30>"  LOC = "M30"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA19_P"
+#NET "stim_o<29>"  LOC = "AL34" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HB09_P"
+#NET "stim_o<28>"  LOC = "B34"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA14_N"
+#NET "stim_o<27>"  LOC = "AL24" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_LA20_N"
+#NET "stim_o<26>"  LOC = "AG32" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA11_N"
+#NET "stim_o<25>"  LOC = "AC27" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA05_N"
+#NET "stim_o<24>"  LOC = "G32"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA07_P"
+#NET "stim_o<23>"  LOC = "M31"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA31_P"
+#NET "stim_o<22>"  LOC = "L31"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA31_N"
+#NET "stim_o<21>"  LOC = "H34"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA05_P"
+#NET "stim_o<20>"  LOC = "AH29" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HB16_P"
+#NET "stim_o<19>"  LOC = "AG33" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA11_P"
+#NET "stim_o<18>"  LOC = "J34"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA06_N"
+#NET "stim_o<17>"  LOC = "AA26" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA07_P"
+#NET "stim_o<16>"  LOC = "N27"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA22_P"
+#NET "stim_o<15>"  LOC = "AK27" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_LA28_P"
+#NET "stim_o<14>"  LOC = "L25"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA09_P"
+#NET "stim_o<13>"  LOC = "K27"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA00_CC_N"
+#NET "stim_o<12>"  LOC = "AN27" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_LA17_CC_P"
+#NET "stim_o<11>"  LOC = "AM27" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_LA17_CC_N"
+#NET "stim_o<10>"  LOC = "L26"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA09_N"
+#NET "stim_o<9>"   LOC = "K26"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA00_CC_P"
+#NET "stim_o<8>"   LOC = "AJ27" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_LA28_N"
+#NET "stim_o<7>"   LOC = "AB26" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA07_N"
+#NET "stim_o<6>"   LOC = "P31"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA25_P"
+#NET "stim_o<5>"   LOC = "K33"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA06_P"
+#NET "stim_o<4>"   LOC = "AL31" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HB19_P"
+#NET "stim_o<3>"   LOC = "AA25" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HA03_P"
+#NET "stim_o<2>"   LOC = "AL30" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_HB03_P"
+#NET "stim_o<1>"   LOC = "F30"  | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_LPC_LA10_P"
+#NET "stim_o<0>"   LOC = "AL25" | IOB = TRUE | IOSTANDARD = LVCMOS25 | DRIVE = 24; # OUTPUT => connector net "FMC_HPC_LA26_N"
+
+#NET "trce_i<95>"  LOC = "G32" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HB05_N"
+#NET "trce_i<94>"  LOC = "H32"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_LPC_LA23_N"
+#NET "trce_i<93>"  LOC = "J32"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_LPC_LA23_P"
+#NET "trce_i<92>"  LOC = "J34" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HB05_P"
+#NET "trce_i<91>"  LOC = "L33"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_LPC_LA10_N"
+#NET "trce_i<90>"  LOC = "M32" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA24_N"
+#NET "trce_i<89>"  LOC = "P34" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HB03_N"
+#NET "trce_i<88>"  LOC = "N34"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HA03_N"
+#NET "trce_i<87>"  LOC = "AA34" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HB19_N"
+#NET "trce_i<86>"  LOC = "AD32"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_LPC_LA11_N"
+
+#NET "trce_i<85>"  LOC = "AM26" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA23_N"
+#NET "trce_i<84>"  LOC = "AG20" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA06_P"
+#NET "trce_i<83>"  LOC = "AD26" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HB18_N"
+#NET "trce_i<82>"  LOC = "AN29" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA21_P"
+#NET "trce_i<81>"  LOC = "AE19" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA04_N"
+#NET "trce_i<80>"  LOC = "AL20" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA10_N"
+#NET "trce_i<79>"  LOC = "N29"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_LPC_LA17_CC_N"
+#NET "trce_i<78>"  LOC = "AJ31" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HB12_P"
+#NET "trce_i<77>"  LOC = "AJ32" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HB12_N"
+#NET "trce_i<76>"  LOC = "AM20" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA10_P"
+#NET "trce_i<75>"  LOC = "N28"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_LPC_LA17_CC_P"
+#NET "trce_i<74>"  LOC = "AP29" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA21_N"
+#NET "trce_i<73>"  LOC = "AF19" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA04_P"
+#NET "trce_i<72>"  LOC = "AD25" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HB18_P"
+#NET "trce_i<71>"  LOC = "J29"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_LPC_LA04_N"
+#NET "trce_i<70>"  LOC = "AL26" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA23_P"
+#NET "trce_i<69>"  LOC = "AG21" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA06_N"
+#NET "trce_i<68>"  LOC = "D31"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_LPC_LA11_P"
+#NET "trce_i<67>"  LOC = "B32"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_LPC_LA15_N"
+#NET "trce_i<66>"  LOC = "K28"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_LPC_LA04_P"
+#NET "trce_i<65>"  LOC = "AK19" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA01_CC_P"
+#NET "trce_i<64>"  LOC = "AF21" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA00_CC_N"
+#NET "trce_i<63>"  LOC = "AH32" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HB13_N"
+#NET "trce_i<62>"  LOC = "AL19" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA01_CC_N"
+#NET "trce_i<61>"  LOC = "AJ34" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HB07_P"
+#NET "trce_i<60>"  LOC = "AE31" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HA13_P"
+#NET "trce_i<59>"  LOC = "C32"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_LPC_LA15_P"
+#NET "trce_i<58>"  LOC = "AP30" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA27_P"
+#NET "trce_i<57>"  LOC = "AK24" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA30_N"
+#NET "trce_i<56>"  LOC = "AM22" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA11_P"
+#NET "trce_i<55>"  LOC = "AC32" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HA15_N"
+#NET "trce_i<54>"  LOC = "AG25" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA32_P"
+#NET "trce_i<53>"  LOC = "AF20" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA00_CC_P"
+#NET "trce_i<52>"  LOC = "AK28" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA29_N"
+#NET "trce_i<51>"  LOC = "AB30" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HA09_P"
+#NET "trce_i<50>"  LOC = "AB27" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HA05_P"
+#NET "trce_i<49>"  LOC = "AL28" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA29_P"
+#NET "trce_i<48>"  LOC = "AG26" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA32_N"
+#NET "trce_i<47>"  LOC = "AB32" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HA15_P"
+#NET "trce_i<46>"  LOC = "J32"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_LPC_LA03_N"
+#NET "trce_i<45>"  LOC = "AP31" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA27_N"
+#NET "trce_i<44>"  LOC = "H30"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_LPC_LA02_N"
+#NET "trce_i<43>"  LOC = "U30"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HA21_N"
+##%NET "trce_i<42>"  LOC = "AF28" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HB10_P"
+#NET "trce_i<41>"  LOC = "AK33" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HB08_P"
+#NET "trce_i<40>"  LOC = "AD27" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HB14_N"
+#NET "trce_i<39>"  LOC = "AD29" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HA01_CC_P"
+#NET "trce_i<38>"  LOC = "E33"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_LPC_LA12_N"
+#NET "trce_i<37>"  LOC = "AC20" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA02_P"
+#NET "trce_i<36>"  LOC = "AM25" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA26_P"
+#NET "trce_i<35>"  LOC = "AN30" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA24_P"
+#NET "trce_i<34>"  LOC = "W30"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HA17_CC_N"
+#NET "trce_i<33>"  LOC = "AN28" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA25_P"
+#NET "trce_i<32>"  LOC = "C34"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_LPC_LA13_N"
+#NET "trce_i<31>"  LOC = "AM28" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA25_N"
+#NET "trce_i<30>"  LOC = "D34"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_LPC_LA13_P"
+#NET "trce_i<29>"  LOC = "V30"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HA17_CC_P"
+#NET "trce_i<28>"  LOC = "AH30" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HB16_N"
+#NET "trce_i<27>"  LOC = "AD20" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA02_N"
+#NET "trce_i<26>"  LOC = "AC29" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HA01_CC_N"
+#NET "trce_i<25>"  LOC = "AK32" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HB08_N"
+#NET "trce_i<24>"  LOC = "AE27" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HB14_P"
+#NET "trce_i<23>"  LOC = "U31"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HA21_P"
+##%NET "trce_i<22>"  LOC = "AF29" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HB10_N"
+#NET "trce_i<21>"  LOC = "M25"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_LPC_LA32_N"
+#NET "trce_i<20>"  LOC = "AH22" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA05_N"
+#NET "trce_i<19>"  LOC = "AN18" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA13_N"
+#NET "trce_i<18>"  LOC = "AE28" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HB15_P"
+#NET "trce_i<17>"  LOC = "AH33" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HB13_P"
+#NET "trce_i<16>"  LOC = "AP22" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA16_P"
+#NET "trce_i<15>"  LOC = "U28"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HA22_P"
+#NET "trce_i<14>"  LOC = "AK21" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA07_P"
+#NET "trce_i<13>"  LOC = "AH34" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HB07_N"
+#NET "trce_i<12>"  LOC = "J31"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_LPC_LA03_P"
+#NET "trce_i<11>"  LOC = "AJ21" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA07_N"
+#NET "trce_i<10>"  LOC = "AN22" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA11_N"
+#NET "trce_i<9>"   LOC = "AN23" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA16_N"
+#NET "trce_i<8>"   LOC = "V29"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HA22_N"
+#NET "trce_i<7>"   LOC = "E31"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_LPC_LA01_CC_N"
+#NET "trce_i<6>"   LOC = "AG22" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA05_P"
+#NET "trce_i<5>"   LOC = "AE29" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HB15_N"
+#NET "trce_i<4>"   LOC = "N25"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_LPC_LA32_P"
+#NET "trce_i<3>"   LOC = "AM21" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA12_P"
+#NET "trce_i<2>"   LOC = "U32"  | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_HA19_N"
+#NET "trce_i<1>"   LOC = "AP19" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA13_P"
+#NET "trce_i<0>"   LOC = "AN19" | IOB = TRUE | IOSTANDARD = LVCMOS25; # INPUT => connector net "FMC_HPC_LA14_P"
+

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<service name="__sub__" type="simple" version="1.0" category="DSP">
+  
+  <parameter default="64" name="DataWidth" type="numeric"/>
+  <input  name="A"  size="DataWidth" type="logic"/>
+  <input  name="B"  size="DataWidth" type="logic"/>
+  <output name="R" size="DataWidth" type="logic"/>
+  
+  <interface name="BasicBlock" direction="INOUT" number="1" pipeline="1">
+    <datawidth name="DataWidth"/>
+    <data name="R" />
+    <data name="A" />
+    <data name="B" />
+    <protocol label="SetStimuli" position="0" signals="A, B"/>
+    <protocol label="GetTrace" position="1" signals="R"/>
+  </interface>
+
+</service>
+
+
+
+
+

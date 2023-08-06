@@ -1,0 +1,94 @@
+<module area="" description="" issues="" name="InputTable" purpose="" speed="" title="" tool="" version="">
+  <services>
+    <offered alias="InputTable" name="InputTable">
+         <map actual="FlitWidth" formal="FlitWidth"/>
+         <map actual="NBTask" formal="NBTask"/>
+         <map actual="NbInputFlit" formal="NbInputFlit"/>
+         
+         <map actual="HeaderConfigMode" formal="HeaderConfigMode"/>
+         <map actual="ConstantConfigMode" formal="ConstantConfigMode"/>
+         <map actual="IdleMode" formal="IdleMode"/>
+         
+         <map actual="TaskID" formal="TaskID"/>
+         <map actual="DataIdx" formal="DataIdx"/>
+         <map actual="DataID" formal="DataID"/>
+         <map actual="PayloadReceived" formal="PayloadReceived"/>
+         <map actual="PayloadValid" formal="PayloadValid"/>
+         <map actual="HeaderValid" formal="HeaderValid"/>
+         
+         <map actual="BufferBusy" formal="BufferBusy"/>
+         
+         <map actual="DataInputValid" formal="DataInputValid"/>
+         <map actual="DataInput" formal="DataInput"/>
+         
+         <map actual="DataOutputValid" formal="DataOutputValid"/>
+         <map actual="DataOutput" formal="DataOutput"/>
+    </offered>
+  </services>
+  
+  <parameter default="16" name="FlitWidth" type="numeric"/>
+  <parameter default="5" name="NBTask" type="numeric"/>
+  <parameter default="2" name="NbInputFlit" type="numeric"/>
+  
+  <input name="Clk" size="1" type="logic"/>
+  <input name="Rst" size="1" type="logic"/>
+  
+  <input name="HeaderConfigMode" size="1" type="logic"/>
+  <input name="ConstantConfigMode" size="1" type="logic"/>
+  <input name="IdleMode" size="1" type="logic"/>
+  
+  <input name="TaskID" size="3" type="logic"/>
+  <input name="DataIdx" size="2" type="logic"/>
+<!--  <input name="DataID" size="FlitWidth/2" type="logic"/>-->
+  <input name="PayloadReceived" size="FlitWidth" type="logic"/>
+  <input name="PayloadValid" size="1" type="logic"/>
+  <input name="HeaderValid" size="1" type="logic"/>
+  
+  <output name="BufferBusy" size="1" type="logic"/>
+  
+  <input name="DataInputValid" size="1" type="logic"/>
+  <input name="DataInput" size="FlitWidth" type="logic"/>
+  
+  <output name="DataOutputValid" size="1" type="logic"/>
+  <output name="DataOutput" size="NbInputFlit*FlitWidth" type="logic"/>
+  
+  <services>
+    <required name="reset" type="orthogonal" version="1.0">
+      <map actual="Rst" formal="reset"/>
+<!--      <map actual="0" formal="delay"/>-->
+    </required>
+    <required name="clock" type="orthogonal" version="1.0">
+      <map actual="Clk" formal="clock"/>
+<!--      <map actual="50" formal="freq"/>-->
+    </required>
+    <required name="RAM" type="simple" version="1.0"/>
+  </services>
+  
+  <features>
+    <design Latency="9" DataIntroductionInterval="1"/>
+    <fpga id="XC7VX485T">
+	<resources lut="273" register="47" ram="0"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC6VLX240T">
+	<resources lut="33" register="32" ram="128"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+  </features>
+  
+  <core>
+<!--    <rtl path="../RAM/a_sram_param.vhd"/>-->
+    <rtl path="../Utilities.vhd"/>
+    <rtl path="./InputTable.vhd"/>
+  </core>
+  
+</module>
+
+
+
+
+
+
+
+
+

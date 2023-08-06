@@ -1,0 +1,39 @@
+<module area="" description="FloatMultiplier" issues="" name="FloatMultiplier" purpose="FloatMultiplier two integers" speed="" title="FloatMultiplier" tool="ISE 13.1" version="1.0">
+
+  <services>
+    <offered alias="FloatMultiplier" name="__FloatMultiplier__">
+         <map actual="A" formal="A"/>
+         <map actual="B" formal="B"/>
+         <map actual="R" formal="R"/>
+    </offered>
+  </services>
+  
+  <input name="A" size="32" type="logic"/>
+  <input name="B" size="32" type="logic"/>
+  <output name="R" size="32" type="logic"/>
+  
+  <features>
+    <design Latency="1" DataIntroductionInterval="1"/>
+    <fpga id="XC7VX485T">
+	<resources lut="32" register="0" ram="0"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC6VLX240T">
+	<resources lut="32" register="0" ram="0"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC6SLX150">
+	<resources lut="32" register="0" ram="0"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC5VSX50T">
+	<resources lut="32" register="0" ram="0"/>
+	<clock MaxFreq="200"/>
+    </fpga>
+  </features>
+  
+  
+  <core>
+    <rtl path="./src/FloatMultiplier.vhd"/>
+  </core>
+</module>

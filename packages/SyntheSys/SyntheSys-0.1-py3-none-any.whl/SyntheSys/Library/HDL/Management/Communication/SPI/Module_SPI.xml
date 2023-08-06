@@ -1,0 +1,101 @@
+<module area="" description="SPI Serial port controller" issues="" name="SPI" purpose="SPI Serial port controller" speed="" title="SPI Serial controller" tool="13.1" version="1.0">
+  <services>
+    <offered alias="SPI" name="SPI">
+         <map actual="cs_spi"   formal="cs_spi"/>
+         <map actual="clk_spi"  formal="clk_spi"/>
+         <map actual="di_spi"   formal="di_spi"/>
+         <map actual="do_spi"   formal="do_spi"/>
+         <map actual="r_dv_o"   formal="r_dv_o"/>
+         <map actual="r_q"      formal="r_q"/>
+         <map actual="Data_i"   formal="Data_i"/>
+         <map actual="dv_i"     formal="dv_i"/>
+         <map actual="r_busy_o" formal="r_busy_o"/>
+         <map actual="LedRead"  formal="LedRead"/>
+         <map actual="NcWire"   formal="NcWire"/>
+    </offered>
+  </services>
+  
+  <input name="Rst"       size="1" type="logic"/>
+  <input name="Clk"       size="1" type="logic"/>
+  
+  <input  name="cs_spi"   size="1" type="logic"/>
+  <input  name="clk_spi"  size="1" type="logic"/>
+  <input  name="di_spi"   size="1" type="logic"/>
+  <output name="do_spi"   size="1" type="logic"/>
+  
+  <output name="r_dv_o"   size="1" type="logic"/>
+  <output name="r_q"      size="16" type="logic"/>
+  
+  <input  name="Data_i"   size="16" type="logic"/>
+  <input  name="dv_i"     size="1" type="logic"/>
+  <output name="r_busy_o" size="1" type="logic"/>
+  
+  <output name="LedRead"  size="1" type="logic"/>
+  <output name="NcWire"   size="1" type="logic"/>
+  
+  <features>
+    <design Latency="0" DataIntroductionInterval="1" />
+    <fpga id="XC6VLX240T">
+	<resources lut="33" register="32" ram="128"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC6SLX150">
+	<resources lut="33" register="32" ram="128"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+  </features>
+  
+  <services>
+    <required name="clock" type="orthogonal" version="1.0">
+      <map actual="Clk" formal="clock"/>
+<!--      <map actual="50" formal="freq"/>-->
+    </required>
+    <required name="reset" type="orthogonal" version="1.0">
+      <map actual="Rst" formal="reset"/>
+<!--      <map actual="0" formal="delay"/>-->
+    </required>
+    
+    
+    <required name="FPGAPads" type="orthogonal" version="1.0" alias="SPIClock">
+      <map actual="clk_spi" formal="Input"/>
+    </required> 
+    
+    <required name="FPGAPads" type="orthogonal" version="1.0" alias="InputBit">
+      <map actual="di_spi" formal="Input"/>
+    </required>
+    
+    <required name="FPGAPads" type="orthogonal" version="1.0" alias="OutputBit">
+      <map actual="do_spi" formal="Output"/>
+    </required>
+    
+    <required name="FPGAPads" type="orthogonal" version="1.0" alias="ChipSelect">
+      <map actual="cs_spi" formal="Input"/>
+    </required>
+    
+    <required name="FPGAPads" type="orthogonal" version="1.0" alias="ReadDebugLED">
+      <map actual="LedRead" formal="Output"/>
+    </required>
+    
+  </services>
+  
+  <core>
+    <rtl path="./src/a_compteur_param.vhd"/>   
+    <rtl path="./src/a_sync.vhd"/>   
+    <rtl path="./src/a_sram_param.vhd"/>   
+    <rtl path="./src/a_comp_param.vhd"/>   
+    <rtl path="./src/a_reg_memo_param.vhd"/>   
+    <rtl path="./src/a_fifo_param.vhd"/>   
+    <rtl path="./src/a_CompSpi.vhd"/>   
+    <rtl path="./src/a_fifo_param.vhd"/>   
+    <rtl path="./src/a_SendSpi.vhd"/>   
+    <rtl path="./src/a_DeSerialSpi.vhd"/>   
+    <rtl path="./src/a_GenClkSpi.vhd"/>   
+    <rtl path="./src/SPI.vhd"/>   
+  </core>
+  
+</module>
+
+
+
+
+

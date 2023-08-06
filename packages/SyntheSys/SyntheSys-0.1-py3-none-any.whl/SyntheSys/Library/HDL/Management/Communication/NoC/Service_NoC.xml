@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<service name="NoC" type="simple" version="1.0" category="Communication.NoC">
+
+  <parameter default="4" name="DimX" type="numeric"/>
+  <parameter default="4" name="DimY" type="numeric"/>
+  <parameter default="16" name="FlitWidth" type="numeric"/>
+  <parameter default="5" name="NbInputs_Table"  type="DimX*DimY*numeric"/>
+  <parameter default="5" name="NbOutputs_Table" type="DimX*DimY*numeric"/>
+<!--  <parameter default="8" name="OutputFifoDepth_Table" type="DimX*DimY*numeric"/>-->
+  <parameter default="[8,8]" name="InputFifoDepth_Table" type="DimX*DimY*numeric"/>
+  
+  <input  name="Rx" size="DimX*DimY" type="logic"/>
+  <output name="AckRx" size="DimX*DimY" type="logic"/>
+  <input  name="DataIn" size="DimX*DimY" type="FlitWidth*logic" typeimport="FLITS"/>
+  
+  <output name="Tx" size="DimX*DimY" type="logic"/>
+  <input  name="AckTx" size="DimX*DimY" type="logic"/>
+  <output name="DataOut" size="DimX*DimY" type="FlitWidth*logic" typeimport="FLITS"/>
+  
+  <interface name="HandShake" direction="IN" number="DimX*DimY">
+    <control name="Rx" target="Tx"/>
+    <control name="AckRx" target="AckTx"/>
+    <data name="DataIn" target="DataOut" serialization="PacketPayload">
+      <sets register="HeaderTransmitted" position="0">
+<!--      	<tag name="TaskID" slice="FlitWidth-1:FlitWidth/2"/>-->
+<!--      	<tag name="X" slice="FlitWidth/2-1:FlitWidth/4"/>-->
+<!--      	<tag name="Y" slice="FlitWidth/4-1:0"/>-->
+      </sets>
+      <sets register="PayloadTransmitted" position="1" />
+    </data>
+    <protocol position="0" label="NetworkInput" signals="AckRx:Rx, AckRx, DataIn" values="0:1,1"/>
+<!--    <protocol position="1" label="InputAcknowledge" signals="AckRx"/>-->
+  </interface>
+  
+  <interface name="HandShake" direction="OUT" number="DimX*DimY">
+    <control name="Tx" target="Rx"/>
+    <control name="AckTx" target="AckRx"/>
+    <data name="DataOut" target="DataIn" serialization="PayloadReceived">
+      <sets register="HeaderReceived"  position="0">
+      	<tag name="DataID" slice="FlitWidth-1:FlitWidth/2"/>
+<!--      	<tag name="X" slice="FlitWidth/2-1:FlitWidth/4"/>-->
+<!--      	<tag name="Y" slice="FlitWidth/4-1:0"/>-->
+      </sets>
+      <sets register="PayloadReceived" position="1" />
+    </data>
+    <protocol label="NetworkOutput" position="0" signals="Tx, DataOut" values="1"/>
+    <protocol label="OutputAcknowledge" position="1" signals="AckTx"/>
+  </interface>
+
+</service>

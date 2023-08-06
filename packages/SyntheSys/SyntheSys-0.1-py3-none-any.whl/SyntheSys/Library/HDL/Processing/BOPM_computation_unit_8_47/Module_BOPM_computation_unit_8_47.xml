@@ -1,0 +1,78 @@
+<module area="" description="BOPM_computation_unit_8_47" issues="" name="BOPM_computation_unit_8_47" purpose="BOPM_computation_unit_8_47" speed="" title="BOPM_computation_unit_8_47" tool="ISE 13.1" version="1.0">
+
+  <services>
+    <offered alias="BOPM_exponential" name="BOPM_computation_unit_8_47">
+         <map actual="d_stim" formal="d_stim"/>
+         <map actual="K_min_stim" formal="K_min_stim"/>
+         <map actual="rp_stim" formal="rp_stim"/>
+         <map actual="rp_min_stim" formal="rp_min_stim"/>
+         <map actual="S_k_stim" formal="S_k_stim"/>
+         <map actual="V_k_call_stim" formal="V_k_call_stim"/>
+         <map actual="V_k_min_call_stim" formal="V_k_min_call_stim"/>
+         <map actual="V_k_put_stim" formal="V_k_put_stim"/>
+         <map actual="V_k_min_put_stim" formal="V_k_min_put_stim"/>
+         
+         <map actual="S_k_trace" formal="S_k_trace"/>
+         <map actual="V_k_call_trace" formal="V_k_call_trace"/>
+         <map actual="V_k_put_trace" formal="V_k_put_trace"/>
+    </offered>
+  </services>
+  
+  <input name="CLK" size="1" type="logic"/>
+  <input name="RST" size="1" type="logic"/>
+  <input name="Enable" size="1" type="logic"/>
+  <input name="Cmd" size="1" type="logic"/>
+  
+  <input name="d_stim" size="56" type="logic"/>
+  <input name="K_min_stim" size="56" type="logic"/>
+  <input name="rp_stim" size="56" type="logic"/>
+  <input name="rp_min_stim" size="56" type="logic"/>
+  <input name="S_k_stim" size="56" type="logic"/>
+  <input name="V_k_call_stim" size="56" type="logic"/>
+  <input name="V_k_min_call_stim" size="56" type="logic"/>
+  <input name="V_k_put_stim" size="56" type="logic"/>
+  <input name="V_k_min_put_stim" size="56" type="logic"/>
+  
+  <output name="S_k_trace" size="56" type="logic"/>
+  <output name="V_k_call_trace" size="56" type="logic"/>
+  <output name="V_k_put_trace" size="56" type="logic"/>
+  
+  <features>
+	<design Latency="9" DataIntroductionInterval="1"/>
+	<fpga id="XC6VLX240T">
+		<resources lut="0" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC5VSX50T">
+		<resources lut="33" register="32" ram="128"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC7VX485T">
+		<resources lut="3060" ram="0" register="4713"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+  </features>
+  
+  <services>
+    <required name="reset" type="orthogonal" version="1.0">
+      <map actual="RST" formal="reset"/>
+<!--      <map actual="0" formal="delay"/>-->
+    </required>
+    <required name="clock" type="orthogonal" version="1.0">
+      <map actual="CLK" formal="clock"/>
+<!--      <map actual="50" formal="freq"/>-->
+    </required>
+  </services>
+  
+  <core>
+    <rtl path="./src/constant_definition.vhd"/>
+    <rtl path="./src/a_dividende_8_47.vhd"/>
+    <rtl path="./src/FPExp_8_47_400.vhd"/>
+    <rtl path="./src/a_FPCompare.vhd"/>
+    <rtl path="./src/FPMultiplier_8_47.vhd"/>
+    <rtl path="./src/InitLoop_8_47.vhd"/>
+    <rtl path="./src/InitLoop.vhd"/>
+    <rtl path="./src/FPAdder_8_47.vhd"/>
+    <rtl path="./src/BOPM_computation_unit_8_47.vhd"/>
+  </core>
+</module>

@@ -1,0 +1,19 @@
+# THIS COMMANDS GENERATE A SIMULATION MODEL FROM NGC FILE
+#------------------------------------
+#         TO BE SETUP BY SOFT
+#------------------------------------
+#TOPENTITY   = calculus8bit
+#OUTPUT_DIR  = ./
+#------------------------------------
+
+#------------------------------------
+NCD_PAR = $TOPENTITY-par.ncd
+#------------------------------------
+
+#Comment
+
+# GENERATE HDL MODEL
+par -w $NCD_PAR 
+
+
+netgen -sim -ofmt –aka –dir $OUTPUT_DIR –intstyle xflow –ofmt vhdl –w $NCD_PAR

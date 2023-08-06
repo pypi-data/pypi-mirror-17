@@ -1,0 +1,45 @@
+
+
+NET "do_spi"  LOC = "AF29"; ## K32 on J64 FMC_HPC_HB10_N
+NET "di_spi"  LOC = "AF28"; ## K31 on J64 FMC_HPC_HB10_P
+NET "cs_spi"  LOC = "AG30"; ## K26 on J64 FMC_HPC_HB00_CC_N
+NET "clk_spi" LOC = "AF30"; ## K25 on J64 FMC_HPC_HB00_CC_P
+
+#NET "led_wr" LOC = "AH24"; ## G37 on J64 FMC_HPC_LA33_N
+#NET "led_rd" LOC = "AH23"; ## G36 on J64 FMC_HPC_LA33_P
+#NET "led"    LOC = "AG26"; ##H38 FMC_LA32_N(1) 4 DS3 NET "FMC_HPC_LA32_N" LOC = "AG26"; ## H38 on J64
+
+
+NET "rst_ext_i" LOC = "D22"; ## 1 on SW1 DIP switch (active-High) NET "GPIO_DIP_SW1"
+
+NET "sysclk_p" LOC = "J9" ;
+NET "sysclk_n" LOC = "H9" ;
+#NET "clk_ref" TNM = "clk_ref";
+#TIMESPEC "TS_clk_ref" = PERIOD "clk_ref" 10 ns HIGH 50%;
+
+NET "led_rst_o" LOC = "AC22"; ## 2 on LED DS12, 1 on J62 GPIO_LED_0
+NET "led_o"     LOC = "AC24"; ## 2 on LED DS11, 2 on J62 GPIO_LED_1
+#NET "LEDs<2>" LOC = "AE22"; ## 2 on LED DS9, 3 on J62 GPIO_LED_2
+#NET "LEDs<3>" LOC = "AE23"; ## 2 on LED DS10, 4 on J62 GPIO_LED_3
+#NET "LEDs<4>" LOC = "AB23"; ## 2 on LED DS15, 5 on J62 GPIO_LED_4
+#NET "LEDs<5>" LOC = "AG23"; ## 2 on LED DS14, 6 on J62 GPIO_LED_5
+#NET "LEDs<6>" LOC = "AE24"; ## 2 on LED DS22, 7 on J62 GPIO_LED_6
+#NET "LEDs<7>" LOC = "AD24"; ## 2 on LED DS21, 8 on J62 GPIO_LED_7
+
+NET "clk_spi" CLOCK_DEDICATED_ROUTE = FALSE;
+
+
+######################################################################
+#NET "LEDs<16>" LOC = "AP24"; ## 2 on LED DS16 GPIO_LED_C
+
+#NET "LEDs<8>" LOC = "AE21"; ## 2 on LED DS19 GPIO_LED_E
+#NET "LEDs<9>" LOC = "AH27"; ## 2 on LED DS20 GPIO_LED_N
+#NET "LEDs<10>" LOC = "AH28"; ## 2 on LED DS18 GPIO_LED_S
+#NET "LEDs<11>" LOC = "AD21"; ## 2 on LED DS17 GPIO_LED_W
+#NET "LEDs<12>" LOC = "AG25"; ## H37 on J64 DS4 FMC_HPC_LA32_P
+#NET "LEDs<13>" LOC = "AG26"; ## H38 on J64 DS3 FMC_HPC_LA32_N
+#NET "LEDs<14>" LOC = "AH23"; ## G36 on J64 DS2 FMC_HPC_LA33_P
+#NET "LEDs<15>" LOC = "AH24"; ## G37 on J64 DS1 FMC_HPC_LA33_N
+
+
+

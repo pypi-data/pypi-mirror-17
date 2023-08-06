@@ -1,0 +1,64 @@
+<module area="" description="Controller for mono-FPGA design verification" issues="" name="ControlVerif_Loopback_96_96_0" purpose="Connect Input and output." speed="" title="Verification loopback" tool="13.1" version="1.0">
+  <services>
+    <offered alias="ControlVerif_Loopback" name="ControlVerif_Loopback">
+         <map actual="Inputs"     formal="Inputs"/>
+         <map actual="Outputs"    formal="Outputs"/>
+<!--         <map actual="Clock"      formal="Clock"/>-->
+         <map actual="Reset"      formal="Reset"/>
+    </offered>
+  </services>
+  
+  <input  name="Inputs"  size="95" type="logic"/>
+  <output name="Outputs" size="96" type="logic"/>
+  <input  name="Reset"   size="1" type="logic"/>
+  <input  name="Clock"   size="1" type="logic"/>
+
+  
+  <features>
+    <design Latency="0" DataIntroductionInterval="1" />
+    <fpga id="XC5VSX50T">
+	<resources lut="0" register="96" ram="0"/>
+	<clock MaxFreq="250"/>
+    </fpga>
+  </features>
+  
+  <services>
+  
+    
+    <required name="FPGAPads" type="orthogonal" version="1.0" alias="Inputs">
+      <map actual="Inputs" formal="Input"/>
+    </required> 
+    
+    <required name="FPGAPads" type="orthogonal" version="1.0" alias="Outputs">
+      <map actual="Outputs" formal="Output"/>
+    </required> 
+    
+<!--    <required name="FPGAPads" type="orthogonal" version="1.0" alias="Clock">-->
+<!--      <map actual="Clock" formal="Input"/>-->
+<!--    </required> -->
+    
+    <required name="FPGAPads" type="orthogonal" version="1.0" alias="Reset">
+      <map actual="Reset" formal="Input"/>
+    </required> 
+    
+    <required name="clock" type="orthogonal" version="1.0">
+      <map actual="Clock" formal="clock"/>
+<!--      <map actual="50" formal="freq"/>-->
+    </required>
+    <required name="reset" type="orthogonal" version="1.0">
+      <map actual="Reset" formal="reset"/>
+<!--      <map actual="0" formal="delay"/>-->
+    </required>
+    
+  </services>
+  
+  <core>
+    <rtl path="./src/ControlVerif_Loopback_96_96_0.vhd"/> 
+  </core>
+  
+</module>
+
+
+
+
+

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<module name="FPGAPads" version="1.0" title="FPGA pad" purpose="Provide circuit with FPGA IO" description="Depends of the hw architecture." tool="" speed="-" issues="Not implemented">
+
+  <services>
+    <offered name="FPGAPads">
+      <map formal="FPGAPad" actual="FPGAPad"/>
+    </offered>
+  </services>
+
+  <input name="FPGAPad"   size="1" type="logic"/>
+	
+  <features>
+<!--    <design Latency="1" DataIntroductionInterval="1"/>-->
+    <fpga id="XC7VX485T">
+	<resources lut="0" register="0" ram="0"/>
+	<clock MaxFreq="1000"/>
+    </fpga>
+  </features>
+<!--  <services>-->
+<!--    <required name="FPGAPads" type="orthogonal" version="1.0">-->
+<!--      <map actual="reset" formal="reset"/>-->
+<!--    </required>-->
+<!--  </services>-->
+	
+</module>
+	
+	
+	
+	
+<!-- No implementation => interpreted by netlist generator
+	<core>
+		<behavioral path="./example01/src/a.vhd"/>
+		<rtl path="./example01/src/a.vhd"/>
+	</core>
+-->
+<!-- 
+	<services> 
+		<required name="IO" type="simple" version="1.0">
+			<map actual="clock_n"/>
+			<map actual="clock_p"/>
+		</required> 	
+	</services>
+-->
+
+<!--
+	<resources>
+		<fpga name="XC6VLX240T" lut="33" register="32"/>
+	</resources>
+
+-->

@@ -1,0 +1,92 @@
+<module area="" description="Network architecture for system on chip intercommunication" issues="" name="AdOCNet" purpose="Network architecture for system on chip intercommunication" speed="" title="ADACSYS On-Chip-Network" tool="13.1" version="1.0">
+  <services>
+    <offered alias="NoC" name="NoC">
+         <map actual="DimX" formal="DimX"/>
+         <map actual="DimY" formal="DimY"/>
+         <map actual="FlitWidth" formal="FlitWidth"/>
+         <map actual="NbInputs_Table" formal="NbInputs_Table"/>
+         <map actual="NbOutputs_Table" formal="NbOutputs_Table"/>
+<!--         <map actual="OutputFifoDepth_Table" formal="OutputFifoDepth_Table"/>-->
+         <map actual="InputFifoDepth_Table" formal="InputFifoDepth_Table"/>
+         <map actual="Rx" formal="Rx"/>
+         <map actual="AckRx" formal="AckRx"/>
+         <map actual="DataIn" formal="DataIn"/>
+         <map actual="Tx" formal="Tx"/>
+         <map actual="AckTx" formal="AckTx"/>
+         <map actual="DataOut" formal="DataOut"/>
+    </offered>
+  </services>
+  
+  <parameter default="2" name="DimX" type="numeric"/>
+  <parameter default="2" name="DimY" type="numeric"/>
+  <parameter default="16" name="FlitWidth" type="numeric"/>
+  <parameter default="[5, 5, 5, 5]" name="NbInputs_Table" type="DimX*DimY*numeric"/>
+  <parameter default="[5, 5, 5, 5]" name="NbOutputs_Table" type="DimX*DimY*numeric"/>
+<!--  <parameter default="[16,16,16,16,16,16,16,16,16]" name="OutputFifoDepth_Table" type="DimX*DimY*numeric"/>-->
+  <parameter default="[96, 96, 96, 96]" name="InputFifoDepth_Table" type="DimX*DimY*numeric"/>
+  
+  <input name="Rx" size="DimX*DimY" type="logic"/>
+  <output name="AckRx" size="DimX*DimY" type="logic"/>
+  <input name="DataIn" size="DimX*DimY" type="FlitWidth*logic" typeimport="FLITS"/>
+  
+  <output name="Tx" size="DimX*DimY" type="logic"/>
+  <input name="AckTx" size="DimX*DimY" type="logic"/>
+  <output name="DataOut" size="DimX*DimY" type="FlitWidth*logic" typeimport="FLITS"/>
+  
+  <features>
+	<fpga id="XC7VX485T">
+		<resources lut="0" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC6VLX240T">
+		<resources lut="0" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC6SLX150">
+		<resources lut="0" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC5VSX50T">
+		<resources lut="0" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+  </features>
+  
+  
+  <loop index="x=[0,DimX["><loop index="y=[0,DimY[">
+    <services> 
+      <required name="Router:x:y" type="simple" version="1.0">
+      
+        <map formal="FlitWidth" actual="FlitWidth"/>
+        <map formal="NbInputs" actual="NbInputs_Table:(DimX*y)+x"/>
+        <map formal="NbOutputs" actual="NbOutputs_Table:(DimX*y)+x"/>
+        <map formal="X" actual="x"/>
+        <map formal="Y" actual="y"/>
+<!--        <map formal="OutputFifoDepth" actual="OutputFifoDepth_Table:(DimX*y)+x"/>-->
+        <map formal="InputFifoDepth" actual="InputFifoDepth_Table:(DimX*y)+x"/>
+        
+        <map formal="Rx:0" actual="Router:x:(y+1).Tx:1" when="y!=DimY-1"/>
+        <map formal="AckRx:0" actual="Router:x:(y+1).AckTx:1" when="y!=DimY-1"/>
+        <map formal="DataIn:0" actual="Router:x:(y+1).DataOut:1" when="y!=DimY-1"/>
+        <map formal="Tx:0" actual="Router:x:(y+1).Rx:1" when="y!=DimY-1"/>
+        <map formal="AckTx:0" actual="Router:x:(y+1).AckRx:1" when="y!=DimY-1"/>
+        <map formal="DataOut:0" actual="Router:x:(y+1).DataIn:1" when="y!=DimY-1"/>
+        
+        <map formal="Rx:2" actual="Router:(x+1):y.Tx:3" when="x!=DimX-1"/>
+        <map formal="AckRx:2" actual="Router:(x+1):y.AckTx:3" when="x!=DimX-1"/>
+        <map formal="DataIn:2" actual="Router:(x+1):y.DataOut:3" when="x!=DimX-1"/>
+        <map formal="Tx:2" actual="Router:(x+1):y.Rx:3" when="x!=DimX-1"/>
+        <map formal="AckTx:2" actual="Router:(x+1):y.AckRx:3" when="x!=DimX-1"/>
+        <map formal="DataOut:2" actual="Router:(x+1):y.DataIn:3" when="x!=DimX-1"/>
+        
+        <map formal="Rx:4" actual="Rx:(DimX*y)+x"/>
+        <map formal="AckRx:4" actual="AckRx:(DimX*y)+x"/>
+        <map formal="DataIn:4" actual="DataIn:(DimX*y)+x"/>
+        <map formal="Tx:4" actual="Tx:(DimX*y)+x"/>
+        <map formal="AckTx:4" actual="AckTx:(DimX*y)+x"/>
+        <map formal="DataOut:4" actual="DataOut:(DimX*y)+x"/>
+        
+      </required> 
+    </services>
+  </loop></loop>
+</module>

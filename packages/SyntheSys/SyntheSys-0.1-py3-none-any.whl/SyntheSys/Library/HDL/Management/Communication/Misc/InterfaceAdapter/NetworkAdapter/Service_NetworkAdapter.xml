@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<service name="NetworkAdapter" type="simple" version="1.0" category="Communication.InterfaceAdapter.NetworkAdapter">
+
+  <parameter default="16" name="FlitWidth" size="1" type="numeric"/>
+  <output default="" name="InputData" size="FlitWidth" type="logic"/>
+  <output default="" name="InputDataValid" size="1" type="logic"/>
+  <input  default="" name="OutputData" size="FlitWidth" type="logic"/>
+  <input  default="" name="OutputFifoEmpty" size="1" type="logic"/>
+  <output default="" name="OutputRead" size="1" type="logic"/>
+  <output default="" name="Transmitted" size="1" type="logic"/>
+  
+  <output default="" name="ReadHeaderFifo" size="1" type="logic"/>
+  
+  <input default="" name="Tx" size="1" type="logic"/>
+  <input default="" name="DataOut" size="FlitWidth" type="logic"/>
+  <input default="" name="AckRx" size="1" type="logic"/>
+  
+  <output default="" name="DataIn" size="FlitWidth" type="logic"/>
+  <output default="" name="Rx" size="1" type="logic"/>
+  <output default="" name="AckTx" size="1" type="logic"/>
+  
+<!--  <output default="" name="HeaderReceived"     size="FlitWidth" type="logic"/>-->
+  <output default="" name="HeaderValid" size="1" type="logic"/>
+  
+<!--  <output default="" name="PayloadReceived" size="FlitWidth" type="logic"/>-->
+  <output default="" name="PayloadValid"    size="1" type="logic"/>
+  
+  <input default=""  name="HeaderTransmitted"  size="FlitWidth" type="logic"/>
+  <input default=""  name="PayloadTransmitted" size="FlitWidth" type="logic"/>
+  
+  <input  default="" name="SendBack"     size="1" type="logic"/>
+  <input  default="" name="TerminalBusy" size="1" type="logic"/>
+  
+</service>

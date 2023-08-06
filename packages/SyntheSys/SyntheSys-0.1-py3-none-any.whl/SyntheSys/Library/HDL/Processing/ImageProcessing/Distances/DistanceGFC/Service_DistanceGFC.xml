@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<service name="DistanceGFC" type="simple" version="1.0" category="DSP">
+  
+  <input  name="Stim1"  size="16" type="logic"/>
+  <input  name="Stim2"  size="16" type="logic"/>
+  <output name="Trace1" size="16" type="logic"/>
+  
+  <interface name="BasicBlock" direction="INOUT" number="1" pipeline="1">
+    <data name="Stim1" />
+    <data name="Stim2" />
+    <data name="Trace1" />
+    <protocol label="SetStimuli" position="0" signals="Stim1, Stim2"/>
+    <protocol label="GetTrace" position="1" signals="Trace1"/>
+  </interface>
+
+</service>
+
+
+
+<!--  <interface name="BasicBlock" direction="IN" number="1" pipeline="1">-->
+<!--    <data name="Stim1" />-->
+<!--    <data name="Stim2" />-->
+<!--    <protocol label="SetStimuli" position="0" signals="Stim1, Stim2"/>-->
+<!--  </interface>-->
+<!--  -->
+<!--  <interface name="BasicBlock" direction="OUT" number="1" pipeline="1">-->
+<!--    <data name="Trace1" />-->
+<!--    <protocol label="GetTrace" position="1" signals="Trace1"/>-->
+<!--  </interface>-->

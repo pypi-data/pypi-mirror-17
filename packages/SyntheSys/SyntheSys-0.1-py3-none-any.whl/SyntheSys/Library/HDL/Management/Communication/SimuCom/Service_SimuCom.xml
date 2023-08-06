@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<service name="SimuCom" type="orthogonal" version="1.0" category="Communication">
+  
+  <parameter default="16" name="FlitWidth" type="numeric"/>
+  
+  <output name="Tx"      size="1" type="logic"/>
+  <input  name="AckTx"   size="1" type="logic"/>
+  <output name="DataOut" size="FlitWidth" type="logic"/>
+  
+  <input  name="Rx"     size="1" type="logic"/>
+  <output name="AckRx"  size="1" type="logic"/>
+  <input  name="DataIn" size="FlitWidth" type="logic"/>
+  
+  
+  <interface name="HandShake" direction="IN" number="1">
+    <control name="Rx" target="Tx"/>
+    <control name="AckRx" target="AckTx"/>
+    <data name="DataIn" target="DataOut">
+      <sets register="HeaderReceived"  position="0">
+      	<tag name="DataID" slice="FlitWidth-1:FlitWidth/2"/>
+      	<tag name="X" slice="FlitWidth/2-1:FlitWidth/4"/>
+      	<tag name="Y" slice="FlitWidth/4-1:0"/>
+      </sets>
+      <sets register="PayloadReceived" position="1" />
+    </data>
+    <protocol position="0" label="Reception request from network" signals="DataIn, Rx"/>
+    <protocol position="1" label="Wait for reception acknowledge" signals="AckRx"/>
+  </interface>
+  <interface name="HandShake" direction="OUT" number="1">
+    <control name="Tx" target="Rx"/>
+    <control name="AckTx" target="AckRx"/>
+    <data name="DataOut" target="DataIn">
+      <sets register="HeaderTransmitted" position="0">
+      	<tag name="DataID" slice="FlitWidth-1:FlitWidth/2"/>
+      	<tag name="X" slice="FlitWidth/2-1:FlitWidth/4"/>
+      	<tag name="Y" slice="FlitWidth/4-1:0"/>
+      </sets>
+      <sets register="PayloadTransmitted" position="1" />
+    </data>
+    <protocol label="Network send request" position="0" signals="DataOut, Tx"/>
+    <protocol label="Wait for send acknowledge" position="1" signals="AckTx"/>
+  </interface>
+  
+</service>

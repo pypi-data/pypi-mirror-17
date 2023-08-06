@@ -1,0 +1,132 @@
+[TooBigFpga]
+;FPGA = Virtex 7
+;Connectors = VITA 57.1 FMC HPC & LPC
+
+;====================================================================================
+; FORMAT: comma separated list of parameters
+; NAME = PAD [, TYPE [, IOSTANDARD [, VOLTAGE [, FREQUENCY, [DIFFERENTIAL_PAIR]]]]]
+;====================================================================================
+
+;===============================================
+; Clock pads:
+;===============================================
+SYSCLK_N         = E18,  clock, LVDS, 2.5V, 200MHz,    SYSCLK-
+SYSCLK_P         = E19,  clock, LVDS, 2.5V, 200MHz,    SYSCLK+
+;USER_CLOCK_N     = AL34, clock, LVDS, 3.3V, 156.25MHz, USER_CLOCK-
+;USER_CLOCK_P     = AK34, clock, LVDS, 3.3V, 156.25MHz, USER_CLOCK+
+;USER_SMA_CLOCK_N = AK32, clock, LVCMOS18, ,          , USER_SMA_CLOCK-
+;USER_SMA_CLOCK_P = AJ32, clock, LVCMOS18, ,          , USER_SMA_CLOCK+
+;PCIE_CLK_Q0_P    = AB8
+;PCIE_CLK_Q0_N    = AB7
+;===============================================
+; Non used clock pads:
+;===============================================
+;SMA_MGT_REFCLK_N = AK7,  clock, LVDS, 1.8V
+;SMA_MGT_REFCLK_P = AK8,  clock, LVDS, 1.8V
+;Si5324_OUT_N                  N/A (MGT REFCLK INPUT)   AD7, clock
+;Si5324_OUT_P                  N/A (MGT REFCLK INPUT)   AD8, clock
+
+;===============================================
+; Reset pads:
+;===============================================
+;CPU_RESET        = AV40, RESET, LVCMOS18
+GPIO_SW_C        = AV39, RESET, LVCMOS18
+
+;===============================================
+;PCIe Edge Connector Connections GTX Quad 115
+;===============================================
+PCIE_RX0_P       = Y4  , PCIE
+PCIE_RX0_N       = Y3  , PCIE
+PCIE_RX1_P       = AA6 , PCIE
+PCIE_RX1_N       = AA5 , PCIE
+PCIE_RX2_P       = AB4 , PCIE
+PCIE_RX2_N       = AB3 , PCIE
+PCIE_RX3_P       = AC6 , PCIE
+PCIE_RX3_N       = AC5 , PCIE
+PCIE_RX4_P       = AD4 , PCIE
+PCIE_RX4_N       = AD3 , PCIE
+PCIE_RX5_P       = AE6 , PCIE
+PCIE_RX5_N       = AE5 , PCIE
+PCIE_RX6_P       = AF4 , PCIE
+PCIE_RX6_N       = AF3 , PCIE
+PCIE_RX7_P       = AG6 , PCIE
+PCIE_RX7_N       = AG5 , PCIE
+PCIE_TX0_P       = W2 , PCIE
+PCIE_TX0_N       = W1 , PCIE
+PCIE_TX1_P       = AA2 , PCIE
+PCIE_TX1_N       = AA1 , PCIE
+PCIE_TX2_P       = AC2 , PCIE
+PCIE_TX2_N       = AC1 , PCIE
+PCIE_TX3_P       = AE2 , PCIE
+PCIE_TX3_N       = AE1 , PCIE
+PCIE_TX4_P       = AG2 , PCIE
+PCIE_TX4_N       = AG1 , PCIE
+PCIE_TX5_P       = AH4 , PCIE
+PCIE_TX5_N       = AH3 , PCIE
+PCIE_TX6_P       = AJ2 , PCIE
+PCIE_TX6_N       = AJ1 , PCIE
+PCIE_TX7_P       = AK4 , PCIE
+PCIE_TX7_N       = AK3 , PCIE
+
+;REFCLK+           Integrated Endpoint block differential clock pair from PCIe MGT_BANK_114 (not Quad 115)
+Si5324_OUT_C_P   = AD8 , PCIE
+;REFCLK-           Integrated Endpoint block differential clock pair from PCIe 
+Si5324_OUT_C_N   = AD7 , PCIE
+
+
+;===============================================
+; USER IOs:
+;===============================================
+GPIO_LED_0       = AM39, LED, LVCMOS18
+GPIO_LED_1       = AN39, LED, LVCMOS18
+GPIO_LED_2       = AR37, LED, LVCMOS18
+GPIO_LED_3       = AT37, LED, LVCMOS18
+GPIO_LED_4       = AR35, LED, LVCMOS18
+GPIO_LED_5       = AP41, LED, LVCMOS18
+GPIO_LED_6       = AP42, LED, LVCMOS18
+GPIO_LED_7       = AU39, LED, LVCMOS18
+
+
+;===============================================
+;AR40       =               GPIO_SW_N       =           LVCMOS18       =       SW3.3
+;AU38       =               GPIO_SW_E       =           LVCMOS18       =       SW4.3
+;AP40       =               GPIO_SW_S       =           LVCMOS18       =       SW5.3
+;AW40       =               GPIO_SW_W       =           LVCMOS18       =       SW7.3
+;AV39       =               GPIO_SW_C       =           LVCMOS18       =       SW6.
+
+
+;===============================================
+;8-Pole DIP Switch
+;===============================================
+;AV30       =            GPIO_DIP_SW0       =         LVCMOS18       =      SW2.16
+;AY33       =            GPIO_DIP_SW1       =         LVCMOS18       =      SW2.15
+;BA31       =            GPIO_DIP_SW2       =         LVCMOS18       =      SW2.14
+;BA32       =            GPIO_DIP_SW3       =         LVCMOS18       =      SW2.13
+;AW30       =            GPIO_DIP_SW4       =         LVCMOS18       =      SW2.12
+;AY30       =            GPIO_DIP_SW5       =         LVCMOS18       =      SW2.11
+;BA30       =            GPIO_DIP_SW6       =         LVCMOS18       =      SW2.10
+;BB31       =            GPIO_DIP_SW7       =         LVCMOS18       =       SW2.9
+
+;===============================================
+;User Rotary Switch
+;===============================================
+;AT31       =            ROTARY_INCB       =          LVCMOS18       =      SW10.6
+;AW31       =            ROTARY_PUSH       =          LVCMOS18       =      SW10.5
+;AR33       =            ROTARY_INCA       =          LVCMOS18       =      SW10.1
+
+;===============================================
+;User SMA
+;===============================================
+;AN31       =       USER_SMA_GPIO_P       =    LVCMOS18       =        J33.1
+;AP31       =       USER_SMA_GPIO_N       =    LVCMOS18       =        J34.1
+
+
+
+
+
+
+
+
+
+
+

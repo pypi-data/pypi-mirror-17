@@ -1,0 +1,54 @@
+<module area="" description="Red" issues="" name="Red" purpose="Red" speed="" title="Red" tool="ISE 13.1" version="1.0" typesignature="float float float">
+
+  <services>
+    <offered alias="Red" name="Red">
+         <map actual="X" formal="X"/>
+         <map actual="Y" formal="Y"/>
+         <map actual="Z" formal="Z"/>
+         <map actual="RedValue" formal="RedValue"/>
+    </offered>
+  </services>
+  
+  <input name="CLK" size="1" type="logic"/>
+  <input name="RST" size="1" type="logic"/>
+  
+  <input name="X" size="16" type="logic"/>
+  <input name="Y" size="16" type="logic"/>
+  <input name="Z" size="16" type="logic"/>
+  <output name="RedValue" size="16" type="logic"/>
+  
+  <features>
+    <design Latency="4" DataIntroductionInterval="1"/>
+    <fpga id="XC7VX485T">
+	<resources lut="48" register="0" ram="0"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC6VLX240T">
+	<resources lut="48" register="0" ram="0"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC6SLX150">
+	<resources lut="48" register="0" ram="0"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC5VSX50T">
+	<resources lut="48" register="0" ram="0"/>
+	<clock MaxFreq="200"/>
+    </fpga>
+  </features>
+  
+  <services>
+    <required name="reset" type="orthogonal" version="1.0">
+      <map actual="RST" formal="reset"/>
+<!--      <map actual="0" formal="delay"/>-->
+    </required>
+    <required name="clock" type="orthogonal" version="1.0">
+      <map actual="CLK" formal="clock"/>
+<!--      <map actual="50" formal="freq"/>-->
+    </required>
+  </services>
+  
+  <core>
+    <rtl path="./src/Red.vhd"/>
+  </core>
+</module>

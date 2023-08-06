@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<module area="" description="AxisXYZ" issues="" name="AxisXYZ" purpose="AxisXYZ" speed="" title="AxisXYZ" tool="Vivado 2015.4" version="1.0" typesignature="float float">
+  
+  <services>
+    <offered alias="AxisXYZ" name="AxisXYZ">
+		 <map actual="Start" formal="Start"/>
+         <map actual="DataRead" formal="DataRead"/>
+         <map actual="TabSp" formal="TabSp"/>
+         <map actual="TabRef" formal="TabRef"/>
+         <map actual="AxisXYZ" formal="AxisXYZ"/>
+    </offered>
+  </services>
+
+  <input name="Clk" size="1" type="logic"/>
+  <input name="Rst" size="1" type="logic"/>
+  
+  <input name="Start" size="1" type="logic"/>
+  <input name="DataRead" size="1" type="logic"/>
+  
+  <input  name="TabSp"  size="64" type="logic"/>
+  <input  name="TabRef" size="64" type="logic"/>
+  <output name="AxisXYZ" size="64" type="logic"/>
+  
+  <features>
+    <design Latency="82" DataIntroductionInterval="15"/>
+    <fpga id="XC7VX485T">
+	<resources lut="160" register="0" ram="0"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC6VLX240T">
+	<resources lut="160" register="0" ram="0"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC6SLX150">
+	<resources lut="160" register="0" ram="0"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC5VSX50T">
+	<resources lut="160" register="0" ram="0"/>
+	<clock MaxFreq="200"/>
+    </fpga>
+  </features>
+  
+  <services>
+    <required name="reset" type="orthogonal" version="1.0">
+      <map actual="Rst" formal="reset"/>
+<!--      <map actual="0" formal="delay"/>-->
+    </required>
+    <required name="clock" type="orthogonal" version="1.0">
+      <map actual="Clk" formal="clock"/>
+<!--      <map actual="50" formal="freq"/>-->
+    </required>
+  </services>
+    <core>
+		<rtl path="./src/FPAddSub.vhd"/>
+		<rtl path="./src/FPMult.vhd"/>
+		<rtl path="./src/InputIEEE.vhd"/>
+		<rtl path="./src/OutputIEEE.vhd"/>
+        <rtl path="./src/AxisXYZ.vhd"/>
+    </core>
+
+</module>
+
+
+
+

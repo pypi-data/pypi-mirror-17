@@ -1,0 +1,87 @@
+<module area="" description="Controller for mono-FPGA design verification" issues="" name="ctrl_096s_096t_000b_100m_mono" purpose="Stimulate and trace DUT signals via SPI communication." speed="" title="Verification Controller" tool="13.1" version="1.0">
+  <services>
+    <offered alias="Ctrl" name="ControlVerif">
+         <map actual="trce_i"     formal="DUT_Traces"/>
+         <map actual="stim_i"     formal="DUT_Stimuli"/>
+         <map actual="clk_matrix" formal="DUT_Clock"/>
+    </offered>
+  </services>
+  
+  <input name="trce_i"     size="96" type="logic"/>
+  <input name="stim_o"     size="96" type="logic"/>
+  <input name="clk_matrix" size="1" type="logic"/>
+  
+  <input name="rst_ext_i" size="1" type="logic"/>
+  <input name="sysclk_p"  size="1" type="logic"/>
+  <input name="sysclk_n"  size="1" type="logic"/>
+  
+  <input  name="cs_spi"   size="1" type="logic"/>
+  <input  name="clk_spi"  size="1" type="logic"/>
+  <input  name="di_spi"   size="1" type="logic"/>
+  <output name="do_spi"   size="1" type="logic"/>
+  
+  <output name="led_rst_o" size="1" type="logic"/>
+  <output name="led_o"     size="1" type="logic"/>
+  
+  <features>
+    <design Latency="0" DataIntroductionInterval="1" />
+    <fpga id="XC5VSX50T">
+	<resources lut="33" register="32" ram="128"/>
+	<clock MaxFreq="200"/>
+    </fpga>
+  </features>
+  
+  <services>
+  
+    
+    <required name="FPGAPads" type="orthogonal" version="1.0" alias="CtrlClock">
+      <map actual="sysclk_p" formal="Input"/>
+    </required> 
+    
+    <required name="FPGAPads" type="orthogonal" version="1.0" alias="CtrlClock">
+      <map actual="sysclk_n" formal="Input"/>
+    </required> 
+    
+    <required name="FPGAPads" type="orthogonal" version="1.0" alias="CtrlReset">
+      <map actual="rst_ext_i" formal="Input"/>
+    </required> 
+    
+    <required name="FPGAPads" type="orthogonal" version="1.0" alias="SPIClock">
+      <map actual="clk_spi" formal="Input"/>
+    </required> 
+    
+    <required name="FPGAPads" type="orthogonal" version="1.0" alias="InputBit">
+      <map actual="di_spi" formal="Input"/>
+    </required>
+    
+    <required name="FPGAPads" type="orthogonal" version="1.0" alias="OutputBit">
+      <map actual="do_spi" formal="Output"/>
+    </required>
+    
+    <required name="FPGAPads" type="orthogonal" version="1.0" alias="ChipSelect">
+      <map actual="cs_spi" formal="Input"/>
+    </required>
+    
+    <required name="FPGAPads" type="orthogonal" version="1.0" alias="DebugLED">
+      <map actual="led_o" formal="Output"/>
+    </required>
+    
+    <required name="FPGAPads" type="orthogonal" version="1.0" alias="ResetLED">
+      <map actual="led_rst_o" formal="Output"/>
+    </required>
+    
+  </services>
+  
+  <core>
+    <rtl path="./src/virtex5/ctrl_096s-096t-000b_100m_mono.vhd"/> 
+<!--    <rtl path="./src/virtex5/ML506_96_96_0_spi.ucf"/> -->
+    <rtl path="./src/Ctrl/*"/> 
+    <rtl path="./src/SPI/*"/> 
+  </core>
+  
+</module>
+
+
+
+
+

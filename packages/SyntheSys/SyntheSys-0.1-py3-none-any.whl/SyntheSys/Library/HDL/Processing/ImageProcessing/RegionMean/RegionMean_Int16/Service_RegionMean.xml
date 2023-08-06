@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<service name="RegionMean2" type="simple" version="1.0" category="DSP">
+  
+  <parameter name="DataWidth" default="16" type="numeric"/>
+  
+  <input name="Start" size="1" type="logic"/>
+  <input name="DataRead" size="1" type="logic"/>
+  
+  <input  name="DataList"   size="DataWidth" type="logic"/>
+  <input  name="NbElement"  size="DataWidth" type="logic"/>
+  
+  <output name="RegionMean" size="DataWidth" type="logic"/>
+  
+  
+  <interface name="BasicBlock" direction="INOUT" number="1" pipeline="10">
+    <datawidth name="DataWidth"/>
+    <control name="Start" target="start"/>
+    <control name="DataRead" target="DataRead"/>
+    <data name="DataList" serialization="9"/>
+    <data name="NbElement" serialization="1"/>
+    <data name="RegionMean" serialization="1"/>
+    <protocol label="SetStimuli" position="0" signals="Region"/>
+    <protocol label="GetTrace" position="1" signals="Mean"/>
+  </interface>
+
+</service>
+
+

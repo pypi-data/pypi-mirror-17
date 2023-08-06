@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT parameter EMPTY>
+<!ATTLIST parameter 
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED
+	typeimport CDATA #IMPLIED
+	size CDATA #IMPLIED
+	default CDATA #IMPLIED>
+	
+<!ELEMENT input EMPTY>
+<!ATTLIST input 
+	name CDATA #REQUIRED
+	size CDATA #REQUIRED
+	type CDATA #REQUIRED
+	typeimport CDATA #IMPLIED
+	default CDATA #IMPLIED
+	modifier CDATA #IMPLIED>
+	
+<!ELEMENT output EMPTY>
+<!ATTLIST output 
+	name CDATA #REQUIRED
+	size CDATA #REQUIRED
+	type CDATA #REQUIRED
+	typeimport CDATA #IMPLIED
+	default CDATA #IMPLIED
+	modifier CDATA #IMPLIED>
+	
+<!ELEMENT datawidth EMPTY>
+<!ATTLIST datawidth 
+	name CDATA #REQUIRED>
+	
+<!ELEMENT control EMPTY>
+<!ATTLIST control 
+	name CDATA #REQUIRED
+	target CDATA #IMPLIED>
+	
+<!ELEMENT data (sets)*>
+<!ATTLIST data 
+	name CDATA #REQUIRED
+	target CDATA #IMPLIED
+	serialization CDATA #IMPLIED>
+	
+<!ELEMENT tag EMPTY>
+<!ATTLIST tag 
+	name CDATA #REQUIRED
+	slice CDATA #IMPLIED>
+	
+<!ELEMENT sets (tag)*>
+<!ATTLIST sets 
+	register CDATA #REQUIRED
+	position CDATA #REQUIRED
+	value CDATA #IMPLIED>
+	
+<!ELEMENT protocol EMPTY>
+<!ATTLIST protocol 
+	label CDATA #REQUIRED
+	position CDATA #REQUIRED
+	signals CDATA #IMPLIED
+	values CDATA #IMPLIED>
+	
+<!ELEMENT interface ((datawidth)*, (control)*, (data)*, (protocol)*)>
+<!ATTLIST interface 
+	name CDATA #REQUIRED
+	direction CDATA #REQUIRED
+	number CDATA #REQUIRED
+	pipeline CDATA #IMPLIED>
+	
+<!ELEMENT service ((parameter)*,(input|output)+, (interface)*)>
+<!ATTLIST service 
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED
+	typeimport CDATA #IMPLIED
+	version CDATA #REQUIRED
+	category CDATA #IMPLIED
+	communication CDATA #IMPLIED
+	shared CDATA #IMPLIED>
+	
+	
+	

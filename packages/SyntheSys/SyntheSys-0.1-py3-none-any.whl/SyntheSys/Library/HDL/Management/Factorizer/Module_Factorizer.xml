@@ -1,0 +1,80 @@
+<module area="" description="RS232 Serial port controller" issues="" name="Factorizer" purpose="RS232 Serial port controller" speed="" title="RS232 Serial controller" tool="13.1" version="1.0">
+  <services>
+    <offered alias="Factorizer" name="Factorizer">
+         <map actual="DataWidth" formal="FlitWidth"/>
+         <map actual="Header" formal="Header"/>
+         <map actual="SerialRx" formal="SerialRx"/>
+         <map actual="SerialTx" formal="SerialTx"/>
+         <map actual="Rx" formal="Rx"/>
+         <map actual="AckRx" formal="AckRx"/>
+         <map actual="DataIn" formal="DataIn"/>
+         <map actual="Tx" formal="Tx"/>
+         <map actual="AckTx" formal="AckTx"/>
+         <map actual="DataOut" formal="DataOut"/>
+         
+         <map actual="SerialRx" formal="SerialRx"/>
+         <map actual="SerialTx" formal="SerialTx"/>
+         <map actual="LED_DataIn" formal="LED_DataIn"/>
+         <map actual="LED_Sync" formal="LED_Sync"/>
+    </offered>
+  </services>
+  
+  <parameter default="16" name="DataWidth" type="numeric"/>
+  <parameter default="1" name="Payload" type="numeric"/>
+  <parameter default="0" name="Header" size="DataWidth" type="logic"/>
+  
+  <input  name="Clk" size="1" type="logic"/>
+  <input  name="Rst" size="1" type="logic"/>
+  
+  <input  name="SerialRx" size="1" type="logic"/>
+  <output name="SerialTx" size="1" type="logic"/>
+  <output name="LED_DataIn" size="1" type="logic"/>
+  <output name="LED_Sync"   size="1" type="logic"/>
+  
+  <input  name="Rx" size="1" type="logic"/>
+  <output name="AckRx" size="1" type="logic"/>
+  <input  name="DataIn" size="DataWidth" type="logic"/>
+  
+  <output name="Tx" size="1" type="logic"/>
+  <input  name="AckTx" size="1" type="logic"/>
+  <output name="DataOut" size="DataWidth" type="logic"/>
+  
+  <features>
+	<design Latency="9" DataIntroductionInterval="1" />
+	<fpga id="XC6VLX240T">
+		<resources lut="33" register="32" ram="128"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+  </features>
+  
+  <services>
+    <required name="reset" type="orthogonal" version="1.0">
+      <map actual="Rst" formal="reset"/>
+<!--      <map actual="20" formal="delay"/>-->
+    </required>
+    <required name="clock" type="orthogonal" version="1.0">
+      <map actual="Clk" formal="clock"/>
+<!--      <map actual="50" formal="freq"/>-->
+    </required>
+  </services>
+  
+  <core>
+<!--    <rtl path="./Core/a_clock_gen_rs232_prot8.v"/>  -->
+<!--    <rtl path="./Core/a_mux_serial_16v1.v"/> -->
+<!--    <rtl path="./Core/a_demux_serial_1v8.v"/>   -->
+<!--    <rtl path="./Core/a_timeout_rs232.v"/>    -->
+<!--    <rtl path="./Core/a_compare_val.v"/>            -->
+<!--    <rtl path="./Core/a_calcul_freq.v"/>-->
+<!--    <rtl path="./Core/a_demux_serial_1v16.v"/>  -->
+<!--    <rtl path="./Core/a_RS232.v"/> -->
+<!--    <rtl path="../NetworkAdapter_HandShake/NetworkAdapter_HandShake_Input.vhd"/>-->
+<!--    <rtl path="../NetworkAdapter_HandShake/NetworkAdapter_HandShake_Output.vhd"/>-->
+<!--    <rtl path="./Core/RS232.vhd"/>   -->
+  </core>
+  
+</module>
+
+
+
+
+

@@ -1,0 +1,73 @@
+<module area="" description="DistanceRGB" issues="" name="DistanceRGB" purpose="DistanceRGB" speed="" title="DistanceRGB" tool="ISE 13.1" version="1.0" typesignature="float float float float float float">
+
+  <services>
+    <offered alias="DistanceRGB" name="DistanceRGB">
+<!--         <map actual="Start"      formal="Start"/>-->
+<!--         <map actual="DataRead"   formal="DataRead"/>-->
+         <map actual="R1"         formal="R1"/>
+         <map actual="R2"         formal="R2"/>
+         <map actual="G1"         formal="G1"/>
+         <map actual="G2"         formal="G2"/>
+         <map actual="B1"         formal="B1"/>
+         <map actual="B2"         formal="B2"/>
+         <map actual="deta_E"     formal="deta_E"/>
+    </offered>
+  </services>
+  
+  
+  <input name="Clk" size="1" type="logic"/>
+  <input name="Rst" size="1" type="logic"/>
+  
+<!--  <input name="Start" size="1" type="logic"/>-->
+<!--  <input name="DataRead" size="1" type="logic"/>-->
+
+  <input  name="R1"  size="64" type="logic"/>
+  <input  name="R2"  size="64" type="logic"/>
+  <input  name="G1"  size="64" type="logic"/>
+  <input  name="G2"  size="64" type="logic"/>
+  <input  name="B1"  size="64" type="logic"/>
+  <input  name="B2"  size="64" type="logic"/>
+  
+  <output name="deta_E" size="64" type="logic"/>
+  
+  <features>
+    <design Latency="159" DataIntroductionInterval="158"/>
+    <fpga id="XC7VX485T">
+	<resources lut="160" register="0" ram="0"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC6VLX240T">
+	<resources lut="160" register="0" ram="0"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC6SLX150">
+	<resources lut="160" register="0" ram="0"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC5VSX50T">
+	<resources lut="160" register="0" ram="0"/>
+	<clock MaxFreq="200"/>
+    </fpga>
+  </features>
+  
+  <services>
+    <required name="reset" type="orthogonal" version="1.0">
+      <map actual="Rst" formal="reset"/>
+<!--      <map actual="0" formal="delay"/>-->
+    </required>
+    <required name="clock" type="orthogonal" version="1.0">
+      <map actual="Clk" formal="clock"/>
+<!--      <map actual="50" formal="freq"/>-->
+    </required>
+  </services>
+  
+  <core>
+<!--	  <rtl path="./src/DistanceRGB_bc.vhd"/>-->
+	  <rtl path="./src/InputIEEE.vhd"/>
+	  <rtl path="./src/OutputIEEE.vhd"/>
+	  <rtl path="./src/FPAddSub.vhd"/>
+	  <rtl path="./src/Square.vhd"/>
+	  <rtl path="./src/Sqrt.vhd"/>
+	  <rtl path="./src/DistanceRGB.vhd"/>
+  </core>
+</module>

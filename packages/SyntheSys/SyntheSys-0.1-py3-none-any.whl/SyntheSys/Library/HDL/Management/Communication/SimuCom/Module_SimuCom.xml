@@ -1,0 +1,53 @@
+<module area="" description="Simulation service for communication with NoC" issues="" name="SimuCom" purpose="Replace communication protocol for communicating with NoC" speed="" title="In-Simulation access to NoC" tool="13.1" version="1.0">
+  <services>
+    <offered alias="SimuCom" name="SimuCom">
+         <map actual="FlitWidth" formal="FlitWidth"/>
+         <map actual="TargetHeader" formal="TargetHeader"/>
+         <map actual="Payload" formal="Payload"/>
+         <map actual="Rx" formal="Rx"/>
+         <map actual="AckRx" formal="AckRx"/>
+         <map actual="DataIn" formal="DataIn"/>
+         <map actual="Tx" formal="Tx"/>
+         <map actual="AckTx" formal="AckTx"/>
+         <map actual="DataOut" formal="DataOut"/>
+    </offered>
+  </services>
+  
+  <parameter default="16" name="FlitWidth" type="numeric"/>
+  <parameter default="1" name="Payload" type="numeric"/>
+  <parameter default="0" name="TargetHeader" size="FlitWidth" type="logic"/>
+  
+  <input  name="Rx" size="1" type="logic"/>
+  <output name="AckRx" size="1" type="logic"/>
+  <input  name="DataIn" size="FlitWidth" type="logic"/>
+  
+  <output name="Tx" size="1" type="logic"/>
+  <input  name="AckTx" size="1" type="logic"/>
+  <output name="DataOut" size="FlitWidth" type="logic"/>
+  
+  <services>
+    <required name="FPGAPads" type="orthogonal" version="1.0">
+      <map actual="Rx" formal="Rx"/>
+      <map actual="AckRx" formal="AckRx"/>
+      <map actual="DataIn" formal="DataIn"/>
+      <map actual="Tx" formal="Tx"/>
+      <map actual="AckTx" formal="AckTx"/>
+      <map actual="DataOut" formal="DataOut"/>
+    </required> 
+  </services>
+    
+  <features>
+    <design Latency="0" DataIntroductionInterval="1" />
+    <fpga id="all">
+	<resources lut="0" register="0" ram="0"/>
+	<clock MaxFreq="1000"/>
+    </fpga>
+  </features>
+  
+  
+</module>
+
+
+
+
+

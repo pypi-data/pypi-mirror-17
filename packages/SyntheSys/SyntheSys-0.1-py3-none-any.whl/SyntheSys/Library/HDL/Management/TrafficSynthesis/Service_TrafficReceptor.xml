@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<service name="TrafficReceptor" type="simple" version="1.0" category="Communication.NoC.TrafficReceptor">
+
+  <parameter default="16" name="FlitWidth" type="numeric"/>
+  <parameter default="9" name="NbRouters" type="numeric"/>
+  <parameter default="2" name="LocalAddr_x" type="numeric"/>
+  <parameter default="2" name="LocalAddr_x" type="numeric"/>
+  
+  <output name="Rx" size="1" type="logic"/>
+  <input  name="AckRx"  size="1" type="logic"/>
+  <output name="DataIn" size="FlitWidth" type="logic"/>  
+  
+  <input  name="ReceivedPackNB"   size="FlitWidth" type="numeric"/>
+  <output name="TotalLatency" size="FlitWidth*2" type="numeric"/>
+  <output name="EndCnt" size="FlitWidth" type="numeric"/>
+  
+  <interface name="HandShake" direction="in" number="1">
+    <control name="Rx" target="Tx"/>
+    <control name="AckRx" target="AckTx"/>
+    <data name="DataIn" target="DataOut"/>
+  </interface>
+
+  <interface name="TRConfig" direction="in" number="1">
+    <data name="ReceivedPackNB" target="ReceivedPackNB"/>
+    <data name="TotalLatency" target="TotalLatency"/>
+    <data name="EndCnt" target="EndCnt"/>
+  </interface>
+
+</service>

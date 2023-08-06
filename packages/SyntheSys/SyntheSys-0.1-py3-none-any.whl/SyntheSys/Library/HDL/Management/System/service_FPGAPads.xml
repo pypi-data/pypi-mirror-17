@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<service name="FPGAPads" type="orthogonal" version="1.0"  category="Common">
+
+	<input name="FPGAPad" type="logic"   size="1"/>
+	<!-- [modifier] is used to duplicate signals that have different properties -->
+	<!-- [share] indicates that when propagating upward do not duplicate signal but connect them together -->
+</service>

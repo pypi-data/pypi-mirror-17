@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<service name="TransfertController" type="simple" version="1.0" category="Communication.NoC.AdOCNet.Router.TransfertController">
+
+  <parameter default="16" name="FlitWidth" size="" type="numeric"/>
+  
+  <input  name="fifoin_isempty" size="1" type="logic"/>
+  <input  name="fifoin_dataout" size="FlitWidth" type="logic"/>
+  <output name="fifoin_read" size="1" type="logic"/>
+  <output name="HS_DataOut" size="FlitWidth" type="logic"/>
+  <output name="HS_Tx" size="1" type="logic"/>
+  <input  name="HS_AckTx" size="1" type="logic"/>
+  <output name="InputConnected" size="1" type="logic"/>
+  <output name="InputRequests" size="1" type="logic"/>
+
+</service>

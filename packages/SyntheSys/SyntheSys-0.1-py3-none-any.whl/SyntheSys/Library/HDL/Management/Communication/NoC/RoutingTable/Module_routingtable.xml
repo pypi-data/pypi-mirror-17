@@ -1,0 +1,59 @@
+<module area="" description="" issues="" name="routingtable" purpose="" speed="" title="" tool="" version="">
+  <services>
+    <offered alias="RoutingTable" name="RoutingTable">
+      <map actual="NbOutputs" formal="NbOutputs"/>
+      <map actual="NbInputs" formal="NbInputs"/>
+      <map actual="RoutingReady" formal="RoutingReady"/>
+      <map actual="Requests" formal="Requests"/>
+      <map actual="Connected" formal="Connected"/>
+      <map actual="outputconnections" formal="outputconnections"/>
+      <map actual="outputport" formal="outputport"/>
+      <map actual="selectedinput" formal="selectedinput"/>
+      <map actual="inputconnections" formal="inputconnections"/>
+    </offered>
+  </services>
+  
+  <parameter default="5" name="NbOutputs" size="" type="numeric"/>
+  <parameter default="5" name="NbInputs" size="" type="numeric"/>
+  
+  <input name="Clk" size="1" type="logic"/>
+  <input name="RoutingReady" size="1" type="logic"/>
+  <input name="Requests" size="NbInputs" type="logic"/>
+  <input name="Connected" size="NbInputs" type="logic"/>
+  <output name="outputconnections" size="NbOutputs" type="numeric" typeimport="RoutePack.NATURALS"/>
+  <input name="outputport" size="" type="numeric"/>
+  <input name="selectedinput" size="" type="numeric"/>
+  <output name="inputconnections" size="NbInputs" type="numeric" typeimport="RoutePack.NATURALS"/>
+  
+  <services>
+    <required alias="Clock" name="clock" type="orthogonal" version="1.0">
+      <map formal="clock" actual="Clk"/>
+<!--      <map formal="freq" actual="50"/>-->
+    </required> 
+  </services>
+
+  <features>
+	<fpga id="XC7VX485T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC6VLX240T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC6SLX150">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC5VSX50T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+  </features>
+  
+  <core>
+<!--    <rtl path="./RoutePack.vhd"/>-->
+    <rtl path="./RoutingTable.vhd"/>
+    <rtl type="package" name="RoutePack" path="./RoutePack.vhd"/>
+  </core>
+</module>

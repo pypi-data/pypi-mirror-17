@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<service name="FifoToHandShake" type="simple" version="1.0" category="Communication.InterfaceAdapter.FifoToHandShake">
+
+  <parameter default="16" name="FlitWidth" size="1" type="numeric"/>
+  
+  <input  name="fifo_dataout" size="FlitWidth" type="logic"/>
+  <output name="fifo_read" size="1" type="logic"/>
+  <input  name="hs_acktx" size="1" type="logic"/>
+  <input  name="rst" size="1" type="logic"/>
+  <output name="hs_tx" size="1" type="logic"/>
+  <input  name="fifo_isempty" size="1" type="logic"/>
+  <output name="hs_dataout" size="FlitWidth" type="logic"/>
+
+</service>

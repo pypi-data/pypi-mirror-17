@@ -1,0 +1,9 @@
+# THIS COMMANDS UPLOADS A BINARY TO FPGA
+
+#------------------------------------
+#         LIST OF COMMANDS
+#------------------------------------
+# Upload 
+xc3sprog -c jtaghs1_fast -v -p 0 $(FILENAME_BIT):w::bit
+
+

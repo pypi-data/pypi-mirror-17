@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<module name="ClockManager_200M_to_1x100M_Virtex7" version="1.0" title="Clock Manager" purpose="Provide circuit with differential clock signals" description="Depending on hw architecture drive clock signals." tool="Xilinx ISE (13.1), vivado 2015.4" speed="-" issues="">
+
+	<services>
+		<offered name="ClockManager21">
+			<map formal="clock_in1_n" actual="clock_in1_n"/>
+			<map formal="clock_in1_p" actual="clock_in1_p"/>
+			<map formal="clock_out1" actual="clock_out1"/>
+		</offered>
+	</services>
+
+	<input  name="clock_in1_n" size="1" type="logic" default="0"/>
+	<input  name="clock_in1_p" size="1" type="logic" default="0"/>
+	<output name="clock_out1"  size="1" type="logic"/>
+	
+	<features>
+		<design Latency="1" DataIntroductionInterval="1"/>
+		<fpga id="XC7VX485T">
+			<resources lut="0" register="0" ram="0"/>
+			<clock MaxFreq="100"/>
+		</fpga>
+	</features>
+	
+  <core>
+<!--    <rtl path="./clk_wiz_0.vho"/>-->
+    <rtl path="./clk_wiz_0_clk_wiz.vhd"/>
+    <rtl path="./ClockManager_200M_to_1x100M_Virtex7.vhd"/>
+<!--    <rtl path="./clk_wiz_0.xdc"/>-->
+<!--    <rtl path="./clk_wiz_0_board.xdc"/>-->
+<!--    <rtl path="./clk_wiz_0_ooc.xdc"/>-->
+<!--    <rtl path="./doc/clk_wiz_v5_1_changelog.txt"/>-->
+<!--    <rtl path="./clk_wiz_0.dcp"/>-->
+
+    <behavioral path="./clk_wiz_0_stub.vhdl"/>
+    <behavioral path="./clk_wiz_0_funcsim.vhdl"/>
+<!--    <behavioral path="./clk_wiz_0_stub.v"/>-->
+<!--    <behavioral path="./clk_wiz_0_funcsim.v"/>-->
+    <constraints path="./clk_wiz_0.xdc"/>
+  </core>
+</module>
+
+
+
+

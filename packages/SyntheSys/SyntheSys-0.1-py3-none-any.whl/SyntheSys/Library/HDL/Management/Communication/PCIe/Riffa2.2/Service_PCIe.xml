@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+
+<service name="PCIe" type="simple" version="1.0" category="Communication" communication="True">
+  
+  <parameter default="16"  name="FlitWidth"          type="numeric"/>
+
+  <output name="PCI_EXP_TXP" size="8" type="logic"/>
+  <output name="PCI_EXP_TXN" size="8" type="logic"/>
+  <input  name="PCI_EXP_RXP" size="8" type="logic"/>
+  <input  name="PCI_EXP_RXN" size="8" type="logic"/>
+
+  <output name="USER_CLK"      size="1" type="logic"/>
+  <output name="USER_RST"      size="1" type="logic"/>
+<!--  <output name="LED"         size="4"           type="logic"/>-->
+  
+<!--  <input  name="PCIE_REFCLK_P" size="1" type="logic"/>-->
+<!--  <input  name="PCIE_REFCLK_N" size="1" type="logic"/>-->
+<!--  <input  name="PCIE_RESET_N"  size="1" type="logic"/>-->
+
+  <output name="Tx"      size="1" type="logic"/>
+  <input  name="AckTx"   size="1" type="logic"/>
+  <output name="DataOut" size="FlitWidth" type="logic"/>
+  
+  <input  name="Rx"      size="1" type="logic"/>
+  <output name="AckRx"   size="1" type="logic"/>
+  <input  name="DataIn"  size="FlitWidth" type="logic"/>
+  
+  
+  <interface name="HandShake" direction="IN" number="1">
+    <control name="Rx" target="Tx"/>
+    <control name="AckRx" target="AckTx"/>
+    <data name="DataIn" target="DataOut">
+      <sets register="HeaderReceived"  position="0">
+      	<tag name="DataID" slice="FlitWidth-1:FlitWidth/2"/>
+      	<tag name="X" slice="FlitWidth/2-1:FlitWidth/4"/>
+      	<tag name="Y" slice="FlitWidth/4-1:0"/>
+      </sets>
+      <sets register="PayloadReceived" position="1" />
+    </data>
+    <protocol position="0" label="Reception request from network" signals="DataIn, Rx"/>
+    <protocol position="1" label="Wait for reception acknowledge" signals="AckRx"/>
+  </interface>
+  <interface name="HandShake" direction="OUT" number="1">
+    <control name="Tx" target="Rx"/>
+    <control name="AckTx" target="AckRx"/>
+    <data name="DataOut" target="DataIn">
+      <sets register="HeaderTransmitted" position="0">
+      	<tag name="DataID" slice="FlitWidth-1:FlitWidth/2"/>
+      	<tag name="X" slice="FlitWidth/2-1:FlitWidth/4"/>
+      	<tag name="Y" slice="FlitWidth/4-1:0"/>
+      </sets>
+      <sets register="PayloadTransmitted" position="1" />
+    </data>
+    <protocol label="Network send request" position="0" signals="DataOut, Tx"/>
+    <protocol label="Wait for send acknowledge" position="1" signals="AckTx"/>
+  </interface>
+
+
+<!--  <interface name="PCIe" direction="out" number="8">-->
+<!--    <data name="PCI_EXP_TXP" target="PCI_EXP_TXN"/>-->
+<!--    <data name="PCI_EXP_TXN" target="PCI_EXP_TXP"/>-->
+<!--  </interface>-->
+<!--  <interface name="PCIe" direction="in" number="8">-->
+<!--    <data name="PCI_EXP_RXP" target="PCI_EXP_RXN"/>-->
+<!--    <data name="PCI_EXP_RXN" target="PCI_EXP_RXP"/>-->
+<!--  </interface>-->
+<!--  <interface name="Debug" direction="out" number="1">-->
+<!--    <data name="LED" target="LED"/>-->
+<!--  </interface>-->
+
+</service>

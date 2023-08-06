@@ -1,0 +1,15 @@
+# THIS COMMANDS UPLOADS A BINARY TO FPGA
+#------------------------------------
+#         TO BE SETUP BY SOFT
+#------------------------------------
+#UPLOAD_SETUP_SCRIPT = xc6slx150-fgg484-2
+#------------------------------------
+
+#------------------------------------
+#         LIST OF COMMANDS
+#------------------------------------
+# Upload 
+impact -batch $UPLOAD_SETUP_SCRIPT
+
+
+

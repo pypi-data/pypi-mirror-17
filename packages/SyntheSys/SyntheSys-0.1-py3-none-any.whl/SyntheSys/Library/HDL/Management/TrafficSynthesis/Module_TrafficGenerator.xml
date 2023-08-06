@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<module area="" description="Send packets through on-chip network multiple destinations." issues="" name="TrafficGenerator" purpose="Send packets through on-chip network multiple destinations." speed="" title="Traffic generator for NoC" tool="Xilinx 13.1" version="1.0">
+  <services>
+    <offered alias="TG" name="TrafficGenerator">
+      <map actual="FlitWidth" formal="FlitWidth"/>
+      <map actual="NbRouters" formal="NbRouters"/>
+      <map actual="LocalAddr_x" formal="LocalAddr_x"/>
+      <map actual="LocalAddr_y" formal="LocalAddr_y"/>
+      <map actual="Tx" formal="Tx"/>
+      <map actual="AckTx" formal="AckTx"/>
+      <map actual="DataOut" formal="DataOut"/>
+      <map actual="DestNB" formal="DestNB"/>
+      <map actual="DestSelect" formal="DestSelect"/>
+      <map actual="PackSize" formal="PackSize"/>
+      <map actual="PackNB" formal="PackNB"/>
+      <map actual="IdleTime" formal="IdleTime"/>
+    </offered>
+  </services>
+  
+  <parameter default="16" name="FlitWidth" type="numeric"/>
+  <parameter default="9" name="NbRouters" type="numeric"/>
+  <parameter default="2" name="LocalAddr_x" type="numeric"/>
+  <parameter default="2" name="LocalAddr_y" type="numeric"/>
+  
+  <output name="Tx" size="1" type="logic"/>
+  <input  name="AckTx"  size="1" type="logic"/>
+  <output name="DataOut" size="FlitWidth" type="logic"/>  
+  
+  <input  name="DestNB"   size="1" type="logic"/>
+  <input  name="DestSelect" size="NbRouters" type="logic"/>
+  <input  name="PackSize" size="1" type="numeric"/>
+  <input  name="PackNB"   size="1" type="numeric"/>
+  <input  name="IdleTime" size="1" type="numeric"/>
+  
+  <services>
+    <required name="reset" type="orthogonal" version="1.0">
+      <map actual="Rst" formal="reset"/>
+<!--      <map actual="20" formal="delay"/>-->
+    </required>
+    <required name="clock" type="orthogonal" version="1.0">
+      <map actual="Clk" formal="clock"/>
+<!--      <map actual="50" formal="freq"/>-->
+    </required>
+  </services>
+  
+  <features>
+    <design Latency="1" DataIntroductionInterval="1" />
+    <fpga id="XC6VLX240T">
+	<resources lut="33" register="32" ram="128"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+  </features>
+  
+  <core>
+    <rtl path="./EmulationPackage.vhd"/>
+    <rtl path="./TrafficGenerator.vhd"/>
+  </core>
+  
+</module>
+
+

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<service name="RS232" type="simple" version="1.0" category="Communication">
+  
+  <parameter default="16" name="FlitWidth" type="numeric"/>
+  <parameter default="1"  name="Payload"   type="numeric"/>
+  <parameter default="0"  name="Header"    type="logic" size="FlitWidth"/>
+  
+  <output name="Tx"      size="1" type="logic"/>
+  <input  name="AckTx"   size="1" type="logic"/>
+  <output name="DataOut" size="FlitWidth" type="logic"/>
+  
+  <input  name="Rx"     size="1" type="logic"/>
+  <output name="AckRx"  size="1" type="logic"/>
+  <input  name="DataIn" size="FlitWidth" type="logic"/>
+  
+  <input  name="SerialRx"   size="1" type="logic"/>
+  <output name="SerialTx"   size="1" type="logic"/>
+  <output name="LED_DataIn" size="1" type="logic"/>
+  <output name="LED_Sync"   size="1" type="logic"/>
+  
+  <interface name="HandShake" direction="out" number="1">
+    <control name="Tx" target="Rx"/>
+    <control name="AckTx" target="AckRx"/>
+    <data name="DataOut" target="DataIn">
+      <sets register="Header" position="0" />
+      <sets register="Payload" position="1" />
+    </data>
+    <protocol label="NetworkOutput" position="0" signals="DataOut, Tx"/>
+    <protocol label="WaitOutputAck" position="1" signals="AckTx"/>
+  </interface>
+  <interface name="HandShake" direction="in" number="1">
+    <control name="Rx" target="Tx"/>
+    <control name="AckRx" target="AckTx"/>
+    <data name="DataIn" target="DataOut">
+      <sets register="Header" position="0" />
+      <sets register="Payload" position="1" />
+    </data>
+    <protocol position="0" label="NetworkInput" signals="DataIn, Rx"/>
+    <protocol position="1" label="WaitInputAck" signals="AckRx"/>
+  </interface>
+  
+
+  <interface name="RS232" direction="in" number="1">
+    <data name="SerialRx" target="SerialRx"/>
+  </interface>
+  <interface name="RS232" direction="out" number="1">
+    <data name="SerialTx" target="SerialTx"/>
+  </interface>
+  <interface name="Debug" direction="out" number="1">
+    <data name="LED_DataIn" target="LED_DataIn"/>
+    <data name="LED_Sync" target="LED_Sync"/>
+  </interface>
+
+</service>

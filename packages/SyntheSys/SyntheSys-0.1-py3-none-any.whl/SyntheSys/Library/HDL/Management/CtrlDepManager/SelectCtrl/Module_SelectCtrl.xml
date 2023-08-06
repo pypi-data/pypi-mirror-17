@@ -1,0 +1,76 @@
+
+<module area="" description="" issues="" name="SelectCtrl" purpose="" speed="" title="" tool="" version="">
+  <services>
+    <offered alias="SelectCtrl" name="SelectCtrl">
+         <map actual="FlitWidth" formal="FlitWidth"/>
+         <map actual="ComHeader" formal="ComHeader"/>
+<!--         <map actual="NbTasks"   formal="NbTasks"/>-->
+         <map actual="NbIndexedData"  formal="NbIndexedData"/>
+         <map actual="NbSelections"  formal="NbSelections"/>
+         
+         <map actual="DataIn" formal="DataIn"/>
+         <map actual="Rx" formal="Rx"/>
+         <map actual="AckRx" formal="AckRx"/>
+         <map actual="DataOut" formal="DataOut"/>
+         <map actual="Tx" formal="Tx"/>
+         <map actual="AckTx" formal="AckTx"/>
+    </offered>
+  </services>
+  
+  <parameter default="16" name="FlitWidth" type="numeric"/>
+  <parameter default="0"  name="ComHeader" type="logic" size="FlitWidth"/>
+<!--  <parameter default="4"  name="NbTasks" type="numeric"/>-->
+  <parameter default="4"  name="NbIndexedData" type="numeric"/>
+  <parameter default="4"  name="NbSelections" type="numeric"/>
+  
+  <input  name="Clock" size="1" type="logic"/>
+  <input  name="Reset" size="1" type="logic"/>
+  
+  <input  default="1" name="DataIn" size="FlitWidth" type="logic"/>
+  <input  default="0" name="Rx"     size="1"         type="logic"/>
+  <output default="1" name="AckRx"  size="1"         type="logic"/>
+  
+  <output default="1" name="DataOut" size="FlitWidth" type="logic"/>
+  <output default="1" name="Tx"      size="1"         type="logic"/>
+  <input  default="1" name="AckTx"   size="1"         type="logic"/>
+  
+  <services>
+    <required name="reset" type="orthogonal" version="1.0">
+      <map actual="Reset" formal="reset"/>
+<!--      <map actual="0" formal="delay"/>-->
+    </required>
+    <required name="clock" type="orthogonal" version="1.0">
+      <map actual="Clock" formal="clock"/>
+<!--      <map actual="50" formal="freq"/>-->
+    </required>
+    <required name="NetworkAdapter" type="simple" version="1.0"/>
+    <required name="FIFO" type="simple" version="1.0"/>
+    <required name="RAM" type="simple" version="1.0"/>
+  </services>
+  
+  <features>
+    <design Latency="1" DataIntroductionInterval="1" />
+    <fpga id="XC7VX485T">
+	<resources lut="16" register="0" ram="0"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+    <fpga id="XC6VLX240T">
+	<resources lut="33" register="32" ram="128"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+  </features>
+  
+  <core>
+<!--    <rtl path="../../RAM/a_sram_param.vhd"/>-->
+<!--    <rtl path="../../FIFO/Fifo.vhd"/>-->
+    <rtl path="../Utilities.vhd"/>
+    <rtl path="../BufferedSwitch/DataBuffers/DataBuffers.vhd"/>
+    <rtl path="./SelectCtrl.vhd"/>
+  </core>
+  
+</module>
+
+
+
+
+

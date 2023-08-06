@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<service name="userreset" type="orthogonal" version="1.0" category="Common.Resets" shared="True">
+
+	<parameter name="delay" type="numeric" size="16"/>
+	
+	<output name="reset" size="1" type="logic" modifier="delay"/>
+
+</service>

@@ -1,0 +1,308 @@
+<module area="" description="PCIe_Riffa22_VC707 port controller" issues="" name="PCIe_Riffa22_VC707" purpose="PCIe_Riffa22_VC707 port controller" speed="" title="PCIe_Riffa22_VC707 controller" tool="13.1" version="1.0">
+
+  <services>
+    <offered alias="PCIe" name="PCIe">
+<!--         <map actual="C_PCI_DATA_WIDTH" formal="C_PCI_DATA_WIDTH"/>-->
+<!--         <map actual="C_NUM_LANES"   formal="C_NUM_LANES"/>-->
+         <map actual="FlitWidth" formal="FlitWidth"/>
+         <map actual="PCI_EXP_TXP" formal="PCI_EXP_TXP"/>
+         <map actual="PCI_EXP_TXN" formal="PCI_EXP_TXN"/>
+         <map actual="PCI_EXP_RXP" formal="PCI_EXP_RXP"/>
+         <map actual="PCI_EXP_RXN" formal="PCI_EXP_RXN"/>
+<!--         <map actual="PCIE_REFCLK_P" formal="PCIE_REFCLK_P"/>-->
+<!--         <map actual="PCIE_REFCLK_N" formal="PCIE_REFCLK_N"/>-->
+<!--         <map actual="PCIE_RESET_N"  formal="PCIE_RESET_N"/>-->
+         <map actual="Tx" formal="Tx"/>
+         <map actual="AckTx" formal="AckTx"/>
+         <map actual="DataOut" formal="DataOut"/>
+         <map actual="Rx" formal="Rx"/>
+         <map actual="AckRx" formal="AckRx"/>
+         <map actual="DataIn" formal="DataIn"/>
+         <map actual="USER_CLK" formal="USER_CLK"/>
+         <map actual="USER_RST" formal="USER_RST"/>
+<!--         <map actual="LED"           formal="LED"/>-->
+    </offered>
+    <offered alias="USER_CLK" name="userclock">
+         <map actual="USER_CLK" formal="clock"/>
+    </offered>
+    <offered alias="USER_RST" name="userreset">
+         <map actual="USER_RST" formal="reset"/>
+    </offered>
+  </services>
+
+
+<!--  <parameter default="64"  name="C_PCI_DATA_WIDTH"   type="numeric"/>-->
+<!--  <parameter default="8"   name="C_NUM_LANES"        type="numeric"/>-->
+  <parameter default="16" name="FlitWidth" type="numeric"/>
+
+  <input name="Clock" size="1" type="logic"/>
+  <input name="Reset" size="1" type="logic"/>
+  
+  <output name="USER_CLK" size="1" type="logic"/>
+  <output name="USER_RST" size="1" type="logic"/>
+  
+  <input name="PCIE_REFCLK_P" size="1" type="logic"/>
+  <input name="PCIE_REFCLK_N" size="1" type="logic"/>
+  <input name="PCIE_RESET_N" size="1" type="logic"/>
+
+  <output name="PCI_EXP_TXP" size="8" type="logic"/>
+  <output name="PCI_EXP_TXN" size="8" type="logic"/>
+  <input name="PCI_EXP_RXP" size="8" type="logic"/>
+  <input name="PCI_EXP_RXN" size="8" type="logic"/>
+
+  <output name="LED" size="8" type="logic"/>
+  
+  <input name="DataIn" size="FlitWidth" type="logic"/>
+  <input name="Rx" size="1" type="logic"/>
+  <output name="AckRx" size="1" type="logic"/>
+  
+  <output name="DataOut" size="FlitWidth" type="logic"/>
+  <output name="Tx" size="1" type="logic"/>
+  <input name="AckTx" size="1" type="logic"/>
+  
+  <features>
+    <design Latency="1" DataIntroductionInterval="1"/>
+    <fpga id="XC7VX485T">
+	<resources lut="12987" register="18373" ram="67"/>
+	<clock MaxFreq="100"/>
+    </fpga>
+  </features>
+  
+  <services>
+    <required name="reset" type="orthogonal" version="1.0" alias="UserRst">
+      <map actual="Reset" formal="reset"/>
+<!--      <map actual="0" formal="delay"/>-->
+    </required>
+    <required name="clock" type="orthogonal" version="1.0" alias="UserClk">
+      <map actual="Clock" formal="clock"/>
+<!--      <map actual="100" formal="freq"/>-->
+    </required>
+    
+    <required name="FPGAPads" type="orthogonal" version="1.0" alias="PCIeClk">
+      <map actual="PCIE_REFCLK_P" formal="PCIE_REFCLK_P"/>
+      <map actual="PCIE_REFCLK_N" formal="PCIE_REFCLK_N"/>
+      <!-- Constraints are provided as source files -->
+      <map actual="ignore" formal="constraints"/>
+    </required>
+    <required name="FPGAPads" type="orthogonal" version="1.0" alias="PCIeRst">
+      <map actual="PCIE_RESET_N" formal="PCIE_RESET_N"/>
+      <!-- Constraints are provided as source files -->
+      <map actual="ignore" formal="constraints"/>
+    </required>
+    
+    <required name="FPGAPads" type="orthogonal" version="1.0" alias="PCIe">
+      <map actual="PCI_EXP_TXP" formal="PCI_EXP_TXP"/>
+      <map actual="PCI_EXP_TXN" formal="PCI_EXP_TXN"/>
+      <map actual="PCI_EXP_RXP" formal="PCI_EXP_RXP"/>
+      <map actual="PCI_EXP_RXN" formal="PCI_EXP_RXN"/>
+      <!-- Constraints are provided as source files -->
+      <map actual="ignore" formal="constraints"/>
+<!--      <map actual="PCIE_REFCLK_P" formal="PCIE_REFCLK_P"/>-->
+<!--      <map actual="PCIE_REFCLK_N" formal="PCIE_REFCLK_N"/>-->
+<!--      <map actual="PCIE_RESET_N"  formal="PCIE_RESET_N"/>-->
+    </required>
+    
+    <required name="FPGAPads" type="orthogonal" version="1.0" alias="LEDs">
+      <map formal="LED" actual="LED"/>
+<!--       Constraints are provided as source files -->
+<!--      <map formal="constraints" actual="ignore"/>-->
+    </required>
+    
+    <required name="FIFO" type="simple" version="1.0"/>
+    <required name="HandShakeToFifo" type="simple" version="1.0" alias="HandShakeToFifo">
+<!--      <map actual="FlitWidth"   formal="FlitWidth"/>-->
+<!--      <map actual="fifo_write"  formal="fifo_write"/>-->
+<!--      <map actual="fifo_isfull" formal="fifo_isfull"/>-->
+<!--      <map actual="fifo_datain" formal="fifo_datain"/>-->
+      
+      <map actual="Rx" formal="hs_rx"/>
+      <map actual="AckRx" formal="hs_ackrx"/>
+      <map actual="Datain" formal="hs_datain"/>
+<!--      <map actual="0" formal="delay"/>-->
+    </required>
+    
+    <required name="FifoToHandShake" type="simple" version="1.0" alias="FifoToHandShake">
+<!--      <map actual="FlitWidth"   formal="FlitWidth"/>-->
+<!--      <map actual="fifo_write"  formal="fifo_write"/>-->
+<!--      <map actual="fifo_isfull" formal="fifo_isfull"/>-->
+<!--      <map actual="fifo_datain" formal="fifo_datain"/>-->
+      
+      <map actual="Tx" formal="hs_tx"/>
+      <map actual="AckTx" formal="hs_acktx"/>
+      <map actual="DataOut" formal="hs_dataout"/>
+<!--      <map actual="0" formal="delay"/>-->
+    </required>
+  </services>
+  
+  <core>
+<!--    Xilinx PCIe CORE part-->
+    <rtl path="../../../../../Utilities.vhd"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_core_top.vhd"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_pipe_drp.v"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_pipe_eq.v"/> 
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_pipe_rate.v"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_pipe_reset.v"/> 
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_pipe_sync.v"/> 
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_gtp_pipe_rate.v"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_gtp_pipe_drp.v"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_gtp_pipe_reset.v"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_pipe_user.v"/> 
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_pipe_wrapper.v"/> 
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_qpll_drp.v"/> 
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_qpll_reset.v"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_qpll_wrapper.v"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_rxeq_scan.v"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_pcie_top.vhd"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_axi_basic_rx_null_gen.vhd"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_axi_basic_rx_pipeline.vhd"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_axi_basic_rx.vhd"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_axi_basic_top.vhd"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_axi_basic_tx_pipeline.vhd"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_axi_basic_tx_thrtl_ctl.vhd"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_axi_basic_tx.vhd"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_pcie_7x.vhd"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_pcie_bram_7x.vhd"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_pcie_bram_top_7x.vhd"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_pcie_brams_7x.vhd"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_pcie_pipe_lane.vhd"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_pcie_pipe_misc.vhd"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_pcie_pipe_pipeline.vhd"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_gt_rx_valid_filter_7x.vhd"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_gt_top.vhd"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_gt_wrapper.v"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_gt_common.v"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_gtp_cpllpd_ovrd.v"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_gtx_cpllpd_ovrd.v"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_pcie2_top.vhd"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_pipe_clock.v"/>
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/synth/PCIeGen1x8If64.vhd"/>
+    
+    
+    
+<!--    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/PCIeGen1x8If64.vho"/>-->
+<!--    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64_pipe_wrapper.v"/>-->
+
+
+
+<!--    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/PCIeGen1x8If64.dcp"/>-->
+<!--    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/PCIeGen1x8If64_stub.v"/>-->
+<!--    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/PCIeGen1x8If64_stub.vhdl"/>-->
+<!--    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/PCIeGen1x8If64_funcsim.v"/>-->
+<!--    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/PCIeGen1x8If64_funcsim.vhdl"/>-->
+    
+<!--    RIFFA PART-->
+    <rtl path="../../RIFFA_HDL/shiftreg.v"/>
+    <rtl path="../../RIFFA_HDL/functions.vh"/>
+    <rtl path="../../RIFFA_HDL/scsdpram.v"/>
+    <rtl path="../../RIFFA_HDL/fifo.v"/>
+    <rtl path="../../RIFFA_HDL/ff.v"/>
+    <rtl path="../../RIFFA_HDL/ram_2clk_1w_1r.v"/>
+    <rtl path="../../RIFFA_HDL/types.vh"/>
+    <rtl path="../../RIFFA_HDL/trellis.vh"/>
+    <rtl path="../../RIFFA_HDL/widths.vh"/>
+    <rtl path="../../RIFFA_HDL/offset_flag_to_one_hot.v"/>
+    <rtl path="../../RIFFA_HDL/syncff.v"/>
+    <rtl path="../../RIFFA_HDL/rotate.v"/>
+    <rtl path="../../RIFFA_HDL/one_hot_mux.v"/>
+    <rtl path="../../RIFFA_HDL/ram_1clk_1w_1r.v"/>
+    <rtl path="../../RIFFA_HDL/pipeline.v"/>
+    <rtl path="../../RIFFA_HDL/offset_to_mask.v"/>
+    <rtl path="../../RIFFA_HDL/async_fifo.v"/>
+    <rtl path="../../RIFFA_HDL/cross_domain_signal.v"/>
+    <rtl path="../../RIFFA_HDL/counter.v"/>
+    <rtl path="../../RIFFA_HDL/tx_data_shift.v"/>
+    <rtl path="../../RIFFA_HDL/mux.v"/>
+    <rtl path="../../RIFFA_HDL/sync_fifo.v"/>
+    <rtl path="../../RIFFA_HDL/tx_data_fifo.v"/>
+    <rtl path="../../RIFFA_HDL/tx_port_writer.v"/>
+    <rtl path="../../RIFFA_HDL/sg_list_requester.v"/>
+    <rtl path="../../RIFFA_HDL/sg_list_reader_128.v"/>
+    <rtl path="../../RIFFA_HDL/tx_port_channel_gate_64.v"/>
+    <rtl path="../../RIFFA_HDL/tx_port_monitor_64.v"/>
+    <rtl path="../../RIFFA_HDL/sg_list_reader_32.v"/>
+    <rtl path="../../RIFFA_HDL/tx_data_pipeline.v"/>
+    <rtl path="../../RIFFA_HDL/tx_port_channel_gate_128.v"/>
+    <rtl path="../../RIFFA_HDL/tx_port_buffer_128.v"/>
+    <rtl path="../../RIFFA_HDL/schedules.vh"/>
+    <rtl path="../../RIFFA_HDL/tx_alignment_pipeline.v"/>
+    <rtl path="../../RIFFA_HDL/async_fifo_fwft.v"/>
+    <rtl path="../../RIFFA_HDL/tx_port_buffer_32.v"/>
+    <rtl path="../../RIFFA_HDL/rx_port_channel_gate.v"/>
+    <rtl path="../../RIFFA_HDL/tx_hdr_fifo.v"/>
+    <rtl path="../../RIFFA_HDL/tx_port_monitor_32.v"/>
+    <rtl path="../../RIFFA_HDL/rx_port_requester_mux.v"/>
+    <rtl path="../../RIFFA_HDL/fifo_packer_32.v"/>
+    <rtl path="../../RIFFA_HDL/fifo_packer_64.v"/>
+    <rtl path="../../RIFFA_HDL/tx_port_channel_gate_32.v"/>
+    <rtl path="../../RIFFA_HDL/fifo_packer_128.v"/>
+    <rtl path="../../RIFFA_HDL/tx_port_monitor_128.v"/>
+    <rtl path="../../RIFFA_HDL/rx_port_reader.v"/>
+    <rtl path="../../RIFFA_HDL/sg_list_reader_64.v"/>
+    <rtl path="../../RIFFA_HDL/tx_port_buffer_64.v"/>
+    <rtl path="../../RIFFA_HDL/register.v"/>
+    <rtl path="../../RIFFA_HDL/tx_port_64.v"/>
+    <rtl path="../../RIFFA_HDL/rx_port_64.v"/>
+    <rtl path="../../RIFFA_HDL/rx_port_128.v"/>
+    <rtl path="../../RIFFA_HDL/tx_port_128.v"/>
+    <rtl path="../../RIFFA_HDL/rx_port_32.v"/>
+    <rtl path="../../RIFFA_HDL/tx_engine_selector.v"/>
+    <rtl path="../../RIFFA_HDL/tx_engine.v"/>
+    <rtl path="../../RIFFA_HDL/tx_port_32.v"/>
+    <rtl path="../../RIFFA_HDL/demux.v"/>
+    <rtl path="../../RIFFA_HDL/tx_multiplexer_32.v"/>
+    <rtl path="../../RIFFA_HDL/tx_multiplexer_128.v"/>
+    <rtl path="../../RIFFA_HDL/tlp.vh"/>
+    <rtl path="../../RIFFA_HDL/rxc_engine_classic.v"/>
+    <rtl path="../../RIFFA_HDL/ultrascale.vh"/>
+    <rtl path="../../RIFFA_HDL/rxc_engine_ultrascale.v"/>
+    <rtl path="../../RIFFA_HDL/channel_32.v"/>
+    <rtl path="../../RIFFA_HDL/txc_engine_ultrascale.v"/>
+    <rtl path="../../RIFFA_HDL/txc_engine_classic.v"/>
+    <rtl path="../../RIFFA_HDL/channel_128.v"/>
+    <rtl path="../../RIFFA_HDL/reorder_queue_output.v"/>
+    <rtl path="../../RIFFA_HDL/rxr_engine_ultrascale.v"/>
+    <rtl path="../../RIFFA_HDL/tx_multiplexer_64.v"/>
+    <rtl path="../../RIFFA_HDL/channel_64.v"/>
+    <rtl path="../../RIFFA_HDL/rxr_engine_classic.v"/>
+    <rtl path="../../RIFFA_HDL/txr_engine_classic.v"/>
+    <rtl path="../../RIFFA_HDL/txr_engine_ultrascale.v"/>
+    <rtl path="../../RIFFA_HDL/interrupt_controller.v"/>
+    <rtl path="../../RIFFA_HDL/reorder_queue_input.v"/>
+    <rtl path="../../RIFFA_HDL/riffa.vh"/>
+    <rtl path="../../RIFFA_HDL/registers.v"/>
+    <rtl path="../../RIFFA_HDL/recv_credit_flow_ctrl.v"/>
+    <rtl path="../../RIFFA_HDL/rx_engine_classic.v"/>
+    <rtl path="../../RIFFA_HDL/interrupt.v"/>
+    <rtl path="../../RIFFA_HDL/tx_engine_classic.v"/>
+    <rtl path="../../RIFFA_HDL/reorder_queue.v"/>
+    <rtl path="../../RIFFA_HDL/tx_multiplexer.v"/>
+    <rtl path="../../RIFFA_HDL/tx_engine_ultrascale.v"/>
+    <rtl path="../../RIFFA_HDL/rx_engine_ultrascale.v"/>
+    <rtl path="../../RIFFA_HDL/channel.v"/>
+    <rtl path="../../RIFFA_HDL/engine_layer.v"/>
+    <rtl path="../../RIFFA_HDL/xilinx.vh"/>
+    <rtl path="../../RIFFA_HDL/translation_xilinx.v"/>
+    <rtl path="../../RIFFA_HDL/riffa.v"/>
+<!--    <rtl path="./ChanTester.vhd"/>-->
+    <rtl path="./riffa_wrapper_vc707.v"/>
+    <rtl path="./VC707_Gen1x8If64/hdl/VC707Gen1x8If64_DoubleChannel.v"/>
+    
+<!--TOP NETWORK WRAPPER PART-->
+<!--    <rtl path="../../RiffaToHS/SingleNodeBopm.vhd"/>-->
+<!--    <rtl path="../../TransfertControl_Test.vhd"/>-->
+    <rtl path="../../TestNode_Test.vhd"/>
+    <rtl path="../../PCIeConfigCtrl/PCIeConfigCtrl.vhd"/>
+    <rtl path="../../RiffaToHS/RiffaToHS.vhd"/>
+<!--    <rtl path="../../BOPMTest.vhd"/>-->
+    <rtl path="./PCIe_Riffa22_VC707.vhd"/>
+    
+<!--    Xilinx PCIe CORE part-->
+    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/PCIeGen1x8If64.xci"/>
+    
+<!--CONSTRAINTS FILES-->
+<!--    <rtl path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/synth/PCIeGen1x8If64_ooc.xdc"/>-->
+    <constraints path="./VC707_Gen1x8If64/constr/VC707_Top.xdc"/>
+    <constraints path="./VC707_Gen1x8If64/ip/PCIeGen1x8If64/source/PCIeGen1x8If64-PCIE_X1Y0.xdc"/>
+  </core>
+  
+</module>

@@ -1,0 +1,64 @@
+<module area="" description="" issues="" name="Crossbar" purpose="" speed="" title="" tool="" version="">
+  <services>
+    <offered alias="Crossbar" name="Crossbar">
+        <map actual="NbOutputs" formal="NbOutputs"/>
+        <map actual="NbInputs" formal="NbInputs"/>
+        <map actual="FlitWidth" formal="FlitWidth"/>
+        <map actual="Output_DataOut" formal="Output_DataOut"/>
+        <map actual="Output_Tx"  formal="Output_Tx"/>
+        <map actual="Output_AckTx" formal="Output_AckTx"/>
+        
+        <map actual="Input_DataOut" formal="Input_DataOut"/>
+        <map actual="Input_Tx"  formal="Input_Tx"/>
+        <map actual="Input_AckTx" formal="Input_AckTx"/>
+         
+        <map actual="outputconnections" formal="outputconnections"/>
+        <map actual="inputconnections" formal="inputconnections"/>
+    </offered>
+  </services>
+  <parameter default="5" name="NbOutputs" size="1" type="numeric"/>
+  <parameter default="5" name="NbInputs" size="1" type="numeric"/>
+  <parameter default="16" name="FlitWidth" size="1" type="numeric"/>
+  
+  <input name="outputconnections" size="NbOutputs" type="numeric" typeimport="CrossPack.NATURALS"/>
+  <input name="inputconnections"  size="NbInputs"  type="numeric" typeimport="CrossPack.NATURALS"/>
+  
+  <output name="Output_DataOut" size="NbOutputs" type="FlitWidth*logic" typeimport="CrossPack.FLITS"/>
+  <output name="Output_Tx"  size="NbOutputs" type="logic"/>
+  <input  name="Output_AckTx" size="NbOutputs" type="logic"/>
+  
+  <input  name="Input_DataOut" size="NbInputs" type="FlitWidth*logic" typeimport="CrossPack.FLITS"/>
+  <input  name="Input_Tx"  size="NbInputs" type="logic"/>
+  <output name="Input_AckTx" size="NbInputs" type="logic"/>
+  
+  <features>
+	<fpga id="XC7VX485T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC6VLX240T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC6SLX150">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC5VSX50T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+  </features>
+  
+  <core>
+    <!--<rtl path="./CrossPack.vhd"/>-->
+    <rtl path="./CrossBar.vhd"/>
+    <rtl type="package" name="CrossPack" path="./CrossPack.vhd"/>
+  </core>
+</module>
+
+
+
+
+
+

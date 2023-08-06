@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<service name="CIE_L" type="simple" version="1.0" category="DSP">
+  
+  
+  <input name="Y" size="64" type="logic"/>
+  <output name="CIE_LValue" size="64" type="logic"/>
+  
+  <interface name="BasicBlock" direction="INOUT" number="1" pipeline="137">
+
+    <data name="Y" />
+    <data name="CIE_LValue" />
+    <protocol label="SetStimuli" position="0" signals=" Y"/>
+    <protocol label="GetResult" position="1" signals="CIE_LValue"/>
+  </interface>
+
+</service>
+
+
+

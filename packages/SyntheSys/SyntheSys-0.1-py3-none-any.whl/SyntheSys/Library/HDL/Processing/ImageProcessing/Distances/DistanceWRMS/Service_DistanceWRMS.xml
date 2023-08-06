@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<service name="DistanceWRMS" type="simple" version="1.0" category="DSP">
+  
+  <input name="Start" size="1" type="logic"/>
+  <input name="DataRead" size="1" type="logic"/>
+  
+  <input  name="Tab1"  size="64" type="logic"/>
+  <input  name="Tab2"  size="64" type="logic"/>
+  
+  <output name="dis_wrms" size="64" type="logic"/>
+  
+  
+  <interface name="BasicBlock" direction="INOUT" number="1" pipeline="79">
+   
+    <control name="Start" target="start"/>
+    <control name="DataRead" target="DataRead"/>
+    <data name="Tab1" serialization="5"/>
+    <data name="Tab2" serialization="5"/>
+    <data name="dis_wrms" serialization="1"/>
+    <protocol label="SetStimuli" position="0" signals="Tab1, Tab2"/>
+    <protocol label="GetTrace" position="1" signals="dis_wrms"/>
+  </interface>
+
+</service>
+
+

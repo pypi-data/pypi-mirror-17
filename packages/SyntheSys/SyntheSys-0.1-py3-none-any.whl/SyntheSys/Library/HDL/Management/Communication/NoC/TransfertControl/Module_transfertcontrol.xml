@@ -1,0 +1,66 @@
+<module area="" description="Empty out a upstream fifo while filling the downstream one" issues="" name="TransfertControl" purpose="Fifo to fifo transfert during router connection" speed="" title="Router Transfert Controller" tool="Router Transfert Controller" version="1.0">
+  <services>
+    <offered alias="TransfertController" name="TransfertController">
+      <map actual="FlitWidth" formal="FlitWidth"/>
+      <map actual="HS_DataOut" formal="HS_DataOut"/>
+      <map actual="HS_Tx" formal="HS_Tx"/>
+      <map actual="HS_AckTx" formal="HS_AckTx"/>
+      <map actual="fifoin_isempty" formal="fifoin_isempty"/>
+      <map actual="fifoin_dataout" formal="fifoin_dataout"/>
+      <map actual="fifoin_read" formal="fifoin_read"/>
+      <map actual="InputRequests" formal="InputRequests"/>
+      <map actual="InputConnected" formal="InputConnected"/>
+    </offered>
+  </services>
+  <parameter default="16" name="FlitWidth" size="" type="numeric"/>
+  <input name="rst" size="1" type="logic"/>
+  <input name="clk" size="1" type="logic"/>
+  
+  <output name="HS_DataOut" size="FlitWidth" type="logic"/>
+  <output name="HS_Tx" size="1" type="logic"/>
+  <input  name="HS_AckTx" size="1" type="logic"/>
+  
+  <input  name="fifoin_dataout" size="FlitWidth" type="logic"/>
+  <input  name="fifoin_isempty" size="1" type="logic"/>
+  <output name="fifoin_read" size="1" type="logic"/>
+  
+  <output name="InputConnected" size="1" type="logic"/>
+  <output name="InputRequests" size="1" type="logic"/>
+
+  <features>
+	<fpga id="XC7VX485T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC6VLX240T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC6SLX150">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC5VSX50T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+  </features>
+  
+  <services>
+    <required alias="Clock" name="clock" type="orthogonal" version="1.0">
+      <map formal="clock" actual="clk"/>
+<!--      <map formal="freq" actual="50"/>-->
+    </required> 
+    <required name="reset" type="orthogonal" version="1.0">
+      <map formal="reset" actual="rst"/>
+<!--      <map formal="delay" actual="0"/>-->
+    </required> 
+  </services>
+  
+  <core>
+<!--    <rtl path="./TransCtrlPack.vhd"/>-->
+    <rtl path="./TransfertControl.vhd"/>
+    <rtl type="package" name="TransCtrlPack" path="./TransCtrlPack.vhd"/>
+  </core>
+</module>
+

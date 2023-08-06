@@ -1,0 +1,61 @@
+<module area="" description="BOPM_computation_unit" issues="" name="BOPM_computation_unit" purpose="BOPM_computation_unit" speed="" title="BOPM_computation_unit" tool="Vivado 2015.4" version="1.0" typesignature="float float">
+
+  <services>
+    <offered alias="BOPM" name="BOPM_Unit">
+         <map actual="Stim1" formal="Stim1"/>
+         <map actual="Stim2" formal="Stim2"/>
+         <map actual="Trace1" formal="Trace1"/>
+    </offered>
+  </services>
+  
+  <input name="CLK" size="1" type="logic"/>
+  <input name="RST" size="1" type="logic"/>
+  
+  <input name="Stim1" size="64" type="logic"/>
+  <input name="Stim2" size="64" type="logic"/>
+  <output name="Trace1" size="64" type="logic"/>
+  
+  <features>
+    <design Latency="9" DataIntroductionInterval="1"/>
+	<fpga id="XC7VX485T">
+		<resources lut="3060" ram="0" register="4713"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC6VLX240T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC6SLX150">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="100"/>
+	</fpga>
+	<fpga id="XC5VSX50T">
+		<resources lut="16" register="0" ram="0"/>
+		<clock MaxFreq="200"/>
+	</fpga>
+  </features>
+  
+  <services>
+    <required name="reset" type="orthogonal" version="1.0">
+      <map actual="RST" formal="reset"/>
+<!--      <map actual="0" formal="delay"/>-->
+    </required>
+    <required name="clock" type="orthogonal" version="1.0">
+      <map actual="CLK" formal="clock"/>
+<!--      <map actual="50" formal="freq"/>-->
+    </required>
+  </services>
+  
+  <core>
+    <rtl path="./src/constant_definition.vhd"/>
+    <rtl path="./src/a_dividende_8_47.vhd"/>
+    <rtl path="./src/FPExp_8_47_400.vhd"/>
+    <rtl path="./src/a_FPCompare.vhd"/>
+    <rtl path="./src/FPMultiplier_8_47.vhd"/>
+    <rtl path="./src/InitLoop_8_47.vhd"/>
+    <rtl path="./src/InitLoop.vhd"/>
+    <rtl path="./src/FPAdder_8_47.vhd"/>
+    <rtl path="./src/BOPM_computation_unit_8_47.vhd"/>
+    <rtl path="./src/BOPM_computation_unit.vhd"/>
+  </core>
+</module>

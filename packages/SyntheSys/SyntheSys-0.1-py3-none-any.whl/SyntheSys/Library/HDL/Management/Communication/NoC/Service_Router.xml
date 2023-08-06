@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<service name="Router" type="simple" version="1.0" category="Communication.NoC.AdOCNet.Router">
+
+  <parameter default="16" name="FlitWidth" type="numeric"/>
+  <parameter default="5" name="NbInputs"  type="numeric"/>
+  <parameter default="5" name="NbOutputs" type="numeric"/>
+  <parameter default="0" name="X" type="numeric" size="FlitWidth/4"/>
+  <parameter default="0" name="Y" type="numeric" size="FlitWidth/4"/>
+  <parameter default="8" name="InputFifoDepth" type="numeric"/>
+
+  <input name="Rx" size="NbInputs" type="logic" default="0"/>
+  <input name="DataIn" size="NbInputs" type="FlitWidth*logic" typeimport="CrossPack.FLITS"/>
+  <input name="AckTx" size="NbInputs" type="logic" default="0"/>
+
+  <output name="AckRx" size="NbOutputs" type="logic" default="open"/>
+  <output name="DataOut" size="NbOutputs" type="FlitWidth*logic" typeimport="CrossPack.FLITS"/>
+  <output name="Tx" size="NbOutputs" type="logic" default="open"/>
+
+
+</service>
