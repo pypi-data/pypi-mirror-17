@@ -1,0 +1,28 @@
+Metadata-Version: 1.0
+Name: proteusisc
+Version: 0.1.0
+Summary: Driver framework for In System Configureation (ISC) Controllers (for example, JTAG)
+Home-page: https://github.com/diamondman/proteusisc
+Author: Jessy Diamond Exum
+Author-email: jessy.diamondman@gmail.com
+License: LGPL 2.1
+Description: # ProteusISC
+        
+        Linux USB JTAG controller for Digilent boards.
+        
+        To see hardware reverse engineering notes, visit http://diamondman.github.io/Adapt/.
+        
+        ## Installation / Setup
+        
+           sudo pip install .
+        
+        For additional information on setting up supported jtag controllers, check the documentation link above..
+        
+        ## Testing
+        
+            pytest --cov-report term-missing --cov proteusisc -v
+        
+        ## Installation while developing
+        
+            pip install . -U --no-deps
+Platform: any
