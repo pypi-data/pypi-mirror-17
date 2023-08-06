@@ -1,0 +1,24 @@
+Metadata-Version: 2.0
+Name: ibmdbpy
+Version: 0.1.3.post5
+Summary: A Pandas-like SQL-wrapper for in-database analytics with IBM dashDB/DB2.
+Home-page: https://github.com/ibmdbanalytics/ibmdbpy
+Author: IBM Corp.
+Author-email: NRAUSCH@de.ibm.com
+License: BSD
+Requires-Dist: future
+Requires-Dist: lazy
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: pypyodbc
+Requires-Dist: six
+Provides-Extra: doc
+Requires-Dist: sphinx; extra == 'doc'
+Provides-Extra: jdbc
+Requires-Dist: jaydebeapi; extra == 'jdbc'
+Provides-Extra: test
+Requires-Dist: pytest; extra == 'test'
+
+ibmdbpy
+
+
