@@ -1,0 +1,3 @@
+[console_scripts]
+cchain = cloudchain.command_line:main
+
