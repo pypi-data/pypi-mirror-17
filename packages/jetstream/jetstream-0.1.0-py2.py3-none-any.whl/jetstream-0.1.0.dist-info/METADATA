@@ -1,0 +1,17 @@
+Metadata-Version: 2.0
+Name: jetstream
+Version: 0.1.0
+Summary: UNKNOWN
+Home-page: https://rackspace.com/rackerlabs/jetstream
+Author: Rackers
+Author-email: fps@rackspace.com
+License: Apache 2.0
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Requires-Dist: troposphere (==1.8.1)
+Requires-Dist: boto3 (==1.4.0)
+Requires-Dist: awacs
+
+UNKNOWN
+
+
