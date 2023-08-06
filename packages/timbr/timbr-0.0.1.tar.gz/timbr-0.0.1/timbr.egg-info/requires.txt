@@ -1,0 +1,12 @@
+pymongo>=2.8
+dask
+ipython
+numpy
+observed
+jupyter_react
+simplejson>=3.6.5
+tables>=3.2.1
+msgpack-python>=0.4.6
+argh>=0.26.1
+jsonpath-rw>=1.4.0
+decorator>=4.0.6
