@@ -1,0 +1,6 @@
+[console_scripts]
+ohproj-download = ohapi.command_line:download
+ohproj-metadata = ohapi.command_line:metadata
+ohproj-upload = ohapi.command_line:upload
+ohpub-download = ohapi.public:download
+
