@@ -1,0 +1,6 @@
+-r test.txt
+
+django-applog>=3.2
+django>=1.6
+ncbi-lbos>=3.0.0
+ncbi-lbsm

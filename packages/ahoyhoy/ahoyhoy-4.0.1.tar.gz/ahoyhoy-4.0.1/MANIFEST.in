@@ -1,0 +1,15 @@
+include *.md
+include LICENSE
+include requirements/*.txt
+include tox.ini
+
+recursive-include docs *
+recursive-include tests *.py
+
+prune tmp
+prune ahoyhoy/ncbi
+prune docs/ncbi
+prune tests/ncbitests
+prune README.md
+
+global-exclude *.py[cod] __pycache__ *.so

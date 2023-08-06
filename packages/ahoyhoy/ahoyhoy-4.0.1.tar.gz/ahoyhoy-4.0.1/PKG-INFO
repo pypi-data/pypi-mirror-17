@@ -1,0 +1,55 @@
+Metadata-Version: 1.1
+Name: ahoyhoy
+Version: 4.0.1
+Summary: Python client for service requests
+Home-page: http://www.ncbi.nlm.nih.gov/
+Author: NCBI
+Author-email: python-core@ncbi.nlm.nih.gov
+License: Public Domain
+Description: Ahoy-Hoy!
+        =========
+        
+        Overview
+        --------
+        
+        **A friendly greeting for your services!**
+        
+        `ahoyhoy` is intended as a universal service client for python/django applications.
+        
+        Goals
+        -----
+        
+        - Provide a standard service discovery and resolution interface for python.
+        - Include all required information in each request before sending it to downstream services
+        
+        Documentation
+        -------------
+        
+        For full documentation, including installation, please see `<http://ahoyhoy.readthedocs.io/en/latest/>`_
+        
+        
+        About the name
+        --------------
+        
+        From `Wikipedia <https://en.wikipedia.org/wiki/Ahoy_(greeting)>`_:
+        
+        `Ahoy` is a signal word used to call to a ship or boat, stemming from the Middle English cry, 'Hoy!'.
+        
+        Alexander Graham Bell originally suggested `ahoy` be adopted as the standard greeting when answering a telephone, before 'hello' (suggested by Thomas Edison) became common.
+        
+        
+        (Formerly a Ukrainian Unicorn.)
+        
+Keywords: python web requests client
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: Public Domain
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
