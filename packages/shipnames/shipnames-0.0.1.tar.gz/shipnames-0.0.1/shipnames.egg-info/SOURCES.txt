@@ -1,0 +1,13 @@
+MANIFEST.in
+README.md
+README.txt
+requirements.txt
+setup.cfg
+setup.py
+shipnames/__init__.py
+shipnames/shipnames.py
+shipnames.egg-info/PKG-INFO
+shipnames.egg-info/SOURCES.txt
+shipnames.egg-info/dependency_links.txt
+shipnames.egg-info/requires.txt
+shipnames.egg-info/top_level.txt
