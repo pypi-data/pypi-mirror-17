@@ -1,0 +1,108 @@
+/*
+    hide the news in the topbar
+*/
+
+.top-bar-section li:last-child {
+    display: none;
+}
+
+/*
+    background color of default logo
+*/
+svg #background {
+    fill: lighten($primary-color, 25%);
+}
+
+/*
+    plain panels
+*/
+.plain-panel {
+    background: none;
+    padding: 0 10px;
+}
+
+/*
+    editbar icons
+*/
+
+.edit-bar {
+    .new-activity:before { @include icon('\f135'); }
+    .request-publication:before { @include icon('\f087'); }
+    .accept-activity:before { @include icon('\f087'); }
+    .reject-activity:before { @include icon('\f088'); }
+    .archive-activity:before { @include icon('\f187'); }
+}
+
+/*
+    activities list
+*/
+.activity-list-item {
+    margin-bottom: 1.5rem;
+
+    .page-lead {
+        font-size: 1rem;
+        margin-bottom: .5rem;
+    }
+}
+
+.activity-state {
+    @include label(
+        $radius:2px
+    );
+
+    &.activity-state-preview {
+        background-color: $yellow-dark;
+    }
+
+    &.activity-state-proposed {
+        background-color: $orange-dark;
+    }
+
+    &.activity-state-accepted {
+        background-color: $primary-color;
+    }
+
+    &.activity-state-denied {
+        background-color: $red-dark;
+    }
+
+    &.activity-state-archived {
+        background-color: $gray-dark;
+    }
+}
+
+
+/*
+    activity view
+*/
+.activity-status-panel {
+
+    .field-display-label {
+        font-weight: normal;
+    }
+
+    .activity-state {
+        font-size: .875rem;
+    }
+}
+
+
+/*
+    ticket view
+*/
+.ticket-summary {
+    .page-content-main,
+    .page-content-sidebar {
+        @include grid-column(12);
+    }
+}
+
+.FER-link::before {
+    @include icon('\f135');
+    display: inline-block;
+    margin-right: 1ex;
+}
+
+.ticket-handler-FER td:first-child::before {
+    @include icon('\f135');
+}
