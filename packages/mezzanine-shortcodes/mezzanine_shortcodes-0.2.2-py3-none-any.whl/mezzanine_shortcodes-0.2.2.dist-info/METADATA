@@ -1,0 +1,23 @@
+Metadata-Version: 2.0
+Name: mezzanine-shortcodes
+Version: 0.2.2
+Summary: A Mezzanine package for adding buttons and menus to the richtext editor by simply decorating a python function.
+Home-page: https://github.com/ryneeverett/mezzanine-shortcodes
+Author: Ryne Everett
+Author-email: ryneeverett@gmail.com
+License: BSD
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: beautifulsoup4
+Requires-Dist: mezzanine
+
+UNKNOWN
+
+
