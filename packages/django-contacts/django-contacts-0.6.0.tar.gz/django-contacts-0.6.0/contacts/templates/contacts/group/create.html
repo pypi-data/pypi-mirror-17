@@ -1,0 +1,17 @@
+{% extends "contacts/group/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ block.super }}: {% trans "Create a new Group" %}{% endblock %}
+
+{% block content_title %}
+	<h2>{% trans "Create a new Group" %}</h2>
+{% endblock %}
+
+{% block content %}
+	<form action="." method="post" accept-charset="utf-8">
+        {% csrf_token %}
+		{{ form.as_p }}
+
+		<p><input type="submit" value="{% trans "Create" %}"></p>
+	</form>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "contacts/company/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ block.super }}: {{ object }}{% endblock %}
+
+{% block content_title %}
+	<h2>
+		<span class="fn">{{ object }}</span>
+		{% if object.nickname %}
+		<span class="alt">(<span class="nickname">{{ object.nickname }}</span>)</span>
+		{% endif %}
+	</h2>
+{% endblock %}
+
+{% block content %}
+	<p>
+		<a href="{{ object.get_update_url }}">{% trans "Update" %}</a>
+		<a href="{{ object.get_delete_url }}">{% trans "Delete" %}</a>
+	</p>
+	
+	{{ object.about|linebreaks }}
+	
+	{% if object.person_set.all %}
+		<h3>People</h3>
+
+		<ul class="link_list">
+		{% for person in object.person_set.all %}
+			<li>
+				<a href="{{ person.get_absolute_url }}">{{ person }}</a>
+				{% if person.title %}
+					<span class="alt">({{ person.title }})</span>
+				{% endif %}
+			</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+	
+	{% include "contacts/_phone_number_list.html" %}
+	{% include "contacts/_email_address_list.html" %}
+	{% include "contacts/_instant_messenger_list.html" %}
+	{% include "contacts/_street_address_list.html" %}
+	{% include "contacts/_web_site_list.html" %}
+	{% include "contacts/_special_date_list.html" %}
+	{% include "contacts/_comment_list.html" %}
+{% endblock %}

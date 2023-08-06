@@ -1,0 +1,16 @@
+{% load i18n %}
+
+<fieldset id="instant_messengers">
+	<legend>{% trans "Instant messengers" %}</legend>
+	{{ im_formset.management_form }}
+	{% for form in im_formset.forms %}
+	<p>
+		{{ form.im_account }}
+		{{ form.service }}
+		{{ form.location }}
+		<label>{{ form.DELETE.label }}</label>
+		{{ form.DELETE }}
+		{{ form.id }}
+	</p>
+	{% endfor %}
+</fieldset>

@@ -1,0 +1,21 @@
+{% extends "contacts/company/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ block.super }}: {% trans "Create a new Company" %}{% endblock %}
+
+{% block content_title %}
+	<h2>{% trans "Create a new Company" %}</h2>
+{% endblock %}
+
+{% block content %}
+	<form action="." method="post" accept-charset="utf-8">
+        {% csrf_token %}
+		{{ form.as_p }}
+
+		{% for form in phone_formset.forms %}
+			{{ form.as_p }}
+		{% endfor %}
+
+		<p><input type="submit" value="{% trans "Create" %}"></p>
+	</form>
+{% endblock %}

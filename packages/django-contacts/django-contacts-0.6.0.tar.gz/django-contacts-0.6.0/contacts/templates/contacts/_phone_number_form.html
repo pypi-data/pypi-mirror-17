@@ -1,0 +1,15 @@
+{% load i18n %}
+
+<fieldset id="phone_numbers">
+	<legend>{% trans "Phone numbers" %}</legend>
+	{{ phone_formset.management_form }}
+	{% for form in phone_formset.forms %}
+	<p>
+		{{ form.phone_number }}
+		{{ form.location }}
+		<label>{{ form.DELETE.label }}</label>
+		{{ form.DELETE }}
+		{{ form.id }}
+	</p>
+	{% endfor %}
+</fieldset>

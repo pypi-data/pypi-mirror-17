@@ -1,0 +1,18 @@
+{% load i18n %}
+
+{% if object.street_address.all %}
+<div id="contant_addresses">
+	<h3>{% trans "Street Addresses" %}</h3>
+	
+	<ul class="link_list">
+	{% for address in object.street_address.all %}
+		<li class="adr">
+			<span class="street-address">{{ address.street }}</span><br>
+			<span class="locality">{{ address.city }}</span>, <span class="region">{{ address.province }}</span><br>
+			<span class="postal-code">{{ address.postal_code }}</span> <span class="country-name">{{ address.country }}</span>
+			<span class="alt">(<span class="type">{{ address.get_location_display }}</span>)</span>
+		</li>
+	{% endfor %}
+	</ul>
+</div>
+{% endif %}

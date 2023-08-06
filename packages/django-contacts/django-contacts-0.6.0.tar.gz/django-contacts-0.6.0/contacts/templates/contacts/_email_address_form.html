@@ -1,0 +1,15 @@
+{% load i18n %}
+
+<fieldset id="email_addresses" class="">
+	<legend>{% trans "Email addresses" %}</legend>
+	{{ email_formset.management_form }}
+	{% for form in email_formset.forms %}
+	<p>
+		{{ form.email_address }}
+		{{ form.location }}
+		<label>{{ form.DELETE.label }}</label>
+		{{ form.DELETE }}
+		{{ form.id }}
+	</p>
+	{% endfor %}
+</fieldset>
