@@ -1,0 +1,5 @@
+[run]
+source = leonardo_store_faq
+omit =
+    *migrations*
+    leonardo_store_faq/__init__.py
