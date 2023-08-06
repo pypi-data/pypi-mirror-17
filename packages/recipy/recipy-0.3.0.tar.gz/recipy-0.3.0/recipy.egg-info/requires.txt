@@ -1,0 +1,13 @@
+wrapt
+tinydb>=3.0.0
+tinydb-serialization
+jinja2
+docopt
+GitPython
+Flask
+colorama
+Flask-Script
+flask_bootstrap
+flask-wtf
+python-dateutil
+six
