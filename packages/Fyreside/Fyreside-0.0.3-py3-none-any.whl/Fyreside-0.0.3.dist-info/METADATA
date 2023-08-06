@@ -1,0 +1,24 @@
+Metadata-Version: 2.0
+Name: Fyreside
+Version: 0.0.3
+Summary: Talker-style MUD with card game features
+Home-page: https://github.com/emsenn/fyreside
+Author: emsenn
+Author-email: morgan.sennhauser@gmail.com
+License: WTFPL
+Keywords: mud mmo mmorpg game
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Communications :: Chat
+Classifier: Topic :: Games/Entertainment :: Multi-User Dungeons (MUD)
+Requires-Dist: qtmud (==0.0.9)
+
+Fyreside is a talker-style MUD with card game features built to use qtMUD
+
+
