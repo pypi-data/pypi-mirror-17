@@ -1,0 +1,4 @@
+include CONTRIBUTORS LICENSE *.rst
+recursive-include django_uwsgi *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[cod]
