@@ -1,0 +1,25 @@
+Metadata-Version: 2.0
+Name: ribotish
+Version: 0.1.0
+Summary: Python Modules for Riboseq data analysis.
+Home-page: https://github.com/zhpn1024
+Author: Peng Zhang
+Author-email: zhpn1024@163.com
+License: GNU General Public License (GPL)
+Keywords: Python,Riboseq,translation
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: License :: Free for non-commercial use
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Requires-Dist: matplotlib (>=1.4.3)
+Requires-Dist: pysam (>=0.8.3)
+Requires-Dist: scipy (>=0.15.1)
+
+UNKNOWN
+
+
