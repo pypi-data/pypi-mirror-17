@@ -1,0 +1,12 @@
+[console_scripts]
+coconut = coconut.main:main
+coconut-py3 = coconut.main:main
+coconut-py35 = coconut.main:main
+coconut-release = coconut.main:main
+coconut-v1.2.0 = coconut.main:main
+
+[pygments.lexers]
+coconut = coconut.highlighter:CoconutLexer
+coconut_pycon = coconut.highlighter:CoconutPythonConsoleLexer
+coconut_python = coconut.highlighter:CoconutPythonLexer
+
