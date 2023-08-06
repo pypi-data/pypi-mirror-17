@@ -1,0 +1,11 @@
+Django
+django-appconf
+django-import-export
+celery
+django-celery
+rules
+
+[test]
+mock
+factory-boy
+coverage
