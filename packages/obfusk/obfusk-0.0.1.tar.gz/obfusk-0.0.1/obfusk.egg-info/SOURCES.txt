@@ -1,0 +1,13 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+obfusk/__init__.py
+obfusk/__main__.py
+obfusk/immutable.py
+obfusk/lazy.py
+obfusk.egg-info/PKG-INFO
+obfusk.egg-info/SOURCES.txt
+obfusk.egg-info/dependency_links.txt
+obfusk.egg-info/requires.txt
+obfusk.egg-info/top_level.txt
