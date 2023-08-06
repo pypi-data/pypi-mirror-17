@@ -1,0 +1,74 @@
+Metadata-Version: 1.1
+Name: django-rocketchat-auth
+Version: 1.0
+Summary: Authenticate Rocket.Chat with Django Framework
+Home-page: https://rodorgas.github.com/django-rocketchat-auth
+Author: Rodrigo Orem
+Author-email: orem.rodrigo@gmail.com
+License: MIT License
+Description: django-rocketchat-auth
+        ======================
+        
+        .. image:: https://img.shields.io/pypi/v/django-rocketchat-auth.svg
+            :target: https://pypi.python.org/pypi/django-rocketchat-auth
+        
+        Authenticate your `Rocket.Chat`_ users with Django web framework.
+        
+        This app implements the API used by `Rocket.Chat IFrame authentication`_. Also, it handles logout by wiring up a method on Django signals.
+        
+        
+        Quickstart
+        ----------
+        
+        1. Install this app in you project::
+        
+            pip install django-rocketchat-auth
+        
+        2. Add "rocketchat_auth" to your INSTALLED_APPS setting like this::
+        
+            INSTALLED_APPS = (
+                ...
+                'rocketchat_auth',
+            )
+        
+        3. Update your `settings.py`::
+        
+            MONGO_DB = 'localhost:27017'
+            ROCKETCHAT = 'localhost'
+        
+        4. Include the rocketchat_auth URLconf in your project urls.py like this::
+        
+            urlpatterns += [url(r'^rocketchat/', include('rocketchat_auth.urls'))]
+        
+        5. You will probably need to use `django-cors-headers`_ and set your Rocket.Chat domain in `CORS_ORIGIN_WHITELIST`
+        
+        6. Now go to your Rocket.Chat admin page > Settings > Accounts. Enable **Iframe** and set:
+        
+         - **Iframe URL**: http://localhost:8000/login/?next=/rocketchat/redirect (assuming you have a login page in /login)
+         - **URL API**: http://localhost:8000/rocketchat/api
+        
+        
+        Roadmap
+        -------
+        
+        - Enforce unique email registration in Django admin, since Rocket.Chat requires this.
+        - Update Rocket.Chat user details in MongoDB when the user is modified in Django Admin.
+        
+        .. _`Rocket.Chat`: https://github.com/RocketChat/Rocket.Chat) users using [Django framework](https://github.com/django/django
+        .. _`Rocket.Chat IFrame authentication`: https://rocket.chat/docs/administrator-guides/authentication/iframe/
+        .. _`django-cors-headers`: https://github.com/ottoyiu/django-cors-headers
+        
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.10
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Communications :: Chat
