@@ -1,0 +1,9 @@
+{% if entries %}
+  <button
+    is="bulbs-load-more"
+    class="liveblog-more-button"
+    next-entries-url="{% url 'liveblog-more-entries' pk=content.pk after_entry=entries.last.pk %}"
+  >
+    SHOW MORE
+  </button>
+{% endif %}
