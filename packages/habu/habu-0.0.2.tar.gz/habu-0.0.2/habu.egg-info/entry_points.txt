@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        habu.ip=habu.cli.cmd_ip:cmd_ip
+    
