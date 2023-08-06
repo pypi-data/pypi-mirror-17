@@ -1,0 +1,15 @@
+setup.cfg
+setup.py
+tests/__init__.py
+tests/unit/__init__.py
+tests/unit/all_tests.py
+uwsgi_cloudwatch/__init__.py
+uwsgi_cloudwatch/main.py
+uwsgi_cloudwatch/validation.py
+uwsgi_cloudwatch.egg-info/PKG-INFO
+uwsgi_cloudwatch.egg-info/SOURCES.txt
+uwsgi_cloudwatch.egg-info/dependency_links.txt
+uwsgi_cloudwatch.egg-info/entry_points.txt
+uwsgi_cloudwatch.egg-info/not-zip-safe
+uwsgi_cloudwatch.egg-info/requires.txt
+uwsgi_cloudwatch.egg-info/top_level.txt
