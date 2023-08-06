@@ -1,0 +1,9 @@
+setup.cfg
+setup.py
+avk_django_datadog.egg-info/PKG-INFO
+avk_django_datadog.egg-info/SOURCES.txt
+avk_django_datadog.egg-info/dependency_links.txt
+avk_django_datadog.egg-info/top_level.txt
+datadog/__init__.py
+datadog/middleware/__init__.py
+datadog/middleware/request_handler.py
