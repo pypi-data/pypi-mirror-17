@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: pymonerowallet
+Version: 0.1
+Summary: Python library to query a Monero wallet
+Home-page: https://github.com/chaica/pymonerowallet
+Author: Carl Chenet
+Author-email: chaica@ohmytux.com
+License: GNU GPL v3
+Download-URL: https://github.com/chaica/pymonerowallet
+Description: Python library to query a Monero wallet
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.4
