@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: pyAudioAnalysis
+Version: 0.1.1
+Summary: Python Audio Analysis Library: Feature Extraction, Classification, Segmentation and Applications
+Home-page: https://github.com/tyiannak/pyAudioAnalysis
+Author: Theodoros Giannakopoulos
+Author-email: tyiannak@gmail.com
+License: Apache 2.0
+Description: pyAudioAnalysis is a Python library covering a wide range of audio analysis tasks, including: feature extraction, classification, segmentation and visualization.
+Keywords: audio analysis feature extraction classification segmentation visualization
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Multimedia :: Sound/Audio :: Analysis
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
