@@ -1,0 +1,20 @@
+Metadata-Version: 2.0
+Name: uterm
+Version: 0.1
+Summary: Micropython-friendly terminal
+Home-page: https://github.com/SmileyChris/uterm
+Author: Chris Beaven
+Author-email: smileychris@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: POSIX
+Classifier: Topic :: Software Development :: Embedded Systems
+Requires-Dist: pyserial
+Requires-Dist: pyte
+
+<_io.TextIOWrapper name='/home/chris/dev/esp8266/uterm/README.rst' encoding='utf-8'>
+
+
