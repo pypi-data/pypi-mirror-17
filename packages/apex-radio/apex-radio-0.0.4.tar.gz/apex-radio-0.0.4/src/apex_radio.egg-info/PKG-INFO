@@ -1,0 +1,139 @@
+Metadata-Version: 1.1
+Name: apex-radio
+Version: 0.0.4
+Summary: APEX reference implementation.
+Home-page: http://ApexProtocol.com
+Author: Jeffrey Phillips Freeman (WI2ARD)
+Author-email: jeffrey.freeman@syncleus.com
+License: Apache Software License
+Download-URL: https://github.com/Syncleus/apex/archive/v0.0.4.tar.gz
+Description: ========
+        Overview
+        ========
+        
+        
+        
+        APEX is a next generation APRS based protocol. This repository represents the reference implementation and is a full features application for digipeating across multiple AX.25 KISS TNC devices using the full APEX stack.
+        
+        For more information on the project please check out `the project's home page <http://apexprotocol.com/>`_.
+        
+        Installation
+        ============
+        
+        Install the application using pip.
+        
+            pip install apex-radio
+        
+        Running the app
+        ===============
+        
+        The application is written for python 2 or 3. Once installed copy the apex.conf.example file over to apex.conf in the
+        /etc directory, then edit the file and replace it with your details. Next just run the application with the following
+        command.
+        
+            apex -v
+        
+        There isn't much to the application right now, so thats all you should need to run it. Digipeating will occur
+        automatically and respond to the WIDEN-n paradigm as well as your own callsign. Cross-band repeating is enabled right
+        now but only by specifying the call sign directly. The application is still pre-release so more features and
+        configuration options should be added soon.
+        
+        This is Free software: Apache License v2
+        
+        Documentation
+        =============
+        
+        https://apex.readthedocs.io/
+        
+        Development
+        ===========
+        
+        Initial setup::
+        
+            pip install -U pyenv tox
+            pyenv install 2.7 3.3.6 3.4.5 3.5.2 pypy-5.4.1
+            pyenv global 2.7 3.3.6 3.4.5 3.5.2 pypy-5.4.1
+        
+        NOTE: The specific versions mentioned above may be different for each platform. use `pyenv install --list` to view the
+        list of available versions. You will need a version of 2.7.x, 3.3.x, 3.4.x, 3.5.x, and pypy. Try to use the latest
+        available version for each. Also some flavors of pyenv have different formats for it's arguments. So read the pyenv
+        documentation on your platform.
+        
+        To run all tests::
+        
+            tox
+        
+        Note, to combine the coverage data from all the tox environments run:
+        
+        .. list-table::
+            :widths: 10 90
+            :stub-columns: 1
+        
+            - - Windows
+              - ::
+        
+                    set PYTEST_ADDOPTS=--cov-append
+                    tox
+        
+            - - Other
+              - ::
+        
+                    PYTEST_ADDOPTS=--cov-append tox
+        
+        
+        
+        Changelog
+        =========
+        
+        0.0.4
+        -----
+        
+        * Colorized the output from the plugins.
+        * Removed packet_cache argument from plugins, it is no longer needed.
+        * Mechanisms added to ensure plugins can not send the same packet twice, plugins no longer need to handle this explicitly.
+        * Fixed a bug where packets can be digipeated multiple times.
+        
+        0.0.3
+        -----
+        
+        * Reordered changelog version entries.
+        * Fixed several mistakes in the README.
+        
+        0.0.2
+        -----
+        
+        * The configfile command line argument added.
+        * When no configfile argument present APEX will now search multiple default paths to find a configuration file.
+        * Changed LICENSE file text to include the full text of the Apache Software License version 2.
+        * Colorized some of the output.
+        * Changed the way plugins are discovered, they can now be installed anywhere.
+        * Fixed a bug in the APRS-IS class which threw a broken pipe error.
+        * Refactored several classes and renamed them: Kiss class now has two subclasses and AprsInternetServer is renamed to IGate
+        * Encapsulated IGate connection with a buffer that automatically reconnects when disconnected.
+        * Removed a few obsolete and unused util functions.
+        * Fix several errors thrown due to missing sections in the configuration file.
+        
+        0.0.1
+        -----
+        
+        * First release on PyPI.
+        
+Keywords: Ham Radio,APEX,APRS
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Environment :: Console
+Classifier: Environment :: No Input/Output (Daemon)
+Classifier: Natural Language :: English
+Classifier: Topic :: Communications :: Ham Radio
