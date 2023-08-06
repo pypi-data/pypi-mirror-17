@@ -1,0 +1,9 @@
+[invenio_base.apps]
+invenio_orcid = invenio_orcid:InvenioORCID
+
+[invenio_base.blueprints]
+invenio_orcid = invenio_orcid.views:blueprint
+
+[invenio_i18n.translations]
+messages = invenio_orcid
+
