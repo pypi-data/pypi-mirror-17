@@ -1,0 +1,42 @@
+PyQtRPT 1.5.5
+Python Binding for QtRPT
+Python PySide Shiboken QtRPT
+License(GPL) compatible: with QtRPT and zint
+or
+LGPL only QtRPT
+
+autor PyQtRPT: numaelis@gmail.com
+web: https://sourceforge.net/projects/pyqtrpt/
+
+""""""
+QtRPT (http://www.qtrpt.tk/index.php)
+Version 1.5.5
+Programmer: Aleksey Osipov
+Web-site: http://www.aliks-os.tk
+
+QtRPT is the easy-to-use print report engine written in C++ QtToolkit. 
+It allows combining several reports in one XML file. For separately taken field, 
+you can specify some condition depending on which this field will display in different font and background color, etc.
+The project consists of two parts: report library QtRPT and report designer application QtRptDesigner. Report file is a file in XML format. 
+The report designer makes easy to create report XML file. 
+Thanks to Qt library, our project can be used in programs for work in the operating systems Windows, Linux, MacOS
+
+Announcements:(http://www.qtrpt.tk/index.php?page=announcements.php)
+License:
+
+For a long time the QtRPT project is distributed under the LGPL license. This license allows you to dynamically 
+link with your source code. In order to facilitate the user to use QtRPT and allow to produce statically linking, 
+I decided to change the Apache 2.0 license.
+License Apache 2.0 more permissive compared to LGPL, I hope that the transition will not create problems for you.
+Please note that QtRPT to generate bar code uses the Zint library, which is distributed under license GPL, 
+in this case, you must use your project is also under this license or disable the use of the Zint library.
+""""""
+
+
+download  "QtRptProject 1.5.5 binary for windows" from http://www.qtrpt.tk/?page=download.php and use QtRptDesigner.exe -> to edit xml files
+
+links:
+http://www.qtrpt.tk/
+http://lynxline.com/superhybrids-part-2-now-qt-pyside/
+
+
