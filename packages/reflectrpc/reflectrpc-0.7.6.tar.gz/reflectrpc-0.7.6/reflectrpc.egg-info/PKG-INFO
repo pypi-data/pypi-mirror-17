@@ -1,0 +1,65 @@
+Metadata-Version: 1.1
+Name: reflectrpc
+Version: 0.7.6
+Summary: Self-describing JSON-RPC services made easy
+Home-page: https://github.com/aheck/reflectrpc
+Author: Andreas Heck
+Author-email: aheck@gmx.de
+License: MIT
+Download-URL: https://github.com/aheck/reflectrpc/archive/v0.7.6.tar.gz
+Description: *********
+        Changelog
+        *********
+        
+        0.7.6 (2016-09-14)
+        ==================
+        
+        - Support for typed arrays
+        - Autocompletion of type and function names in rpcsh
+        - Bugfixes for command-line programs
+        - Autoreconnect in case of failing connections in command-line programs
+        
+        0.7.5 (2016-08-17)
+        ==================
+        
+        - Fixes rpcsh crash with Python 2.7
+        
+        0.7.4 (2016-08-11)
+        ==================
+        
+        - RPC functions run by the Twisted server can now return Deferreds to implement concurrent RPC services
+        - Linux sys info example service
+        
+        0.7.3 (2016-07-24)
+        ==================
+        
+        - Support for UNIX domain sockets
+        - New rpcgencode tool to generate client code for a running RPC service
+        
+        0.7.2 (2016-07-01)
+        ==================
+        
+        - Bugfixes
+        - Automatic generation of service documentation with the new rpcdoc tool
+        - HTTP Basic Auth for client and Twisted server
+        - Mechanism for passing context to RPC functions (rpcinfo)
+        
+        0.7.1 (2016-05-12)
+        ==================
+        
+        - Adds missing package dependencies
+        
+        0.7.0 (2016-05-11)
+        ==================
+        
+        - First release
+        
+Keywords: json-rpc jsonrpc rpc webservice
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
