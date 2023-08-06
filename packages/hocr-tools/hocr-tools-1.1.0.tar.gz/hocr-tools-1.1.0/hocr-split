@@ -1,0 +1,44 @@
+#!/usr/bin/env python
+
+# split an hOCR file into individual pages
+
+from __future__ import print_function
+import os
+import re
+import string
+import sys
+
+from lxml import etree, html
+
+################################################################
+### main program
+################################################################
+
+def print_usage():
+    sys.stderr.write("split a multipage hOCR file into single pages\n\n")
+    sys.stderr.write("usage: %s file.html pattern\n" % sys.argv[0])
+    sys.stderr.write("   where 'pattern' is something like 'base-%03d.html'\n")
+
+if len(sys.argv)>1 and (sys.argv[1] == '-h' or sys.argv[1] == '--help'):
+    print_usage()
+    sys.exit(0)
+
+if len(sys.argv)!=3:
+    print_usage()
+    sys.exit(1)
+
+pattern = sys.argv[2]
+assert re.search('%[0-9]*d',pattern)
+
+doc = etree.parse(sys.argv[1], html.XHTMLParser())
+pages = doc.xpath("//*[@class='ocr_page']")
+assert pages!=[]
+
+container = pages[0].getparent()
+index = 1
+for new_page in pages:
+    container_pages = container.xpath("//*[@class='ocr_page']")
+    for page in container_pages: container.remove(page)
+    container.append(new_page)
+    doc.write((pattern % index), pretty_print=True)
+    index += 1
