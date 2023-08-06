@@ -1,0 +1,6 @@
+yara-python==3.5.0.999
+
+[dev]
+pypandoc
+
+[test]
