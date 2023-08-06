@@ -1,0 +1,27 @@
+Acquisition
+AccessControl
+collective.z3cform.widgets >=1.0b3
+five.grok
+plone.api
+plone.app.content
+plone.app.dexterity [grok, relations]
+plone.app.portlets
+plone.directives.dexterity
+plone.memoize
+plone.portlets
+plone.uuid
+Products.CMFCore
+Products.CMFPlone >=4.2
+Products.GenericSetup
+setuptools
+zope.component
+zope.i18nmessageid
+zope.interface
+zope.schema
+
+[test]
+plone.app.robotframework
+plone.app.testing [robot] >=4.2.2
+plone.dexterity
+plone.testing
+robotsuite
