@@ -1,0 +1,18 @@
+CHANGES
+=======
+
+0.0.2
+-----
+
+* Require Python >=3.2, fix travis
+* Update gitignore
+* Add new illustrative test: monkeypatching stdout
+* Add installation instructions to README.md
+* use inspect.get_members(...)
+
+0.0.1
+-----
+
+* CI: add pypi deployment section in .travis.yml
+* Add requirements.txt
+* Initial commit of hacks
