@@ -1,0 +1,19 @@
+Metadata-Version: 2.0
+Name: xmppgcm
+Version: 0.1
+Summary: Client Library for Firebase Cloud Messaging using XMPP
+Home-page: https://github.com/winster/xmppgcm
+Author: Winster Jose
+Author-email: wtjose@gmail.com
+License: Apache License 2.0
+Keywords: gcm,fcm,xmpp,xmppgcm,xmppfcm
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Programming Language :: Python :: 2.7
+Requires-Dist: sleekxmpp
+
+UNKNOWN
+
+
