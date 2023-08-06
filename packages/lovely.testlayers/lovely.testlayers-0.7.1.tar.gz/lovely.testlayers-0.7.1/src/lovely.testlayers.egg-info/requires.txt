@@ -1,0 +1,17 @@
+setuptools
+
+[cassandra]
+zc.buildout>=1.4
+
+[ldap]
+python-ldap==2.4.27
+
+[mongodb]
+pymongo==2.5.2
+
+[mysql]
+MySQL-python
+
+[pgsql]
+psycopg2
+transaction
