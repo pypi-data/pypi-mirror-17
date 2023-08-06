@@ -1,0 +1,37 @@
+Metadata-Version: 2.0
+Name: wheeler.pygtkhelpers
+Version: 0.14.post7
+Summary: PyGTKHelpers is a library to assist the building of PyGTK applications.
+Home-page: https://github.com/wheeler-microfluidics/pygtk_helpers
+Author: Christian Fobel
+Author-email: christian@fobel.net
+License: LGPL-3.0
+Platform: UNKNOWN
+Requires-Dist: cairo-helpers (>=0.2.post1)
+Requires-Dist: flatland-fork (>=0.4.post2)
+Requires-Dist: jsonschema
+Requires-Dist: redirect-io
+Requires-Dist: si-prefix (>=0.4)
+Requires-Dist: svg-model (>=0.5.post18)
+Requires-Dist: trollius (>=2.1)
+
+# Note #
+
+This project is a fork of [this project][1], written by Ali Afshar
+<aafshar@gmail.com>.
+
+# Description #
+
+PyGTKHelpers is a library to assist the building of PyGTK applications. It is
+intentionally designed to be *non-frameworky*, and blend well with your
+particular style of PyGTK development.
+
+PyGTKHelpers provides a number of widespread features including: View
+delegation, MVC, mixed GtkBuilder/Python views, widget proxying, signal
+auto-connection, object-base lists and trees, a number of helper widgets,
+utility functions for assisting creating new GObject types, unit testing
+helpers and utilities to help debug PyGTK applications.
+
+
+[1]: https://pythonhosted.org/pygtkhelpers/
+
