@@ -1,0 +1,41 @@
+1.3.5
+- Update Git directory checking by ignoring untracked files
+
+1.3.4
+- Fix release
+
+1.3.3
+- Do not communicate to Opbeat if it's not set up
+
+1.3.2
+- Fix minor issues that compromised the lib entirely
+
+1.3.1
+- Add support for Python 3
+
+1.3.0
+- Update the lib structure to use Fabric class based tasks
+
+1.2.0
+- Introduce Fabric tasks to manage nginx
+- Introduce a Fabric task to aid SSL certs creation
+- Introduce a Fabric task to renew SSL certs
+- Compare local and remote Git revisions to enforce integrity
+- Allow user to force overwrite of remote sources
+- Block concurrent Fabric tasks when they are conflicting
+- Import all deploy-related modules implicitly
+
+1.1.1
+- Remove '-c' param from collectstatic command
+
+1.1.0
+- Support Opbeat's deploy registering
+
+1.0.1
+- Fix README file
+
+1.0.0
+- Introduce a complete deploy scheme as Fabric tasks
+
+0.0.0-dev
+- Experimenting with highly destructive stuff
