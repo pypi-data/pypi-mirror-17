@@ -1,0 +1,52 @@
+Metadata-Version: 1.1
+Name: rhyme-haiker
+Version: 2.0.3
+Summary: A rhyming haiku generator.
+Home-page: https://github.com/shitake/rhyme-haiker
+Author: pochiyuru
+Author-email: pochiyuru@gmail.com
+License: MIT
+Description: =================
+        Rhyme Haiker
+        =================
+        
+        押韻俳句生成器
+        
+        A rhyming haiku generator.
+        
+        
+        =================
+        Install
+        =================
+        
+        You can install rhyme-haiker using:
+        
+        ::
+        
+            $ pip install rhyme-haiker
+        
+        
+        =================
+        Usage
+        =================
+        
+        1. Prepare a Japanese text corpus.
+        2. Preprocessing.
+        
+           ::
+        
+               $ haiku prep hoge_corpus.txt
+        
+        3. Compose.
+        
+           ::
+        
+               $ haiku compose
+        
+Keywords: rhyme haiku
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Natural Language :: Japanese
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Communications
