@@ -1,0 +1,15 @@
+setup.py
+french_vat_moss.egg-info/PKG-INFO
+french_vat_moss.egg-info/SOURCES.txt
+french_vat_moss.egg-info/dependency_links.txt
+french_vat_moss.egg-info/requires.txt
+french_vat_moss.egg-info/top_level.txt
+vat_moss/__init__.py
+vat_moss/billing_address.py
+vat_moss/declared_residence.py
+vat_moss/errors.py
+vat_moss/exchange_rates.py
+vat_moss/geoip2.py
+vat_moss/id.py
+vat_moss/phone_number.py
+vat_moss/rates.py
