@@ -1,0 +1,3 @@
+[console_scripts]
+cgquery_xml_to_bamlibrary_capture_json = cgquery_xml_to_bamlibrary_capture_json.__main__:main
+
