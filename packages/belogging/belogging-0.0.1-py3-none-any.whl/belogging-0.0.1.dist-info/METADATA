@@ -1,0 +1,52 @@
+Metadata-Version: 2.0
+Name: belogging
+Version: 0.0.1
+Summary: Belogging
+Home-page: https://github.com/georgeyk/belogging/
+Author: George Y. Kussumoto
+Author-email: contato at georgeyk dot com dot br
+License: MIT
+Download-URL: https://github.com/georgeyk/belogging/releases
+Keywords: logging
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: System :: Logging
+
+
+Belogging
+=========
+
+|TravisCI Build Status| |Coverage Status|
+
+----
+
+A very specific way to configure/setup logging for python applications.
+
+Requirements:
+
+    * Python 3.5 and beyond
+
+
+
+.. |TravisCI Build Status| image:: https://travis-ci.org/georgeyk/belogging.svg?branch=master
+   :target: https://travis-ci.org/georgeyk/belogging
+.. |Coverage Status| image:: https://coveralls.io/repos/github/georgeyk/belogging/badge.svg?branch=master
+   :target: https://coveralls.io/github/georgeyk/belogging?branch=master
+
+
+Changelog:
+----------
+
+0.0.1
+-----
+
+* Initial release
+
+
