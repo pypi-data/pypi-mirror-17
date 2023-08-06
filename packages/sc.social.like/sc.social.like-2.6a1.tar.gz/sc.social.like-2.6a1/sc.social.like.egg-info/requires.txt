@@ -1,0 +1,28 @@
+Acquisition
+plone.api
+plone.app.layout
+plone.app.registry
+plone.app.upgrade
+plone.memoize
+plone.registry
+plone.supermodel
+Products.Archetypes
+Products.CMFCore
+Products.CMFDefault
+Products.CMFPlone >=4.2
+Products.CMFQuickInstallerTool
+Products.GenericSetup
+setuptools
+zope.component
+zope.i18nmessageid
+zope.interface
+zope.schema
+
+[develop]
+docutils
+
+[test]
+plone.browserlayer
+plone.app.robotframework
+plone.app.testing [robot] >=4.2.2
+robotsuite
