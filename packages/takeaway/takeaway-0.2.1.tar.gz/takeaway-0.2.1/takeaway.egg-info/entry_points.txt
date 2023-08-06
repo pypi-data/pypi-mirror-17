@@ -1,0 +1,3 @@
+[console_scripts]
+takeaway = takeaway.command_line:main
+
