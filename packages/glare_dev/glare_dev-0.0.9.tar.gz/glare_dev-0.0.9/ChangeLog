@@ -1,0 +1,93 @@
+CHANGES
+=======
+
+* Preconfigure glare for app-catalog
+* Return Content-Md5 header when downloading a blob
+
+0.2.1
+-----
+
+* Return content-length header in download requests
+* Add digest_algorith config option
+* Add acquired_at column to glare_locks table
+* Add retry on db connection errors
+
+0.2.0
+-----
+
+* Add glare type names in json-schema output
+* Rename 'dependency' to 'link'
+* Implement 'all' artifact type
+* Enable notification support
+* Remove redundant policy
+* Add base test case for unit test
+* Updated from global requirements
+* Updated from global requirements
+* Updated from global requirements
+* Fix typo in schema
+* Add 'version' in schemas
+* Add functional tests on removing properties values
+* Updated from global requirements
+
+0.1.0
+-----
+
+* Add sha1, sha256 support for blobs
+* Devstack plugin
+* Add dict and list filters
+* Improve 'latest' filter
+* Add missing %s in print message
+* Updated from global requirements
+* Remove v0.1 from glare
+* Regenerate dependencies without v1
+* Updated from global requirements
+* Remove Simple DB
+* Rename server in functional tests
+* Add schema tests for base artifact types
+* Refactor functional tests
+* Fix locking
+* Split lock methods into two cases
+* Add tests for db migrations
+* Add config files to pypi package
+* Add glare wsgi application
+* TrivialFix: Remove cfg unused code
+* Rename 'queued' artifact status into 'drafted'
+* Fix MinNumberSize validator
+* Add images to Glare artifacts
+* Add TOSCA template to Glare
+* Add Murano package to Glare artifacts
+* Add heat artifacts to Glare
+* Add programming language python3 in classifier
+* Clean imports in code
+* TrivialFix: Remove logging import unused
+* Add missing config options
+* Add AllowedValues validator
+* Add attribute description to jsonschema
+* Update tox.ini
+* Add several missed options in Glare opt list
+* Move meta-artifact code to separate folder
+* Implement 'latest' filter
+* Change lock id column size up to 255 symbols
+* Fix that deleted artifacts were shown in list output
+* Add retries for sql database
+* Git rid of webob's MultiDict in Base type
+* Update tox.ini
+* Fix tests that fail on python 3.5
+* Additional code cleanup
+* Make Glare to catch TypeErrors in coerce wrapper
+* [WIP] Add functional tests for updates
+* Cleanup policy file for tests
+* Add external urls as soft links
+* Do some cleanup on Glare
+* Show dict value when validating required keys
+* Fix docs and remove bandit check for translation
+* Clean requirements and update README
+* Evacuate the remaining code from glance
+* Add functional tests
+* Fix setup.cfg
+* Remove legacy code from wsgi
+* Add alembic migrations
+* Small fixes
+* Run of glare-api server
+* Glare Code
+* Initial commit
