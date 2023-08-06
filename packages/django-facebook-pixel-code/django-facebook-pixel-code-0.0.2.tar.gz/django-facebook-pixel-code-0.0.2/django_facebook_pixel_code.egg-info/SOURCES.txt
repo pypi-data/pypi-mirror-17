@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+django_facebook_pixel_code.egg-info/PKG-INFO
+django_facebook_pixel_code.egg-info/SOURCES.txt
+django_facebook_pixel_code.egg-info/dependency_links.txt
+django_facebook_pixel_code.egg-info/top_level.txt
+facebook_pixel_code/__init__.py
+facebook_pixel_code/templates/fpc/fpc.html
+facebook_pixel_code/templatetags/__init__.py
+facebook_pixel_code/templatetags/fpc_tags.py
