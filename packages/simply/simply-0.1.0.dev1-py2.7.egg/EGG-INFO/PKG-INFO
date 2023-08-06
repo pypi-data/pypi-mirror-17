@@ -1,0 +1,34 @@
+Metadata-Version: 1.1
+Name: simply
+Version: 0.1.0.dev1
+Summary: Test applications and packages in any Linux context
+Home-page: https://github.com/francois-vincent/clingon
+Author: François Vincent
+Author-email: francois.vincent01@gmail.com
+License: MIT
+Description: 
+        
+        History
+        -------
+        
+        0.1.0 (2016-09-30)
+        ---------------------
+        
+        * First release on PyPI.
+        
+        
+        
+Keywords: development tests integration_tests
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Environment :: Console
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: CPython
