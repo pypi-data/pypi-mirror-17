@@ -1,0 +1,7 @@
+numpy
+scipy
+pandas
+tables
+GDAL>=2.0
+lxml
+scikit-learn>=0.18
