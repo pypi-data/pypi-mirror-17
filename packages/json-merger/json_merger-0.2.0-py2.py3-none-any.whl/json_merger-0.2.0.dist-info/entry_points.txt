@@ -1,0 +1,6 @@
+[invenio_base.apps]
+json_merger = json_merger:JsonMerger
+
+[invenio_i18n.translations]
+messages = json_merger
+
