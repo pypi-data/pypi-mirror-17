@@ -1,0 +1,12 @@
+[antispoofing.utils.db]
+asvspoof = bob.db.asvspoof.spoofing:Database
+
+[bob.db]
+asvspoof = bob.db.asvspoof.driver:Interface
+
+[bob.db.verification.utils]
+asvspoof-verify = bob.db.asvspoof.verification:Database
+
+[console_scripts]
+debug_asvspoof = bob.db.asvspoof.debug_asvspoof:main
+
