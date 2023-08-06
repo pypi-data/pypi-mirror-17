@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>API &mdash; Formbar 0.20.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.20.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Formbar 0.20.3 documentation" href="index.html" />
+    <link rel="prev" title="Usage" href="usage.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="usage.html" title="Usage"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Formbar 0.20.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="api">
+<h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="formbar.config.load">
+<code class="descclassname">formbar.config.</code><code class="descname">load</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/formbar/config.html#load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#formbar.config.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the parsed XML form the given file. The function will load
+the file located in path and than returns the parsed content.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="formbar.config.Config">
+<em class="property">class </em><code class="descclassname">formbar.config.</code><code class="descname">Config</code><span class="sig-paren">(</span><em>tree</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/formbar/config.html#Config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#formbar.config.Config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for accessing the form configuration file. It provides methods to
+get certain elements from the configuration.</p>
+<dl class="method">
+<dt id="formbar.config.Config.get_form">
+<code class="descname">get_form</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/formbar/config.html#Config.get_form"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#formbar.config.Config.get_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a <a class="reference internal" href="#formbar.form.Form" title="formbar.form.Form"><code class="xref py py-class docutils literal"><span class="pre">Form</span></code></a> instance with the configuration for a form
+with id in the configuration file. If the form can not be found a
+KeyError is raised.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Id:</th><td class="field-body">ID of the form in the configuration file</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><code class="docutils literal"><span class="pre">FormConfig</span></code> instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="formbar.form.Form">
+<em class="property">class </em><code class="descclassname">formbar.form.</code><code class="descname">Form</code><span class="sig-paren">(</span><em>config</em>, <em>item=None</em>, <em>dbsession=None</em>, <em>translate=None</em>, <em>change_page_callback={}</em>, <em>renderers={}</em>, <em>request=None</em>, <em>csrf_token=None</em>, <em>eval_url=None</em>, <em>url_prefix=''</em>, <em>locale=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/formbar/form.html#Form"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#formbar.form.Form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for forms. The form will take care for rendering the form,
+validating the submitted data and saving the data back to the
+item.</p>
+<p>The form must be instanciated with an instance of an <code class="docutils literal"><span class="pre">Form</span></code>
+configuration and optional an SQLAlchemy mapped item.</p>
+<p>If an SQLAlchemy mapped item is provided there are some basic
+validation is done based on the defintion in the database. Further
+the save method will save the values directly into the database.</p>
+<p>If no item was provided than a dummy item will be created with the
+attributes of the configured fields in the form.</p>
+<dl class="method">
+<dt id="formbar.form.Form.get_errors">
+<code class="descname">get_errors</code><span class="sig-paren">(</span><em>page=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/formbar/form.html#Form.get_errors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#formbar.form.Form.get_errors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary of all errors in the form. If page
+parameter is given, then only the errors for fields on the given
+page are returned. This dictionary will contain the errors if
+the validation fails. The key of the dictionary is the fieldname
+of the field.  As a field can have more than one error the value
+is a list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Page:</th><td class="field-body">Dictionary with errors</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Dictionary with errors</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="formbar.form.Form.get_warnings">
+<code class="descname">get_warnings</code><span class="sig-paren">(</span><em>page=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/formbar/form.html#Form.get_warnings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#formbar.form.Form.get_warnings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary of all warnings in the form. If page
+parameter is given, then only the warnings for fields on the given
+page are returned. This dictionary will contain the warnings if
+the validation fails. The key of the dictionary is the fieldname
+of the field.  As a field can have more than one warning the value
+is a list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Page:</th><td class="field-body">Name of the page</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Dictionary with warnings</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="formbar.form.Form.render">
+<code class="descname">render</code><span class="sig-paren">(</span><em>values={}</em>, <em>page=0</em>, <em>buttons=True</em>, <em>previous_values={}</em>, <em>outline=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/formbar/form.html#Form.render"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#formbar.form.Form.render" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the rendererd form as an HTML string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Values:</th><td class="field-body">Dictionary with values to be prefilled/overwritten in
+the rendered form.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Previous_values:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">Dictionary of values of the last saved state
+of the item. If provided a diff between the
+current and previous values will be renderered
+in readonly mode.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Outline:</th><td class="field-body">Boolean flag to indicate that the outline for pages
+should be rendered. Defaults to true.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Rendered form.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="formbar.form.Form.save">
+<code class="descname">save</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/formbar/form.html#Form.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#formbar.form.Form.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Will save the validated data back into the item. In case of
+an SQLAlchemy mapped item the data will be stored into the
+database.
+:returns: Item with validated data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="formbar.form.Form.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><em>submitted=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/formbar/form.html#Form.validate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#formbar.form.Form.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if the validation succeeds else False.
+Validation of the data happens in three stages:</p>
+<p>1. Prevalidation. Custom rules that are checked before any
+datatype checks on type conversations are made.
+2. Basic type checks and type conversation. Type checks and type
+conversation is done based on the data type of the field and
+further constraint defined in the database if the form is
+instanciated with an SQLAlchemy mapped item.
+3. Postvalidation. Custom rules that are checked after the type
+conversation was done. Note: Postevaluation is only done for
+successfull converted values.
+4. External Validators. External defined checks done on teh
+converted values. Note: Validators are only called for
+successfull converted values</p>
+<p>All errors are stored in the errors dictionary through the
+process of validation. After the validation finished the values
+are stored in the data dictionary. In case there has been errors
+the dictionary will contain the origin submitted data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Submitted:</th><td class="field-body">Dictionary with submitted values.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True or False</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="formbar.renderer.FieldRenderer">
+<em class="property">class </em><code class="descclassname">formbar.renderer.</code><code class="descname">FieldRenderer</code><span class="sig-paren">(</span><em>field</em>, <em>translate</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/formbar/renderer.html#FieldRenderer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#formbar.renderer.FieldRenderer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Renderer for fields. The renderer will build the the HTML for the
+provided field.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="formbar.renderer.InfoFieldRenderer">
+<em class="property">class </em><code class="descclassname">formbar.renderer.</code><code class="descname">InfoFieldRenderer</code><span class="sig-paren">(</span><em>field</em>, <em>translate</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/formbar/renderer.html#InfoFieldRenderer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#formbar.renderer.InfoFieldRenderer" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Renderer to render simple fa_field elements</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="usage.html"
+                        title="previous chapter">Usage</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/api.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="usage.html" title="Usage"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Formbar 0.20.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2013, 2014, 2015, 2016 Torsten Irländer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.5.
+    </div>
+  </body>
+</html>

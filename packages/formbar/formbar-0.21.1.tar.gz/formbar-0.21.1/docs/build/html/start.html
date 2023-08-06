@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Getting Started &mdash; Formbar 0.20.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.20.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Formbar 0.20.3 documentation" href="index.html" />
+    <link rel="next" title="Form configuration" href="config.html" />
+    <link rel="prev" title="Welcome to formbar’s documentation!" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="config.html" title="Form configuration"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to formbar’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Formbar 0.20.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="about">
+<h2>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h2>
+<p>Formbar is a python library to layout, render and validate HTML forms in web
+applications. Formbar renders forms which are compatible with <a class="reference external" href="twitter.github.com/bootstrap/">Twitter
+Bootstrap</a> styles.</p>
+<p>In contrast to many other form libraries forms with formbar are configured in XML
+files to separate the form definition form the implementation and handle it as
+configuration.</p>
+<p>Formbar is the German word for &#8220;shapeable&#8221; and should emphasise the
+character of formbar which hopefully makes shaping your forms more easy.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Formbar is available as <a class="reference external" href="https://pypi.python.org/pypi/formbar">Pypi package</a>.
+To install it use the following command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">venv</span><span class="o">&gt;</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">formbar</span>
+</pre></div>
+</div>
+<p>The source is availble on <a class="reference external" href="https://bitbucket.org/ti/formbar">Bitbucket</a>.
+You can check of the source and install the library with the following
+command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">venv</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">hg</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">bitbucket</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">ti</span><span class="o">/</span><span class="n">formbar</span>
+<span class="p">(</span><span class="n">venv</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">cd</span> <span class="n">formbar</span>
+<span class="p">(</span><span class="n">venv</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">develop</span> <span class="c1"># use develop for development install</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">I recommend to install the library for testing issue in the virtual python
+environment. See <a class="reference external" href="http://www.virtualenv.org/en/latest/">Virtualenv documentation</a> for more details.</p>
+</div>
+</div>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>Support for SQLAlchemy mapped items and plain forms.</li>
+<li>Expression bases rules</li>
+<li>Conditionals in forms</li>
+<li>Type conversation and validation</li>
+<li>XML based form definition</li>
+<li>i18n Support</li>
+<li>Row and column based layouts</li>
+<li>Different form layouts for the same model (Create, Edit, Read...)</li>
+<li>Twitter bootstrap support</li>
+<li>Custom CSS styling</li>
+<li>Error and warning messages</li>
+<li>Help texts</li>
+<li>Numbering of fields</li>
+<li>Extern defined renderers</li>
+<li>...</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="quickstart">
+<h2>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference internal" href="usage.html#quickstart"><span class="std std-ref">Usage</span></a></p>
+</div>
+<div class="section" id="demo-server">
+<h2>Demo-Server<a class="headerlink" href="#demo-server" title="Permalink to this headline">¶</a></h2>
+<p>Formbar comes with a very simple demo server to give you a impress on some
+features of formbar.</p>
+<p>To run the server do the following:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">examples</span>
+<span class="n">python</span> <span class="n">serve</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="licence">
+<h2>Licence<a class="headerlink" href="#licence" title="Permalink to this headline">¶</a></h2>
+<p>Formbar is licensed with under the GNU general public license version 2.</p>
+</div>
+<div class="section" id="authors">
+<h2>Authors<a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h2>
+<p>Torsten Irländer &lt;torsten at irlaender dot de&gt;</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Getting Started</a><ul>
+<li><a class="reference internal" href="#about">About</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#features">Features</a></li>
+<li><a class="reference internal" href="#quickstart">Quickstart</a></li>
+<li><a class="reference internal" href="#demo-server">Demo-Server</a></li>
+<li><a class="reference internal" href="#licence">Licence</a></li>
+<li><a class="reference internal" href="#authors">Authors</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to formbar&#8217;s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="config.html"
+                        title="next chapter">Form configuration</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/start.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="config.html" title="Form configuration"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to formbar’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Formbar 0.20.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2013, 2014, 2015, 2016 Torsten Irländer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.5.
+    </div>
+  </body>
+</html>
