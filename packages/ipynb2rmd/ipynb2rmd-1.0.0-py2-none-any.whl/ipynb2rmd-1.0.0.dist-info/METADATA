@@ -1,0 +1,30 @@
+Metadata-Version: 2.0
+Name: ipynb2rmd
+Version: 1.0.0
+Summary: Convert IRkernel Jupyter Notebooks to R Markdown
+Home-page: http://pypi.python.org/pypi/ipynb2rmd/
+Author: Grant Patten
+Author-email: grant@gpatten.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Utilities
+
+# IRkernel Jupyter Notebooks to R Markdown Convert
+
+## Usage
+```
+ipynb2rmd test.ipynb  # Generate test.rmd
+ipynb2rmd test.ipynb --compile  # Generate test.rmd and run R Markdown render
+```
+
+## Chunk Options
+To use rmarkdown chunk options in your Jupyter notebook, start a code cell with `#r <chunk options>`.
+
+## Requirements
+* https://github.com/IRkernel/IRkernel
+* https://github.com/rstudio/rmarkdown
+
+
