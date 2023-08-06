@@ -1,0 +1,14 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+requirements.txt
+setup.py
+macro/__init__.py
+macro/bot.py
+macro/zzz_manual_install.py
+macro.egg-info/PKG-INFO
+macro.egg-info/SOURCES.txt
+macro.egg-info/dependency_links.txt
+macro.egg-info/requires.txt
+macro.egg-info/top_level.txt
+macro/__pycache__/__init__.cpython-34.pyc
