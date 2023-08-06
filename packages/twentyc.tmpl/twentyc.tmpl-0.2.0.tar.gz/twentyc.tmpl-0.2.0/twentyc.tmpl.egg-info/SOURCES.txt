@@ -1,0 +1,14 @@
+MANIFEST.in
+README.txt
+setup.cfg
+setup.py
+config/VERSION
+twentyc.tmpl.egg-info/PKG-INFO
+twentyc.tmpl.egg-info/SOURCES.txt
+twentyc.tmpl.egg-info/dependency_links.txt
+twentyc.tmpl.egg-info/namespace_packages.txt
+twentyc.tmpl.egg-info/not-zip-safe
+twentyc.tmpl.egg-info/top_level.txt
+twentyc/tmpl/__init__.py
+twentyc/tmpl/context.py
+twentyc/tmpl/engine.py

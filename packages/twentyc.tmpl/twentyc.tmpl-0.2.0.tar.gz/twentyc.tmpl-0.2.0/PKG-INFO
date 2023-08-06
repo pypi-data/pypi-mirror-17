@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: twentyc.tmpl
+Version: 0.2.0
+Summary: template abstraction and helper functions
+Home-page: https://github.com/20c/twentyc.tmpl
+Author: 20C
+Author-email: code@20c.com
+License: LICENSE.txt
+Download-URL: https://github.com/20c/twentyc.tmpl/tarball/0.2.0
+Description: 
+        # twentyc.tmpl
+        
+        Template abstraction for using multiple template engine backends in same code.
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
