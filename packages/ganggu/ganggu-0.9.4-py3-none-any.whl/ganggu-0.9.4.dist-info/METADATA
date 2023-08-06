@@ -1,0 +1,23 @@
+Metadata-Version: 2.0
+Name: ganggu
+Version: 0.9.4
+Summary: Random collection of modules.
+Home-page: https://github.com/xuecan/ganggu
+Author: Xue Can
+Author-email: xuecan@gmail.com
+License: MIT
+Keywords: ganggu utils
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+
+# ganggu
+
+A random collection of modules work with Flask, SQLAlchemy, Celery and so on.
+
+
