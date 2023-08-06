@@ -1,0 +1,4 @@
+[console_scripts]
+nana = niiu.nana:main
+niiu = niiu.niiu:main
+
