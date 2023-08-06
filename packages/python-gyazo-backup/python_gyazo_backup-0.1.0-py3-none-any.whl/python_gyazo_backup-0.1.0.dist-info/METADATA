@@ -1,0 +1,29 @@
+Metadata-Version: 2.0
+Name: python-gyazo-backup
+Version: 0.1.0
+Summary: A command-tool for creating backup of Gyazo
+Home-page: https://github.com/ymyzk/python-gyazo-backup
+Author: Yusuke Miyazaki
+Author-email: miyazaki.dev@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Internet
+Classifier: Topic :: Utilities
+Requires-Dist: python-gyazo (>=0.11.0,<0.12.0)
+Requires-Dist: futures (>=3.0.5); python_version=="2.7"
+
+UNKNOWN
+
+
