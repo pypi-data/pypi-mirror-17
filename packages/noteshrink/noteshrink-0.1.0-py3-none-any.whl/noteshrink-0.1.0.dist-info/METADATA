@@ -1,0 +1,16 @@
+Metadata-Version: 2.0
+Name: noteshrink
+Version: 0.1.0
+Summary: Convert scans of handwritten notes to beautiful, compact PDFs
+Home-page: https://github.com/mzucker/noteshrink
+Author: Matt Zucker
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: numpy
+Requires-Dist: pillow
+Requires-Dist: scipy
+
+UNKNOWN
+
+
