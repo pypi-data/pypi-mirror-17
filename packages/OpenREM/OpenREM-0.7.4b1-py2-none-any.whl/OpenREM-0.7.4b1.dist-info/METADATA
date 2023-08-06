@@ -1,0 +1,54 @@
+Metadata-Version: 2.0
+Name: OpenREM
+Version: 0.7.4b1
+Summary: Developer beta only
+Home-page: http://openrem.org/
+Author: Ed McDonagh
+Author-email: ed@openrem.org
+License: GPLv3 with additional permissions
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Healthcare Industry
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Scientific/Engineering :: Medical Science Apps.
+Classifier: Topic :: Scientific/Engineering :: Physics
+Requires-Dist: django (>=1.8,<1.9)
+Requires-Dist: django-filter (>=0.10,<0.15)
+Requires-Dist: pytz (>=0a)
+Requires-Dist: humanize
+Requires-Dist: pydicom (>=0.9.9)
+Requires-Dist: django-pagination
+Requires-Dist: xlsxwriter
+Requires-Dist: celery (>=3.1)
+Requires-Dist: argparse (>=1.2.1)
+Requires-Dist: django-qsstats-magic
+Requires-Dist: python-dateutil
+Requires-Dist: django-solo
+Requires-Dist: django-crispy-forms
+
+#######
+OpenREM
+#######
+
+OpenREM is a Django app to extract, store and export Radiation Exposure
+Monitoring related information, primarily from DICOM files.
+
+This is a beta release (0.7.4b1) containing a few essential fixes. Non-expert users should wait for the final release
+of 0.7.4. However, feedback from testers would be very useful.
+Please review the `release notes <http://docs.openrem.org/en/release-0.7.4b1/release-0.7.4.html>`_
+for details.
+
+Full documentation can be found on Read the Docs: http://docs.openrem.org/en/release-0.7.4b1
+
+Contribution of code, ideas, bug reports documentation is all welcome.
+Please feel free to fork the repository and send me pull requests. See
+`the website <http://openrem.org/getinvolved>`_ for more information.
+
+There is a developer demo site, which at times has a working demo of recent code, but might not, and 
+might be broken. It can be found at http://djp-openremdemo.rhcloud.com/openrem/
+
+
