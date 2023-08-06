@@ -1,0 +1,6 @@
+ZEO==4.1.0
+ZODB3
+zodbpickle
+zope.event
+zope.interface>=4.1.3
+zeo_connector_defaults
