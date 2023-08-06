@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: gpfanova
+Version: 0.1.14
+Summary: Functional ANOVA using Gaussian Process priors.
+Home-page: https://github.com/ptonner/gpfanova
+Author: Peter Tonner
+Author-email: peter.tonner@duke.edu
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: bayesian statistics time-course
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering
+Classifier: Programming Language :: Python
