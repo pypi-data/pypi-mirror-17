@@ -1,0 +1,62 @@
+package:
+  name: spyking-circus
+  version: "0.4.3"
+
+requirements:
+  build:
+    - python
+    - progressbar2
+    - mpi4py
+    - numpy
+    - cython
+    - scipy
+    - matplotlib
+    - h5py
+    - setuptools >=26
+    - colorama
+    - psutil
+    - scikit-learn
+  run:
+    - python
+    - progressbar2
+    - mpi4py
+    - numpy
+    - cython
+    - scipy
+    - matplotlib
+    - h5py
+    - setuptools >=26
+    - colorama
+    - qt
+    - psutil
+    - pyqt >=4,<=5
+    - scikit-learn
+source:
+  path: ..
+
+build:
+  noarch_python: False
+  number: 0
+  script: python setup.py install --nocuda --single-version-externally-managed --record=record.txt
+
+app:
+  entry: spyking-circus .        [win]
+  entry: spyking-circus .        [linux]
+  entry: open ${PREFIX}/bin/spyking-circus_mac.command [osx]
+  icon: app.png
+  summary: Fast Semi Automated Spike Sorting
+  type: neuroscience
+
+test:
+  # Python imports
+  imports:
+    - circus
+    - circus.shared
+    - circus.scripts
+  commands:
+    - spyking-circus -h
+
+about:
+  home: http://spyking-circus.rtfd.org
+  license: CEA CNRS Inria Logiciel Libre License, version 2.1 (CeCILL-2.1)
+  summary: 'Fast spike sorting by template matching'
