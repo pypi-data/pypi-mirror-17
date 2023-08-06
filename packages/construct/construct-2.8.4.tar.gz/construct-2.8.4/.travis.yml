@@ -1,0 +1,31 @@
+language: python
+
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.cache/pip
+
+python:
+    - "2.7"
+    - "3.3"
+    - "3.4"
+    - "3.5"
+    - "pypy"
+    - "pypy3"
+
+before_script:
+    - "export PYTHONPATH=$PYTHONPATH:`pwd`"
+    - "uname -a"
+    - "cd tests"
+
+before_install:
+    - pip install pytest
+
+script:
+    - py.test --verbose
+
+notifications:
+    email:
+        on_success: change
+        on_failure: change
