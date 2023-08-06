@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+django_smart_collectstatic.egg-info/PKG-INFO
+django_smart_collectstatic.egg-info/SOURCES.txt
+django_smart_collectstatic.egg-info/dependency_links.txt
+django_smart_collectstatic.egg-info/requires.txt
+django_smart_collectstatic.egg-info/top_level.txt
+smartcollectstatic/__init__.py
+smartcollectstatic/models.py
+smartcollectstatic/management/__init__.py
+smartcollectstatic/management/commands/__init__.py
+smartcollectstatic/management/commands/smartcollectstatic.py
