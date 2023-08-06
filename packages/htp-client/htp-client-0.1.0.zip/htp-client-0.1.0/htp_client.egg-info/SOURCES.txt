@@ -1,0 +1,15 @@
+MANIFEST.in
+README.md
+setup.py
+htp_client.egg-info/PKG-INFO
+htp_client.egg-info/SOURCES.txt
+htp_client.egg-info/dependency_links.txt
+htp_client.egg-info/entry_points.txt
+htp_client.egg-info/not-zip-safe
+htp_client.egg-info/requires.txt
+htp_client.egg-info/top_level.txt
+htpclient/__init__.py
+htpclient/htp_controller.py
+htpclient/main.py
+htpclient/test_engine.py
+htpclient/web_client.py
