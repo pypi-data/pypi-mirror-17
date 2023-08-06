@@ -1,0 +1,22 @@
+CHANGES
+=======
+
+* update version
+* add basic MongoTrigger as a wrapper for both mongod and mongos
+* Update README.rst
+* update README.rst according to name
+* fix package details
+* Update README.rst
+* add coveralls support
+* alphabetical order of imports
+* fix pep8 and remove database after tests are done
+* Update README.rst
+* add missing stp in travis to know node
+* add travis wait for replica
+* Update and rename README.md to README.rst
+* move to mongo2.3
+* fix travis.yml
+* add travis.yml integration
+* working refactor, include mongod verification
+* initial draft
+* Initial commit
