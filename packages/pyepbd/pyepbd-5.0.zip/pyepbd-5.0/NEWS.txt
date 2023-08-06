@@ -1,0 +1,65 @@
+.. Archivo de Novedades con las notas de cada versión
+
+News
+====
+
+5.0
+---
+
+*12-sep-2016*
+
+* Cambio de krdel y kepx a 0.0
+
+4.1
+---
+
+*4-jul-2016*
+
+* Exportación de la variable FACTORESDEPASO (lista de factores)
+* Mejora formato de salida en archivos y consola
+* Actualiza documentación
+
+4.0
+---
+
+*24-jun-2016*
+
+* Factores de paso a energía primaria por defecto iguales a los definidos
+  en el Documento Reconocido del RITE
+* Salida de indicadores con repercusión de superficie (parámetro --area, -A)
+
+3.x
+---
+
+*9-may-2016*
+
+* Factores de paso corregidos en cogeneración (más realistas)
+* Renombrado de SUMINISTRO a CONSUMO
+* Incorporación de CONSUMOS de RED1 y RED2 para soporte de redes de distrito
+
+2.x
+---
+
+*27-abr-2016*
+
+* Balance automático de consumos para combustibles
+* Balance automático de consumos para fuentes renovables
+* Exportación de funciones de entrada/salida
+* Exportación de datos en JSON
+* Soporte simultáneo de Python 3 y Python 2
+
+1.0
+---
+
+*4-feb-2016*
+
+* Cambio a esquema de versiones estándar
+* Refactorización
+* Documentación en inglés
+
+10.2015
+-------
+
+*9-oct-2015*
+
+* Versión inicial
