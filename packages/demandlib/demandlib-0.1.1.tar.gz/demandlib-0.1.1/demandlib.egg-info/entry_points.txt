@@ -1,0 +1,4 @@
+[console_scripts]
+demandlib_heat_example = examples.heat_demand_example:heat_example
+demandlib_power_example = examples.power_demand_example:power_example
+
