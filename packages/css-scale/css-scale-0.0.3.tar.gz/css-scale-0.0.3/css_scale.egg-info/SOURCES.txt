@@ -1,0 +1,11 @@
+setup.py
+bin/scale
+css_scale/__init__.py
+css_scale/scale.py
+css_scale.egg-info/PKG-INFO
+css_scale.egg-info/SOURCES.txt
+css_scale.egg-info/dependency_links.txt
+css_scale.egg-info/not-zip-safe
+css_scale.egg-info/requires.txt
+css_scale.egg-info/top_level.txt
+test/test_scale.py
