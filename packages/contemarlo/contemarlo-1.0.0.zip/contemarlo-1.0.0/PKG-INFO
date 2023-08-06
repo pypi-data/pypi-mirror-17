@@ -1,0 +1,28 @@
+Metadata-Version: 1.1
+Name: contemarlo
+Version: 1.0.0
+Summary: Deterministic Monte-Carlo-Like without memory constraints.
+Home-page: http://rbirm.us
+Author: Ryan Birmingham
+Author-email: birm@rbirm.us
+License: UNKNOWN
+Description: ConteMarlo
+        A "Monte-Carlo-Like" tester.
+        https://pypi.python.org/pypi/contemarlo/
+        -Ryan Birmingham
+        
+        The concept is simple (and probably already done better): detailed Monte-Carlo
+        but without the randomness or memory dependence.
+        Despite the memory independence, generators default to safe mode not to flood memory.
+        
+        I to construct tests, so I know I don't break things.
+        
+        Classes:
+            Resolver - A generator for the next distribution value pair
+            Resolver_md - A multidimensional abstraction of Resolver
+            Distribution - A distribution, domain [0,1]
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
