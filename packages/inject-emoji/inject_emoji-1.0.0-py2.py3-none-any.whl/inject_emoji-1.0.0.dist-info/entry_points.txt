@@ -1,0 +1,3 @@
+[console_scripts]
+inject-emoji = inject_emoji.cli:main
+
