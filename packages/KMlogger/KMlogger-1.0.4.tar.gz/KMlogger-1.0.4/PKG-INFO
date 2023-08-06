@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: KMlogger
+Version: 1.0.4
+Summary: A Python logging object that provides additional functionality beyond the standard module.
+Home-page: https://github.com/kylemede/KMlogger
+Author: Kyle Mede
+Author-email: kylemede@gmail.com
+License: ['GNU GPLv3']
+Description: For examples of how to use KMlogger please visit:
+        https://github.com/kylemede/KMlogger
+Keywords: logging
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering
+Classifier: Programming Language :: Python
