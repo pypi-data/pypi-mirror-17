@@ -1,0 +1,4 @@
+[console_scripts]
+parse-pcap = httpcap.__main__:parse_pcap
+parse-live = httpcap.__main__:parse_live
+
