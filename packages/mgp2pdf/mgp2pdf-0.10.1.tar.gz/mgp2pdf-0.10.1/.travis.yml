@@ -1,0 +1,15 @@
+language: python
+sudo: false
+python:
+    - 2.7
+    - 3.3
+    - 3.4
+    - 3.5
+install:
+    - travis_retry pip install coverage coveralls -e .
+script:
+    - coverage run --source=mgp2pdf.py tests.py
+after_success:
+    - coveralls
+notifications:
+    email: false
