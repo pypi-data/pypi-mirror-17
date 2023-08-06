@@ -1,0 +1,14 @@
+test automation/continuous integration:
+- setup buildbot farm
+
+migrate:
+- create 'wafimport' script that will;
+-- use build scripts from make|cmake and convert it into wscripts
+-- use project files from eclipse|msdev|codeblocks and convert it into wscripts
+
+msdev:
+- missing export of command line arguments
+
+external deps:
+- finish playground/pkg.py module; uses external packages using autoconf,make,cmake,...
+

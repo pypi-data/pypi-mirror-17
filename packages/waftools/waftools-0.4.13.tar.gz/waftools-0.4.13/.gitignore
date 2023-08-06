@@ -1,0 +1,17 @@
+*.pyc
+*~
+*.tar.gz
+*.zip
+.lock-waf*
+MANIFEST
+dist/*
+build/*
+doc/_build/*
+waftools/__pycache__/*
+waftools.egg-info/*
+
+.project
+.cproject
+.pydevproject
+**/.settings/*
+

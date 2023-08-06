@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+
+def build(bld):
+	bld.program(
+		target = 'ciambad', 
+		source = ['src/iambad.c'],
+		use = ['cleaking'],
+		cppcheck_suppress = 'cppcheck.suppress',
+		cppcheck_skip = False	# enables or disables source code checking on this task generator
+	)
+
+
