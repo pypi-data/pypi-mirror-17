@@ -1,0 +1,11 @@
+setup.py
+home_electric_usage_recommendation_modules/__init__.py
+home_electric_usage_recommendation_modules/modules.py
+home_electric_usage_recommendation_modules/utils.py
+home_electric_usage_recommendation_modules.egg-info/PKG-INFO
+home_electric_usage_recommendation_modules.egg-info/SOURCES.txt
+home_electric_usage_recommendation_modules.egg-info/dependency_links.txt
+home_electric_usage_recommendation_modules.egg-info/top_level.txt
+tests/__init__.py
+tests/run_modules.py
+tests/test_modules.py
