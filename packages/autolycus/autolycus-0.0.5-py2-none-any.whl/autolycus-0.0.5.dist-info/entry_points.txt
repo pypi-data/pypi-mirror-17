@@ -1,0 +1,4 @@
+[console_scripts]
+shelley = autolycus.fe:main
+shelley_legacy = autolycus.legacy:main
+
