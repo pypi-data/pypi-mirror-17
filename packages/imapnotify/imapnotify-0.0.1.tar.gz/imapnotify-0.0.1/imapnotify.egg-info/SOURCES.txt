@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+imapnotify/__init__.py
+imapnotify/cli.py
+imapnotify/core.py
+imapnotify.egg-info/PKG-INFO
+imapnotify.egg-info/SOURCES.txt
+imapnotify.egg-info/dependency_links.txt
+imapnotify.egg-info/entry_points.txt
+imapnotify.egg-info/requires.txt
+imapnotify.egg-info/top_level.txt
