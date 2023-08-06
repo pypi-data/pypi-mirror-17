@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.rst
+requirements.txt
+setup.py
+helga_api_monitor/__init__.py
+helga_api_monitor/plugin.py
+helga_api_monitor.egg-info/PKG-INFO
+helga_api_monitor.egg-info/SOURCES.txt
+helga_api_monitor.egg-info/dependency_links.txt
+helga_api_monitor.egg-info/entry_points.txt
+helga_api_monitor.egg-info/requires.txt
+helga_api_monitor.egg-info/top_level.txt
+helga_api_monitor.egg-info/zip-safe
