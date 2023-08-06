@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+habitica_challenge_wrangler/__init__.py
+habitica_challenge_wrangler/challenge_wrangler.py
+habitica_challenge_wrangler/configuration.py
+habitica_challenge_wrangler.egg-info/PKG-INFO
+habitica_challenge_wrangler.egg-info/SOURCES.txt
+habitica_challenge_wrangler.egg-info/dependency_links.txt
+habitica_challenge_wrangler.egg-info/entry_points.txt
+habitica_challenge_wrangler.egg-info/requires.txt
+habitica_challenge_wrangler.egg-info/top_level.txt
+habitica_challenge_wrangler.egg-info/zip-safe

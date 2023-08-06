@@ -1,0 +1,6 @@
+future
+pandas>=0.17.0
+xlwt
+
+[dev]
+bumpversion
