@@ -1,0 +1,28 @@
+Changelog
+=========
+
+0.4 (2016-09-29)
+----------------
+
+Bug fixes:
+
+- Make the clicktracker-callback callable on any context.
+  [ale-rt]
+
+
+0.3 (2012-03-26)
+----------------
+
+- Bugfix in MANIFEST.in [jcbrand]
+
+
+0.2 (2012-03-23)
+----------------
+
+- Add MANIFEST.in [jcbrand]
+
+
+0.1 (2012-03-22)
+----------------
+
+- Initial release
