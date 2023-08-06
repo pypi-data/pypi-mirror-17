@@ -1,0 +1,15 @@
+README.txt
+setup.py
+DeFCoM.egg-info/PKG-INFO
+DeFCoM.egg-info/SOURCES.txt
+DeFCoM.egg-info/dependency_links.txt
+DeFCoM.egg-info/requires.txt
+DeFCoM.egg-info/top_level.txt
+defcom/__init__.py
+defcom/alignment.py
+defcom/features.py
+defcom/genome.py
+defcom/motif_sites.py
+defcom/performance_stats.py
+defcom/predict.py
+defcom/train.py
