@@ -1,0 +1,390 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "Core schema for HornOk Inspection",
+  "type": "object",
+  "definitions": {
+    "field": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": {
+            "enum": [
+              "string",
+              "boolean",
+              "number"
+            ]
+          },
+          "description": "Main value of this field"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Tags this field is associated with"
+        },
+        "private": {
+          "type": "boolean",
+          "description": "Is this field private?"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    }
+  },
+  "properties": {
+    "location": {
+      "$ref": "#/definitions/field",
+      "description": "Current location of vehicle"
+    },
+    "inspector": {
+      "$ref": "#/definitions/field",
+      "description": "Name of inspector"
+    },
+    "make": {
+      "$ref": "#/definitions/field",
+      "description": "Make of vehicle"
+    },
+    "year": {
+      "$ref": "#/definitions/field",
+      "description": "Year of manufacturing"
+    },
+    "model_number": {
+      "$ref": "#/definitions/field",
+      "description": "Model number of vehicle"
+    },
+    "gvw_and_payload": {
+      "$ref": "#/definitions/field",
+      "description": "GVW in metric tonnes"
+    },
+    "registration_number": {
+      "$ref": "#/definitions/field",
+      "description": "Registration number of vehicle"
+    },
+    "chassis_number": {
+      "$ref": "#/definitions/field",
+      "description": "Chassis number of vehicle"
+    },
+    "engine_number": {
+      "$ref": "#/definitions/field",
+      "description": "Engine number of vehicle"
+    },
+    "registering_authority": {
+      "$ref": "#/definitions/field",
+      "description": "Registerting authority (location) of vehicle"
+    },
+    "insurance_vendor": {
+      "$ref": "#/definitions/field",
+      "description": "Insurance vendor"
+    },
+    "insurance_policy_number": {
+      "$ref": "#/definitions/field",
+      "description": "Policy number"
+    },
+    "insurance_expiry_date": {
+      "$ref": "#/definitions/field",
+      "description": "Expiration date of policy"
+    },
+    "percentage_of_ncb": {
+      "$ref": "#/definitions/field",
+      "description": "Percentage of No Claim Bonus"
+    },
+    "insurance_premium": {
+      "$ref": "#/definitions/field",
+      "description": "Insurance premium"
+    },
+    "hypothecation_tenure": {
+      "$ref": "#/definitions/field",
+      "description": "Tenure of hypothecation"
+    },
+    "hypothecation_amount": {
+      "$ref": "#/definitions/field",
+      "description": "Amount of hypothecation"
+    },
+    "tax_1_validity": {
+      "$ref": "#/definitions/field",
+      "description": "Tax 1 valid until"
+    },
+    "tax_2_validity": {
+      "$ref": "#/definitions/field",
+      "description": "Tax 2 valid until"
+    },
+    "national_permit_validity": {
+      "$ref": "#/definitions/field",
+      "description": "Validity (date) of national permit"
+    },
+    "cf": {
+      "$ref": "#/definitions/field",
+      "description": "Does the vehicle have certificate of fitness?"
+    },
+    "cf_validity": {
+      "$ref": "#/definitions/field",
+      "description": "Validity (date) of CF"
+    },
+    "availability_of_noc": {
+      "$ref": "#/definitions/field",
+      "description": "Does the vehicle have No Objection Certificate?"
+    },
+    "engine_oil": {
+      "$ref": "#/definitions/field"
+    },
+    "coolant": {
+      "$ref": "#/definitions/field"
+    },
+    "brake_oil": {
+      "$ref": "#/definitions/field"
+    },
+    "fan_belt": {
+      "$ref": "#/definitions/field"
+    },
+    "engine_mount": {
+      "$ref": "#/definitions/field"
+    },
+    "air_filter": {
+      "$ref": "#/definitions/field"
+    },
+    "mobile_filter": {
+      "$ref": "#/definitions/field"
+    },
+    "diesel_filter": {
+      "$ref": "#/definitions/field"
+    },
+    "ac_filter_if_any": {
+      "$ref": "#/definitions/field"
+    },
+    "fuel_and_water_separator": {
+      "$ref": "#/definitions/field"
+    },
+    "accelerator_linkage": {
+      "$ref": "#/definitions/field"
+    },
+    "radiator_mount": {
+      "$ref": "#/definitions/field"
+    },
+    "radiator_lines": {
+      "$ref": "#/definitions/field"
+    },
+    "radiator_panel": {
+      "$ref": "#/definitions/field"
+    },
+    "water_level_and_heat_when_engine_starts": {
+      "$ref": "#/definitions/field"
+    },
+    "air_system": {
+      "$ref": "#/definitions/field"
+    },
+    "tie_rod": {
+      "$ref": "#/definitions/field"
+    },
+    "steering_box_power_steering": {
+      "$ref": "#/definitions/field"
+    },
+    "column": {
+      "$ref": "#/definitions/field"
+    },
+    "battery_age": {
+      "$ref": "#/definitions/field"
+    },
+    "battery_condition": {
+      "$ref": "#/definitions/field"
+    },
+    "springs": {
+      "$ref": "#/definitions/field"
+    },
+    "hydraulic_filters": {
+      "$ref": "#/definitions/field"
+    },
+    "hydraulic_operation": {
+      "$ref": "#/definitions/field"
+    },
+    "left_front_indicator": {
+      "$ref": "#/definitions/field"
+    },
+    "front_indicator": {
+      "$ref": "#/definitions/field"
+    },
+    "left_rear_indicator": {
+      "$ref": "#/definitions/field"
+    },
+    "right_rear_indicator": {
+      "$ref": "#/definitions/field"
+    },
+    "left_head_light": {
+      "$ref": "#/definitions/field"
+    },
+    "right_head_light": {
+      "$ref": "#/definitions/field"
+    },
+    "left_back_light": {
+      "$ref": "#/definitions/field"
+    },
+    "right_back_light": {
+      "$ref": "#/definitions/field"
+    },
+    "left_crane_light": {
+      "$ref": "#/definitions/field"
+    },
+    "right_crane_light": {
+      "$ref": "#/definitions/field"
+    },
+    "parking_light": {
+      "$ref": "#/definitions/field"
+    },
+    "brake_lamps": {
+      "$ref": "#/definitions/field"
+    },
+    "heat_indicator": {
+      "$ref": "#/definitions/field"
+    },
+    "rpm": {
+      "$ref": "#/definitions/field"
+    },
+    "speedometer": {
+      "$ref": "#/definitions/field"
+    },
+    "odometer": {
+      "$ref": "#/definitions/field"
+    },
+    "fuel_indicator": {
+      "$ref": "#/definitions/field"
+    },
+    "cabin_light": {
+      "$ref": "#/definitions/field"
+    },
+    "wiper_operation": {
+      "$ref": "#/definitions/field"
+    },
+    "horn": {
+      "$ref": "#/definitions/field"
+    },
+    "cab_area": {
+      "$ref": "#/definitions/field"
+    },
+    "pilot_seat": {
+      "$ref": "#/definitions/field"
+    },
+    "helper_seat": {
+      "$ref": "#/definitions/field"
+    },
+    "bed_rack": {
+      "$ref": "#/definitions/field"
+    },
+    "seat_belt": {
+      "$ref": "#/definitions/field"
+    },
+    "roof_hatch": {
+      "$ref": "#/definitions/field"
+    },
+    "door_window_locks_handles": {
+      "$ref": "#/definitions/field"
+    },
+    "engine_noise": {
+      "$ref": "#/definitions/field"
+    },
+    "steering_noise": {
+      "$ref": "#/definitions/field"
+    },
+    "engine_idle_warm": {
+      "$ref": "#/definitions/field"
+    },
+    "engine_shutdown": {
+      "$ref": "#/definitions/field"
+    },
+    "owner_guide_book": {
+      "$ref": "#/definitions/field"
+    },
+    "original_key": {
+      "$ref": "#/definitions/field"
+    },
+    "duplicate_key": {
+      "$ref": "#/definitions/field"
+    },
+    "first_aid_kit": {
+      "$ref": "#/definitions/field"
+    },
+    "fire_extinguisher": {
+      "$ref": "#/definitions/field"
+    },
+    "left_front_tyre": {
+      "$ref": "#/definitions/field"
+    },
+    "right_front_tyre": {
+      "$ref": "#/definitions/field"
+    },
+    "left_middle_tyre": {
+      "$ref": "#/definitions/field"
+    },
+    "right_middle_tyre": {
+      "$ref": "#/definitions/field"
+    },
+    "left_2_nd_middle_tyre": {
+      "$ref": "#/definitions/field"
+    },
+    "right_2_nd_middle_tyre": {
+      "$ref": "#/definitions/field"
+    },
+    "left_3_rd_middle_tyre": {
+      "$ref": "#/definitions/field"
+    },
+    "right_3_rd_middle_tyre": {
+      "$ref": "#/definitions/field"
+    },
+    "left_4_th_middle_tyre": {
+      "$ref": "#/definitions/field"
+    },
+    "right_4_th_middle_tyre": {
+      "$ref": "#/definitions/field"
+    },
+    "left_rear_tyre": {
+      "$ref": "#/definitions/field"
+    },
+    "right_rear_tyre": {
+      "$ref": "#/definitions/field"
+    },
+    "windshield": {
+      "$ref": "#/definitions/field"
+    },
+    "doors": {
+      "$ref": "#/definitions/field"
+    },
+    "windows": {
+      "$ref": "#/definitions/field"
+    },
+    "wiper_blades": {
+      "$ref": "#/definitions/field"
+    },
+    "ladder_racks": {
+      "$ref": "#/definitions/field"
+    },
+    "rear_view_mirror": {
+      "$ref": "#/definitions/field"
+    },
+    "fuel_tank_condition": {
+      "$ref": "#/definitions/field"
+    },
+    "number_plate": {
+      "$ref": "#/definitions/field"
+    },
+    "front_bumper": {
+      "$ref": "#/definitions/field"
+    },
+    "rear_bumper": {
+      "$ref": "#/definitions/field"
+    },
+    "left_side_deck": {
+      "$ref": "#/definitions/field"
+    },
+    "right_side_deck": {
+      "$ref": "#/definitions/field"
+    },
+    "reflector": {
+      "$ref": "#/definitions/field"
+    },
+    "nuts_bolts": {
+      "$ref": "#/definitions/field"
+    }
+  }
+}
