@@ -1,0 +1,140 @@
+Metadata-Version: 2.0
+Name: sokoenginepy
+Version: 0.4.1
+Summary: Sokoban and variants game engine
+Home-page: https://github.com/tadamic/sokoenginepy
+Author: Tomislav Adamic
+Author-email: tomislav.adamic@gmail.com
+License: GPLv3
+Keywords: game sokoban hexoban octoban trioban
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Games/Entertainment :: Puzzle Games
+Requires-Dist: Unipath (>=1.1.0)
+Requires-Dist: cached-property (>=1.2.0)
+Requires-Dist: midict (>=0.1.4)
+Requires-Dist: networkx (>=1.11)
+Requires-Dist: pyparsing (>=2.1.0)
+Requires-Dist: pytz (>=2016.6.1)
+Provides-Extra: dev
+Requires-Dist: Pygments (>=2.1.0); extra == 'dev'
+Requires-Dist: Sphinx (>=1.4.0); extra == 'dev'
+Requires-Dist: check-manifest (>=0.33.0); extra == 'dev'
+Requires-Dist: check-manifest (>=0.33.0); extra == 'dev'
+Requires-Dist: colored-traceback (>=0.2.0); extra == 'dev'
+Requires-Dist: coverage (>=4.2.0); extra == 'dev'
+Requires-Dist: docutils (>=0.12.0); extra == 'dev'
+Requires-Dist: factory-boy (>=2.7.0); extra == 'dev'
+Requires-Dist: fake-factory (>=0.6.0); extra == 'dev'
+Requires-Dist: grip (>=4.3.0); extra == 'dev'
+Requires-Dist: ipdb (>=0.10.0); extra == 'dev'
+Requires-Dist: ipython (>=5.0.0); extra == 'dev'
+Requires-Dist: jupyter (>=1.0.0); extra == 'dev'
+Requires-Dist: lxml (>=3.6.0); extra == 'dev'
+Requires-Dist: matplotlib (>=1.5.0); extra == 'dev'
+Requires-Dist: mccabe (>=0.5.0); extra == 'dev'
+Requires-Dist: moviepy (>=0.2.0); extra == 'dev'
+Requires-Dist: pycodestyle (>=2.0.0); extra == 'dev'
+Requires-Dist: pyexcel-ods3 (>=0.2.0); extra == 'dev'
+Requires-Dist: pylint (>=1.6.0); extra == 'dev'
+Requires-Dist: pytest (>=3.0.0); extra == 'dev'
+Requires-Dist: pytest-colordots (>=0.1.0); extra == 'dev'
+Requires-Dist: pytest-cov (>=2.3.0); extra == 'dev'
+Requires-Dist: pytest-spec (>=1.0.0); extra == 'dev'
+Requires-Dist: restview (>=2.6.0); extra == 'dev'
+Requires-Dist: scipy (>=0.18.0); extra == 'dev'
+Requires-Dist: snakeviz (>=0.4.0); extra == 'dev'
+Requires-Dist: tox (>=2.3.0); extra == 'dev'
+Requires-Dist: yapf (>=0.11.0); extra == 'dev'
+Provides-Extra: test
+Requires-Dist: Pygments (>=2.1.0); extra == 'test'
+Requires-Dist: check-manifest (>=0.33.0); extra == 'test'
+Requires-Dist: coverage (>=4.2.0); extra == 'test'
+Requires-Dist: docutils (>=0.12.0); extra == 'test'
+Requires-Dist: factory-boy (>=2.7.0); extra == 'test'
+Requires-Dist: fake-factory (>=0.6.0); extra == 'test'
+Requires-Dist: lxml (>=3.6.0); extra == 'test'
+Requires-Dist: pyexcel-ods3 (>=0.2.0); extra == 'test'
+Requires-Dist: pytest (>=3.0.0); extra == 'test'
+Requires-Dist: pytest-cov (>=2.3.0); extra == 'test'
+Requires-Dist: pytest-spec (>=1.0.0); extra == 'test'
+Requires-Dist: tox (>=2.3.0); extra == 'test'
+
+sokoenginepy - Sokoban and variants game engine
+***********************************************
+
+.. image:: https://img.shields.io/pypi/l/sokoenginepy.svg
+    :target: http://opensource.org/licenses/GPL-3.0
+    :alt: License
+
+.. image:: https://img.shields.io/pypi/v/sokoenginepy.svg
+    :target: https://pypi.python.org/pypi/sokoenginepy
+    :alt: PyPI Release
+
+.. image:: https://img.shields.io/pypi/pyversions/sokoenginepy.svg
+    :target: https://pypi.python.org/pypi/sokoenginepy
+    :alt: Supported Python versions
+
+.. image:: https://readthedocs.org/projects/sokoenginepy/badge/?version=latest
+    :target: https://sokoenginepy.readthedocs.org/
+    :alt: Documentation
+
+.. image:: https://travis-ci.org/tadamic/sokoenginepy.svg?branch=development
+    :target: https://travis-ci.org/tadamic/sokoenginepy
+    :alt: TravisCI status
+
+.. image:: https://api.codacy.com/project/badge/Coverage/492a7c08b97e4dbe991b0190dd3abf02
+    :target: https://www.codacy.com/app/tomislav-adamic/sokoenginepy?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tadamic/sokoenginepy&amp;utm_campaign=Badge_Coverage
+    :alt: Tests coverage
+
+.. image:: https://api.codacy.com/project/badge/Grade/492a7c08b97e4dbe991b0190dd3abf02
+    :target: https://www.codacy.com/app/tomislav-adamic/sokoenginepy?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tadamic/sokoenginepy&amp;utm_campaign=Badge_Grade
+    :alt: Code quality
+
+sokoenginepy is game engine for Sokoban and variants written in Python and
+loaded with features:
+
+- implements game logic for ``Sokoban``, ``Hexoban``, ``Trioban`` and ``Octoban`` variants
+    - supports ``Sokoban+`` for all implemented variants
+    - supports ``Multiban`` (muliple pushers on board) for all variants
+- two game engines implementations
+    - fast and memory lightweight with single step undo/redo
+    - somewhat slower and larger with unlimited movement undo/redo
+- reading and writing level collections
+    - fully compatible with `SokobanYASC`_ .sok file format and variants (.xsb, .tsb, .hsb, .txt)
+
+sokoenginepy was inspired by `SokobanYASC`_, `JSoko`_, `MazezaM`_
+
+Installing
+----------
+
+Installing sokoenginepy should be as simple as
+
+.. code-block:: sh
+
+    pip install sokoenginepy
+
+
+Using
+-----
+
+- For quick glance of features and usage check the `Tutorial`_.
+- For in-depth docs of whole package see `API Reference`_.
+
+
+.. _SokobanYASC: http://sourceforge.net/projects/sokobanyasc/
+.. _JSoko: http://www.sokoban-online.de/
+.. _MazezaM: http://webpages.dcu.ie/~tyrrelma/MazezaM/
+.. _Sokobano: http://sokobano.de/en/index.php
+.. _Sokoban for Windows: http://www.sourcecode.se/sokoban/
+.. _Tutorial: https://sokoenginepy.readthedocs.io/en/development/tutorial.html
+.. _API reference: https://sokoenginepy.readthedocs.io/en/development/api.html
+
+
