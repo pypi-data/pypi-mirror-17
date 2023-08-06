@@ -1,0 +1,4 @@
+[console_scripts]
+citex = dedupe:console
+citex-check = second_pass:console
+
