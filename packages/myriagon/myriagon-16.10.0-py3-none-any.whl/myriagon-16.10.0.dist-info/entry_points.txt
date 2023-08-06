@@ -1,0 +1,3 @@
+[console_scripts]
+myriagon = myriagon.__main__:main
+

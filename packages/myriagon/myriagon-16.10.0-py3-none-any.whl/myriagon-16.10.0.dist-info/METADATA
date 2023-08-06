@@ -1,0 +1,32 @@
+Metadata-Version: 2.0
+Name: myriagon
+Version: 16.10.0
+Summary: Time tracking, task tracking.
+Home-page: https://github.com/hawkowl/myriagon
+Author: Amber Brown
+Author-email: hawkowl@atleastfornow.net
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Utilities
+Requires-Dist: Twisted (==16.5.0rc1)
+Requires-Dist: appdirs
+Requires-Dist: attrs
+Requires-Dist: cattrs
+Requires-Dist: icalendar
+Requires-Dist: incremental (>=16.9.1)
+Requires-Dist: pyobjc-framework-CFNetwork; sys_platform=="darwin"
+
+UNKNOWN
+
+
