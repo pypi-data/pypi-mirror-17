@@ -1,0 +1,8 @@
+django-annoying
+django_bootstrap3
+django_markdown
+django-taggit
+pytz==2016.6.1
+
+[i18n]
+django-modeltranslation>=0.5b1
