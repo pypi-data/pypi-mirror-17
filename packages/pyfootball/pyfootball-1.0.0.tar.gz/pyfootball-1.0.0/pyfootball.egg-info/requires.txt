@@ -1,0 +1,8 @@
+requests
+
+[dev]
+sphinx
+sphinx-autobuild
+
+[test]
+coverage
