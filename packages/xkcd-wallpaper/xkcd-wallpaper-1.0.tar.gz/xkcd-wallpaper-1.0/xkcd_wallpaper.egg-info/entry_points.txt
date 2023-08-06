@@ -1,0 +1,3 @@
+[console_scripts]
+xkcd-wallpaper = xkcdwall.cmd:set_wallpaper
+
