@@ -1,0 +1,15 @@
+language: python
+sudo: false
+python:
+    - 2.7
+    - 3.4
+    - 3.5
+install:
+    - pip install -U pip
+    - pip install coverage coveralls -e .
+script:
+    - xvfb-run -a coverage run --source=src/pyspacewar test.py
+after_success:
+    - coveralls
+notifications:
+    email: false
