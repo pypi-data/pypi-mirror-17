@@ -1,0 +1,4 @@
+
+      [fiona.fio_commands]
+      taxa=fio_taxa.scripts.cli:taxa
+      
