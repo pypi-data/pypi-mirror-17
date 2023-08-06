@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+data/helloworld.conf
+vbhelloworld/__init__.py
+vbhelloworld.egg-info/PKG-INFO
+vbhelloworld.egg-info/SOURCES.txt
+vbhelloworld.egg-info/dependency_links.txt
+vbhelloworld.egg-info/entry_points.txt
+vbhelloworld.egg-info/requires.txt
+vbhelloworld.egg-info/top_level.txt
