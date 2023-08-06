@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: progression
+Version: 0.1.0
+Summary: A python progress bar in ascii art.
+Home-page: https://github.com/cimatosa/progression
+Author: Richard Hartmann
+Author-email: richard.hartmann@tu-dresden.de
+License: BSD (3 clause)
+Description: UNKNOWN
+Keywords: progress,bar,ascii,art
+Platform: ALL
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Topic :: Utilities
+Classifier: Intended Audience :: Developers
