@@ -1,0 +1,3 @@
+[console_scripts]
+download_VGG.py = bob.ip.caffe_extractor.script.download_VGG:main
+
