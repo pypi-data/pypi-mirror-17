@@ -1,0 +1,17 @@
+app/__init__.py,sha256=RsZjRjMprNcDm97wqRRSk6rTLgTX8N0GyicZyZ8OsBQ,22
+app/cli.py,sha256=qqLaIT-JiTuMa9RM3VrOel9hv4Mn_1YSCZqGhEo0oNQ,1287
+app/commands/__init__.py,sha256=XOjbBNJX3eXgydOjDxK5uXqiq5oDk54n6vZ632d8mRc,132
+app/commands/base.py,sha256=NpO9pz6fNnss7pojSl6HDeedCajU4mcoaNSj3f7WJeo,3589
+app/commands/destroy.py,sha256=YeXGoQ6waIPGEMFZGz1hYWviJUPFmK34iuFC9SXrVIw,1016
+app/commands/generate.py,sha256=A0YclLft3qtkPXoyAQ5W9S16yc2mICAh_v6UEpCxoOQ,1112
+app/commands/hello.py,sha256=D0cae-rymQ_e9REv8S_SSZfQrOM0WP_vpg7oB3reKhw,258
+app/commands/new.py,sha256=qLirfpalSdwaWBxAIgyKIV3WtKPqOimNxkqZyeAh5DQ,2256
+app/commands/scrap.py,sha256=Wo0aulzyqI9T_YXIBbi1Wmat3G5fWWHGUioeH6MpHI4,454
+app/commands/simulate.py,sha256=PnLw0JzQbJQx3-vzU5uFIiah0KG8xl6jKEnEigrQHBg,160
+julz-1.0.0.dist-info/DESCRIPTION.rst,sha256=JJVozbT830mQfkA8P5ULbOwOfkYQIw0ZSLwLIkLY_t0,1869
+julz-1.0.0.dist-info/METADATA,sha256=Qz8glnkJCcs6AjsrzX_9HEZs7JsU4U_rB2XpiaoNs9o,2874
+julz-1.0.0.dist-info/RECORD,,
+julz-1.0.0.dist-info/WHEEL,sha256=GrqQvamwgBV4nLoJe0vhYRSWzWsx7xjlt74FT0SWYfE,110
+julz-1.0.0.dist-info/entry_points.txt,sha256=XMq2yHIAGIcsbweOVn3Df1pMrleJf0dUI48P33f6GAc,39
+julz-1.0.0.dist-info/metadata.json,sha256=JoD-OQXvJwDWop9y1QPL70BKTvyENSvuT4ZTsvTJQC8,1158
+julz-1.0.0.dist-info/top_level.txt,sha256=io9g7LCbfmTG1SFKgEOGXmCFB9uMP2H5lerm0HiHWQE,4
