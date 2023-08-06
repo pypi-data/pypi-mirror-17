@@ -1,0 +1,45 @@
+Metadata-Version: 1.1
+Name: kupfer-plugin-restart-app
+Version: 0.1.1
+Summary: Add action to restart Application that are running
+Home-page: https://github.com/hugosenari/restart_app
+Author: Hugo Sena Ribeiro
+Author-email: hugosenari@gmail.com
+License: Apache Software License 2.0
+Description: ===============================
+        Restart App
+        ===============================
+        
+        
+        Add action to restart Application that are running
+        
+        
+        * Free software: Apache Software License 2.0
+        
+        Install
+        -------
+        
+        pip install kupfer_plugin_restart_app
+        
+        
+        Credits
+        ---------
+        
+        This package was created with Cookiecutter_ and the `cookiecutter-kupfer-plugin-package`_ project template.
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _`cookiecutter-kupfer-plugin-package`: https://github.com/hugosenari/cookiecutter-kupfer-plugin-package
+        
+        
+Keywords: kupfer restart_app
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
