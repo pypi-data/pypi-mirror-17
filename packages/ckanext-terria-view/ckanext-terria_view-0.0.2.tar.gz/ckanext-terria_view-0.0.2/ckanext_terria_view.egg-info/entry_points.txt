@@ -1,0 +1,7 @@
+
+        [ckan.plugins]
+        terria_view=ckanext.terria_view.plugin:Terria_ViewPlugin
+
+        [babel.extractors]
+        ckan = ckan.lib.extract:extract_ckan
+    
