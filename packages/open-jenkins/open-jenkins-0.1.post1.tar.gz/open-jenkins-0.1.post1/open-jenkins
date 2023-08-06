@@ -1,0 +1,41 @@
+#!/usr/bin/env python
+
+import json
+import os
+import webbrowser
+
+
+def main():
+    config = get_config()
+
+    url = "{}/job/{}/".format(config["url"], get_job_name())
+    webbrowser.open_new_tab(url)
+
+
+def get_config():
+    # Kind of robust config builder, getter, in case it grows later
+    path = os.path.join(os.path.expanduser("~"), ".open-jenkinsrc")
+    c = {}
+
+    try:
+        with open(path) as fin:
+            c = json.load(fin)
+    except FileNotFoundError:
+        try:
+            c["url"] = input("Enter Jenkins server base url: ")
+        except KeyboardInterrupt:
+            exit(0)
+
+        with open(path, "w+") as fout:
+            json.dump(c, fout)
+        print("written to {}, edit at your own annoyance.".format(path))
+
+    return c
+
+
+def get_job_name():
+    return os.path.split(os.getcwd())[-1]
+
+
+if __name__ == "__main__":
+    main()
