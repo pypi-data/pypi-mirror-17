@@ -1,0 +1,10 @@
+MANIFEST.in
+README.html
+README.rst
+setup.py
+wmicq/__init__.py
+wmicq.egg-info/PKG-INFO
+wmicq.egg-info/SOURCES.txt
+wmicq.egg-info/dependency_links.txt
+wmicq.egg-info/not-zip-safe
+wmicq.egg-info/top_level.txt
