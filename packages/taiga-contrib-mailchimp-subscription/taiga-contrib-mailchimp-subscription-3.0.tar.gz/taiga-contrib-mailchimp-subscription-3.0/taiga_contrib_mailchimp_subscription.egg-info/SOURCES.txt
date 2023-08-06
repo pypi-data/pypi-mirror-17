@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+setup.py
+versiontools_support.py
+taiga_contrib_mailchimp_subscription/__init__.py
+taiga_contrib_mailchimp_subscription/apps.py
+taiga_contrib_mailchimp_subscription/signal_handlers.py
+taiga_contrib_mailchimp_subscription/utils.py
+taiga_contrib_mailchimp_subscription.egg-info/PKG-INFO
+taiga_contrib_mailchimp_subscription.egg-info/SOURCES.txt
+taiga_contrib_mailchimp_subscription.egg-info/dependency_links.txt
+taiga_contrib_mailchimp_subscription.egg-info/requires.txt
+taiga_contrib_mailchimp_subscription.egg-info/top_level.txt
+taiga_contrib_mailchimp_subscription_tests/__init__.py
+taiga_contrib_mailchimp_subscription_tests/conftest.py
+taiga_contrib_mailchimp_subscription_tests/settings.py
+taiga_contrib_mailchimp_subscription_tests/test_newsletter_subscription.py

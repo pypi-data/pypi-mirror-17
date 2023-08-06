@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: taiga-contrib-mailchimp-subscription
+Version: 3.0
+Summary: Plugin to subscribe and unsubscribe users to the newsletter in MailChimp.
+Home-page: https://github.com/taigaio/taiga-contrib-mailchimp-subscription
+Author: Taiga Agile LLC
+Author-email: taiga@taiga.io
+License: AGPL
+Description: Plugin to subscribe and unsubscribe users to the newsletter in MailChimp.
+Keywords: taiga,mailchimp,integration
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP
