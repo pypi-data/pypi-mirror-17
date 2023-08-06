@@ -1,0 +1,70 @@
+Metadata-Version: 2.0
+Name: wagtailtrans
+Version: 0.1.0b1
+Summary: A Wagtail add-on for supporting multilingual sites
+Home-page: https://lukkien.com/
+Author: Lukkien BV
+Author-email: support@lukkien.com
+License: BSD
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.8
+Classifier: Framework :: Django :: 1.9
+Classifier: Framework :: Django :: 1.10
+Classifier: Topic :: Internet :: WWW/HTTP :: Site Management
+Requires-Dist: wagtail (>=1.6)
+Provides-Extra: test
+Requires-Dist: coverage (==4.2); extra == 'test'
+Requires-Dist: factory-boy (==2.7.0); extra == 'test'
+Requires-Dist: flake8 (==3.0.4); extra == 'test'
+Requires-Dist: isort (==4.2.5); extra == 'test'
+Requires-Dist: pytest (==3.0.2); extra == 'test'
+Requires-Dist: pytest-django (==3.0.0); extra == 'test'
+Requires-Dist: pytest-warnings (==0.1.0); extra == 'test'
+Requires-Dist: psycopg2 (>=2.6); extra == 'test'
+
+Wagtail multilanguage module
+============================
+
+Features
+========
+
+* Support multiple language for your wagtail site
+
+
+Getting started
+===============
+
+1. To install wagtailtrans, run this command in your terminal:
+
+.. code-block:: console
+    ``pip install wagtailtrans``
+
+2. Add ``wagtailtrans`` to your INSTALLED_APPS
+
+3. Perform a migration
+
+.. code-block:: console
+    ``python manage.py migrate wagtailtrans``
+
+You're set!
+
+Settings
+========
+
+The settings ``WAGTAILTRANS_SYNC_TREE`` can be used to configure the module to keep your language trees synchronized or not.
+This is set to ``True`` by default.
+
+Use ``WAGTAILTRANS_SYNC_TREE = False`` to disable sync and have free flowing trees.
+
+
