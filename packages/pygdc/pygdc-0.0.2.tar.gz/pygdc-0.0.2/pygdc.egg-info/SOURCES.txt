@@ -1,0 +1,16 @@
+MANIFEST.in
+setup.cfg
+setup.py
+versioneer.py
+pygdc/__init__.py
+pygdc/_version.py
+pygdc/api.py
+pygdc/cohort.py
+pygdc/fields.py
+pygdc/filters.py
+pygdc/urls.py
+pygdc.egg-info/PKG-INFO
+pygdc.egg-info/SOURCES.txt
+pygdc.egg-info/dependency_links.txt
+pygdc.egg-info/requires.txt
+pygdc.egg-info/top_level.txt
