@@ -1,0 +1,4 @@
+[console_scripts]
+bubblec = bubble.bclient.wbubblec:main
+bubbles = bubble.bserver.server:main
+
