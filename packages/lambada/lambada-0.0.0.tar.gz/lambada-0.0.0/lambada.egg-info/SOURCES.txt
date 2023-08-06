@@ -1,0 +1,15 @@
+README.rst
+setup.py
+lambada/__init__.py
+lambada/cli.py
+lambada/common.py
+lambada.egg-info/PKG-INFO
+lambada.egg-info/SOURCES.txt
+lambada.egg-info/dependency_links.txt
+lambada.egg-info/entry_points.txt
+lambada.egg-info/pbr.json
+lambada.egg-info/requires.txt
+lambada.egg-info/top_level.txt
+lambada.egg-info/zip-safe
+lambada/tests/__init__.py
+lambada/tests/test_package.py
