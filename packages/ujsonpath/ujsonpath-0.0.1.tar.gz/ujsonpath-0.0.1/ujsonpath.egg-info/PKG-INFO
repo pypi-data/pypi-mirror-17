@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: ujsonpath
+Version: 0.0.1
+Summary: A fast JSONPath implementation
+Home-page: https://github.com/LuizArmesto/ujsonpath
+Author: Luiz Armesto
+Author-email: luiz.armesto@gmail.com
+License: UNKNOWN
+Description: uJSONPath 0.0.1
+        ===============
+        
+        [![Build Status](https://travis-ci.org/LuizArmesto/ujsonpath.svg?branch=master)](https://travis-ci.org/LuizArmesto/ujsonpath)
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
