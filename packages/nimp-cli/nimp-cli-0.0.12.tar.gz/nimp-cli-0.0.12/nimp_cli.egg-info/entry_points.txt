@@ -1,0 +1,3 @@
+[console_scripts]
+nimp = nimp.nimp_cli:main
+
