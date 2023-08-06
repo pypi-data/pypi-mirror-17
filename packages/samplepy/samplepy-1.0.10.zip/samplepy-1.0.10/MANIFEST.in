@@ -1,0 +1,6 @@
+graft samplepy/examples
+graft samplepy/tests
+
+
+include README.rst
+include CHANGELOG.rst
