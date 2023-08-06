@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: better-project-forecast
+Version: 0.0.2
+Summary: Predict how long projects will take using monte carlo simulation
+Home-page: https://github.com/cmheisel/better-project-forecast
+Author: Chris Heisel
+Author-email: chris@heisel.org
+License: MIT
+Description: # better-project-forecast
+        Averages suck, improve your project forecasting
+        
+Keywords: monte carlo simulation project forecast
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: MIT License
