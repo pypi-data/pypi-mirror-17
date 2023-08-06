@@ -1,0 +1,9 @@
+setuptools
+Products.CMFCore
+collective.geo.mapwidget >= 2.1.1
+collective.geo.geographer >= 2.0
+
+[test]
+plone.app.testing
+mock
+collective.geo.behaviour
