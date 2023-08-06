@@ -1,0 +1,39 @@
+Metadata-Version: 1.1
+Name: boilerpl8
+Version: 0.1.0
+Summary: Scaffodling tool to download and expand boilerplate files
+Home-page: https://github.com/kwatch/boilerpl8/tree/python
+Author: makoto kuwata
+Author-email: kwa(at)kuwata-lab.com
+License: MIT License
+Description: Boilerpl8.py is a scaffolding tool. It downloads boilerplate files
+        from github repository, and expand it into local disk.
+        
+        Examples::
+        
+            ## create Python project
+            $ boilerpl8 github:kwatch/hello-python myproj1
+        
+            ## create Keight.py project
+            $ boilerpl8 github:kwatch/keight-python myapp1
+        
+            ## create webiste based on html5-boilerplate
+            $ boilerpl8 -B github:h5bp/html5-boilerplate
+        
+        See https://github.com/kwatch/boilerpl8/tree/python for details.
+        
+        (Boilerpl8.poy requires Python 2.7, 3.3 or later.)
+        
+Keywords: scaffold
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Software Development :: Code Generators
