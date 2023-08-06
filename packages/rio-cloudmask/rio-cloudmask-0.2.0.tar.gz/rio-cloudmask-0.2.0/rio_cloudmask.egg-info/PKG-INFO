@@ -1,0 +1,25 @@
+Metadata-Version: 1.1
+Name: rio-cloudmask
+Version: 0.2.0
+Summary: Cloud masking plugin for rasterio
+Home-page: https://github.com/mapbox/rio-cloudmask
+Author: Matthew Perry
+Author-email: perrygeo@gmail.com
+License: MIT
+Description: 
+        Rasterio plugin for identifying clouds in multi-spectral satellite imagery.
+        
+        See https://github.com/mapbox/rio-cloudmask for docs.
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Cython
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Multimedia :: Graphics :: Graphics Conversion
+Classifier: Topic :: Scientific/Engineering :: GIS
