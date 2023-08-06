@@ -1,0 +1,15 @@
+six
+python-dateutil
+
+[test]
+sqlalchemy
+mock
+cassandra-driver
+numpy
+PyCrypto
+
+[sqlalchemy]
+sqlalchemy
+
+[cassandra]
+cassandra-driver
