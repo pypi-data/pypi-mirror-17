@@ -1,0 +1,3 @@
+[nose.plugins]
+trampoline_setup = nose_plugins:TrampolineSetup
+
