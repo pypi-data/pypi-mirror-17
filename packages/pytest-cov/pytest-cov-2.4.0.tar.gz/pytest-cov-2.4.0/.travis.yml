@@ -1,0 +1,130 @@
+language: python
+python: '3.5'
+sudo: false
+env:
+  global:
+    - LD_PRELOAD=/lib/x86_64-linux-gnu/libSegFault.so
+    - SEGFAULT_SIGNALS=all
+  matrix:
+    - TOXENV=check
+
+    - TOXENV=py26-27-37
+    - TOXENV=py26-27-40
+    - TOXENV=py26-27-41
+    - TOXENV=py26-27-42
+    - TOXENV=py26-28-37
+    - TOXENV=py26-28-40
+    - TOXENV=py26-28-41
+    - TOXENV=py26-28-42
+    - TOXENV=py26-29-37
+    - TOXENV=py26-29-40
+    - TOXENV=py26-29-41
+    - TOXENV=py26-29-42
+    - TOXENV=py26-30-37
+    - TOXENV=py26-30-40
+    - TOXENV=py26-30-41
+    - TOXENV=py26-30-42
+    - TOXENV=py27-27-37
+    - TOXENV=py27-27-40
+    - TOXENV=py27-27-41
+    - TOXENV=py27-27-42
+    - TOXENV=py27-28-37
+    - TOXENV=py27-28-40
+    - TOXENV=py27-28-41
+    - TOXENV=py27-28-42
+    - TOXENV=py27-29-37
+    - TOXENV=py27-29-40
+    - TOXENV=py27-29-41
+    - TOXENV=py27-29-42
+    - TOXENV=py27-30-37
+    - TOXENV=py27-30-40
+    - TOXENV=py27-30-41
+    - TOXENV=py27-30-42
+    - TOXENV=py33-27-37
+    - TOXENV=py33-27-40
+    - TOXENV=py33-27-41
+    - TOXENV=py33-27-42
+    - TOXENV=py33-28-37
+    - TOXENV=py33-28-40
+    - TOXENV=py33-28-41
+    - TOXENV=py33-28-42
+    - TOXENV=py33-29-37
+    - TOXENV=py33-29-40
+    - TOXENV=py33-29-41
+    - TOXENV=py33-29-42
+    - TOXENV=py33-30-37
+    - TOXENV=py33-30-40
+    - TOXENV=py33-30-41
+    - TOXENV=py33-30-42
+    - TOXENV=py34-27-37
+    - TOXENV=py34-27-40
+    - TOXENV=py34-27-41
+    - TOXENV=py34-27-42
+    - TOXENV=py34-28-37
+    - TOXENV=py34-28-40
+    - TOXENV=py34-28-41
+    - TOXENV=py34-28-42
+    - TOXENV=py34-29-37
+    - TOXENV=py34-29-40
+    - TOXENV=py34-29-41
+    - TOXENV=py34-29-42
+    - TOXENV=py34-30-37
+    - TOXENV=py34-30-40
+    - TOXENV=py34-30-41
+    - TOXENV=py34-30-42
+    - TOXENV=py35-27-37
+    - TOXENV=py35-27-40
+    - TOXENV=py35-27-41
+    - TOXENV=py35-27-42
+    - TOXENV=py35-28-37
+    - TOXENV=py35-28-40
+    - TOXENV=py35-28-41
+    - TOXENV=py35-28-42
+    - TOXENV=py35-29-37
+    - TOXENV=py35-29-40
+    - TOXENV=py35-29-41
+    - TOXENV=py35-29-42
+    - TOXENV=py35-30-37
+    - TOXENV=py35-30-40
+    - TOXENV=py35-30-41
+    - TOXENV=py35-30-42
+    - TOXENV=pypy-27-37
+    - TOXENV=pypy-27-40
+    - TOXENV=pypy-27-41
+    - TOXENV=pypy-27-42
+    - TOXENV=pypy-28-37
+    - TOXENV=pypy-28-40
+    - TOXENV=pypy-28-41
+    - TOXENV=pypy-28-42
+    - TOXENV=pypy-29-37
+    - TOXENV=pypy-29-40
+    - TOXENV=pypy-29-41
+    - TOXENV=pypy-29-42
+    - TOXENV=pypy-30-37
+    - TOXENV=pypy-30-40
+    - TOXENV=pypy-30-41
+    - TOXENV=pypy-30-42
+before_install:
+  - python --version
+  - uname -a
+  - lsb_release -a
+install:
+  - pip install tox
+  - virtualenv --version
+  - easy_install --version
+  - pip --version
+  - tox --version
+script:
+  - tox -v
+after_failure:
+  - more .tox/log/* | cat
+  - more .tox/*/log/* | cat
+before_cache:
+  - rm -rf $HOME/.cache/pip/log
+cache:
+  directories:
+    - $HOME/.cache/pip
+notifications:
+  email:
+    on_success: never
+    on_failure: always
