@@ -1,0 +1,39 @@
+Metadata-Version: 2.0
+Name: ssterm
+Version: 3.0.0
+Summary: A simple console-based serial port terminal
+Home-page: https://github.com/vsergeev/ssterm
+Author: vsergeev
+Author-email: v@sergeev.io
+License: MIT
+Keywords: serial port uart terminal
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Topic :: Terminals :: Serial
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+
+ssterm is a simple console-based serial port terminal featuring painless serial port configuration, no dependencies outside of a standard Python 2 or 3 installation, and a variety of useful formatting options:
+
+- output modes
+
+  - raw
+  - hexadecimal
+  - hexadecimal/ASCII split
+
+- input modes
+
+  - raw
+  - hexadecimal
+
+- transmit newline remapping (e.g. system newline -> CRLF)
+- receive newline remapping (e.g. CRLF -> system newline)
+- character color coding
+- local character echo
+
+
