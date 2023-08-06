@@ -1,0 +1,17 @@
+versioner_endpoint: http://versioner.endpoint
+project_name: "Example Project"
+docker_repo: "owner/repo"
+continuous_deployment_hook: "http://jenkins.com/job/ID"
+continuous_deployment_hook_auth:
+  user: "user"
+  password: "password"
+pre_tasks:
+  - "get version"
+tasks:
+  - "tag docker"
+  - "version npm"
+post_tasks:
+  - "publish npm"
+  - "publish dockerhub"
+  - "release versioner"
+  - "release github"
