@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+setup.py
+unicodemoticon/__init__.py
+unicodemoticon/__main__.py
+unicodemoticon/data.py
+unicodemoticon/unicodemoticon.desktop
+unicodemoticon.egg-info/PKG-INFO
+unicodemoticon.egg-info/SOURCES.txt
+unicodemoticon.egg-info/dependency_links.txt
+unicodemoticon.egg-info/entry_points.txt
+unicodemoticon.egg-info/requires.txt
+unicodemoticon.egg-info/top_level.txt
+unicodemoticon.egg-info/zip-safe
