@@ -1,0 +1,10 @@
+numpy
+scipy
+matplotlib
+scikit-learn
+json_tricks
+
+[testing]
+nose
+nose-cov
+sklearn
