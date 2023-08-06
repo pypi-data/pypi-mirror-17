@@ -1,0 +1,13 @@
+django_ldap_sync-0.4.2.dist-info/DESCRIPTION.rst,sha256=wQn6GzMRSCSCzmVN3jhGYaUkYw88vEamWHUa9bqQyUw,1110
+django_ldap_sync-0.4.2.dist-info/METADATA,sha256=X0SE6YY-XBt3ZVMidedCpD0lUZMUvZYT7pMfkA6Icpw,1996
+django_ldap_sync-0.4.2.dist-info/RECORD,,
+django_ldap_sync-0.4.2.dist-info/WHEEL,sha256=bee59qcPjkyXfMaxNWjl2CGotqfumWx9pC1hlVLr2mM,92
+django_ldap_sync-0.4.2.dist-info/metadata.json,sha256=fpo8jtfvmk17gY6B8urLXNqbc_pYLEwPAj8Bwvb_NBM,1071
+django_ldap_sync-0.4.2.dist-info/top_level.txt,sha256=F7o9LeqPJ0arG454rI19RfaDY7n9qfRprkZkUwz5EuA,10
+ldap_sync/__init__.py,sha256=TkiQcMFw-eThf7aOHVditdNEk1k9iAWBL3yGcncewr4,88
+ldap_sync/callbacks.py,sha256=CAPbeBu2yuic03TcGSrBEMm0gkgM_6VJGmYEkCvZ7R8,857
+ldap_sync/tasks.py,sha256=Pp6kaBa7axCKNr68z476p8IiVXK4BlkkLvqM95HSR8g,259
+ldap_sync/utils.py,sha256=MfhZUZTbeyRrLeMTAtd7Gb_EXfxQoGNBhbmL4G-6c5M,323
+ldap_sync/management/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+ldap_sync/management/commands/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+ldap_sync/management/commands/syncldap.py,sha256=cf98gq6vNdNrz7kMHOghrJGI5FJS0mIfXWH4DNCvIaY,9678
