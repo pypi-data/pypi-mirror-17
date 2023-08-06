@@ -1,0 +1,4 @@
+[console_scripts]
+a2c-tests = acd2cwl.build_tests:build
+a2c-tools = acd2cwl.build_tools:build
+
