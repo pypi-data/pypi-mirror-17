@@ -1,0 +1,13 @@
+setup.py
+vexshell/__init__.py
+vexshell/__main__.py
+vexshell/command_manager.py
+vexshell/controller.py
+vexshell/model.py
+vexshell/shell.py
+vexshell.egg-info/PKG-INFO
+vexshell.egg-info/SOURCES.txt
+vexshell.egg-info/dependency_links.txt
+vexshell.egg-info/entry_points.txt
+vexshell.egg-info/requires.txt
+vexshell.egg-info/top_level.txt
