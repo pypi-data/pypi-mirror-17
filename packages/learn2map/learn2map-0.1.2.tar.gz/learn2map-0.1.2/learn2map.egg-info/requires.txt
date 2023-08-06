@@ -1,0 +1,7 @@
+numpy
+pandas
+GDAL>=1.10
+lxml
+scikit-learn
+xgboost
+seaborn
