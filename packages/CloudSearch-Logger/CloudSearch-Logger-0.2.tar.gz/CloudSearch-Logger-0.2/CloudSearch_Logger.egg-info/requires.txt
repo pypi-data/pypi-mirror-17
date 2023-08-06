@@ -1,0 +1,7 @@
+boto==2.42.0
+requests
+
+[test]
+mock==1.0.1
+testscenarios==0.2
+testtools==0.9.34
