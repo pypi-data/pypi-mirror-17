@@ -1,0 +1,14 @@
+steem-piston
+tqdm
+python-dateutil
+numpy
+requests
+
+[dev]
+check-manifest
+pymongo
+matplotlib
+pandas
+
+[test]
+coverage
