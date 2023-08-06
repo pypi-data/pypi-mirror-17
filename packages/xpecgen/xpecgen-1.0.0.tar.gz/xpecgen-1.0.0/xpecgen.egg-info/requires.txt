@@ -1,0 +1,10 @@
+matplotlib
+numpy
+scipy
+XlsxWriter
+
+[dev]
+check-manifest
+
+[test]
+coverage
