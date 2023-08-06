@@ -1,0 +1,3 @@
+[console_scripts]
+almond = almond.cli:main
+
