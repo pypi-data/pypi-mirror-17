@@ -1,0 +1,11 @@
+setuptools
+zc.buildout
+zc.recipe.egg
+zc.recipe.deployment
+Mako
+birdhousebuilder.recipe.conda
+birdhousebuilder.recipe.supervisor
+
+[tests]
+zc.buildout
+zope.testing
