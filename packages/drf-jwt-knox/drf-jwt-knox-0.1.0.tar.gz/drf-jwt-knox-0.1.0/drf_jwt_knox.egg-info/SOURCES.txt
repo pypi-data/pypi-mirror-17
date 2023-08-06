@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+drf_jwt_knox.egg-info/PKG-INFO
+drf_jwt_knox.egg-info/SOURCES.txt
+drf_jwt_knox.egg-info/dependency_links.txt
+drf_jwt_knox.egg-info/requires.txt
+drf_jwt_knox.egg-info/top_level.txt
+jwt_knox/__init__.py
+jwt_knox/apps.py
+jwt_knox/auth.py
+jwt_knox/settings.py
+jwt_knox/urls.py
+jwt_knox/utils.py
+jwt_knox/viewsets.py
