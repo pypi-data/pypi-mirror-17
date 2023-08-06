@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Communicating With the Server &#8212; Dallinger 2.4.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/style.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.4.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="Dallinger 2.4.0 documentation" href="index.html" />
+    <link rel="next" title="Command-Line Utility" href="command_line_utility.html" />
+    <link rel="prev" title="Web API" href="web_api.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="communicating-with-the-server">
+<h1>Communicating With the Server<a class="headerlink" href="#communicating-with-the-server" title="Permalink to this headline">¶</a></h1>
+<p>When an experiment is running, the database and the experiment class
+(i.e. the instructions for what to do with the database) will be hosted
+on a server, the server is also known as the &#8220;back-end&#8221;. However,
+participants will take part in experiments via an interactive web-site
+(the &#8220;front-end&#8221;). Accordingly for an experiment to proceed there must
+be a means of communication between the front and back ends. This is
+achieved with routes:</p>
+<div class="figure">
+<img alt="" src="_images/front_back_layout.jpg" />
+</div>
+<p>Routes are specific web addresses on the server that respond to requests
+from the front-end. Routes have direct access to the database, though
+most of the time they will pass requests to the experiment which will in
+turn access the database. As such, changing the behavior of the
+experiment is the easiest way to create a new experiment. However it is
+also possible to change the behavior of the routes or add new routes
+entirely.</p>
+<p>Requests generally come in two types: &#8220;get&#8221; requests, which ask for
+information from the database, and &#8220;post&#8221; requests which send new
+information to be added to the database. Once a request is complete the
+back-end sends a response back to the front-end. Minimally, this will
+include a notification that the request was successfully processed, but
+often it will also include additional information.</p>
+<p>As long as requests are properly formatted and correctly addressed to
+routes, the back-end will send the appropriate response. This means that
+the front-end could take any form. For instance requests could come from
+a standard HTML/CSS/JS webpage, a more sophisticated web-app, or even
+from the experiment itself.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Dallinger</a></h1>
+
+
+
+<p class="blurb">Laboratory automation for the behavioral and social sciences.</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=Dallinger&repo=Dallinger&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="web_api.html" title="previous chapter">Web API</a></li>
+      <li>Next: <a href="command_line_utility.html" title="next chapter">Command-Line Utility</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
