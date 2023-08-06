@@ -1,0 +1,26 @@
+{
+	"workdir":"lol",
+	"task_id":"16-08-17-12-01-22_ABCD3456FGHIJK",
+	"user":{
+		"id":"1234"
+		},
+	"input_format":{
+			"format":"csv",
+			"field_separator":";",
+			"text_delimiter":"\"",
+			"code_page":"utf-8",
+			"header":1
+		},
+	"input_columns":[
+	   { "no":0, "name":"id uzytkownika sklepu", "function":"PRZEPISZ"},
+	   { "no":1, "name":"request", "function":"CALY_ADRES"}
+	],
+	"extend":{
+		"teryt":1,
+		"gus":1,
+		"geocode":1,
+		"building_info":0,
+		"diagnostic":1,
+		"area_characteristic":0
+	}
+}
