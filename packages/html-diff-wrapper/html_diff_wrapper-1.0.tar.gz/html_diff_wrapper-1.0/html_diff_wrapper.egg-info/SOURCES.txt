@@ -1,0 +1,17 @@
+CHANGES.rst
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+html_diff_wrapper/__init__.py
+html_diff_wrapper/testing.py
+html_diff_wrapper.egg-info/PKG-INFO
+html_diff_wrapper.egg-info/SOURCES.txt
+html_diff_wrapper.egg-info/dependency_links.txt
+html_diff_wrapper.egg-info/not-zip-safe
+html_diff_wrapper.egg-info/requires.txt
+html_diff_wrapper.egg-info/top_level.txt
+html_diff_wrapper/htmldiff/__init__.py
+html_diff_wrapper/htmldiff/htmldiff.py
+html_diff_wrapper/tests/__init__.py
+html_diff_wrapper/tests/test_htmldiff_wrapper.py
