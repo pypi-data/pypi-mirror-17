@@ -1,0 +1,28 @@
+Metadata-Version: 1.1
+Name: pyPassGenerator
+Version: 1.0.3
+Summary: Generate your random password
+Home-page: https://github.com/xxxtonixxx/pyPasswordGenerator
+Author: Toni Villena
+Author-email: tonivj5@gmail.com
+License: GNU GPLv2
+Download-URL: https://github.com/xxxtonixxx/pyPasswordGenerator/tarball/v1.0.3
+Description: It’s a simple program that it’s able of generate randoms, variables and with custom characters password and... it's written in Python!
+        
+                                Documented in https://github.com/xxxtonixxx/pyPasswordGenerator/blob/master/README.md
+Keywords: password,random,variable,pass,generator
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.0
+Classifier: Programming Language :: Python :: 3.1
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Security
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
