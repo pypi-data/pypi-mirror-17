@@ -1,0 +1,16 @@
+MANIFEST.in
+README.rst
+setup.py
+opacity_calculator/Calculator_CDE.py
+opacity_calculator/Calculator_MIE.py
+opacity_calculator/DataClass_Opacity.py
+opacity_calculator/DataClass_OpticalConstants.py
+opacity_calculator/DataClass_SQLData.py
+opacity_calculator/SQLITE_DATABASE.db
+opacity_calculator/__init__.py
+opacity_calculator/main.py
+opacity_calculator.egg-info/PKG-INFO
+opacity_calculator.egg-info/SOURCES.txt
+opacity_calculator.egg-info/dependency_links.txt
+opacity_calculator.egg-info/top_level.txt
+opacity_calculator.egg-info/zip-safe

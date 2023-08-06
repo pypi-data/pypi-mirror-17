@@ -1,0 +1,99 @@
+Readme file
+============
+- Author: Ben de Vries and Robin Lombaert
+- Contact: bldevries.science@gmail.com
+- Web: www.stjerke.com
+- Github: https://github.com/bldevries
+- PyPi: https://pypi.python.org/pypi/opacity_calculator
+
+
+Implementations and versions
+------------------------------------
+* Implementations in the current version (Beta 0.1):
+	* Grain shapes: Implemented CDE grains
+	* Grain sizes: single grain size
+	* Optical constants in database: olivine (amorph and crystalline), carbon, ices
+	* Benchmarked with Michiels code (Min et al 2009)
+
+* Next version (Beta 1.0)
+	* Grain shapes: implement MIE and CDE grains
+	* Grain sizes: single grain size
+	* Optical constants in database: 
+		- silicates (olivine and pyroxene, amorph and crystalline)
+		- oxides
+		- carbon
+		- ices
+		- Able to use your own optical constants
+
+* Future versions:
+	* Grain shapes: implement MIE, DHS, GRF and CDE grains
+	* Grain sizes: single grain size and grain size distributions
+	* Optical constants in database: 
+		- Full JENA database avaliable in the SQLite database
+		- Able to use your own optical constants	
+	* Other functions:
+		- Enable saving of the opacities in a local SQLite DB
+
+
+
+
+Installation:
+--------------
+
+* PyPi: installation coming ...
+* Github
+	- Download the files from github. Inside the opacity_calculator directory type (if you need permissions, with sudo): python setup.py install
+	- To test if it works type python to go into python and then "import opacity_calculator"
+
+
+Introduction
+-------------
+Coming...
+
+
+Getting started: an example
+-----------------------------
+If you have the opacity_calculator installed and want to test how it works and plot a spectrum with the matplotlib package. Go into python and type:
+	- import opacity_calculator as oc
+	- opacitiesForsterite = oc.getOpacity("fo050", 1.0, print_console_output = True)
+	- import matplotlib.pyplot as plt 
+	- plt.plot(opac.getX(), opac.getY())
+	- plt.show)
+If you want to try another mineral, check the content of the database in the following way:
+	- import opacity_calculator as oc
+	- oc.printDatabase()
+	- You can use the labels in the label column to generate opacities with the getOpacity function.
+
+
+General code structure and classes
+=====================================
+
+Classes & Files
+------------------
+* Package and python scripts
+	* __init__.py
+	* main.py 
+* DataClasses:
+	* DataClass_SQLData.py
+	* DataClass_OpticalConstants.py
+	* DataClass_Opacity.py
+* Calculators
+	* Calculator_CDE.py
+	* Calculator_MIE.py
+	* Calculator_DHS.py
+* Database files:
+	* SQLITE_DATABASE.db
+
+
+
+
+Databases and table structure
+------------------------------
+* Filename: SQLITE_DATABASE.db
+* Table: OpticalConstantsTable
+
+
+
+
+
+
