@@ -1,0 +1,20 @@
+Metadata-Version: 2.0
+Name: Eos
+Version: 0.0.0.dev6
+Summary: Eos is a fitting engine for for EVE Online.
+Home-page: https://github.com/pyfa-org/eos
+Author: Pyfa Team
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: PyYAML (==3.12)
+Requires-Dist: coverage (==4.2)
+Requires-Dist: coveralls (==1.1)
+Requires-Dist: pytest (==3.0.3)
+Requires-Dist: pytest-cov (==2.3.1)
+Requires-Dist: tox (==2.3.1)
+Requires-Dist: wheel (==0.29.0)
+
+UNKNOWN
+
+
