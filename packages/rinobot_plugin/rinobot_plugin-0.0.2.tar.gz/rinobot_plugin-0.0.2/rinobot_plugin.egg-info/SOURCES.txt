@@ -1,0 +1,14 @@
+setup.cfg
+setup.py
+rinobot_plugin/__init__.py
+rinobot_plugin/plugin.py
+rinobot_plugin.egg-info/PKG-INFO
+rinobot_plugin.egg-info/SOURCES.txt
+rinobot_plugin.egg-info/dependency_links.txt
+rinobot_plugin.egg-info/entry_points.txt
+rinobot_plugin.egg-info/requires.txt
+rinobot_plugin.egg-info/top_level.txt
+rinobot_plugin/scripts/__init__.py
+rinobot_plugin/scripts/cli.py
+rinobot_plugin/test/__init__.py
+rinobot_plugin/test/test.py
