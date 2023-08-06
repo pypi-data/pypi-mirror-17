@@ -1,0 +1,3 @@
+[console_scripts]
+bconv = binconvert.cli.script:main
+
