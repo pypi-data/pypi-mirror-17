@@ -1,0 +1,18 @@
+#
+# Travis CI configuration
+#
+
+language: python
+
+python:
+  - "3.5"
+  - "nightly"
+
+install:
+  - pip install -qU pytest libsass pytest-runner pytest-cov python-coveralls
+
+script:
+  - python setup.py pytest --addopts 'tests --cov=growler_sass --cov-report=term-missing'
+
+after_success:
+  - coveralls
