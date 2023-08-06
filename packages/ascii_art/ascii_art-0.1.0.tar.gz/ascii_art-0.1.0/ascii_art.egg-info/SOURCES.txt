@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+ascii_art/__init__.py
+ascii_art/bar.py
+ascii_art/chart.py
+ascii_art/histogram.py
+ascii_art.egg-info/PKG-INFO
+ascii_art.egg-info/SOURCES.txt
+ascii_art.egg-info/dependency_links.txt
+ascii_art.egg-info/top_level.txt
