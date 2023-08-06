@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: docker-compose-swarm-mode
+Version: 1.2.1
+Summary: Drop in replacement for docker-compose that works with swarm mode introduced in Docker 1.12.
+Home-page: https://github.com/ddrozdov/docker-compose-swarm-mode
+Author: Dmitry Drozdov
+Author-email: UNKNOWN
+License: MIT
+Download-URL: https://github.com/ddrozdov/docker-compose-swarm-mode/tarball/1.2.1
+Description: UNKNOWN
+Keywords: docker,docker-compose,swarm
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
