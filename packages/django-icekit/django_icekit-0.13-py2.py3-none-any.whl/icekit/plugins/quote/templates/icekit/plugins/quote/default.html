@@ -1,0 +1,6 @@
+<blockquote>
+	<p>{{ instance.quote|safe }}</p>
+	{% if instance.attribution %}
+		<footer>{{ instance.attribution}}{% if instance.organisation %}, <cite>{{ instance.organisation }}</cite>{% endif %}</footer>
+	{% endif %}
+</blockquote>
