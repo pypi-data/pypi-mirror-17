@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+setup.py
+Fyreside.egg-info/PKG-INFO
+Fyreside.egg-info/SOURCES.txt
+Fyreside.egg-info/dependency_links.txt
+Fyreside.egg-info/not-zip-safe
+Fyreside.egg-info/requires.txt
+Fyreside.egg-info/top_level.txt
+bin/fyreside_run
+fyreside/__init__.py
+fyreside/cards.py
+fyreside/cmds.py
+fyreside/services.py
+fyreside/subscriptions.py
+fyreside/txt.py
