@@ -1,0 +1,19 @@
+ChangeLog for trestus
+=====================
+
+1.0.2 (2016-09-19)
+------------------
+
+ - Add CSS copying from templates by default, with --skip-css flag to disable.
+ - Improved README with more examples and Trello webhooks mention.
+
+1.0.1 (2016-09-17)
+------------------
+
+ - Ensure images are in manifest so they're included on PyPI page.
+
+1.0.0 (2016-09-17)
+------------------
+
+ - Initial release for PyPI.
+ - Readme improvements, screenshots etc. for general release.
