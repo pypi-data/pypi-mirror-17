@@ -1,0 +1,3 @@
+[gui_scripts]
+tem_circlefind = tem_circlefind.__main__:run
+
