@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: k-index-calculator
+Version: 0.1.9
+Summary: Python module which calculates the K-Index of a geomagnetic time series.
+Home-page: https://github.com/TerminusEst/k_index_calculator
+Author: Sean Blake
+Author-email: blakese@tcd.ie
+License: MIT
+Description: Calculates the K-Index of geomagnetic time series using the FMI method
+Keywords: geomagnetic k-index space weather
+Platform: UNKNOWN
