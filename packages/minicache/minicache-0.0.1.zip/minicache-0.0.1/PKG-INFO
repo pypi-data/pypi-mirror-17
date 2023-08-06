@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: minicache
+Version: 0.0.1
+Summary: Python memory caching utilities.
+Home-page: https://github.com/duboviy/minicache
+Author: Eugene Duboviy
+Author-email: eugene.dubovoy@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/duboviy/minicache/tarball/0.0.1
+Description: 
+        minicache extends existing caching utilities and provides a simple and pythonic way to cache values.
+        This project was created to suit the "memoization" needs, with a hook to turn it off (for testing or other purposes).
+        
+Keywords: cache,utility,optimization
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
