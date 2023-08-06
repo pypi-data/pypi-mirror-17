@@ -1,0 +1,30 @@
+Metadata-Version: 1.1
+Name: python-git-package
+Version: 0.2.2
+Summary: A scaffoling tool for python packages
+Home-page: https://github.com/BrechtBa/python-git-package
+Author: Brecht Baeten
+Author-email: brecht.baeten@gmail.com
+License: GPLv3
+Description: package-name
+        ------------
+        A very simple scaffold for constructing python packages
+        
+        Installation
+        ============
+        
+        Prequisites
+        ^^^^^^^^^^^
+        * 
+        
+        Setup
+        ^^^^^
+        * download the latest `release <https://github.com/BrechtBa/python-git-package/releases>`_
+        * unzip and cd to the folder
+        * run ``python setup.py install``
+        
+        Examples
+        ========
+        To get started, check the `examples <https://github.com/BrechtBa/python-git-package/tree/master/examples/>`_ folder
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
