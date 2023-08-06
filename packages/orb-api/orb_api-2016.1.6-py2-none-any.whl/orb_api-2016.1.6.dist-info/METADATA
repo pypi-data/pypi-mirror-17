@@ -1,0 +1,19 @@
+Metadata-Version: 2.0
+Name: orb-api
+Version: 2016.1.6
+Summary: Database ORM and API builder.
+Home-page: https://github.com/ProjexSoftware/orb
+Author: Eric Hulser
+Author-email: eric.hulser@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: projex (>=2015.0.12)
+Requires-Dist: inflection
+Requires-Dist: pycrypto
+Requires-Dist: pyparsing
+Requires-Dist: pyyaml
+Requires-Dist: pytz
+
+Database ORM and API builder.
+
+
