@@ -1,0 +1,7 @@
+google-cloud==0.20.0
+psycopg2
+google-api-python-client==1.5.3
+
+[dev]
+check-manifest
+mock
