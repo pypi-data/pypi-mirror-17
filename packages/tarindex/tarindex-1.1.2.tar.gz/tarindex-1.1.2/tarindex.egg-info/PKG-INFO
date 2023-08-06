@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: tarindex
+Version: 1.1.2
+Summary: tarindex, UNIX tar file indexer
+Home-page: http://github.com/coelias/tarindex
+Author: Carlos del Ojo Elias
+Author-email: deepbit@gmail.com
+License: GPLv3
+Description: tarindex is a tool to index non-compressed UNIX tar files to allow fast access without unpacking
+Keywords: tar index
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
