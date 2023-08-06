@@ -1,0 +1,7 @@
+#!/Users/desdrury/.pyenv/versions/2.7.11-ansible2/bin/python
+# -*- coding: utf-8 -*-
+
+from k8sdc import main
+
+if __name__ == "__main__":
+  main()
