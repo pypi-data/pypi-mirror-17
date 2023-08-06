@@ -1,0 +1,28 @@
+Metadata-Version: 1.0
+Name: supermovies
+Version: 0.2.2
+Summary: Sample Python Project for TDN Python Course learn how to program in Python.
+Home-page: http://teachersdunet.com/
+Author: Honore Hounwanou
+Author-email: mercuryseries@gmail.com
+License: MIT
+Description: SuperMovies
+        --------
+        
+        To run the main script simply do::
+        
+            $ netflix
+        
+        To use simply do::
+        
+            >>> import supermovies
+            >>> print( supermovies.Die.roll() )
+        
+        To run the main script simply do::
+        
+            $ pip install nose rednose
+            $ nosetests --rednose
+        
+        Feel free to contact me at mercuryseries@gmail.com.
+Keywords: learn,python,tdn
+Platform: UNKNOWN
