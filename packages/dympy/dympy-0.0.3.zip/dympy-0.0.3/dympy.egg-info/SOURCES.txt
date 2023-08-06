@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+dympy/__init__.py
+dympy/__version__.py
+dympy/dympy.py
+dympy/util.py
+dympy.egg-info/PKG-INFO
+dympy.egg-info/SOURCES.txt
+dympy.egg-info/dependency_links.txt
+dympy.egg-info/requires.txt
+dympy.egg-info/top_level.txt
+dympy/dymfiles/dymola_executables_and_results_will_be_written_here
+examples/example.ipynb
+examples/example.mo
