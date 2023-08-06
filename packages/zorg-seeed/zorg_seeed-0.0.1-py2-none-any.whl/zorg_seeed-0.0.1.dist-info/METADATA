@@ -1,0 +1,38 @@
+Metadata-Version: 2.0
+Name: zorg-seeed
+Version: 0.0.1
+Summary: A Zorg module for Seeed hardware.
+Home-page: https://github.com/zorg/zorg-seeed
+Author: Gunther Cox
+Author-email: gunthercx@gmail.com
+License: BSD
+Keywords: zorg,seeed
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Environment :: Console
+Classifier: Environment :: Web Environment
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: zorg (>=0.0.3,<0.1.0)
+
+zorg-seeed
+==========
+
+A Zorg robotics module for controlling various Seeed hardware.
+
+`Documentation <http://zorg-seeed.readthedocs.org/>`__
+------------------------------------------------------
+
+Hardware Support
+----------------
+
+- Motor Shield: http://wiki.seeedstudio.com/wiki/Motor_Shield_V1.0
+
+
