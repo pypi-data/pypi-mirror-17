@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: django-pipeline-typescript-compiler
+Version: 0.3
+Summary: Django Pipeline Compiler for Typescript
+Home-page: https://github.com/ponkt/django-pipeline-typescript
+Author: Jonathan ZIMPFER
+Author-email: jonathan.zimpfer@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/ponkt/django-pipeline-typescript/tarball/0.3
+Description: This project is a fork from the original django-pipeline-typescript plugin
+Keywords: pipeline,assets,typescript
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
