@@ -1,0 +1,17 @@
+.gitignore
+.travis.yml
+LICENSE
+README.rst
+default.nix
+setup.py
+tox.ini
+src/pytest_external_blockers/__init__.py
+src/pytest_external_blockers.egg-info/PKG-INFO
+src/pytest_external_blockers.egg-info/SOURCES.txt
+src/pytest_external_blockers.egg-info/dependency_links.txt
+src/pytest_external_blockers.egg-info/entry_points.txt
+src/pytest_external_blockers.egg-info/requires.txt
+src/pytest_external_blockers.egg-info/top_level.txt
+testing/conftest.py
+testing/test_acceptance.py
+testing/test_unit.py
