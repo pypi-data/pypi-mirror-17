@@ -1,0 +1,16 @@
+*.*~
+b
+build
+.cache
+*.cfg
+.coverage
+cslbot/static/geoip.db
+cslbot/templates/analytics.html
+db.sqlite
+dist
+.eggs
+fuzz_input
+fuzz_output
+__pycache__
+*.py[co]
+*.sw?
