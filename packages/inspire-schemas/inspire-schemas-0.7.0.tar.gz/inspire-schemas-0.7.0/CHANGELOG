@@ -1,0 +1,111 @@
+* 0.7.0 "b'David Caro <david@dcaro.es>'"
+    FEATURE 043810cf: b'Merge pull request #21 from lowks/patch-1'
+    MINOR c0dcc317: b'tests: Added some unit tests'
+    MINOR dea9b9ed: b'tests: Add basic integration tests'
+    MINOR f4f267d5: b'api: add the validate function'
+    MINOR d252f424: b'Update setup.py'
+    MINOR 83b90818: b'errors: Create separated module for the exceptions'
+    MINOR 82f4b0d6: b'tests: add newline at EOF to all fixtures'
+    MINOR 6c805b0b: b'schemas: Fix some inconsistencies'
+    MINOR cb12a61d: b'Merge pull request #20 from
+              jacquerie/add-missing-parenthesis'
+    MINOR 8e5d6794: b'tests: Adapt for python2 and 3'
+    MINOR 9450019a: b'packaging: Pull deps on install'
+
+* 0.6.0 "b'Jacopo Notarstefano <jacopo.notarstefano@gmail.com>'"
+    FEATURE cb12a61d: b'Merge pull request #20 from
+              jacquerie/add-missing-parenthesis'
+    MINOR c0dcc317: b'tests: Added some unit tests'
+    MINOR cc62a446: b'scripts: add missing parenthesis'
+    MINOR dea9b9ed: b'tests: Add basic integration tests'
+    MINOR f4f267d5: b'api: add the validate function'
+    MINOR 9d310bb8: b'Merge pull request #19 from jacquerie/integrate-pr-11'
+    MINOR 83b90818: b'errors: Create separated module for the exceptions'
+    MINOR 82f4b0d6: b'tests: add newline at EOF to all fixtures'
+    MINOR 6c805b0b: b'schemas: Fix some inconsistencies'
+    MINOR 8e5d6794: b'tests: Adapt for python2 and 3'
+    MINOR 9450019a: b'packaging: Pull deps on install'
+
+* 0.5.0 "b'Jacopo Notarstefano <jacopo.notarstefano@gmail.com>'"
+    FEATURE 9d310bb8: b'Merge pull request #19 from jacquerie/integrate-pr-11'
+    MINOR c0dcc317: b'tests: Added some unit tests'
+    MINOR e793d3fc: b'schemas: add new_record field to all schemas'
+    MINOR b21fede3: b'Merge pull request #14 from jacquerie/add-coveralls'
+    MINOR dea9b9ed: b'tests: Add basic integration tests'
+    MINOR f4f267d5: b'api: add the validate function'
+    MINOR 83b90818: b'errors: Create separated module for the exceptions'
+    MINOR 82f4b0d6: b'tests: add newline at EOF to all fixtures'
+    MINOR 6c805b0b: b'schemas: Fix some inconsistencies'
+    MINOR 8e5d6794: b'tests: Adapt for python2 and 3'
+    MINOR 9450019a: b'packaging: Pull deps on install'
+
+* 0.4.0 "b'Jacopo Notarstefano <jacopo.notarstefano@gmail.com>'"
+    FEATURE b21fede3: b'Merge pull request #14 from jacquerie/add-coveralls'
+    MINOR c0dcc317: b'tests: Added some unit tests'
+    MINOR 5c7e7d5d: b'travis: add missing coveralls dependency'
+    MINOR f9008343: b'Merge pull request #13 from
+              jacquerie/make-generate-example-records-work-out-of-the-box'
+    MINOR dea9b9ed: b'tests: Add basic integration tests'
+    MINOR f4f267d5: b'api: add the validate function'
+    MINOR 83b90818: b'errors: Create separated module for the exceptions'
+    MINOR 6c805b0b: b'schemas: Fix some inconsistencies'
+    MINOR 8e5d6794: b'tests: Adapt for python2 and 3'
+    MINOR 9450019a: b'packaging: Pull deps on install'
+
+* 0.3.0 "b'Jacopo Notarstefano <jacopo.notarstefano@gmail.com>'"
+    FEATURE f9008343: b'Merge pull request #13 from
+              jacquerie/make-generate-example-records-work-out-of-the-box'
+    MINOR c0dcc317: b'tests: Added some unit tests'
+    MINOR c04c88f7: b'scripts: fix generate_example_records'
+    FIXED ISSUES: http://github.com/inspirehep/inspire-schemas/issue/12
+    MINOR dea9b9ed: b'tests: Add basic integration tests'
+    MINOR f4f267d5: b'api: add the validate function'
+    MINOR 7e6b9070: b'Merge pull request #6 from
+              jacquerie/add-acquisition-source'
+    MINOR 83b90818: b'errors: Create separated module for the exceptions'
+    MINOR 6c805b0b: b'schemas: Fix some inconsistencies'
+    MINOR 8e5d6794: b'tests: Adapt for python2 and 3'
+    MINOR 9450019a: b'packaging: Pull deps on install'
+
+* 0.2.0 "b'Jacopo Notarstefano <jacopo.notarstefano@gmail.com>'"
+    FEATURE 7e6b9070: b'Merge pull request #6 from
+              jacquerie/add-acquisition-source'
+    MINOR c0dcc317: b'tests: Added some unit tests'
+    MINOR dea9b9ed: b'tests: Add basic integration tests'
+    MINOR 1df3d26f: b'Merge pull request #2 from david-caro/add_validate'
+    MINOR f4f267d5: b'api: add the validate function'
+    MINOR 83b90818: b'errors: Create separated module for the exceptions'
+    MINOR 6c805b0b: b'schemas: Fix some inconsistencies'
+    MINOR 8e5d6794: b'tests: Adapt for python2 and 3'
+    MINOR e70c70d4: b'schemas: add acquisition_source to authors'
+    MINOR 9450019a: b'packaging: Pull deps on install'
+
+* 0.1.0 "b'David Caro <david@dcaro.es>'"
+    FEATURE 1df3d26f: b'Merge pull request #2 from david-caro/add_validate'
+    MINOR c0dcc317: b'tests: Added some unit tests'
+    MINOR dea9b9ed: b'tests: Add basic integration tests'
+    MINOR 72b5d38a: b'Merge pull request #4 from david-caro/docs_fixes'
+    MINOR f4f267d5: b'api: add the validate function'
+    MINOR 83b90818: b'errors: Create separated module for the exceptions'
+    MINOR 6c805b0b: b'schemas: Fix some inconsistencies'
+    MINOR 8e5d6794: b'tests: Adapt for python2 and 3'
+    MINOR df7e6819: b'packaging: fix missing files on bdist/sdist'
+    MINOR 9450019a: b'packaging: Pull deps on install'
+
+* 0.0.4 "b'David Caro <david@dcaro.es>'"
+    MINOR 72b5d38a: b'Merge pull request #4 from david-caro/docs_fixes'
+    MINOR 0ca1acba: b'docs: Minor fixes'
+    MINOR 7571025e: b'Merge pull request #3 from david-caro/docstests'
+
+* 0.0.3 "b'David Caro <david@dcaro.es>'"
+    MINOR 7571025e: b'Merge pull request #3 from david-caro/docstests'
+    MINOR 86810e0a: b'Merge pull request #1 from david-caro/first_commit'
+    MINOR 4d32cc74: b'docs: Fixed packaging issues'
+
+* 0.0.2 "b'David Caro <david@dcaro.es>'"
+    MINOR 86810e0a: b'Merge pull request #1 from david-caro/first_commit'
+    MINOR 78652298: b'global: first commit'
+    MINOR 19679eae: b'global: schemas and basic packaging'
+
+* 0.0.1 "b'David Caro <david@dcaro.es>'"
+    MINOR 78652298: b'global: first commit'
