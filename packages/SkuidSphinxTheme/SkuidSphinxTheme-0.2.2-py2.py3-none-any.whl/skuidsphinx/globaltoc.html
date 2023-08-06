@@ -1,0 +1,71 @@
+<div class="toc">
+  {{ toctree(includehidden=True, maxdepth=4, titles_only=true ) }}
+</div>
+<script>
+$( document ).ready(function() {
+  //Constructors
+  $('.property').siblings('.descclassname').show()
+  $('.property').hide()
+  // Check for collapsible signaler
+  $(':header:contains("[[]]")').html(function (i, t) {
+    $(this).addClass('collapsible');
+    return t.replace('[[]]', '<span class="hidden"> </span>');
+  })
+  $('.collapsible').addClass('collapsed');
+  $('.collapsible').siblings().slideToggle(0);
+  // Remove signaler from references—toc and in main
+  $('.reference:contains("[[]]")').html(function (i, t) {
+    return t.replace('[[]]', '<span class="hidden"> </span>');
+  })
+  // Make it clickable
+  $('.collapsible').click( function() {
+    if ($(this).hasClass('collapsed')){
+      $(this).removeClass('collapsed');
+      $(this).siblings().slideToggle(300);
+      $(this).siblings().wrapAll('<div class="colsection"></div>');
+    } else {
+      $(this).addClass('collapsed');
+      $(this).siblings('.colsection').children().slideToggle(300);
+      $(this).siblings('.colsection').children().unwrap();
+    }
+  });
+});
+function expandAll (){
+  $('.collapsible').siblings('.colsection').children().unwrap();
+  $('.collapsible').siblings().slideDown(300);
+  $('.collapsible').removeClass('collapsed');
+  $('.collapsible').each(function addColSecAll(){$(this).siblings().wrapAll('<div class="colsection"></div>')});
+}
+function collapseAll (){
+  $('.collapsible').siblings('.colsection').children().slideToggle(300);
+  $('.collapsible').siblings('.colsection').children().unwrap();
+  $('.collapsible').addClass('collapsed');
+}
+</script>
+
+<script type="text/javascript">
+$( document ).ready(function() {
+  $('#menu').children().slideToggle(0);
+  $('#openMenu').hide()
+  $('.menu-btn').click(function(){
+    if ($('#menu').hasClass('expand')){
+          $('#menu').removeClass('expand');
+          $('#menu').children().slideToggle(300);
+          $('#closedMenu').show()
+          $('#openMenu').hide()
+                        } else {
+          $('#menu').addClass('expand');
+          $('#menu').children().slideToggle(300);
+          $('#closedMenu').hide()
+          $('#openMenu').show()
+        }
+      })
+  if ($('ul.current > li > ul').children().size() == 0) {
+    $('ul.current > li > ul').hide();
+  }
+  if ($('#menu > ul > li').children().size() == 1) {
+    $('#menu > ul > li').hide();
+  }
+})
+</script>
+<script src="https://use.fontawesome.com/685baec918.js"></script>
