@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: testix
+Version: 0.3
+Summary: Mocking framework Python with *exact* Scenarios
+Home-page: https://github.com/haarcuba/testix
+Author: Yoav Kleinberger
+Author-email: haarcuba@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: mock,mocking,unittest,python,unit testing
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Testing
