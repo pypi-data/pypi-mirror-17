@@ -1,0 +1,3 @@
+[console_scripts]
+grannysmith = grannysmith.command_line:main
+
