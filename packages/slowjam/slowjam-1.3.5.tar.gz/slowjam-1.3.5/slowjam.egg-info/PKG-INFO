@@ -1,0 +1,82 @@
+Metadata-Version: 1.1
+Name: slowjam
+Version: 1.3.5
+Summary: Python Application Tracer
+Home-page: https://github.com/voidfiles/slowjam
+Author: Bryan Berg, Mark Thurman, Alex Kessinger
+Author-email: UNKNOWN
+License: MIT
+Description: Slowjam: Application Tracing For Python
+        =======================================
+        
+        Slowjam is an easy to use application tracer for python.
+        
+        Listen to this:
+        
+        .. code-block:: python
+        
+            >>> import requests
+        
+            >>> from slowjam.trace import span
+            >>> from slowjam.context import slowjam_context
+        
+            >>> slowjam_context.start('my_application', extras={'http': True})
+        
+            >>> with span('listen', extras={'deylay': 3}):
+            >>>     resp = requests.get('https://httpbin.org/delay/3')
+        
+            >>>     with span('request.origin'):
+            >>>         origin = resp.json().get('origin')
+            >>>         origin.split('.')
+        
+            >>> profile = slowjam_context.stop()
+            >>> if profile:
+            >>>     print ''
+            >>>     print unicode(profile)
+            >>>     print ''
+        
+                   time   exec time event
+            ----------- ----------- ------------------------------
+                   0 ms             + my_application [http=True]
+                   0 ms             | + listen [deylay=3]
+                8039 ms (+    0 ms) | | = request.decode
+                        (+ 8039 ms) | +
+                        (+ 8039 ms) +
+        
+        
+        Slowjam makes it easy to start getting feedback quick, but with some extra
+        effort it seamlessly integrates with other monitoring tools such as statsd,
+        graphite, and logstash.
+        
+        Feature Support
+        ---------------
+        
+        - Application Tracing
+        - Function timing
+        - Usable output
+        - Graphite Integration
+        
+        Could Happen
+        ------------
+        
+        - `OpenTracing <http://opentracing.io/>`_. PR's welcome
+        
+        Installation
+        ------------
+        
+        To install Slowjam, simply:
+        
+        .. code-block:: bash
+        
+            $ pip install slowjam
+            ✨🍰✨
+        
+        
+        History
+        -------
+        
+        This was originially open-sourced by App.net in their open source version of `Alpha
+        <https://github.com/appdotnet/alpha>`_.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
