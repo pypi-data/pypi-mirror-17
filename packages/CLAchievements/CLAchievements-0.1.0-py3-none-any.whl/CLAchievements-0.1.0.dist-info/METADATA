@@ -1,0 +1,105 @@
+Metadata-Version: 2.0
+Name: CLAchievements
+Version: 0.1.0
+Summary: Command Line Achievements — Make command line fun again!
+Home-page: http://git.framasoft.org/spalax/clachievements
+Author: Louis Paternault
+Author-email: spalax@gresille.org
+License: GPLv3 or any later version
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Games/Entertainment
+Classifier: Topic :: System :: Shells
+Requires-Dist: argdispatch
+Requires-Dist: multidict
+Requires-Dist: pyxdg
+Requires-Dist: straight.plugin
+Provides-Extra: pgi
+Requires-Dist: pgi; extra == 'pgi'
+
+Command Line Achievements — Make command line fun again!
+========================================================
+
+|sources| |pypi| |build| |coverage| |documentation| |license|
+
+Command line was all fun when it was invented fifty years ago, but it can no longer compete with modern interfaces, glowing windows, shiny buttons, and so on… Command Line Achievements (later abbreviated CLAchievements or CLA) aims to solve this, by making command line fun again! Inspired by video game achievements, it unlocks achievements when users meets the fulfillement conditions.
+
+|screenshot|
+
+What's new?
+-----------
+
+See `changelog
+<https://git.framasoft.org/spalax/clachievements/blob/master/CHANGELOG.md>`_.
+
+Download, install, enable
+-------------------------
+
+This is a quick guide to install and enable CLAchievements. For more information, see the `installation page <http://clachievements.rtfd.io/install>`_ of the documentation.
+
+* *Install*::
+
+    pip install clachievements[pgi]
+
+* *Enable:* In each shell where you want to use CLAchievements, or in your `.bahsrc`::
+
+    $(clachievements alias)
+
+Progress
+--------
+
+Progress is displayed using ``clachievements report``::
+
+    ✘ Always give credit: Run `ls` with names of `ls` authors as options.
+    ✔ Coin flipping: Use `head` and `tail` at least 100 times (combined). (unlocked on 2016-10-17 22:03:34.815846)
+    ✘ H4x0r: Mess with CLA data files.
+    ✘ Know it all: Run a command with 10 options or more, without errors.
+    ✘ Liar: Use `true` and `false`.
+    ✘ List all the things!: Run `ls -R /` and wait for it to finish.
+    ✔ Lost: Use `pwd` more than 50 times. (unlocked on 2016-10-17 22:03:33.670310)
+    ✘ Maker: Use all commands starting with `mk`.
+    ✘ Philosopher: Use `whoami` more than 10 times.
+    ✘ Self reference: Run a binary on itself.
+    ✔ So it begins: Get Command Line Achievements up and running. (unlocked on 2016-10-15 00:18:36.097743)
+    ✘ Something to hide: Use `shred` more than 10 times.
+    ✔ Sound Of Silence: Run a command with both "--verbose" and "--quiet" options. (unlocked on 2016-10-17 22:02:57.448414)
+    ✘ The End: Unlock every achievement.
+    ✔ There is more than one way to do it: Run `ls .`. (unlocked on 2016-10-17 22:02:37.680371)
+    ✘ When credit is due: Run `ls` with names of `CLAchievements` author as options.
+    -------------
+    31% completed
+
+More information about the ``clachievements`` binary is available in `the documentation <http://clachievements.readthedocs.io/en/latest/usage/>`_.
+
+Documentation
+-------------
+
+* The compiled documentation is available on `readthedocs
+  <http://clachievements.readthedocs.io>`_
+
+* To compile it from source, download and run::
+
+      cd doc && make html
+
+
+.. |documentation| image:: http://readthedocs.org/projects/clachievements/badge
+  :target: http://clachievements.readthedocs.io
+.. |pypi| image:: https://img.shields.io/pypi/v/clachievements.svg
+  :target: http://pypi.python.org/pypi/clachievements
+.. |license| image:: https://img.shields.io/pypi/l/clachievements.svg
+  :target: http://www.gnu.org/licenses/gpl-3.0.html
+.. |sources| image:: https://img.shields.io/badge/sources-clachievements-brightgreen.svg
+  :target: http://git.framasoft.org/spalax/clachievements
+.. |coverage| image:: https://git.framasoft.org/spalax/clachievements/badges/master/coverage.svg
+  :target: https://git.framasoft.org/spalax/clachievements/builds
+.. |build| image:: https://git.framasoft.org/spalax/clachievements/badges/master/build.svg
+  :target: https://git.framasoft.org/spalax/clachievements/builds
+.. |screenshot| image:: http://clachievements.readthedocs.io/en/latest/_static/screenshot.png
+
+
+

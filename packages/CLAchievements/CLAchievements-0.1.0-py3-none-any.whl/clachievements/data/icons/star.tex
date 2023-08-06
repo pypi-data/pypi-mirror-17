@@ -1,0 +1,45 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{tikz}
+
+\newcommand{\etoile}[3]{
+  % \etoile{radius}{number of edges}{gap}
+    \draw[
+      rounded corners=1pt,
+      fill=yellow,
+      draw=yellow!50!black,
+      line width=4pt,
+    ]
+      (
+      {0}
+      :
+      {#1}
+    ) -- (
+      {(180/(#2)}
+      :
+      {(#1)/(cos(180/(#2))*(1+tan(180/(#2))/tan(90*(#2-2*#3)/(#2))))}
+      )
+    \foreach \i in {0, ..., {#2}}{
+      -- (
+      {(360*\i)/(#2)}
+      :
+      {#1}
+    ) -- (
+      {((2*\i+1)*180)/(#2)}
+      :
+      {(#1)/(cos(180/(#2))*(1+tan(180/(#2))/tan(90*(#2-2*#3)/(#2))))}
+      )
+    }
+    -- cycle;
+}
+
+\begin{document}
+
+\begin{tikzpicture}
+  \begin{scope}[rotate=90]
+    \etoile{1}{5}{2}
+  \end{scope}
+  \fill[fill=white] ({90-360/10}:.2) circle (.07);
+\end{tikzpicture}
+
+\end{document}
