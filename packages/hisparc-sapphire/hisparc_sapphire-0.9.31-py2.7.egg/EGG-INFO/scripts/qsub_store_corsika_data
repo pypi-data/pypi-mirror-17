@@ -1,0 +1,4 @@
+#!C:\Python27\python.exe
+
+from sapphire.corsika.qsub_store_corsika_data import main
+main()
