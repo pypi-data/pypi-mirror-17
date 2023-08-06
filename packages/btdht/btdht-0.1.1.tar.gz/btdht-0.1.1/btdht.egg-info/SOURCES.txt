@@ -1,0 +1,13 @@
+README.rst
+setup.cfg
+setup.py
+btdht/__init__.py
+btdht/dht.c
+btdht/krcp.c
+btdht/utils.c
+btdht.egg-info/PKG-INFO
+btdht.egg-info/SOURCES.txt
+btdht.egg-info/dependency_links.txt
+btdht.egg-info/not-zip-safe
+btdht.egg-info/requires.txt
+btdht.egg-info/top_level.txt
