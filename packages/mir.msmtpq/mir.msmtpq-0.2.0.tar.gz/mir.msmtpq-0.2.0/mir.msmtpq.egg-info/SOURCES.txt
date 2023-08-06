@@ -1,0 +1,15 @@
+.gitignore
+LICENSE
+NEWS.rst
+README.rst
+setup.py
+mir.msmtpq.egg-info/PKG-INFO
+mir.msmtpq.egg-info/SOURCES.txt
+mir.msmtpq.egg-info/dependency_links.txt
+mir.msmtpq.egg-info/entry_points.txt
+mir.msmtpq.egg-info/top_level.txt
+mir/msmtpq/__init__.py
+mir/msmtpq/__main__.py
+mir/msmtpq/main.py
+mir/msmtpq/queue.py
+mir/msmtpq/sendmail.py
