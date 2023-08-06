@@ -1,0 +1,3 @@
+[console_scripts]
+plotprocmoncsv = Visualize_Logs.__main__:plotprocmoncsv
+
