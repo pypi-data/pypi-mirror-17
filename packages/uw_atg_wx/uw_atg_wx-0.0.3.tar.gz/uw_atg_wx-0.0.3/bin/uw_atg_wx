@@ -1,0 +1,5 @@
+from uw_atg_wx import get_obs_from_uw_atg
+
+obs = get_obs_from_uw_atg()
+for record in obs:
+    print("{}".format(record))

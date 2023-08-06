@@ -1,0 +1,10 @@
+setup.cfg
+setup.py
+bin/uw_atg_wx
+test/test_uw_atg_wx.py
+uw_atg_wx/__init__.py
+uw_atg_wx/uw_atg_wx.py
+uw_atg_wx.egg-info/PKG-INFO
+uw_atg_wx.egg-info/SOURCES.txt
+uw_atg_wx.egg-info/dependency_links.txt
+uw_atg_wx.egg-info/top_level.txt
