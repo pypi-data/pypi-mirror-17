@@ -1,0 +1,16 @@
+Metadata-Version: 2.0
+Name: clarifai
+Version: 2.0.5
+Summary: Clarifai API Python Client
+Home-page: https://github.com/clarifai/clarifai-python
+Author: Robert Wen
+Author-email: robert@clarifai.com
+License: Apache 2.0
+Platform: UNKNOWN
+Requires-Dist: configparser (==3.5.0)
+Requires-Dist: requests (>=2.11.1)
+Requires-Dist: six (>=1.10.0)
+
+UNKNOWN
+
+
