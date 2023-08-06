@@ -1,0 +1,15 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+bin/markov
+bin/username
+usernamegen/Generator.py
+usernamegen/MarkovChain.py
+usernamegen/__init__.py
+usernamegen.egg-info/PKG-INFO
+usernamegen.egg-info/SOURCES.txt
+usernamegen.egg-info/dependency_links.txt
+usernamegen.egg-info/top_level.txt
+usernamegen/Formatter/Formatter.py
+usernamegen/Formatter/__init__.py
