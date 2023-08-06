@@ -1,0 +1,25 @@
+Metadata-Version: 2.0
+Name: coroutx
+Version: 0.11.dev0
+Summary: dead simple async python web framework
+Home-page: https://github.com/neo1218/coroutx/
+Author: neo1218
+Author-email: neo1218@yeah.net
+License: MIT
+Platform: any
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: Werkzeug
+Requires-Dist: gevent
+
+UNKNOWN
+
+
