@@ -1,0 +1,7 @@
+============================= test session starts ==============================
+platform linux -- Python 3.5.2, pytest-2.9.2, py-1.4.31, pluggy-0.3.1
+cachedir: .cache
+Tests are shuffled using seed number 1471467556.
+rootdir: /home/kuban/workspaces/grortir/grortir, inifile: 
+plugins: runfailed-0.6, cov-2.3.1, random-0.2, expecter-0.2.2.post3, describe-0.10.3
+collecting ..

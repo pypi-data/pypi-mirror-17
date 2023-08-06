@@ -1,0 +1,570 @@
+============================= test session starts ==============================
+platform linux -- Python 3.5.2, pytest-2.9.2, py-1.4.31, pluggy-0.3.1
+cachedir: .cache
+Tests are shuffled using seed number 1471467556.
+rootdir: /home/kuban/workspaces/grortir/grortir, inifile: 
+plugins: runfailed-0.6, cov-2.3.1, random-0.2, expecter-0.2.2.post3, describe-0.10.3
+collecting ... 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! KeyboardInterrupt !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+config = <_pytest.config.Config object at 0x7f7138d81cf8>
+doit = <function _main at 0x7f7138cfd6a8>
+
+    def wrap_session(config, doit):
+        """Skeleton command line program"""
+        session = Session(config)
+        session.exitstatus = EXIT_OK
+        initstate = 0
+        try:
+            try:
+                config._do_configure()
+                initstate = 1
+                config.hook.pytest_sessionstart(session=session)
+                initstate = 2
+>               session.exitstatus = doit(config, session) or 0
+
+env/lib/python3.5/site-packages/_pytest/main.py:94: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+config = <_pytest.config.Config object at 0x7f7138d81cf8>
+session = <Session 'grortir'>
+
+    def _main(config, session):
+        """ default command line protocol for initialization, session,
+        running tests and reporting. """
+>       config.hook.pytest_collection(session=session)
+
+env/lib/python3.5/site-packages/_pytest/main.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <_HookCaller 'pytest_collection'>
+kwargs = {'__multicall__': <_MultiCall 0 results, 0 meths, kwargs={'__multicall__': <_MultiCall 0 results, 0 meths, kwargs={...}>, 'session': <Session 'grortir'>}>, 'session': <Session 'grortir'>}
+
+    def __call__(self, **kwargs):
+        assert not self.is_historic()
+>       return self._hookexec(self, self._nonwrappers + self._wrappers, kwargs)
+
+env/lib/python3.5/site-packages/_pytest/vendored_packages/pluggy.py:724: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <_pytest.config.PytestPluginManager object at 0x7f71397bd320>
+hook = <_HookCaller 'pytest_collection'>, methods = []
+kwargs = {'__multicall__': <_MultiCall 0 results, 0 meths, kwargs={'__multicall__': <_MultiCall 0 results, 0 meths, kwargs={...}>, 'session': <Session 'grortir'>}>, 'session': <Session 'grortir'>}
+
+    def _hookexec(self, hook, methods, kwargs):
+        # called from all hookcaller instances.
+        # enable_tracing will set its own wrapping function at self._inner_hookexec
+>       return self._inner_hookexec(hook, methods, kwargs)
+
+env/lib/python3.5/site-packages/_pytest/vendored_packages/pluggy.py:338: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+hook = <_HookCaller 'pytest_collection'>, methods = []
+kwargs = {'__multicall__': <_MultiCall 0 results, 0 meths, kwargs={'__multicall__': <_MultiCall 0 results, 0 meths, kwargs={...}>, 'session': <Session 'grortir'>}>, 'session': <Session 'grortir'>}
+
+    self._inner_hookexec = lambda hook, methods, kwargs: \
+>       _MultiCall(methods, kwargs, hook.spec_opts).execute()
+
+env/lib/python3.5/site-packages/_pytest/vendored_packages/pluggy.py:333: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <_MultiCall 0 results, 0 meths, kwargs={'__multicall__': <_MultiCall 0 results, 0 meths, kwargs={...}>, 'session': <Session 'grortir'>}>
+
+    def execute(self):
+        all_kwargs = self.kwargs
+        self.results = results = []
+        firstresult = self.specopts.get("firstresult")
+    
+        while self.hook_impls:
+            hook_impl = self.hook_impls.pop()
+            args = [all_kwargs[argname] for argname in hook_impl.argnames]
+            if hook_impl.hookwrapper:
+                return _wrapped_call(hook_impl.function(*args), self.execute)
+>           res = hook_impl.function(*args)
+
+env/lib/python3.5/site-packages/_pytest/vendored_packages/pluggy.py:596: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+session = <Session 'grortir'>
+
+    def pytest_collection(session):
+>       return session.perform_collect()
+
+env/lib/python3.5/site-packages/_pytest/main.py:133: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Session 'grortir'>, args = None, genitems = True
+
+    def perform_collect(self, args=None, genitems=True):
+        hook = self.config.hook
+        try:
+>           items = self._perform_collect(args, genitems)
+
+env/lib/python3.5/site-packages/_pytest/main.py:565: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Session 'grortir'>, args = ['grortir'], genitems = True
+
+    def _perform_collect(self, args, genitems):
+        if args is None:
+            args = self.config.args
+        self.trace("perform_collect", self, args)
+        self.trace.root.indent += 1
+        self._notfound = []
+        self._initialpaths = set()
+        self._initialparts = []
+        self.items = items = []
+        for arg in args:
+            parts = self._parsearg(arg)
+            self._initialparts.append(parts)
+            self._initialpaths.add(parts[0])
+        rep = collect_one_node(self)
+        self.ihook.pytest_collectreport(report=rep)
+        self.trace.root.indent -= 1
+        if self._notfound:
+            errors = []
+            for arg, exc in self._notfound:
+                line = "(no name %r in any of %r)" % (arg, exc.args[0])
+                errors.append("not found: %s\n%s" % (arg, line))
+                #XXX: test this
+            raise pytest.UsageError(*errors)
+        if not genitems:
+            return rep.result
+        else:
+            if rep.passed:
+                for node in rep.result:
+>                   self.items.extend(self.genitems(node))
+
+env/lib/python3.5/site-packages/_pytest/main.py:601: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Session 'grortir'>
+node = <DoctestModule 'grortir/test/pso/test_swarm.py'>
+
+    def genitems(self, node):
+        self.trace("genitems", node)
+        if isinstance(node, pytest.Item):
+            node.ihook.pytest_itemcollected(item=node)
+            yield node
+        else:
+            assert isinstance(node, pytest.Collector)
+>           rep = collect_one_node(node)
+
+env/lib/python3.5/site-packages/_pytest/main.py:739: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+collector = <DoctestModule 'grortir/test/pso/test_swarm.py'>
+
+    def collect_one_node(collector):
+        ihook = collector.ihook
+        ihook.pytest_collectstart(collector=collector)
+>       rep = ihook.pytest_make_collect_report(collector=collector)
+
+env/lib/python3.5/site-packages/_pytest/runner.py:416: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <_HookCaller 'pytest_make_collect_report'>
+kwargs = {'__multicall__': <_MultiCall 0 results, 0 meths, kwargs={'collector': <DoctestModule 'grortir/test/pso/test_swarm.py'...all__': <_MultiCall 0 results, 0 meths, kwargs={...}>}>, 'collector': <DoctestModule 'grortir/test/pso/test_swarm.py'>}
+
+    def __call__(self, **kwargs):
+        assert not self.is_historic()
+>       return self._hookexec(self, self._nonwrappers + self._wrappers, kwargs)
+
+env/lib/python3.5/site-packages/_pytest/vendored_packages/pluggy.py:724: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <_pytest.config.PytestPluginManager object at 0x7f71397bd320>
+hook = <_HookCaller 'pytest_make_collect_report'>, methods = []
+kwargs = {'__multicall__': <_MultiCall 0 results, 0 meths, kwargs={'collector': <DoctestModule 'grortir/test/pso/test_swarm.py'...all__': <_MultiCall 0 results, 0 meths, kwargs={...}>}>, 'collector': <DoctestModule 'grortir/test/pso/test_swarm.py'>}
+
+    def _hookexec(self, hook, methods, kwargs):
+        # called from all hookcaller instances.
+        # enable_tracing will set its own wrapping function at self._inner_hookexec
+>       return self._inner_hookexec(hook, methods, kwargs)
+
+env/lib/python3.5/site-packages/_pytest/vendored_packages/pluggy.py:338: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+hook = <_HookCaller 'pytest_make_collect_report'>, methods = []
+kwargs = {'__multicall__': <_MultiCall 0 results, 0 meths, kwargs={'collector': <DoctestModule 'grortir/test/pso/test_swarm.py'...all__': <_MultiCall 0 results, 0 meths, kwargs={...}>}>, 'collector': <DoctestModule 'grortir/test/pso/test_swarm.py'>}
+
+    self._inner_hookexec = lambda hook, methods, kwargs: \
+>       _MultiCall(methods, kwargs, hook.spec_opts).execute()
+
+env/lib/python3.5/site-packages/_pytest/vendored_packages/pluggy.py:333: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <_MultiCall 0 results, 0 meths, kwargs={'collector': <DoctestModule 'grortir/test/pso/test_swarm.py'>, '__multicall__': <_MultiCall 0 results, 0 meths, kwargs={...}>}>
+
+    def execute(self):
+        all_kwargs = self.kwargs
+        self.results = results = []
+        firstresult = self.specopts.get("firstresult")
+    
+        while self.hook_impls:
+            hook_impl = self.hook_impls.pop()
+            args = [all_kwargs[argname] for argname in hook_impl.argnames]
+            if hook_impl.hookwrapper:
+>               return _wrapped_call(hook_impl.function(*args), self.execute)
+
+env/lib/python3.5/site-packages/_pytest/vendored_packages/pluggy.py:595: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+wrap_controller = <generator object pytest_make_collect_report at 0x7f7135fc6d00>
+func = <bound method _MultiCall.execute of <_MultiCall 0 results, 0 meths, kwargs={'collector': <DoctestModule 'grortir/test/pso/test_swarm.py'>, '__multicall__': <_MultiCall 0 results, 0 meths, kwargs={...}>}>>
+
+    def _wrapped_call(wrap_controller, func):
+        """ Wrap calling to a function with a generator which needs to yield
+        exactly once.  The yield point will trigger calling the wrapped function
+        and return its _CallOutcome to the yield point.  The generator then needs
+        to finish (raise StopIteration) in order for the wrapped call to complete.
+        """
+        try:
+            next(wrap_controller)   # first yield
+        except StopIteration:
+            _raise_wrapfail(wrap_controller, "did not yield")
+        call_outcome = _CallOutcome(func)
+        try:
+>           wrap_controller.send(call_outcome)
+
+env/lib/python3.5/site-packages/_pytest/vendored_packages/pluggy.py:249: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <_pytest.capture.CaptureManager object at 0x7f7135fa2048>
+collector = <DoctestModule 'grortir/test/pso/test_swarm.py'>
+
+    @pytest.hookimpl(hookwrapper=True)
+    def pytest_make_collect_report(self, collector):
+        if isinstance(collector, pytest.File):
+            self.resumecapture()
+            outcome = yield
+            out, err = self.suspendcapture()
+>           rep = outcome.get_result()
+
+env/lib/python3.5/site-packages/_pytest/capture.py:113: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <_pytest.vendored_packages.pluggy._CallOutcome object at 0x7f713373b2e8>
+
+    def get_result(self):
+        if self.excinfo is None:
+            return self.result
+        else:
+            ex = self.excinfo
+            if _py3:
+>               raise ex[1].with_traceback(ex[2])
+
+env/lib/python3.5/site-packages/_pytest/vendored_packages/pluggy.py:278: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <_pytest.vendored_packages.pluggy._CallOutcome object at 0x7f713373b2e8>
+func = <bound method _MultiCall.execute of <_MultiCall 0 results, 0 meths, kwargs={'collector': <DoctestModule 'grortir/test/pso/test_swarm.py'>, '__multicall__': <_MultiCall 0 results, 0 meths, kwargs={...}>}>>
+
+    def __init__(self, func):
+        try:
+>           self.result = func()
+
+env/lib/python3.5/site-packages/_pytest/vendored_packages/pluggy.py:264: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <_MultiCall 0 results, 0 meths, kwargs={'collector': <DoctestModule 'grortir/test/pso/test_swarm.py'>, '__multicall__': <_MultiCall 0 results, 0 meths, kwargs={...}>}>
+
+    def execute(self):
+        all_kwargs = self.kwargs
+        self.results = results = []
+        firstresult = self.specopts.get("firstresult")
+    
+        while self.hook_impls:
+            hook_impl = self.hook_impls.pop()
+            args = [all_kwargs[argname] for argname in hook_impl.argnames]
+            if hook_impl.hookwrapper:
+                return _wrapped_call(hook_impl.function(*args), self.execute)
+>           res = hook_impl.function(*args)
+
+env/lib/python3.5/site-packages/_pytest/vendored_packages/pluggy.py:596: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+collector = <DoctestModule 'grortir/test/pso/test_swarm.py'>
+
+    def pytest_make_collect_report(collector):
+>       call = CallInfo(collector._memocollect, "memocollect")
+
+env/lib/python3.5/site-packages/_pytest/runner.py:288: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'CallInfo' object has no attribute 'result'") raised in repr()] CallInfo object at 0x7f713373b8d0>
+func = <bound method Collector._memocollect of <DoctestModule 'grortir/test/pso/test_swarm.py'>>
+when = 'memocollect'
+
+    def __init__(self, func, when):
+        #: context of invocation: one of "setup", "call",
+        #: "teardown", "memocollect"
+        self.when = when
+        self.start = time()
+        try:
+>           self.result = func()
+
+env/lib/python3.5/site-packages/_pytest/runner.py:150: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <DoctestModule 'grortir/test/pso/test_swarm.py'>
+
+    def _memocollect(self):
+        """ internal helper method to cache results of calling collect(). """
+>       return self._memoizedcall('_collected', lambda: list(self.collect()))
+
+env/lib/python3.5/site-packages/_pytest/main.py:435: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <DoctestModule 'grortir/test/pso/test_swarm.py'>, attrname = '_collected'
+function = <function Collector._memocollect.<locals>.<lambda> at 0x7f7135fc57b8>
+
+    def _memoizedcall(self, attrname, function):
+        exattrname = "_ex_" + attrname
+        failure = getattr(self, exattrname, None)
+        if failure is not None:
+            py.builtin._reraise(failure[0], failure[1], failure[2])
+        if hasattr(self, attrname):
+            return getattr(self, attrname)
+        try:
+>           res = function()
+
+env/lib/python3.5/site-packages/_pytest/main.py:315: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   return self._memoizedcall('_collected', lambda: list(self.collect()))
+
+env/lib/python3.5/site-packages/_pytest/main.py:435: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <DoctestModule 'grortir/test/pso/test_swarm.py'>
+
+    def collect(self):
+        import doctest
+        if self.fspath.basename == "conftest.py":
+            module = self.config.pluginmanager._importconftest(self.fspath)
+        else:
+            try:
+                module = self.fspath.pyimport()
+            except ImportError:
+                if self.config.getvalue('doctest_ignore_import_errors'):
+                    pytest.skip('unable to import module %r' % self.fspath)
+                else:
+                    raise
+        # uses internal doctest module parsing mechanism
+        finder = doctest.DocTestFinder()
+        optionflags = get_optionflags(self)
+        runner = doctest.DebugRunner(verbose=0, optionflags=optionflags,
+                                     checker=_get_checker())
+>       for test in finder.find(module, module.__name__):
+
+env/lib/python3.5/site-packages/_pytest/doctest.py:200: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <doctest.DocTestFinder object at 0x7f713375e320>
+obj = <module 'grortir.test.pso.test_swarm' (<_pytest.assertion.rewrite.AssertionRewritingHook object at 0x7f713601a9b0>)>
+name = 'grortir.test.pso.test_swarm'
+module = <module 'grortir.test.pso.test_swarm' (<_pytest.assertion.rewrite.AssertionRewritingHook object at 0x7f713601a9b0>)>
+globs = {'@py_builtins': <module 'builtins' (built-in)>, '@pytest_ar': <module '_pytest.assertion.rewrite' from '/home/kuban/w...est/assertion/rewrite.py'>, 'Mock': <class 'unittest.mock.Mock'>, 'Swarm': <class 'grortir.main.pso.swarm.Swarm'>, ...}
+extraglobs = None
+
+    def find(self, obj, name=None, module=None, globs=None, extraglobs=None):
+        """
+            Return a list of the DocTests that are defined by the given
+            object's docstring, or by any of its contained objects'
+            docstrings.
+    
+            The optional parameter `module` is the module that contains
+            the given object.  If the module is not specified or is None, then
+            the test finder will attempt to automatically determine the
+            correct module.  The object's module is used:
+    
+                - As a default namespace, if `globs` is not specified.
+                - To prevent the DocTestFinder from extracting DocTests
+                  from objects that are imported from other modules.
+                - To find the name of the file containing the object.
+                - To help find the line number of the object within its
+                  file.
+    
+            Contained objects whose module does not match `module` are ignored.
+    
+            If `module` is False, no attempt to find the module will be made.
+            This is obscure, of use mostly in tests:  if `module` is False, or
+            is None but cannot be found automatically, then all objects are
+            considered to belong to the (non-existent) module, so all contained
+            objects will (recursively) be searched for doctests.
+    
+            The globals for each DocTest is formed by combining `globs`
+            and `extraglobs` (bindings in `extraglobs` override bindings
+            in `globs`).  A new copy of the globals dictionary is created
+            for each DocTest.  If `globs` is not specified, then it
+            defaults to the module's `__dict__`, if specified, or {}
+            otherwise.  If `extraglobs` is not specified, then it defaults
+            to {}.
+    
+            """
+        # If name was not specified, then extract it from the object.
+        if name is None:
+            name = getattr(obj, '__name__', None)
+            if name is None:
+                raise ValueError("DocTestFinder.find: name must be given "
+                        "when obj.__name__ doesn't exist: %r" %
+                                 (type(obj),))
+    
+        # Find the module that contains the given object (if obj is
+        # a module, then module=obj.).  Note: this may fail, in which
+        # case module will be None.
+        if module is False:
+            module = None
+        elif module is None:
+            module = inspect.getmodule(obj)
+    
+        # Read the module's source code.  This is used by
+        # DocTestFinder._find_lineno to find the line number for a
+        # given object's docstring.
+        try:
+            file = inspect.getsourcefile(obj)
+        except TypeError:
+            source_lines = None
+        else:
+            if not file:
+                # Check to see if it's one of our special internal "files"
+                # (see __patched_linecache_getlines).
+                file = inspect.getfile(obj)
+                if not file[0]+file[-2:] == '<]>': file = None
+            if file is None:
+                source_lines = None
+            else:
+                if module is not None:
+                    # Supply the module globals in case the module was
+                    # originally loaded via a PEP 302 loader and
+                    # file is not a valid filesystem path
+                    source_lines = linecache.getlines(file, module.__dict__)
+                else:
+                    # No access to a loader, so assume it's a normal
+                    # filesystem path
+                    source_lines = linecache.getlines(file)
+                if not source_lines:
+                    source_lines = None
+    
+        # Initialize globals, and merge in extraglobs.
+        if globs is None:
+            if module is None:
+                globs = {}
+            else:
+                globs = module.__dict__.copy()
+        else:
+            globs = globs.copy()
+        if extraglobs is not None:
+            globs.update(extraglobs)
+        if '__name__' not in globs:
+            globs['__name__'] = '__main__'  # provide a default module name
+    
+        # Recursively explore `obj`, extracting DocTests.
+        tests = []
+>       self._find(tests, obj, name, module, source_lines, globs, {})
+
+/usr/local/lib/python3.5/doctest.py:924: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <doctest.DocTestFinder object at 0x7f713375e320>, tests = []
+obj = <module 'grortir.test.pso.test_swarm' (<_pytest.assertion.rewrite.AssertionRewritingHook object at 0x7f713601a9b0>)>
+name = 'grortir.test.pso.test_swarm'
+module = <module 'grortir.test.pso.test_swarm' (<_pytest.assertion.rewrite.AssertionRewritingHook object at 0x7f713601a9b0>)>
+source_lines = ['import unittest\n', 'from unittest import TestCase\n', 'from unittest.mock import Mock, call\n', '\n', 'import numpy as np\n', '\n', ...]
+globs = {'@py_builtins': <module 'builtins' (built-in)>, '@pytest_ar': <module '_pytest.assertion.rewrite' from '/home/kuban/w...est/assertion/rewrite.py'>, 'Mock': <class 'unittest.mock.Mock'>, 'Swarm': <class 'grortir.main.pso.swarm.Swarm'>, ...}
+seen = {23812968: 1, 140124171283584: 1, 140124171364280: 1, 140124171364688: 1, ...}
+
+    def _find(self, tests, obj, name, module, source_lines, globs, seen):
+        """
+            Find tests for the given object and any contained objects, and
+            add them to `tests`.
+            """
+        if self._verbose:
+            print('Finding tests in %s' % name)
+    
+        # If we've already processed this object, then ignore it.
+        if id(obj) in seen:
+            return
+        seen[id(obj)] = 1
+    
+        # Find a test for this object, and add it to the list of tests.
+        test = self._get_test(obj, name, module, globs, source_lines)
+        if test is not None:
+            tests.append(test)
+    
+        # Look for tests in a module's contained objects.
+        if inspect.ismodule(obj) and self._recurse:
+            for valname, val in obj.__dict__.items():
+                valname = '%s.%s' % (name, valname)
+                # Recurse to functions & classes.
+>               if ((inspect.isroutine(inspect.unwrap(val))
+                     or inspect.isclass(val)) and
+                    self._from_module(module, val)):
+
+/usr/local/lib/python3.5/doctest.py:983: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+func = __wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped_...__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__
+
+    def unwrap(func, *, stop=None):
+        """Get the object wrapped by *func*.
+    
+       Follows the chain of :attr:`__wrapped__` attributes returning the last
+       object in the chain.
+    
+       *stop* is an optional callback accepting an object in the wrapper chain
+       as its sole argument that allows the unwrapping to be terminated early if
+       the callback returns a true value. If the callback never returns a true
+       value, the last object in the chain is returned as usual. For example,
+       :func:`signature` uses this to stop unwrapping if any object in the
+       chain has a ``__signature__`` attribute defined.
+    
+       :exc:`ValueError` is raised if a cycle is encountered.
+    
+        """
+        if stop is None:
+            def _is_wrapper(f):
+                return hasattr(f, '__wrapped__')
+        else:
+            def _is_wrapper(f):
+                return hasattr(f, '__wrapped__') and not stop(f)
+        f = func  # remember the original func for error reporting
+        memo = {id(f)} # Memoise by id to tolerate non-hashable objects
+>       while _is_wrapper(func):
+
+/usr/local/lib/python3.5/inspect.py:471: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+f = __wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped_...__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__
+
+    def _is_wrapper(f):
+>       return hasattr(f, '__wrapped__')
+
+/usr/local/lib/python3.5/inspect.py:465: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = __wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped_...__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__
+attr = '__wrapped__'
+
+    def __getattr__(self, attr):
+        if self.name is None:
+            return _Call(name=attr, from_kall=False)
+        name = '%s.%s' % (self.name, attr)
+>       return _Call(name=name, parent=self, from_kall=False)
+
+/usr/local/lib/python3.5/unittest/mock.py:2047: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = call(), value = ()
+name = '__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped..._wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__'
+parent = __wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped_...__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__.__wrapped__
+two = False, from_kall = False
+
+    def __init__(self, value=(), name=None, parent=None, two=False,
+                 from_kall=True):
+>       self.name = name
+E       KeyboardInterrupt
+
+/usr/local/lib/python3.5/unittest/mock.py:1976: KeyboardInterrupt
+======================== no tests ran in 25.24 seconds =========================
