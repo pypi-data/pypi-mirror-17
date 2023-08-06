@@ -1,0 +1,24 @@
+Metadata-Version: 1.1
+Name: jutge
+Version: 1.8
+Summary: Simple functions to read input from Python for problems in Jutge.org.
+Home-page: https://github.com/jutge-org/jutge-python
+Author: Jordi Petit
+Author-email: jpetit@cs.upc.edu
+License: Apache
+Download-URL: https://github.com/jutge-org/jutge-python/tarball/1.8
+Description: UNKNOWN
+Keywords: jutge,jutge.org,education
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Education
