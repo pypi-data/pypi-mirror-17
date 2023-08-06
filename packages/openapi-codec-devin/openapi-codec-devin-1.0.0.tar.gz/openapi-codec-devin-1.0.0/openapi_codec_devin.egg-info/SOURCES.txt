@@ -1,0 +1,11 @@
+MANIFEST.in
+setup.py
+openapi_codec/__init__.py
+openapi_codec/decode.py
+openapi_codec/encode.py
+openapi_codec_devin.egg-info/PKG-INFO
+openapi_codec_devin.egg-info/SOURCES.txt
+openapi_codec_devin.egg-info/dependency_links.txt
+openapi_codec_devin.egg-info/entry_points.txt
+openapi_codec_devin.egg-info/requires.txt
+openapi_codec_devin.egg-info/top_level.txt
