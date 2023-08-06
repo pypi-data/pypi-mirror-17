@@ -1,0 +1,4 @@
+[console_scripts]
+kiwicompat = kiwi.kiwi_compat:main
+kiwi-ng = kiwi.kiwi:main
+
