@@ -1,0 +1,13 @@
+README.rst
+setup.cfg
+setup.py
+dnsproxy/__init__.py
+dnsproxy/client.py
+dnsproxy/server.py
+dnsproxy/utils.py
+dnsproxy.egg-info/PKG-INFO
+dnsproxy.egg-info/SOURCES.txt
+dnsproxy.egg-info/dependency_links.txt
+dnsproxy.egg-info/entry_points.txt
+dnsproxy.egg-info/requires.txt
+dnsproxy.egg-info/top_level.txt
