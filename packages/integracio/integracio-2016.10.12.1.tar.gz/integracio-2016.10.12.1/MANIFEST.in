@@ -1,0 +1,8 @@
+recursive-exclude * __pycache__
+recursive-exclude * *.pyc
+recursive-exclude * *.pyo
+recursive-exclude * *.orig
+recursive-exclude * tests
+prune tests*
+prune .hg*
+prune Makefile*

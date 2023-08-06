@@ -1,0 +1,13 @@
+CC=gcc
+CFLAGS=-Wall -shared -fPIC -march=native -O2
+LINKS=-lm
+PY3INC=/usr/include/python3.5m
+
+all: stable
+
+debug:clean
+	$(CC) $(CFLAGS) -I $(PY3INC) -g -o _cgracio.so src/cgraciomodule.c src/twoth.c src/splitbbox.c src/memmgr.c $(LINKS)
+stable:clean
+	$(CC) $(CFLAGS) -I $(PY3INC) -o _cgracio.so src/cgraciomodule.c src/twoth.c src/splitbbox.c src/memmgr.c $(LINKS)
+clean:
+	rm -vfr *~ cgracio.so _cgracio.so

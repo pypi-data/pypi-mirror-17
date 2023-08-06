@@ -1,0 +1,23 @@
+syntax: glob
+*.pyc
+.idea/*
+*.so
+*.o
+*.lib
+*.edf
+*.msk
+.kateproject*
+*.egg-info
+fabio/*
+pyFAI/*
+tests.py
+*.poni
+testdata/*
+*.patch
+.cache/*
+*.kdev4
+*.kate-swp
+test.c
+test_twoth
+Makefile
+dist/*
