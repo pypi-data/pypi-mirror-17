@@ -1,0 +1,43 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2016-08-26 07:59+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Preferred-Encodings: utf-8 latin1\n"
+
+#: ./ftw/referencewidget/templates/referencewidget_input.pt:10
+msgid "Browse"
+msgstr ""
+
+#: ./ftw/referencewidget/configure.zcml:33
+msgid "Register ftw.referencewidget generally"
+msgstr ""
+
+#. Default: "Close"
+#: ./ftw/referencewidget/widget.py:59
+msgid "button_close"
+msgstr ""
+
+#. Default: "Search"
+#: ./ftw/referencewidget/widget.py:58
+msgid "button_seach"
+msgstr ""
+
+#: ./ftw/referencewidget/configure.zcml:33
+msgid "ftw.referencewidget"
+msgstr ""
+
+#. Default: "hans"
+#: ./ftw/referencewidget/browser/jsongenerator.py:16
+msgid "hans"
+msgstr ""
+
