@@ -1,0 +1,9 @@
+jinja2
+invoke>=0.13
+unidecode
+manuel
+six
+
+[dev]
+pytest
+mock
