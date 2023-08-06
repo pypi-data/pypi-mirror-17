@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: medgen-prime
+Version: 0.5
+Summary: MedGen is the NCBI primary source for Medical Genomics information
+Home-page: https://bitbucket.org/text2gene/medgen
+Author: Naomi Most
+Author-email: naomi@text2gene.com
+License: Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+Description: Modules in medgen.* provide access to the databases and concepts found in medgen-mysql.
+Platform: UNKNOWN
