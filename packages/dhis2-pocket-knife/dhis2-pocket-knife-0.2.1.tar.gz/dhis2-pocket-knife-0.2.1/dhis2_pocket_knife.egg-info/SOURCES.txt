@@ -1,0 +1,13 @@
+setup.cfg
+setup.py
+dhis2_pocket_knife.egg-info/PKG-INFO
+dhis2_pocket_knife.egg-info/SOURCES.txt
+dhis2_pocket_knife.egg-info/dependency_links.txt
+dhis2_pocket_knife.egg-info/requires.txt
+dhis2_pocket_knife.egg-info/top_level.txt
+src/__init__.py
+src/delete-objects.py
+src/share-objects.py
+src/user-orgunits.py
+src/core/__init__.py
+src/core/core.py
