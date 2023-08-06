@@ -1,0 +1,64 @@
+<div ng-controller="TestingController" class="page settings-page scrolling-panel">
+	<div class="inner">
+		
+        <div class="page-header">
+        
+            <span class="menu-reveal-trigger mobile-show" ng-click="showMenu()"><i class="fa fa-bars"></i></span>
+            
+            <h1>
+                <i class="fa fa-flask mobile-hide"></i>
+                Testing lab
+            </h1>
+            
+        </div>
+        
+        <h4 class="section-title underline">Server requests</h4>       
+        <form ng-submit="mopidyTest.run()">
+
+            <div class="field">
+                <div class="label">Method</div>
+                <div class="input">
+                    <input type="text" name="method" ng-model="mopidyTest.method" />
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="label">Payload (JSON string)</div>
+                <div class="input">
+                    <input type="text" name="method" ng-model="mopidyTest.payload" />
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="label"></div>
+                <div class="input">
+                    <button class="button primary" type="submit">Run</button>
+                </div>
+            </div>
+            
+        </form>
+        
+        <h4 class="section-title underline">Pusher connection</h4>       
+        <form ng-submit="pusherTest.run()">
+
+            <div class="field">
+                <div class="label">Payload (JSON string)</div>
+                <div class="input">
+                    <input type="text" name="method" ng-model="pusherTest.payload" />
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="label"></div>
+                <div class="input">
+                    <button class="button primary" type="submit">Send</button>
+                </div>
+            </div>
+            
+        </form>
+        
+        <h4 class="section-title underline">Response</h4>        
+        <pre ng-bind="response | json"></pre>
+        
+	</div>
+</div>

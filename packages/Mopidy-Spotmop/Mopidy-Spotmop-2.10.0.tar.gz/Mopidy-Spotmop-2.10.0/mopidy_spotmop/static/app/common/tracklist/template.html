@@ -1,0 +1,8 @@
+<track
+    ng-repeat="track in tracksWrapper() track by $index" 
+    data-index="{{ $index }}">
+</track>
+
+<div ng-hide="tracksWrapper().length" class="no-items">
+    No items
+</div>

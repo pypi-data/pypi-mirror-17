@@ -1,0 +1,100 @@
+<div class="page now-playing-page scrolling-panel">
+	<div class="inner">
+		
+		<div class="page-header mobile-show">
+			<span class="menu-reveal-trigger" ng-click="showMenu()"><i class="fa fa-bars"></i></span>
+			<h1>Now Playing</h1>
+		</div>
+		
+		<div id="full-player" class="player" ng-controller="PlayerController">
+        
+			<a class="artwork image-container" ui-sref="browse.album({ uri: state().currentTlTrack.track.album.uri })">
+				<div class="image" style="background-image: url({{ state().currentTlTrack.track.images.medium }})" ng-if="state().currentTlTrack.track.images.medium"></div>
+				<div class="image placeholder" ng-if="!state().currentTlTrack.track.images.medium"></div>
+			</a>
+				
+			<div class="track-info">
+				<div ng-if="state().currentTlTrack.track">
+					<div class="track" ng-bind="state().currentTlTrack.track.name"></div>
+					<div class="artist">
+						<span ng-repeat="artist in state().currentTlTrack.track.artists">
+							<a ui-sref="browse.artist.overview({ uri: artist.uri })" ng-bind="artist.name"></a><span ng-show="!$last">, </span>
+						</span>
+					</div>
+				</div>
+				<div ng-if="!state().currentTlTrack.track">
+					<div class="artist">Nothing playing</div>
+				</div>
+			</div>
+			
+			<div class="controls">
+				
+				<div class="pull-left">
+					<span class="button previous" ng-click="previous()"><i class="fa fa-step-backward"></i></span>
+					<span class="button play-pause" ng-click="playPause()">
+						<i class="fa fa-play fa-fw" ng-show="!state().isPlaying()"></i>
+						<i class="fa fa-pause fa-fw" ng-show="state().isPlaying()"></i>
+					</span>
+                    <span class="button stop" ng-click="stop()"><i class="fa fa-stop fa-fw"></i></span>
+					<span class="button next" ng-click="next()"><i class="fa fa-step-forward"></i></span>
+				</div>
+				
+				<div class="pull-right">
+                
+                    <span ng-if="state().radio.enabled">
+                        <span class="button has-tooltip stop-radio red-text" ng-click="stopRadio()">
+                            <i class="fa fa-close"></i>
+                            <span class="label">Stop radio</span>
+                        </span>
+                    </span>
+                    
+                    <span ng-if="!state().radio.enabled">
+                        <span class="button consume has-tooltip" ng-click="toggleConsume()" ng-class="{active: state().isConsume}">
+                            <i class="fa fa-fire"></i>
+                            <span class="tooltip">Consume mode</span>
+                        </span>
+                        <span class="button random has-tooltip" ng-click="toggleRandom()" ng-class="{active: state().isRandom}">
+                            <i class="fa fa-random"></i>
+                            <span class="tooltip">Randomise</span>
+                        </span>
+                        <span class="button repeat has-tooltip" ng-click="toggleRepeat()" ng-class="{active: state().isRepeat}">
+                            <i class="fa fa-repeat"></i>
+                            <span class="tooltip">Repeat all</span>
+                        </span>
+					</span>
+                    
+				</div>
+				
+				<div class="clear-both"></div>
+				
+				<div class="track-timer">
+					<span class="current" ng-show="state().currentTlTrack.track" ng-bind="state().playPosition | formatMilliseconds"></span>
+					<span class="duration" ng-show="state().currentTlTrack.track" ng-bind="state().currentTlTrack.track.length | formatMilliseconds"></span>
+				</div>
+				
+				<div class="progress slider" ng-click="seek($event)">
+					<div class="track animate">
+						<div class="fill" ng-class="{playing: state().isPlaying()}" style="width: {{ state().playPositionPercent() }}%"></div>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+        
+        <div class="radio-intro" ng-if="state().radio.enabled">
+            Radio based on <span ng-repeat="seed in state().radio.resolvedSeeds"><span ng-if="$last">and </span><span ng-bind="seed.name"></span> (<span ng-bind="seed.type"></span>)<span ng-if="!$last">, </span></span>
+        </div>
+		
+		<div class="queue-intro" ng-if="!state().radio.enabled">		
+			<div class="info-text">
+				<span ng-bind="player.currentTracklist.length"></span> track<span ng-show="player.currentTracklist.length != 1">s</span>
+				&nbsp;|&nbsp; <span ng-bind="totalTime()"></span> minute<span ng-show="totalTime() != 1">s</span>
+                &nbsp;|&nbsp; <a ng-click="addUri()">Add URI</a>
+                &nbsp;|&nbsp; <a ng-click="clearQueue()">Clear</a>
+			</div>
+		</div>
+    
+        <tracklist ng-if="player.currentTracklist" tracks="player.currentTracklist" type="tltrack" class="tracklist queue droppable" dropaccept='["tltrack"]' droptype="queuetracklist" limit="{{ limit }}"></tracklist>
+		
+	</div>
+</div>
