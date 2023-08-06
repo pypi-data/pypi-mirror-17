@@ -1,0 +1,454 @@
+{% macro apply_classes(classes) -%}
+{#
+    Apply css classes inside an element.
+    Usage:
+    <table {{ apply_classes(['table', 'table-striped']) }}></table>
+    <table class="table table-striped"></table>
+#}
+{% for css in classes %}{{ css }} {% endfor %}
+{%- endmacro %}
+
+
+{% macro apply_dattrs(data_attrs) -%}
+{#
+    Apply data-attributes inside an element.
+    Usage:
+    <div {{ apply_dattrs(['data-foo', 'data-bar']) }}></div>
+    <div data-foo data-bar></div>
+
+    TODO: support dictionary with values
+#}
+{% for attr in data_attrs %}data-{{ attr }} {% endfor %}
+{%- endmacro %}
+
+
+{% macro dictlist_dl(data, filterkeys=[], filtervals=[], classes=[], data_attrs=[], asdict=False) %}
+{#
+    Make a definition list from a dictionary - the correspondence should be dt: key, dd: value
+    Usage:
+    {{ dictlist_dl({'foo': 'bar'}) }}
+    <dl>
+        <dt>foo</dt>
+        <dd>bar</dd>
+    </dl>
+#}
+{% if asdict %}{% set data = data._asdict() %}{% endif %}
+<dl class="{{ apply_classes(classes) }}" {{ apply_dattrs(data_attrs) }}>
+    {% for k, v in data.items() -%}
+        {% if k not in filterkeys and v not in filtervals %}
+            <dt>{{ k }}</dt>
+            <dd>{{ v }}</dd>
+        {% endif %}
+    {% endfor %}
+</dl>
+{%- endmacro %}
+
+
+{% macro dict2list(data, type='ul', filterkeys=[], filtervals=[], asdict=False) %}
+{#
+    Makes a list from a dictionary.
+    Usage:
+    {{ dict2list({'foo': 'bar'}) }}
+    <ul>
+        <li><strong>foo</strong>: bar</li>
+    </ul>
+
+    namedtuple support:
+    {{ dict2list(mytuple, asdict=True) }}
+#}
+{% if asdict %}{% set data = data._asdict() %}{% endif %}
+<{{ type }}>
+    {% for k, v in data.items() %}
+        {% if k not in filterkeys and v not in filtervals %}
+            <li><strong>{{ k }}</strong>: {{ v }}</li>
+        {% endif %}
+    {% endfor %}
+</{{ type }}>
+{%- endmacro %}
+
+
+{% macro bs3_dictlist_group(data, filterkeys=[], filtervals=[], data_attrs=[], asdict=False) %}
+{#
+    Makes a bootstrap list group from a set of dictionaries
+    Usage:
+    {{ bs3_dictlist_group({'foo': 'bar'}) }}
+    <div class="list-group">
+        <h4 class="list-group-item-heading">foo</h4>
+        <p class="list-group-item-text">bar</p>
+    </div>
+#}
+{% if asdict %}{% set data = data._asdict() %}{% endif %}
+<div class="list-group" {{ apply_dattrs(data_attrs) }}>
+    {% for k, v in data.items() %}
+        {% if k not in filterkeys and v not in filtervals %}
+            <h4 class="list-group-item-heading">{{ k }}</h4>
+            <p class="list-group-item-text">{{ v }}</p>
+        {% endif %}
+    {% endfor %}
+</div>
+{%- endmacro %}
+
+
+{% macro bs3_list_group(data, type='ul') %}
+{#
+    OL/UL based bootstrap list group
+    Usage:
+    {{ bs3_list_group(['foo', 'bar']) }}
+    <ul>
+        <li class="list-group-item">foo</li>
+        <li class="list-group-item">bar</li>
+    </ul>
+#}
+<{{ type }} class="list-group">
+    {% for val in data %}
+        <li class="list-group-item">{{ val }}</li>
+    {% endfor %}
+</{{ type }}>
+{%- endmacro %}
+
+
+{% macro dict2labels(data, filterkeys=[], filtervals=[], aslist=False) %}
+{#
+    Makes a dict of `name`:`label` into bootstrap labels
+    Usage:
+    {{ dict2labels({'foo': 'danger'}) }}
+    <ul class="list-unstyled">
+        <li><span class="label label-danger">foo</span></li>
+    </ul>
+
+    {{ dict2labels({'foo': 'danger'}, aslist=False) }}
+    <span class="label label-danger">foo</span>
+#}
+{% if aslist %}<ul class="list-unstyled">{% endif %}
+    {% for k, label in data.items() %}
+        {% if k not in filterkeys and label not in filtervals %}
+            {% if aslist %}<li>{% endif %}
+                <span class="label label-{{ label }}">{{ label }}</span>
+            {% if aslist %}</li>{% endif %}
+        {% endif %}
+    {% endfor %}
+{% if aslist %}</ul>{% endif %}
+{%- endmacro %}
+
+
+{% macro list2list(data, type='ul',
+                   filtervals=[], icons={},
+                   classes=[],
+                   icondir='left') %}
+{#
+    Makes a OL/UL from a list, with optional icons
+    Usage:
+    {{ list2list(['Toyota', 'V2', '747', 'John Deere'], icons={'Toyota': ['fa', 'fa-car'], 'V2': ['fa', 'fa-rocket']}, icondir='right') }}
+    Returns:
+    <ul>
+        <li>Toyota <span class="fa fa-car"></span></li>
+        <li>V2 <span class="fa fa-rocket"></span></li>
+        <li>747</li>
+        <li>John Deere</li>
+    </ul>
+#}
+<{{ type }} class="{{ apply_classes(classes) }}">
+    {% for item in data %}
+        {% if item and item not in filtervals %}
+            <li>
+                {% if item in icons.keys() %}
+                    {% if icondir == 'left' %}
+                        <span class="{{ apply_classes(icons[item]) }}"></span>
+                        {{ item }}
+                    {% else %}
+                        {{ item }}
+                        <span class="{{ apply_classes(icons[item]) }}"></span>
+                    {% endif %}
+                {% else %}
+                    {{ item }}
+                {% endif %}
+            </li>
+        {% endif %}
+    {% endfor %}
+</{{ type }}>
+{%- endmacro %}
+
+
+{% macro dictlist2nav(data, type='ul', filterkeys=[], filtervals=[], classes=[], data_attrs=[]) %}
+{# Make a list of links with nav element.
+    Format must be a list of dictionaries.
+    Supports *one* level of nesting. #}
+{% if asdict %}{% set data = data._asdict() %}{% endif %}
+<nav class="{{ apply_classes(classes) }}" {{ apply_dattrs(data_attrs) }}>
+    <{{ type }}>
+        {% for item in data %}
+            {% for k, v in item.items() %}
+                {% if k not in filterkeys and v not in filtervals %}
+                    <li><a href="{{ k }}">{{ v }}</a></li>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </{{ type }}>
+</nav>
+{%- endmacro %}
+
+
+{% macro dictlist2dropdown(data, name=None, filterkeys=[], filtervals=[], classes=[], data_attrs=[], asdict=False) %}
+{# Make a dropdown element.
+    Format must be a list of dictionaries. #}
+{% if asdict %}{% set data = data._asdict() %}{% endif %}
+<select {% if name %}name="{{ name }}"{% endif %} class="{{ apply_classes(classes) }}" {{ apply_dattrs(data_attrs) }}>
+    {% for item in data %}
+        {% for k, v in item.items() %}
+            {% if k not in filterkeys and v not in filtervals %}
+                <option value="{{ k }}">{{ v }}</option>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</select>
+{%- endmacro %}
+
+
+{% macro list2dropdown(data, filtervals=[], classes=[], data_attrs=[]) %}
+{# Make a dropdown element.
+    Format must be a list. Value and text are the same. #}
+<select class="{{ apply_classes(classes) }}" {{ apply_dattrs(data_attrs) }}>
+    {% for item in data %}
+        {% if item not in filtervals %}
+            <option value="{{ item }}">{{ item }}</option>
+        {% endif %}
+    {% endfor %}
+</select>
+{%- endmacro %}
+
+
+{% macro dictlist2checkboxes(data, fieldset_class='fieldset-group',
+                             filterkeys=[], filtervals=[], data_attrs=[],
+                             asdict=False) %}
+{# Make a checkbox group, where keys are input names, and values are labels.
+    Format must be a list of dictionaries. #}
+{% if asdict %}{% set data = data._asdict() %}{% endif %}
+<fieldset class="{{ fieldset_class }}" {{ apply_dattrs(data_attrs) }}>
+    {% for item in data %}
+        {% for k, v in item.items() %}
+            {% if k not in filterkeys and v not in filtervals %}
+                <label>
+                    {{ v }}
+                    <input type="checkbox" name="{{ k }}">
+                </label>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</fieldset>
+{%- endmacro %}
+
+
+{% macro objects2table(objs, classes=[], data_attrs=[],
+                       filterkeys=[], filtervals=[],
+                       pk_link=None,
+                       handle_links=True,
+                       field_macros={},
+                       header_macros={},
+                       asdict=False
+                       )
+-%}
+{# Create table from a list of objects (class instantiations). Also add links for primary keys if specified. #}
+{% if asdict %}{% set data = data._asdict() %}{% endif %}
+<table
+    class="{{ apply_classes(classes) }}"
+    {{ apply_dattrs(data_attrs) }}>
+    <thead>
+        {% for obj in objs %}
+            {% if loop.first %}
+                {% set header_keys = header_macros.keys() %}
+                {% for heading, _ in obj.items() %}
+                    {# Allow filtering of headings. #}
+                    {% if heading not in filterkeys %}
+                        {% if heading in header_keys %}
+                            <th>{{ header_macros[heading](heading) }}</th>
+                        {% else %}
+                            <th>{{ heading }}</th>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    </thead>
+    <tbody>
+        {% for obj in objs %}
+            <tr>
+                {% for k, v in obj.items() %}
+                    {# Allowing filtering of keys and values. #}
+                    {% if k not in filterkeys %}
+                        {% if v not in filtervals %}
+                            <td>
+                                {# Handle all primary key links, a common occurence #}
+                                {% if pk_link and k == 'id' %}
+                                    <a href="{{ pk_link }}/{{ v }}">{{ v }}</a>
+                                {% elif handle_links and v|is_url %}
+                                    <a href="{{ v }}" target="_blank">{{ v }}</a>
+                                {% elif k in field_macros.keys() %}
+                                    {# If a field macro is specified by key, call it on this field for arbitrary levels of customization #}
+                                    {{ field_macros[k](v) }}
+                                {% else %}
+                                    {{ v }}
+                                {% endif %}
+                            </td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{%- endmacro %}
+
+
+{% macro wtform_errors_field(field, errors, bg=True) -%}
+    {% if bg %}<div class="alert alert-danger">{% endif %}
+        <p class="{{ 'text-danger' if not bg else '' }}"><strong>Error(s) for '{{ field }}': </strong></p>
+        <ul class="{{ 'text-danger' if not bg else '' }}">
+            {% for error in errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% if bg %}</div>{% endif %}
+{%- endmacro %}
+
+
+{% macro wtform_errors(formobj) -%}
+{# Show a list of form errors based on a given wtform instance. #}
+{% if formobj.errors %}
+    {% for field, errors in formobj.errors.items() %}
+        {{ wtform_errors_field(field, errors) }}
+    {% endfor %}
+{% endif %}
+{%- endmacro %}
+
+
+{% macro wtform_form(formobj, action='.', method='GET', classes=[],
+                     data_attrs=[], btn_classes=[],
+                     uploads=True,
+                     enctype=None,
+                     btn_text='Submit',
+                     formid=None,
+                     reset_btn=True,
+                     legend=None,
+                     horizontal=False,
+                     align='left',
+                     questionize=True,
+                     linebreaks=True,
+                     button_wrapper=True,
+                     reset_btn_classes=[],
+                     field_macros={}
+                     )
+-%}
+    <form action="{{ action }}" method="{{ method }}"
+    class="{{ apply_classes(classes) }}"
+    {% if enctype %}
+        enctype="{{ enctype }}"
+    {% endif %}
+    {{ apply_dattrs(data_attrs) }} role="form" {% if formid %}id="{{ formid }}"{% endif %}>
+        {% set invalid_fields = ['CSRFTokenField', 'HiddenField'] %}
+        <fieldset class="text-{{ align }}">
+            {% if legend %}
+                <legend>{{ legend }}</legend>
+            {% endif %}
+            {% for field in formobj %}
+                {% if field.name in field_macros.keys() %}
+                    {{ field_macros[field.name](field) }}
+                {% else %}
+                    {% set valid_field = field.type not in invalid_fields %}
+                    {% if horizontal %}<div class="row">{% endif %}
+                    {# Only show labels and descriptions if they are normal fields. #}
+                    {% if valid_field %}
+                        {% if horizontal %}<div class="col-md-4">{% endif %}
+                        {{ field.label }}{% if field.type == 'BooleanField' and questionize %}?{% endif %}
+                        {% if field.description %}
+                            {% if horizontal and linebreaks %}<br>{% endif %}
+                            <small>{{ field.description }}</small>
+                        {% endif %}
+                        {% if field.flags.required %}
+                            {% if horizontal and linebreaks %}<br>{% endif %}
+                            <small class="text-danger">* Required</small>
+                            {% if linebreaks %}<br>{% endif %}
+                        {% endif %}
+                        {% if horizontal %}</div>{% endif %}
+                    {% endif %}
+                        {% if horizontal and valid_field %}<div class="col-md-8">{% endif %}
+                        {% if horizontal %}
+                            <div class="{{ 'has-error' if field.errors else '' }} text-{{ 'right' if align == 'left' else 'left' }}">
+                        {% endif %}
+                            {{ field }}
+                            {% if valid_field and linebreaks %}<br>{% endif %}
+                            {% if field.errors %}
+                                {{ wtform_errors_field(field.label, field.errors, bg=False) }}
+                            {% endif %}
+                        {% if horizontal %}</div>{% endif %}
+                        {% if valid_field and linebreaks %}<br>{% endif %}
+                        {% if horizontal and valid_field %}</div>{% endif %}
+                    {% if horizontal %}</div><hr>{% endif %}
+                {% endif %}
+            {% endfor %}
+        </fieldset>
+
+        {% if button_wrapper %}<div class="wtform-form button-wrapper">{% endif %}
+            {# Add typical form submit button. #}
+            <button type="submit" class="{{ apply_classes(btn_classes) }}">{{ btn_text }}</button>
+            {# Add a reset field values button if specified. #}
+            {% if reset_btn %}
+                <button type="reset" class="{{ apply_classes(reset_btn_classes) }}">Reset</button>
+            {% endif %}
+        {% if button_wrapper %}</div>{% endif %}
+    </form>
+{%- endmacro %}
+
+
+{%- macro recurse_dictlist(val, type='ul', classes=[], data_attrs=[]) %}
+    {#
+        Uses the jinja2 recursive looping to recurse over a dictionary and display
+        as a list (ordered or unordered), or display a default value otherwise.
+    #}
+    {% if val is mapping %}
+        <{{ type }} class="{{ apply_classes(classes) }}" {{ apply_dattrs(data_attrs) }}>
+            {% for k, v in val.items() recursive %}
+                {% if v is mapping %}
+                    <li>
+                        <strong>{{ k }}:</strong>
+                        <{{ type }} class="{{ apply_classes(classes) }}" {{ apply_dattrs(data_attrs) }}>
+                            {{ loop(v.items()) }}
+                        </{{ type }}>
+                    </li>
+                {% else %}
+                    <li>
+                        {% if v|islist %}
+                            <{{ type }} class="{{ apply_classes(classes) }}" {{ apply_dattrs(data_attrs) }}>
+                                {% for item in v %}
+                                    <li>
+                                        {% for itemv in v recursive %}
+                                            {{ recurse_dictlist(itemv, type=type) }}
+                                        {% endfor %}
+                                    {% endfor %}
+                                </li>
+                            </{{ type }}>
+                        {% else %}
+                            <strong>{{ k }}</strong>: {{ v }}
+                        {% endif %}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </{{ type }}>
+    {% else %}
+        {{ val }}
+    {% endif %}
+{%- endmacro %}
+
+
+{% macro bs3_label(value, label_map) -%}
+{#
+    Convert a dict of values with corresponding label types given a value, to
+    the appropriate label.
+
+    Usage:
+    {{ bs3_label('PROD', {'dev': 'info', 'stage': 'warning', 'prod': 'danger'}) }}
+    <span class="label label-danger">PROD</span>
+ #}
+<span class="label label-{{ label_map[value] }}">{{ value }}</span>
+{%- endmacro %}
