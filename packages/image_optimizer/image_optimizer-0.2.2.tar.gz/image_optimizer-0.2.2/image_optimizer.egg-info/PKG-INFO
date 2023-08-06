@@ -1,0 +1,28 @@
+Metadata-Version: 1.1
+Name: image-optimizer
+Version: 0.2.2
+Summary: PIL based image optimizer
+Home-page: https://github.com/Bobsans/image-optimizer
+Author: Bobsans
+Author-email: mr.bobsans@gmail.com
+License: Freeware
+Download-URL: https://pypi.python.org/pypi/image_optimizer
+Description: PIL based image optimizer
+Keywords: PIL,optimize,image
+Platform: Any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Environment :: Win32 (MS Windows)
+Classifier: Intended Audience :: Developers
+Classifier: License :: Freeware
+Classifier: Natural Language :: English
+Classifier: Natural Language :: Russian
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Multimedia :: Graphics
+Classifier: Topic :: Utilities
