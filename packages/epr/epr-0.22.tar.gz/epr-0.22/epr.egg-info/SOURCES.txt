@@ -1,0 +1,10 @@
+README.rst
+setup.cfg
+setup.py
+epr/__init__.py
+epr/epr.py
+epr/epr_recursive_import.py
+epr.egg-info/PKG-INFO
+epr.egg-info/SOURCES.txt
+epr.egg-info/dependency_links.txt
+epr.egg-info/top_level.txt
