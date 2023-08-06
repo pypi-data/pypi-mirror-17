@@ -1,0 +1,23 @@
+Metadata-Version: 1.1
+Name: moldesign
+Version: 0.7.3
+Summary: The Molecular Design Toolkit: Dead-simple chemical simulation, visualization, and cloud computing in a notebook
+Home-page: http://moldesign.bionano.autodesk.com
+Author: Aaron Virshup, BioNano Research at Atuodesk
+Author-email: moleculardesigntoolkit@autodesk.com
+License: Apache 2.0
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 2 :: Only
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
