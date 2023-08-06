@@ -1,0 +1,9 @@
+image: redjack/pythons
+
+before_script:
+  - apt-get install --yes libglib2.0-0 libgirepository-1.0-1
+  - pip install tox
+
+tox:
+  script:
+    - tox

@@ -1,0 +1,1 @@
+By [Boris23](//commons.wikimedia.org/wiki/User:Boris23) based on [File:PD-icon.svg](//commons.wikimedia.org/wiki/File:PD-icon.svg) and [File:PD-icon.png](//commons.wikimedia.org/wiki/File:PD-icon.png) - [File:Copyleft.svg](http://www.wikia.com/wiki/c:community:File:Copyleft.svg), Public Domain, https://commons.wikimedia.org/w/index.php?curid=31272217.
