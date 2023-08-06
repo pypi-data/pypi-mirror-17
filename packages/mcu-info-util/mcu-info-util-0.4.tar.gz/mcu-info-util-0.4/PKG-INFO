@@ -1,0 +1,11 @@
+Metadata-Version: 1.1
+Name: mcu-info-util
+Version: 0.4
+Summary: Small utility that allows you to find embedded toolchain for specified MCU, compiler flags and generate linker script and header files (for ARM MCUs)
+Home-page: https://github.com/KivApple/mcu-info-util
+Author: Ivan Kolesnikov
+Author-email: kiv.apple@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/KivApple/mcu-info-util/archive/v0.4.tar.gz
+Description: UNKNOWN
+Platform: UNKNOWN
