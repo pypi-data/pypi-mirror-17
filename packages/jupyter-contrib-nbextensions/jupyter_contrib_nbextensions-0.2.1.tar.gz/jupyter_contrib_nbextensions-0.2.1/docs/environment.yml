@@ -1,0 +1,11 @@
+name: nbextensions
+channels:
+- conda-forge
+dependencies:
+- pandoc
+- pypandoc
+- sphinx
+- sphinx_rtd_theme
+- pip:
+    - recommonmark
+
