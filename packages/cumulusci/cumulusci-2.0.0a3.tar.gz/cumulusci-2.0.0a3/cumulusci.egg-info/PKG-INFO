@@ -1,0 +1,83 @@
+Metadata-Version: 1.1
+Name: cumulusci
+Version: 2.0.0a3
+Summary: Build and release tools for SSalesforce developers
+Home-page: https://github.com/SalesforceFoundation/CumulusCI
+Author: Jason Lantz
+Author-email: jlantz@salesforce.com
+License: BSD license
+Description: ===============================
+        CumulusCI
+        ===============================
+        
+        
+        .. image:: https://img.shields.io/pypi/v/cumulusci.svg
+                :target: https://pypi.python.org/pypi/cumulusci
+        
+        .. image:: https://img.shields.io/travis/jlantz/cumulusci.svg
+                :target: https://travis-ci.org/jlantz/cumulusci
+        
+        .. image:: https://readthedocs.org/projects/cumulusci/badge/?version=latest
+                :target: https://cumulusci.readthedocs.io/en/latest/?badge=latest
+                :alt: Documentation Status
+        
+        .. image:: https://pyup.io/repos/github/jlantz/cumulusci/shield.svg
+             :target: https://pyup.io/repos/github/jlantz/cumulusci/
+             :alt: Updates
+        
+        
+        Build and release tools for SSalesforce developers
+        
+        
+        * Free software: BSD license
+        * Documentation: https://cumulusci.readthedocs.io.
+        
+        
+        Features
+        --------
+        
+        * TODO
+        
+        Credits
+        ---------
+        
+        This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+        
+        
+        
+        =======
+        History
+        =======
+        
+        2.0.0-alpha3 (2016-10-21)
+        ------------------
+        
+        * Added yaml files to the MANIFEST.in for inclusion in the egg
+        * Fixed keychain import in cumulusci.yml
+        
+        2.0.0-alpha2 (2016-10-21)
+        ------------------
+        
+        * Added additional python package requirements to setup.py for automatic installation of dependencies
+        
+        2.0.0-alpha1 (2016-10-21)
+        ------------------
+        
+        * First release on PyPI.
+        
+Keywords: cumulusci
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
