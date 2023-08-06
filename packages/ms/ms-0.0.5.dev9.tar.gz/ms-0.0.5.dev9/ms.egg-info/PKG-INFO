@@ -1,0 +1,43 @@
+Metadata-Version: 1.1
+Name: ms
+Version: 0.0.5.dev9
+Summary: ms
+Home-page: https://github.com/lhrkkk/general.git
+Author: lhr
+Author-email: airhenry@gmail.com
+License: UNKNOWN
+Description: common utils for python
+        ====================
+        
+        this package include some useful general libs in python, include:
+        
+        - frequently used decorators
+        - monkey patch for class
+        - reflection, smartlog and yml_config and so on 
+        - cli interface tools
+        - git workflow tools
+        - project management tools, contains a scaffold, a update command to
+        
+        install
+        =========
+        pip install general
+        
+        how to use
+        ===========
+        some are python packages you can import directly.
+        
+        ``gy`` is a shell command you can run ``gy --help`` to see the usage. The most useful 3 workflow is  ``init``, ``sync``, ``push/merge``. And the default dev, release branch.
+        
+        ``ly`` is a project manage and you can run ``ly --help`` to see the usage. The most useful command is ``new``, ``project-update`` to new and update a project.
+        ``gy self-update`` to update gy locally, is a command when you develop the package and want to refresh the package in system.
+        
+        
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
