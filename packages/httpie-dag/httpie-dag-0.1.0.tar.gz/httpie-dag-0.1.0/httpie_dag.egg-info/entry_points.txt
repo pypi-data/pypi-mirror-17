@@ -1,0 +1,6 @@
+[httpie.plugins.auth.v1]
+httpie_auth_aws = httpie_dag.auth:AWSAuthPlugin
+httpie_auth_aws_v4 = httpie_dag.auth_v4:AWSSignatureV4AuthPlugin
+httpie_auth_dag = httpie_dag.auth:DAGAuthPlugin
+httpie_auth_dag_v4 = httpie_dag.auth_v4:DAGSignatureV4AuthPlugin
+
