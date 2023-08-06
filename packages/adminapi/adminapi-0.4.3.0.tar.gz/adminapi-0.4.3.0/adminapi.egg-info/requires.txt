@@ -1,0 +1,10 @@
+paramiko >= 2.0.2
+boto >= 2.5.2
+argparse
+kazoo
+pywinrm
+requests >= 1
+prettytable
+python-dateutil
+dnspython
+midonetclient
