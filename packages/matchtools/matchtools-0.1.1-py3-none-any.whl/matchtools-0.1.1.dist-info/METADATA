@@ -1,0 +1,26 @@
+Metadata-Version: 2.0
+Name: matchtools
+Version: 0.1.1
+Summary: A set of tools for data matching and manipulation
+Home-page: https://github.com/matchtools/matchtools
+Author: Anton Kupenko & Dawid Kaczmarski
+Author-email: anton.kupenko@gmail.com, dawidkaczmarski@gmail.com
+License: MIT
+Keywords: match,matching,comparison,data,attributes,integration
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Office/Business
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Utilities
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: datefinder
+Requires-Dist: fuzzywuzzy
+Requires-Dist: geopy
+Requires-Dist: roman
+
+UNKNOWN
+
+
