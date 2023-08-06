@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+setup.py
+bio_mimo/__init__.py
+bio_mimo/fasta.py
+bio_mimo/mutation_type.py
+bio_mimo/triplet.py
+bio_mimo/vcf.py
+bio_mimo/window.py
+bio_mimo.egg-info/PKG-INFO
+bio_mimo.egg-info/SOURCES.txt
+bio_mimo.egg-info/dependency_links.txt
+bio_mimo.egg-info/requires.txt
+bio_mimo.egg-info/top_level.txt

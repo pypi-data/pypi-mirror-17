@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: bio-mimo
+Version: 1.1.3
+Summary: A MiMo library for biological data
+Home-page: https://github.com/childsish/bio-mimo
+Author: Liam H. Childs
+Author-email: liam.h.childs@gmail.com
+License: LICENSE
+Description: [![Build Status](https://travis-ci.org/childsish/bio-mimo.svg?branch=master)](https://travis-ci.org/childsish/bio-mimo)
+        
+        # bio-mimo
+        A MiMo library for biological data
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
