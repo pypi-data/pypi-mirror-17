@@ -1,0 +1,14 @@
+MANIFEST.in
+README.rst
+setup.py
+django_timestampable/__init__.py
+django_timestampable/app_settings.py
+django_timestampable/models.py
+django_timestampable/tests/__init__.py
+django_timestampable/tests/tests_models.py
+django_timestampable_model.egg-info/PKG-INFO
+django_timestampable_model.egg-info/SOURCES.txt
+django_timestampable_model.egg-info/dependency_links.txt
+django_timestampable_model.egg-info/not-zip-safe
+django_timestampable_model.egg-info/requires.txt
+django_timestampable_model.egg-info/top_level.txt
