@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Scrapple 0.2.4 documentation &mdash; Scrapple  documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Scrapple  documentation" href="#" />
+    <link rel="next" title="Introducing Scrapple" href="intro/overview.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="intro/overview.html" title="Introducing Scrapple"
+             accesskey="N">next</a> |</li>
+        <li><a href="#">Scrapple  documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="scrapple-version-documentation">
+<h1>Scrapple 0.2.4 documentation<a class="headerlink" href="#scrapple-version-documentation" title="Permalink to this headline">¶</a></h1>
+<p>The Internet is a huge source of information. Several people may use data from the Internet to perform various activities, like research or analysis. Data extraction is a primary step involved in data mining and analysis. Extracting content from structured web pages is a vital task to be performed when the Internet is the principal source of data.</p>
+<p>The current standards in web structure involve the use of CSS selectors or XPath expressions to select particular tags from which information can be extracted. Web pages are structured as element trees which can be parsed to traverse through the tags. This tree structure, which represents tags as parent/children/siblings, is very useful when tags should be represented in terms of the rest of the web page structure.</p>
+<p>Scrapple is a project aimed at designing a framework for building web content extractors. Scrapple uses key-value based configuration files to define parameters to be considered in generating the extractor. It considers the base page URL, selectors for the data to be extracted, and the selector for the links to be crawled through. At its core, Scrapple abstracts the implementation of the extractor, focussing more on representing the selectors for the required tags. Scrapple can be used to generate single page content extractors or link crawlers.</p>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Web content extraction is a common task in the process of collecting data for data analysis. There are several existing frameworks that aid in this task. In this chapter, a brief introduction of Scrapple is provided, with instructions on setting up the development machine to run Scrapple.</p>
+<div class="toctree-wrapper compound">
+</div>
+<dl class="docutils">
+<dt><a class="reference internal" href="intro/overview.html"><em>Introducing Scrapple</em></a></dt>
+<dd>An introduction to Scrapple</dd>
+<dt><a class="reference internal" href="intro/existing.html"><em>Review of existing systems</em></a></dt>
+<dd>A review of existing systems</dd>
+<dt><a class="reference internal" href="intro/requirements.html"><em>System requirements</em></a></dt>
+<dd>Hardware and software requirements to run Scrapple</dd>
+<dt><a class="reference internal" href="intro/install.html"><em>Install Scrapple</em></a></dt>
+<dd>Instructions for installing Scrapple and the required dependencies</dd>
+</dl>
+</div>
+<div class="section" id="concepts">
+<span id="section-concepts"></span><h2>Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline">¶</a></h2>
+<p>Creating web content extractors requires a good understanding of the following topics :</p>
+<ul class="simple">
+<li><a class="reference internal" href="concepts/structure.html"><em>Web page structure</em></a></li>
+<li><a class="reference internal" href="concepts/selectors.html"><em>Selector expressions</em></a></li>
+<li><a class="reference internal" href="concepts/formats.html"><em>Data formats</em></a></li>
+</ul>
+<p>In this chapter, a brief overview of the concepts behind Scrapple is given.</p>
+<div class="toctree-wrapper compound">
+</div>
+<dl class="docutils">
+<dt><a class="reference internal" href="concepts/structure.html"><em>Web page structure</em></a></dt>
+<dd>The basics of web page structure and element trees</dd>
+<dt><a class="reference internal" href="concepts/selectors.html"><em>Selector expressions</em></a></dt>
+<dd>An introduction to tag selector expressions</dd>
+<dt><a class="reference internal" href="concepts/formats.html"><em>Data formats</em></a></dt>
+<dd>The primary data formats involved in handling data</dd>
+</dl>
+</div>
+<div class="section" id="the-scrapple-framework">
+<span id="section-framework"></span><h2>The Scrapple framework<a class="headerlink" href="#the-scrapple-framework" title="Permalink to this headline">¶</a></h2>
+<p>This section deals with how Scrapple works - the architecture of the Scrapple framework, the commands and options provided by the framework and the specification of the configuration file.</p>
+<div class="toctree-wrapper compound">
+</div>
+<dl class="docutils">
+<dt><a class="reference internal" href="framework/basic.html"><em>Scrapple architecture</em></a></dt>
+<dd>The architecture of the Scrapple framework</dd>
+<dt><a class="reference internal" href="framework/commands.html"><em>Scrapple commands</em></a></dt>
+<dd>Commands provided by the Scrapple CLI</dd>
+<dt><a class="reference internal" href="framework/config.html"><em>Configuration file</em></a></dt>
+<dd>The configuration file which is used by Scrapple to implement the required extractor/crawler</dd>
+</dl>
+</div>
+<div class="section" id="implementation">
+<span id="section-implementation"></span><h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>This section deals with the implementation of the Scrapple framework. This includes an explanation of the classes involved in the framework, the interaction scenarios for each of the commands supported by Scrapple, and utility functions that form a part of the implementation of the extractor.</p>
+<div class="toctree-wrapper compound">
+</div>
+<dl class="docutils">
+<dt><a class="reference internal" href="implementation/classes.html"><em>Scrapple implementation classes</em></a></dt>
+<dd>The classes involved in the implementation of Scrapple</dd>
+<dt><a class="reference internal" href="implementation/interaction.html"><em>Interaction scenarios</em></a></dt>
+<dd>Interaction scenarios in the implementation of each of the Scrapple commands</dd>
+<dt><a class="reference internal" href="implementation/cli.html"><em>Command line interface</em></a></dt>
+<dd>The Scrapple command line interface</dd>
+<dt><a class="reference internal" href="implementation/commands.html"><em>Command classes</em></a></dt>
+<dd>The implementation of the command classes</dd>
+<dt><a class="reference internal" href="implementation/selectors.html"><em>Selector classes</em></a></dt>
+<dd>The implementation of the selector classes</dd>
+<dt><a class="reference internal" href="implementation/utils.html"><em>Utility functions</em></a></dt>
+<dd>Utilities functions that support the implementation of the extractor</dd>
+</dl>
+</div>
+<div class="section" id="experimentation-results">
+<span id="section-tutorials"></span><h2>Experimentation &amp; Results<a class="headerlink" href="#experimentation-results" title="Permalink to this headline">¶</a></h2>
+<p>In this section, some experiments with Scrapple are provided. There are two main types of tools that can be implemented with the Scrapple framework :</p>
+<ul class="simple">
+<li><a class="reference internal" href="intro/tutorials/single_linear.html"><em>Single page linear scrapers</em></a></li>
+<li><a class="reference internal" href="intro/tutorials/link_crawler.html"><em>Link crawlers</em></a></li>
+</ul>
+<p>Once you&#8217;ve <a class="reference internal" href="intro/install.html"><em>installed Scrapple</em></a>, you can see the list of available <a class="reference internal" href="framework/commands.html#framework-commands"><em>commands</em></a> and the related options using the command</p>
+<p><tt class="docutils literal"><span class="pre">$</span> <span class="pre">scrapple</span> <span class="pre">--help</span></tt></p>
+<p>The <a class="reference internal" href="framework/config.html#framework-config"><em>configuration file</em></a> is the backbone of Scrapple. It specifies the base page URL, selectors for the data extraction, the follow link for the link crawler and several other parameters.</p>
+<p>Examples for each type are given.</p>
+<div class="toctree-wrapper compound">
+</div>
+<dl class="docutils">
+<dt><a class="reference internal" href="intro/tutorials/single_linear.html"><em>Single page linear scrapers</em></a></dt>
+<dd>Tutorial for single page linear extractors</dd>
+<dt><a class="reference internal" href="intro/tutorials/link_crawler.html"><em>Link crawlers</em></a></dt>
+<dd>Tutorial for link crawlers</dd>
+</dl>
+</div>
+<div class="section" id="contributing-to-scrapple">
+<h2>Contributing to Scrapple<a class="headerlink" href="#contributing-to-scrapple" title="Permalink to this headline">¶</a></h2>
+<p>Scrapple is on <a class="reference external" href="http://github.com/scrappleapp/scrapple">GitHub</a> !</p>
+<div class="toctree-wrapper compound">
+</div>
+<dl class="docutils">
+<dt><a class="reference internal" href="contributing/authors.html"><em>Authors</em></a></dt>
+<dd>The creators of Scrapple</dd>
+<dt><a class="reference internal" href="contributing/history.html"><em>History</em></a></dt>
+<dd>History of Scrapple releases</dd>
+<dt><a class="reference internal" href="contributing/guide.html"><em>Contributing</em></a></dt>
+<dd>The Scrapple contribution guide</dd>
+</dl>
+<p id="section-conclusion">The goal of Scrapple is to provide a generalized solution to the problem of web content extraction. This framework requires a basic understanding of web page structure, which is necessary to write the necessary selector expressions. Using these selector expressions, the required web content extractors can be implemented to generate the desired datasets.</p>
+<p>Experimentation with a wide range of websites gave consistently accurate results, in terms of the generated dataset. However, larger crawl jobs took a lot of time to complete and it was necessary to run the execution in one stretch. Scrapple could be improved to provide restartable crawlers, using caching mechanisms to keep track of the position in the URL frontier. Tag recommendation systems could also be implemented, using complex learning algorithms, though there would be a trade-off on accuracy.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Scrapple 0.2.4 documentation</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#concepts">Concepts</a></li>
+<li><a class="reference internal" href="#the-scrapple-framework">The Scrapple framework</a></li>
+<li><a class="reference internal" href="#implementation">Implementation</a></li>
+<li><a class="reference internal" href="#experimentation-results">Experimentation &amp; Results</a></li>
+<li><a class="reference internal" href="#contributing-to-scrapple">Contributing to Scrapple</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="intro/overview.html"
+                        title="next chapter">Introducing Scrapple</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="intro/overview.html" title="Introducing Scrapple"
+             >next</a> |</li>
+        <li><a href="#">Scrapple  documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Alex Mathew, Harish Balakrishnan.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
