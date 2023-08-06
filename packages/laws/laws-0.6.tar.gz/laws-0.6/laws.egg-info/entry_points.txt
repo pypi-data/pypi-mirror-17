@@ -1,0 +1,3 @@
+[console_scripts]
+laws = laws.__main__:main
+
