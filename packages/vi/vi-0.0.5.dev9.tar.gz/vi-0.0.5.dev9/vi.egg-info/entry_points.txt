@@ -1,0 +1,5 @@
+[console_scripts]
+cy = general.cy:main
+gy = general.gy:main
+ly = general.ly:main
+
