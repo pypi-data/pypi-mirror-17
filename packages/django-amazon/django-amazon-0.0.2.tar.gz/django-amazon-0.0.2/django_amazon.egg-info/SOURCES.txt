@@ -1,0 +1,9 @@
+MANIFEST.in
+README
+setup.py
+django_amazon.egg-info/PKG-INFO
+django_amazon.egg-info/SOURCES.txt
+django_amazon.egg-info/dependency_links.txt
+django_amazon.egg-info/not-zip-safe
+django_amazon.egg-info/top_level.txt
+migrations/__init__.py
