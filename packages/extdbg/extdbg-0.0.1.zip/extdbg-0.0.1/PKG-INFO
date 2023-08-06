@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: extdbg
+Version: 0.0.1
+Summary: An extended debugging python utilities.
+Home-page: https://github.com/duboviy/extdbg
+Author: Eugene Duboviy
+Author-email: eugene.dubovoy@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/duboviy/extdbg/tarball/0.0.1
+Description: 
+        extdbg extends existing debugging utilities and provides a simple and pythonic way to debug.
+        
+Keywords: debug,utility,testing
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
