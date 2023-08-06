@@ -1,0 +1,15 @@
+MANIFEST.in
+README.rst
+requirements.txt
+setup.py
+tests/__init__.py
+tests/smoke_tests/__init__.py
+tests/smoke_tests/test_commands.py
+zorg_seeed/__init__.py
+zorg_seeed/motor_shield.py
+zorg_seeed.egg-info/PKG-INFO
+zorg_seeed.egg-info/SOURCES.txt
+zorg_seeed.egg-info/dependency_links.txt
+zorg_seeed.egg-info/requires.txt
+zorg_seeed.egg-info/top_level.txt
+zorg_seeed.egg-info/zip-safe
