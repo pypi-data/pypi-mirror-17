@@ -1,0 +1,12 @@
+setuptools
+zope.interface
+zope.publisher
+zope.traversing
+
+[test]
+zope.browserpage
+zope.app.wsgi
+zope.configuration
+zope.principalregistry
+zope.testbrowser>=5.0
+zope.testing
