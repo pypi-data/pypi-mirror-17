@@ -1,0 +1,14 @@
+CHANGES.txt
+LICENSE.txt
+MANIFEST.in
+README.txt
+setup.cfg
+setup.py
+uk_postcode_utils.egg-info/PKG-INFO
+uk_postcode_utils.egg-info/SOURCES.txt
+uk_postcode_utils.egg-info/dependency_links.txt
+uk_postcode_utils.egg-info/top_level.txt
+ukpostcodeutils/__init__.py
+ukpostcodeutils/validation.py
+ukpostcodeutils/test/__init__.py
+ukpostcodeutils/test/test_validation.py
