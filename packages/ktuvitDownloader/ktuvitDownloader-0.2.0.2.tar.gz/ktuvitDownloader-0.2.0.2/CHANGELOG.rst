@@ -1,0 +1,35 @@
+ChangeLog
+=========
+
+0.2.0.2 (2016-10-06)
+--------------------
+
+- More chance to fund subtitles
+
+0.2.0.0 - 0.2.0.1 (2016-08-30)
+------------------------------
+
+- More ways to find subtitles
+
+0.1.1.0 (2016-08-29)
+--------------------
+
+- Minor cosmetic changes
+
+0.0.1.4 (2016-08-24)
+--------------------
+
+- Added moving progress bar
+- Change moving to copy-delete. see `Issue #1 <https://github.com/aviadlevy/ktuvitDownloader/issues/1>`_
+- Now logger is rotating (on 1MB)
+
+0.0.1.2-3 (2016-08-23)
+----------------------
+
+- Small bug fix causing the program to crash
+
+
+0.0.1 (2016-08-21)
+------------------
+
+- Initial release
