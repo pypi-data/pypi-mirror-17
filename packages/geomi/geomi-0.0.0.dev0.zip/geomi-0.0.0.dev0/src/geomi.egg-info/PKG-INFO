@@ -1,0 +1,96 @@
+Metadata-Version: 1.1
+Name: geomi
+Version: 0.0.0.dev0
+Summary: Planar, solid and higher dimensional geometry.
+Home-page: https://geomi.readthedocs.io/
+Author: Arvind Padmanabhan
+Author-email: arvindpdmn@gmail.com
+License: MIT
+Description: .. |Build Status| image:: https://travis-ci.org/IndianEngineeringDesignForum/geomi.svg?branch=master
+           :target: https://travis-ci.org/IndianEngineeringDesignForum/geomi
+        .. |Coverage Status| image:: https://codecov.io/github/IndianEngineeringDesignForum/geomi/branch/master/graph/badge.svg
+           :target: https://codecov.io/github/IndianEngineeringDesignForum/geomi
+        .. |Version Status| image:: https://badge.fury.io/py/geomi.svg
+           :target: http://badge.fury.io/py/geomi
+        
+        
+        Geomi
+        =====
+        
+        |Build Status| |Coverage Status| |Version Status| 
+        
+        Planar, solid and higher dimensional geometry.
+        
+        LICENSE
+        -------
+        
+        MIT. See `License File <https://github.com/IndianEngineeringDesignForum/geomi/blob/master/LICENSE>`__.
+        
+        Install
+        -------
+        
+        ``geomi`` is on the Python Package Index (PyPI):
+        
+        ::
+        
+            pip install geomi
+        
+        or
+        
+        ::
+        
+            easy_install geomi
+        
+        Structure
+        ---------
+        
+        ``geomi`` is implemented in these parts:
+        
+        |literal planar|_: points, lines, curves, shapes, polygons ...
+        
+        |literal solid|_: 3D geometry including cubes, cones, spheres, Platonic solids ...
+        
+        |literal ndim|_: higher dimensional geometries ...
+        
+        |literal utils.algos|_: algorithms that can applied on geometric entities ...
+        
+        |literal utils.plotter|_: plot geometries for visualization ...
+        
+        .. |literal planar| replace:: ``planar``
+        .. _literal planar: https://github.com/IndianEngineeringDesignForum/geomi/tree/master/src/geomi/planar
+        
+        .. |literal solid| replace:: ``solid``
+        .. _literal solid: https://github.com/IndianEngineeringDesignForum/geomi/tree/master/src/geomi/solid
+        
+        .. |literal ndim| replace:: ``ndim``
+        .. _literal ndim: https://github.com/IndianEngineeringDesignForum/geomi/tree/master/src/geomi/ndim
+        
+        .. |literal utils.algos| replace:: ``utils.algos``
+        .. _literal utils.algos: https://github.com/IndianEngineeringDesignForum/geomi/tree/master/src/geomi/utils/algos
+        
+        .. |literal utils.plotter| replace:: ``utils.plotter``
+        .. _literal utils.plotter: https://github.com/IndianEngineeringDesignForum/geomi/tree/master/src/geomi/utils/plotter
+        
+        
+        Dependencies
+        ------------
+        
+        ``geomi`` supports Python 2.7+ and Python 3.5+ with a common codebase.
+        It is pure Python and requires no dependencies beyond the standard
+        library.
+        
+        
+Keywords: geometry,algorithm,plot,graph
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Mathematics

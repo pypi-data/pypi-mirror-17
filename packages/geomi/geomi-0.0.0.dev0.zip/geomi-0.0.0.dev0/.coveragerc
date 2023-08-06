@@ -1,0 +1,13 @@
+[run]
+branch = True
+source =
+    geomi
+
+[paths]
+source =
+   src/geomi
+   .tox/*/lib/python*/site-packages/geomi
+   .tox/pypy/site-packages/geomi
+
+[report]
+show_missing = True
