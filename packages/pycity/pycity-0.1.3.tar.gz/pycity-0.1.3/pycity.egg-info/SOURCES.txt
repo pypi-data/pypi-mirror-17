@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+pycity/__init__.py
+pycity.egg-info/PKG-INFO
+pycity.egg-info/SOURCES.txt
+pycity.egg-info/dependency_links.txt
+pycity.egg-info/pbr.json
+pycity.egg-info/top_level.txt
+pycity/databases/cities.json
