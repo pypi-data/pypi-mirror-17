@@ -1,0 +1,35 @@
+{% extends "layout.html.j2" %}
+
+{% block title %}The Global Empathy Index{% endblock %}
+
+{% block header %}
+    <h1>{{ messages.get("welcome_header") }}</h1>
+{% endblock %}
+
+{% block body %}
+    {{ messages.get("welcome_message") }}
+
+        <form method="POST" action="/done" class="form-group">
+            {{ form.csrf_token }}
+            {% for field_name, field in form._fields.items() %}
+                {% if not field.flags.hidden %}
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {{ field.description or field.label }}
+                            {{ field() }}
+                        </div>
+                        {##}
+                        </div>
+
+                {% else %}
+                    {{ field() }}
+                {% endif %}
+
+            {% endfor %}
+
+
+            <input type="submit" value="All done!" class="btn btn-success">
+        </form>
+
+
+{% endblock %}
