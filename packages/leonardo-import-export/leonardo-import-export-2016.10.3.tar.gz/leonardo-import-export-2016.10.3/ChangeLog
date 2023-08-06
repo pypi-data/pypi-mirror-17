@@ -1,0 +1,31 @@
+CHANGES
+=======
+
+2016.10.3
+---------
+
+* Update requirements
+
+2016.10.2
+---------
+
+* Add custom requirement to dependency links
+* Fix required version of import export lib. (reverted from commit d0998e072bb95e01c46b3a865435bcb24bbedb80)
+
+2016.10.1
+---------
+
+* Fix required version of import export lib
+
+2016.10.0
+---------
+
+* Update to own fork with new features
+* Try fix requirements
+* Add missing dependencies
+
+2015.7.1
+--------
+
+* moved template to right path
+* Initial commit
