@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.md
+command.py
+setup.py
+doopla/__init__.py
+doopla/scrapper.py
+doopla.egg-info/PKG-INFO
+doopla.egg-info/SOURCES.txt
+doopla.egg-info/dependency_links.txt
+doopla.egg-info/entry_points.txt
+doopla.egg-info/not-zip-safe
+doopla.egg-info/requires.txt
+doopla.egg-info/top_level.txt
