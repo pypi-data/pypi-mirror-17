@@ -1,0 +1,17 @@
+setup.cfg
+setup.py
+scripts/sda-page
+sda/__init__.py
+sda/element.py
+sda/fixtures.py
+sda/locators.py
+sda/mixins.py
+sda/page.py
+sda/shortcuts.py
+sda/site.py
+sda/structures.py
+sda.egg-info/PKG-INFO
+sda.egg-info/SOURCES.txt
+sda.egg-info/dependency_links.txt
+sda.egg-info/pbr.json
+sda.egg-info/top_level.txt
