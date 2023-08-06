@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: explicit
+Version: 0.0.1
+Summary: Easy explicit wait helpers for Selenium
+Home-page: https://github.com/levi-rs/explicit
+Author: Levi Noecker
+Author-email: levi.noecker@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
