@@ -1,0 +1,20 @@
+Metadata-Version: 2.0
+Name: comfy
+Version: 0.0.1
+Summary: Formal view for configurations and command line options
+Home-page: https://github.com/tecywiz121/comfy
+Author: Sam Wilson
+Author-email: sam@binarycake.ca
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+
+Outline
+=======
+
+Better configuration for Python.
+
+
