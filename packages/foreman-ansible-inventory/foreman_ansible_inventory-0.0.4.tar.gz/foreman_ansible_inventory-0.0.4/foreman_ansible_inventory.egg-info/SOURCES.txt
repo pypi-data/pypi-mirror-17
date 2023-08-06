@@ -1,0 +1,17 @@
+.gitignore
+.travis.yml
+AUTHORS
+COPYING
+README.md
+foreman.ini
+foreman_ansible_inventory.py
+requirements.txt
+setup.cfg
+setup.py
+tox.ini
+foreman_ansible_inventory.egg-info/PKG-INFO
+foreman_ansible_inventory.egg-info/SOURCES.txt
+foreman_ansible_inventory.egg-info/dependency_links.txt
+foreman_ansible_inventory.egg-info/top_level.txt
+tests/test_get_json.py
+tests/test_read_settings.py
