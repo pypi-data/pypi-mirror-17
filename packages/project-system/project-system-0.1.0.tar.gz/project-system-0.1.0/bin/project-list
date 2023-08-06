@@ -1,0 +1,11 @@
+#!/bin/bash
+# diamond-patterns 2016 Ian Dennis Miller
+# http://github.com/iandennismiller/diamond-patterns
+
+WORK_PATH=~/Work
+
+if [ -f ~/.diamond-patterns.conf  ]; then
+    source ~/.diamond-patterns.conf
+fi
+
+ls -1t "${WORK_PATH}" | head -n15 | awk '{printf "%d\t%s\n", NR, $0}'

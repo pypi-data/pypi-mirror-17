@@ -1,0 +1,50 @@
+#!/bin/bash
+# diamond-patterns 2016 Ian Dennis Miller
+# http://github.com/iandennismiller/diamond-patterns
+
+PROJECT_NAME="$1"
+
+WORK_PATH=~/Work
+PYTHON3_BIN=/usr/local/bin/python3
+
+if [ -f ~/.diamond-patterns.conf  ]; then
+    source ~/.diamond-patterns.conf
+fi
+
+function usage() {
+cat <<-EOF
+Diamond-Patterns - http://github.com/iandennismiller/diamond-patterns
+
+Usage: project-new [project-name]
+
+Options:
+
+    -h, --help          output help information
+
+Description:
+
+    project-new creates a new project environment.
+
+EOF
+}
+
+function project-new3() {
+    mkdir "${WORK_PATH}/${PROJECT_NAME}"
+    cd "${WORK_PATH}/${PROJECT_NAME}"
+    mkvirtualenv -a . -p ${PYTHON3_BIN} "${PROJECT_NAME}"
+    project-git-init "${PROJECT_NAME}"
+    project-workon "${PROJECT_NAME}"
+}
+
+if test $# -lt 1; then
+    usage
+    exit
+fi
+
+while test $# -ne 0; do
+    arg=$1; shift
+    case $arg in
+        -h|--help) usage; exit ;;
+        *) project-new3; exit ;;
+    esac
+done
