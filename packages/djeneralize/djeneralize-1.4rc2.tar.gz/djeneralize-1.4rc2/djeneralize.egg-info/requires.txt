@@ -1,0 +1,5 @@
+Django >= 1.6, <1.9dev
+six >= 1.10
+
+[nose]
+nose >= 0.11
