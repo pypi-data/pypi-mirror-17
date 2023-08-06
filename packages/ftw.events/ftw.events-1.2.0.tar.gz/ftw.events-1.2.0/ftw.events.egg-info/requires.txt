@@ -1,0 +1,31 @@
+Plone
+collective.dexteritytextindexer
+ftw.autofeature
+ftw.profilehook
+ftw.referencewidget
+ftw.simplelayout [contenttypes]
+ftw.upgrade
+plone.api
+plone.app.dexterity
+plone.app.event [dexterity]
+plone.app.referenceablebehavior
+plone.directives.form
+setuptools
+
+[development]
+plonetheme.blueberry
+ftw.events[mopage_publisher_receiver]
+
+[mopage_publisher_receiver]
+collective.taskqueue
+ftw.publisher.receiver
+requests
+
+[tests]
+ftw.builder
+ftw.lawgiver
+ftw.testbrowser
+ftw.testing
+plone.app.testing
+plone.testing
+ftw.events[mopage_publisher_receiver]
