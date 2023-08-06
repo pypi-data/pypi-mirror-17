@@ -1,0 +1,26 @@
+Metadata-Version: 2.0
+Name: probably
+Version: 1.0.0
+Summary: Probably: Simple Probabilistic Data Structures
+Home-page: https://github.com/Parsely/probably
+Author: Parse.ly
+Author-email: hello@parsely.com
+License: MIT License
+Keywords: data structures,bloom filter,bloom,filter,probabilistic,set,hyperloglog,countmin sketch
+Platform: any
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Utilities
+Classifier: Topic :: Database :: Database Engines/Servers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: bitarray
+Requires-Dist: cython
+Requires-Dist: numpy
+Requires-Dist: six
+Requires-Dist: smhasher
+
+UNKNOWN
+
+
