@@ -1,0 +1,16 @@
+Metadata-Version: 2.0
+Name: pyfda
+Version: 0.1rc3
+Summary: pyFDA is a python tool with a user-friendly GUI for designing and analysing discrete time filters.
+Home-page: https://github.com/chipmuenk/pyFDA
+Author: Christian Muenker
+Author-email: mail07@chipmuenk.de
+License: MIT
+Requires-Dist: docutils
+Requires-Dist: matplotlib
+Requires-Dist: numpy
+Requires-Dist: scipy
+
+pyFDA
+
+
