@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: notes_cli
+Version: 0.2
+Summary: command line tool for your notes
+Home-page: https://github.com/bigolu/notes-cli
+Author: Olaolu Biggie Emmanuel
+Author-email: hi@bigo.lu
+License: MIT
+Description: Store notes for later and query them to avoid having to leave the shell.
+Keywords: notes cli
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Terminals
