@@ -1,0 +1,3 @@
+exclude .*
+prune misc
+recursive-exclude gravely *.c

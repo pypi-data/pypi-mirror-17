@@ -1,0 +1,9 @@
+h5py>=2.2
+numpy>=1.8.2
+progressbar2>=3.10
+
+[diagnostics]
+matplotlib>=1.4
+
+[test]
+nose>=1.0

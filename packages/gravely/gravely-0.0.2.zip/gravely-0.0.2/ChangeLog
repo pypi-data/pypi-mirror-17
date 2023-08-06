@@ -1,0 +1,18 @@
+CHANGES
+=======
+
+0.0.2
+-----
+
+* CI: enable auditwheel for wheels
+* Add progressbars for simulation and animation
+* CI: remove twine installation leftover
+* CI: Implicitly set manylinux1_x86_64 platform
+* CI: install requirements.txt on Windows builder
+* Use pbr for packaging and version detection
+* Add links to Anaconda and Enthought Canopy
+* Use a ton of backticks (monospaced) in README.md
+* README.md typo fix 'numpy>1.8.2' -> 'numpy>=1.8.2'
+* Add links to README.md
+* README fixes
+* initial commit
