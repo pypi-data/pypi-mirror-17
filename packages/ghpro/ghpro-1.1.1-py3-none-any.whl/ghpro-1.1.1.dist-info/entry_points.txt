@@ -1,0 +1,4 @@
+[console_scripts]
+backport-pr = ghpro.backport:main
+github-stats = ghpro.stats:main
+
