@@ -1,0 +1,31 @@
+Metadata-Version: 1.1
+Name: ha-alpr
+Version: 0.3
+Summary: a Python module that provides an interface OpenAlpr command line tool for Home-Assistant.
+Home-page: https://github.com/pvizeli/ha-alpr
+Author: Pascal Vizeli
+Author-email: pvizeli@syshack.ch
+License: MIT License
+Download-URL: https://github.com/pvizeli/ha-alpr/tarball/0.3
+Description: OpenAlpr python wrapper
+        =======================
+        Python modul for wrap the openalpr command line tool.
+        It is written for Home-Assistant.
+        
+        The alpr version need to include this PR: https://github.com/openalpr/openalpr/pull/398
+        
+        Links
+        -----
+        - https://home-assistant.io/
+        
+Keywords: openalpr,plate,homeassistant,wrapper,api
+Platform: any
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering :: Atmospheric Science
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
