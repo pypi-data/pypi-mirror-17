@@ -1,0 +1,14 @@
+Metadata-Version: 2.0
+Name: docker-compose-watch
+Version: 0.0.1
+Summary: A watcher for docker compose
+Home-page: http://github.com/hnovikov/docker-compose-watch
+Author: Hrant Novikov
+Author-email: hrant.novikov@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: watchdog
+
+UNKNOWN
+
+
