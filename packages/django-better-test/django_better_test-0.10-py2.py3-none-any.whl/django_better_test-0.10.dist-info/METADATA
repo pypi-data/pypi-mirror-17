@@ -1,0 +1,23 @@
+Metadata-Version: 2.0
+Name: django-better-test
+Version: 0.10
+Summary: A better test command for Django
+Home-page: https://github.com/ojii/django-better-test
+Author: Jonas Obrist
+Author-email: ojiidotch@gmail.com
+License: BSD
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: Django (>=1.7)
+
+UNKNOWN
+
+
