@@ -1,0 +1,3 @@
+[console_scripts]
+c5sync = c5.tools.sync.startup:startApp
+
