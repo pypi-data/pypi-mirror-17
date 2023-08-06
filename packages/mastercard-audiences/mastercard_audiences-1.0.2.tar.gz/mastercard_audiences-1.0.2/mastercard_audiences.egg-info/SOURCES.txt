@@ -1,0 +1,12 @@
+setup.py
+mastercard_audiences.egg-info/PKG-INFO
+mastercard_audiences.egg-info/SOURCES.txt
+mastercard_audiences.egg-info/dependency_links.txt
+mastercard_audiences.egg-info/requires.txt
+mastercard_audiences.egg-info/top_level.txt
+mastercardaudiences/__init__.py
+mastercardaudiences/audiencessegment.py
+mastercardaudiences/sdkconfig.py
+tests/__init__.py
+tests/base_test.py
+tests/test_audiencessegment.py
