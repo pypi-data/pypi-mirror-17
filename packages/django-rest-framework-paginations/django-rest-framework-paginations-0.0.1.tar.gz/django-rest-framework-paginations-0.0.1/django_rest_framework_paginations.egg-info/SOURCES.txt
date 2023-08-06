@@ -1,0 +1,11 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+django_rest_framework_paginations.egg-info/PKG-INFO
+django_rest_framework_paginations.egg-info/SOURCES.txt
+django_rest_framework_paginations.egg-info/dependency_links.txt
+django_rest_framework_paginations.egg-info/top_level.txt
+rest_framework_paginations/__init__.py
+rest_framework_paginations/paginations.py
