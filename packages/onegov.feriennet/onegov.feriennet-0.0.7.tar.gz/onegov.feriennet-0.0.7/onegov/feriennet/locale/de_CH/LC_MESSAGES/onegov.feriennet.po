@@ -1,0 +1,403 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE 1.0\n"
+"POT-Creation-Date: 2016-10-14 13:49+0200\n"
+"PO-Revision-Date: 2015-10-15 09:42+0200\n"
+"Last-Translator: Denis Krienbühl <denis.krienbuehl@seantis.ch>\n"
+"Language-Team: German\n"
+"Language: de_CH\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Lingua 3.12\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Activities"
+msgstr "Angebote"
+
+msgid "Register a new account"
+msgstr "Ein neues Konto eröffnen"
+
+msgid "Go to Login"
+msgstr "Anmelden"
+
+msgid "Go to Profile"
+msgstr "Benutzerprofil"
+
+msgid "Homepage"
+msgstr "Startseite"
+
+msgid "Submit Activity"
+msgstr "Angebot erfassen"
+
+msgid "Edit Activity"
+msgstr "Angebot Bearbeiten"
+
+msgid "New Occasion"
+msgstr "Neue Durchführung"
+
+msgid "Request Publication"
+msgstr "Publikation Beantragen"
+
+msgid "Do you really want to request publication?"
+msgstr "Möchten Sie die Publikation wirklich beantragen?"
+
+msgid "This cannot be undone."
+msgstr "Dies kann nicht rückgängig gemacht werden."
+
+msgid "Discard Activity"
+msgstr "Angebot Verwerfen"
+
+#, python-format
+msgid "Do you really want to discrd \"${title}\"?"
+msgstr "Möchten Sie \"${title}\" wirklich verwerfen?"
+
+msgid "Editor"
+msgstr "Veranstalter"
+
+msgid "Editors"
+msgstr "Veranstalter"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "The title of the activity"
+msgstr "Der Titel des Angebots"
+
+msgid "Lead"
+msgstr "Einleitung"
+
+msgid "Describes briefly what this activity is about"
+msgstr "Beschreibt kurz um was es beim Angebot geht"
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Tags"
+msgstr "Kategorien"
+
+msgid "Organiser"
+msgstr "Veranstalter"
+
+msgid "Administration"
+msgstr "Administration"
+
+msgid "Adventure"
+msgstr "Abenteuer"
+
+msgid "Animals"
+msgstr "Tiere"
+
+msgid "Baking"
+msgstr "Backen"
+
+msgid "Cinema"
+msgstr "Kino"
+
+msgid "Computer"
+msgstr "Computer"
+
+msgid "Cooking"
+msgstr "Kochen"
+
+msgid "Dance"
+msgstr "Tanz"
+
+msgid "Design"
+msgstr "Gestalten"
+
+msgid "Handicraft"
+msgstr "Basteln"
+
+msgid "Health"
+msgstr "Gesundheit"
+
+msgid "Media"
+msgstr "Medien"
+
+msgid "Museums"
+msgstr "Museum"
+
+msgid "Music"
+msgstr "Musik"
+
+msgid "Nature"
+msgstr "Natur"
+
+msgid "Science"
+msgstr "Wissenschaft"
+
+msgid "Security"
+msgstr "Sicherheit"
+
+msgid "Sport"
+msgstr "Sport"
+
+msgid "Styling"
+msgstr "Styling"
+
+msgid "Theater"
+msgstr "Theater"
+
+msgid "Trade"
+msgstr "Handwerk"
+
+msgid "Start"
+msgstr "Start"
+
+msgid "End"
+msgstr "Ende"
+
+msgid "Location"
+msgstr "Ort"
+
+msgid "Note"
+msgstr "Bemerkung"
+
+msgid "Minimum Number of Participants"
+msgstr "Mindestteilnehmerzahl"
+
+msgid "Participants"
+msgstr "Teilnehmer"
+
+msgid "Maximum Number of Participants"
+msgstr "Anzahl Plätze"
+
+msgid "Minimum Age"
+msgstr "Mindestalter"
+
+msgid "Maximum Age"
+msgstr "Höchstalter"
+
+msgid "The end date must be after the start date"
+msgstr "Das End-Datum muss nach dem Start-Datum liegen"
+
+msgid "The minium age cannot be higher than the maximum age"
+msgstr "Das Mindestalter kann nicht tiefer als das Maximalalter sein"
+
+msgid ""
+"The minium number of participants cannot be higher than the maximum number "
+"of participants"
+msgstr ""
+"The Mindestteilnehmerzahl darf nicht grösser als die Anzahl Plätze sein"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Personal-, Society- or Company-Name"
+msgstr "Persönlicher, Vereins- oder Firmen-Name"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Public E-Mail Address"
+msgstr "Öffentliche E-Mail Adresse"
+
+msgid "If different than username"
+msgstr "Falls anders als Benutzername"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Website"
+msgstr "Webseite"
+
+msgid "Activity"
+msgstr "Angebot"
+
+msgid "Half day"
+msgstr "Halbtägig"
+
+msgid "Full day"
+msgstr "Ganztägig"
+
+msgid "Multiple days"
+msgstr "Mehrtägig"
+
+msgid "Edit activity"
+msgstr "Angebot bearbeiten"
+
+msgid "Approve"
+msgstr "Annehmen"
+
+msgid "Do you really want to approve this activity?"
+msgstr "Möchten Sie dieses Angebot wirklich annehmen?"
+
+msgid "This cannot be undone. The activity will be made public as a result."
+msgstr ""
+"Dies kann nicht rückgängig gemacht werden. Das Angebot wird Publik gemacht."
+
+msgid "Approve Activity"
+msgstr "Angebot Annehmen"
+
+msgid "Reject"
+msgstr "Ablehnen"
+
+msgid "Do you really want to reject this activity?"
+msgstr "Möchten Sie dieses Angebot wirklich ablehnen?"
+
+msgid "This cannot be undone. "
+msgstr "Dies kann nicht rückgängig gemacht werden."
+
+msgid "Reject Activity"
+msgstr "Angebote Ablehnen"
+
+msgid "Archive"
+msgstr "Archivieren"
+
+msgid "Do you really want to archive this activity?"
+msgstr "Möchten Sie dieses Angebot wirklich archivieren?"
+
+msgid "This cannot be undone. The activity will be made private as a result."
+msgstr ""
+"Dies kann nicht rückgängig gemacht werden. Das Angebot wird von der "
+"Öffentlicht versteckt."
+
+msgid "Archive Activity"
+msgstr "Angebot Archivieren"
+
+msgid "No activites found."
+msgstr "Keine Angebote gefunden."
+
+msgid ""
+"This is a preview. Please edit it until you are satisifed with the result "
+"and then press \"Request Publication\". An administrator will then review "
+"your proposal."
+msgstr ""
+"Dies ist eine Vorschau. Bitte bearbeiten Sie diese, bis Sie zufrieden sind. "
+"Im Anschluss wählen Sie \"Publikation Beantragen\" in der Menübar. Ein "
+"Administrator überprüft darauf Ihr Angebot."
+
+msgid ""
+"This is a preview. Please edit it until you are satisifed with the result "
+"and then press \"Publish\" to make this activity public."
+msgstr ""
+"Dies ist eine Vorschau. Bitte bearbeiten Sie diese, bis Sie zufrieden sind. "
+"Im Anschluss wählen Sie \"Veröffentlichen\" in der Menübar."
+
+msgid "This activity is currently being reviewd by an administrator."
+msgstr "Dieses Angebot wird zur Zeit überprüft."
+
+msgid "This activity has been reviewed by an administrator and was denied."
+msgstr "Dieses Angebot wurde von einem Administrator geprüft und abgelehnt."
+
+msgid "This activity has been archived and cannot be activated again."
+msgstr "Dieses Angebot wurde archiviert und kann nicht mehr aktiviert werden."
+
+msgid "Occasions"
+msgstr "Durchführungen"
+
+msgid "There are currently no occasions planned."
+msgstr "Es sind zur Zeit keine Durchführungen geplant."
+
+msgid "Age"
+msgstr "Alter"
+
+msgid "${min_age} - ${max_age} years old"
+msgstr "${min_age} - ${max_age} Jahre alt"
+
+msgid "${min_spots} - ${max_spots} participants"
+msgstr "${min_spots} - ${max_spots} Teilnehmer"
+
+msgid "up to ${max_spots} participants"
+msgstr "bis zu ${max_spots} Teilnehmer"
+
+msgid "Edit contact info"
+msgstr "Kontakt ändern"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Ticket"
+msgstr "Ticket"
+
+msgid "Preview"
+msgstr "Vorschau"
+
+msgid "Proposed"
+msgstr "Beantragt"
+
+msgid "Accepted"
+msgstr "Veröffentlicht"
+
+msgid "Denied"
+msgstr "Abgelehnt"
+
+msgid "Archived"
+msgstr "Archiviert"
+
+msgid "Dear Sir or Madam,"
+msgstr "Sehr geehrte Damen und Herren,"
+
+msgid "Your activity has been accepted:"
+msgstr "Ihr Angebot wurde angenommen:"
+
+msgid "The ticket number is"
+msgstr "Die Ticket Nummer ist"
+
+msgid "Check ticket status"
+msgstr "Ticket Status anzeigen"
+
+msgid "Your activity has been archived:"
+msgstr "Ihr Angebot wurde archiviert:"
+
+msgid "Your activity has unfortunately been rejected:"
+msgstr "Ihr Angebot wurde leider abgelehnt:"
+
+msgid "New Activity"
+msgstr "Neues Angebot"
+
+msgid "The activity was discarded"
+msgstr "Das Angebot wurde verworfen"
+
+msgid "Thank you for your proposal!"
+msgstr "Vielen Dank für Ihren Antrag!"
+
+msgid "Your changes were saved"
+msgstr "Ihre Änderungen wurden gespeichert"
+
+msgid "A ticket has been opened"
+msgstr "Ein Ticket wurde eröffnet"
+
+msgid "Your activity has been accepted"
+msgstr "Ihr Angebot wurde angenommen"
+
+msgid "Your activity has been rejected"
+msgstr "Ihr Angebot wurde abgelehnt"
+
+msgid "Your activity has been archived"
+msgstr "Ihr Angebot wurde archiviert"
+
+msgid "Edit"
+msgstr "Bearbeiten"
+
+msgid "Delete"
+msgstr "Löschen"
+
+#, python-format
+msgid "Do you really want to delete \"${title}\"?"
+msgstr "Möchten Sie \"${title}\" wirklich löschen?"
+
+msgid "Delete Occasion"
+msgstr "Durchführung Löschen"
+
+msgid "Preschool"
+msgstr "Vorschule"
+
+msgid "Lower grades"
+msgstr "Unterstufe"
+
+msgid "Junior high"
+msgstr "Mittelstufe"
+
+msgid "High school"
+msgstr "Oberstufe"
+
+msgid "Own"
+msgstr "Eigene"
+
+msgid "Edit Occasion"
+msgstr "Durchfürung Bearbeiten"
+
+#~ msgid "Discard"
+#~ msgstr "Verwerfen"

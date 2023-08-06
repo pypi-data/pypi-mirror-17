@@ -1,0 +1,261 @@
+/*
+    hide the news in the topbar
+*/
+
+.top-bar-section li:last-child {
+    display: none;
+}
+
+/*
+    background color of default logo
+*/
+svg #background {
+    fill: lighten($primary-color, 25%);
+}
+
+/*
+    plain panels
+*/
+.plain-panel {
+    background: none;
+    padding: 0 10px;
+}
+
+/*
+    editbar icons
+*/
+
+.edit-bar {
+    .new-activity:before { @include icon('\f135'); }
+    .request-publication:before { @include icon('\f087'); }
+    .accept-activity:before { @include icon('\f087'); }
+    .reject-activity:before { @include icon('\f088'); }
+    .archive-activity:before { @include icon('\f187'); }
+    .new-occasion:before { @include icon('\f133'); }
+}
+
+/*
+    activities list
+*/
+.activity-list-item {
+    margin-bottom: 1.5rem;
+
+    .page-lead {
+        font-size: 1rem;
+        margin-bottom: .5rem;
+    }
+
+    ul.tags {
+        margin-bottom: .75rem;
+    }
+}
+
+.activity-list-search {
+    @include hairline;
+    border-bottom-style: dashed;
+
+    margin: 1rem 0 !important;
+    padding-bottom: 1rem;
+
+    h2 {
+        font-size: $h3-font-size - $h3-font-reduction;
+    }
+
+    ul.tags {
+        margin: 0;
+    }
+}
+
+
+/*
+    Activity view
+*/
+ul.tags {
+    margin: 0 0 2rem;
+
+    li {
+        @include label(
+            $text-size: .8rem,
+            $radius: 15px,
+            $bg: $secondary-color,
+            $padding: 4px 12px
+        );
+
+        &.active {
+            @include label(
+                $text-size: .8rem,
+                $radius: 15px,
+                $bg: $primary-color,
+                $padding: 4px 12px
+            );
+        }
+
+        a {
+            color: inherit;
+        }
+    }
+}
+
+.activity-status-panel {
+
+    .field-display-label {
+        font-weight: normal;
+    }
+
+    .activity-state {
+        font-size: .875rem;
+    }
+}
+
+/*
+    Ticket view
+*/
+.ticket-summary {
+    .page-content-main,
+    .page-content-sidebar {
+        @include grid-column(12);
+    }
+}
+
+.FER-link::before {
+    @include icon('\f135');
+    display: inline-block;
+    margin-right: 1ex;
+}
+
+.ticket-handler-FER td:first-child::before {
+    @include icon('\f135');
+}
+
+/*
+    Organiser contact
+*/
+
+.activity-organiser-panel > small {
+    display: inline-block;
+    font-size: .8rem;
+    margin-top: .75rem;
+}
+
+.organiser {
+    ul {
+        list-style: none;
+        margin: 0;
+    }
+
+    .organiser-name {
+        font-weight: bold;
+    }
+
+    .organiser-address {
+        white-space: pre-line;
+        word-break: break-all;
+    }
+
+    .organiser-email {
+        margin-top: .5rem;
+
+        a::before {
+            @include icon('\f0e0');
+        }
+    }
+
+    .organiser-phone a::before {
+        @include icon('\f095');
+    }
+
+    .organiser-website a::before {
+        @include icon('\f0c1');
+    }
+
+    .organiser-phone,
+    .organiser-email,
+    .organiser-website {
+        font-size: .875rem;
+    }
+
+    .organiser-phone a::before,
+    .organiser-email a::before,
+    .organiser-website a::before {
+        color: $body-font-color;
+        display: inline-block;
+        margin-right: 1ex;
+    }
+}
+
+/*
+    Occasions
+*/
+ul.occasions {
+    list-style: none;
+    margin: 0;
+
+    h4 {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    li {
+        p {
+            background-color: $panel-bg;
+            font-size: .875rem;
+            font-style: italic;
+            max-width: $max-line-width;
+            padding: .25rem .75rem;
+            white-space: pre-line;
+        }
+
+        div {
+            font-size: .875rem;
+        }
+
+        a {
+            display: inline-block;
+            font-size: .875rem;
+            margin-top: .25rem;
+        }
+
+        .factoids {
+            margin-bottom: .75rem;
+        }
+    }
+
+    .location:before {
+        @include icon('\f041');
+        display: inline-block;
+        width: 1.25em;
+    }
+
+    .age:before {
+        @include icon('\f1ae');
+        display: inline-block;
+        width: 1.25em;
+    }
+
+    .spots:before {
+        @include icon('\f105');
+        display: inline-block;
+        width: 1.25em;
+    }
+
+}
+
+.occasion-links a:first-child:before {
+    content: '';
+}
+
+.occasion-links a:before {
+    color: $body-font-color;
+    content: ' | ';
+}
+
+/*
+    Hide certain things from non-managers
+*/
+.is-not-manager {
+
+    // file upload manager
+    .redactor-toolbar .re-file {
+        display: none;
+    }
+}
