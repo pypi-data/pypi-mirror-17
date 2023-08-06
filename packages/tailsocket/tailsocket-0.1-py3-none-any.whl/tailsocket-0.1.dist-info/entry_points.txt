@@ -1,0 +1,3 @@
+[console_scripts]
+tailsocket-server = tailsocket.application:main
+
