@@ -1,0 +1,42 @@
+{% extends "layout/default.html" %}
+{% block body %} 
+	<br>
+  <div class="card-panel blue-grey lighten-4">
+		<div class="panel panel-info">
+			<div class="panel-heading">Metro 7 bis</div>
+			<div class="panel-body"> 
+				<form method="post"
+  			action=""
+  			id="metro-service-arret-form">
+   			 <div id="horMetroStations" class="stationField">
+     		 <label for="metroServiceStationForm_station">Nom de la station : </label> <select name="metrostation" class="browser-default" id="metroServiceStationForm_station">
+     		 <option value="--Choisissez votre station--">--Choisissez votre station--</option>
+     		 <option value="bolivar">Bolivar</option>
+			<option value="botzaris">Botzaris</option>
+			<option value="buttes+chaumont">Buttes Chaumont</option>
+			<option value="danube">Danube</option>
+			<option value="jaures">Jaures</option>
+			<option value="louis+blanc">Louis Blanc</option>
+			<option value="pre+saint+gervais">Pre-Saint-Gervais</option>
+			</form>
+			</select>
+			<form method="post"
+  			action="result"
+  			id="metro-service-arret-form">
+   			 <div id="horMetroStations" class="stationField">
+    		  <label for="metroServiceStationForm_station">Direction : </label> <select name="metrodirection" class="browser-default" id="metroServiceStationForm_station">
+				<option value="--Choisissez votre station--">--Choisissez votre direction--</option>
+				<option value="A">Louis Blanc</option>
+				<option value="R">Pré-St-Gervais</option></form></select></br>
+				<form method="post" action="">
+    <label class="checkbox">
+    	<input type="checkbox" name="remember" value="1">Ajouter au favoris
+    </label><p></br></br></p>
+    <button class="btn {{ buttonColor }}" type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Envoyer</button>
+    </form>
+			</div>
+		</div>
+
+
+{% endblock %}
+
