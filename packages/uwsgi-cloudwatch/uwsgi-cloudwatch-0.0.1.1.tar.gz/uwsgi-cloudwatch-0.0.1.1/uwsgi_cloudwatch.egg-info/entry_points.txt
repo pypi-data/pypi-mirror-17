@@ -1,0 +1,3 @@
+[console_scripts]
+uwsgi-cloudwatch = uwsgi_cloudwatch.main:cli
+
