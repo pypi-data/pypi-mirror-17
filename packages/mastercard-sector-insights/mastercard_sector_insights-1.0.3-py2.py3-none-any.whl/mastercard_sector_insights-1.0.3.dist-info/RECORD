@@ -1,0 +1,14 @@
+mastercard_sector_insights-1.0.3.dist-info/DESCRIPTION.rst,sha256=FxFPKQ_bQUJ63edRYuIHmEPemLxnISPFfxQHVzVv-Rk,28
+mastercard_sector_insights-1.0.3.dist-info/METADATA,sha256=DwOWgTsm22pHs4WpHd2vcm9zLW3u0U9Klr_aBkkj-kk,877
+mastercard_sector_insights-1.0.3.dist-info/RECORD,,
+mastercard_sector_insights-1.0.3.dist-info/WHEEL,sha256=o2k-Qa-RMNIJmUdIc7KU6VWR_ErNRbWNlxDIpl7lm34,110
+mastercard_sector_insights-1.0.3.dist-info/metadata.json,sha256=FTFNgrBkbCYYkHq2Ph9R6rZ7Omf5X9oLv_q3A_wtLiY,1032
+mastercard_sector_insights-1.0.3.dist-info/top_level.txt,sha256=yYPtzRlGVbKzsNqrJma59HVjhgr_aT0ULB5IFOc1NcI,31
+mastercardsectorinsights/__init__.py,sha256=vZCuWbl_rPfsMzWM5Rh2rrbimjHPmf8uTbm-iMwOOKM,179
+mastercardsectorinsights/insights.py,sha256=7qUqD6Mbf1G5tkb5tsK0VzjbrmdPATf8ACsEaYtcMNw,2740
+mastercardsectorinsights/parameters.py,sha256=5tVzQ7UNZM3al8BQ-DOCbZ3pDvVGoIDdsOsabCH-yyo,2714
+mastercardsectorinsights/sdkconfig.py,sha256=9q76795sZBcJbOkTMsvBRnR9cJRT3tdwWn2zo_bxpEM,1808
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/base_test.py,sha256=CG3tJjiGkXCKalM_vFd5nfnuqtr5T8T4KYLL2NJCjKc,2409
+tests/test_insights.py,sha256=mJM31X1prcrAXcz90fYAFQCHMtDe4JHRqEP3nNPGQR0,9873
+tests/test_parameters.py,sha256=v_5fTdcWYmEBb62IK3YNtYBTX5qKzVZ0fU1BbCSDc8M,4691
