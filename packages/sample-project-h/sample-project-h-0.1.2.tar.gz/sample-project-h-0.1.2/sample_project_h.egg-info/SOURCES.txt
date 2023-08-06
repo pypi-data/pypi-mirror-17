@@ -1,0 +1,12 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+data/data_file
+sample/__init__.py
+sample_project_h.egg-info/PKG-INFO
+sample_project_h.egg-info/SOURCES.txt
+sample_project_h.egg-info/dependency_links.txt
+sample_project_h.egg-info/not-zip-safe
+sample_project_h.egg-info/top_level.txt
