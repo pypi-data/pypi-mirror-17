@@ -1,0 +1,32 @@
+Metadata-Version: 1.1
+Name: golden-retriever
+Version: 0.0.1
+Summary: Command line utility for Dataloop.IO
+Home-page: https://github.com/dataloop/golden-retriever
+Author: Steven Acreman
+Author-email: steven.acreman@dataloop.io
+License: Apache License, Version 2.0
+Download-URL: https://github.com/dataloop/golden-retriever/tarball/v0.0.1
+Description: .. _readme:
+        
+        `Quick Example`_
+        ----------------------------
+        
+        install golden-retriever using pip
+        
+        .. code-block:: none
+        
+            pip install golden-retriever
+        
+        set your url in  ~/.golden-retriever.yaml
+        
+        .. code-block:: none
+        
+            ---
+            url: http://dfe.dataloop.io:8080
+        
+Keywords: dataloop monitoring
+Platform: any
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
