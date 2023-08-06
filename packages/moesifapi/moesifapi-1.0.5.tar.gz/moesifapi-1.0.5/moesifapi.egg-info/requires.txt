@@ -1,0 +1,8 @@
+requests
+jsonpickle
+python-dateutil
+
+[dev]
+
+[test]
+nose
