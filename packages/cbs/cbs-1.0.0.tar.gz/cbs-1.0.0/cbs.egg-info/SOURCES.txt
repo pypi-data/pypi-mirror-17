@@ -1,0 +1,11 @@
+.gitignore
+LICENSE.txt
+README.rst
+cbs.py
+setup.py
+cbs.egg-info/PKG-INFO
+cbs.egg-info/SOURCES.txt
+cbs.egg-info/dependency_links.txt
+cbs.egg-info/entry_points.txt
+cbs.egg-info/requires.txt
+cbs.egg-info/top_level.txt
