@@ -1,0 +1,3 @@
+[console_scripts]
+osmerge-cli = osmerge.cli:main
+
