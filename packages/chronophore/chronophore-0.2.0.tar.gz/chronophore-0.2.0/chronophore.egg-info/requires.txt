@@ -1,0 +1,7 @@
+openpyxl
+
+[dev]
+flake8
+
+[test]
+pytest
