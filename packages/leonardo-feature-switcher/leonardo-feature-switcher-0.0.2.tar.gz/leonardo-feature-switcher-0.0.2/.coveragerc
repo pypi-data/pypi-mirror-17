@@ -1,0 +1,5 @@
+[run]
+source = leonardo_feature_switcher
+omit =
+    *migrations*
+    leonardo_feature_switcher/__init__.py

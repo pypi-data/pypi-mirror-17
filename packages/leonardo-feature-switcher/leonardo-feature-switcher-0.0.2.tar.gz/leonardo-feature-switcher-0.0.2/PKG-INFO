@@ -1,0 +1,72 @@
+Metadata-Version: 1.1
+Name: leonardo-feature-switcher
+Version: 0.0.2
+Summary: Simple feature toggle tool for Leonardo CMS
+Home-page: https://github.com/leonardo-modules/leonardo-feature-switcher
+Author: Michael Kuty
+Author-email: 6du1ro.n@gmail.com
+License: UNKNOWN
+Description: ==========================
+        Leonardo leonardo-feature-switcher
+        ==========================
+        
+        Simple feature toggle tool for Leonardo CMS
+        
+        .. contents::
+            :local:
+        
+        Installation
+        ------------
+        
+        .. code-block:: bash
+        
+            pip install leonardo-feature-switcher
+        
+        add *feature_switchers* to LEONARDO_CONF_SPEC in your local_settings.py::
+        
+            LEONARDO_CONF_SPEC = {
+                'feature_switchers': {},
+            }
+        
+        then in your modules add custom switchers::
+        
+            LEONARDO_FEATURE_SWITCHERS = {
+                'my_feature': lambda request, *args, **kw: True,
+                'my_feature1': 'leonardo_feature_switcher.my_feature1'
+            }
+        
+        and in your templates::
+        
+            {% load feature_switcher %}
+        
+            {% is_on "my_feature" %}
+        
+            {% if my_feature %}
+        
+            {% endif %}
+        
+            {% is_on_as "my_feature" as my_feature_result %}
+        
+            {% if my_feature_result %}
+            {% endif %}
+        
+        Read More
+        =========
+        
+        * https://github.com/django-leonardo/django-leonardo
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks

@@ -1,0 +1,5 @@
+include MANIFEST.in
+include README.rst
+recursive-include leonardo_feature_switcher/static *
+recursive-include leonardo_feature_switcher/locale *
+recursive-include leonardo_feature_switcher/templates *
