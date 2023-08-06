@@ -1,0 +1,62 @@
+sudo: true
+language: python
+
+env:
+  global:
+      - CPLUS_INCLUDE_PATH=/usr/include/gdal
+      - C_INCLUDE_PATH=/usr/include/gdal    
+
+matrix:
+    include:
+    - python: 2.7
+      env:
+      - JOB_NAME: "27_openjpeg15"
+      - OPJ_LIB=1
+      - JOB_TAG=_opj15
+    - python: 2.7
+      env:
+      - JOB_NAME: "27_np172"
+      - OPJ_LIB=2
+      - JOB_TAG=_oldest
+    - python: 2.7
+      env:
+      - JOB_NAME: "27_latest"
+      - OPJ_LIB=2
+      - JOB_TAG=_latest
+    - python: 3.4
+      env:
+      - JOB_NAME: "34"
+      - OPJ_LIB=2
+      - JOB_TAG=_latest
+    - python: 3.5
+      env:
+      - JOB_NAME: "35_latest"
+      - OPJ_LIB=2
+      - JOB_TAG=_latest
+    - python: 3.5
+      env:
+      - JOB_NAME: "35_no_lxml"
+      - OPJ_LIB=2
+      - JOB_TAG=_no_lxml
+    - python: 3.5
+      env:
+      - JOB_NAME: "no_openjpeg"
+      - OPJ_LIB=0
+      - JOB_TAG=_no_opj
+    
+before_install:
+  - sh -c "if test $OPJ_LIB -eq 1; then bash ci/install_openjpeg15.sh; elif test $OPJ_LIB -eq 2; then bash ci/install_openjpeg.sh; fi"
+  - sudo apt-get update -qq
+  - sudo apt-get install libgdal1h
+  - sudo apt-get install libgdal1-dev
+
+# command to install dependencies
+install:
+    - sh -c "bash ci/run_pip.sh"
+
+# command to run tests
+script:
+  - python -m unittest discover
+
+notifications:
+  email: "john.g.evans.ne@gmail.com"
