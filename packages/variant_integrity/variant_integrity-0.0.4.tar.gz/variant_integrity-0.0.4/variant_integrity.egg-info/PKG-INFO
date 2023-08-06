@@ -1,0 +1,23 @@
+Metadata-Version: 1.1
+Name: variant-integrity
+Version: 0.0.4
+Summary: Tool to check mendelian errors and estimate if father is father
+Home-page: https://github.com/moonso/variant_integrity
+Author: Måns Magnusson
+Author-email: mans.magnusson@scilifelab.se
+License: MIT
+Description: # variant_integrity
+        
+        Perform checks for mendelian errors in trios and tries to check if father is correct father in families.
+Keywords: vcf variants development
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Environment :: Console
