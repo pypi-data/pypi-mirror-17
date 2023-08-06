@@ -1,0 +1,3 @@
+[console_scripts]
+plat = plat.bin.platcmd:main
+
