@@ -1,0 +1,22 @@
+Plone
+collective.dexteritytextindexer
+ftw.profilehook
+ftw.simplelayout [contenttypes]
+ftw.upgrade
+plone.api
+plone.app.dexterity
+plone.app.event [dexterity]
+plone.app.referenceablebehavior
+plone.directives.form
+setuptools
+
+[development]
+plonetheme.blueberry
+
+[tests]
+ftw.builder
+ftw.lawgiver
+ftw.testbrowser
+ftw.testing
+plone.app.testing
+plone.testing
