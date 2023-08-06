@@ -1,0 +1,13 @@
+Metadata-Version: 2.0
+Name: bopomofo
+Version: 0.1.0
+Summary: Translate chinese word to bopomofo
+Home-page: https://github.com/antfu/bopomofo
+Author: Anthony Fu
+Author-email: anthonyfu117@hotmail.com
+License: MIT
+Requires-Dist: xpinyin
+
+Bopomofo
+
+
