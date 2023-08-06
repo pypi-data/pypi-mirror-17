@@ -1,0 +1,41 @@
+0.5.0
+=======
+* Fix help command (Thanks Alexandre González)
+* Ensure zip filenames are UTF-8 (Thanks Ed Lewis)
+* Switch to ZIP_DEFLATED (Thanks Ed Lewis)
+* Make debugging compatible for python3 (Thanks @kmonkeyjam)
+
+0.4.0
+=======
+* Improve speed of zip archiving (Thanks Ed Lewis)
+* Removed overly strict validation on s3 integration (Thanks Ben Siemon)
+* S3 triggers configured via gordon should now appear in the console (Thanks Ben Siemon)
+
+0.3.0
+=======
+* Add Kotlin example (Thanks Pelle Almquist)
+* Breaking change: S3 event source bucket definition can't be an ARN anymore
+* New: S3 event source bucket definition can be a reference now.
+* New: VPC security-groups and subnet-ids can now be customized using parameters.
+* New: S3 prefix and suffix can now be references.
+
+0.2.1
+=======
+* Fix typos and grammar errors all across the the documentation.
+* Fix Python 3 support.
+* Add tox environment for python 3 integration tests.
+* Fix Lambda:role resource so it can be a reference/parameter.
+* Make the apply command exit immediately if one of the steps fails.
+* Added ``fail`` method to the node Mock
+* Make it possible to use non-user temp credentials
+
+0.2
+====
+* Add ``api_key_required`` to apigateway integration.
+* Fix python3 support.
+* Fix setup.py to correctly install gordon in all platforms.
+* Fix bootstrap app creation
+
+0.1
+====
+* Initial release
