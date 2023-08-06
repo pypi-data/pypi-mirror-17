@@ -1,0 +1,8 @@
+setup.cfg
+setup.py
+pycircularbuffer.egg-info/PKG-INFO
+pycircularbuffer.egg-info/SOURCES.txt
+pycircularbuffer.egg-info/dependency_links.txt
+pycircularbuffer.egg-info/not-zip-safe
+pycircularbuffer.egg-info/top_level.txt
+src/circular_buffer.c
