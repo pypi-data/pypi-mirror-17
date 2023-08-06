@@ -1,0 +1,11 @@
+{% if message %}
+<em>{{ message }}</em>
+{% endif %}
+<ul>
+{% for signature in sections %}
+  <li><a href="{{signature}}">{{signature}}</a></li>
+{% endfor %}
+{% for signature in endpoints %}
+  <li><code>{{signature}}</code></li>
+{% endfor %}
+</ul>

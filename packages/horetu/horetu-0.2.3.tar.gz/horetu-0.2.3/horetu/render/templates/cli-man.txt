@@ -1,0 +1,18 @@
+SYNOPSIS{% for section, signature in endpoints %}
+{% if is_section %}> {% else %}  {% endif
+%}{{name}} {{ ' '.join(section) }} [-help] [options] [--] {{signature}}{%
+endfor %}
+{% if description %}
+DESCRIPTION
+  {{ description }}
+{% endif %}{% if is_callable %}{% if args %}
+INPUTS{% for argname, desc in args %}
+  {{ argname }}: {{ desc|indent(2, false) }}{% endfor %}
+{% endif %}
+OPTIONS{% for argname, desc in kwargs %}
+  -{{ argname }}: {{ desc|indent(2, false) }}{% else %}
+  (None)
+{% endfor %}{% else %}
+DETAIL
+  Run "-help" with a particular subcommand for more help.
+{% endif %}

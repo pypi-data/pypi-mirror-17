@@ -1,0 +1,9 @@
+{% if message %}error: {{ message }}
+{% endif
+ %}{% for section, signature in endpoints %}{% if loop.first
+ %}usage: {% else
+ %}       {% endif
+%}{{name}}{{
+ (' ' if section else '') + ' '.join(section)
+}} [-help] [options] [--] {{signature}}
+{% endfor %}

@@ -1,0 +1,39 @@
+<h2>Synopsis<h2>
+<ul>
+{% for signature in endpoints %}
+  {% if is_section and loop.first %}<strong>{% endif %}
+  <li>{{signature}}</li>
+  {% if is_section and loop.first %}</strong>{% endif %}
+{% endfor %}
+</ul>
+
+{% if description %}
+<h2>Description</h2>
+{% for p in description %}
+<p>{{ p }}</p>
+{% endfor %}
+{% endif %}
+
+{% if is_callable %}{% if args %}
+<h3>Inputs</h3>
+<dl>
+  {% for argname, desc in args %}
+  <dt>{{ argname }}</dt><dd>{{ desc|indent(2, false) }}</dt>
+  {% else %}
+  <p>(None)</p>
+  {% endfor %}
+</dl>
+{% endif %}
+<h3>Options</h3>
+<dl>
+{% for argname, desc in kwargs %}
+<dt>{{ argname }}</dt><dd>{{ desc|indent(2, false) }}</dd>
+{% endfor %}
+</dl>
+
+<h2>Detail</h2>
+<p>
+  Put "help" in the query string ("?help") for more help about a
+  particular endpoint.
+</p>
+{% endif %}
