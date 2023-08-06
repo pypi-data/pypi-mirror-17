@@ -1,0 +1,26 @@
+feedparser
+plone.api
+plone.app.content
+plone.app.dexterity
+plone.app.uuid
+plone.dexterity
+plone.memoize
+plone.supermodel
+Products.CMFPlone >=4.3
+Products.GenericSetup
+profilehooks
+setuptools
+zope.globalrequest
+zope.i18nmessageid
+zope.interface
+zope.schema
+
+[test]
+lxml
+mock
+plone.app.robotframework
+plone.app.testing [robot]
+plone.browserlayer
+plone.testing
+robotsuite
+zope.component

@@ -1,0 +1,85 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="collective.feedaggregator">
+  <body>
+    <metal:content-core fill-slot="content-core">
+      <tal:listing define="batch view/batch">
+        <tal:entries repeat="entry batch">
+          <article class="tileItem">
+            <h2 class="tileHeadline">
+              <a tal:attributes="href entry/url" tal:content="entry/title">
+                Title
+              </a>
+            </h2>
+
+            <div class="documentByLine"
+                id="plone-document-byline"
+                i18n:domain="plone"
+                tal:condition="view/show_byline">
+
+              <span class="documentAuthor" tal:condition="entry/author">
+                <tal:i18n i18n:translate="label_by_author">
+                    by
+                  <span property="rnews:author"
+                      tal:content="entry/author"
+                      i18n:name="author">Roland Barthes</span>
+                </tal:i18n>
+                  —
+              </span>
+
+              <tal:dates define="published entry/published;
+                                 modified entry/modified">
+                <span class="documentPublished"
+                      tal:condition="published">
+                  <span i18n:translate="box_published">
+                    published
+                  </span>
+                  <span tal:content="python:view.get_localized_time(published)"
+                      property="rnews:datePublished">
+                    August 16, 2001 at 23:35:59
+                  </span><tal:sep condition="modified">,</tal:sep>
+                </span>
+
+                <span class="documentModified" tal:condition="modified">
+                  <span i18n:translate="box_last_modified">
+                    last modified
+                  </span>
+                  <span tal:content="python:view.get_localized_time(modified)"
+                      property="rnews:dateModified">
+                    August 16, 2001 at 23:35:59
+                  </span>
+                </span>
+              </tal:dates>
+            </div>
+
+            <p tal:condition="entry/description" tal:content="entry/description">
+                Description
+            </p>
+
+            <p class="tileFooter">
+              <a tal:attributes="href entry/url"
+                  i18n:translate="read_more">
+                Read More&hellip;
+              </a>
+            </p>
+
+            <div class="visualClear"><!-- --></div>
+
+          </article>
+        </tal:entries>
+
+        <div metal:use-macro="context/batch_macros/macros/navigation" />
+
+        <tal:noentries>
+          <p class="discreet" tal:condition="not:batch" i18n:translate="">
+            There are currently no entries in this feed aggregator.
+          </p>
+        </tal:noentries>
+      </tal:listing>
+    </metal:content-core>
+  </body>
+</html>
