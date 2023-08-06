@@ -1,0 +1,26 @@
+session:
+  # phase 1
+  - duration: 10
+    instnaces:
+      - /home/gal/Downloads/vid1.mp4
+      - /home/gal/Downloads/vid2.mp4
+  # phase 2
+  - duration: 15
+    instnaces:
+      - /home/gal/Downloads/vid1.mp4
+      - /home/gal/Downloads/vid2.mp4
+  # phase 3
+  - duration: 10
+    instnaces:
+      - /home/gal/Downloads/vid3.mp4
+      - /home/gal/Downloads/vid1.mp4
+settings:
+  shuffle: true
+  break_duration: 5
+  factor: 3
+
+
+
+
+
+
