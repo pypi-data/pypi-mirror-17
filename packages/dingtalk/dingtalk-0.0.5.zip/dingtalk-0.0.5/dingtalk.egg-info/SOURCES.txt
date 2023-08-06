@@ -1,0 +1,16 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+data/data_file
+dingtalk/__init__.py
+dingtalk/dingtalk.py
+dingtalk.egg-info/PKG-INFO
+dingtalk.egg-info/SOURCES.txt
+dingtalk.egg-info/dependency_links.txt
+dingtalk.egg-info/entry_points.txt
+dingtalk.egg-info/requires.txt
+dingtalk.egg-info/top_level.txt
+sample/__init__.py
+sample/package_data.dat
