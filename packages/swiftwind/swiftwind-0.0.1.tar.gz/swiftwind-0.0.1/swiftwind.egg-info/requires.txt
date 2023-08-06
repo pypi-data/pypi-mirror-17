@@ -1,0 +1,9 @@
+django>=1.8
+path.py
+django-model-utils>=2.5.0
+gunicorn
+django-bootstrap3>=5
+dj-database-url
+dj-static
+psycopg2
+django-extensions
