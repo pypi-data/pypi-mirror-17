@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Welcome to the django-extensions-shell documentation! &mdash; django-extensions-shell 1.7.5 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.7.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="django-extensions-shell 1.7.5 documentation" href="#" />
+    <link rel="next" title="shell_plus" href="shell_plus.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="shell_plus.html" title="shell_plus"
+             accesskey="N">next</a> |</li>
+        <li><a href="#">django-extensions-shell 1.7.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="welcome-to-the-django-extensions-shell-documentation">
+<h1>Welcome to the django-extensions-shell documentation!<a class="headerlink" href="#welcome-to-the-django-extensions-shell-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Django Extensions Shell is the <cite>shell_plus</cite> command extracted from the excellent Django Extensions project into its
+own project. In most projects I&#8217;ve been only using the <cite>shell_plus</cite> command and to me it feels much better to
+only introduce a dependency on this specific code in projects then to depend on the whole Django Extensions project.</p>
+</div>
+<div class="section" id="quickstart">
+<h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
+<p>You can get Django Extensions Shell by using pip or easy_install:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ pip install django-extensions-shell
+or
+$ easy_install django-extensions-shell
+</pre></div>
+</div>
+<p>If you want to install it from source, grab the git repository and run setup.py:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git clone git://github.com/shanx/django-extensions-shell.git
+$ cd django-extensions-shell
+$ python setup.py install
+</pre></div>
+</div>
+<p>Now you will need to add the <em>django_extensions_shell</em> application to the INSTALLED_APPS
+setting of your Django project <em>settings.py</em> file.:</p>
+<div class="highlight-python"><div class="highlight"><pre>INSTALLED_APPS = (
+    ...
+    &#39;django_extensions_shell&#39;,
+)
+</pre></div>
+</div>
+<p>For more detailed instructions check out our <tt class="xref doc docutils literal"><span class="pre">installation_instructions</span></tt>. Enjoy.</p>
+</div>
+<div class="section" id="compatibility-with-versions-of-python-and-django">
+<h1>Compatibility with versions of Python and Django<a class="headerlink" href="#compatibility-with-versions-of-python-and-django" title="Permalink to this headline">¶</a></h1>
+<p>This command will periodically follow updates done within Django Extensions so please check at:
+<a class="reference external" href="https://django-extensions.readthedocs.io/en/latest/#compatibility-with-versions-of-python-and-django">the Django Extensions page</a></p>
+</div>
+<div class="section" id="contents">
+<h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="shell_plus.html">shell_plus</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="shell_plus.html#interactive-python-shells">Interactive Python Shells</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shell_plus.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shell_plus.html#additional-imports">Additional Imports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shell_plus.html#database-application-signature">Database application signature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shell_plus.html#sql-queries">SQL queries</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to the django-extensions-shell documentation!</a></li>
+<li><a class="reference internal" href="#quickstart">Quickstart</a></li>
+<li><a class="reference internal" href="#compatibility-with-versions-of-python-and-django">Compatibility with versions of Python and Django</a></li>
+<li><a class="reference internal" href="#contents">Contents</a></li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="shell_plus.html"
+                        title="next chapter">shell_plus</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="shell_plus.html" title="shell_plus"
+             >next</a> |</li>
+        <li><a href="#">django-extensions-shell 1.7.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright Copyright (C) 2008-2015 Michael Trier, Bas van Oostveen and contributors.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
