@@ -1,0 +1,18 @@
+3.0.1 (2016-10-05)
+------------------
+- Bugfix in strategies visualization
+- Bugfix in graph compression
+- Remove duplicates edges when reading a SIF file
+- Adds --optimum argument in caspo learn
+- Prints number of hyperedges in caspo learn
+- Adds stats
+
+3.0.0 (2016-08-06)
+------------------
+- Refactoring removing ZCA-based implementation
+- Use clingo python module (tested with clingo 4.5.x)
+- Re-design subcommands as learn, classify, design, predict, control, visualize, and test
+- Generate default visualizations using matplotlib and seaborn
+- Adds sphinx docs
+- Use travis-ci for building conda packages for OS X and Linux
+- Adds a Dockerfile

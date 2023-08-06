@@ -1,0 +1,7 @@
+name: caspo-env
+channels:
+  - bioasp
+  - svidela
+  - conda-forge
+dependencies:
+  - caspo=3.0.1
