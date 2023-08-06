@@ -1,0 +1,24 @@
+Metadata-Version: 2.0
+Name: comunio
+Version: 0.0.1
+Summary: A Comunio Desktop Application
+Home-page: http://gitlab.namibsun.net/namboy94/comunio-manager
+Author: Hermann Krumrey
+Author-email: hermann@krumreyh.com
+License: GNU GPL3
+Download-URL: http://gitlab.namibsun.net/namboy94/comunio-manager/repository/archive.zip?ref=master
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Topic :: Database :: Front-Ends
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Environment :: Console
+Classifier: Programming Language :: Python
+Requires-Dist: raven
+
+# Comunio Manager
+
+A Program to interface with the web game comunio.de
+
