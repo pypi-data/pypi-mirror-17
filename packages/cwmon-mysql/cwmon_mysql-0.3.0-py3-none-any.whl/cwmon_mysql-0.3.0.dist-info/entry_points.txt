@@ -1,0 +1,4 @@
+
+        [cwmon.plugins]
+        mysql=cwmon_mysql.cli:mysql
+    
