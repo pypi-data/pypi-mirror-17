@@ -1,0 +1,16 @@
+LI_AWS_Deploy-1.0.10.dist-info/DESCRIPTION.rst,sha256=ziihR03fTbGNjPTN7CtjTyEOa9lSdFeH2tfp3PMyncE,9
+LI_AWS_Deploy-1.0.10.dist-info/METADATA,sha256=olE9Zi-qqTYVifWYiNLuufqo3YE0RiL_R3dUnEOIizo,764
+LI_AWS_Deploy-1.0.10.dist-info/RECORD,,
+LI_AWS_Deploy-1.0.10.dist-info/WHEEL,sha256=dXGL5yz26tu5uNsUy9EBoBYhrvMYqmFH9Vm82OQUT-8,95
+LI_AWS_Deploy-1.0.10.dist-info/entry_points.txt,sha256=TIuhYFflpohyjm3EAa-G6bIJABkKOwlqMgkJLLEFt5U,47
+LI_AWS_Deploy-1.0.10.dist-info/metadata.json,sha256=k_ngqfEvUyjYUOlilEkGlrFV6J2X6A2TzaBdLsKgZyw,880
+LI_AWS_Deploy-1.0.10.dist-info/top_level.txt,sha256=bd2-igu9V_NQ-g75VjaLUI11H97eQ_VG1RLrR2tKtJw,18
+deploy/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+deploy/__main__.py,sha256=9tf32pEF-Er_65_g4wRn6EG_-zdEbox_zYqyBwqHGvw,60
+deploy/compress.py,sha256=PEfG0Zf--4A_kdVuwwVdCnFFViLX3xTbtKDxllBNGgc,2260
+deploy/config.py,sha256=F6YEaIJ3qIrrMmnvDp3i-KEemL3_IWsitOKsVUYhwLw,4902
+deploy/messages.py,sha256=ibuRsALVuMSiiUHfDu6uDdSsKk4D-Q6Nb4ZvgeNsHDs,1926
+deploy/run.py,sha256=A-yGHBg6Ur_ChvVHqtQhN7llVfTac5OMhL-dLQXDMlg,5857
+deploy/tests.py,sha256=RK0s1UnYnBvlQD4r_yaYYNhaZzjNwqnztNnZo0TUF6o,3196
+deploy/utils.py,sha256=nO0mRJkmEO_h7nUoBfAHwTX__J8D4dNdkX2SezqCxYM,994
+test_files/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
