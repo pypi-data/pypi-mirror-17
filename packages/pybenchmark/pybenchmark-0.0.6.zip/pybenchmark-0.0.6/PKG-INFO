@@ -1,0 +1,25 @@
+Metadata-Version: 1.1
+Name: pybenchmark
+Version: 0.0.6
+Summary: A benchmark utility used in performance tests.
+Home-page: https://github.com/duboviy/pybenchmark
+Author: Eugene Duboviy
+Author-email: eugene.dubovoy@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/duboviy/pybenchmark/tarball/0.0.6
+Description: 
+        When measuring execution time, the result depends on the computer hardware.
+        To be able to produce a universal measure, the simplest way is to benchmark the speed of a fixed sequence
+        of code and calculate a ratio out of it. From there, the time taken by a function can be translated to a
+        universal value that can be compared on any computer. Python provides a benchmark utility in its test
+        package that measures the duration of a sequence of well-chosen operations.
+        pybenchmark designed to provide a simple and pythonic way to get performance data.
+        
+Keywords: benchmark,performance,testing
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
