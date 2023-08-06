@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "stylelint": "*",
+    "postcss-scss": "*",
+    "postcss-cli": "*",
+    "autoprefixer": "*"
+  },
+  "version": "1.0.0",
+  "name": "django_cradmin"
+}
