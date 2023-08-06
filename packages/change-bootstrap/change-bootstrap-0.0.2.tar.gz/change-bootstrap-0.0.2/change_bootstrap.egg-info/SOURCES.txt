@@ -1,0 +1,11 @@
+setup.py
+change_bootstrap.egg-info/PKG-INFO
+change_bootstrap.egg-info/SOURCES.txt
+change_bootstrap.egg-info/dependency_links.txt
+change_bootstrap.egg-info/entry_points.txt
+change_bootstrap.egg-info/requires.txt
+change_bootstrap.egg-info/top_level.txt
+changebootstrap/Change.py
+changebootstrap/LocalDeployment.py
+changebootstrap/LocalDeploymentSettings.py
+changebootstrap/__init__.py
