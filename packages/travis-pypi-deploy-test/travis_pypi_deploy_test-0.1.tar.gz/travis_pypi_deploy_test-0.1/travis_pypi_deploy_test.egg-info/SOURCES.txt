@@ -1,0 +1,13 @@
+setup.py
+test_app/__init__.py
+test_app/admin.py
+test_app/apps.py
+test_app/models.py
+test_app/tests.py
+test_app/urls.py
+test_app/views.py
+travis_pypi_deploy_test.egg-info/PKG-INFO
+travis_pypi_deploy_test.egg-info/SOURCES.txt
+travis_pypi_deploy_test.egg-info/dependency_links.txt
+travis_pypi_deploy_test.egg-info/requires.txt
+travis_pypi_deploy_test.egg-info/top_level.txt
