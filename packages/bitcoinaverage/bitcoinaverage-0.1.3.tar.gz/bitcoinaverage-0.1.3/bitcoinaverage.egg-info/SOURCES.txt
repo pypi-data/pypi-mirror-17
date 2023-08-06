@@ -1,0 +1,16 @@
+MANIFEST.in
+setup.cfg
+setup.py
+bitcoinaverage/__init__.py
+bitcoinaverage/bitcoinaverage_base_client.py
+bitcoinaverage/bitcoinaverage_restful_client.py
+bitcoinaverage/bitcoinaverage_websocket_client.py
+bitcoinaverage/config.py
+bitcoinaverage/exceptions.py
+bitcoinaverage/restful_example.py
+bitcoinaverage/websocket_examples.py
+bitcoinaverage.egg-info/PKG-INFO
+bitcoinaverage.egg-info/SOURCES.txt
+bitcoinaverage.egg-info/dependency_links.txt
+bitcoinaverage.egg-info/requires.txt
+bitcoinaverage.egg-info/top_level.txt
