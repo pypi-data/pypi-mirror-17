@@ -1,0 +1,6 @@
+include LICENSE
+include README.md
+recursive-include polybuilder/static *
+recursive-include polybuilder/templates *
+recursive-include docs *
+

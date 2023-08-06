@@ -1,0 +1,10 @@
+{% load static %}
+{% for dep in view.dependencies %}
+    {% if dep.dependency_type == dep.HTML %}
+    <link rel="import" href="{% static dep.path %}">
+    {% elif dep.dependency_type == dep.CSS %}
+    <link type="text/css" rel="stylesheet" href="{% static dep.path %}">
+    {% elif dep.dependency_type == dep.JS %}
+    <script type="text/javascript" src="{% static dep.path %}"></script>
+    {% endif %}
+{% endfor %}
