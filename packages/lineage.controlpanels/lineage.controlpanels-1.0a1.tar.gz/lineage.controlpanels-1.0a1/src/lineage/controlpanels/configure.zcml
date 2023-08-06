@@ -1,0 +1,152 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+  <includeDependencies package="." />
+
+  <!-- needed for control panel permission -->
+  <include package="Products.CMFPlone.controlpanel" />
+
+  <browser:page
+      name="is_subsite_enabled"
+      for="*"
+      class=".actions.ActionAvailableView"
+      permission="zope2.View"
+      /><!-- no layer here, so that it can be called without lineage.themeselection installed -->
+
+
+  <!-- Control Panel Overview -->
+  <browser:page
+      name="overview-controlpanel"
+      for="collective.lineage.interfaces.IChildSite"
+      class="Products.CMFPlone.controlpanel.browser.overview.OverviewControlPanel"
+      permission="plone.app.controlpanel.Overview"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <!-- Editing Control Panel -->
+  <browser:page
+      name="editing-controlpanel"
+      for="collective.lineage.interfaces.IChildSite"
+      class="Products.CMFPlone.controlpanel.browser.editing.EditingControlPanel"
+      permission="plone.app.controlpanel.Editing"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <!-- TinyMCE Control Panel -->
+  <browser:page
+      name="tinymce-controlpanel"
+      for="collective.lineage.interfaces.IChildSite"
+      class="Products.CMFPlone.controlpanel.browser.tinymce.TinyMCEControlPanel"
+      permission="plone.app.controlpanel.TinyMCE"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <!-- Language Control Panel -->
+  <browser:page
+      name="language-controlpanel"
+      for="collective.lineage.interfaces.IChildSite"
+      class="Products.CMFPlone.controlpanel.browser.language.LanguageControlPanel"
+      permission="plone.app.controlpanel.Language"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <!-- Mail Control Panel -->
+  <browser:page
+      name="mail-controlpanel"
+      for="collective.lineage.interfaces.IChildSite"
+      class="Products.CMFPlone.controlpanel.browser.mail.MailControlPanel"
+      permission="cmf.ManagePortal"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <!-- Navigation Control Panel -->
+  <browser:page
+      name="navigation-controlpanel"
+      for="collective.lineage.interfaces.IChildSite"
+      class="Products.CMFPlone.controlpanel.browser.navigation.NavigationControlPanel"
+      permission="plone.app.controlpanel.Navigation"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <!-- Search Control Panel -->
+  <browser:page
+      name="search-controlpanel"
+      for="collective.lineage.interfaces.IChildSite"
+      class="Products.CMFPlone.controlpanel.browser.search.SearchControlPanel"
+      permission="plone.app.controlpanel.Search"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <!-- Site Control Panel -->
+  <browser:page
+      name="site-controlpanel"
+      for="collective.lineage.interfaces.IChildSite"
+      class="Products.CMFPlone.controlpanel.browser.site.SiteControlPanel"
+      permission="plone.app.controlpanel.Site"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <!-- Date and Time Control panel -->
+  <browser:page
+      name="dateandtime-controlpanel"
+      for="collective.lineage.interfaces.IChildSite"
+      class="Products.CMFPlone.controlpanel.browser.dateandtime.DateAndTimeControlPanel"
+      permission="plone.app.controlpanel.Site"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <!-- Markup Control Panel -->
+  <browser:page
+      name="markup-controlpanel"
+      for="collective.lineage.interfaces.IChildSite"
+      class="Products.CMFPlone.controlpanel.browser.markup.MarkupControlPanel"
+      permission="plone.app.controlpanel.Markup"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <!-- Social Media Control Panel -->
+  <browser:page
+      name="social-controlpanel"
+      for="collective.lineage.interfaces.IChildSite"
+      class="Products.CMFPlone.controlpanel.browser.socialmedia.SocialControlPanel"
+      permission="plone.app.controlpanel.Site"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <!-- Imaging Control Panel -->
+  <browser:page
+      name="imaging-controlpanel"
+      for="collective.lineage.interfaces.IChildSite"
+      class="Products.CMFPlone.controlpanel.browser.imaging.ImagingControlPanel"
+      permission="plone.app.controlpanel.Imaging"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <!-- Discussion Control Panel -->
+  <browser:page
+      name="discussion-controlpanel"
+      for="collective.lineage.interfaces.IChildSite"
+      class="plone.app.discussion.browser.controlpanel.DiscussionSettingsControlPanel"
+      permission="cmf.ManagePortal"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+
+  <genericsetup:registerProfile
+      name="default"
+      title="Lineage: Plone Controlpanels in Child Sites"
+      directory="profiles/default"
+      description="Extension lineage.controlpanels to allow child-site specific configurations with Plone controlpanels."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="Lineage: Plone Controlpanels in Child Sites (uninstall)"
+      directory="profiles/uninstall"
+      description="Uninstalls the lineage.controlpanels add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+</configure>

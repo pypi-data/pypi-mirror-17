@@ -1,0 +1,3 @@
+graft src/lineage
+include *.rst
+global-exclude *.pyc

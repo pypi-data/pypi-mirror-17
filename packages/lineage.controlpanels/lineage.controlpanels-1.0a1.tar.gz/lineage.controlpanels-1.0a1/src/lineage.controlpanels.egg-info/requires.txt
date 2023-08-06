@@ -1,0 +1,9 @@
+collective.lineage>=2.1
+lineage.registry>=1.3.3
+setuptools
+
+[test]
+plone.api
+plone.app.testing
+plone.app.contenttypes
+plone.app.robotframework[debug]
