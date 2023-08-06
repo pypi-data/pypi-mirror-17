@@ -1,0 +1,16 @@
+CHANGELOG
+CONTRIBUTORS
+MANIFEST.in
+README.rst
+example.png
+setup.cfg
+setup.py
+django_inline_actions.egg-info/PKG-INFO
+django_inline_actions.egg-info/SOURCES.txt
+django_inline_actions.egg-info/dependency_links.txt
+django_inline_actions.egg-info/top_level.txt
+inline_actions/__init__.py
+inline_actions/actions.py
+inline_actions/admin.py
+inline_actions/compat.py
+inline_actions/static/inline_actions/css/inline_actions.css
