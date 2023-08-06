@@ -1,0 +1,3 @@
+[console_scripts]
+civ5-wallpapers = civ5_wallpapers.cli:main
+
