@@ -1,0 +1,3 @@
+[console_scripts]
+cistern = cistern.cistern:cli
+

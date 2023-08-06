@@ -1,0 +1,23 @@
+Metadata-Version: 1.1
+Name: cistern
+Version: 0.1.5
+Summary: Command line tool for downloading torrents from RSS feeds.
+Home-page: https://github.com/archangelic/cistern
+Author: Michael Hancock
+Author-email: michaelhancock89@gmail.com
+License: MIT
+Download-URL: https://github.com/archangelic/cistern/archive/v0.1.5.tar.gz
+Description: UNKNOWN
+Keywords: torrent,rss,transmission
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Topic :: Internet
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
