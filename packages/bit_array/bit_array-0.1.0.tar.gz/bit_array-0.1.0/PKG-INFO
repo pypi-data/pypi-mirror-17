@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: bit_array
+Version: 0.1.0
+Summary: Pure Python Bit Array
+Home-page: https://github.com/bmoscon/bit_array
+Author: Bryant Moscon
+Author-email: bmoscon@gmail.com
+License: XFree86
+Description: Pure Python BitArray
+Keywords: bitarray
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: XFree86
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: MacOS
+Classifier: Topic :: Software Development :: Libraries
