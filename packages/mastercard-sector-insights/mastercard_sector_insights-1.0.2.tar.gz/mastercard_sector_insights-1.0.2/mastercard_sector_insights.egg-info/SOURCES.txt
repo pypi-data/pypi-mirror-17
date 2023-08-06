@@ -1,0 +1,14 @@
+setup.py
+mastercard_sector_insights.egg-info/PKG-INFO
+mastercard_sector_insights.egg-info/SOURCES.txt
+mastercard_sector_insights.egg-info/dependency_links.txt
+mastercard_sector_insights.egg-info/requires.txt
+mastercard_sector_insights.egg-info/top_level.txt
+mastercardsectorinsights/__init__.py
+mastercardsectorinsights/insights.py
+mastercardsectorinsights/parameters.py
+mastercardsectorinsights/sdkconfig.py
+tests/__init__.py
+tests/base_test.py
+tests/test_insights.py
+tests/test_parameters.py
