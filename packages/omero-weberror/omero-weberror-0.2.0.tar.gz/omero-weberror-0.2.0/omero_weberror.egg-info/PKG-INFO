@@ -1,0 +1,57 @@
+Metadata-Version: 1.1
+Name: omero-weberror
+Version: 0.2.0
+Summary: A Python plugin for OMERO.web
+Home-page: https://github.com/openmicroscopy/omero-weberror
+Author: The Open Microscopy Team
+Author-email: ome-devel@lists.openmicroscopy.org.uk
+License: AGPLv3
+Download-URL: https://github.com/openmicroscopy/omero-weberror/tarball/0.2.0
+Description: .. image:: https://travis-ci.org/openmicroscopy/omero-weberror.svg?branch=master
+            :target: https://travis-ci.org/openmicroscopy/omero-weberror
+        
+        .. image:: https://badge.fury.io/py/omero-weberror.svg
+            :target: https://badge.fury.io/py/omero-weberror
+        
+        
+        OMERO.weberror
+        ============================
+        Django application that helps testing errors
+        
+        Requirements
+        ============
+        
+        * OMERO 5.1.0 or later
+        
+        Installation
+        ============
+        
+        Install OMERO.web
+        
+        This app installs into the OMERO.web framework.
+        
+        ::
+        
+            $ pip install omero-weberror
+        
+        Add weberror custom app to your installed web apps:
+        
+        ::
+        
+            $ bin/omero config append omero.web.apps '"omero_weberror"'
+        
+        Now restart OMERO.web as normal.
+        
+        
+        License
+        -------
+        
+        OMERO.weberror is released under the AGPL.
+        
+        Copyright
+        ---------
+        
+        2016, The Open Microscopy Environment
+        
+Keywords: OMERO.web,plugin
+Platform: UNKNOWN
