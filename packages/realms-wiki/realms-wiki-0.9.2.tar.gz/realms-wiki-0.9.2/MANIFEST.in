@@ -1,0 +1,5 @@
+include requirements.txt LICENSE README.md
+graft realms/static
+graft realms/templates
+graft realms/modules/**/static
+graft realms/modules/**/templates
