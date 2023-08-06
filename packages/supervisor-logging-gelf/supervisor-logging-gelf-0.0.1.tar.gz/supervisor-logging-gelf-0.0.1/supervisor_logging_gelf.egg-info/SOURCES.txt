@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+test_requirements.txt
+supervisor_logging_gelf/__init__.py
+supervisor_logging_gelf.egg-info/PKG-INFO
+supervisor_logging_gelf.egg-info/SOURCES.txt
+supervisor_logging_gelf.egg-info/dependency_links.txt
+supervisor_logging_gelf.egg-info/entry_points.txt
+supervisor_logging_gelf.egg-info/requires.txt
+supervisor_logging_gelf.egg-info/top_level.txt
