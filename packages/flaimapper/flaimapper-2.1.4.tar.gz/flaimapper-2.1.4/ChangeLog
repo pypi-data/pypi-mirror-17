@@ -1,0 +1,81 @@
+2016-10-19  Youri Hoogstrate
+	* (v2.1.4) Cleanups and minor memory improvements
+
+2016-10-19  Youri Hoogstrate
+	* (v2.1.1-v2.1.3) Getting the pkg_resource data into pip
+	  Thanks xref: http://stackoverflow.com/questions/7522250/how-to-include-package-data-with-setuptools-distribute
+	  - Solved bug where FlaiMapper crashed on reads that have no aligned blocks 
+
+2016-10-19  Youri Hoogstrate
+	* (v2.1.0) Reduction of memory footprint
+	  - Uses a different data structure and new method that estimates the median
+	    values in a much sparser way.
+
+2016-10-11  Youri Hoogstrate
+	* (v2.0.0) Large rewrite
+	  - Enable TravisCI for unit testing during further development
+	  - Written several tests (both unit as functional) including all parameters.
+	  - Refactored a lot of code, removed a lot of unused code
+	  - Removed SSLM binaries
+	  - Removed binary used to generate MASK files
+	  - Removed --mask argument
+	  - Wrote algorithm that replaces the MASK functionality
+	  - Added --parameters argument, allowing to customize the filter
+	  - Included data in pkg_resources that allow to grap default parameter file from there
+	  - Improved GTF output; two lines per detected fragment of which one (type=exon) can be used by expression estimation tools, new way of generating gene_id's
+	  - Added optional arguments `--offset5p` and `--offset3p`.
+	  - Dropped samtools dependency and rely completely on pysam
+	  - Replacement of tabs with spaces (s/\t/ /g)
+	  - Use a logging system to be able to get a verbose output, also for testing
+	  - Better way of trowining exceptions which shall cause more appropriate stack traces
+	  - Disabled possibility to use multiple BAM files - concatenation should be done with samtools merge
+	  - Made FlaiMapper available in pip and bioconda
+	  - Many cleanups, removal of unused properties, imports, functions and classes
+
+2015-09-02  Youri Hoogstrate
+	* (v1.2.2) Added GTF/GFF as output format.
+	
+2015-06-03  Youri Hoogstrate
+	* (v1.2.1) Output files are sorted on chromosome names. This ensures
+	  that lines in the output file always appear in the same order.
+	  Deriving GTF/GFF files from FASTA files has now the correct
+	  1-based offset.
+	
+	* (v1.2.0) Fixed a bug that didn't allow reads larger than 35bp.
+	  The 0-based and 1-based coordinates are now consistent. some out
+	  commented code has been removed. Improved output format 1 "table;
+	  per fragment". This includes that the file format has changed to
+	  0-based (both start- and end positions). Also columns have been
+	  added: positions relative to the gene annotation(s) for the "Full
+	  genome alignment"-type analysis. The GTF/GFF parser now supports
+	  "gene_id" column parsing. The mask file
+	  share/annotations/ncRNA_annotation/ncrnadb09.gtf was using 0-based
+	  cooridnates while the GTF/GFF format requires 1-based coordinates.
+	  The fixed file is provided at:
+	  share/annotations/ncRNA_annotation/ncrnadb09_v2.0.gtf
+	
+2015-06-01  Youri Hoogstrate
+	* (v1.1.6) Fixed a GFF/GTF parsing error - FlaiMapper only supported
+	  annotations with the score value set.
+	
+2015-03-20  Youri Hoogstrate
+	* (v1.1.5) Removed warning written to stderr that should be reported
+	  to stdout.
+	
+	* (v1.1.4) Tabix libraries from the pysam library have been replaced
+	  with flaimapper libraries because of multiple incompatibility
+	  issues.
+	
+	* (v1.1.3) Pysam 0.8.2.1 shows different behavior with the
+	  TabixFile.fetch() function when no arguments are given. Flaimapper
+	  has been made compatible also with the latest version of pysam.
+
+2015-01-19  Youri Hoogstrate
+	* (v1.1.2) Found and disabled an unnecessairy double exectution of a
+	  'run' function which caused double calculation time.
+
+2014-11-14  Youri Hoogstrate
+	* (v1.1.1) Added "src/bin/gtf-from-fasta" and added the file to the
+	  installer. This file makes it posible to create a mask file that
+	  corresponds to a reference fasta file (only if mature ncRNAs are
+	  given in the fasta file).
