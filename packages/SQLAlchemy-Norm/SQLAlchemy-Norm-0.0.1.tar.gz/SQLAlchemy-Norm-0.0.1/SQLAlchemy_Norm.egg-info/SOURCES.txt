@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.rst
+conftest.py
+setup.cfg
+setup.py
+SQLAlchemy_Norm.egg-info/PKG-INFO
+SQLAlchemy_Norm.egg-info/SOURCES.txt
+SQLAlchemy_Norm.egg-info/dependency_links.txt
+SQLAlchemy_Norm.egg-info/requires.txt
+SQLAlchemy_Norm.egg-info/top_level.txt
+sqlalchemy_norm/__init__.py
+sqlalchemy_norm/normalizable.py
