@@ -1,0 +1,43 @@
+Metadata-Version: 1.1
+Name: rds-snapshot
+Version: 0.1.1
+Summary: A tool for handling RDS snapshots in AWS from the CLI or in scripts.
+Home-page: https://github.com/elias5000/rds-snapshot
+Author: Frank Wittig
+Author-email: frank@e5k.de
+License: Apache License, Version 2
+Description: # rds-snapshot
+        rds-snapshot is a tool for creating and managing RDS snapshots from the command line or scripts.
+        
+        ## Features
+        
+        *   List, create and delete snapshots
+        *   Cleanup snapshots older than a [x] days
+        
+        ## Installation
+        
+            pip install rds-snapshot
+        
+        ## Install requirements
+        *   boto3
+        
+        ## Commands
+        For a list of all commands and features run:
+        
+            rds-snapshot --help
+            rds-snapshot [command] --help
+Keywords: aws rds snapshots
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: System :: Archiving :: Backup
+Classifier: Topic :: Utilities
