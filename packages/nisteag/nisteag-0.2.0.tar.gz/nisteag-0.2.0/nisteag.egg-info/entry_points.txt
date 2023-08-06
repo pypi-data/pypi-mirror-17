@@ -1,0 +1,3 @@
+[console_scripts]
+check-entropy = nisteag.scripts.checkers:check_entropy
+
