@@ -1,0 +1,3 @@
+[console_scripts]
+zerolog = zerolog.commands.main:main
+
