@@ -1,0 +1,14 @@
+
+[development]
+pytest
+pytest-cov
+pytest-xdist
+
+[docs]
+docutils
+Pygments
+
+[test]
+pytest
+pytest-cov
+codecov
