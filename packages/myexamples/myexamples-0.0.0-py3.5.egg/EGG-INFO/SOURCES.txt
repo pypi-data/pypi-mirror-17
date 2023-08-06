@@ -1,0 +1,9 @@
+setup.cfg
+setup.py
+myexamples/__init__.py
+myexamples/template_handler.py
+myexamples.egg-info/PKG-INFO
+myexamples.egg-info/SOURCES.txt
+myexamples.egg-info/dependency_links.txt
+myexamples.egg-info/top_level.txt
+myexamples/templates/simple.tmpl
