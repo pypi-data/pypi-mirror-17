@@ -1,0 +1,19 @@
+Metadata-Version: 2.0
+Name: Coliform
+Version: 0.2.1
+Summary: Coliform UPRM Project Library, Written for Raspberry Pi
+Home-page: https://github.com/Regendor/coliform-project
+Author: Osvaldo E Duran
+Author-email: osvaldo.duran@upr.edu
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Requires-Dist: Pillow
+Requires-Dist: matplotlib
+Requires-Dist: pyserial
+
+UNKNOWN
+
+
