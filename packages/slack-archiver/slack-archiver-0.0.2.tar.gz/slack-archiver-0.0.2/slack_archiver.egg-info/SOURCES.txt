@@ -1,0 +1,14 @@
+MANIFEST.in
+setup.cfg
+setup.py
+versioneer.py
+slack_archiver/__init__.py
+slack_archiver/__main__.py
+slack_archiver/_version.py
+slack_archiver/archiver.py
+slack_archiver.egg-info/PKG-INFO
+slack_archiver.egg-info/SOURCES.txt
+slack_archiver.egg-info/dependency_links.txt
+slack_archiver.egg-info/entry_points.txt
+slack_archiver.egg-info/requires.txt
+slack_archiver.egg-info/top_level.txt
