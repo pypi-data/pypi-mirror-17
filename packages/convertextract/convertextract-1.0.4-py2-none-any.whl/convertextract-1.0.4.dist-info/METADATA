@@ -1,0 +1,36 @@
+Metadata-Version: 2.0
+Name: convertextract
+Version: 1.0.4
+Summary: Extract and convert non-Unicode text into Unicode. Based on Textract library by Dean Malmgren
+Home-page: https://github.com/roedoejet/convertextract
+Author: Aidan Pine
+Author-email: aidanpine@shaw.ca
+License: MIT
+Download-URL: https://github.com/roedoejet/convertextract/archives/master
+Platform: UNKNOWN
+Requires-Dist: EbookLib
+Requires-Dist: SpeechRecognition (>=3.1.0)
+Requires-Dist: argcomplete
+Requires-Dist: beautifulsoup4
+Requires-Dist: chardet
+Requires-Dist: openpyxl
+Requires-Dist: pdfminer (==20140328)
+Requires-Dist: python-docx
+Requires-Dist: python-pptx (>=0.5.1)
+Requires-Dist: xlrd
+
+.. NOTES FOR CREATING A RELEASE:
+..
+..   * bump the version number in convertextract.__init__.py
+..   * update docs/changelog.rst
+..   * git push
+..   * python setup.py sdist upload
+..   * create a release https://github.com/deanmalmgren/scrubadub/releases
+
+convertextract
+========
+
+Extract and convert non-Unicode text into Unicode. Based on Textract library by Dean Malmgren. https://github.com/deanmalmgren/textract
+
+`Full documentation <http://convertextract.readthedocs.org>`__.
+
