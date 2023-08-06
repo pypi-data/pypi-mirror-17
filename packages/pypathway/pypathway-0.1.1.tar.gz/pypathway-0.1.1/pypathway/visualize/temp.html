@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tab preview</title>
+    <script type="text/javascript" src="http://cdn.bootcss.com/jquery/3.1.0/jquery.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-3.0.0.js"></script>
+    <script type="text/javascript" src="http://cdn.bootcss.com/qtip2/3.0.3/basic/jquery.qtip.min.js"></script>
+    <script src="http://cdn.bootcss.com/echarts/3.2.2/echarts.common.js"></script>
+    <link href="http://cdn.bootcss.com/qtip2/3.0.3/basic/jquery.qtip.min.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+</head>
+<body>
+    <script>
+        window.onload = function(){var myChart = echarts.init(document.getElementById("percentage"));
+ var option = {"series": [{"type": "pie", "data": [34, 22], "name": "%"}], "yAxis": {}, "legend": {"y": "top", "x": "center", "data": ["%"], "orient": "horizontal"}, "xAxis": {}, "title": {"text": "percentage", "subtext": null}};
+ myChart.setOption(option);
+    }
+    </script>
+    <div id="content" class="content" style="width: 400px; height: 300px">
+        <ul id="myTab" class="nav nav-tabs nav-justified">
+            <li><a href="#percentage" data-toggle="tab">percentage</a></li><li><a href="#bilibili" data-toggle="tab">bilibili</a></li>
+        </ul>
+        <div id="hi" class="tab-content">
+            <div class="tab-pane fade in action" style="width: 400px; height: 300px; padding-top: 20px" id="percentage"></div><div class="tab-pane fade" style="width: 400px; height: 300px; padding-top: 20px" id="bilibili"><img class="img-responsive" src="http://static.hdslb.com/mstation/active/bdf/img/header-bg-3.jpg"></div>
+        </div>
+    </div>
+</body>
+</html>
