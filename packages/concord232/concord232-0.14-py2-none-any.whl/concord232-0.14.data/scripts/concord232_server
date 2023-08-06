@@ -1,0 +1,5 @@
+#!python
+
+from concord232 import main
+
+main.main()
