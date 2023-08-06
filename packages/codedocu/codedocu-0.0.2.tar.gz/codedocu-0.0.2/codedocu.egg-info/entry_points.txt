@@ -1,0 +1,3 @@
+[console_scripts]
+codedoc = codedocu.__init__:first
+
