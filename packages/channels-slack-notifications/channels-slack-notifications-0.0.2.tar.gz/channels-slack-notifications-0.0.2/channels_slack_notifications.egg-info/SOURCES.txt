@@ -1,0 +1,15 @@
+README.rst
+setup.py
+channels_slack_notifications/__init__.py
+channels_slack_notifications/backends.py
+channels_slack_notifications/conf.py
+channels_slack_notifications/consumers.py
+channels_slack_notifications/routing.py
+channels_slack_notifications.egg-info/PKG-INFO
+channels_slack_notifications.egg-info/SOURCES.txt
+channels_slack_notifications.egg-info/dependency_links.txt
+channels_slack_notifications.egg-info/not-zip-safe
+channels_slack_notifications.egg-info/top_level.txt
+channels_slack_notifications/management/__init__.py
+channels_slack_notifications/management/commands/__init__.py
+channels_slack_notifications/management/commands/test_slack_notification.py

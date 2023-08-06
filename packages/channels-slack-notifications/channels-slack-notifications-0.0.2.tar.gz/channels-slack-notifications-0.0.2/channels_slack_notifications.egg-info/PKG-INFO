@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: channels-slack-notifications
+Version: 0.0.2
+Summary: Send notification to slack using channels
+Home-page: https://github.com/AvocadoCoop/channels-slack-notifications
+Author: Avocado Co-op <dev@avocadoproject.ca>
+Author-email: dev@avocadoproject.ca
+License: MIT License
+Description: UNKNOWN
+Keywords: django,channels,slack
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Framework :: Django
+Classifier: Environment :: Web Environment
