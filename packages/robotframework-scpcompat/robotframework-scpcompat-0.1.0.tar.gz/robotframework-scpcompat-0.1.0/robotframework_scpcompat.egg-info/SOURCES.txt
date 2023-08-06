@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+SCPLibrary/__init__.py
+SCPLibrary/library.py
+robotframework_scpcompat.egg-info/PKG-INFO
+robotframework_scpcompat.egg-info/SOURCES.txt
+robotframework_scpcompat.egg-info/dependency_links.txt
+robotframework_scpcompat.egg-info/requires.txt
+robotframework_scpcompat.egg-info/top_level.txt
+robotframework_scpcompat.egg-info/zip-safe
