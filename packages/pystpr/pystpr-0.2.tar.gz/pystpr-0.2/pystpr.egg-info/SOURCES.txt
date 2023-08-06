@@ -1,0 +1,12 @@
+setup.cfg
+setup.py
+pystpr/__init__.py
+pystpr.egg-info/PKG-INFO
+pystpr.egg-info/SOURCES.txt
+pystpr.egg-info/dependency_links.txt
+pystpr.egg-info/requires.txt
+pystpr.egg-info/top_level.txt
+pystpr/probabilities/__init__.py
+pystpr/probabilities/distributions.py
+pystpr/statistics/__init__.py
+pystpr/statistics/effect_sizes.py
