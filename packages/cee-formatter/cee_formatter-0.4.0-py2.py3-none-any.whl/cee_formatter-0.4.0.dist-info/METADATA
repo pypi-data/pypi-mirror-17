@@ -1,0 +1,21 @@
+Metadata-Version: 2.0
+Name: cee-formatter
+Version: 0.4.0
+Summary: CEE logging module formatter
+Home-page: https://github.com/urbaniak/cee-formatter
+Author: Krzysztof Urbaniak
+Author-email: krzysztof@urbaniak.co
+License: BSD
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Requires-Dist: iso8601 (==0.1.11)
+Requires-Dist: pyflakes (==1.2.3)
+Requires-Dist: pytest (==3.0.1)
+Requires-Dist: pytest-flake8 (==0.6)
+Requires-Dist: pytest-isort (==0.1.0)
+
+False
+
+
