@@ -1,0 +1,13 @@
+MANIFEST.in
+README.rst
+setup.py
+log_to_kafka/__init__.py
+log_to_kafka/default_settings.py
+log_to_kafka/logger.py
+log_to_kafka/settings_wrapper.py
+log_to_kafka.egg-info/PKG-INFO
+log_to_kafka.egg-info/SOURCES.txt
+log_to_kafka.egg-info/dependency_links.txt
+log_to_kafka.egg-info/requires.txt
+log_to_kafka.egg-info/top_level.txt
+log_to_kafka.egg-info/zip-safe
