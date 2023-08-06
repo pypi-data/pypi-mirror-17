@@ -1,0 +1,44 @@
+Metadata-Version: 1.1
+Name: leonardo-store-faq
+Version: 0.0.6
+Summary: FAQ for leonardo store
+Home-page: https://github.com/leonardo-modules/leonardo-store-faq
+Author: Daniel Kuty
+Author-email: daniel.kuty29@gmail.com
+License: UNKNOWN
+Description: ==========================
+        Leonardo leonardo-store-faq
+        ==========================
+        
+        FAQ for leonardo store
+        
+        .. contents::
+            :local:
+        
+        Installation
+        ------------
+        
+        .. code-block:: bash
+        
+            pip install leonardo-store-faq
+        
+        Read More
+        =========
+        
+        * https://github.com/django-leonardo/django-leonardo
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
