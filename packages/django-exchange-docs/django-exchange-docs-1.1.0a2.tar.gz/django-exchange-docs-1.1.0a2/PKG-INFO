@@ -1,0 +1,58 @@
+Metadata-Version: 1.1
+Name: django-exchange-docs
+Version: 1.1.0a2
+Summary: A Django wrapper for Boundless Exchange Documentation.
+Home-page: https://github.com/boundlessgeo/connect-learning
+Author: Boundless Spatial
+Author-email: contact@boundlessgeo.com
+License: GPLv2
+Download-URL: https://github.com/boundlessgeo/connect-learning
+Description: Steps to build documents
+        ========================
+        
+        1. Create virtual environment (venv)
+        
+           `demo:boundless exchange$ virtualenv venv`
+        
+        2. Activate virtual environment
+        
+           `demo:boundless exchange$ source venv/bin/activate`
+        
+        3. Install Sphinx
+        
+           `(venv) demo:boundless exchange$ pip install -r requirements.txt`
+        
+        4. Add submodule (theme)
+        
+           `git submodule init`
+           `git submodule update`
+        
+        5. build html
+        
+           `make clean html`
+        
+           Output files will be located in `build/html`
+        
+        6. build wheel package for exchange
+        
+           `make clean wheel`
+        
+           Output file will be located in `build\`
+        
+        7. update gh-pages
+        
+           `make clean gh-pages`
+        
+           Updated docs will be located [here] (https://boundlessgeo.github.io/exchange-documentation/).
+        
+Platform: UNKNOWN
+Classifier: Topic :: Documentation :: Sphinx
+Classifier: Topic :: Software Development :: Documentation
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: System Administrators
+Classifier: Environment :: Web Environment
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Development Status :: 3 - Alpha
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Framework :: Django :: 1.8
