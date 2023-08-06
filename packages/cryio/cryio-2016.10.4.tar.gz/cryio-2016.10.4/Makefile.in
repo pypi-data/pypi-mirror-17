@@ -1,0 +1,20 @@
+PY2INC=/usr/include/python2.7
+PY3INC=/usr/include/python3.5m
+CC=gcc
+CFLAGS=-shared -fPIC -march=native -O2 -Wall
+INCLUDE=src
+
+all: cryio cryio3
+
+cryio:
+	$(CC) $(CFLAGS) -I $(PY2INC) -I $(INCLUDE) -o _cryio.so \
+		src/cryiomodule.c src/byteoffset.c src/ccp4.c src/agi_bitfield.c src/mar345.c \
+
+
+cryio3:
+	$(CC) $(CFLAGS) -I $(PY3INC) -I $(INCLUDE) -o _cryio3.so \
+		src/cryiomodule.c src/byteoffset.c src/ccp4.c src/agi_bitfield.c src/mar345.c \
+
+
+clean:
+	rm -f _cryio.so _cryio3.so cbfio.so cbfio3.so
