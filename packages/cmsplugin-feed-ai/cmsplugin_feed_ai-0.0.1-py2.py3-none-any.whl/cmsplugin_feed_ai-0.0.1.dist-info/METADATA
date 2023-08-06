@@ -1,0 +1,17 @@
+Metadata-Version: 2.0
+Name: cmsplugin-feed-ai
+Version: 0.0.1
+Summary: Social media feed plugin for Django CMS
+Home-page: https://github.com/andersinno/cmsplugin-feed-ai
+Author: Anders Innovations
+Author-email: info@anders.fi
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: django-cms (>=3.2,<3.4)
+Requires-Dist: facebook-sdk (>=2.0,<3.0)
+Requires-Dist: python-dateutil (>=2.1)
+Requires-Dist: twython (>=3.4,<4.0)
+
+UNKNOWN
+
+

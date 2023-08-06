@@ -1,0 +1,6 @@
+{% for item in feed %}
+    {{ item.text_content }}
+    {{ item.created_at }}
+{% empty %}
+    Social media feed not available.
+{% endfor %}
