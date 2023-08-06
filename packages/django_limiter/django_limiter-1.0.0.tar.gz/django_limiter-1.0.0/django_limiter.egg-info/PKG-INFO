@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: django-limiter
+Version: 1.0.0
+Summary: Signed Cookie based limiting RPS module for Django
+Home-page: https://github.com/deliro/django_limiter
+Author: Roman Kitaev
+Author-email: t4k.kitaetz@gmail.com
+License: BSD
+Description: UNKNOWN
+Keywords: django rps limit
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.8
+Classifier: Framework :: Django :: 1.9
+Classifier: Framework :: Django :: 1.10
