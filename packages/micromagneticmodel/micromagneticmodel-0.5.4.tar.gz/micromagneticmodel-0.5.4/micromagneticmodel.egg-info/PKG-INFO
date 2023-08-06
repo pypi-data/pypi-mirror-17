@@ -1,0 +1,31 @@
+Metadata-Version: 1.1
+Name: micromagneticmodel
+Version: 0.5.4
+Summary: A Python-based micromagnetic model.
+Home-page: https://github.com/joommf/micromagneticmodel
+Author: Computational Modelling Group
+Author-email: fangohr@soton.ac.uk
+License: UNKNOWN
+Download-URL: https://github.com/joommf/micromagneticmodel/tarball/0.5.4
+Description: .. image:: https://travis-ci.org/joommf/micromagneticmodel.svg?branch=master
+           :target: https://travis-ci.org/joommf/micromagneticmodel
+           :align: right
+        
+        .. image:: https://codecov.io/gh/joommf/micromagneticmodel/branch/master/graph/badge.svg
+           :target: https://codecov.io/gh/joommf/micromagneticmodel
+           :align: right
+        
+        .. image:: https://readthedocs.org/projects/micromagneticmodel/badge/?version=latest
+          :target: http://micromagneticmodel.readthedocs.io/en/latest/?badge=latest
+          :alt: Documentation Status
+        
+        .. image:: https://badge.fury.io/py/micromagneticmodel.svg
+           :target: https://badge.fury.io/py/micromagneticmodel
+        
+        A Python-based micromagnetic model.
+        
+        Authors: Marijan Beg, Ryan Pepper, Hans Fangohr
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3
