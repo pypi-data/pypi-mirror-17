@@ -1,0 +1,3 @@
+[console_scripts]
+cd-doc = codedocu.cli.__init__:hello
+
