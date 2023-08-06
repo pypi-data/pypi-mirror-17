@@ -1,0 +1,26 @@
+Metadata-Version: 1.1
+Name: nimp-cli
+Version: 0.0.11
+Summary: Multipurpose build tool
+Home-page: https://github.com/dontnod/nimp
+Author: Dontnod Entertainment
+Author-email: root@dont-nod.com
+License: MIT
+Download-URL: https://github.com/dontnod/nimp/tarball/0.0.11
+Description: Nimp is a cross-platform tool that helps maintain, compile, cook, and ship game projects. It currently supports Unreal Engine.
+Keywords: build compile unrealengine
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development :: Build Tools
