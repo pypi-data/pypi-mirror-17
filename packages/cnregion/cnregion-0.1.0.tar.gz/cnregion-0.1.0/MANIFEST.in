@@ -1,0 +1,7 @@
+include README.md
+include cnregion/data/deprecated_division.json
+include cnregion/data/deprecated_jd_division_mappings.json
+include cnregion/data/deprecated_jd_division.json
+include cnregion/data/division.json
+include cnregion/data/jd_division_mappings.json
+include cnregion/data/jd_division.json
