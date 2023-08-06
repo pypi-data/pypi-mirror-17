@@ -1,0 +1,12 @@
+README.rst
+setup.py
+django_sql.egg-info/PKG-INFO
+django_sql.egg-info/SOURCES.txt
+django_sql.egg-info/dependency_links.txt
+django_sql.egg-info/requires.txt
+django_sql.egg-info/top_level.txt
+sql/__init__.py
+sql/admin.py
+sql/sqlapp.py
+sql/tests/__init__.py
+sql/tests/test_sqlapp.py

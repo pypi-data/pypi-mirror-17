@@ -1,0 +1,67 @@
+Metadata-Version: 1.1
+Name: django-sql
+Version: 1.0
+Summary: A simple app for executing SQL queries in Django admin panel
+Home-page: https://github.com/luminousmen/django-sql
+Author: Kirill Bobrov
+Author-email: miaplanedo@gmail.com
+License: MIT License
+Description: |Build Status| |Licence| |Coverage Status|
+        
+        Django-SQL
+        ==========
+        
+        A simple app for executing SQL queries in Django admin panel.
+        
+        *! WARNINIG !*
+        
+        *Do not install this app if you afraid of consequences of giving access
+        to database from admin panel.*
+        
+        Requirements
+        ''''''''''''
+        
+        -  Python3
+        -  Django 1.9
+        
+        Installation
+        ''''''''''''
+        
+        ::
+        
+                pip install git+https://github.com/luminousmen/django-sql.git
+        
+        Add to your ``INSTALLED_APPS`` in ``settings.py``:
+        
+        ::
+        
+                INSTALLED_APPS = [
+                  ...
+                  'sql',
+                ]
+        
+        Add to your ``urls.py``:
+        
+        ::
+        
+                url(r'^admin/sql/(?:sql/)?$', execute_sql, name='sql'),
+        
+        .. |Build Status| image:: https://travis-ci.org/luminousmen/django-sql.svg?branch=master
+           :target: https://travis-ci.org/luminousmen/django-sql
+        .. |Licence| image:: https://img.shields.io/github/license/mashape/apistatus.svg
+           :target: https://github.com/luminousmen/django-sql/blob/master/LICENCE
+        .. |Coverage Status| image:: https://coveralls.io/repos/github/luminousmen/django-sql/badge.svg?branch=master
+           :target: https://coveralls.io/github/luminousmen/django-sql?branch=master
+        
+Platform: UNKNOWN
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
