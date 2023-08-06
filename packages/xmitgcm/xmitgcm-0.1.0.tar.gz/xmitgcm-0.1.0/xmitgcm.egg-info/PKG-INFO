@@ -1,0 +1,23 @@
+Metadata-Version: 1.1
+Name: xmitgcm
+Version: 0.1.0
+Summary: Read MITgcm mds binary files into xarray
+Home-page: https://github.com/xmitgcm/xmitgcm
+Author: Ryan Abernathey
+Author-email: rpa@ldeo.columbia.edu
+License: Apache
+Description: To be written.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Topic :: Scientific/Engineering
