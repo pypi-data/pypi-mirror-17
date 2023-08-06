@@ -1,0 +1,15 @@
+MANIFEST.in
+README.rst
+requirements.txt
+setup.py
+test-requirements.txt
+tox.ini
+stupidjoke/__init__.py
+stupidjoke/joke.py
+stupidjoke.egg-info/PKG-INFO
+stupidjoke.egg-info/SOURCES.txt
+stupidjoke.egg-info/dependency_links.txt
+stupidjoke.egg-info/entry_points.txt
+stupidjoke.egg-info/not-zip-safe
+stupidjoke.egg-info/requires.txt
+stupidjoke.egg-info/top_level.txt
