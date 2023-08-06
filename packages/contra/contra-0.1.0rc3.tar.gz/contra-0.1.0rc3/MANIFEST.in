@@ -1,0 +1,3 @@
+include versioneer.py
+include aux/_version.py
+include inc/*.hpp
