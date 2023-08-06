@@ -1,0 +1,7 @@
+Django>=1.7
+mysociety-django-popolo>=0.0.6
+requests
+
+[test]
+coverage
+mock
