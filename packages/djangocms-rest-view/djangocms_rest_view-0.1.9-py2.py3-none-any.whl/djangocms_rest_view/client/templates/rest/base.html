@@ -1,0 +1,46 @@
+{% load static i18n %}
+
+<!DOCTYPE html>
+<html ng-app="cmsrest">
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %} - RING</title>
+
+    {% block js %}
+      <script src="{% static 'libs/angular/angular.js' %}"></script>
+      <script src="{% static 'libs/jquery/dist/jquery.js' %}"></script>
+      <script src="{% static 'libs/angular-route/angular-route.js' %}"></script>
+      <script src="{% static 'libs/ng-nephila/ng-nephila.js' %}"></script>
+
+      <script src="{% static 'djangocms_rest/js/app.js' %}"></script>
+      <script src="{% static 'djangocms_rest/js/controllers.js' %}"></script>
+      <script src="{% static 'djangocms_rest/js/filters.js' %}"></script>
+      <script src="{% static 'djangocms_rest/js/rest-client.js' %}"></script>
+
+    {% endblock %}
+
+    {% block head  %}{% endblock head %}
+</head>
+<body ng-controller="ClientCtrl">
+    {% csrf_token %}
+    {% verbatim %}
+    <section class="grid">
+
+      <ul>
+        <li ng-repeat="item in menu" class="menu">
+          <a href="#/pages/{{item.id}}">{{ item.title }}</a>
+        </li>
+      </ul>
+
+    </section>
+
+    {% endverbatim %}
+    <div ng-view></div>
+    {% block external_scripts %}
+    {% endblock %}
+    {% block script %}
+
+    {% endblock %}
+
+</body>
+</html>
