@@ -1,0 +1,15 @@
+cli/__init__.py,sha256=ueuYAe28-RsP6PWB5888WJP48txWRzpCyjYZtN84kRw,827
+cli/github_migration_cli.py,sha256=DtOLFOB1TrzENemmVaFw50Qk-U4RkOJQxiUbgu2Qqng,3514
+cli/nforge_parser_cli.py,sha256=pXlL96RyuFCdY1KJncSWl204aLqhNtHRymM5oqDsRUk,1333
+migration/__init__.py,sha256=lkNwwTqTtMwu3g7pgJctIonyiNmD4XDQ3nHuUH-HMHw,945
+migration/exception.py,sha256=Dd0x5IgJZ8mVoR9gdQ6YP5Myj0CvKlgY_QGTEHFpoRA,593
+migration/github.py,sha256=bC41IKHegcM9_KjNfTFbNftApSrPz9TO_4G8-_sGYAQ,10600
+migration/helper.py,sha256=axCX68_acC4cuYKdcMzd2HigQnHR73JGwjDIfpWzJJ0,1776
+migration/nforge.py,sha256=O_JqF_VLCBIKohwrC61OXYUvQtxAfSe-sTlPcj1dD-0,18677
+nforge_migration-1.0.1a1.dist-info/DESCRIPTION.rst,sha256=OCTuuN6LcWulhHS3d5rfjdsQtW22n7HENFRh6jC6ego,10
+nforge_migration-1.0.1a1.dist-info/METADATA,sha256=w2pqSjtMz5XUY1k_8s8tQ6_36JYGKLn9MsRnAj6guRI,930
+nforge_migration-1.0.1a1.dist-info/RECORD,,
+nforge_migration-1.0.1a1.dist-info/WHEEL,sha256=rNo05PbNqwnXiIHFsYm0m22u4Zm6YJtugFG2THx4w3g,92
+nforge_migration-1.0.1a1.dist-info/entry_points.txt,sha256=zR7EXCnkI3RgtP__-sCmPh4TzDM3yy6s3rB1nlFZPds,141
+nforge_migration-1.0.1a1.dist-info/metadata.json,sha256=eMhtyAviqpFpH70F_3VGk3hKBJys8QtgMC_43RjQ6Uc,1256
+nforge_migration-1.0.1a1.dist-info/top_level.txt,sha256=c5LAE0NTqtCnA4gxLEismWRIQ7EtybyGpgIFD9UsvXw,22
