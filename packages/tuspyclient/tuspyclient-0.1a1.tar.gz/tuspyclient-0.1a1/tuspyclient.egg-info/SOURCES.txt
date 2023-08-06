@@ -1,0 +1,11 @@
+setup.py
+tusclient/__init__.py
+tusclient/client.py
+tusclient/exceptions.py
+tusclient/request.py
+tusclient/uploader.py
+tuspyclient.egg-info/PKG-INFO
+tuspyclient.egg-info/SOURCES.txt
+tuspyclient.egg-info/dependency_links.txt
+tuspyclient.egg-info/requires.txt
+tuspyclient.egg-info/top_level.txt
