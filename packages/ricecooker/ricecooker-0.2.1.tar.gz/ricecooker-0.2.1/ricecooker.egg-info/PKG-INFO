@@ -1,0 +1,29 @@
+Metadata-Version: 1.1
+Name: ricecooker
+Version: 0.2.1
+Summary: API for adding content to content curation server
+Home-page: https://github.com/learningequality/ricecooker
+Author: Learning Equality
+Author-email: dev@learningequality.org
+License: MIT license
+Description: # klorimin
+        The library for uploading channels to Kolibri!
+        
+        
+        =======
+        History
+        =======
+        
+        0.1.0 (2016-09-30)
+        ------------------
+        
+        * First release on PyPI.
+        
+Keywords: ricecooker
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
