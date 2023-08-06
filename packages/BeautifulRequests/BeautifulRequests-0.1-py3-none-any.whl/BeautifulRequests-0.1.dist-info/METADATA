@@ -1,0 +1,17 @@
+Metadata-Version: 2.0
+Name: BeautifulRequests
+Version: 0.1
+Summary: Combine Beautiful Soup 4 and Requests for one super library
+Home-page: https://github.com/shantnu/BeautifulRequests
+Author: Shantnu
+Author-email: UNKNOWN
+License: GPL
+Download-URL: https://github.com/shantnu/BeautifulRequests/archive/0.1.zip
+Platform: UNKNOWN
+Requires-Dist: beautifulsoup4
+Requires-Dist: requests
+Requires-Dist: vcrpy
+
+UNKNOWN
+
+
