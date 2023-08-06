@@ -1,0 +1,9 @@
+Pillow
+
+[dev]
+check-manifest
+
+[test]
+coverage
+pytest-cov
+coveralls
