@@ -1,0 +1,10 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+browserinfo/__init__.py
+browserinfo/browserinfo.py
+browserinfo.egg-info/PKG-INFO
+browserinfo.egg-info/SOURCES.txt
+browserinfo.egg-info/dependency_links.txt
+browserinfo.egg-info/top_level.txt

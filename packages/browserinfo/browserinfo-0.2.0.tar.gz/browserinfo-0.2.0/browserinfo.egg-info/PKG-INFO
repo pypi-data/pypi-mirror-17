@@ -1,0 +1,77 @@
+Metadata-Version: 1.1
+Name: browserinfo
+Version: 0.2.0
+Summary: API wrapper for browser-info.net - retrieve UA strings
+Home-page: https://github.com/stylesuxx/browserinfo
+Author: Chris Landa
+Author-email: stylesuxx@gmail.com
+License: MIT
+Download-URL: https://github.com/stylesuxx/browserinfo/tarball/0.2.0
+Description: Browserinfo
+        ===========
+        
+            A lightwight python wrapper for
+            `browser-info.net <http://www.browser-info.net/>`__ to retrieve UA
+            strings
+        
+        |Build Status| |Downloads| |Documentation Status|
+        
+        What does browserinfo do?
+        -------------------------
+        
+        It allows you to retrieve user agent strings, sorted by popularity or
+        most recent.
+        
+        Usage example
+        -------------
+        
+        .. code:: python
+        
+            >>> import browserinfo
+            >>> browserinfo.recent(1)
+            ['Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.85 Safari/537.36\n']
+            >>> browserinfo.popular(1)
+            ['Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; FSL 7.0.6.01001)']
+        
+        Installation
+        ------------
+        
+        Use pip:
+        
+        ::
+        
+            pip install -U browserinfo
+        
+        Building doc
+        ------------
+        
+        From the root of the directory run:
+        
+        ::
+        
+            sphinx-apidoc -o docs/ browserinfo -f && cd docs && make html && cd ..
+        
+        Building Dist Package
+        ---------------------
+        
+        To build a distributable package run:
+        
+        ::
+        
+            python setup.py sdist
+        
+        .. |Build Status| image:: https://travis-ci.org/stylesuxx/browserinfo.svg?branch=master
+           :target: https://travis-ci.org/stylesuxx/browserinfo
+        .. |Downloads| image:: https://img.shields.io/pypi/dm/browserinfo.svg
+           :target: https://img.shields.io/pypi/dm/browserinfo.svg
+        .. |Documentation Status| image:: https://readthedocs.org/projects/browserinfo/badge/?version=latest
+           :target: http://browserinfo.readthedocs.io/en/latest/?badge=latest
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Internet :: WWW/HTTP
