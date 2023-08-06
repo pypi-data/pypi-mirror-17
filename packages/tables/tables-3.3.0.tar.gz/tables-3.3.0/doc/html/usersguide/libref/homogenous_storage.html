@@ -1,0 +1,215 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Homogenous storage classes &mdash; PyTables 3.3.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/toggle_sections.js"></script>
+    <script type="text/javascript" src="../../_static/toggle_sidebar.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="top" title="PyTables 3.3.0 documentation" href="../../index.html" />
+    <link rel="up" title="Library Reference" href="../libref.html" />
+    <link rel="next" title="Link classes" href="link_classes.html" />
+    <link rel="prev" title="Structured storage classes" href="structured_storage.html" /> 
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="link_classes.html" title="Link classes"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="structured_storage.html" title="Structured storage classes"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">PyTables 3.3.0 documentation</a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >PyTables User&#8217;s Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../libref.html" accesskey="U">Library Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="homogenous-storage-classes">
+<h1>Homogenous storage classes<a class="headerlink" href="#homogenous-storage-classes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-array-class">
+<span id="arrayclassdescr"></span><h2>The Array class<a class="headerlink" href="#the-array-class" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="array-instance-variables">
+<h3>Array instance variables<a class="headerlink" href="#array-instance-variables" title="Permalink to this headline">¶</a></h3>
+<dl class="attribute">
+<dt id="tables.Array.atom">
+<code class="descclassname">Array.</code><code class="descname">atom</code><a class="headerlink" href="#tables.Array.atom" title="Permalink to this definition">¶</a></dt>
+<dd><p>An Atom (see <a class="reference internal" href="declarative_classes.html#atomclassdescr"><span>The Atom class and its descendants</span></a>) instance representing the <em>type</em>
+and <em>shape</em> of the atomic objects to be saved.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tables.Array.nrow">
+<code class="descclassname">Array.</code><code class="descname">nrow</code><a class="headerlink" href="#tables.Array.nrow" title="Permalink to this definition">¶</a></dt>
+<dd><p>On iterators, this is the index of the current row.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="array-methods">
+<h3>Array methods<a class="headerlink" href="#array-methods" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="array-special-methods">
+<h3>Array special methods<a class="headerlink" href="#array-special-methods" title="Permalink to this headline">¶</a></h3>
+<p>The following methods automatically trigger actions when an <code class="xref py py-class docutils literal"><span class="pre">Array</span></code>
+instance is accessed in a special way (e.g. <code class="docutils literal"><span class="pre">array[2:3,...,::2]</span></code> will be
+equivalent to a call to
+<code class="docutils literal"><span class="pre">array.__getitem__((slice(2,</span> <span class="pre">3,</span> <span class="pre">None),</span> <span class="pre">Ellipsis,</span> <span class="pre">slice(None,</span> <span class="pre">None,</span> <span class="pre">2))))</span></code>.</p>
+</div>
+</div>
+<div class="section" id="the-carray-class">
+<span id="carrayclassdescr"></span><h2>The CArray class<a class="headerlink" href="#the-carray-class" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="the-earray-class">
+<span id="earrayclassdescr"></span><h2>The EArray class<a class="headerlink" href="#the-earray-class" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="earray-methods">
+<span id="earraymethodsdescr"></span><h3>EArray methods<a class="headerlink" href="#earray-methods" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="the-vlarray-class">
+<span id="vlarrayclassdescr"></span><h2>The VLArray class<a class="headerlink" href="#the-vlarray-class" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="vlarray-properties">
+<h3>VLArray properties<a class="headerlink" href="#vlarray-properties" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="vlarray-methods">
+<h3>VLArray methods<a class="headerlink" href="#vlarray-methods" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="vlarray-special-methods">
+<h3>VLArray special methods<a class="headerlink" href="#vlarray-special-methods" title="Permalink to this headline">¶</a></h3>
+<p>The following methods automatically trigger actions when a <code class="xref py py-class docutils literal"><span class="pre">VLArray</span></code>
+instance is accessed in a special way (e.g., vlarray[2:5] will be equivalent
+to a call to vlarray.__getitem__(slice(2, 5, None)).</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html">
+          <img class="logo" src="../../_static/logo-pytables-small.png" alt="Logo"/>
+        </a></p>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Homogenous storage classes</a><ul>
+<li><a class="reference internal" href="#the-array-class">The Array class</a><ul>
+<li><a class="reference internal" href="#array-instance-variables">Array instance variables</a></li>
+<li><a class="reference internal" href="#array-methods">Array methods</a></li>
+<li><a class="reference internal" href="#array-special-methods">Array special methods</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-carray-class">The CArray class</a></li>
+<li><a class="reference internal" href="#the-earray-class">The EArray class</a><ul>
+<li><a class="reference internal" href="#earray-methods">EArray methods</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-vlarray-class">The VLArray class</a><ul>
+<li><a class="reference internal" href="#vlarray-properties">VLArray properties</a></li>
+<li><a class="reference internal" href="#vlarray-methods">VLArray methods</a></li>
+<li><a class="reference internal" href="#vlarray-special-methods">VLArray special methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="structured_storage.html"
+                        title="previous chapter">Structured storage classes</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="link_classes.html"
+                        title="next chapter">Link classes</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/usersguide/libref/homogenous_storage.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="link_classes.html" title="Link classes"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="structured_storage.html" title="Structured storage classes"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">PyTables 3.3.0 documentation</a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >PyTables User&#8217;s Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../libref.html" >Library Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2014, PyTables maintainers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+    <!-- cloud_sptheme 1.3 -->
+  </body>
+</html>

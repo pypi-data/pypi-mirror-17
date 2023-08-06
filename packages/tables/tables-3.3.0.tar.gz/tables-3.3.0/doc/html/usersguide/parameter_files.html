@@ -1,0 +1,213 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>PyTables parameter files &mdash; PyTables 3.3.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/toggle_sections.js"></script>
+    <script type="text/javascript" src="../_static/toggle_sidebar.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="top" title="PyTables 3.3.0 documentation" href="../index.html" />
+    <link rel="up" title="PyTables User’s Guide" href="index.html" />
+    <link rel="next" title="Utilities" href="utilities.html" />
+    <link rel="prev" title="Condition Syntax" href="condition_syntax.html" /> 
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="utilities.html" title="Utilities"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="condition_syntax.html" title="Condition Syntax"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">PyTables 3.3.0 documentation</a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">PyTables User&#8217;s Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pytables-parameter-files">
+<span id="parameter-files"></span><h1>PyTables parameter files<a class="headerlink" href="#pytables-parameter-files" title="Permalink to this headline">¶</a></h1>
+<p>PyTables issues warnings when certain limits are exceeded.  Those limits are
+not intrinsic limitations of the underlying software, but rather are
+proactive measures to avoid large resource consumptions.  The default limits
+should be enough for most of cases, and users should try to respect them.
+However, in some situations, it can be convenient to increase (or decrease)
+these limits.</p>
+<p>Also, and in order to get maximum performance, PyTables implements a series
+of sophisticated features, like I/O buffers or different kind of caches (for
+nodes, chunks and other internal metadata).  These features comes with a
+default set of parameters that ensures a decent performance in most of
+situations.  But, as there is always a need for every case, it is handy to
+have the possibility to fine-tune some of these parameters.</p>
+<p>Because of these reasons, PyTables implements a couple of ways to change the
+values of these parameters.  All the <em>tunable</em> parameters live in the
+<code class="file docutils literal"><span class="pre">tables/parameters.py</span></code>.  The user can choose to change them in the
+parameter files themselves for a global and persistent change.  Moreover, if
+he wants a finer control, he can pass any of these parameters directly to the
+<code class="xref py py-func docutils literal"><span class="pre">tables.open_file()</span></code> function, and the new parameters will only take
+effect in the corresponding file (the defaults will continue to be in the
+parameter files).</p>
+<p>A description of all of the tunable parameters follows.  As the defaults
+stated here may change from release to release, please check with your actual
+parameter files so as to know your actual default values.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>Changing the next parameters may have a very bad effect in the resource
+consumption and performance of your PyTables scripts.</p>
+<p class="last">Please be careful when touching these!</p>
+</div>
+<div class="section" id="tunable-parameters-in-parameters-py">
+<h2>Tunable parameters in parameters.py<a class="headerlink" href="#tunable-parameters-in-parameters-py" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="recommended-maximum-values">
+<h3>Recommended maximum values<a class="headerlink" href="#recommended-maximum-values" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="cache-limits">
+<h3>Cache limits<a class="headerlink" href="#cache-limits" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="parameters-for-the-different-internal-caches">
+<h3>Parameters for the different internal caches<a class="headerlink" href="#parameters-for-the-different-internal-caches" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="parameters-for-general-cache-behaviour">
+<h3>Parameters for general cache behaviour<a class="headerlink" href="#parameters-for-general-cache-behaviour" title="Permalink to this headline">¶</a></h3>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The next parameters will not take any effect if passed to the open_file()
+function, so they can only be changed in a <em>global</em> way.  You can change
+them in the file, but this is strongly discouraged unless you know well
+what you are doing.</p>
+</div>
+</div>
+<div class="section" id="parameters-for-the-i-o-buffer-in-leaf-objects">
+<h3>Parameters for the I/O buffer in Leaf objects<a class="headerlink" href="#parameters-for-the-i-o-buffer-in-leaf-objects" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="miscellaneous">
+<h3>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="hdf5-driver-management">
+<h3>HDF5 driver management<a class="headerlink" href="#hdf5-driver-management" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html">
+          <img class="logo" src="../_static/logo-pytables-small.png" alt="Logo"/>
+        </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">PyTables parameter files</a><ul>
+<li><a class="reference internal" href="#tunable-parameters-in-parameters-py">Tunable parameters in parameters.py</a><ul>
+<li><a class="reference internal" href="#recommended-maximum-values">Recommended maximum values</a></li>
+<li><a class="reference internal" href="#cache-limits">Cache limits</a></li>
+<li><a class="reference internal" href="#parameters-for-the-different-internal-caches">Parameters for the different internal caches</a></li>
+<li><a class="reference internal" href="#parameters-for-general-cache-behaviour">Parameters for general cache behaviour</a></li>
+<li><a class="reference internal" href="#parameters-for-the-i-o-buffer-in-leaf-objects">Parameters for the I/O buffer in Leaf objects</a></li>
+<li><a class="reference internal" href="#miscellaneous">Miscellaneous</a></li>
+<li><a class="reference internal" href="#hdf5-driver-management">HDF5 driver management</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="condition_syntax.html"
+                        title="previous chapter">Condition Syntax</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="utilities.html"
+                        title="next chapter">Utilities</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/usersguide/parameter_files.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="utilities.html" title="Utilities"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="condition_syntax.html" title="Condition Syntax"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">PyTables 3.3.0 documentation</a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >PyTables User&#8217;s Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2014, PyTables maintainers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+    <!-- cloud_sptheme 1.3 -->
+  </body>
+</html>

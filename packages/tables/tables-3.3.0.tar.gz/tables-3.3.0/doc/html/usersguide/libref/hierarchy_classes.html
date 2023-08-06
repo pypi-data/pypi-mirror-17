@@ -1,0 +1,249 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Hierarchy definition classes &mdash; PyTables 3.3.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/toggle_sections.js"></script>
+    <script type="text/javascript" src="../../_static/toggle_sidebar.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="top" title="PyTables 3.3.0 documentation" href="../../index.html" />
+    <link rel="up" title="Library Reference" href="../libref.html" />
+    <link rel="next" title="Structured storage classes" href="structured_storage.html" />
+    <link rel="prev" title="File manipulation class" href="file_class.html" /> 
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="structured_storage.html" title="Structured storage classes"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="file_class.html" title="File manipulation class"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">PyTables 3.3.0 documentation</a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >PyTables User&#8217;s Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../libref.html" accesskey="U">Library Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="hierarchy-definition-classes">
+<h1>Hierarchy definition classes<a class="headerlink" href="#hierarchy-definition-classes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-node-class">
+<span id="nodeclassdescr"></span><h2>The Node class<a class="headerlink" href="#the-node-class" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="node-instance-variables-location-dependent">
+<h3>Node instance variables - location dependent<a class="headerlink" href="#node-instance-variables-location-dependent" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="node-instance-variables-location-independent">
+<h3>Node instance variables - location independent<a class="headerlink" href="#node-instance-variables-location-independent" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="node-instance-variables-attribute-shorthands">
+<h3>Node instance variables - attribute shorthands<a class="headerlink" href="#node-instance-variables-attribute-shorthands" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="node-methods-hierarchy-manipulation">
+<h3>Node methods - hierarchy manipulation<a class="headerlink" href="#node-methods-hierarchy-manipulation" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="node-methods-attribute-handling">
+<h3>Node methods - attribute handling<a class="headerlink" href="#node-methods-attribute-handling" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="the-group-class">
+<span id="groupclassdescr"></span><h2>The Group class<a class="headerlink" href="#the-group-class" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="group-properties">
+<h3>Group properties<a class="headerlink" href="#group-properties" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="group-methods">
+<h3>Group methods<a class="headerlink" href="#group-methods" title="Permalink to this headline">¶</a></h3>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last"><em>Caveat:</em> The following methods are documented for completeness, and they
+can be used without any problem. However, you should use the high-level
+counterpart methods in the File class (see <a class="reference internal" href="file_class.html#fileclassdescr"><span>The File Class</span></a>, because
+they are most used in documentation and examples, and are a bit more
+powerful than those exposed here.</p>
+</div>
+<p>The following methods are provided in addition to those in
+Node (see <a class="reference internal" href="#nodeclassdescr"><span>The Node class</span></a>):</p>
+</div>
+<div class="section" id="group-special-methods">
+<h3>Group special methods<a class="headerlink" href="#group-special-methods" title="Permalink to this headline">¶</a></h3>
+<p>Following are described the methods that automatically trigger actions when a
+Group instance is accessed in a special way.</p>
+<p>This class defines the <code class="xref py py-meth docutils literal"><span class="pre">__setattr__()</span></code>, <code class="xref py py-meth docutils literal"><span class="pre">__getattr__()</span></code> and
+<code class="xref py py-meth docutils literal"><span class="pre">__delattr__()</span></code> methods, and they set, get and delete <em>ordinary Python
+attributes</em> as normally intended. In addition to that, <code class="xref py py-meth docutils literal"><span class="pre">__getattr__()</span></code>
+allows getting <em>child nodes</em> by their name for the sake of easy interaction
+on the command line, as long as there is no Python attribute with the same
+name. Groups also allow the interactive completion (when using readline) of
+the names of child nodes. For instance:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># get a Python attribute</span>
+<span class="n">nchild</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">_v_nchildren</span>
+
+<span class="c1"># Add a Table child called &#39;table&#39; under &#39;group&#39;.</span>
+<span class="n">h5file</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="s1">&#39;table&#39;</span><span class="p">,</span> <span class="n">my_description</span><span class="p">)</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">table</span>          <span class="c1"># get the table child instance</span>
+<span class="n">group</span><span class="o">.</span><span class="n">table</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span>          <span class="c1"># set a Python attribute</span>
+
+<span class="c1"># (PyTables warns you here about using the name of a child node.)</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">table</span>            <span class="c1"># get a Python attribute</span>
+<span class="k">del</span> <span class="n">group</span><span class="o">.</span><span class="n">table</span>              <span class="c1"># delete a Python attribute</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">table</span>          <span class="c1"># get the table child instance again</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-leaf-class">
+<span id="leafclassdescr"></span><h2>The Leaf class<a class="headerlink" href="#the-leaf-class" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="leaf-properties">
+<h3>Leaf properties<a class="headerlink" href="#leaf-properties" title="Permalink to this headline">¶</a></h3>
+<dl class="attribute">
+<dt id="tables.Leaf.size_in_memory">
+<code class="descclassname">Leaf.</code><code class="descname">size_in_memory</code><a class="headerlink" href="#tables.Leaf.size_in_memory" title="Permalink to this definition">¶</a></dt>
+<dd><p>The size of this leaf&#8217;s data in bytes when it is fully loaded into
+memory.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="leaf-instance-variables-aliases">
+<h3>Leaf instance variables - aliases<a class="headerlink" href="#leaf-instance-variables-aliases" title="Permalink to this headline">¶</a></h3>
+<p>The following are just easier-to-write aliases to their Node (see
+<a class="reference internal" href="#nodeclassdescr"><span>The Node class</span></a>) counterparts (indicated between parentheses):</p>
+</div>
+<div class="section" id="leaf-methods">
+<h3>Leaf methods<a class="headerlink" href="#leaf-methods" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html">
+          <img class="logo" src="../../_static/logo-pytables-small.png" alt="Logo"/>
+        </a></p>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Hierarchy definition classes</a><ul>
+<li><a class="reference internal" href="#the-node-class">The Node class</a><ul>
+<li><a class="reference internal" href="#node-instance-variables-location-dependent">Node instance variables - location dependent</a></li>
+<li><a class="reference internal" href="#node-instance-variables-location-independent">Node instance variables - location independent</a></li>
+<li><a class="reference internal" href="#node-instance-variables-attribute-shorthands">Node instance variables - attribute shorthands</a></li>
+<li><a class="reference internal" href="#node-methods-hierarchy-manipulation">Node methods - hierarchy manipulation</a></li>
+<li><a class="reference internal" href="#node-methods-attribute-handling">Node methods - attribute handling</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-group-class">The Group class</a><ul>
+<li><a class="reference internal" href="#group-properties">Group properties</a></li>
+<li><a class="reference internal" href="#group-methods">Group methods</a></li>
+<li><a class="reference internal" href="#group-special-methods">Group special methods</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-leaf-class">The Leaf class</a><ul>
+<li><a class="reference internal" href="#leaf-properties">Leaf properties</a></li>
+<li><a class="reference internal" href="#leaf-instance-variables-aliases">Leaf instance variables - aliases</a></li>
+<li><a class="reference internal" href="#leaf-methods">Leaf methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="file_class.html"
+                        title="previous chapter">File manipulation class</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="structured_storage.html"
+                        title="next chapter">Structured storage classes</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/usersguide/libref/hierarchy_classes.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="structured_storage.html" title="Structured storage classes"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="file_class.html" title="File manipulation class"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">PyTables 3.3.0 documentation</a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >PyTables User&#8217;s Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../libref.html" >Library Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2014, PyTables maintainers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+    <!-- cloud_sptheme 1.3 -->
+  </body>
+</html>
