@@ -1,0 +1,10 @@
+include LICENSE
+include githubbot/functions.py
+include githubbot/configFile.cfg
+include githubbot/webconfig.cfg
+
+include githubbot/static
+include githubbot/templates
+
+recursive-include githubbot/static  *
+recursive-include githubbot/templates  *
