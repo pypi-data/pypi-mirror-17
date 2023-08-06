@@ -1,0 +1,37 @@
+
+@mixin transform($transformation) {
+  -webkit-transform: $transformation;
+  transform: $transformation;
+}
+
+@mixin center ($do-center-x, $do-center-y) {
+  $transform: '';
+
+  @if $do-center-x {
+    $transform: $transform + 'translateX(-50%)';
+
+    left: 50%;
+  }
+
+  @if $do-center-y {
+    $transform: $transform + ' translateY(-50%)';
+
+    top: 50%
+  }
+
+  @include transform(#{$transform});
+
+  position: relative;
+}
+
+@mixin center-x-only () {
+  @include center (true, false);
+}
+
+@mixin center-y-only () {
+  @include center (false, true);
+}
+
+@mixin center-x-and-y () {
+  @include center (true, true);
+}
