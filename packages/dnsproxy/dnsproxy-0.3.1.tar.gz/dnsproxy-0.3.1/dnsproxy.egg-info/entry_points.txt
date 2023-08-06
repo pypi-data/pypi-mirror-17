@@ -1,0 +1,4 @@
+[console_scripts]
+dnsproxy = dnsproxy.client:main
+dnsproxy_server = dnsproxy.server:main
+
