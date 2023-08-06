@@ -1,0 +1,5 @@
+[console_scripts]
+generinator-rats = generinator_rats.generate:execute
+generinator-rats-install-antlr4 = generinator_rats.install:execute
+generinator-rats-process = generinator_rats.process:execute
+
