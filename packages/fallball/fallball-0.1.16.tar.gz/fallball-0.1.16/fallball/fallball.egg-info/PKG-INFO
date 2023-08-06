@@ -1,0 +1,57 @@
+Metadata-Version: 1.0
+Name: fallball
+Version: 0.1.16
+Summary: Dummy file sharing service available by REST api.
+Home-page: https://fallball.io
+Author: APS Lite team
+Author-email: apslite@odin.com
+License: Apache License
+Description: # FallBall
+        [![Build Status](https://travis-ci.org/odin-public/fallball-service.svg?branch=master)](https://travis-ci.org/odin-public/fallball-service)
+        [![Coverage Status](https://coveralls.io/repos/github/odin-public/fallball-service/badge.svg?branch=master)](https://coveralls.io/github/odin-public/fallball-service?branch=master)
+        
+        ## Overview
+        FallBall is the best in class file sharing service that offers cloud storage and file synchronization for small and medium businesses (SMBs) worldwide.
+        This dummy service helps developers to learn [APS Lite](http://aps.odin.com) technology 
+        
+        ## How To Deploy
+        1. Create application database:
+          
+            ```
+            python manage.py migrate
+            ```
+        
+        2. Load initial data
+        
+            ```
+            python manage.py loaddata initial_data
+            ```
+        
+        3. Get admin token
+        
+            ```
+            python manage.py shell
+            ```
+            ```python
+            from django.contrib.auth.models import User 
+            from rest_framework.authtoken.models import Token
+            a = User.objects.filter(username='admin')
+            Token.objects.filter(user=a)
+            [<Token: 4395ef69e0701a85866485e57ad40fab167bd544>]
+            ```
+        
+        ## Run
+        In order to run server you need to execute the following command from the root folder of the project:
+        
+        ```
+        python manage.py runserver <host_name>:<port>
+        ```
+        
+        ## Tests
+        To run tests simply execute the following command:
+        
+        ```
+        python manage.py test fallballapp.tests
+        ```
+        
+Platform: UNKNOWN
