@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: Georeverse
+Version: 0.2
+Summary: Find the best estimate of city, state and country for a given latitude and longitude.
+Home-page: https://github.com/MBoustani/Georeverse
+Author: Mazi Boustani
+Author-email: maziyar_b4@yahoo.com
+License: Apache V2
+Download-URL: https://github.com/MBoustani/Georeverse/archive/master.zip
+Description: UNKNOWN
+Keywords: georeverse geosptial latitude longitude opensource free city state country python points
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Scientific/Engineering :: GIS
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: Implementation :: PyPy
