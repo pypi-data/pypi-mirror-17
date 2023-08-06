@@ -1,0 +1,120 @@
+Metadata-Version: 1.1
+Name: ftw.events
+Version: 1.1.0
+Summary: Events with simplelayout.
+Home-page: https://github.com/4teamwork/ftw.events
+Author: 4teamwork AG
+Author-email: mailto:info@4teamwork.ch
+License: GPL2
+Description: ==============================================================================
+        ftw.events
+        ==============================================================================
+        
+        ``ftw.events`` is a Plone add-on allowing you to add containers (event folders)
+        containing items representing an event (event page). It is backed by
+        ``plone.app.event`` and is powered by ``ftw.simplelayout``.
+        
+        This Plone add-on is compatible with Plone 4.3.x
+        
+        
+        Installation
+        ************
+        
+        - Add the package to your buildout configuration:
+        
+        ::
+        
+            [instance]
+            eggs +=
+                ...
+                ftw.events
+        
+        - Install the "default" GenericSetup profile.
+        
+        
+        Usage
+        *****
+        
+        Start by creating a container which will hold the events by adding a *event folder*.
+        Add as many *event pages* to the event folder as you like.
+        
+        
+        Background
+        **********
+        
+        The name of the content type *event page* has been chosen in order to avoid confusion
+        with the content type *event* of Plone.
+        
+        
+        Development
+        ***********
+        
+        **Python:**
+        
+        1. Fork this repo
+        2. Clone your fork
+        3. Shell: ``ln -s development.cfg buildout.cfg``
+        4. Shell: ``python boostrap.py``
+        5. Shell: ``bin/buildout``
+        
+        Run ``bin/test`` to test your changes.
+        
+        Or start an instance by running ``bin/instance fg``.
+        
+        
+        Links
+        *****
+        
+        - Github: https://github.com/4teamwork/ftw.events
+        - Issues: https://github.com/4teamwork/ftw.events/issues
+        - PyPI: http://pypi.python.org/pypi/ftw.events
+        - Continuous integration: https://jenkins.4teamwork.ch/search?q=ftw.events
+        
+        
+        Copyright
+        *********
+        
+        This package is copyright by `4teamwork <http://www.4teamwork.ch/>`_.
+        
+        ``ftw.events`` is licensed under GNU General Public License, version 2.
+        
+        Changelog
+        =========
+        
+        
+        1.1.0 (2016-09-26)
+        ------------------
+        
+        - Make EventFolder and EventListingBlock addable on the Plone Site.
+          [lknoepfel]
+        
+        
+        1.0.1 (2016-09-20)
+        ------------------
+        
+        - Change German translation for event listing block. [jone]
+        
+        - Fix AttributeError in create_event_listing_block. [jone]
+        
+        - Added action for ics export. [tschanzt]
+        
+        
+        1.0.0 (2016-08-02)
+        ------------------
+        
+        - Fixed bug where default value on eventlistingblock was not set. [lknoepfel]
+        
+        - Added ftw.calendar integration. [lknoepfel]
+        
+        - Don't list EventPage in the navigation [lkoepfel]
+        
+        - Initial implementation [jone]
+        
+Keywords: ftw events
+Platform: UNKNOWN
+Classifier: Framework :: Plone
+Classifier: Framework :: Plone :: 4.3
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
