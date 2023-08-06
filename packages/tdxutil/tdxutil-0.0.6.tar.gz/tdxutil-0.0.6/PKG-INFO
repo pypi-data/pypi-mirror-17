@@ -1,0 +1,25 @@
+Metadata-Version: 1.1
+Name: tdxutil
+Version: 0.0.6
+Summary: Tools for working with container types, command data operations, and concise exception handling
+Home-page: https://github.com/stroxler/tdxutil
+Author: Steven Troxler
+Author-email: steven.troxler@gmail.com
+License: MIT
+Description: tdxutil: small tools for working with datatypes, data, and exceptions
+        ---------------------------------------------------------------------
+        
+        In `collections.py` there are some tools for working with lists,
+        sets, dicts, and iterables more declaratively.
+        
+        In `data.py` there are some functiions to more concisely read and
+        write yaml in the most common use cases.
+        
+        In `exceptions.py` there are some error handling tools. See the
+        `calldecorators` package if you'd prefer to have a decorator
+        api.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
