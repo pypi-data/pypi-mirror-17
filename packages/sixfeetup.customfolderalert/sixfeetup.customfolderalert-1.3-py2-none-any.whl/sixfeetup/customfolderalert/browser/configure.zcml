@@ -1,0 +1,17 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="sixfeetup.customfolderalert">
+
+  <!-- -*- extra stuff goes here -*- -->
+
+  <browser:page
+    for="*"
+    name="alert_view"
+    class="sixfeetup.customfolderalert.browser.alertview.AlertView"
+    allowed_attributes="check_for_evil is_alert_disabled"
+    permission="zope.Public"
+    />
+
+</configure>
+

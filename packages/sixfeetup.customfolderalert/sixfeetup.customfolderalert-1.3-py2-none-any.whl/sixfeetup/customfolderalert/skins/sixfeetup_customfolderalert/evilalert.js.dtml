@@ -1,0 +1,6 @@
+jq(document).ready(function() {
+    var items_found = '<dtml-var expr="restrictedTraverse('@@alert_view').check_for_evil()">';
+    var msg = 'WARNING: ' + items_found + ' item(s) found in the custom folder';
+    var html_warning = '<p style="color:red;font-weight:bold;position:absolute;background-color:white;">' + msg + '</p>';
+    jq('body').prepend(html_warning);
+});
