@@ -1,0 +1,34 @@
+{
+	"really": {
+		"word": "really",
+		"can_modify": ["verb","adj","adv","clause"]
+	},
+	"quickly": {
+		"word": "quickly",
+		"can_modify": ["verb","adj","adv","clause"]
+	},
+	"hopefully": {
+		"word": "hopefully",
+		"can_modify": ["verb","adj","adv","clause"]
+	},
+	"why": {
+		"word": "why",
+		"can_modify": ["verb"]
+	},
+	"how": {
+		"word": "how",
+		"can_modify": ["verb", "adj", "adv"]
+	},
+	"when": {
+		"word": "when",
+		"can_modify": ["verb", "adj", "adv"]
+	},
+	"where": {
+		"word": "where",
+		"can_modify": ["verb", "adj"]
+	},
+	"nearly": {
+		"word": "nearly",
+		"can_modify": ["verb","adj","adv","det","clause"]
+	}
+}
