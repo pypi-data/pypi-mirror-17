@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: csirtgsdk
+Version: 0.0.0a6
+Summary: CSIRTG Python SDK
+Home-page: https://github.com/csirtgadgets/csirtgsdk-py
+Author: Wes Young
+Author-email: wes@csirtgadgets.org
+License: LGPL3
+Description: CSIRTG Software Development Kit for Python
+Keywords: network,security
+Platform: UNKNOWN
+Classifier: Topic :: System :: Networking
+Classifier: Environment :: Other Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Programming Language :: Python
