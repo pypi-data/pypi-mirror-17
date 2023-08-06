@@ -1,0 +1,41 @@
+Metadata-Version: 1.1
+Name: zagoload
+Version: 0.5.0
+Summary: Download files(http,ftp). Supports: cachinhg, uniform access to remote and local files
+Home-page: https://github.com/napuzba/zagoload.git
+Author: napuzba
+Author-email: kobi@napuzba.com
+License: MIT
+Description: 
+        =====
+        About
+        =====
+        
+        zagoload module simplifies downloading and accessing remote files:
+        
+        1. Access to Remote files (accessible thought HTTP and FTP protocols) and local files in uniform way.
+        2. Consume restful webservices with a breeze
+        3. Cache your downloaded files to save resources
+        
+        *****
+        Usage
+        *****
+        
+        See `Download Files with zagoload`_ for turorial.
+        
+        .. _Download Files with Fileloader: http://www.napuzba.com/story/download-files-with-zagoload/
+        
+Keywords: download,crawl,ftp,http,json,webservices,cache
+Platform: UNKNOWN
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Internet :: File Transfer Protocol (FTP)
+Classifier: Topic :: Internet :: WWW/HTTP :: Indexing/Search
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: System Administrators
