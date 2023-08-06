@@ -1,0 +1,6 @@
+lxml
+
+[service]
+bottle
+gevent
+requests
