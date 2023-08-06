@@ -1,0 +1,60 @@
+sudo: false
+
+language: python
+
+matrix:
+  include:
+    - python: 2.7
+      env: TOXENV=py27
+    - python: 2.7
+      env: TOXENV=jython
+    - python: 3.4
+      env: TOXENV=py34
+    - python: 3.5
+      env:
+        - TOXENV=py35
+        - BUILD_DIST=true
+    - python: pypy
+      env: TOXENV=pypy
+    - language: generic
+      os: osx
+      # the default 'osx' on Travis is 10.9 Mavericks, with Python 2.7.5
+      env: TOXENV=py27
+    - language: generic
+      os: osx
+      # this is to test on 10.11 El Capitan which comes with Python 2.7.10
+      osx_image: xcode7.3
+      env: TOXENV=py27
+    - language: generic
+      os: osx
+      env: TOXENV=py34
+    - language: generic
+      os: osx
+      env: TOXENV=py35
+    - language: generic
+      os: osx
+      env: TOXENV=pypy
+    # coveralls is not listed in tox's envlist, but should run in travis
+    - python: 3.5
+      env: TOXENV=coveralls
+
+install:
+  - ./.travis/install.sh
+
+script:
+  - ./.travis/run.sh
+
+notifications:
+  irc: "irc.freenode.org##fonts"
+  email: fonttools@googlegroups.com
+
+deploy:
+  provider: pypi
+  user: anthrotype
+  password:
+    secure: H/07cptieQgeQYEpAgXtIIZtKsVA6DJ+NeTaVlGi0ut/rCG8Mx9U1daZT1g7jjSVq/ldoNP6QXqelQAFHTDCfyvD3oB6zltHYqs+kRYMtkwfHgoHFK7c5kSdAIPML8eB29W+rp+xcJ2ciFTDoth/Wxps/SjVDe+OgJVnsO2Osgs=
+  distributions: "sdist bdist_wheel"
+  on:
+    tags: true
+    repo: behdad/fonttools
+    condition: $TOXENV = py35
