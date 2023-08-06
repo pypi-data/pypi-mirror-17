@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: os-shell
+Version: 1.0.3
+Summary: An interactive Command Line Shell for Openstack CLI
+Home-page: https://github.com/bdastur/os-shell
+Author: Behzad Dastur
+Author-email: bdastur@gmail.com
+License: MIT
+Description: Interactive command shell for Openstack
+Keywords: openstack cli autocomplete syntax
+Platform: UNKNOWN
