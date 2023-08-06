@@ -1,0 +1,30 @@
+Metadata-Version: 1.0
+Name: piglet
+Version: 0.2
+Summary: Fast, HTML aware templating engine
+Home-page: https://bitbucket.org/ollyc/piglet
+Author: Oliver Cope
+Author-email: oliver@redgecko.org
+License: Apache
+Description: Piglet
+        ======
+        
+        Piglet is a text and HTML templating language in the kid/genshi/kajiki family.
+        
+        
+        
+        
+        0.2 (released 2016-10-02)
+        -------------------------
+        
+        - Bugfix: ensure that grammar files are included in binary distributions
+        - Bugfix: fix for undefined variable error when using py:with to reassign
+          a variable
+        
+        0.1 (released 2016-10-01)
+        -------------------------
+        
+        - initial release
+        
+Keywords: jinja2,genshi,kajiki,mako,kid,template,templating
+Platform: UNKNOWN
