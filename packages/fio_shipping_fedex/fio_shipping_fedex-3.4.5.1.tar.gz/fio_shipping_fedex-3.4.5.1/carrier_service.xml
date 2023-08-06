@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tryton>
+    <data>
+        <!-- Service Type -->
+        <record id="service_europe_first_international_priority" model="carrier.service">
+            <field name="name">Europe First International Priority</field>
+            <field name="code">EUROPE_FIRST_INTERNATIONAL_PRIORITY</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="service_fedex_1_day_freight" model="carrier.service">
+            <field name="name">One Day Freight</field>
+            <field name="code">FEDEX_1_DAY_FREIGHT</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="service_fedex_2_day" model="carrier.service">
+            <field name="name">Two Day</field>
+            <field name="code">FEDEX_2_DAY</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="service_fedex_2_day_am" model="carrier.service">
+            <field name="name">Two Day AM</field>
+            <field name="code">FEDEX_2_DAY_AM</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="service_fedex_2_day_freight" model="carrier.service">
+            <field name="name">Two Day Freight</field>
+            <field name="code">FEDEX_2_DAY_FREIGHT</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="service_fedex_3_day_freight" model="carrier.service">
+            <field name="name">Three Day Freight</field>
+            <field name="code">FEDEX_3_DAY_FREIGHT</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="service_fedex_express_saver" model="carrier.service">
+            <field name="name">Express Saver</field>
+            <field name="code">FEDEX_EXPRESS_SAVER</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="service_fedex_first_freight" model="carrier.service">
+            <field name="name">First Freight</field>
+            <field name="code">FEDEX_FIRST_FREIGHT</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="service_fedex_freight_economy" model="carrier.service">
+            <field name="name">Freight Economy</field>
+            <field name="code">FEDEX_FREIGHT_ECONOMY</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="service_fedex_freight_priority" model="carrier.service">
+            <field name="name">Freight Priority</field>
+            <field name="code">FEDEX_FREIGHT_PRIORITY</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="service_fedex_ground" model="carrier.service">
+            <field name="name">Ground</field>
+            <field name="code">FEDEX_GROUND</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="service_fedex_overnight" model="carrier.service">
+            <field name="name">First Overnight</field>
+            <field name="code">FIRST_OVERNIGHT</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="service_fedex_ground_home_delivery" model="carrier.service">
+            <field name="name">Ground Home Delivery</field>
+            <field name="code">GROUND_HOME_DELIVERY</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="service_international_economy" model="carrier.service">
+            <field name="name">International Economy</field>
+            <field name="code">INTERNATIONAL_ECONOMY</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="service_international_economy_freight" model="carrier.service">
+            <field name="name">International Economy Freight</field>
+            <field name="code">INTERNATIONAL_ECONOMY_FREIGHT</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="service_international_first" model="carrier.service">
+            <field name="name">International First</field>
+            <field name="code">INTERNATIONAL_FIRST</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="service_international_priority" model="carrier.service">
+            <field name="name">International Priority</field>
+            <field name="code">INTERNATIONAL_PRIORITY</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="service_international_priority_freight" model="carrier.service">
+            <field name="name">International Priority Freight</field>
+            <field name="code">INTERNATIONAL_PRIORITY_FREIGHT</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="service_priority_overnight" model="carrier.service">
+            <field name="name">Priority Overnight</field>
+            <field name="code">PRIORITY_OVERNIGHT</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="service_smart_post" model="carrier.service">
+            <field name="name">Smart Post</field>
+            <field name="code">SMART_POST</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+        <record id="service_standard_overnight" model="carrier.service">
+            <field name="name">Standard Overnight</field>
+            <field name="code">STANDARD_OVERNIGHT</field>
+            <field name="carrier_cost_method">fedex</field>
+        </record>
+    </data>
+</tryton>
+
