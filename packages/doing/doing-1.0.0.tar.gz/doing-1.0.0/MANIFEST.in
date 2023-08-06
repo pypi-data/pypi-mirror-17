@@ -1,0 +1,16 @@
+include *.md
+include *.rst
+include *.txt
+include Makefile
+include tox.ini
+
+recursive-include examples *
+
+global-exclude *.pyc
+global-exclude *.pyd
+global-exclude *.pyo
+global-exclude *.orig
+global-exclude *.c
+global-exclude *.so
+global-exclude *~
+global-exclude __pycache__
