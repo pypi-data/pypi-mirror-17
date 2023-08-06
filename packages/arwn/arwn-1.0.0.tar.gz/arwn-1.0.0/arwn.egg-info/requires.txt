@@ -1,0 +1,5 @@
+pyyaml>=3
+python-daemon
+paho-mqtt>=1.1
+pyserial>=3
+six
