@@ -1,0 +1,67 @@
+Metadata-Version: 2.0
+Name: diycrate
+Version: 0.2.10.3
+Summary: box.com for linux -- unofficial, based on python SDK
+Home-page: https://github.com/jheld/diycrate
+Author: Jason Held
+Author-email: jasonsheld@gmail.com
+License: MIT
+Keywords: cloud storage box.com sdk linux box
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Environment :: Console
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: bottle (==0.12.9)
+Requires-Dist: boxsdk (==1.5.3)
+Requires-Dist: cherrypy (==5.1.0)
+Requires-Dist: decorator (==4.0.9)
+Requires-Dist: enum34 (==1.1.2)
+Requires-Dist: ipython (>=5)
+Requires-Dist: path.py (==8.1.2)
+Requires-Dist: pexpect (==4.0.1)
+Requires-Dist: ptyprocess (==0.5.1)
+Requires-Dist: pyinotify (==0.9.6)
+Requires-Dist: pyopenssl (==16.0.0)
+Requires-Dist: redis (==2.10.5)
+Requires-Dist: requests (==2.9.1)
+Requires-Dist: requests-toolbelt (==0.6.0)
+Requires-Dist: simplegeneric (==0.8.1)
+Requires-Dist: six (==1.10.0)
+
+# diycrate
+box.com for linux
+
+## Installation on Ubuntu 16.04
+```
+sudo apt-get install libffi-dev libssl-dev
+sudo apt install python3-pip
+sudo python3 setup.py install
+```
+## Configuration
+
+Installation will create an empty ~/.config/diycrate/box.ini
+This file will be overwritten and will contain run time specific information!
+
+## Self-signed Certificate
+```
+openssl req -nodes -x509 -newkey rsa:2048 -keyout diycrate-key.pem -out diycrate-cert.pem -days 365
+```
+## Install Redis
+```
+sudo apt install redis-server
+```
+
+## Run the app
+
+```
+diycrate_app --cacert_pem_path diycrate-cert.pem --privkey_pem_path diycrate-key.pem 
+```
+
+Run `diycrate_app --help` for more CLI information
+
