@@ -1,0 +1,14 @@
+django_modeldict_yplan-1.5.3.dist-info/DESCRIPTION.rst,sha256=WubTiauq9qInD_GWtCdw1v2bborlkgvoK7DY7O0eBYI,3068
+django_modeldict_yplan-1.5.3.dist-info/METADATA,sha256=fYq7227kqA_DUk57tICmCgzDDxBu75AT13BPVMACEXs,4066
+django_modeldict_yplan-1.5.3.dist-info/RECORD,,
+django_modeldict_yplan-1.5.3.dist-info/WHEEL,sha256=o2k-Qa-RMNIJmUdIc7KU6VWR_ErNRbWNlxDIpl7lm34,110
+django_modeldict_yplan-1.5.3.dist-info/metadata.json,sha256=S8RU2bTwaP8XY8wy3MAhcb53esv1roVi8UAUbfmW3Nc,1057
+django_modeldict_yplan-1.5.3.dist-info/top_level.txt,sha256=dJNZJuM-F3HepR1GAFORzqfjgtjRc68lK-qtik7qxAE,16
+modeldict/__init__.py,sha256=IchrPpbWMJd3uuuNdL8T-4npCfumZQgNYRxsEBr9u7o,135
+modeldict/base.py,sha256=9x4dHI0OACqxlA_xczCnjVLY4_Mx6oNsNuCjq4tDGcI,6623
+modeldict/models.py,sha256=FsF3X8ByvLUlCoo6O8J3-F8EBXh32Dyre5Kp7pofNKU,4148
+modeldict/redis.py,sha256=YwInIBAZCQE9sLIoeAsoDWq30oUN7jnqlt2A-CyvsBA,1241
+tests/testapp/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/testapp/models.py,sha256=m09Wpv0udULj-c5wswJAWNXGZbhRBAlecLM4tBUVmMM,218
+tests/testapp/test_base.py,sha256=QkWi8fFcQJb8J10Z0jEf2q-ThMFcfMZ0GbLWsRVpdoQ,421
+tests/testapp/test_modeldict.py,sha256=q6hcAKnoPnjUNwxZR1pyuheBJqdaYC3cewU1babANeU,21050
