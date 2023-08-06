@@ -1,0 +1,11 @@
+Babel>=2.3.4
+keystoneauth1 >= 2.10.0
+netaddr!=0.7.16,>=0.7.12
+neutron-lib>=0.3.0
+oslo.concurrency>=3.8.0
+oslo.i18n>=2.1.0
+oslo.log>=1.14.0
+oslo.utils>=3.16.0
+pbr>=1.6
+pyroute2>=0.4.3
+python-neutronclient>=4.2.0
