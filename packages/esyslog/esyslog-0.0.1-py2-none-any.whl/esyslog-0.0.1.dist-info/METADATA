@@ -1,0 +1,23 @@
+Metadata-Version: 2.0
+Name: esyslog
+Version: 0.0.1
+Summary: syslog tools
+Home-page: https://github.com/talkincode/esyslog
+Author: jamiesun
+Author-email: jamiesun.net@gmail.com
+License: Apache License
+Keywords: syslog,elk,elasticsearch
+Platform: UNKNOWN
+Classifier: Development Status :: 6 - Mature
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: Twisted (>=15.0.0)
+Requires-Dist: pytz
+
+# esyslog
+
+elasticsearch syslog forwarder
+
+

@@ -1,0 +1,5 @@
+# esyslog
+
+elasticsearch syslog forwarder
+
+

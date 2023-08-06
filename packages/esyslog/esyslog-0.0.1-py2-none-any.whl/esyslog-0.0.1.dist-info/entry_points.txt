@@ -1,0 +1,3 @@
+[console_scripts]
+esyslogd = esyslog.syslog_server:main
+
