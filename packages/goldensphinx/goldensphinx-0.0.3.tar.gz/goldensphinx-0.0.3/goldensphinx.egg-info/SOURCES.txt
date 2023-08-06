@@ -1,0 +1,13 @@
+MANIFEST.in
+setup.cfg
+setup.py
+versioneer.py
+goldensphinx/__init__.py
+goldensphinx/_version.py
+goldensphinx/cli.py
+goldensphinx.egg-info/PKG-INFO
+goldensphinx.egg-info/SOURCES.txt
+goldensphinx.egg-info/dependency_links.txt
+goldensphinx.egg-info/entry_points.txt
+goldensphinx.egg-info/requires.txt
+goldensphinx.egg-info/top_level.txt
