@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: igv
+Version: 0.2.1
+Summary: Jupyter extension for embedding igv.js in a notebook
+Home-page: https://github.com/igvteam/igv.js-jupyter
+Author: Jim Robinson, Thorin Tabor, Douglass Turner
+Author-email: igv-team@broadinstitute.org
+License: MIT
+Download-URL: https://github.com/igvteam/igv.js-jupyter/archive/0.2.1.tar.gz
+Description: UNKNOWN
+Keywords: igv,visualization,ipython,jupyter
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Framework :: IPython
