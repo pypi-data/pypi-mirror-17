@@ -1,0 +1,15 @@
+setup.cfg
+setup.py
+flysight_manager/__init__.py
+flysight_manager/config.py
+flysight_manager/file_manager.py
+flysight_manager/flysight.py
+flysight_manager/log.py
+flysight_manager/tests.py
+flysight_manager/uploader.py
+flysight_manager.egg-info/PKG-INFO
+flysight_manager.egg-info/SOURCES.txt
+flysight_manager.egg-info/dependency_links.txt
+flysight_manager.egg-info/entry_points.txt
+flysight_manager.egg-info/requires.txt
+flysight_manager.egg-info/top_level.txt
