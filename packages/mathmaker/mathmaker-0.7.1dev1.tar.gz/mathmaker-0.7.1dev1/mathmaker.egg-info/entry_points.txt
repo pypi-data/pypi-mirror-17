@@ -1,0 +1,4 @@
+[console_scripts]
+mathmakerd = mathmaker.daemon:run
+mathmaker = mathmaker.cli:entry_point
+
