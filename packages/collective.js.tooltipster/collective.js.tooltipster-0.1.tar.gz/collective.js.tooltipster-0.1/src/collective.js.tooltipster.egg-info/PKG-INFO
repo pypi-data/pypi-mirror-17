@@ -1,0 +1,50 @@
+Metadata-Version: 1.1
+Name: collective.js.tooltipster
+Version: 0.1
+Summary: Plone integration of tooltipster jquery plugin
+Home-page: http://pypi.python.org/pypi/collective.js.tooltipster
+Author: Gauthier BASTIEN
+Author-email: gauthier.bastien@imio.be
+License: GPL
+Description: =========================
+        collective.js.tooltipster
+        =========================
+           
+        Plone integration of Tooltipster (http://iamceege.github.io/tooltipster/)
+        
+        Using version 3.3.0 because it works with jQuery 1.7+ where version 4+ works only with jQuery 1.10+...
+        
+        Themes
+        ****** 
+        If you want to use additional themes, just import profile "collective.js.tooltipster Themes" in portal_setup.
+        
+        Following themes are available :
+        
+        - tooltipster-light
+        - tooltipster-noir
+        - tooltipster-punk
+        - tooltipster-shadow
+        
+        Contributors
+        ============
+        
+        - Gauthier Bastien, gauthier.bastien@imio.be
+        
+        Changelog
+        =========
+        
+        0.1 (2016-09-22)
+        ----------------
+        
+        - Initial release.
+          [gbastien]
+        
+        
+        
+Keywords: Python Plone
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Plone
+Classifier: Framework :: Plone :: 4.3
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
