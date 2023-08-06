@@ -1,0 +1,6 @@
+Pillow
+
+[test]
+coverage
+pytest-cov
+coveralls
