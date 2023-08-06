@@ -1,0 +1,5 @@
+[console_scripts]
+biosig2016_plots.py = bob.paper.biosig2016_replaymobile.biosig2016:main
+compute_iqm_features.py = bob.paper.biosig2016_replaymobile.compute_iqm_features:main
+iqm_classifier.py = bob.paper.biosig2016_replaymobile.iqm_classifier:main
+
