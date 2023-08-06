@@ -1,0 +1,6 @@
+include newsplease/*.txt
+inlcude newsplease/newscrawler.cfg
+include newsplease/init-db.sql
+include newsplease/input_data.hjson
+include newsplease/README.md
+
