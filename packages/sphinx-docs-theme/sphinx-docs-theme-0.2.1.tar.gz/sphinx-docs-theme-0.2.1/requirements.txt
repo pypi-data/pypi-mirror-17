@@ -1,0 +1,9 @@
+# Sphinx
+Sphinx==1.4.6
+
+# Installation and deployment
+setuptools==26.1.1
+twine==1.8.1
+
+# Documentation
+Pygments==2.1.3
