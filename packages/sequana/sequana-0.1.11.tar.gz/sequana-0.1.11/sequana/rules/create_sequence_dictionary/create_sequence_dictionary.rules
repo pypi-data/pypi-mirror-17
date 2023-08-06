@@ -1,0 +1,20 @@
+__create_sequence_dictionary__output = \
+    __bwa_mem_ref__reference.split(".fa")[0] + ".dict"
+
+rule create_sequence_dictionary:
+    input:
+        ref = __bwa_mem_ref__reference
+    output:
+        __create_sequence_dictionary__output
+    log:
+        out = "logs/picard_tools/CreateSequenceDictionary/stdout.logs",
+        err = "logs/picard_tools/CreateSequenceDictionary/stderr.logs"
+    shell:
+        """
+	    if [[ -a {output} ]];
+        then
+            rm {output}
+        fi
+        picard CreateSequenceDictionary \
+        R={input.ref} O={output} > {log.out} 2> {log.err}
+        """
