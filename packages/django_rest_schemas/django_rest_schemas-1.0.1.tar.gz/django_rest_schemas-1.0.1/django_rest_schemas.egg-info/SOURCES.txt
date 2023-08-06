@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+setup.py
+django_rest_schemas/__init__.py
+django_rest_schemas/coredoc.py
+django_rest_schemas/decorators.py
+django_rest_schemas/schemas.py
+django_rest_schemas.egg-info/PKG-INFO
+django_rest_schemas.egg-info/SOURCES.txt
+django_rest_schemas.egg-info/dependency_links.txt
+django_rest_schemas.egg-info/requires.txt
+django_rest_schemas.egg-info/top_level.txt
