@@ -1,0 +1,46 @@
+Metadata-Version: 2.0
+Name: django-unitology
+Version: 0.0.1
+Summary: Height / Weight fields for Django models & forms with unit conversion
+Home-page: https://github.com/bashu/django-unitology
+Author: Basil Shubin
+Author-email: basil.shubin@gmail.com
+License: MIT License
+Download-URL: https://github.com/bashu/django-unitology/zipball/master
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Requires: Django (>=1.4.2)
+Requires-Dist: quantities
+Requires-Dist: numpy
+
+django-unitology
+================
+
+Authored by `Basil Shubin <https://github.com/bashu>`_,  and some great
+`contributors <https://github.com/bashu/django-unitology/contributors>`_.
+
+.. image:: https://img.shields.io/pypi/v/django-unitology.svg
+    :target: https://pypi.python.org/pypi/django-unitology/
+
+.. image:: https://img.shields.io/pypi/dm/django-unitology.svg
+    :target: https://pypi.python.org/pypi/django-unitology/
+
+.. image:: https://img.shields.io/github/license/bashu/django-unitology.svg
+    :target: https://pypi.python.org/pypi/django-unitology/
+
+.. image:: https://img.shields.io/travis/bashu/django-unitology.svg
+    :target: https://travis-ci.org/bashu/django-unitology/
+
+
