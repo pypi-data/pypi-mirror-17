@@ -1,0 +1,16 @@
+Persisted on Sun Oct  9 19:22:54 2016 [Jasmin 0.9.b10]
+Ä}q(Unginxqcjasmin.routing.jasminApi
+HttpConnector
+q)Åq}q(U_reprqUX<HttpConnector (cid=nginx, baseurl=http://192.168.99.100:32768/jasmin.html, method=GET)>U_strqUYHttpConnector:
+cid = nginx
+baseurl = http://192.168.99.100:32768/jasmin.html
+method = GETUmethodqUGETUbaseurlq	U'http://192.168.99.100:32768/jasmin.htmlUcidq
+hubUhttp1qh)Åq}q(hUB<HttpConnector (cid=http1, baseurl=http://127.0.0.1, method=POST)>hUCHttpConnector:
+cid = http1
+baseurl = http://127.0.0.1
+method = POSThUPOSTh	Uhttp://127.0.0.1h
+hubUnginx-failingqh)Åq}q(hUM<HttpConnector (cid=nginx-failing, baseurl=http://8.8.8.8/2121, method=post)>hUNHttpConnector:
+cid = nginx-failing
+baseurl = http://8.8.8.8/2121
+method = posthUposth	Uhttp://8.8.8.8/2121h
+hubu.
