@@ -1,0 +1,3 @@
+[console_scripts]
+merge_spreadsheets = src.gui_merge_spreadsheets:main
+
