@@ -1,0 +1,14 @@
+Metadata-Version: 2.0
+Name: vaultcacli
+Version: 0.1
+Summary: Create certificates in Vault using a CLI
+Home-page: http://github.com/larsla/vaultcacli
+Author: Lars Larsson
+Author-email: lars.la@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: requests
+
+UNKNOWN
+
+
