@@ -1,0 +1,9 @@
+testtools>=1.8
+mock>=1.0
+mox>=0.5
+
+[dev]
+check-manifest
+
+[test]
+coverage
