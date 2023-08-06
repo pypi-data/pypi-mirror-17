@@ -1,0 +1,24 @@
+Metadata-Version: 2.0
+Name: Pytrium
+Version: 0.1.1
+Summary: MX Atrium API Python Wrapper
+Home-page: https://github.com/phantomxc/pytrium
+Author: Cameron Wengert 
+Author-email: phantomxc@gmail.com
+License: MIT
+Keywords: MX Atrium API
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Requires-Dist: requests (==2.11.1)
+Requires-Dist: future (==0.15.2)
+Provides-Extra: dev
+Requires-Dist: twine; extra == 'dev'
+
+UNKNOWN
+
+
