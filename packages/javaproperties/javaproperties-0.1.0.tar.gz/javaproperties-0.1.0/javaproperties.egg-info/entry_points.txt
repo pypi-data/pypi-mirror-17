@@ -1,0 +1,4 @@
+[console_scripts]
+json2properties = javaproperties.fromjson:main
+properties2json = javaproperties.tojson:main
+
