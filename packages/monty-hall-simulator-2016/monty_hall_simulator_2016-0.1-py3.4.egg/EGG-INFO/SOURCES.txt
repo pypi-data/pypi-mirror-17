@@ -1,0 +1,14 @@
+MANIFEST.in
+README.rst
+setup.py
+monty_hall_simulator_2016/__init__.py
+monty_hall_simulator_2016/game.py
+monty_hall_simulator_2016/main.py
+monty_hall_simulator_2016/simulator.py
+monty_hall_simulator_2016.egg-info/PKG-INFO
+monty_hall_simulator_2016.egg-info/SOURCES.txt
+monty_hall_simulator_2016.egg-info/dependency_links.txt
+monty_hall_simulator_2016.egg-info/entry_points.txt
+monty_hall_simulator_2016.egg-info/not-zip-safe
+monty_hall_simulator_2016.egg-info/requires.txt
+monty_hall_simulator_2016.egg-info/top_level.txt
