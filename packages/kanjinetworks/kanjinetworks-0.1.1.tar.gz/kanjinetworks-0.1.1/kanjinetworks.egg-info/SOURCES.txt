@@ -1,0 +1,17 @@
+MANIFEST.in
+README.md
+setup.py
+kanjinetworks/__init__.py
+kanjinetworks/kanji.py
+kanjinetworks.egg-info/PKG-INFO
+kanjinetworks.egg-info/SOURCES.txt
+kanjinetworks.egg-info/dependency_links.txt
+kanjinetworks.egg-info/not-zip-safe
+kanjinetworks.egg-info/requires.txt
+kanjinetworks.egg-info/top_level.txt
+kanjinetworks/export/__init__.py
+kanjinetworks/export/japaneseapp.py
+kanjinetworks/extract/__init__.py
+kanjinetworks/extract/extractor.py
+kanjinetworks/extract/parser.py
+scripts/kn_to_ja.py
