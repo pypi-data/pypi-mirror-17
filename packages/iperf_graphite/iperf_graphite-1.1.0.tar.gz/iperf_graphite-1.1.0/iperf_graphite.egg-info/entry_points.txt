@@ -1,0 +1,3 @@
+[console_scripts]
+iperf_graphite = iperf_graphite.iperf_graphite:main
+

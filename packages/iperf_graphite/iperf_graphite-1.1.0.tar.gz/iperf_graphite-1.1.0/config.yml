@@ -1,0 +1,23 @@
+---
+
+# Configuration for iperf-graphite.py
+
+# Graphite details
+carbon_server: myserver.example.net
+carbon_port: 2003
+data_point_prefix: "test.iperf"
+
+# Iperf options
+iperf_port: 5201
+iperf_test_duration: 10
+
+# Sleep time (seconds) between tests
+sleep: 0
+
+# List of tests to iterate over
+tests:
+  - src: 192.0.2.1
+    dst: 192.0.2.2
+  - src: 1.2.3.4
+    dst: 5.6.7.8
+
