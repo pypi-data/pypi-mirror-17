@@ -1,0 +1,16 @@
+MANIFEST.in
+README.rst
+setup.py
+django_universe/__init__.py
+django_universe/admin.py
+django_universe/models.py
+django_universe/tests.py
+django_universe/urls.py
+django_universe/views.py
+django_universe.egg-info/PKG-INFO
+django_universe.egg-info/SOURCES.txt
+django_universe.egg-info/dependency_links.txt
+django_universe.egg-info/requires.txt
+django_universe.egg-info/top_level.txt
+django_universe/templates/base_admin.html
+django_universe/templates/code_base.html
