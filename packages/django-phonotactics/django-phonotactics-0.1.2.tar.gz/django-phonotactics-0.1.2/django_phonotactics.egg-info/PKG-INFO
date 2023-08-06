@@ -1,0 +1,57 @@
+Metadata-Version: 1.1
+Name: django-phonotactics
+Version: 0.1.2
+Summary: A Django app for calculating phonotactic probabilities in Serbian language.
+Home-page: http://www.phonotactics.ml/
+Author: Nikola Paunović
+Author-email: ludi.macow@gmail.com
+License: MIT License
+Description: =====
+        Phonotactic Probability Calculator for Serbian Language
+        =====
+        
+        Phonotactic Probability Calculator is a Django app for calculating phonotactic probabilities in Serbian language.
+        
+        
+        Quick start
+        -----------
+        
+        PREREQUISITES:
+        
+        - Django 1.10
+        - Django “form tools” app
+        
+        -----------
+        
+        0. Install prerequisites and the phonotactics app with pip::
+        	
+        	pip install django django-formtools django-phonotactics
+        
+        
+        1. Add prerequisites and "phonotactics" app to your INSTALLED_APPS setting like this::
+        
+            INSTALLED_APPS = [
+                ...
+                'formtools',
+                'phonotactics',
+            ]
+        
+        2. Include the phonotactics URLconf in your project urls.py like this::
+        
+            url(r'^', include('phonotactics.urls')),
+        
+        3. Run `python manage.py migrate` to create the phonotactics models.
+        
+        4. Run `python manage.py loaddata words.json` to load the basic corpus.
+        
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.10
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
