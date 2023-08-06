@@ -1,0 +1,16 @@
+README.rst
+setup.cfg
+setup.py
+django_suuze_upload/__init__.py
+django_suuze_upload/admin.py
+django_suuze_upload/apps.py
+django_suuze_upload/models.py
+django_suuze_upload/services.py
+django_suuze_upload/tests.py
+django_suuze_upload/views.py
+django_suuze_upload.egg-info/PKG-INFO
+django_suuze_upload.egg-info/SOURCES.txt
+django_suuze_upload.egg-info/dependency_links.txt
+django_suuze_upload.egg-info/not-zip-safe
+django_suuze_upload.egg-info/requires.txt
+django_suuze_upload.egg-info/top_level.txt
