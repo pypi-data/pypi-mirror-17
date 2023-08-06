@@ -1,0 +1,13 @@
+README.rst
+setup.cfg
+setup.py
+dynamallow/__init__.py
+dynamallow/exceptions.py
+dynamallow/local.py
+dynamallow/model.py
+dynamallow/table.py
+dynamallow.egg-info/PKG-INFO
+dynamallow.egg-info/SOURCES.txt
+dynamallow.egg-info/dependency_links.txt
+dynamallow.egg-info/requires.txt
+dynamallow.egg-info/top_level.txt
