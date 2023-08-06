@@ -1,0 +1,186 @@
+Metadata-Version: 1.1
+Name: apex-radio
+Version: 0.0.1
+Summary: APEX reference implementation.
+Home-page: https://github.com/Syncleus/apex
+Author: Jeffrey Phillips Freeman (WI2ARD)
+Author-email: jeffrey.freeman@syncleus.com
+License: Apache Software License
+Download-URL: https://github.com/Syncleus/apex/archive/v0.0.1.tar.gz
+Description: ========
+        Overview
+        ========
+        
+        
+        
+        APEX is a next generation APRS based protocol. This repository represents the reference implementation and is a full features application for digipeating across multiple AX.25 KISS TNC devices using the full APEX stack.
+        
+        For more information on the project please check out `the project's home page <http://apexprotocol.com/>`_.
+        
+        Running the app
+        ===============
+        
+        Right now the setup.py has a few bugs in it. So you can either try to fix it, wait for us to fix it, or simply install
+        the prerequsites manually. The following is a list of the preequsites that need to be installed.
+        
+            pynmea2 >= 1.4.2
+            pyserial >= 2.7
+            requests >= 2.7.0
+            cachetools >= 1.1.5
+        
+        The application is written for python 3 specifically, it may not work with python 2. Once installed copy the
+        apex.cfg.example file over to apex.cfg in the same directory, then edit the file and replace it with your details. Next
+        just run the application with the following command.
+        
+            python ./apex.py
+        
+        There isnt much to the application right now, so thats all you should need to run it. Digipeating will occur
+        automatically and respond to the WIDEN-n paradigm as well as your own callsign. Cross-band repeating is enabled right
+        now but only by specifying the call sign directly. The application is still pre-release so more features and
+        configuration options should be added soon.
+        
+        * Free software: BSD license
+        
+        Installation
+        ============
+        
+        ::
+        
+            pip install apex
+        
+        Documentation
+        =============
+        
+        https://apex.readthedocs.io/
+        
+        Development
+        ===========
+        
+        Initial setup::
+        
+            pip install -U pyenv tox
+            pyenv install 2.7 3.3.6 3.4.5 3.5.2 pypy-5.4.1
+            pyenv global 2.7 3.3.6 3.4.5 3.5.2 pypy-5.4.1
+        
+        NOTE: The specific versions mentioned above may be different for each platform. use `pyenv install --list` to view the
+        list of available versions. You will need a version of 2.7.x, 3.3.x, 3.4.x, 3.5.x, and pypy. Try to use the latest
+        available version for each. Also some flavors of pyenv have different formats for it's arguments. So read the pyenv
+        documentation on your platform.
+        
+        To run the all tests run::
+        
+            tox
+        
+        Note, to combine the coverage data from all the tox environments run:
+        
+        .. list-table::
+            :widths: 10 90
+            :stub-columns: 1
+        
+            - - Windows
+              - ::
+        
+                    set PYTEST_ADDOPTS=--cov-append
+                    tox
+        
+            - - Other
+              - ::
+        
+                    PYTEST_ADDOPTS=--cov-append tox
+        
+        Releasing
+        =========
+        
+        * Ensure you have an account on PyPI, if you do not create one `here <https://pypi.python.org/pypi?%3Aaction=register_form>`_.
+        
+        * Create or verify your `~/.pypirc` file. It should look like this::
+        
+            [distutils]
+            index-servers=pypi
+        
+            [pypi]
+            repository = https://upload.pypi.org/legacy/
+            username = <username>
+            password = <password>
+        
+        
+        * Update CHANGELOG.rst
+        
+        * Commit the changes::
+        
+            git add CHANGELOG.rst
+            git commit -m "Changelog for upcoming release 0.1.1."
+        
+        
+        * Update version number (can also be minor or major)::
+        
+            bumpversion patch
+        
+        
+        * Install the package again for local development, but with the new version number::
+        
+            python setup.py develop
+        
+        
+        * Run the tests::
+        
+            tox
+        
+        
+        * Release on PyPI by uploading both sdist and wheel::
+        
+            python setup.py sdist upload
+            python setup.py bdist_wheel upload
+        
+        
+        * If you don't  have virtualenvwrapper installed, install it so you can use the mktmpenv command::
+        
+            pip install virtualenvwrapper
+        
+        
+        * Test that it pip installs::
+        
+            mktmpenv
+            pip install apex-radio
+            <try out my_project>
+            deactivate
+        
+        
+        * Push: `git push`
+        
+        * Push tags: `git push --tags`
+        
+        * Check the PyPI listing page to make sure that the README, release notes, and roadmap display properly. If not, copy
+          and paste the RestructuredText into `ninjs <http://rst.ninjs.org/>`_ to find out what broke the formatting.
+        
+        * Edit the release on `GitHub <https://github.com/Syncleus/apex/releases>`_ . Paste the release notes into the
+          release's release page, and come up with a title for the release.
+        
+        
+        Changelog
+        =========
+        
+        0.1.0 (2016-3-19)
+        -----------------------------------------
+        
+        * First release on PyPI.
+        
+Keywords: Ham Radio,APEX,APRS
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Environment :: Console
+Classifier: Environment :: No Input/Output (Daemon)
+Classifier: Natural Language :: English
+Classifier: Topic :: Communications :: Ham Radio
