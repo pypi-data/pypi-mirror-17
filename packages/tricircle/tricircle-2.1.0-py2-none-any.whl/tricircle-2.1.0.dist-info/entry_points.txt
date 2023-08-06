@@ -1,0 +1,14 @@
+[oslo.config.opts]
+tricircle.api = tricircle.api.opts:list_opts
+tricircle.common = tricircle.common.opts:list_opts
+tricircle.db = tricircle.db.opts:list_opts
+tricircle.network = tricircle.network.opts:list_opts
+tricircle.xjob = tricircle.xjob.opts:list_opts
+
+[tempest.test_plugins]
+tricircle_tests = tricircle.tempestplugin.plugin:TricircleTempestPlugin
+
+[tricircle.network.type_drivers]
+local = tricircle.network.drivers.type_local:LocalTypeDriver
+shared_vlan = tricircle.network.drivers.type_shared_vlan:SharedVLANTypeDriver
+
