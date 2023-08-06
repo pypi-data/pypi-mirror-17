@@ -1,0 +1,3 @@
+[console_scripts]
+py27-barcode = steenzout.barcode.cli:cli
+
