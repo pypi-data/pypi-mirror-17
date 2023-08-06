@@ -1,0 +1,3 @@
+[console_scripts]
+cohesion = cohesion.__main__:main
+
