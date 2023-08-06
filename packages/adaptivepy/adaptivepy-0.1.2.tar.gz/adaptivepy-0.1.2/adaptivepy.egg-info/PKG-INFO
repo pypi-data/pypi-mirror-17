@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: adaptivepy
+Version: 0.1.2
+Summary: Design patterns for easy addition of adaptive behavior in an extensible and testable way.
+Home-page: https://gitlab.com/memophysic/adaptive_py_lib
+Author: Samuel Longchamps
+Author-email: samuel.longchamps@usherbrooke.ca
+License: UNKNOWN
+Download-URL: https://gitlab.com/memophysic/adaptive_py_lib/repository/archive.tar.gz?ref=0.1.2
+Description: UNKNOWN
+Keywords: adaptive,monitor,proxy,router,component
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved
+Classifier: Topic :: Adaptive Technologies
+Classifier: Development Status :: 3 - Alpha
