@@ -1,0 +1,7 @@
+setup.cfg
+setup.py
+ansible_toolset.egg-info/PKG-INFO
+ansible_toolset.egg-info/SOURCES.txt
+ansible_toolset.egg-info/dependency_links.txt
+ansible_toolset.egg-info/top_level.txt
+bin/ats-vault
