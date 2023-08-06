@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: pyspark_dfreport
+Version: 0.1
+Summary: Simple Python Package to save (small) PySpark DataFrames to one Excel File.
+Home-page: https://github.com/graham-thomson/pyspark_report_builder
+Author: Graham Thomson
+Author-email: grahamflemingthomson@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: pyspark,dataframe,save,excel
+Platform: UNKNOWN
