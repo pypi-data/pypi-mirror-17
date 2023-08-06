@@ -1,0 +1,10 @@
+setup.py
+bintraypy_cli/__init__.py
+bintraypy_cli/cmd.py
+bintraypy_cli/main.py
+bintraypy_cli.egg-info/PKG-INFO
+bintraypy_cli.egg-info/SOURCES.txt
+bintraypy_cli.egg-info/dependency_links.txt
+bintraypy_cli.egg-info/entry_points.txt
+bintraypy_cli.egg-info/requires.txt
+bintraypy_cli.egg-info/top_level.txt
