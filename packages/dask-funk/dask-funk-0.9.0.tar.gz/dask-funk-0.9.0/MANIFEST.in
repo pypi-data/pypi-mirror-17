@@ -1,0 +1,11 @@
+recursive-include dask-funk *.py
+recursive-include docs *.rst
+
+include setup.py
+include README.rst
+include LICENSE.txt
+include MANIFEST.in
+
+prune docs/_build
+include versioneer.py
+include daskfunk/_version.py

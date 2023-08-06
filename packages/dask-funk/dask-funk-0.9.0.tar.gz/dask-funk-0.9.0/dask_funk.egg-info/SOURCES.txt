@@ -1,0 +1,16 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+versioneer.py
+dask_funk.egg-info/PKG-INFO
+dask_funk.egg-info/SOURCES.txt
+dask_funk.egg-info/dependency_links.txt
+dask_funk.egg-info/requires.txt
+dask_funk.egg-info/top_level.txt
+daskfunk/__init__.py
+daskfunk/_version.py
+daskfunk/compatibility.py
+daskfunk/core.py
+daskfunk/utils.py
