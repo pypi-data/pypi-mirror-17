@@ -1,0 +1,8 @@
+slixmpp
+aiodns
+
+[OTR plugin]
+python-potr>=1.0
+
+[Screen autoaway plugin]
+pyinotify==0.9.4
