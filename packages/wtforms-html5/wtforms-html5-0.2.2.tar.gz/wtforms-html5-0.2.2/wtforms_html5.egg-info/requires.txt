@@ -1,0 +1,10 @@
+wtforms
+
+[dev]
+bumpversion
+flake8
+pylint
+
+[test]
+werkzeug
+beautifulsoup4
