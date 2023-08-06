@@ -1,0 +1,4 @@
+aiohttp>=1.0
+
+[recommends]
+uvloop
