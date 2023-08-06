@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: pystream-protobuf
+Version: 1.2.0rc0
+Summary: Python implementation of stream library
+Home-page: https://github.com/cartoonist/pystream-protobuf
+Author: Ali Ghaffaari
+Author-email: ali.ghaffaari@mpi-inf.mpg.de
+License: MIT
+Download-URL: https://github.com/cartoonist/pystream-protobuf/tarball/1.2.0rc0
+Description: UNKNOWN
+Keywords: protobuf,stream,protocol buffer
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Intended Audience :: Developers
