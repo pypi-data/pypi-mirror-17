@@ -1,0 +1,34 @@
+Metadata-Version: 1.1
+Name: swagger-bundler
+Version: 0.0.1
+Summary: swagger schema bundler
+Home-page: https://github.com/podhmo/swagger-bundler
+Author: podhmo
+Author-email: UNKNOWN
+License: UNKNOWN
+Description: swagger-bundler
+        ========================================
+        
+        - yaml only
+        - python3 only
+        
+        TODO: readme
+        
+        .. code-block::
+        
+          Usage: swagger-bundler [OPTIONS] COMMAND [ARGS]...
+        
+          Options:
+            --help  Show this message and exit.
+        
+          Commands:
+            bundle
+            config
+        
+        
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: 3
