@@ -1,0 +1,97 @@
+<div metal:use-macro="layout.base" i18n:domain="onegov.feriennet">
+    <tal:block metal:fill-slot="title">
+        ${title}
+    </tal:block>
+    <tal:block metal:fill-slot="content">
+        <metal:hint use-macro="layout.macros['empty_page_lead_hint']" tal:define="item activity"/>
+
+        <tal:block condition="activity.state == 'preview'">
+            <div class="panel callout" tal:condition="request.is_organiser_only" i18n:translate>
+                This is a preview. Please edit it until you are satisifed with the result and then press "Request Publication". An administrator will then review your proposal.
+            </div>
+            <div class="panel callout" tal:condition="request.is_admin" i18n:translate>
+                This is a preview. Please edit it until you are satisifed with the result and then press "Publish" to make this activity public.
+            </div>
+        </tal:block>
+
+        <tal:block condition="activity.state == 'proposed' and request.is_organiser_only">
+            <div class="panel callout" i18n:translate>
+                This activity is currently being reviewd by an administrator.
+            </div>
+        </tal:block>
+
+        <tal:block condition="activity.state == 'denied' and request.is_organiser_only">
+            <div class="panel callout" i18n:translate>
+                This activity has been reviewed by an administrator and was denied.
+            </div>
+        </tal:block>
+
+        <tal:block condition="activity.state == 'archived'">
+            <div class="panel callout" i18n:translate>
+                This activity has been archived and cannot be activated again.
+            </div>
+        </tal:block>
+
+        <tal:block metal:use-macro="layout.macros.activity_detailed" tal:define="show_ticket_panel True">
+            <metal:block fill-slot="after-text">
+                <hr class="hairline">
+                <h3 i18n:translate>Occasions</h3>
+                <p tal:condition="not:activity.occasions" i18n:translate>
+                    There are currently no occasions planned.
+                </p>
+
+                <ul tal:condition="activity.occasions" class="occasions">
+                    <li tal:repeat="occasion activity.occasions">
+                        <h4>${layout.format_date_range(occasion.localized_start, occasion.localized_end)}</h4>
+
+                        <div class="row">
+                            <div class="small-12 medium-5 columns factoids">
+                                <div class="location" tal:condition="occasion.location">
+                                    <span i18n:translate class="show-for-sr">Location</span>
+                                    ${occasion.location}
+                                </div>
+
+                                <div class="age">
+                                    <span i18n:translate class="show-for-sr">Age</span>
+                                    <tal:block i18n:translate>
+                                        <tal:block replace="occasion.age.lower" i18n:name='min_age' />
+                                        -
+                                        <tal:block replace="occasion.age.upper - 1" i18n:name='max_age' />
+                                        years old
+                                    </tal:block>
+                                </div>
+
+                                <div class="spots">
+                                    <span i18n:translate class="show-for-sr">Participants</span>
+
+                                    <tal:block i18n:translate condition="occasion.spots.lower">
+                                        <tal:block replace="occasion.spots.lower" i18n:name='min_spots' />
+                                        -
+                                        <tal:block replace="occasion.spots.upper - 1" i18n:name='max_spots' />
+                                        participants
+                                    </tal:block>
+
+                                    <tal:block i18n:translate condition="not:occasion.spots.lower">
+                                        up to
+                                        <tal:block replace="occasion.spots.upper - 1" i18n:name='max_spots' />
+                                        participants
+                                    </tal:block>
+                                </div>
+
+                                <div class="occasion-links" tal:condition="request.is_admin or layout.is_owner">
+                                    <tal:block repeat="link occasion_links">
+                                        <tal:block replace="structure link(occasion)(request)" />
+                                    </tal:block>
+                                </div>
+                            </div>
+
+                            <div class="small-12 medium-7 columns">
+                                <p tal:condition="occasion.note">${occasion.note}</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </metal:block>
+        </tal:block>
+    </tal:block>
+</div>
