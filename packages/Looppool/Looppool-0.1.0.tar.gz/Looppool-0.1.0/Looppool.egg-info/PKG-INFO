@@ -1,0 +1,91 @@
+Metadata-Version: 1.1
+Name: Looppool
+Version: 0.1.0
+Summary: Tornado IO loop process pool with message passing
+Home-page: https://bitbucket.org/saaj/looppool
+Author: saaj
+Author-email: mail@saaj.me
+License: LGPL-2.1+
+Description: ..
+          image:: https://drone.io/bitbucket.org/saaj/looppool/status.png
+          :target: https://drone.io/bitbucket.org/saaj/looppool/latest
+        .. 
+          image:: https://codecov.io/bitbucket/saaj/looppool/branch/default/graph/badge.svg
+          :target: https://codecov.io/bitbucket/saaj/looppool/branch/default 
+        .. 
+          image:: https://badge.fury.io/py/Looppool.png
+          :target: https://pypi.python.org/pypi/Looppool
+        
+        ********
+        Looppool
+        ********
+        Looppool is a Python 3 package for running process pool of Tornado IO loops. It's useful
+        for heavy asynchronous applications which don't fit into single process due to increasing
+        CPU usage and IO loop blocking (see `set_blocking_log_threshold 
+        <http://www.tornadoweb.org/en/stable/ioloop.html#tornado.ioloop.IOLoop.set_blocking_log_threshold>`_).  
+        
+        Install
+        =======
+        .. sourcecode:: bash
+        
+            pip install Looppool
+            
+        Use
+        ===
+        .. sourcecode:: python
+        
+            #!/usr/bin/env python3
+            
+            
+            import looppool
+            from tornado import gen, ioloop, httpclient
+            
+            
+            class FetchWorker(looppool.SafeWorker):
+                
+                _http_client = None
+                '''Tornado asynchronous HTTP client'''
+              
+                
+                def _initialise(self):
+                    self._http_client = httpclient.AsyncHTTPClient()
+                
+                @gen.coroutine
+                def _process_message(self, url):
+                    try:
+                        response = yield self._http_client.fetch(url)
+                        self._result_queue.put_nowait((url, response.headers.get('server')))
+                    finally:
+                        self._task_queue.task_done()
+            
+            
+            @gen.coroutine
+            def main():
+                loop = ioloop.IOLoop.instance()
+                pool = looppool.Pool(loop, pool_size = 4, worker_class = FetchWorker)
+                pool.process_message = print
+                pool.start()
+                
+                urls = [
+                    'https://python.org/',
+                    'http://tornadoweb.org/',
+                    'https://google.com/',
+                    'https://stackoverflow.com/',
+                ]
+                list(map(pool.put_nowait, urls))
+                
+                pool.stop()
+            
+            
+            if __name__ == '__main__':
+                ioloop.IOLoop.instance().run_sync(main)
+        
+        
+        
+Keywords: python tornado multiprocessing process-pool io-loop
+Platform: Any
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Intended Audience :: Developers
