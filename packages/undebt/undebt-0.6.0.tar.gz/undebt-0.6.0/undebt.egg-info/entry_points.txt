@@ -1,0 +1,3 @@
+[console_scripts]
+undebt = undebt.__main__:main
+
