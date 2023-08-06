@@ -1,0 +1,28 @@
+Metadata-Version: 1.1
+Name: python-resmon
+Version: 1.0.1
+Summary: 
+A resource monitor that records resource usage (e.g., CPU usage, RAM usage and free,
+disk I/O count, NIC speed, etc.) and outputs the data in CSV format that is easy to
+post-process.
+
+Home-page: https://github.com/xybu/python-resmon
+Author: Xiangyu Bu
+Author-email: xybu92@live.com
+License: MIT License
+Description: Please read README.md for more details.
+Keywords: resource,monitor,csv,process,usage
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: System
+Classifier: Topic :: System :: Monitoring
+Classifier: Topic :: System :: Networking :: Monitoring
+Classifier: Topic :: Utilities
