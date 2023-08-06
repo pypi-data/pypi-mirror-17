@@ -1,0 +1,4 @@
+[console_scripts]
+emojdecode = emojencode:_decode
+emojencode = emojencode:_encode
+
