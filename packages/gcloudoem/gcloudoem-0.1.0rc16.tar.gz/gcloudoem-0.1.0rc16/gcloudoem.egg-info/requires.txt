@@ -1,0 +1,27 @@
+future
+httplib2 >= 0.9.1
+googleapis-common-protos >= 1.3.4
+grpcio >= 1.0.0, < 2.0dev
+oauth2client >= 3.0.0, < 4.0.0dev
+protobuf >= 3.0.0
+pytz
+six
+
+[dev]
+sphinx
+sphinx_rtd_theme
+
+[test]
+nose
+coverage
+unittest2
+django>=1.5.1
+pyOpenSSL
+
+[test-py2]
+nose
+coverage
+unittest2
+django>=1.5.1
+pyOpenSSL
+mock
