@@ -1,0 +1,6 @@
+Compatibility: 4.x
+Description: "Select Themes for color syntax"
+Link: readme.md
+Main: theme_selector.js
+Name: "Theme Selector"
+Type: "IPython Notebook Extension"
