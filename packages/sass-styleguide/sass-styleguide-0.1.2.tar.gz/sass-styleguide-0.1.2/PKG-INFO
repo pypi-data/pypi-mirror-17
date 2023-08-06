@@ -1,0 +1,11 @@
+Metadata-Version: 1.1
+Name: sass-styleguide
+Version: 0.1.2
+Summary: Generates a static html page displaying information about your Sass files
+Home-page: https://github.com/igniteflow/sass-styleguide
+Author: Phil Tysoe
+Author-email: philtysoe@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires: Jinja2
