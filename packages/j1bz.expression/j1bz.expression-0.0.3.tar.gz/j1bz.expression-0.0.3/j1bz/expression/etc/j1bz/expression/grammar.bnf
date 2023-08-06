@@ -1,0 +1,80 @@
+(* KEYWORDS *)
+
+@@keyword :: ALL
+@@keyword :: TRUE FALSE NULL
+@@keyword :: AND OR
+@@keyword :: IN NIN LIKE
+@@keyword :: INSERT CREATE READ SELECT UPDATE DELETE
+@@keyword :: INTO VALUES WHERE GROUP ORDER BY ASC DESC LIMIT WITH
+
+(*/KEYWORDS *)
+
+(* TYPES *)
+true::true = "TRUE" ;
+false::false = "FALSE" ;
+digits::digits = value:/[0-9]+/ ;
+characters::characters = value:/\w*/ ;
+
+string::forward_value = '"' value:characters '"' | "'" value:characters "'" ;
+sign::sign = value:( "+" | "-" ) ;
+integer::integer = [ sign:sign ] value:digits ;
+floating::floating = [ sign:sign ] intpart:digits "." floatpart:digits ;
+boolean::forward_value = value:( true | false ) ;
+none::none = "NULL";
+(*/TYPES *)
+
+(* GENERIC *)
+@name
+name::name = value:( /[_a-zA-Z][_a-zA-Z0-9]*(\.[_a-zA-Z][_a-zA-Z0-9]*)*/ ) ;
+as::forward_value = "AS" value:name ;
+
+expression::expression = name:name [ as:as ] ;
+function::function = f:name "(" args:",".{ value } ")" [ as:as ] ;
+
+value::forward_value = value:( function | expression | string | floating | integer | boolean | none ) ;
+identifier::forward_value = value:( function | expression ) ;
+(*/GENERIC *)
+
+(* CONDITION *)
+condop::condop = value:( "AND" | "OR" | "<=" | "<" | "=" | "!=" | ">=" | ">" | "IN" | "NIN" | "LIKE" ) ;
+condition::condition = "(" left:condition condop:condop right:condition ")" | "(" left:value ")" | left:value ;
+(*/CONDITION *)
+
+(* CRUD GENERIC *)
+kv::kv = key:identifier ":" value:value ;
+kvs::kvs = kvs:",".{ kv }+ ;
+strkey_value::kv = key:string ":" value:value ;
+strkeys_values::kvs = kvs:",".{ strkey_value }+ ;
+
+where::forward_value = "WHERE" value:condition ;
+groupby::forward_value = "GROUP BY" value:identifier ;
+sorter::sorter = name:identifier sortmod:[ "ASC" | "DESC" ] ;
+orderby::orderby = "ORDER BY" values:",".{ sorter:sorter }+ ;
+limit::forward_value = "LIMIT" value:integer ;
+with::with = "WITH" dparams:strkeys_values ;
+(*/CRUD GENERIC *)
+
+(* CREATE *)
+create::create = ( "CREATE" | "INSERT" ) [ "INTO" name:identifier ] "VALUES" fields:kvs [ with:with ] ;
+(*/CREATE *)
+
+(* READ *)
+all::all = "ALL" ;
+read::read = ( "READ" | "SELECT" ) ( all:all | names:",".{ identifier }+ ) [ where:where ] [ groupby:groupby ] [ orderby:orderby ] [ limit:limit ] [ with:with ] ;
+(*/READ *)
+
+(* UPDATE *)
+update::update = "UPDATE" [ "INTO" name:identifier ] "VALUES" fields:kvs [ where:where ] [ with:with ] ;
+(*/UPDATE *)
+
+(* DELETE *)
+delete::delete = "DELETE" names:",".{ identifier }+ [ where:where ] [ with:with ] ;
+(*/DELETE *)
+
+(* REQUEST *)
+crud::crud = crudop:( create | read | update | delete ) ";" [ as:as ] ;
+
+request::forward_value = value:crud $ ;
+(* REQUEST *)
+
+start = request:request ;
