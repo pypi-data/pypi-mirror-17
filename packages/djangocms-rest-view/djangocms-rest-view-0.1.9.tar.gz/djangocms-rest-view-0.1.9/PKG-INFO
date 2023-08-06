@@ -1,0 +1,188 @@
+Metadata-Version: 1.1
+Name: djangocms-rest-view
+Version: 0.1.9
+Summary: DRF View for django CMS
+Home-page: https://github.com/nephila/djangocms-rest-view
+Author: Iacopo Spalletti
+Author-email: i.spalletti@nephila.it
+License: BSD
+Description: ===================
+        djangocms-rest-view
+        ===================
+        
+        .. image:: https://img.shields.io/pypi/v/djangocms-rest-view.svg?style=flat-square
+            :target: https://pypi.python.org/pypi/djangocms-rest-view
+            :alt: Latest PyPI version
+        
+        .. image:: https://img.shields.io/pypi/dm/djangocms-rest-view.svg?style=flat-square
+            :target: https://pypi.python.org/pypi/djangocms-rest-view
+            :alt: Monthly downloads
+        
+        .. image:: https://img.shields.io/pypi/pyversions/djangocms-rest-view.svg?style=flat-square
+            :target: https://pypi.python.org/pypi/djangocms-rest-view
+            :alt: Python versions
+        
+        .. image:: https://img.shields.io/travis/nephila/djangocms-rest-view.svg?style=flat-square
+            :target: https://travis-ci.org/nephila/djangocms-rest-view
+            :alt: Latest Travis CI build status
+        
+        .. image:: https://img.shields.io/coveralls/nephila/djangocms-rest-view/master.svg?style=flat-square
+            :target: https://coveralls.io/r/nephila/djangocms-rest-view?branch=master
+            :alt: Test coverage
+        
+        .. image:: https://img.shields.io/codecov/c/github/nephila/djangocms-rest-view/develop.svg?style=flat-square
+            :target: https://codecov.io/github/nephila/djangocms-rest-view
+            :alt: Test coverage
+        
+        .. image:: https://codeclimate.com/github/nephila/djangocms-rest-view/badges/gpa.svg?style=flat-square
+           :target: https://codeclimate.com/github/nephila/djangocms-rest-view
+           :alt: Code Climate
+        
+        An application to load django CMS pages in a client application.
+        
+        djangocms-rest-view uses Django REST framework to serve django CMS pages through a REST API
+        
+        Editing must still be done the "traditional" way
+        
+        ************
+        Installation
+        ************
+        
+        * pip install djangocms-rest-view
+        * Edit ``INSTALLED_APPS``::
+        
+            INSTALLED_APPS = [
+                ...
+                'rest_framework',
+                'djangocms_rest_view',
+                ...
+            ]
+        
+        * Edit ``urls.py``::
+        
+            urlpatterns = [
+                ...
+                url(r'^api/', include('djangocms_rest_view.urls')),
+                ...
+            ]
+        
+        * That's all!
+        
+        The REST view of the pages will be available at http://example.com/api/
+        
+        *************
+        Sample client
+        *************
+        
+        A sample Angular JS client is provided within the project.
+        
+        To start exploring djangocms-rest view, you can install it and browse the website:
+        
+        * Edit ``INSTALLED_APPS``::
+        
+            INSTALLED_APPS = [
+                ...
+                'djangocms_rest_view.client',
+                ...
+            ]
+        
+        * Edit ``urls.py``::
+        
+            urlpatterns = [
+                ...
+                url(r'^rest/', include('djangocms_rest_view.client.urls')),
+                ...
+            ]
+        
+        the Angular client will be available at http://example.com/rest/
+        
+        * Install dependencies according to the application bower.json: https://gitix.iast.it/opensource/djangocms-rest-view/blob/master/bower.json
+        
+        example:
+        
+        * Copy dependencies in project ``bower.json``
+        * run bower::
+        
+            bower install
+        
+        Customize
+        ---------
+        
+        The sample client uses a dedicated base page to load all the default styles etc needed to render
+        your content.
+        Template is in ``rest/base.html`` copy it from ``djangocms_rest_view/client/templates/rest/base.html``
+        and edit it according your needs.
+        
+        Templates
+        ---------
+        
+        Each django CMS has a defined template to render.
+        
+        You can customize the template the AngularJS client will use to render the page:
+        
+        * create a ``partial`` directory in the ``static`` directory
+        * create ``html`` files for each page template
+        * define the content of the rest-page template to render the placeholders and page title::
+        
+            <article class="body">
+              <h2 ng-bind="content_page.title"></h2>
+              <p ng-bind-html="content_page.placeholders.content | safe"></p>
+            </article>
+        
+          ``content_page`` is the page serialization in the angular scope and contains the full serialization
+          as visible at ``http://example.com/api/pages/<page-id>``; thus ``content_page.placeholders.content``
+          contains the rendered HTML for the ``content`` placeholder.
+        
+        
+        *******
+        Credits
+        *******
+        
+        Tools used in rendering this package:
+        
+        *  Cookiecutter_
+        *  cookiecutter-djangopackage-helper_
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _cookiecutter-djangopackage-helper: https://github.com/nephila/cookiecutter-djangopackage-helper
+        
+        
+        
+        
+        =======
+        History
+        =======
+        
+        ******************
+        0.1.9 (2016-09-25)
+        ******************
+        
+        * Fixed compatibility with django CMS 3.4
+        
+        ******************
+        0.1.8 (2016-09-10)
+        ******************
+        
+        * First public "#PyConUK" release
+        
+        ******************
+        0.1.0 (2016-02-01)
+        ******************
+        
+        * Internal release
+        
+Keywords: djangocms-rest-view
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.8
+Classifier: Framework :: Django :: 1.9
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
