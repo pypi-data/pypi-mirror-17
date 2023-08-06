@@ -1,0 +1,15 @@
+
+Change log for Oracle NoSQL Database Python Driver
+
+See http://docs.oracle.com/cd/NOSQL/html/changelog.html for changes in
+Oracle NoSQL Database itself.
+
+Changes in Python Driver release 4.2.8
+
+o modified code to be compatible with API and DDL changes in Oracle NoSQL 4.2
+o added multi_key_table_iterator for bulk get operations
+o
+
+Changes in Python Driver release 3.3.7
+
+o this was the initial release of the driver
