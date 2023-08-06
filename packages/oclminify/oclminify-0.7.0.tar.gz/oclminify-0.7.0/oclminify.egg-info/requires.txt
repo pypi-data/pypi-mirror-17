@@ -1,0 +1,5 @@
+pycparser>=2.14
+pycparserext>=2016.1
+
+[build]
+PyOpenCL>=2016.1
