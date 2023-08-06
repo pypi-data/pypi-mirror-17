@@ -1,0 +1,48 @@
+Metadata-Version: 2.0
+Name: CITeX
+Version: 0.1.1
+Summary: Tools to manage large BibTex libraries
+Home-page: https://github.com/HealthHackAu2016/cbr-improved-citations
+Author: Aqeel Akber, Michael Barson, Sam Blackwell, Zac Hatfield-Dodds
+Author-email: zac.hatfield.dodds@gmail.com
+License: GPL3+
+Keywords: endnote bibtex latex duplicates filter cite citation reference
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Topic :: Scientific/Engineering
+Requires-Dist: pybtex
+Requires-Dist: unidecode
+
+CiTeX - 'Big Citations' tooling
+###############################
+
+CiTeX is a set of tools for managing very large reference databases.
+
+Tools
+=====
+
+:export:
+        Export from Endnote to BibTex with JabRef (external)
+:dedupe:
+        Deduplicate BibTex files, including close matches
+:search:
+        Find the reference for a given quote, in PDFs
+
+All ideas provisional.
+
+
+Dev
+===
+We're using Python 3 (via Anaconda).  ``pip install pybtex`` to get the bibtex
+parser we're using.
+
+
