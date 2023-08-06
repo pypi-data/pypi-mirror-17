@@ -1,0 +1,20 @@
+=======
+History
+=======
+
+0.1.0 (2016-09-15)
+------------------
+
+* First release on PyPI.
+
+0.1.1 (2016-09-17)
+------------------
+
+* Minor documentation changes
+* Renamed some internal variables  
+
+0.2.0 (2016-09-21)
+------------------
+
+* Introduced new feature: regress_out_feat
+* Major renaming of variables for concistency
