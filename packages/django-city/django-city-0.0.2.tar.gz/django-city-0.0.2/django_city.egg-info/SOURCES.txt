@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+city/__init__.py
+city/admin.py
+city/apps.py
+city/models.py
+city/tests.py
+city/views.py
+django_city.egg-info/PKG-INFO
+django_city.egg-info/SOURCES.txt
+django_city.egg-info/dependency_links.txt
+django_city.egg-info/top_level.txt
