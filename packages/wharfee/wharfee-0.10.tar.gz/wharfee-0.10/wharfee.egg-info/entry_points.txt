@@ -1,0 +1,4 @@
+[console_scripts]
+wharfee = wharfee.main:cli
+wharfee-ops = scripts.optionizer:main
+
