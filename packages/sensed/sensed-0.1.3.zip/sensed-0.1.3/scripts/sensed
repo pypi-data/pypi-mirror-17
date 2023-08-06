@@ -1,0 +1,133 @@
+#!/usr/bin/env python3.5
+
+import os
+import sys
+import time
+import toml
+import chalk
+import click
+import atexit
+import importlib
+import socketserver
+
+from dotmap import DotMap
+from sensed.SensedServer import SensedServer
+from sensed.Debug import Debug
+
+
+__version__ = '0.1.3'
+
+_debug = Debug()
+
+@click.command()
+@click.option('--config', '-c', default=None,
+              help='Configuration file for this instance.')
+@click.option('--name', '-n', default='sensed',
+              help='Name of his sensed instance. Default: sensed')
+@click.option('--sensors', '-S', default=[],
+              help='Sensor modules to load and enable.')
+@click.option('--host', '-i', default='localhost',
+              help='IP or hostname to bind to. Default: localhost')
+@click.option('--port', '-p', default=3000,
+              help='Port to bind to. Default: 3000')
+@click.option('--test', '-t', is_flag=True,
+              help='Enable test mode.')
+@click.option('--ci', is_flag=True, help='CI Testing.')
+def sensed(config, name, sensors, host, port, test, ci):
+    if config is None:
+        cfg = DotMap()
+        cfg.sensed = DotMap({'name': name, 'host': host,
+                             'port': port, 'test': test,
+                             'sensors': []})
+    else:
+        with open(config) as f:
+            cfg = DotMap(toml.load(f))
+
+        _debug.emit('Loaded config', tag='INFO')
+
+        if 'sensed' not in cfg:
+            cfg.sensed = DotMap({'name': name, 'host': host,
+                                 'port': port, 'test': test,
+                                 'sensors': []})
+
+        if 'sensors' not in cfg.sensed:
+            _debug.emit(chalk.yellow, 'no sensors configured, disabling')
+            cfg.sensed.sensors = []
+        if 'host' not in cfg.sensed:
+            _debug.emit(chalk.yellow,
+                        'no host configured, defaulting to localhost')
+            cfg.sensed.host = 'localhost'
+        if 'port' not in cfg.sensed:
+            _debug.emit(chalk.yellow,
+                        'no port configured, defaulting to 3000')
+            cfg.sensed.port = 3000
+        if 'name' not in cfg.sensed:
+            _debug.emit(chalk.yellow,
+                        'no name configured, defaulting to sensed')
+            cfg.sensed.name = 'sensed'
+        if 'test' not in cfg.sensed:
+            cfg.sensed.test = False
+
+    # The `test` command line flag takes precedence over the option within the
+    # config file, allowing for quick testing of a config without needing
+    # to modify is
+    cfg.sensed.test = test
+
+    _debug.info('Initializing sensed server')
+    server = socketserver.UDPServer((cfg.sensed.host, cfg.sensed.port),
+                                    SensedServer)
+
+    # Builds the PATH based on the configured module directories.
+    if 'modulepaths' in cfg.sensed and len(cfg.sensed.modulepaths) > 0:
+        for path in cfg.sensed.modulepaths:
+            sys.path.insert(1, path)
+
+    if len(cfg.sensed.sensors) > 0:
+        _debug.info('Loading modules:')
+        server.sensors = DotMap()
+        for sensor in cfg.sensed.sensors:
+            try:
+                smod = importlib.import_module(sensor)
+                s_key = sensor.replace('.', '-')
+                if s_key[0] == '-':
+                    s_key = s_key[1:]
+                if isinstance(cfg[s_key], dict):
+                    cfg[s_key] = DotMap(cfg[s_key])
+                server.sensors[sensor] = smod.Sensor(cfg)
+
+                missing = []
+                if cfg.sensed.test is True and \
+                   'test' not in dir(server.sensors[sensor]):
+                   missing.append('test')
+                elif cfg.sensed.test is False and \
+                     'get_data' not in dir(server.sensors[sensor]):
+                    missing.append('get_data')
+
+                if len(missing) > 0:
+                    _debug.missing_functions(sensor, missing)
+                    del server.sensors[sensor]
+                else:
+                    _debug.info(' * {}'.format(sensor))
+            except Exception as e:
+                err = '! {} - {}: {}'.format(sensor, str(e.__class__), e)
+                _debug.error(err)
+
+    server.config = cfg
+
+    _debug.banner('sensed v{} (server v{}) ready'.format(__version__, SensedServer.__version__))
+    if cfg.sensed.test == True:
+        _debug.warn('test mode is active')
+
+    if ci is True:
+        _debug.emit('testing successful, terminating')
+        server.server_close()
+        sys.exit(0)
+    else:
+        @atexit.register
+        def close():
+            _debug.emit('shutting down')
+            server.shutdown()
+        server.serve_forever()
+
+if __name__ == '__main__':
+    sensed()

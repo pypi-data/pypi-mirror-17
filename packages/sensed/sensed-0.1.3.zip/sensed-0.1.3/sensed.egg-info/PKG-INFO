@@ -1,0 +1,110 @@
+Metadata-Version: 1.1
+Name: sensed
+Version: 0.1.3
+Summary: A sensor network server and client library.
+Home-page: http://github.com/sli/sensed
+Author: R. Cody Maden
+Author-email: signedlongint@gmail.com
+License: MIT
+Download-URL: https://github.com/sli/sensed/releases/tag/v0.1.3
+Description: .. figure:: https://raw.githubusercontent.com/sli/sensed/gh-pages/logo.png
+           :alt: sensed
+        
+        |PyPILicense| |PyPIVersion| |PEP8| |Build Status| |codecov| |gitter|
+        
+        ``sensed`` is a sensor network daemon that acts as a provider for sensor
+        and node data. Uses a simple protocol based around `MessagePack`_.
+        
+        What is this thing?
+        ~~~~~~~~~~~~~~~~~~~
+        
+        Please the `the wiki article`_ on the subject.
+        
+        Requirements
+        ~~~~~~~~~~~~
+        
+        As ``sensed`` makes use of the typing module, Python 3.5 or newer is
+        required. Beyond that, all dependencies are in the included
+        ``requirements.txt`` file.
+        
+        How do I install this thing?
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        The PyPI version can be installed as usual:
+        
+        ::
+        
+            $ sudo pip3 install sensed
+        
+        If you need the development version (you'll probably know if you do), do the git-pip dance:
+        
+        ::
+        
+            $ git clone http://github.com/sli/sensed
+            $ cd sensed
+            $ sudo pip install -e .
+        
+        How do I use this thing?
+        ~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        First, see the ``--help`` output:
+        
+        ::
+        
+            $ python3 sensed.py --help
+            Usage: sensed.py [OPTIONS]
+        
+            Options:
+              -c, --config TEXT   Configuration file for this instance.
+              -n, --name TEXT     Name of his sensed instance. Default: sensed
+              -S, --sensors TEXT  Sensor modules to load and enable.
+              -i, --host TEXT     IP or hostname to bind to. Default: 0.0.0.0
+              -p, --port INTEGER  Port to bind to. Default: 3000
+              -V, --verbose       Enable verbose output (debugging)
+              -t, --test          Enable test mode.
+              --help              Show this message and exit.
+        
+        Next, youâ€™ll probably want to take a look at the `example config file`_.
+        As youâ€™ll no doubt notice, a configuration file is not required.
+        
+        The client library is included in this version of ``sensed``.
+        
+        Testing mode?
+        ~~~~~~~~~~~~~
+        
+        Testing mode simply tells ``sensed`` to send preconfigured test data
+        from the sensor modules rather than query real sensors. Perhaps
+        surprisingly, this allows you to test your sensor network infrastructure
+        and your ``senselog`` implementation before deployment.
+        
+        License
+        ~~~~~~~
+        
+        Distributed under the MIT License (MIT). See ``LICENSE`` for details.
+        
+        .. _MessagePack: http://msgpack.org/
+        .. _the wiki article: https://github.com/sli/sensed/wiki/What-is-sensed%3F
+        .. _example config file: https://github.com/sli/sensed/blob/master/docs/config.sample.toml
+        
+        .. |PyPILicense| image:: https://img.shields.io/pypi/l/sensed.svg?maxAge=2592000
+           :target: https://github.com/sli/sensed/blob/python-module/LICENSE.md
+        .. |PyPIVersion| image:: https://img.shields.io/pypi/v/sensed.svg?maxAge=2592000
+           :target: https://pypi.python.org/pypi/sensed
+        .. |PEP8| image:: https://img.shields.io/badge/code%20style-pep8-orange.svg
+           :target: https://www.python.org/dev/peps/pep-0008/
+        .. |Build Status| image:: https://travis-ci.org/sli/sensed.svg?branch=master
+           :target: https://travis-ci.org/sli/sensed
+        .. |codecov| image:: https://codecov.io/gh/sli/sensed/branch/master/graph/badge.svg
+           :target: https://codecov.io/gh/sli/sensed/branch/master
+        .. |gitter| image:: https://img.shields.io/gitter/room/sensed-dev/Lobby.svg?maxAge=2592000
+           :target: https://gitter.im/sensed-dev/Lobby
+Keywords: sensor network sensed
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Networking

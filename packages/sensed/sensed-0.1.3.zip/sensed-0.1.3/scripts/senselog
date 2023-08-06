@@ -1,0 +1,92 @@
+#!/usr/bin/env python3.5
+
+import os
+import sys
+import time
+import toml
+import chalk
+import click
+import atexit
+import pprint
+
+from dotmap import DotMap
+from sensed.SensedClient import SensedClient
+
+
+def _debug(msg, tag='\\\\\\/'):
+    if tag == 'INFO':
+        disp = chalk.blue
+    elif tag == 'WARN':
+        disp = chalk.yellow
+    elif tag == 'ERROR':
+        disp = chalk.red
+    elif tag == 'BANNER':
+        disp = chalk.cyan
+        tag = '\\\\\\/'
+    else:
+        disp = chalk.green
+
+    tag = '[{}]'.format(tag).rjust(7)
+    msg = '[{}] {} :: {}'.format(time.asctime(), tag, msg)
+    disp(msg)
+
+
+@click.command()
+@click.option('--config', '-c', default=None,
+              help='Configuration file for this instance')
+@click.option('--hosts', '-h', default=[],
+              help='Host/port pairs to query. (host:port,host:post,...)')
+@click.option('--interval', '-i', default=60,
+              help='Request interval in seconds')
+@click.option('--ci', is_flag=True, help='CI Testing.')
+def senselog(config, hosts, interval, ci):
+    if config is None:
+        if not hosts == []:
+            hosts = [tuple(h.split(':')) for h in hosts.split(',')]
+        cfg = DotMap()
+        cfg.senselog = DotMap({'hosts': hosts, 'interval': 60})
+    else:
+        with open(config) as f:
+            cfg = DotMap(toml.load(f))
+
+        if 'senselog' not in cfg:
+            cfg.senselog = DotMap({'hosts': [], 'interval': 60})
+
+        if 'hosts' not in cfg.senselog:
+            cfg.senselog.hosts = []
+
+        if 'interval' not in cfg.senselog:
+            cfg.senselog.interval = 60
+
+    _debug('Loaded config', tag='INFO')
+
+    _debug('Initializing sensed client', tag='INFO')
+    client = SensedClient(cfg)
+
+    @atexit.register
+    def close():
+        _debug('shutting down')
+
+    _debug('senselog v{} ready'.format(SensedClient.__version__), tag='BANNER')
+
+    if ci is True:
+        _debug('testing successful, terminating')
+        sys.exit(0)
+    else:
+        @atexit.register
+        def close():
+            _debug('shutting down')
+
+        p = pprint.PrettyPrinter(width=100, compact=True)
+
+        all_meta = client.get_all_meta()
+        for m in all_meta:
+            p.pprint(m)
+        while True:
+            all_sensors = client.get_all_sensors()
+            for s in all_sensors:
+                p.pprint(s)
+            time.sleep(cfg.senselog.interval)
+
+if __name__ == '__main__':
+    senselog()
