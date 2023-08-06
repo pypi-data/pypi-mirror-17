@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: bin2c
+Version: 0.2.0
+Summary: Create a C source and header file out of one or more binaries
+Home-page: http://github.com/endrift/bin2c.py/
+Author: Jeffrey Pfau
+Author-email: jeffrey@endrift.com
+License: BSD
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Topic :: Utilities
