@@ -1,0 +1,48 @@
+headjack
+========
+
+*Tools to download, organize, share, archive and reference various kinds of media. Books, podcasts, articles, videos …*.
+
+Usage
+=====
+
+``` sourceCode
+Documentation for headjack can be found here: http://headjack.readthedocs.org/en/stable
+
+Usage:
+    headjack read sendToKindle [-s <pathToSettingsFile>]
+
+    -h, --help            show this help message
+    -s, --settings        the settings file
+```
+
+Installation
+============
+
+The easiest way to install headjack us to use `pip`:
+
+``` sourceCode
+pip install headjack
+```
+
+Or you can clone the [github repo](https://github.com/thespacedoctor/headjack) and install from a local version of the code:
+
+``` sourceCode
+git clone git@github.com:thespacedoctor/headjack.git
+cd headjack
+python setup.py install
+```
+
+To upgrade to the latest version of headjack use the command:
+
+``` sourceCode
+pip install headjack --upgrade
+```
+
+Documentation
+=============
+
+Documentation for headjack is hosted by [Read the Docs](http://headjack.readthedocs.org/en/stable/) (last [stable version](http://headjack.readthedocs.org/en/stable/) and [latest version](http://headjack.readthedocs.org/en/latest/)).
+
+Tutorial
+========
