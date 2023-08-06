@@ -1,0 +1,19 @@
+Metadata-Version: 2.0
+Name: django-bibblio
+Version: 0.2
+Summary: bibblio
+Home-page: http://github.com/Natgeoed/django-bibblio
+Author: Corey Oordt
+Author-email: coreyoordt@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Framework :: Django
+Requires-Dist: django-split-json-widget (==1.15)
+Requires-Dist: jsonfield (==1.0.3)
+Requires-Dist: pytz (>=2016.4)
+Requires-Dist: requests (>=2.0.0)
+Requires-Dist: requests-oauthlib (>=0.6.1)
+
+UNKNOWN
+
+
