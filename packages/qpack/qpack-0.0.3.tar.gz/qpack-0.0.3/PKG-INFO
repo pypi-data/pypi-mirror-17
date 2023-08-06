@@ -1,0 +1,81 @@
+Metadata-Version: 1.1
+Name: qpack
+Version: 0.0.3
+Summary: QPack (de)serializer
+Home-page: https://github.com/transceptor-technology/qpack
+Author: Jeroen van der Heijden
+Author-email: jeroen@transceptor.technology
+License: UNKNOWN
+Download-URL: https://github.com/transceptor-technology/qpack/qpack/0.0.3
+Description: QPack
+        =====
+        
+        QPack is a fast and efficient serialization format like MessagePack.
+        One key difference is the support for flexible maps and arrays which
+        allows code to write directly to a qpack buffer without to need in
+        front the size of a map or array.
+        
+        >Warning:
+        >--------
+        >This is still a BETA version which means the qpack format
+        >might change in the future.
+        
+        Installation
+        ------------
+        
+        From PyPI (recommend)
+        
+        ```
+        pip install siridb-connector
+        ```
+        
+        From source code
+        
+        ```
+        python setup.py install
+        ```
+        
+        Pack
+        ----
+        
+        `qpack.packb(object)`
+        
+        Unpack
+        ----
+        
+        Unpack serialized data. When decode is left None, each string
+        will be returned as bytes.
+        
+        `qpack.unpackb(qp, decode=None)`
+        
+        
+        Example
+        -------
+        
+        ```python
+        import qpack
+        
+        # define some test data
+        data = {'name': 'Iris', 'age': 3}
+        
+        # serialize into qpack format
+        qp = qpack.packb(data)
+        
+        # unpack the serialized data
+        unpacked = qpack.unpackb(qp, decode='utf-8')
+        
+        # left see what we've got...
+        print(unpacked)  # {'name': 'Iris', 'age': 3}
+        ```
+        
+        
+Keywords: serializer,deserializer
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Database
