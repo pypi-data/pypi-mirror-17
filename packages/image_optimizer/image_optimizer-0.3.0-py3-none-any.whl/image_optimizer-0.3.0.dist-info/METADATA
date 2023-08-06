@@ -1,0 +1,105 @@
+Metadata-Version: 2.0
+Name: image-optimizer
+Version: 0.3.0
+Summary: PIL based image optimizer
+Home-page: https://github.com/Bobsans/image-optimizer
+Author: Bobsans
+Author-email: mr.bobsans@gmail.com
+License: Freeware
+Download-URL: https://pypi.python.org/pypi/image_optimizer
+Keywords: PIL optimize image
+Platform: Any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Environment :: Win32 (MS Windows)
+Classifier: Intended Audience :: Developers
+Classifier: License :: Freeware
+Classifier: Natural Language :: English
+Classifier: Natural Language :: Russian
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Multimedia :: Graphics
+Classifier: Topic :: Utilities
+Requires-Dist: Pillow
+
+image_optimizer v0.3.0
+======================================
+
+Оптимизатор изображений на базе PIL.
+
+
+Установка
+--------------------------------------
+```bash
+pip install image_optimizer
+```
+
+
+Параметры коммандной строки
+--------------------------------------
+```bash
+  -f FILES [FILES ...]  # Оптимизация отдельных файлов
+  -d DIRECTORY          # Оптимизация изображений в указанной директории
+  --sub                 # Икать изображения в поддиректориях
+  -t THREADS            # Установка количества потоков
+```
+
+
+Использование
+--------------------------------------
+```bash
+# Оптимизация файла image.jpg
+> image_optimizer -f C:\image.jpg
+
+# Оптимизация файлов image.jpg, image.png, ...
+> image_optimizer -f C:\image.jpg C:\image2.png ...
+
+# Оптимизация файлов image.jpg, image.png, ... в 2 потока
+> image_optimizer -f C:\image.jpg C:\image2.png ... -t 2
+
+# Оптимизация изображений в директории images
+> image_optimizer -d C:\images
+
+# Оптимизация изображений в директории images в 3 потока
+> image_optimizer -d C:\images -t 3
+
+# Оптимизация изображений в директории images и вложенных директориях
+> image_optimizer -d C:\images --sub
+
+# Оптимизация изображений в директории images и вложенных директориях в 4 потока
+> image_optimizer -d C:\images --sub -t 4
+```
+
+
+Поддерживаемые типы файлов
+--------------------------------------
+BMP, EPS, GIF, J2C, J2K, JP2, JPC, JPE, JPEG, JPF, JPG, JPX, MPO, PBM, PCX, PGM, PNG, PPM, TGA
+
+
+Список изменений
+--------------------------------------
+* **v0.1** [_17.09.2016_]
+
+    - Начало работы над проектом.
+
+* **v0.2** [_19.09.2016_]
+
+    - Добавлены аргументы коммандной строки.
+    - Добавлена поддержка нестандартных типов изображений.
+
+* **v0.3** [_23.09.2016_]
+
+    - Добавлена поддержка мультипоточности.
+    - Улучшен вывод статистики.
+
+
+Ссылки
+--------------------------------------
+- [PyPi](https://pypi.python.org/pypi/image_optimizer)
+
+
