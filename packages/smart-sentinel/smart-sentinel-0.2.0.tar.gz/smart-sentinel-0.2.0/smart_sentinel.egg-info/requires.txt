@@ -1,0 +1,14 @@
+redis
+
+[tests]
+mock
+nose
+nose-focus
+coverage
+yanc
+preggy
+tox
+ipdb
+coveralls
+sphinx
+tornado
