@@ -1,0 +1,14 @@
+setup.cfg
+setup.py
+src/packager.egg-info/PKG-INFO
+src/packager.egg-info/SOURCES.txt
+src/packager.egg-info/dependency_links.txt
+src/packager.egg-info/entry_points.txt
+src/packager.egg-info/requires.txt
+src/packager.egg-info/top_level.txt
+src/pkgr/__init__.py
+src/pkgr/command.py
+src/pkgr/common.py
+src/pkgr/composer.py
+src/pkgr/packagist.py
+src/pkgr/require.py
