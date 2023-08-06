@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: cfn
+Version: 0.0.2
+Summary: Small script to manipulate AWS CloudFormation stacks
+Home-page: https://github.com/hagbarddenstore/cfn
+Author: Kim Johansson
+Author-email: hagbarddenstore@gmail.com
+License: MIT
+Description: Cfn
+        ===
+        
+        A Python script to generate and manage AWS CloudFormation stacks based on
+        YAML inputs.
+        
+Keywords: aws cfn cloudformation
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
