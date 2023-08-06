@@ -1,0 +1,12 @@
+MANIFEST.in
+requirements.txt
+setup.py
+napalm_brocade/__init__.py
+napalm_brocade/brocade.py
+napalm_brocade.egg-info/PKG-INFO
+napalm_brocade.egg-info/SOURCES.txt
+napalm_brocade.egg-info/dependency_links.txt
+napalm_brocade.egg-info/pbr.json
+napalm_brocade.egg-info/requires.txt
+napalm_brocade.egg-info/top_level.txt
+napalm_brocade/utils/__init__.py
