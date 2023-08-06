@@ -1,0 +1,3 @@
+[console_scripts]
+timbr = timbr.util.cli:main
+
