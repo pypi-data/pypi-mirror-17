@@ -1,0 +1,26 @@
+Metadata-Version: 1.1
+Name: pelican-series
+Version: 1.0.0
+Summary: The series plugin allows you to join different posts into a series.
+Home-page: https://github.com/cprieto/pelican-series
+Author: Cristian Prieto
+Author-email: me@cprieto.com
+License: Simplified BSD License
+Description: The plugin collects all articles belonging to the same series and provides series-related variables that you can use in your template.
+Keywords: pelican plugin series
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing :: Filters
+Classifier: Topic :: Text Processing :: Markup :: HTML
