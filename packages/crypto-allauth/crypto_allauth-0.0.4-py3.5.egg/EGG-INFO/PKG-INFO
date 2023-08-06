@@ -1,0 +1,62 @@
+Metadata-Version: 1.1
+Name: crypto-allauth
+Version: 0.0.4
+Summary: Plugin for django-allauth that allows authentication using cryptographic tools like Trezor.
+Home-page: https://github.com/Solution4Future/crypto-allauth
+Author: Dominik Kozaczko
+Author-email: crypto-allauth@kozaczko.info
+License: MIT
+Description: # Welcome to crypto-allauth
+        
+        [![Build Status](https://travis-ci.org/Solution4Future/crypto-allauth.svg?branch=master)](https://travis-ci.org/Solution4Future/crypto-allauth)
+        
+        (DISCLAIMER! This software is early alpha and doesn't have tests yet so you are using it on your own)
+        
+        Crypto-allauth is a library that adds support for some advanced login methods.
+        It was first drafted at the TREZOR 2 Hackathon in Prague.
+        
+        Right now you can only use Trezor but plans are to support other hardware encryption solutions.
+        
+        ## Installation
+        
+        ```sh
+        $ pip install crypto-allauth
+        ```
+        
+        ```py
+        INSTALLED_APPS = {
+                ...
+                'allauth',
+                'allauth.account',
+                'allauth.socialaccount',
+                ...
+                'crypto_allauth.providers.trezor',
+                ...
+        }
+        
+        ```
+        
+        And you're all set up.
+        
+        For the "Login with TREZOR" button to work properly you either need a Chrome plugin or a trezor-bridge daemon. Go to [satoshilabs.com/trezor](http://satoshilabs.com/trezor/) to learn more.
+        
+        ## Roadmap
+        
+        - U2F support (Yubikey and others)
+        - Offline Trezor support
+        - Keybase support
+        
+Keywords: django auth account trezor registration
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Environment :: Web Environment
+Classifier: Topic :: Internet
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Framework :: Django
