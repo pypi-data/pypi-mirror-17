@@ -1,0 +1,14 @@
+MANIFEST.in
+VERSION
+setup.cfg
+setup.py
+mkpydisable/__init__.py
+mkpydisable/builtins.py
+mkpydisable/import_.py
+mkpydisable/open.py
+mkpydisable.egg-info/PKG-INFO
+mkpydisable.egg-info/SOURCES.txt
+mkpydisable.egg-info/dependency_links.txt
+mkpydisable.egg-info/requires.txt
+mkpydisable.egg-info/top_level.txt
+test/test_all.py
