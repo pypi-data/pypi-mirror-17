@@ -1,0 +1,22 @@
+Metadata-Version: 2.0
+Name: kubos-sdk
+Version: 0.1.4
+Summary: Kubos SDK
+Home-page: http://github.com/kubostech/kubos-sdk
+Author: Kubos
+Author-email: kyle@kubos.co
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Requires-Dist: appdirs
+Requires-Dist: docker-py (==1.9.0)
+Requires-Dist: dockerpty
+Requires-Dist: pager
+Requires-Dist: psutil
+Requires-Dist: requests (==2.10.0)
+Requires-Dist: setuptools
+Requires-Dist: yotta
+
+UNKNOWN
+
+
