@@ -1,0 +1,3 @@
+[cal.v1.resource_extensions]
+basics = cal.v1.resource_extensions.basic:Basics
+
