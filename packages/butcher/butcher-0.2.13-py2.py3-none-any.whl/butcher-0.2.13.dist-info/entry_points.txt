@@ -1,0 +1,3 @@
+[console_scripts]
+butcher = butcher.main:stub_main
+
