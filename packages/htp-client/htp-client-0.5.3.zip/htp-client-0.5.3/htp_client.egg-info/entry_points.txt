@@ -1,0 +1,3 @@
+[console_scripts]
+htpplay = htpclient.main:cli_main
+
