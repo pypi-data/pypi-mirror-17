@@ -1,0 +1,5 @@
+[console_scripts]
+cubeslice = pytrip.utils.cubeslice:main
+dicom2trip = pytrip.utils.dicom2trip:main
+trip2dicom = pytrip.utils.trip2dicom:main
+
