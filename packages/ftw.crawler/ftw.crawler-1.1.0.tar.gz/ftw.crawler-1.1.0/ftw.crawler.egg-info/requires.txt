@@ -1,0 +1,13 @@
+setuptools
+requests[security]
+lxml
+python-dateutil
+pytz
+python-slugify
+BeautifulSoup
+chardet
+
+[tests]
+unittest2
+mock
+testfixtures
