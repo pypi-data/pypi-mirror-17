@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: tanzil-transreader
+Version: 0.2
+Summary: A python script to read Zekr translations models
+Home-page: UNKNOWN
+Author: Assem Chelli
+Author-email: assem.ch@gmail.com
+License: GPL
+Description: A python script to read Zekr translations models
+Keywords: quran zekr translation model quranic alfanous
+Platform: ALL
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Natural Language :: Arabic
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
