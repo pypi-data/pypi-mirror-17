@@ -1,0 +1,7 @@
+django-recaptcha
+
+[docs]
+
+[testing]
+flake8>=2.2.0
+isort>=4.2.5

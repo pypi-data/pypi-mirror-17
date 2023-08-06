@@ -1,0 +1,13 @@
+CHANGELOG.rst
+MANIFEST.in
+README.rst
+setup.py
+wagtail_django_recaptcha.egg-info/PKG-INFO
+wagtail_django_recaptcha.egg-info/SOURCES.txt
+wagtail_django_recaptcha.egg-info/dependency_links.txt
+wagtail_django_recaptcha.egg-info/not-zip-safe
+wagtail_django_recaptcha.egg-info/requires.txt
+wagtail_django_recaptcha.egg-info/top_level.txt
+wagtailcaptcha/__init__.py
+wagtailcaptcha/forms.py
+wagtailcaptcha/models.py
