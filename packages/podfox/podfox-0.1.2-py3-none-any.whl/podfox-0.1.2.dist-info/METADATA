@@ -1,0 +1,17 @@
+Metadata-Version: 2.0
+Name: podfox
+Version: 0.1.2
+Summary: Podcatcher for the terminal
+Home-page: http://github.com/brtmr/podfox
+Author: Bastian Reitemeier
+Author-email: mail@brtmr.de
+License: GPLv3
+Platform: UNKNOWN
+Requires-Dist: colorama (==0.3.7)
+Requires-Dist: docopt (==0.6.2)
+Requires-Dist: feedparser (==5.2.1)
+Requires-Dist: requests (==2.11.1)
+
+UNKNOWN
+
+

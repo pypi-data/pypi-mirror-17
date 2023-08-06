@@ -1,0 +1,3 @@
+[console_scripts]
+podfox = podfox.__init__:main
+
