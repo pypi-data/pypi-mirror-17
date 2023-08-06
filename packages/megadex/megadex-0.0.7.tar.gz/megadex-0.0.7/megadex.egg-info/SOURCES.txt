@@ -1,0 +1,14 @@
+setup.cfg
+setup.py
+bin/megadex
+megadex/__init__.py
+megadex/handlers.py
+megadex/indexer.py
+megadex/util.py
+megadex.egg-info/PKG-INFO
+megadex.egg-info/SOURCES.txt
+megadex.egg-info/dependency_links.txt
+megadex.egg-info/requires.txt
+megadex.egg-info/top_level.txt
+megadex/cli/__init__.py
+megadex/cli/cli.py
