@@ -1,0 +1,23 @@
+Metadata-Version: 1.1
+Name: flask-ffs
+Version: 0.3.0
+Summary: A Flask library for the storage and retrieval of images on the file system.
+Home-page: https://github.com/julienchurch/ffs-images
+Author: Julien Church
+Author-email: julienchurch@gmail.com
+License: MIT
+Download-URL: https://github.com/julienchurch/flask-fs-images/tarball/0.1.0
+Description: A Flask library to help your application store images on the file system.
+        
+Keywords: filesystem image
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Flask
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries
