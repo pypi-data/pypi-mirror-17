@@ -1,0 +1,8 @@
+recursive-include onyx/templates *
+recursive-include onyx/static/js *
+recursive-include onyx/static/css *
+recursive-include onyx/static/fonts *
+recursive-include onyx/static/images *
+include onyx/static/music/.gitkeep
+include onyx/static/ringstone/.gitkeep
+include onyx/db/.gitkeep
