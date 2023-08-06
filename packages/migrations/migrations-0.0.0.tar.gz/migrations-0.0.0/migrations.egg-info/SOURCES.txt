@@ -1,0 +1,11 @@
+README.rst
+setup.py
+migrate/__init__.py
+migrate/cli.py
+migrate/runner.py
+migrate/version.py
+migrations.egg-info/PKG-INFO
+migrations.egg-info/SOURCES.txt
+migrations.egg-info/dependency_links.txt
+migrations.egg-info/entry_points.txt
+migrations.egg-info/top_level.txt

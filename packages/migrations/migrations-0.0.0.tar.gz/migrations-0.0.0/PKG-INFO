@@ -1,0 +1,24 @@
+Metadata-Version: 1.1
+Name: migrations
+Version: 0.0.0
+Summary: Yet another Python migration tool
+Home-page: https://github.com/and800/migrations
+Author: Andriy Maletsky
+Author-email: andriy.maletsky@gmail.com
+License: MIT
+Description: Migrations
+        ==========
+        
+        Simple, cross-database migration tool for Python applications.
+        Inspired by `node migrations <https://github.com/tj/node-migrate>`_.
+        
+        *The project is in alpha now. Everything will break on update.*
+        
+Keywords: migration
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Software Development :: Version Control
