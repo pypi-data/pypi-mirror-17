@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: result2
+Version: 0.0.2
+Summary: A Swift-Style result type for Python
+Home-page: https://github.com/ipconfiger/result2
+Author: Alexander Li
+Author-email: superpowerlee@gmail.com
+License: MIT
+Download-URL: https://github.com/ipconfiger/result2/tarball/0.0.1
+Description: Swift style Result for Python
+Keywords: swift result enum
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
