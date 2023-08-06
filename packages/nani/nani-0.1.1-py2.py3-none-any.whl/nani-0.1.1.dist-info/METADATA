@@ -1,0 +1,26 @@
+Metadata-Version: 2.0
+Name: nani
+Version: 0.1.1
+Summary: An alternative approach to defining and viewing NumPy's arrays
+Home-page: https://github.com/christophercrouzet/nani
+Author: Christopher Crouzet
+Author-email: christopher.crouzet@gmail.com
+License: MIT
+Keywords: nani numpy dtype view wrap
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Requires-Dist: numpy
+
+UNKNOWN
+
+
