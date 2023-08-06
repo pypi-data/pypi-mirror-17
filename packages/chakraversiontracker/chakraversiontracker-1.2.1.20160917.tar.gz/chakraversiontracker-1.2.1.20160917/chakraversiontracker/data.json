@@ -1,0 +1,5774 @@
+{
+    "0ad": {},
+    "0ad-data": {
+        "versiontracker": "0ad"
+    },
+    "4kslideshowmaker": {},
+    "4kstogram": {},
+    "4kvideodownloader": {},
+    "4kvideotomp3": {},
+    "4kyoutubetomp3": {},
+    "6tunnel": {},
+    "accountsservice": {},
+    "acetoneiso2": {
+        "versiontracker": "acetoneiso"
+    },
+    "ack": {
+        "skip": "2.14"
+    },
+    "acpi": {
+        "versiontracker": "acpiclient"
+    },
+    "acpi-eeepc-generic": {},
+    "acpid": {},
+    "aften": {},
+    "aircrack-ng": {
+        "skip": "1.1"
+    },
+    "akabei": {
+        "skip": true
+    },
+    "akabeiclient": {
+        "skip": true
+    },
+    "akonadi": {},
+    "akonadi-calendar": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "akonadi-contact": {
+        "skip": true
+    },
+    "akonadi-contacts": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "akonadi-mime": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "akonadi-notes": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "akonadi-search": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "akonadi-socialutils": {
+        "skip": true
+    },
+    "akonadiconsole": {
+        "versiontracker": "akonadi",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "akregator": {
+        "versiontracker": "kdepim",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "alienarena": {
+        "skip": true
+    },
+    "allegro": {},
+    "allegro4": {},
+    "amarok": {},
+    "amule": {},
+    "analitza": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "android-file-transfer-linux": {},
+    "anki": {},
+    "appmenu-qt": {},
+    "aqbanking": {},
+    "aqemu": {},
+    "ardentryst": {},
+    "ardour": {},
+    "arduino": {},
+    "aria2": {},
+    "ark": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "artikulate": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "aseman-qt-tools": {},
+    "assaultcube": {},
+    "atlas_cpp": {},
+    "attica": {},
+    "audacity": {},
+    "audex": {},
+    "autossh": {
+        "skip": "1.4e"
+    },
+    "avidemux": {},
+    "avidemux-cli": {
+        "versiontracker": "avidemux"
+    },
+    "avogadro": {},
+    "avoision": {},
+    "awstats": {},
+    "babl": {},
+    "backintime": {},
+    "baloo": {},
+    "baloo-widgets": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "bash": {},
+    "basket": {
+        "skip": true
+    },
+    "bcg729": {},
+    "belle-sip": {},
+    "beret": {
+        "skip": true
+    },
+    "berry": {},
+    "bibletime-kde4": {
+        "versiontracker": "bibletime"
+    },
+    "bitcoin-cli": {
+        "versiontracker": "bitcoin"
+    },
+    "bitcoin-daemon": {
+        "versiontracker": "bitcoin"
+    },
+    "bitcoin-qt": {
+        "versiontracker": "bitcoin"
+    },
+    "bitlbee": {},
+    "blender": {},
+    "blinken": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "blogilo": {
+        "versiontracker": "kdepim",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "bluedevil": {},
+    "bluegriffon": {},
+    "bluez-qt": {},
+    "bodega-client": {},
+    "boinc": {},
+    "bomber": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "bomi": {},
+    "boost-build": {
+        "skip": "2014.10"
+    },
+    "bovo": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "box2d": {},
+    "breeze": {},
+    "breeze-grub": {},
+    "breeze-gtk": {},
+    "breeze-icons": {},
+    "breeze-plymouth": {},
+    "brise": {
+        "skip": "0.35"
+    },
+    "bullet": {},
+    "bup": {},
+    "bzr-explorer": {},
+    "bzrtp": {},
+    "c-ares": {},
+    "cabal-install": {
+        "tags": [
+            "haskell"
+        ]
+    },
+    "cagibi": {},
+    "cal3d": {},
+    "calamares": {
+        "skip": true
+    },
+    "calendarsupport": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "calf": {},
+    "calibre": {},
+    "calligra-braindump": {
+        "versiontracker": "calligra"
+    },
+    "calligra-devtools": {
+        "versiontracker": "calligra"
+    },
+    "calligra-extras": {
+        "versiontracker": "calligra"
+    },
+    "calligra-flow": {
+        "versiontracker": "calligra"
+    },
+    "calligra-gemini": {
+        "versiontracker": "calligra"
+    },
+    "calligra-handbook": {
+        "versiontracker": "calligra"
+    },
+    "calligra-karbon": {
+        "versiontracker": "calligra"
+    },
+    "calligra-kexi": {
+        "versiontracker": "calligra"
+    },
+    "calligra-krita": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-bs": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-ca": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-ca@valencia": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-cs": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-da": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-de": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-el": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-en_GB": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-es": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-et": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-fi": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-fr": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-gl": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-hu": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-it": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-ja": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-kk": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-nb": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-nl": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-pl": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-pt": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-pt_BR": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-ru": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-sk": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-sv": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-uk": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-zh_CN": {
+        "versiontracker": "calligra"
+    },
+    "calligra-l10n-zh_TW": {
+        "versiontracker": "calligra"
+    },
+    "calligra-libs": {
+        "versiontracker": "calligra"
+    },
+    "calligra-plan": {
+        "versiontracker": "calligra"
+    },
+    "calligra-sheets": {
+        "versiontracker": "calligra"
+    },
+    "calligra-stage": {
+        "versiontracker": "calligra"
+    },
+    "calligra-words": {
+        "versiontracker": "calligra"
+    },
+    "cantata": {},
+    "cantor": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "capicity": {},
+    "cb2bib": {},
+    "ccid": {},
+    "ccr": {
+        "skip": true
+    },
+    "cegui-0.8": {},
+    "celt0.5.1": {
+        "skip": true
+    },
+    "ceph": {},
+    "cervisia": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "cgal": {},
+    "cgdb": {},
+    "chakra-common": {
+        "skip": true
+    },
+    "chakra-heritage-themes": {
+        "skip": true
+    },
+    "chakra-paste": {
+        "skip": true
+    },
+    "chakra-wallpapers-ashoc": {
+        "skip": true
+    },
+    "chakra-wallpapers-crunchy-branch-blue": {
+        "skip": true
+    },
+    "chakra-wallpapers-curie": {
+        "skip": true
+    },
+    "chakra-wallpapers-descartes": {
+        "skip": true
+    },
+    "chakra-wallpapers-dharma": {
+        "skip": true
+    },
+    "chakra-wallpapers-lichene": {
+        "skip": true
+    },
+    "chakra-wallpapers-neda": {
+        "skip": true
+    },
+    "chakra-wallpapers-ronak": {
+        "skip": true
+    },
+    "chakra-wallpapers-ronak-light": {
+        "skip": true
+    },
+    "chaser": {},
+    "check": {},
+    "chemical-mime-data": {},
+    "cherokee": {
+        "skip": "1.2.103.d021376"
+    },
+    "chkrootkit": {},
+    "chocolate-doom": {},
+    "choqok": {},
+    "chromium": {},
+    "chromium-bsu": {},
+    "cipra": {},
+    "cirkuit": {},
+    "cksfv": {},
+    "clamav": {},
+    "clamav-gui": {
+        "versiontracker": "clamav"
+    },
+    "clamz": {
+        "skip": true
+    },
+    "clementine": {},
+    "clementine-qt5": {
+        "skip": true
+    },
+    "clipgrab": {},
+    "coin": {
+        "skip": true
+    },
+    "colord-kde": {},
+    "colordiff": {},
+    "conky": {},
+    "conky-cli": {
+        "versiontracker": "conky"
+    },
+    "contour": {},
+    "converseen": {},
+    "convertall": {},
+    "corsix-th": {},
+    "cpptest": {},
+    "cppunit": {},
+    "crypto++": {},
+    "csync-owncloud": {
+        "skip": true
+    },
+    "ctags": {},
+    "ctemplate": {},
+    "cubosphere": {},
+    "cuda": {},
+    "cuetools": {},
+    "cuneiform": {
+        "skip": "1.1"
+    },
+    "cutegram": {
+        "skip": "2.7.1"
+    },
+    "darcs": {},
+    "dblatex": {},
+    "dc3dd": {},
+    "dcaenc": {},
+    "dconf": {},
+    "ddclient": {},
+    "ddd": {},
+    "debianutils": {},
+    "declarative-plasmoids": {},
+    "dev86": {},
+    "devil": {},
+    "dianara": {},
+    "digikam": {
+        "skip": "4.14.0"
+    },
+    "directfb": {
+        "skip": true
+    },
+    "dnetstats": {},
+    "dnt": {},
+    "dolphin": {},
+    "dolphin-emu": {},
+    "dolphin-plugins": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "dolphinpart4": {
+        "skip": true
+    },
+    "dos2unix": {},
+    "dosbox": {},
+    "dpic": {},
+    "dragon": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "dropbox": {
+        "versiontracker": "dropbox-desktop-client"
+    },
+    "dropbox-servicemenu": {
+        "skip": true
+    },
+    "drumstick": {},
+    "dssi": {},
+    "dummy": {
+        "skip": true
+    },
+    "dunelegacy": {},
+    "dustrac": {},
+    "dvd-slideshow": {},
+    "dvdauthor": {},
+    "eclipse-cpp": {
+        "versiontracker": "eclipse"
+    },
+    "eclipse-java": {
+        "versiontracker": "eclipse"
+    },
+    "eclipse-jee": {
+        "versiontracker": "eclipse"
+    },
+    "eclipse-php": {
+        "versiontracker": "eclipse"
+    },
+    "ed": {},
+    "elinks": {
+        "skip": "0.11.7"
+    },
+    "emacs": {},
+    "emacs-mozc": {
+        "versiontracker": "mozc"
+    },
+    "emacs-nox": {
+        "versiontracker": "emacs"
+    },
+    "ember": {
+        "skip": "0.7.2.1"
+    },
+    "emovix": {},
+    "enet": {},
+    "epiar": {},
+    "epydoc": {},
+    "eris": {},
+    "eventviews": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "everpad": {},
+    "extra-cmake-modules": {},
+    "extremetuxracer": {},
+    "extundelete": {},
+    "fcgi": {
+        "skip": true
+    },
+    "fcitx": {},
+    "fcitx-anthy": {},
+    "fcitx-chewing": {},
+    "fcitx-cloudpinyin": {},
+    "fcitx-googlepinyin": {},
+    "fcitx-gtk2": {
+        "versiontracker": "fcitx"
+    },
+    "fcitx-gtk3": {
+        "versiontracker": "fcitx"
+    },
+    "fcitx-hangul": {},
+    "fcitx-kkc": {},
+    "fcitx-libpinyin": {},
+    "fcitx-m17n": {},
+    "fcitx-mozc": {},
+    "fcitx-pinyin": {
+        "versiontracker": "fcitx"
+    },
+    "fcitx-qt5": {},
+    "fcitx-rime": {},
+    "fcitx-sayura": {},
+    "fcitx-sunpinyin": {},
+    "fcitx-table": {
+        "versiontracker": "fcitx"
+    },
+    "fcitx-table-extra": {},
+    "fcitx-table-other": {},
+    "fcitx-ui-light": {},
+    "fcitx-unikey": {},
+    "fdupes": {},
+    "feh": {},
+    "ffmpegthumbs": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "fife": {},
+    "filelight": {},
+    "filezilla": {},
+    "fingerprint-gui": {},
+    "firefox-i18n": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-ach": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-af": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-an": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-ar": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-as": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-ast": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-az": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-be": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-bg": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-bn-bd": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-bn-in": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-br": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-bs": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-ca": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-cs": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-cy": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-da": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-de": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-dsb": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-el": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-en-gb": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-en-us": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-en-za": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-eo": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-es-ar": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-es-cl": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-es-es": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-es-mx": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-et": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-eu": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-fa": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-ff": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-fi": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-fr": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-fy-nl": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-ga-ie": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-gd": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-gl": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-gn": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-gu": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-gu-in": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-he": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-hi-in": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-hr": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-hsb": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-hu": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-hy-am": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-id": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-is": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-it": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-ja": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-kk": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-km": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-kn": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-ko": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-lij": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-lt": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-lv": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-mai": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-mk": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-ml": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-mr": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-ms": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-nb-no": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-nl": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-nn-no": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-or": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-pa-in": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-pl": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-pt-br": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-pt-pt": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-rm": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-ro": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-ru": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-si": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-sk": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-sl": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-son": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-sq": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-sr": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-sv-se": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-ta": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-te": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-th": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-tr": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-uk": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-uz": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-vi": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-xh": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-zh-cn": {
+        "versiontracker": "firefox"
+    },
+    "firefox-i18n-zh-tw": {
+        "versiontracker": "firefox"
+    },
+    "firefox-kde": {
+        "versiontracker": "firefox"
+    },
+    "flacon": {},
+    "flare": {
+        "versiontracker": "flare-game"
+    },
+    "flare-engine": {},
+    "flashplugin": {
+        "versiontracker": "flashplayer-npapi"
+    },
+    "flightgear": {},
+    "flightgear-data": {
+        "versiontracker": "flightgear"
+    },
+    "focuswriter": {},
+    "fontforge": {},
+    "fotowall": {},
+    "fpc": {
+        "versiontracker": "freepascal"
+    },
+    "fpc-qtbindings": {
+        "skip": true
+    },
+    "fpc-src": {
+        "versiontracker": "freepascal"
+    },
+    "frameworkintegration": {},
+    "freecad": {},
+    "freeciv": {},
+    "freecol": {},
+    "freedoom": {},
+    "freedroid": {},
+    "freeimage": {},
+    "freeorion": {},
+    "freerdp": {},
+    "freexl": {},
+    "freshplayerplugin": {},
+    "fretsonfire": {},
+    "frogatto": {},
+    "frostwire": {
+        "versiontracker": "frostwire-desktop"
+    },
+    "frozen-bubble": {
+        "skip": "2.2.0"
+    },
+    "fsarchiver": {},
+    "ftjam": {
+        "skip": "2.5.2"
+    },
+    "gammaray": {},
+    "gammu": {},
+    "gcompris": {},
+    "gconf": {},
+    "gedit": {},
+    "gegl": {},
+    "gendesk": {},
+    "ghc": {
+        "tags": [
+            "haskell"
+        ]
+    },
+    "gigi": {},
+    "gimp": {},
+    "gimp-help-ca": {
+        "versiontracker": "gimp-help"
+    },
+    "gimp-help-da": {
+        "versiontracker": "gimp-help"
+    },
+    "gimp-help-de": {
+        "versiontracker": "gimp-help"
+    },
+    "gimp-help-el": {
+        "versiontracker": "gimp-help"
+    },
+    "gimp-help-en": {
+        "versiontracker": "gimp-help"
+    },
+    "gimp-help-en_GB": {
+        "versiontracker": "gimp-help"
+    },
+    "gimp-help-es": {
+        "versiontracker": "gimp-help"
+    },
+    "gimp-help-fr": {
+        "versiontracker": "gimp-help"
+    },
+    "gimp-help-it": {
+        "versiontracker": "gimp-help"
+    },
+    "gimp-help-ja": {
+        "versiontracker": "gimp-help"
+    },
+    "gimp-help-ko": {
+        "versiontracker": "gimp-help"
+    },
+    "gimp-help-nl": {
+        "versiontracker": "gimp-help"
+    },
+    "gimp-help-nn": {
+        "versiontracker": "gimp-help"
+    },
+    "gimp-help-pt_BR": {
+        "versiontracker": "gimp-help"
+    },
+    "gimp-help-ru": {
+        "versiontracker": "gimp-help"
+    },
+    "gimp-help-sl": {
+        "versiontracker": "gimp-help"
+    },
+    "gimp-help-sv": {
+        "versiontracker": "gimp-help"
+    },
+    "gimp-help-zh_CN": {
+        "versiontracker": "gimp-help"
+    },
+    "gist": {},
+    "git": {},
+    "glfw": {},
+    "glfw2": {},
+    "globulation2": {},
+    "gloox": {},
+    "gluon": {},
+    "glusterfs": {},
+    "gmock": {
+        "versiontracker": "googletest"
+    },
+    "gnome-mime-data": {
+        "skip": true
+    },
+    "gnu-netcat": {
+        "versiontracker": "netcat"
+    },
+    "gnucap": {},
+    "gnuchess": {},
+    "go": {},
+    "go-tools": {
+        "versiontracker": "go"
+    },
+    "goldendict": {
+        "skip": "1.0.1"
+    },
+    "google-glog": {
+        "versiontracker": "glog"
+    },
+    "google-talkplugin": {
+        "versiontracker": "google-talk-plugin"
+    },
+    "gpgmepp": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "gpsd": {},
+    "gr-lida": {},
+    "granatier": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "grantlee": {
+        "skip": true
+    },
+    "grantlee-qt5": {
+        "versiontracker": "grantlee"
+    },
+    "grantleetheme": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "graphviz": {},
+    "grass": {},
+    "grub2-editor": {},
+    "gsoap": {},
+    "gtest": {
+        "versiontracker": "googletest"
+    },
+    "gtk-engine-murrine": {
+        "versiontracker": "murrine"
+    },
+    "gtk-theme-orion": {
+        "versiontracker": "orion"
+    },
+    "gtk-update-icon-cache": {
+        "versiontracker": "gtk+"
+    },
+    "gtk2": {
+        "skip": true
+    },
+    "gtk3": {
+        "versiontracker": "gtk+"
+    },
+    "gtkmm": {
+        "skip": true
+    },
+    "gtkspell": {
+        "skip": true
+    },
+    "guichan": {
+        "skip": true
+    },
+    "gwenhywfar": {},
+    "gwenview": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "hale": {},
+    "handbrake": {},
+    "handbrake-cli": {
+        "versiontracker": "handbrake"
+    },
+    "happy": {
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-binary": {
+        "versiontracker": "binary",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-bytestring-show": {
+        "versiontracker": "bytestring-show",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-deepseq": {
+        "versiontracker": "deepseq",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-entropy": {
+        "versiontracker": "entropy",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-extensible-exceptions": {
+        "versiontracker": "extensible-exceptions",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-haskeline": {
+        "versiontracker": "haskeline",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-hslogger": {
+        "versiontracker": "hslogger",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-html": {
+        "versiontracker": "html",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-http": {
+        "versiontracker": "http",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-json": {
+        "versiontracker": "json",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-mmap": {
+        "versiontracker": "mmap",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-mtl": {
+        "versiontracker": "mtl",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-network": {
+        "versiontracker": "network",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-network-uri": {
+        "versiontracker": "network-uri",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-old-locale": {
+        "versiontracker": "old-locale",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-parsec": {
+        "versiontracker": "parsec",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-primitive": {
+        "versiontracker": "primitive",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-random": {
+        "versiontracker": "random",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-regex-base": {
+        "versiontracker": "regex-base",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-regex-compat": {
+        "versiontracker": "regex-compat",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-regex-posix": {
+        "versiontracker": "regex-posix",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-sha": {
+        "versiontracker": "sha",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-stm": {
+        "versiontracker": "stm",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-syb": {
+        "versiontracker": "syb",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-tar": {
+        "versiontracker": "tar",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-terminfo": {
+        "versiontracker": "terminfo",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-text": {
+        "versiontracker": "text",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-transformers": {
+        "versiontracker": "transformers",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-utf8-string": {
+        "versiontracker": "utf8-string",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-vector": {
+        "versiontracker": "vector",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "haskell-x11": {
+        "versiontracker": "x11"
+    },
+    "haskell-zlib": {
+        "versiontracker": "zlib",
+        "tags": [
+            "haskell"
+        ]
+    },
+    "hasktags": {
+        "tags": [
+            "haskell"
+        ]
+    },
+    "hedgewars": {},
+    "herqq": {
+        "versiontracker": "hupnp"
+    },
+    "higan": {},
+    "higan-qt": {
+        "skip": true
+    },
+    "html2text": {
+        "skip": true
+    },
+    "htmlcxx": {},
+    "htop": {},
+    "hugin": {},
+    "hummstrumm": {},
+    "hydrogen": {
+        "skip": "0.9.5.1"
+    },
+    "ibus": {},
+    "ibus-libzhuyin": {},
+    "ibus-m17n": {},
+    "ibus-mozc": {
+        "versiontracker": "mozc"
+    },
+    "ibus-qt": {},
+    "icc_examin": {},
+    "icedtea-web": {},
+    "icoutils": {},
+    "ifuse": {},
+    "imagewriter": {},
+    "incidenceeditor": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "iniparser-legacy": {
+        "skip": true
+    },
+    "injeqt": {},
+    "inkscape": {},
+    "inotify-tools": {},
+    "intel-tbb": {
+        "versiontracker": "tbb",
+        "skip": "4.4.5"
+    },
+    "inxi": {},
+    "iotop": {},
+    "ipython-docs": {
+        "versiontracker": "ipython"
+    },
+    "ipython2": {
+        "versiontracker": "ipython"
+    },
+    "ipython2-notebook": {
+        "versiontracker": "jupyter"
+    },
+    "ipython3": {
+        "versiontracker": "ipython"
+    },
+    "irrlicht": {},
+    "irssi": {},
+    "jamin": {},
+    "jdownloader": {
+        "skip": true
+    },
+    "jdownloader2": {
+        "skip": true
+    },
+    "jhead": {},
+    "joomla": {},
+    "josm": {
+        "skip": true
+    },
+    "jreen": {},
+    "js": {
+        "versiontracker": "mozjs"
+    },
+    "js17": {
+        "skip": true
+    },
+    "js185": {
+        "skip": true
+    },
+    "json-glib": {},
+    "jupyter": {},
+    "k3b": {
+        "skip": "2.0.3"
+    },
+    "kaccounts-integration": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kaccounts-providers": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kactivities": {},
+    "kactivities-stats": {},
+    "kactivitymanagerd": {},
+    "kaddressbook": {
+        "versiontracker": "kdepim",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kadu": {},
+    "kaffeine": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kalarm": {
+        "versiontracker": "kdepim",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kalarmcal": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kalgebra": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kamera": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kamerka": {},
+    "kamoso": {},
+    "kanagram": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kapidox": {},
+    "kapman": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kapptemplate": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "karchive": {},
+    "kate": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "katomic": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kaudiocreator": {},
+    "kauth": {},
+    "kbackgammon": {},
+    "kbibtex": {},
+    "kblackbox": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kblocks": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kblog": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kbookmarks": {},
+    "kbounce": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kbreakout": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kbruch": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kcalc": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kcalcore": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kcalutils": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kcharselect": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kchildlock": {},
+    "kchmviewer": {},
+    "kcm-fcitx": {},
+    "kcm-pacman-repoeditor": {},
+    "kcm-systemd": {
+        "versiontracker": "systemd-kcm"
+    },
+    "kcm-ufw": {
+        "versiontracker": "ufw-kcm",
+        "skip": "0.4.3"
+    },
+    "kcmutils": {},
+    "kcodecs": {},
+    "kcolorchooser": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kcompletion": {},
+    "kconfig": {},
+    "kconfigwidgets": {},
+    "kcontacts": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kcoreaddons": {},
+    "kcrash": {},
+    "kcron": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdbg": {},
+    "kdbusaddons": {},
+    "kde-baseapps-katepart": {
+        "skip": true
+    },
+    "kde-baseapps-kdepasswd": {
+        "versiontracker": "kde-baseapps",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-baseapps-kdialog": {
+        "versiontracker": "kde-baseapps",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-baseapps-keditbookmarks": {
+        "versiontracker": "kde-baseapps",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-baseapps-kfind": {
+        "versiontracker": "kde-baseapps",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-baseapps-konq-plugins": {
+        "versiontracker": "kde-baseapps",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-baseapps-konqueror": {
+        "versiontracker": "kde-baseapps",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-baseapps-lib": {
+        "versiontracker": "kde-baseapps",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-cli-tools": {},
+    "kde-dev-scripts": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-dev-utils": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-gtk-config": {},
+    "kde-l10n-ar": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-bs": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-ca": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-ca@valencia": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-cs": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-da": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-de": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-el": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-en_GB": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-eo": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-es": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-et": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-eu": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-fa": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-fi": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-fr": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-ga": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-gl": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-he": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-hi": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-hr": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-hu": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-ia": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-id": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-is": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-it": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-ja": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-kk": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-km": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-ko": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-lt": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-lv": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-mr": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-nb": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-nds": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-nl": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-nn": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-pa": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-pl": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-pt": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-pt_BR": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-ro": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-ru": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-sk": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-sl": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-sr": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-sv": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-tr": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-ug": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-uk": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-zh_CN": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-l10n-zh_TW": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde-runtime": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kde4-integration": {
+        "skip": true
+    },
+    "kdeaccessibility-jovie": {
+        "versiontracker": "jovie",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdeaccessibility-kaccessible": {
+        "versiontracker": "kaccessible",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdeaccessibility-kmag": {
+        "versiontracker": "kmag",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdeaccessibility-kmousetool": {
+        "versiontracker": "kmousetool",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdeaccessibility-kmouth": {
+        "versiontracker": "kmouth",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdeadmin-kuser": {
+        "versiontracker": "kuser",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdebindings-python-common": {
+        "versiontracker": "pykde4"
+    },
+    "kdebindings-python2": {
+        "versiontracker": "pykde4"
+    },
+    "kdebindings-python3": {
+        "versiontracker": "pykde4"
+    },
+    "kdebugsettings": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdeclarative": {},
+    "kdeconnect": {
+        "skip": "0.9g"
+    },
+    "kdecoration": {},
+    "kded": {},
+    "kdeedu-data": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdeedu-kalzium": {
+        "versiontracker": "kalzium",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdeedu-ktouch": {
+        "versiontracker": "ktouch",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdeedu-libkdeedu": {
+        "versiontracker": "libkdeedu",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdegames-kajongg": {
+        "versiontracker": "kajongg",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdegames-kgoldrunner": {
+        "versiontracker": "kgoldrunner",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdegames-kigo": {
+        "versiontracker": "kigo",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdegames-kolf": {
+        "versiontracker": "kolf",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdegames-konquest": {
+        "versiontracker": "konquest",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdegames-kreversi": {
+        "versiontracker": "kreversi",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdegames-ksirk": {
+        "versiontracker": "ksirk",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdegames-ksnakeduel": {
+        "versiontracker": "ksnakeduel",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdegames-kspaceduel": {
+        "versiontracker": "kspaceduel",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdegames-ksudoku": {
+        "versiontracker": "ksudoku",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdegames-kubrick": {
+        "versiontracker": "kubrick",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdegames-libkdegames": {
+        "skip": true
+    },
+    "kdegames-libkmahjongg": {
+        "skip": true
+    },
+    "kdegames-lskat": {
+        "versiontracker": "lskat",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdegames-palapeli": {
+        "versiontracker": "palapeli",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdegraphics-ksaneplugin": {
+        "versiontracker": "ksaneplugin",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdegraphics-mobipocket": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdegraphics-okular": {
+        "versiontracker": "okular",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdegraphics-strigi-analyzer": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdegraphics-svgpart": {
+        "versiontracker": "svgpart",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdegraphics-thumbnailers": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdelibs": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdelibs4support": {},
+    "kdemultimedia-audiocd-kio": {
+        "versiontracker": "audiocd-kio",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdemultimedia-juk": {
+        "versiontracker": "juk",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdemultimedia-kscd": {
+        "versiontracker": "kscd",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdemultimedia-mplayerthumbs": {
+        "versiontracker": "mplayerthumbs",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdenetwork-filesharing": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdenetwork-kget": {
+        "versiontracker": "kget",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdenetwork-kopete": {
+        "versiontracker": "kopete",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdenetwork-kppp": {
+        "versiontracker": "kppp",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdenetwork-strigi-analyzers": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdenlive": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdepim-addons": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdepim-apps-libs": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdepim-common": {
+        "versiontracker": "kdepim",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdepim-console": {
+        "versiontracker": "kdepim",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdepim-runtime": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdepimlibs4": {
+        "skip": true
+    },
+    "kdeplasma-addons": {},
+    "kdesdk-kcachegrind": {
+        "versiontracker": "kcachegrind",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdesdk-kioslaves": {
+        "tags": [
+            "kde-applications"
+        ],
+        "skip": "16.04.1"
+    },
+    "kdesdk-strigi-analyzers": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdesdk-thumbnailers": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdesignerplugin": {},
+    "kdesu": {},
+    "kdesvn": {},
+    "kdetoys-amor": {
+        "skip": true
+    },
+    "kdeutils-kgpg": {
+        "versiontracker": "kgpg",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdeutils-kremotecontrol": {
+        "versiontracker": "kremotecontrol",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdeutils-sweeper": {
+        "versiontracker": "sweeper",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdev-php": {
+        "versiontracker": "kdevelop-php",
+        "skip": "1.7.3"
+    },
+    "kdev-python": {
+        "skip": "1.7.3"
+    },
+    "kdev-python-py3": {},
+    "kdevelop": {
+        "skip": "4.7.3"
+    },
+    "kdevelop-pg-qt": {
+        "skip": "1.0.0"
+    },
+    "kdevplatform": {
+        "skip": "1.7.3"
+    },
+    "kdewebdev-kfilereplace": {
+        "versiontracker": "kdewebdev",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdewebdev-kimagemapeditor": {
+        "versiontracker": "kdewebdev",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdewebdev-klinkstatus": {
+        "versiontracker": "kdewebdev",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdewebdev-kommander": {
+        "versiontracker": "kdewebdev",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdewebkit": {},
+    "kdf": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdgantt2": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdiamond": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kdiff3": {},
+    "kdnssd": {},
+    "kdoctools": {},
+    "kdstatemachineeditor": {},
+    "keepassx": {},
+    "kemoticons": {},
+    "keyboardctl": {},
+    "kfilebox": {
+        "skip": "0.4.10"
+    },
+    "kfilemetadata": {},
+    "kfloppy": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kfoldersync": {},
+    "kfourinline": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kfritz": {},
+    "kgamma5": {},
+    "kgeography": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kglobalaccel": {},
+    "kgraphviewer": {},
+    "kguiaddons": {},
+    "khangman": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "khelpcenter": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kholidays": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "khotkeys": {},
+    "khtml": {},
+    "ki18n": {},
+    "kiconthemes": {},
+    "kid3": {},
+    "kidentitymanagement": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kidletime": {},
+    "kig": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kile": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "killbots": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kim": {},
+    "kimageformats": {},
+    "kimap": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kinfocenter": {},
+    "kinit": {},
+    "kio": {},
+    "kio-extras": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kio-gopher": {},
+    "kio-pim": {
+        "versiontracker": "kdepimlibs",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kipi-plugins": {
+        "skip": "1.9.0"
+    },
+    "kiriki": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kitemmodels": {},
+    "kitemviews": {},
+    "kiten": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kjobwidgets": {},
+    "kjots": {},
+    "kjs": {},
+    "kjsembed": {},
+    "kjumpingcube": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kldap": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kleopatra": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "klettres": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "klickety": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "klines": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kmahjongg": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kmail": {
+        "versiontracker": "kdepim",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kmailtransport": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kmbox": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kmediaplayer": {},
+    "kmenuedit": {},
+    "kmid2": {},
+    "kmime": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kmines": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kmix": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kmplot": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kmymoney": {},
+    "knavalbattle": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "knemo": {},
+    "knetwalk": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "knewstuff": {},
+    "knights": {},
+    "knightsgame": {
+        "skip": "25"
+    },
+    "knotes": {
+        "versiontracker": "kdepim",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "knotifications": {},
+    "knotifyconfig": {},
+    "kodi": {},
+    "kollision": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kolourpaint": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kompare": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "konsole": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "konsolepart4": {
+        "skip": true
+    },
+    "kontact": {
+        "versiontracker": "kdepim",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kontactinterface": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kontaminuti": {},
+    "konversation": {},
+    "korganizer": {
+        "versiontracker": "kdepim",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kpackage": {},
+    "kparts": {},
+    "kpat": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kpeople": {},
+    "kphotoalbum": {},
+    "kpimtextedit": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kplayer": {},
+    "kplotting": {},
+    "kpmcore": {},
+    "kpty": {},
+    "kqtquickcharts": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kradio": {},
+    "kraft": {},
+    "krdc": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "krecipes": {},
+    "krename": {},
+    "krfb": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "krita": {},
+    "kronometer": {},
+    "kross": {},
+    "kross-interpreters": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kruler": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "krunner": {},
+    "krusader": {
+        "skip": "2.0.0"
+    },
+    "kscreen": {},
+    "kscreenlocker": {},
+    "kservice": {},
+    "kshisen": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kshutdown": {},
+    "ksquares": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "ksshaskpass": {},
+    "kstars": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kstreamripper": {},
+    "ksuperkey": {},
+    "ksvnupdater": {},
+    "ksysguard": {},
+    "ksystemlog": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kteatime": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "ktexteditor": {},
+    "ktextwidgets": {},
+    "ktimer": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "ktnef": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "ktoblzcheck": {},
+    "ktorrent": {},
+    "ktp-accounts-kcm": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "ktp-approver": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "ktp-auth-handler": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "ktp-call-ui": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "ktp-common-internals": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "ktp-contact-list": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "ktp-contact-runner": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "ktp-filetransfer-handler": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "ktp-kded-module": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "ktp-send-file": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "ktp-text-ui": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "ktuberling": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kturtle": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kunitconversion": {},
+    "kup": {},
+    "kuser": {},
+    "kvirc": {},
+    "kwallet": {},
+    "kwallet-pam": {},
+    "kwalletmanager": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kwave": {},
+    "kwayland": {},
+    "kwayland-integration": {},
+    "kwebkitpart": {},
+    "kwidgetsaddons": {},
+    "kwin": {},
+    "kwindowsystem": {},
+    "kwooty": {},
+    "kwordquiz": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kwrite": {
+        "versiontracker": "kate",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "kwrited": {},
+    "kxmlgui": {},
+    "kxmlrpcclient": {},
+    "kyotocabinet": {},
+    "labplot": {},
+    "lash": {
+        "skip": "0.5.4"
+    },
+    "lazarus": {},
+    "lcov": {},
+    "lemonpos": {},
+    "leptonica": {},
+    "lesspipe": {},
+    "lftp": {},
+    "lib32-flashplugin": {
+        "versiontracker": "flashplayer-npapi"
+    },
+    "lib32-gtk2": {
+        "skip": true
+    },
+    "lib32-libdbusmenu-qt": {
+        "versiontracker": "libdbusmenu-qt"
+    },
+    "lib32-libglade": {
+        "versiontracker": "glade"
+    },
+    "lib32-libwebp": {
+        "versiontracker": "libwebp"
+    },
+    "lib32-qt": {
+        "versiontracker": "qt"
+    },
+    "lib32-sni-qt": {
+        "versiontracker": "sni-qt"
+    },
+    "lib32-zlib": {
+        "versiontracker": "zlib"
+    },
+    "libaccounts-glib": {},
+    "libaccounts-qt": {},
+    "libaccounts-qt4": {
+        "skip": true
+    },
+    "libakonadi-qt4": {
+        "versiontracker": "akonadi",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libalkimia": {},
+    "libantlr3c": {
+        "skip": true
+    },
+    "libastro": {
+        "versiontracker": "marble",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libcacard": {},
+    "libcanberra": {},
+    "libcanberra-gstreamer": {
+        "versiontracker": "libcanberra"
+    },
+    "libcanberra-pulse": {
+        "versiontracker": "libcanberra"
+    },
+    "libcap-ng": {},
+    "libcdio-paranoia": {},
+    "libcec": {},
+    "libchardet": {
+        "skip": "1.0.5"
+    },
+    "libdbusmenu-qt": {},
+    "libdmtx": {},
+    "libechonest": {},
+    "libechonest-qt4": {
+        "versiontracker": "libechonest"
+    },
+    "libfastjson": {},
+    "libfilezilla": {},
+    "libfprint": {},
+    "libgee": {},
+    "libgee06": {
+        "skip": true
+    },
+    "libglade": {
+        "versiontracker": "glade"
+    },
+    "libgnomecanvas": {},
+    "libgnomecanvasmm": {},
+    "libgooglepinyin": {
+        "skip": true
+    },
+    "libgravatar": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libguess": {},
+    "libicns": {},
+    "libindi": {},
+    "libircclient": {},
+    "libiscsi": {},
+    "libkactivities4": {
+        "skip": true
+    },
+    "libkcddb": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libkcompactdisc": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libkdcraw": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libkdegames": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libkdepim": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libkeduvocdocument": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libkexiv2": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libkexiv2_4": {
+        "skip": true
+    },
+    "libkface": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libkfbapi": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libkgapi": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libkgeomap": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libkipi": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libkkc": {},
+    "libkkc-data": {
+        "skip": true
+    },
+    "libkleo": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libkmahjongg": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libkolab": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libkolabxml": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libkomparediff2": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libksane": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libksane4": {
+        "skip": true
+    },
+    "libkscreen": {},
+    "libksieve": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libksysguard": {},
+    "libksysguard4": {
+        "skip": true
+    },
+    "libktnef": {
+        "versiontracker": "ktnef",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libktorrent": {
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "libkvkontakte": {
+        "tags": [
+            "kde-applications"
+        ],
+        "skip": "4.12.0"
+    },
+    "libkworkspace4": {
+        "skip": true
+    },
+    "libmarble4": {
+        "skip": true
+    },
+    "libmediawiki": {
+        "skip": true
+    },
+    "libmemcached": {},
+    "libmowgli": {},
+    "libmpdclient": {},
+    "libmusicbrainz": {},
+    "libmygpo-qt": {},
+    "libmygpo-qt5": {
+        "versiontracker": "libmygpo-qt"
+    },
+    "libnfs": {},
+    "libofx": {},
+    "libofx-doc": {
+        "versiontracker": "libofx"
+    },
+    "libopenshot": {},
+    "libopenshot-audio": {},
+    "libpinyin": {},
+    "libpwquality": {},
+    "libqinfinity": {},
+    "libqtelegram-ae": {
+        "versiontracker": "libqtelegram-aseman-edition"
+    },
+    "libqzeitgeist": {},
+    "librecad": {},
+    "librelp": {},
+    "libreoffice-af": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-am": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-ar": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-as": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-ast": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-base": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-be": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-bg": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-bn": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-bn-IN": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-bo": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-br": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-brx": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-bs": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-ca": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-ca-valencia": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-calc": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-common": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-cs": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-cy": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-da": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-de": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-dgo": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-draw": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-dz": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-el": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-en-GB": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-en-US": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-en-ZA": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-eo": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-es": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-et": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-eu": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-extension-nlpsolver": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-extension-presentation-minimizer": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-extension-report-builder": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-extension-wiki-publisher": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-fa": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-fi": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-fr": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-ga": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-gd": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-gl": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-gu": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-he": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-hi": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-hr": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-hu": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-id": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-impress": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-is": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-it": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-ja": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-ka": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-kde4": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-kk": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-km": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-kmr-Latn": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-kn": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-ko": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-kok": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-ks": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-ku": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-lb": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-lo": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-lt": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-lv": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-mai": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-math": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-mk": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-ml": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-mn": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-mni": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-mr": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-my": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-nb": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-ne": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-nl": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-nn": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-nr": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-nso": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-oc": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-om": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-or": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-pa-IN": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-pl": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-postgresql-connector": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-pt": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-pt-BR": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-ro": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-ru": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-rw": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-sa-IN": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-sat": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-sd": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-sdk": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-sdk-doc": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-sh": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-si": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-sid": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-sk": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-sl": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-sq": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-sr": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-sr-Latn": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-ss": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-st": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-sv": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-sw-TZ": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-ta": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-te": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-tg": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-th": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-tn": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-tr": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-ts": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-tt": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-ug": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-uk": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-uz": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-ve": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-vi": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-writer": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-xh": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-zh-CN": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-zh-TW": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "libreoffice-zu": {
+        "versiontracker": "libreoffice",
+        "tags": [
+            "libreoffice"
+        ]
+    },
+    "librevenge": {},
+    "librime": {},
+    "libshairport": {
+        "skip": true
+    },
+    "libsignon-glib": {},
+    "libspatialite": {},
+    "libspiro": {},
+    "libsquish": {},
+    "libtextcat": {
+        "skip": true
+    },
+    "libtorrent-rasterbar": {
+        "skip": "1.0.10"
+    },
+    "liburcu": {
+        "versiontracker": "userspace-rcu-0.8"
+    },
+    "libvisio": {},
+    "libwebkit-gtk2": {
+        "skip": true
+    },
+    "libwebp": {},
+    "libwfut": {},
+    "libwlocate": {
+        "skip": "0.1"
+    },
+    "libwps": {},
+    "libxcomp": {
+        "versiontracker": "nx-libs"
+    },
+    "libxdg-basedir": {},
+    "libzhuyin": {},
+    "lightdm": {},
+    "lighttpd": {},
+    "lilypond": {},
+    "lincity-ng": {},
+    "linkchecker": {},
+    "links": {},
+    "linphone": {},
+    "lipsofsuna": {},
+    "lmms": {},
+    "lockdev": {
+        "skip": "1.0.3"
+    },
+    "log4c": {},
+    "logrotate": {},
+    "loiq": {},
+    "lokalize": {},
+    "lrzip": {},
+    "lua-expat": {},
+    "lua-filesystem": {
+        "versiontracker": "luafilesystem"
+    },
+    "lua-lpeg": {
+        "skip": true
+    },
+    "lua-socket": {
+        "skip": "2.0.2"
+    },
+    "luabind": {},
+    "lucene++": {},
+    "lynx": {},
+    "lyx": {},
+    "m64py": {},
+    "mailcommon": {},
+    "mailimporter": {},
+    "man2html": {
+        "skip": true
+    },
+    "mangonel": {},
+    "marble": {},
+    "marble-data": {
+        "versiontracker": "marble"
+    },
+    "marisa": {
+        "skip": true
+    },
+    "markdown": {},
+    "mathjax": {},
+    "maven": {},
+    "mbedtls": {},
+    "mc": {},
+    "meandmyshadow": {},
+    "media-player-info": {},
+    "mediadownloader": {},
+    "mediastreamer": {},
+    "memcached": {},
+    "memtest86+": {},
+    "mendeleydesktop": {},
+    "mercator": {},
+    "merkaartor": {},
+    "messagelib": {},
+    "milou": {},
+    "mime-types": {},
+    "mimetic": {},
+    "minitube": {},
+    "miniupnpc": {
+        "versiontracker": "miniupnp"
+    },
+    "minuet": {},
+    "mixxx": {},
+    "mkvtoolnix-cli": {
+        "versiontracker": "mkvtoolnix"
+    },
+    "mkvtoolnix-gui": {
+        "versiontracker": "mkvtoolnix"
+    },
+    "modemmanager-qt": {},
+    "monochrome-tray-icons": {
+        "skip": true
+    },
+    "mozc": {},
+    "mozjs": {},
+    "mp3diags": {},
+    "mp3gain": {},
+    "mpc": {},
+    "mpd": {},
+    "mpg321": {},
+    "mplayer": {},
+    "mplayer-vaapi": {
+        "versiontracker": "mplayer"
+    },
+    "mpv": {},
+    "mtools": {},
+    "mumble": {},
+    "muparser": {
+        "skip": "2.2.5"
+    },
+    "mupen64plus": {},
+    "musescore": {},
+    "musictube": {},
+    "musique": {},
+    "mxml": {},
+    "mysql-connector-c++": {},
+    "mysql-workbench": {},
+    "mythtv": {},
+    "naev": {},
+    "naev-data": {
+        "versiontracker": "naev"
+    },
+    "namcap": {},
+    "nano": {},
+    "netbeans": {},
+    "nethack": {},
+    "networkmanager-qt": {},
+    "neverball": {},
+    "nmap": {},
+    "nodejs": {},
+    "npapi-sdk": {},
+    "npm": {
+        "skip": "2.15.10"
+    },
+    "nvidia-cg-toolkit": {
+        "skip": "3.1.0013"
+    },
+    "nvidia-settings": {
+        "versiontracker": "nvidia"
+    },
+    "nvidia-settings-304xx": {
+        "skip": true
+    },
+    "nvidia-settings-340xx": {
+        "skip": true
+    },
+    "nvidia-texture-tools": {},
+    "nx-headers": {
+        "versiontracker": "nx-libs"
+    },
+    "nx-x11": {
+        "versiontracker": "nx-libs"
+    },
+    "nx-xcompext": {
+        "versiontracker": "nx-libs"
+    },
+    "nxagent": {
+        "versiontracker": "nx-libs"
+    },
+    "nxproxy": {
+        "versiontracker": "nx-libs"
+    },
+    "obs-studio": {},
+    "octave": {},
+    "octopi": {
+        "skip": "0.8.1"
+    },
+    "octopi-notifier": {
+        "versiontracker": "octopi",
+        "skip": "0.8.1"
+    },
+    "odamex": {},
+    "ode": {},
+    "ogre": {},
+    "ogre-docs": {
+        "versiontracker": "ogre"
+    },
+    "ois": {},
+    "okteta": {},
+    "opal": {},
+    "openarena": {},
+    "openarena-data": {
+        "versiontracker": "openarena"
+    },
+    "openbsd-netcat": {},
+    "opencascade": {},
+    "opencc": {},
+    "opencl-headers": {},
+    "opencollada": {},
+    "opencolorio": {},
+    "opendvdproducer": {},
+    "opengoo": {
+        "skip": "2.2"
+    },
+    "openimageio": {},
+    "openmortal": {},
+    "openmsx": {},
+    "openoffice": {},
+    "opensc": {},
+    "openscenegraph": {},
+    "openshot": {},
+    "opensubdiv": {},
+    "openttd": {},
+    "openttd-opengfx": {
+        "versiontracker": "opengfx"
+    },
+    "openttd-openmsx": {
+        "versiontracker": "openmsx"
+    },
+    "openttd-opensfx": {
+        "versiontracker": "opensfx"
+    },
+    "openworldsoccer": {},
+    "optipng": {},
+    "opusfile": {},
+    "ortp": {},
+    "otter-browser": {},
+    "owncloud": {},
+    "owncloud-client": {},
+    "oxygen": {},
+    "oxygen-fonts": {},
+    "oxygen-gtk-icons": {
+        "skip": "0.1"
+    },
+    "oxygen-gtk2": {},
+    "oxygen-gtk3": {},
+    "oyranos": {},
+    "p8-platform": {
+        "versiontracker": "platform"
+    },
+    "packabei": {},
+    "pacmanlogviewer": {
+        "versiontracker": "pacman-log-viewer"
+    },
+    "paintown": {},
+    "par2cmdline": {},
+    "parley": {},
+    "partclone": {},
+    "partitionmanager": {},
+    "passenger": {},
+    "patchutils": {},
+    "pcsclite": {},
+    "pdf2svg": {},
+    "peazip": {},
+    "pepperflashplugin": {
+        "versiontracker": "flashplayer-ppapi"
+    },
+    "performous": {},
+    "performous-songs": {
+        "versiontracker": "performous"
+    },
+    "perl-exiftool": {
+        "versiontracker": "exiftool"
+    },
+    "perl-file-next": {
+        "versiontracker": "file-next"
+    },
+    "perl-json": {
+        "versiontracker": "json"
+    },
+    "perl-libwww": {
+        "versiontracker": "libwww"
+    },
+    "phonon": {},
+    "php-apc": {
+        "versiontracker": "apc",
+        "skip": "3.1.9"
+    },
+    "phppgadmin": {},
+    "physfs": {},
+    "picard": {},
+    "picmi": {},
+    "pidgin": {},
+    "pimcommon": {},
+    "pingus": {},
+    "pink-pony": {},
+    "plasma-active-maliit": {},
+    "plasma-desktop": {},
+    "plasma-framework": {},
+    "plasma-integration": {},
+    "plasma-mediacenter": {},
+    "plasma-mobile": {},
+    "plasma-mobile-config": {},
+    "plasma-nm": {},
+    "plasma-pa": {},
+    "plasma-sdk": {},
+    "plasma-workspace": {},
+    "plasma-workspace-wallpapers": {},
+    "plasma5-applets-bumblebee-indicator": {
+        "versiontracker": "bumblebee-indicator",
+        "skip": "0.35"
+    },
+    "plasma5-applets-gmail-feed": {
+        "versiontracker": "gmail-feed"
+    },
+    "plasma5-applets-keystate": {
+        "versiontracker": "keystate"
+    },
+    "plasma5-applets-ktp-desktop": {
+        "versiontracker": "ktp-desktop-applets",
+        "tags": [
+            "kde-applications"
+        ]
+    },
+    "plasma5-applets-nowdock": {
+        "versiontracker": "now-dock"
+    },
+    "plasma5-applets-playbar2": {
+        "versiontracker": "playbar2"
+    },
+    "plasma5-applets-redshift-control": {
+        "versiontracker": "plasma-applet-redshift-control"
+    },
+    "plasma5-applets-rssnow": {
+        "versiontracker": "rssnow-plasma5-applet",
+        "skip": "1.0"
+    },
+    "plasma5-applets-separator": {
+        "versiontracker": "separator"
+    },
+    "plasma5-applets-showdesktop": {
+        "versiontracker": "minimize-all",
+        "skip": "1.0"
+    },
+    "plasma5-applets-simplemenu": {
+        "versiontracker": "simplemenu"
+    },
+    "plasma5-applets-thermal-monitor": {
+        "versiontracker": "plasma-applet-thermal-monitor"
+    },
+    "plasma5-applets-weather-widget": {
+        "versiontracker": "plasma-applet-weather-widget"
+    },
+    "plasma5-applets-webslice": {
+        "versiontracker": "webslice-plasmoid"
+    },
+    "plasma5-applets-welcome-plasmoid": {
+        "versiontracker": "welcome-plasmoid",
+        "skip": "2015.03"
+    },
+    "plasma5-applets-yahoo-weather": {
+        "versiontracker": "com.librehat.yahooweather"
+    },
+    "playonlinux": {},
+    "plib": {},
+    "poco": {},
+    "podofo": {},
+    "pokerth": {},
+    "polkit": {},
+    "pology": {},
+    "portsmf": {
+        "skip": "true"
+    },
+    "postgis": {},
+    "powerdevil": {},
+    "powertop": {},
+    "poxml": {},
+    "prboom": {},
+    "premake": {},
+    "print-manager": {},
+    "prison": {},
+    "privoxy": {},
+    "proftpd": {
+        "skip": "1.3.5b"
+    },
+    "protobuf": {},
+    "psi": {},
+    "ptex": {},
+    "ptlib": {},
+    "pumpa": {},
+    "purpose": {},
+    "pyalpm": {},
+    "pygtk": {},
+    "pylibacl": {},
+    "pyside-tools-common": {
+        "versiontracker": "pyside-tools"
+    },
+    "python-fuse": {},
+    "python-mpd": {
+        "versiontracker": "mpd"
+    },
+    "python-pyside-common": {
+        "versiontracker": "pyside"
+    },
+    "python-pyxml": {
+        "skip": true
+    },
+    "python-urllib3-doc": {
+        "versiontracker": "urllib3"
+    },
+    "python2-appdirs": {
+        "versiontracker": "appdirs"
+    },
+    "python2-apsw": {
+        "versiontracker": "apsw"
+    },
+    "python2-backports-abc": {
+        "versiontracker": "backports_abc"
+    },
+    "python2-beaker": {
+        "versiontracker": "beaker"
+    },
+    "python2-beautifulsoup3": {
+        "skip": true
+    },
+    "python2-beautifulsoup4": {
+        "versiontracker": "beautifulsoup4"
+    },
+    "python2-bugzilla": {
+        "versiontracker": "python-bugzilla"
+    },
+    "python2-cffi": {
+        "versiontracker": "cffi"
+    },
+    "python2-chardet": {
+        "versiontracker": "chardet"
+    },
+    "python2-cherrypy": {
+        "versiontracker": "cherrypy"
+    },
+    "python2-cryptography": {
+        "versiontracker": "cryptography"
+    },
+    "python2-cssselect": {
+        "versiontracker": "cssselect"
+    },
+    "python2-cycler": {
+        "versiontracker": "cycler"
+    },
+    "python2-dateutil": {
+        "versiontracker": "python-dateutil"
+    },
+    "python2-decorator": {
+        "versiontracker": "decorator"
+    },
+    "python2-distutils-extra": {
+        "versiontracker": "python-distutils-extra"
+    },
+    "python2-django": {
+        "versiontracker": "django"
+    },
+    "python2-dns": {
+        "versiontracker": "dnspython"
+    },
+    "python2-ecdsa": {
+        "versiontracker": "ecdsa"
+    },
+    "python2-feedparser": {
+        "versiontracker": "feedparser"
+    },
+    "python2-flask": {
+        "versiontracker": "flask"
+    },
+    "python2-funcsigs": {
+        "versiontracker": "funcsigs"
+    },
+    "python2-futures": {
+        "versiontracker": "futures"
+    },
+    "python2-getmediumurl": {
+        "versiontracker": "getmediumurl"
+    },
+    "python2-gnupg": {
+        "versiontracker": "python-gnupg"
+    },
+    "python2-html2text": {
+        "versiontracker": "html2text"
+    },
+    "python2-html5lib": {
+        "versiontracker": "html5lib"
+    },
+    "python2-httpbin": {
+        "versiontracker": "httpbin"
+    },
+    "python2-httplib2": {
+        "versiontracker": "httplib2"
+    },
+    "python2-ipykernel": {
+        "versiontracker": "ipykernel"
+    },
+    "python2-itsdangerous": {
+        "versiontracker": "itsdangerous"
+    },
+    "python2-jsonschema": {
+        "versiontracker": "jsonschema"
+    },
+    "python2-keyring": {
+        "versiontracker": "keyring"
+    },
+    "python2-magic": {
+        "versiontracker": "python-magic"
+    },
+    "python2-markdown": {
+        "versiontracker": "markdown"
+    },
+    "python2-matplotlib": {
+        "versiontracker": "matplotlib"
+    },
+    "python2-mechanize": {
+        "versiontracker": "mechanize"
+    },
+    "python2-mistune": {
+        "versiontracker": "mistune"
+    },
+    "python2-mock": {
+        "versiontracker": "mock"
+    },
+    "python2-monotonic": {
+        "versiontracker": "monotonic"
+    },
+    "python2-mpmath": {
+        "versiontracker": "mpmath"
+    },
+    "python2-netifaces": {
+        "versiontracker": "netifaces"
+    },
+    "python2-oauth2": {
+        "versiontracker": "oauth2"
+    },
+    "python2-pandas": {
+        "versiontracker": "pandas"
+    },
+    "python2-paramiko": {
+        "versiontracker": "paramiko"
+    },
+    "python2-path": {
+        "versiontracker": "path-py"
+    },
+    "python2-pbr": {
+        "versiontracker": "pbr"
+    },
+    "python2-pdf": {
+        "skip": true
+    },
+    "python2-pexpect": {
+        "versiontracker": "pexpect"
+    },
+    "python2-pillow": {
+        "versiontracker": "pillow"
+    },
+    "python2-ply": {
+        "versiontracker": "ply"
+    },
+    "python2-prompt_toolkit": {
+        "versiontracker": "prompt_toolkit"
+    },
+    "python2-protobuf": {
+        "versiontracker": "protobuf"
+    },
+    "python2-psutil": {
+        "versiontracker": "psutil"
+    },
+    "python2-psycopg2": {
+        "versiontracker": "psycopg2"
+    },
+    "python2-ptyprocess": {
+        "versiontracker": "ptyprocess"
+    },
+    "python2-py": {
+        "versiontracker": "py"
+    },
+    "python2-py-oauth2": {
+        "versiontracker": "py-oauth2"
+    },
+    "python2-pycountry": {
+        "versiontracker": "pycountry"
+    },
+    "python2-pycparser": {
+        "versiontracker": "pycparser"
+    },
+    "python2-pycurl": {
+        "versiontracker": "pycurl"
+    },
+    "python2-pygame": {
+        "versiontracker": "pygame"
+    },
+    "python2-pyopenssl": {
+        "versiontracker": "pyopenssl"
+    },
+    "python2-pyparsing": {
+        "versiontracker": "pyparsing"
+    },
+    "python2-pypdf2": {
+        "versiontracker": "pypdf2"
+    },
+    "python2-pyside": {
+        "versiontracker": "pyside"
+    },
+    "python2-pyside-tools": {
+        "versiontracker": "pyside-tools"
+    },
+    "python2-pyspatialite": {
+        "versiontracker": "pyspatialite"
+    },
+    "python2-pytest": {
+        "versiontracker": "pytest"
+    },
+    "python2-pytest-httpbin": {
+        "versiontracker": "pytest-httpbin"
+    },
+    "python2-pytest-runner": {
+        "versiontracker": "pytest-runner"
+    },
+    "python2-pyxattr": {
+        "versiontracker": "pyxattr"
+    },
+    "python2-pyzmq": {
+        "versiontracker": "pyzmq"
+    },
+    "python2-redis": {
+        "versiontracker": "redis"
+    },
+    "python2-regex": {
+        "versiontracker": "regex"
+    },
+    "python2-requests": {
+        "versiontracker": "requests"
+    },
+    "python2-rpy2": {
+        "versiontracker": "rpy2"
+    },
+    "python2-scipy": {
+        "versiontracker": "scipy"
+    },
+    "python2-shiboken": {
+        "versiontracker": "shiboken"
+    },
+    "python2-shove": {
+        "versiontracker": "shove"
+    },
+    "python2-simplejson": {
+        "versiontracker": "simplejson"
+    },
+    "python2-singledispatch": {
+        "versiontracker": "singledispatch"
+    },
+    "python2-six": {
+        "versiontracker": "six"
+    },
+    "python2-sqlalchemy": {
+        "versiontracker": "sqlalchemy"
+    },
+    "python2-sympy": {
+        "versiontracker": "sympy"
+    },
+    "python2-termcolor": {
+        "versiontracker": "termcolor"
+    },
+    "python2-terminado": {
+        "versiontracker": "terminado"
+    },
+    "python2-tornado": {
+        "versiontracker": "tornado"
+    },
+    "python2-tqdm": {
+        "versiontracker": "tqdm"
+    },
+    "python2-trollius": {
+        "versiontracker": "trollius"
+    },
+    "python2-unidecode": {
+        "versiontracker": "unidecode"
+    },
+    "python2-unipath": {
+        "versiontracker": "unipath"
+    },
+    "python2-urllib3": {
+        "versiontracker": "urllib3"
+    },
+    "python2-urlobject": {
+        "versiontracker": "urlobject"
+    },
+    "python2-urlreader": {
+        "versiontracker": "urlreader"
+    },
+    "python2-v4l2capture": {
+        "versiontracker": "v4l2capture"
+    },
+    "python2-wcwidth": {
+        "versiontracker": "wcwidth"
+    },
+    "python2-werkzeug": {
+        "versiontracker": "werkzeug"
+    },
+    "python2-wget": {
+        "versiontracker": "wget"
+    },
+    "python2-xlib": {
+        "versiontracker": "python-xlib"
+    },
+    "python2-yaml": {
+        "versiontracker": "pyyaml"
+    },
+    "python3-appdirs": {
+        "versiontracker": "appdirs"
+    },
+    "python3-aur": {
+        "versiontracker": "aur"
+    },
+    "python3-beaker": {
+        "versiontracker": "beaker"
+    },
+    "python3-beautifulsoup4": {
+        "versiontracker": "beautifulsoup4"
+    },
+    "python3-ccr": {
+        "versiontracker": "python-ccr"
+    },
+    "python3-cffi": {
+        "versiontracker": "cffi"
+    },
+    "python3-chardet": {
+        "versiontracker": "chardet"
+    },
+    "python3-cherrypy": {
+        "versiontracker": "cherrypy"
+    },
+    "python3-cryptography": {
+        "versiontracker": "cryptography"
+    },
+    "python3-cssselect": {
+        "versiontracker": "cssselect"
+    },
+    "python3-cycler": {
+        "versiontracker": "cycler"
+    },
+    "python3-dateutil": {
+        "versiontracker": "python-dateutil"
+    },
+    "python3-decorator": {
+        "versiontracker": "decorator"
+    },
+    "python3-distutils-extra": {
+        "versiontracker": "python-distutils-extra"
+    },
+    "python3-django": {
+        "versiontracker": "django"
+    },
+    "python3-ecdsa": {
+        "versiontracker": "ecdsa"
+    },
+    "python3-feedparser": {
+        "versiontracker": "feedparser"
+    },
+    "python3-flask": {
+        "versiontracker": "flask"
+    },
+    "python3-gnupg": {
+        "versiontracker": "python-gnupg"
+    },
+    "python3-html5lib": {
+        "versiontracker": "html5lib"
+    },
+    "python3-httpbin": {
+        "versiontracker": "httpbin"
+    },
+    "python3-httplib2": {
+        "versiontracker": "httplib2"
+    },
+    "python3-inflection": {
+        "versiontracker": "inflection"
+    },
+    "python3-ipykernel": {
+        "versiontracker": "ipykernel"
+    },
+    "python3-itsdangerous": {
+        "versiontracker": "itsdangerous"
+    },
+    "python3-jsonschema": {
+        "versiontracker": "jsonschema"
+    },
+    "python3-keyring": {
+        "versiontracker": "keyring"
+    },
+    "python3-magic": {
+        "versiontracker": "python-magic"
+    },
+    "python3-markdown": {
+        "versiontracker": "markdown"
+    },
+    "python3-matplotlib": {
+        "versiontracker": "matplotlib"
+    },
+    "python3-mistune": {
+        "versiontracker": "mistune"
+    },
+    "python3-mock": {
+        "versiontracker": "mock"
+    },
+    "python3-mpmath": {
+        "versiontracker": "mpmath"
+    },
+    "python3-oauth2": {
+        "versiontracker": "oauth2"
+    },
+    "python3-pandas": {
+        "versiontracker": "pandas"
+    },
+    "python3-paramiko": {
+        "versiontracker": "paramiko"
+    },
+    "python3-path": {
+        "versiontracker": "path-py"
+    },
+    "python3-pbr": {
+        "versiontracker": "pbr"
+    },
+    "python3-pexpect": {
+        "versiontracker": "pexpect"
+    },
+    "python3-pillow": {
+        "versiontracker": "pillow"
+    },
+    "python3-ply": {
+        "versiontracker": "ply"
+    },
+    "python3-progressbar2": {
+        "versiontracker": "progressbar2"
+    },
+    "python3-prompt_toolkit": {
+        "versiontracker": "prompt_toolkit"
+    },
+    "python3-protobuf": {
+        "versiontracker": "protobuf"
+    },
+    "python3-psutil": {
+        "versiontracker": "psutil"
+    },
+    "python3-psycopg2": {
+        "versiontracker": "psycopg2"
+    },
+    "python3-ptyprocess": {
+        "versiontracker": "ptyprocess"
+    },
+    "python3-py": {
+        "versiontracker": "py"
+    },
+    "python3-py-oauth2": {
+        "versiontracker": "py-oauth2"
+    },
+    "python3-pycparser": {
+        "versiontracker": "pycparser"
+    },
+    "python3-pycurl": {
+        "versiontracker": "pycurl"
+    },
+    "python3-pyelftools": {
+        "versiontracker": "pyelftools"
+    },
+    "python3-pyopenssl": {
+        "versiontracker": "pyopenssl"
+    },
+    "python3-pyparsing": {
+        "versiontracker": "pyparsing"
+    },
+    "python3-pyside": {
+        "versiontracker": "pyside"
+    },
+    "python3-pyside-tools": {
+        "versiontracker": "pyside-tools"
+    },
+    "python3-pytest": {
+        "versiontracker": "pytest"
+    },
+    "python3-pytest-httpbin": {
+        "versiontracker": "pytest-httpbin"
+    },
+    "python3-pytest-runner": {
+        "versiontracker": "pytest-runner"
+    },
+    "python3-pyxattr": {
+        "versiontracker": "pyxattr"
+    },
+    "python3-pyzmq": {
+        "versiontracker": "pyzmq"
+    },
+    "python3-regex": {
+        "versiontracker": "regex"
+    },
+    "python3-requests": {
+        "versiontracker": "requests"
+    },
+    "python3-rpy2": {
+        "versiontracker": "rpy2"
+    },
+    "python3-scipy": {
+        "versiontracker": "scipy"
+    },
+    "python3-sgmllib": {
+        "versiontracker": "feedparser"
+    },
+    "python3-shiboken": {
+        "versiontracker": "shiboken"
+    },
+    "python3-simplejson": {
+        "versiontracker": "simplejson"
+    },
+    "python3-six": {
+        "versiontracker": "six"
+    },
+    "python3-sqlalchemy": {
+        "versiontracker": "sqlalchemy"
+    },
+    "python3-sympy": {
+        "versiontracker": "sympy"
+    },
+    "python3-termcolor": {
+        "versiontracker": "termcolor"
+    },
+    "python3-terminado": {
+        "versiontracker": "terminado"
+    },
+    "python3-toposort": {
+        "versiontracker": "toposort"
+    },
+    "python3-tornado": {
+        "versiontracker": "tornado"
+    },
+    "python3-tqdm": {
+        "versiontracker": "tqdm"
+    },
+    "python3-unidecode": {
+        "versiontracker": "unidecode"
+    },
+    "python3-urllib3": {
+        "versiontracker": "urllib3"
+    },
+    "python3-wcwidth": {
+        "versiontracker": "wcwidth"
+    },
+    "python3-werkzeug": {
+        "versiontracker": "werkzeug"
+    },
+    "python3-wget": {
+        "versiontracker": "wget"
+    },
+    "python3-xlib": {},
+    "python3-yaml": {
+        "versiontracker": "pyyaml"
+    },
+    "q4wine": {},
+    "qbittorrent": {},
+    "qbs": {},
+    "qbzr": {},
+    "qca": {},
+    "qemu": {},
+    "qemu-arch-extra": {
+        "versiontracker": "qemu"
+    },
+    "qemu-block-gluster": {
+        "versiontracker": "qemu"
+    },
+    "qemu-block-iscsi": {
+        "versiontracker": "qemu"
+    },
+    "qemu-block-rbd": {
+        "versiontracker": "qemu"
+    },
+    "qemu-guest-agent": {
+        "versiontracker": "qemu"
+    },
+    "qftp": {},
+    "qgis": {},
+    "qgit": {},
+    "qhull": {},
+    "qiviewer": {},
+    "qjackctl": {},
+    "qjson": {},
+    "qmapshack": {},
+    "qmc2": {},
+    "qmidictl": {},
+    "qmidinet": {},
+    "qml-box2d": {
+        "skip": true
+    },
+    "qmmp": {},
+    "qmmp-plugin-pack": {
+        "versiontracker": "qmmp"
+    },
+    "qrencode": {},
+    "qsopcast": {
+        "skip": true
+    },
+    "qstardict": {},
+    "qsyncthingtray": {},
+    "qsynth": {},
+    "qt": {},
+    "qt-docs": {
+        "versiontracker": "qt"
+    },
+    "qt-mobility": {},
+    "qt5-fsarchiver": {},
+    "qtcreator": {
+        "versiontracker": "qt-creator"
+    },
+    "qtcurve-gtk2": {
+        "versiontracker": "qtcurve",
+        "skip": "1.8.18"
+    },
+    "qtcurve-kf5": {
+        "versiontracker": "qtcurve",
+        "skip": "1.8.18"
+    },
+    "qtcurve-qt4": {
+        "versiontracker": "qtcurve",
+        "skip": "1.8.18"
+    },
+    "qtcurve-utils": {
+        "versiontracker": "qtcurve",
+        "skip": "1.8.18"
+    },
+    "qtfm": {},
+    "qtkeychain-qt4": {
+        "versiontracker": "qtkeychain"
+    },
+    "qtkeychain-qt5": {
+        "versiontracker": "qtkeychain"
+    },
+    "qtractor": {},
+    "qtwebkit-plugins": {
+        "skip": true
+    },
+    "quassel": {},
+    "quazip": {},
+    "quesoglc": {},
+    "quick-usb-formatter": {
+        "skip": "0.1"
+    },
+    "quiterss": {},
+    "qupzilla": {},
+    "qupzilla-webkit": {
+        "versiontracker": "qupzilla"
+    },
+    "qwinff": {},
+    "qxmpp": {},
+    "r": {},
+    "radius-engine": {},
+    "ragel": {},
+    "rbtools": {},
+    "redeclipse": {},
+    "redis": {},
+    "redshift": {},
+    "rekonq": {},
+    "ring-kde": {},
+    "rkhunter": {},
+    "rkward": {},
+    "rocs": {},
+    "rosegarden": {},
+    "routino": {},
+    "routino-experimental": {
+        "skip": true
+    },
+    "rsibreak": {},
+    "rstudio": {},
+    "rsyslog": {},
+    "ruby-builder": {
+        "versiontracker": "builder"
+    },
+    "ruby-rack": {
+        "versiontracker": "rack"
+    },
+    "sagemath": {},
+    "sagemath-doc": {
+        "versiontracker": "sagemath"
+    },
+    "sagemath-src": {
+        "versiontracker": "sagemath"
+    },
+    "samba": {},
+    "samsung-unified-driver": {
+        "versiontracker": "samsung-unified-linux-driver"
+    },
+    "sbsms": {
+        "versiontracker": "libsbsms"
+    },
+    "scilab": {},
+    "screen": {},
+    "scribus": {},
+    "scummvm": {},
+    "sddm-kcm": {},
+    "seabios": {},
+    "semantik": {},
+    "sentinella": {},
+    "setconf": {},
+    "sfcgal": {},
+    "sfml": {},
+    "shapelib": {},
+    "share-like-connect": {},
+    "shared-desktop-ontologies": {},
+    "shedskin": {},
+    "shiboken": {},
+    "shntool": {},
+    "sigil": {},
+    "signon": {
+        "skip": true
+    },
+    "signon-kwallet-extension": {},
+    "signon-plugin-oauth2": {},
+    "signon-ui": {},
+    "silc-toolkit": {},
+    "silly": {},
+    "simgear": {},
+    "simon": {},
+    "simpleaudioplayer": {},
+    "sintel": {
+        "skip": true
+    },
+    "skanlite": {
+        "skip": "2.0.0"
+    },
+    "skk-jisyo": {},
+    "skrooge": {},
+    "skstream": {},
+    "skype": {
+        "skip": "4.3"
+    },
+    "slang": {},
+    "smaragd": {},
+    "smb4k": {},
+    "smplayer": {},
+    "smplayer-skins": {
+        "versiontracker": "smplayer"
+    },
+    "smplayer-themes": {
+        "versiontracker": "smplayer"
+    },
+    "smtube": {},
+    "snapper": {},
+    "sni-qt": {},
+    "socat": {},
+    "socnetv": {},
+    "sofia-sip": {},
+    "solid": {},
+    "sonnet": {},
+    "sopcast": {},
+    "soqt": {},
+    "sound-theme-freedesktop": {},
+    "soundkonverter": {},
+    "sparsehash": {},
+    "spatialindex": {
+        "versiontracker": "libspatialindex"
+    },
+    "spectacle": {},
+    "speed-dreams": {},
+    "speed-dreams-data": {
+        "versiontracker": "speed-dreams"
+    },
+    "speedcrunch": {},
+    "sphinxbase": {},
+    "spice": {},
+    "spice-protocol": {},
+    "spideroak": {},
+    "spring": {},
+    "sqlcipher": {},
+    "sqliteman": {},
+    "stapler": {},
+    "steam": {},
+    "stellarium": {},
+    "step": {},
+    "stk": {},
+    "strace": {},
+    "streamripper": {},
+    "strigi": {},
+    "subtitlecomposer": {},
+    "suil": {},
+    "sunpinyin": {
+        "skip": "3.0.0-rc1"
+    },
+    "sunpinyin-data": {
+        "versiontracker": "sunpinyin",
+        "skip": "3.0.0-rc1"
+    },
+    "supertux": {},
+    "supertuxkart": {},
+    "sweethome3d": {},
+    "sweethome3d-furniture-library": {
+        "versiontracker": "furniture-library-editor"
+    },
+    "swig1": {
+        "skip": true
+    },
+    "sword": {},
+    "swt-extra": {},
+    "syncthing": {},
+    "syndication": {},
+    "synergy": {},
+    "syslog-ng": {},
+    "system-config-printer": {},
+    "systemd-swap": {},
+    "systemsettings": {},
+    "tanglet": {},
+    "tar": {},
+    "teeworlds": {},
+    "tegaki-models-zinnia-japanese": {
+        "skip": true
+    },
+    "telegramqml": {},
+    "telepathy-accounts-signon": {},
+    "telepathy-logger-qt": {},
+    "tellico": {},
+    "tesseract": {},
+    "tesseract-data-afr": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-amh": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-ara": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-asm": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-aze": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-aze_cyrl": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-bel": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-ben": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-bod": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-bos": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-bul": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-cat": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-ceb": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-ces": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-chi_sim": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-chi_tra": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-chr": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-cym": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-dan": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-dan_frak": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-deu": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-deu_frak": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-dzo": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-ell": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-eng": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-enm": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-epo": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-epo_alt": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-equ": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-est": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-eus": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-fas": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-fin": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-fra": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-frk": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-frm": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-gle": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-glg": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-grc": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-guj": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-hat": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-heb": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-hin": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-hrv": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-hun": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-iku": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-ind": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-isl": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-ita": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-ita_old": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-jav": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-jpn": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-kan": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-kat": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-kat_old": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-kaz": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-khm": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-kir": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-kor": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-kur": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-lao": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-lat": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-lav": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-lit": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-mal": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-mar": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-mkd": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-mlt": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-msa": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-mya": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-nep": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-nld": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-nor": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-ori": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-pan": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-pol": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-por": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-pus": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-ron": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-rus": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-san": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-sin": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-slk": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-slk_frak": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-slv": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-spa": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-spa_old": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-sqi": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-srp": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-srp_latn": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-swa": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-swe": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-syr": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-tam": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-tel": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-tgk": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-tgl": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-tha": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-tir": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-tur": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-uig": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-ukr": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-urd": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-uzb": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-uzb_cyrl": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-vie": {
+        "versiontracker": "tesseract"
+    },
+    "tesseract-data-yid": {
+        "versiontracker": "tesseract"
+    },
+    "tetzle": {},
+    "texi2html": {
+        "versiontracker": "texinfo"
+    },
+    "texmacs": {
+        "skip": "1.0.5"
+    },
+    "texmaker": {},
+    "threadweaver": {},
+    "thunderbird-i18n": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-ach": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-af": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-an": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-ar": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-as": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-ast": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-az": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-be": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-bg": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-bn-bd": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-bn-in": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-br": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-bs": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-ca": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-cs": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-cy": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-da": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-de": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-dsb": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-el": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-en-gb": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-en-us": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-en-za": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-eo": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-es-ar": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-es-cl": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-es-es": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-es-mx": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-et": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-eu": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-fa": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-ff": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-fi": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-fr": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-fy-nl": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-ga-ie": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-gd": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-gl": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-gn": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-gu": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-gu-in": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-he": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-hi-in": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-hr": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-hsb": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-hu": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-hy-am": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-id": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-is": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-it": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-ja": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-kk": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-km": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-kn": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-ko": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-lij": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-lt": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-lv": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-mai": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-mk": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-ml": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-mr": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-ms": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-nb-no": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-nl": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-nn-no": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-or": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-pa-in": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-pl": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-pt-br": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-pt-pt": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-rm": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-ro": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-ru": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-si": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-sk": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-sl": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-son": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-sq": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-sr": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-sv-se": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-ta": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-ta-lk": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-te": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-th": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-tr": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-uk": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-uz": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-vi": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-xh": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-zh-cn": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-i18n-zh-tw": {
+        "versiontracker": "thunderbird"
+    },
+    "thunderbird-kde": {
+        "versiontracker": "thunderbird"
+    },
+    "tiger": {},
+    "tinyxml": {},
+    "tlp": {},
+    "tlp-rdw": {
+        "versiontracker": "tlp"
+    },
+    "tmux": {},
+    "toluapp": {},
+    "tomahawk": {},
+    "toohardforyou": {},
+    "toolame": {},
+    "tor": {},
+    "torcs": {},
+    "torcs-data": {
+        "versiontracker": "torcs"
+    },
+    "transifex-client": {},
+    "transmission": {},
+    "transmission-cli": {
+        "versiontracker": "transmission"
+    },
+    "trash-cli": {},
+    "traverso": {},
+    "tree": {},
+    "trigger": {
+        "versiontracker": "trigger-rally"
+    },
+    "trigger-data": {
+        "versiontracker": "trigger-rally"
+    },
+    "trojita": {},
+    "tsf": {},
+    "ttf-comme": {
+        "versiontracker": "comme-font"
+    },
+    "tuxguitar": {},
+    "tuxpaint": {},
+    "tvtime": {},
+    "uchardet": {},
+    "ucl": {},
+    "ufoai": {},
+    "ufoai-data": {
+        "versiontracker": "ufoai"
+    },
+    "ufw": {},
+    "uim-mozc": {
+        "versiontracker": "mozc"
+    },
+    "umbrello": {},
+    "unarj": {},
+    "unetbootin": {},
+    "unittestpp": {
+        "versiontracker": "unittest-cpp"
+    },
+    "unknown-horizons": {},
+    "unvanquished": {},
+    "unvanquished-data": {
+        "versiontracker": "unvanquished"
+    },
+    "upx": {},
+    "urlgrabber": {},
+    "usb-modeswitch": {},
+    "usbredir": {},
+    "user-manager": {},
+    "v4l2ucp": {},
+    "valyria-tear": {},
+    "varconf": {},
+    "vde2": {},
+    "veracrypt": {},
+    "veusz": {},
+    "vidalia": {
+        "skip": true
+    },
+    "videocatcher": {},
+    "vim": {},
+    "violetland": {},
+    "virtualbox": {},
+    "virtualbox-ext-oracle": {
+        "versiontracker": "virtualbox"
+    },
+    "virtualbox-ext-vnc": {
+        "versiontracker": "virtualbox"
+    },
+    "virtualbox-guest-dkms": {
+        "versiontracker": "virtualbox"
+    },
+    "virtualbox-guest-utils": {
+        "versiontracker": "virtualbox"
+    },
+    "virtualbox-guest-utils-nox": {
+        "versiontracker": "virtualbox"
+    },
+    "virtualbox-host-dkms": {
+        "versiontracker": "virtualbox"
+    },
+    "virtualbox-sdk": {
+        "versiontracker": "virtualbox"
+    },
+    "vlc": {},
+    "vmpk": {
+        "skip": "0.6.2"
+    },
+    "vokoscreen": {},
+    "vsqlite++": {},
+    "vym": {},
+    "w3m": {},
+    "waf": {},
+    "warsow": {
+        "skip": "2.1"
+    },
+    "warsow-data": {
+        "versiontracker": "warsow",
+        "skip": "2.1"
+    },
+    "warzone2100": {},
+    "watchvideo": {},
+    "wcslib": {},
+    "websocketpp": {},
+    "wesnoth": {},
+    "wfmath": {},
+    "whois": {},
+    "wicd-client-kde": {
+        "versiontracker": "wicd-kde"
+    },
+    "widelands": {},
+    "wiiuse": {},
+    "wine": {},
+    "wine_gecko": {},
+    "wine_mono": {
+        "versiontracker": "wine-mono"
+    },
+    "winetricks": {},
+    "winff": {
+        "skip": "1.5.4.0"
+    },
+    "wireshark": {},
+    "wizznic": {},
+    "wput": {},
+    "wxgtk": {
+        "versiontracker": "wxwidgets"
+    },
+    "wxgtk2.8": {
+        "skip": true
+    },
+    "wxmaxima": {},
+    "wxpython": {},
+    "wxpython2.8": {
+        "skip": true
+    },
+    "x2goclient": {},
+    "xalan-c": {},
+    "xautomation": {},
+    "xcalib": {},
+    "xchat": {},
+    "xclip": {
+        "skip": "0.12"
+    },
+    "xdebug": {},
+    "xdgurl": {},
+    "xine-ui": {},
+    "xmldiff": {},
+    "xmoto": {},
+    "xneur": {},
+    "xonotic": {},
+    "xonotic-data": {
+        "versiontracker": "xonotic"
+    },
+    "xrestop": {},
+    "xsd": {},
+    "xsel": {},
+    "xterm": {},
+    "yagf": {},
+    "yakuake": {},
+    "yakuake-themes-ronak": {
+        "skip": true
+    },
+    "yakuake-themes-sirius": {
+        "skip": true
+    },
+    "yaml-cpp": {},
+    "yapan": {
+        "skip": true
+    },
+    "yarock": {},
+    "yate": {},
+    "youtube-dl": {},
+    "zanshin": {},
+    "zaz": {},
+    "zeitgeist": {},
+    "zeroconf-ioslave": {},
+    "zinnia": {},
+    "zint": {},
+    "zlib": {},
+    "zramswap": {
+        "skip": true
+    },
+    "zsh": {},
+    "zsh-doc": {
+        "versiontracker": "zsh"
+    },
+    "zsnes": {},
+    "zynaddsubfx": {}
+}
