@@ -1,0 +1,28 @@
+Metadata-Version: 1.1
+Name: vaxrank
+Version: 0.1.0
+Summary: Mutant peptide ranking for personalized cancer vaccines
+Home-page: https://github.com/hammerlab/vaxrank
+Author: Alex Rubinsteyn
+Author-email: alex {dot} rubinsteyn {at} gmail {dot} com
+License: http://www.apache.org/licenses/LICENSE-2.0.html
+Description: |Build Status| |Coverage Status|
+        
+        vaxrank
+        =======
+        
+        Mutant peptide ranking for personalized cancer vacines
+        
+        .. |Build Status| image:: https://travis-ci.org/hammerlab/vaxrank.svg?branch=master
+           :target: https://travis-ci.org/hammerlab/vaxrank
+        .. |Coverage Status| image:: https://coveralls.io/repos/github/hammerlab/vaxrank/badge.svg?branch=master
+           :target: https://coveralls.io/github/hammerlab/vaxrank?branch=master
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
