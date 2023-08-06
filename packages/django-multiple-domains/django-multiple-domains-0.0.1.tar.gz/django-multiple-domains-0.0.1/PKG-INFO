@@ -1,0 +1,69 @@
+Metadata-Version: 1.1
+Name: django-multiple-domains
+Version: 0.0.1
+Summary: Django middleware for serving single Django instance in multiple domains with different urls.
+Home-page: https://github.com/qlio/django-multiple-domains
+Author: Bulgantamir Gankhuyag
+Author-email: mr.unagaldai@gmail.com
+License: UNKNOWN
+Description: Django Multiple Domain
+        **********************
+        
+        Django middleware for serving single Django instance in multiple domains with different urls.
+        
+        
+        Installation
+        ============
+        
+        ost recent **Django Multiple Domain** version using pip: ::
+        
+            pip install django-multiple-domains
+        
+        Setup
+        =====
+        
+        **NOTE**: The following settings should be added to the project file 'settings.py'.
+        
+        1. Add 'multipledomain' to ''INSTALLED_APPS'': ::
+        
+            INSTALLED_APPS += ( 'multipledomain', )
+        
+        2. Add 'multipledomain.middleware.MultipleDomainMiddleware' to ''MIDDLEWARE_CLASSES'': ::
+        
+            MIDDLEWARE_CLASSES += ( 'multipledomain.middleware.MultipleDomainMiddleware', )
+        
+        3. Create different urls config file for each domain (Ex: 'site.com' and 'blog.com'): ::
+        
+            * urls_site.py   (by default)
+                url(r'^$', TemplateView.as_view(template_name='site.html'), name='site'),
+        
+            * urls_blog.py
+                url(r'^$', TemplateView.as_view(template_name='blog.html'), name='blog'),
+        
+        4. Declare host/domain urlconfig tuple ''MULTIURL_CONFIG'': ::
+        
+            MULTIURL_CONFIG = {
+                'site.com': 'urls_site',
+                'blog.com': 'urls_blog',
+            }
+        
+            ROOT_URLCONF = 'urls_site'
+        
+        
+        Related urls: `https://docs.djangoproject.com/en/dev/ref/request-response/#django.http.HttpRequest.get_host`
+        
+Keywords: django url domain host multi
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
