@@ -1,0 +1,11 @@
+setuptools
+zc.recipe.egg
+zc.buildout>=2.2.0
+pip>=1.4.1
+
+[bzr]
+bzr
+
+[test]
+nose
+bzr
