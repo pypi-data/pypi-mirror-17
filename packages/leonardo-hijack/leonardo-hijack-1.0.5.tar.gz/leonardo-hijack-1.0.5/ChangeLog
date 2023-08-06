@@ -1,0 +1,38 @@
+CHANGES
+=======
+
+1.0.5
+-----
+
+
+1.0.4
+-----
+
+* Add admin package, bump version and move urls to own patterns
+
+1.0.3
+-----
+
+* Add static file
+* Add static files
+
+1.0.2
+-----
+
+* Add ordering
+* Small cleanup
+
+1.0.1
+-----
+
+* Rename deprecated parameter
+
+1.0.0
+-----
+
+* bump required version of django-hijack #1
+
+1.0.0a0
+-------
+
+* Initial commit
