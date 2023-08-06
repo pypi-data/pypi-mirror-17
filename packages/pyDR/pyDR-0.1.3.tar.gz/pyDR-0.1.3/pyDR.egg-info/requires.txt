@@ -1,0 +1,6 @@
+numpy>=1.7.1
+scipy>=0.12
+pandas>=0.18
+pytz
+patsy>=0.4.1
+logutils>=0.3.3
