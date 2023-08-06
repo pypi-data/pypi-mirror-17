@@ -1,0 +1,9 @@
+[Core]
+Name = Dropbox Storage Plugin
+Module = Dropbox
+
+[Documentation]
+Author = Sebastian Messmer
+Version = 0.1
+Website = https://www.cryfs.org
+Description = Allows loading encrypted file systems from a Dropbox
