@@ -1,0 +1,7 @@
+[run]
+branch = True
+source = general
+omit = general/tests/*
+
+[report]
+ignore_errors = True
