@@ -1,0 +1,25 @@
+    <div class="row" style="width: 96vw">
+        <div style="height: 400px; padding-right: 2px;" class="col-md-6 col-sm-6">
+            <table class="table table-responsive table-striped">
+                <tr>
+                    <td>Index</td>
+                    <td>{{i}}</td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td>{{name}}</td>
+                </tr>
+                <tr>
+                    <td>Data retrieved</td>
+                    <td>{{hasData}}</td>
+                </tr>
+                <tr>
+                    <td>ID</td>
+                    <td>{{id}}</td>
+                </tr>
+            </table>
+        </div>
+        <div style="height: 400px; padding-left: 2px;" class="col-md-6 col-sm-6">
+            <img class="img-responsive" src="{{image}}"/>
+        </div>
+    </div>
