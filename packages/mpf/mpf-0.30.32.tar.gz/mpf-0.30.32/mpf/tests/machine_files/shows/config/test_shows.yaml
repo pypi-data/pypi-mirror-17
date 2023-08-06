@@ -1,0 +1,190 @@
+#config_version=4
+
+modes:
+  - mode1
+  - mode2
+  - mode3
+
+leds:
+    led_01:
+        number: 0
+        tags: tag1
+    led_02:
+        number: 1
+        tags: tag1
+    led_03:
+        number: 2
+    led_04:
+        number: 3
+
+matrix_lights:
+    light_01:
+        number: 0
+        label: Test 0
+        tags: tag1
+        debug: True
+    light_02:
+        number: 1
+        label: Test 1
+        tags: tag1
+        debug: True
+    light_03:
+        number: 2
+        label: Test 1
+        fade_ms: 1s
+        debug: True
+
+gis:
+    gi_01:
+        number: 0
+
+coils:
+    coil_01:
+        number: 1
+        pulse_ms: 30
+
+flashers:
+    flasher_01:
+        number: 1
+        label: Test flasher
+        flash_ms: 40
+
+assets:
+    file_shows:
+        test_show1:
+            preload: yes
+        test_show2:
+            preload: yes
+        test_show3:
+            preload: yes
+
+shows:
+  leds_name_token:
+    - time: 0
+      leds:
+        (leds): red
+  leds_color_token:
+    - time: 0
+      leds:
+        led_01: (color1)
+    - time: +1
+      leds:
+        led_02: (color2)
+    - time: +1
+  leds_extended:
+    - time: 0
+      leds:
+        (leds):
+          color: red
+          fade: 1s
+  lights_basic:
+    - time: 0
+      lights:
+        (lights): ff
+  multiple_tokens:
+    - time: 0
+      leds:
+        (leds): blue
+      lights:
+        (lights): ff
+  show_assoc_tokens:
+    - time: 0
+      leds:
+        (line1Num): (line1Color)
+  show_with_time_and_duration:
+    - time: +1s
+    - time: 5s
+    - time: +1s
+      duration: 1s
+    - leds:
+        led_02: red
+    - time: 10s
+      duration: 3s
+  leds_color_token_and_fade:
+    - time: 0
+      leds:
+        led_01: (color1)
+    - time: +1
+      leds:
+        led_02: (color2)-f900ms
+    - time: +1
+
+show_player:
+  play_test_show1: test_show1
+  play_with_priority:
+    test_show1:
+      priority: 15
+  play_with_hold:
+    test_show1:
+      hold: True
+  play_with_speed:
+    test_show1:
+      speed: 2
+  play_with_start_step:
+    test_show1:
+      start_step: 2
+  play_with_neg_start_step:
+    test_show1:
+      start_step: -2
+  play_with_loops:
+    test_show1:
+      loops: 2
+  play_with_sync_ms_1000:
+    test_show1:
+      sync_ms: 1000
+  play_with_sync_ms_500:
+    test_show1:
+      sync_ms: 500
+  play_with_reset:
+    test_show1:
+      reset: False
+  play_with_manual_advance:
+    test_show1:
+      manual_advance: True
+  play_with_keys:
+    test_show1:
+      key: key1
+    test_show2:
+      key: key1
+    test_show3:
+      key: key2
+  stop_key1:
+    key1:
+      action: stop
+  stop_key2:
+    key2:
+      action: stop
+  stop_test_show1:
+    test_show1:
+      action: stop
+  pause_test_show1:
+    test_show1:
+      action: pause
+  resume_test_show1:
+    test_show1:
+      action: resume
+  invalid_show_stop_name:
+    fake_show:
+      action: stop
+  adjust_running_show_by_key:
+    key1:
+      action: update
+      speed: 2
+  stop_by_multiple_keys:
+    key1:
+      action: stop
+    key2:
+      action: stop
+  stop_by_show_name:
+    leds_extended:
+      action: stop
+  play_show_assoc_tokens:
+    show_assoc_tokens:
+      speed: 1
+      show_tokens:
+         line1Num: tag1
+         line1Color: red
+  stop_show_assoc_tokens:
+    show_assoc_tokens:
+      action: stop
+
