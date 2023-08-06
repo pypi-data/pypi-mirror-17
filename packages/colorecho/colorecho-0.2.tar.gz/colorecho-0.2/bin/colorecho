@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+
+import colorecho
+
+if __name__ == "__main__":
+	colorecho.CommandLineUI().execute()
