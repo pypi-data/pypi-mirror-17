@@ -1,0 +1,18 @@
+Metadata-Version: 2.0
+Name: expy
+Version: 0.9.1
+Summary: A psychological experiment builder
+Home-page: UNKNOWN
+Author: Jinbiao Yang
+Author-email: ray306@gmail.com
+License: MIT License
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: pyaudio
+Requires-Dist: pygame
+Requires-Dist: scipy
+Requires-Dist: wave
+
+===========
+
+
