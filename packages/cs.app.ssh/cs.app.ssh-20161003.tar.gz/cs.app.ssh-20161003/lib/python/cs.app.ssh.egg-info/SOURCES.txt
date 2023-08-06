@@ -1,0 +1,10 @@
+MANIFEST.in
+setup.py
+lib/python/cs.app.ssh.egg-info/PKG-INFO
+lib/python/cs.app.ssh.egg-info/SOURCES.txt
+lib/python/cs.app.ssh.egg-info/dependency_links.txt
+lib/python/cs.app.ssh.egg-info/entry_points.txt
+lib/python/cs.app.ssh.egg-info/requires.txt
+lib/python/cs.app.ssh.egg-info/top_level.txt
+lib/python/cs/app/__init__.py
+lib/python/cs/app/ssh.py

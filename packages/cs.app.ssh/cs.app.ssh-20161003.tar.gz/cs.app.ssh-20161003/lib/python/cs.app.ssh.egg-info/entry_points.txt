@@ -1,0 +1,3 @@
+[console_scripts]
+ssh-opts = cs.app.ssh:main_ssh_opts
+
