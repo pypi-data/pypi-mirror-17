@@ -1,0 +1,4 @@
+include TFBS_analyzer2.py
+include LICENSE
+include sample_ids.txt
+recursive-include Data *.json
