@@ -1,0 +1,3 @@
+[console_scripts]
+pypertrail = pypertrail.cli:main
+
