@@ -1,0 +1,6 @@
+#!/bin/bash
+
+this_task=$(basename `pwd`)
+
+cd ..
+cmsbooklet -t cms-contest -l italian --only $this_task "$@" contest.yaml
