@@ -1,0 +1,17 @@
+AUTHORS
+CHANGES
+LICENSE
+MANIFEST.in
+Readme.md
+setup.py
+django_tasix.egg-info/PKG-INFO
+django_tasix.egg-info/SOURCES.txt
+django_tasix.egg-info/dependency_links.txt
+django_tasix.egg-info/requires.txt
+django_tasix.egg-info/top_level.txt
+tasix/__init__.py
+tasix/apps.py
+tasix/middleware.py
+tasix/models.py
+tasix/network.py
+tasix/tests.py
