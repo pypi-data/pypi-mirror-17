@@ -1,0 +1,3 @@
+[console_scripts]
+triptan = triptan.cli:main
+
