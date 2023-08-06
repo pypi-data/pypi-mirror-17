@@ -1,0 +1,4 @@
+[console_scripts]
+run_tagger = run_tagger.py:main
+train_tagger = train_tagger.py:main
+

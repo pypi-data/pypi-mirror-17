@@ -1,0 +1,11 @@
+MANIFEST.in
+setup.py
+brown_paths/README.paths
+brown_paths/empty
+brown_paths/gha.250M-c2000.paths
+entity_recognition.egg-info/PKG-INFO
+entity_recognition.egg-info/SOURCES.txt
+entity_recognition.egg-info/dependency_links.txt
+entity_recognition.egg-info/entry_points.txt
+entity_recognition.egg-info/requires.txt
+entity_recognition.egg-info/top_level.txt
