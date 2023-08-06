@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: peewee-ip4r
+Version: 0.1
+Summary: Support for the ip4r extensions to PostgreSQL for Peewee
+Home-page: https://github.com/dpk/peewee-ip4r
+Author: David P. Kendal
+Author-email: pypi@dpk.io
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: postgresql,postgres,peewee,ip,ip4r,internet
+Platform: UNKNOWN
+Classifier: License :: Public Domain
+Classifier: Topic :: Database :: Front-Ends
+Classifier: Programming Language :: Python :: 3.5
