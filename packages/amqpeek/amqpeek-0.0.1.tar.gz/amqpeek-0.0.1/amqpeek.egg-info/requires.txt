@@ -1,0 +1,9 @@
+click>=6.6
+PyYAML>=3.12
+pika>=0.10.0
+slacker>=0.9.25
+
+[dev]
+pep8>=1.7.0
+pytest==3.0.3
+mock==2.0.0
