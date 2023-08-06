@@ -1,0 +1,3 @@
+include README.md LICENCE
+recursive-include mozi *.py
+recursive-include doc *.md
