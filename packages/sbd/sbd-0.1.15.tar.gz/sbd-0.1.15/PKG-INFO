@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: sbd
+Version: 0.1.15
+Summary: Downloads safari online books for offline access
+Home-page: https://github.com/Humblehound
+Author: Humblehound
+Author-email: lukmyslinski@gmail.com
+License: MIT
+Download-URL: https://github.com/Humblehound/sbd/tarball/0.1
+Description: A python tool to convert Safari Books Online resources into PDF
+Platform: any
+Classifier: Operating System :: Microsoft
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
