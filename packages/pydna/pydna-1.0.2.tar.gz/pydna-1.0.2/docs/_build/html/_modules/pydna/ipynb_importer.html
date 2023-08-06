@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pydna.ipynb_importer &mdash; Pydna 0.8.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.8.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Pydna 0.8.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Pydna 0.8.1 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for pydna.ipynb_importer</h1><div class="highlight"><pre>
+<span class="c"># coding: utf-8</span>
+
+<span class="c">## Importing IPython Notebooks as Modules</span>
+
+<span class="c"># It is a common problem that people want to import code from IPython Notebooks.</span>
+<span class="c"># This is made difficult by the fact that Notebooks are not plain Python files,</span>
+<span class="c"># and thus cannot be imported by the regular Python machinery.</span>
+<span class="c">#</span>
+<span class="c"># Fortunately, Python provides some fairly sophisticated [hooks]</span>
+<span class="c"># (http://www.python.org/dev/peps/pep-0302/) into the import machinery,</span>
+<span class="c"># so we can actually make IPython notebooks importable without much difficulty,</span>
+<span class="c"># and only using public APIs.</span>
+
+<span class="c"># In[15]:</span>
+
+<span class="kn">import</span> <span class="nn">io</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">types</span>
+
+
+<span class="c"># In[16]:</span>
+
+<span class="kn">from</span> <span class="nn">IPython.nbformat</span> <span class="kn">import</span> <span class="n">current</span>
+<span class="kn">from</span> <span class="nn">IPython.core.interactiveshell</span> <span class="kn">import</span> <span class="n">InteractiveShell</span>
+
+
+<span class="c"># In[17]:</span>
+
+<div class="viewcode-block" id="find_notebook"><a class="viewcode-back" href="../../pydna.html#pydna.ipynb_importer.find_notebook">[docs]</a><span class="k">def</span> <span class="nf">find_notebook</span><span class="p">(</span><span class="n">fullname</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;find a notebook, given its fully qualified name and an optional path</span>
+
+<span class="sd">    This turns &quot;foo.bar&quot; into &quot;foo/bar.ipynb&quot;</span>
+<span class="sd">    and tries turning &quot;Foo_Bar&quot; into &quot;Foo Bar&quot; if Foo_Bar</span>
+<span class="sd">    does not exist.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">fullname</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="p">:</span>
+         <span class="n">path</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span> <span class="c">#[&#39;&#39;]</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">path</span><span class="p">:</span>
+        <span class="n">nb_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">name</span> <span class="o">+</span> <span class="s">&quot;.ipynb&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">nb_path</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">nb_path</span>
+        <span class="c"># let import Notebook_Name find &quot;Notebook Name.ipynb&quot;</span>
+        <span class="n">nb_path</span> <span class="o">=</span> <span class="n">nb_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;_&quot;</span><span class="p">,</span> <span class="s">&quot; &quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">nb_path</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">nb_path</span>
+
+
+
+<span class="c"># In[18]:</span>
+</div>
+<div class="viewcode-block" id="NotebookLoader"><a class="viewcode-back" href="../../pydna.html#pydna.ipynb_importer.NotebookLoader">[docs]</a><span class="k">class</span> <span class="nc">NotebookLoader</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Module Loader for IPython Notebooks&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shell</span> <span class="o">=</span> <span class="n">InteractiveShell</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
+
+<div class="viewcode-block" id="NotebookLoader.load_module"><a class="viewcode-back" href="../../pydna.html#pydna.ipynb_importer.NotebookLoader.load_module">[docs]</a>    <span class="k">def</span> <span class="nf">load_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fullname</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;import a notebook as a module&quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">find_notebook</span><span class="p">(</span><span class="n">fullname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+
+        <span class="c">#print (&quot;importing IPython notebook from %s&quot; % path)</span>
+
+        <span class="c"># load the notebook object</span>
+        <span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">nb</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s">&#39;json&#39;</span><span class="p">)</span>
+
+
+        <span class="c"># create the module and add it to sys.modules</span>
+        <span class="c"># if name in sys.modules:</span>
+        <span class="c">#    return sys.modules[name]</span>
+        <span class="n">mod</span> <span class="o">=</span> <span class="n">types</span><span class="o">.</span><span class="n">ModuleType</span><span class="p">(</span><span class="n">fullname</span><span class="p">)</span>
+        <span class="n">mod</span><span class="o">.</span><span class="n">__file__</span> <span class="o">=</span> <span class="n">path</span>
+        <span class="n">mod</span><span class="o">.</span><span class="n">__loader__</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">fullname</span><span class="p">]</span> <span class="o">=</span> <span class="n">mod</span>
+
+        <span class="c"># extra work to ensure that magics that would affect the user_ns</span>
+        <span class="c"># actually affect the notebook module&#39;s ns</span>
+        <span class="n">save_user_ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">user_ns</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">user_ns</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">__dict__</span>
+
+        <span class="k">try</span><span class="p">:</span>
+          <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">nb</span><span class="o">.</span><span class="n">worksheets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">cells</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">cell</span><span class="o">.</span><span class="n">cell_type</span> <span class="o">==</span> <span class="s">&#39;code&#39;</span> <span class="ow">and</span> <span class="n">cell</span><span class="o">.</span><span class="n">language</span> <span class="o">==</span> <span class="s">&#39;python&#39;</span><span class="p">:</span>
+                <span class="c"># transform the input to executable Python</span>
+                <span class="n">code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">input_transformer_manager</span><span class="o">.</span><span class="n">transform_cell</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">input</span><span class="p">)</span>
+                <span class="c"># run the code in themodule</span>
+                <span class="k">exec</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">mod</span><span class="o">.</span><span class="n">__dict__</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">user_ns</span> <span class="o">=</span> <span class="n">save_user_ns</span>
+        <span class="k">return</span> <span class="n">mod</span>
+
+
+<span class="c"># In[19]:</span>
+</div></div>
+<div class="viewcode-block" id="NotebookFinder"><a class="viewcode-back" href="../../pydna.html#pydna.ipynb_importer.NotebookFinder">[docs]</a><span class="k">class</span> <span class="nc">NotebookFinder</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Module finder that locates IPython Notebooks&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loaders</span> <span class="o">=</span> <span class="p">{}</span>
+
+<div class="viewcode-block" id="NotebookFinder.find_module"><a class="viewcode-back" href="../../pydna.html#pydna.ipynb_importer.NotebookFinder.find_module">[docs]</a>    <span class="k">def</span> <span class="nf">find_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fullname</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="n">nb_path</span> <span class="o">=</span> <span class="n">find_notebook</span><span class="p">(</span><span class="n">fullname</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">nb_path</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">key</span> <span class="o">=</span> <span class="n">path</span>
+        <span class="k">if</span> <span class="n">path</span><span class="p">:</span>
+            <span class="c"># lists aren&#39;t hashable</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loaders</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">loaders</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">NotebookLoader</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loaders</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+
+<span class="c"># In[20]:</span>
+</div></div>
+<span class="n">sys</span><span class="o">.</span><span class="n">meta_path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">NotebookFinder</span><span class="p">())</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Pydna 0.8.1 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Björn Johansson.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
