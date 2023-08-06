@@ -1,0 +1,42 @@
+Metadata-Version: 1.1
+Name: game-of-life
+Version: 0.1.1
+Summary: A short description for your project.
+Home-page: UNKNOWN
+Author: Fábio Macêdo Mendes
+Author-email: fabiomacedomendes@gmail.com
+License: UNKNOWN
+Description: Game of life
+        ============
+        
+        A simple pygame-based implementation of Conway's game of life.
+        
+        Cmd::
+        
+            $ game-of-life
+        
+        
+        As library::
+        
+            from game_of_life import Board, run
+        
+            board = Board(30, 30)
+        
+            # Diagonal line
+            for i in range(30:
+                board[i, i] = 1
+        
+            run('conway')
+        
+        This implementation requires Python3 and pygame.
+Platform: any
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Software Development :: Libraries
