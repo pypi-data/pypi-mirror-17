@@ -1,0 +1,13 @@
+README.rst
+setup.cfg
+setup.py
+tawdry/__init__.py
+tawdry/mappers.py
+tawdry/tawdry.py
+tawdry.egg-info/PKG-INFO
+tawdry.egg-info/SOURCES.txt
+tawdry.egg-info/dependency_links.txt
+tawdry.egg-info/requires.txt
+tawdry.egg-info/top_level.txt
+tests/test_responses.py
+tests/test_tawdry.py
