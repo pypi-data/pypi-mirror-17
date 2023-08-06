@@ -1,0 +1,30 @@
+Metadata-Version: 2.0
+Name: chemview
+Version: 0.7.0.dev0
+Summary: Interactive molecular viewer for Jupyter notebook
+Home-page: https://github.com/gabrielelanaro/chemview
+Author: Gabriele Lanaro
+Author-email: gabriele.lanaro@gmail.com
+License: UNKNOWN
+Keywords: ipython,jupyter,widgets
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: IPython
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Multimedia :: Graphics
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: ipywidgets (>=5.1.5)
+Requires-Dist: matplotlib
+Requires-Dist: notebook
+Requires-Dist: numpy
+Requires-Dist: vapory
+
+A Custom Jupyter Widget Library
+
+
