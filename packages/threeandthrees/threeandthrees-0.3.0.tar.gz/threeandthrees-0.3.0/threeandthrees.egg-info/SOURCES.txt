@@ -1,0 +1,11 @@
+MANIFEST.in
+pytest.ini
+requirements.txt
+setup.py
+tox.ini
+test/test_fake.py
+threeandthrees.egg-info/PKG-INFO
+threeandthrees.egg-info/SOURCES.txt
+threeandthrees.egg-info/dependency_links.txt
+threeandthrees.egg-info/requires.txt
+threeandthrees.egg-info/top_level.txt
