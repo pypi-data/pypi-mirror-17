@@ -1,0 +1,117 @@
+CHANGELOG.rst
+LICENSE.txt
+MANIFEST.in
+README.rst
+build_libtcod.py
+runtests.py
+setup.cfg
+setup.py
+dependencies/libtcod-1.5.1/src/bresenham_c.c
+dependencies/libtcod-1.5.1/src/bsp_c.c
+dependencies/libtcod-1.5.1/src/color_c.c
+dependencies/libtcod-1.5.1/src/console_c.c
+dependencies/libtcod-1.5.1/src/fov_c.c
+dependencies/libtcod-1.5.1/src/fov_circular_raycasting.c
+dependencies/libtcod-1.5.1/src/fov_diamond_raycasting.c
+dependencies/libtcod-1.5.1/src/fov_digital.c
+dependencies/libtcod-1.5.1/src/fov_permissive.c
+dependencies/libtcod-1.5.1/src/fov_permissive2.c
+dependencies/libtcod-1.5.1/src/fov_recursive_shadowcasting.c
+dependencies/libtcod-1.5.1/src/fov_restrictive.c
+dependencies/libtcod-1.5.1/src/heightmap_c.c
+dependencies/libtcod-1.5.1/src/image_c.c
+dependencies/libtcod-1.5.1/src/lex_c.c
+dependencies/libtcod-1.5.1/src/list_c.c
+dependencies/libtcod-1.5.1/src/mersenne_c.c
+dependencies/libtcod-1.5.1/src/namegen_c.c
+dependencies/libtcod-1.5.1/src/noise_c.c
+dependencies/libtcod-1.5.1/src/parser_c.c
+dependencies/libtcod-1.5.1/src/path_c.c
+dependencies/libtcod-1.5.1/src/sys_c.c
+dependencies/libtcod-1.5.1/src/sys_opengl_c.c
+dependencies/libtcod-1.5.1/src/sys_sdl_c.c
+dependencies/libtcod-1.5.1/src/sys_sdl_img_bmp.c
+dependencies/libtcod-1.5.1/src/sys_sdl_img_png.c
+dependencies/libtcod-1.5.1/src/tree_c.c
+dependencies/libtcod-1.5.1/src/txtfield_c.c
+dependencies/libtcod-1.5.1/src/wrappers.c
+dependencies/libtcod-1.5.1/src/zip_c.c
+dependencies/libtcod-1.5.1/src/png/lodepng.c
+dependencies/zlib-1.2.8/adler32.c
+dependencies/zlib-1.2.8/compress.c
+dependencies/zlib-1.2.8/crc32.c
+dependencies/zlib-1.2.8/deflate.c
+dependencies/zlib-1.2.8/gzclose.c
+dependencies/zlib-1.2.8/gzlib.c
+dependencies/zlib-1.2.8/gzread.c
+dependencies/zlib-1.2.8/gzwrite.c
+dependencies/zlib-1.2.8/infback.c
+dependencies/zlib-1.2.8/inffast.c
+dependencies/zlib-1.2.8/inflate.c
+dependencies/zlib-1.2.8/inftrees.c
+dependencies/zlib-1.2.8/trees.c
+dependencies/zlib-1.2.8/uncompr.c
+dependencies/zlib-1.2.8/zutil.c
+examples/samples_py.py
+examples/data/cfg/sample.cfg
+examples/data/fonts/consolas10x10_gs_tc.png
+examples/data/img/circle.png
+examples/data/img/skull.png
+examples/data/namegen/README.txt
+examples/data/namegen/jice_celtic.cfg
+examples/data/namegen/jice_fantasy.cfg
+examples/data/namegen/jice_mesopotamian.cfg
+examples/data/namegen/jice_norse.cfg
+examples/data/namegen/jice_region.cfg
+examples/data/namegen/jice_town.cfg
+examples/data/namegen/mingos_demon.cfg
+examples/data/namegen/mingos_dwarf.cfg
+examples/data/namegen/mingos_norse.cfg
+examples/data/namegen/mingos_standard.cfg
+examples/data/namegen/mingos_town.cfg
+examples/tutorial/arial10x10.png
+examples/tutorial/part 1 - moving around.py
+examples/tutorial/part 10 - main menu and saving.py
+examples/tutorial/part 11 - dungeon levels and character progression.py
+examples/tutorial/part 12 - monster and item progression.py
+examples/tutorial/part 13 - adventure gear.py
+examples/tutorial/part 2 - the map.py
+examples/tutorial/part 3 - dungeon generator.py
+examples/tutorial/part 4 - exploration.py
+examples/tutorial/part 5 - preparing for combat.py
+examples/tutorial/part 6 - untimely deaths.py
+examples/tutorial/part 7 - GUI.py
+examples/tutorial/part 8 - items and inventory.py
+examples/tutorial/part 9 - spells and ranged combat.py
+libtcod_cffi.egg-info/PKG-INFO
+libtcod_cffi.egg-info/SOURCES.txt
+libtcod_cffi.egg-info/dependency_links.txt
+libtcod_cffi.egg-info/requires.txt
+libtcod_cffi.egg-info/top_level.txt
+src/__init__.py
+src/bsp.py
+src/color.py
+src/console.py
+src/dijkstra.py
+src/heightmap.py
+src/image.py
+src/libtcod.py
+src/libtcod_cdef.h
+src/line.py
+src/map.py
+src/mouse.py
+src/namegen.py
+src/noise.py
+src/parser.py
+src/path.py
+src/random.py
+src/sys_.py
+src/tdl_source.c
+src/version.txt
+src/lib/LIBTCOD-CREDITS.txt
+src/lib/LIBTCOD-LICENSE.txt
+src/lib/README-SDL.txt
+src/lib/darwin/SDL.dylib
+src/lib/darwin/libpng.dylib
+src/lib/darwin/libtcod.dylib
+src/lib/win32/SDL.dll
