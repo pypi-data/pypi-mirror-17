@@ -1,0 +1,12 @@
+ply
+six
+
+[development]
+pytest>=3.0.0
+sphinx>=1.4
+sphinx-rtd-theme
+PyPDF2
+
+[ipython]
+ipython
+jupyter
