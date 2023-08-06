@@ -1,0 +1,28 @@
+Metadata-Version: 1.0
+Name: ansible-modules-dcos
+Version: 1.0.0
+Summary: DCOS Ansible Modules
+Home-page: https://github.com/TerryHowe/ansible-modules-dcos
+Author: Kevin Wood
+Author-email: kevin.wood@example.com
+License: MIT
+Description: 
+        
+        Ansible modules for Mesospher DC/OS.  Modules exist to create users, groups and acls.
+        
+        Usage
+        -----
+        
+        The following example creates user bob::
+        
+            ---
+            - hosts: localhost
+              tasks:
+                - dcos_user: 
+                    uid: "bobslydell"
+                    description: 'Bob Slydell'
+                    password: 'fooBar123ASDF'
+                    state: present
+        
+        
+Platform: UNKNOWN
