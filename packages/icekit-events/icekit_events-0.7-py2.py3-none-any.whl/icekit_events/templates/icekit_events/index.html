@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block body %}
+	{% if occurrences %}
+		{% for occurrence in occurrences %}
+			<ul>
+				<li>
+					<a href="{% url 'icekit_events_event_detail' occurrence.event.pk %}">{{ occurrence.event.title }}</a>
+					&mdash;
+					<a href="{% url 'icekit_events_occurrence_detail' occurrence.event.pk occurrence.pk %}">{{ occurrence.start }} - {{ occurrence.end }}</a>
+				</li>
+			</ul>
+		{% endfor %}
+	{% else %}
+		<div>There are no events.</div>
+	{% endif %}
+{% endblock %}
+

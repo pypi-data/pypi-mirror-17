@@ -1,0 +1,40 @@
+Metadata-Version: 2.0
+Name: icekit-events
+Version: 0.7
+Summary: UNKNOWN
+Home-page: https://github.com/ic-labs/icekit-events
+Author: Interaction Consortium
+Author-email: studio@interaction.net.au
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: Django (<1.9)
+Requires-Dist: django-dynamic-fixture
+Requires-Dist: django-icekit
+Requires-Dist: django-polymorphic
+Requires-Dist: django-polymorphic-tree
+Requires-Dist: django-timezone
+Requires-Dist: mkdocs
+Requires-Dist: python-dateutil
+Requires-Dist: pytz
+Requires-Dist: six
+Requires-Dist: sqlparse
+Provides-Extra: dev
+Requires-Dist: ipdb; extra == 'dev'
+Requires-Dist: ipython; extra == 'dev'
+Provides-Extra: fluentevent
+Requires-Dist: django-fluent-contents; extra == 'fluentevent'
+Provides-Extra: postgres
+Requires-Dist: psycopg2; extra == 'postgres'
+Provides-Extra: test
+Requires-Dist: WebTest; extra == 'test'
+Requires-Dist: coverage; extra == 'test'
+Requires-Dist: django-nose; extra == 'test'
+Requires-Dist: django-webtest; extra == 'test'
+Requires-Dist: nose-progressive; extra == 'test'
+
+Readme
+======
+
+Docs can be found in the `docs <docs/index.md>`__ folder.
+
+
