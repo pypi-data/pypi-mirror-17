@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.rst
+requirements.txt
+setup.cfg
+setup.py
+melomaniac/__init__.py
+melomaniac/app.py
+melomaniac/manager.py
+melomaniac/version.py
+melomaniac.egg-info/PKG-INFO
+melomaniac.egg-info/SOURCES.txt
+melomaniac.egg-info/dependency_links.txt
+melomaniac.egg-info/entry_points.txt
+melomaniac.egg-info/requires.txt
+melomaniac.egg-info/top_level.txt

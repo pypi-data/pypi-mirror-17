@@ -1,0 +1,3 @@
+[console_scripts]
+melomaniac = melomaniac.app:app.run
+
