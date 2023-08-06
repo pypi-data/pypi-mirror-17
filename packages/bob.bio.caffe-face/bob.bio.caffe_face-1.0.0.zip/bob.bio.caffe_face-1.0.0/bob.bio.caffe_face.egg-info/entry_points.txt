@@ -1,0 +1,3 @@
+[bob.bio.extractor]
+vgg_features = bob.bio.caffe_face.config.extractor.vgg_features:extractor
+
