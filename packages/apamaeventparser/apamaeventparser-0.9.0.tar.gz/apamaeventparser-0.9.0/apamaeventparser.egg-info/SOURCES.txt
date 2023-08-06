@@ -1,0 +1,11 @@
+MANIFEST.in
+setup.cfg
+setup.py
+apamaeventparser/__init__.py
+apamaeventparser/apamaevent.py
+apamaeventparser/eventparser.py
+apamaeventparser.egg-info/PKG-INFO
+apamaeventparser.egg-info/SOURCES.txt
+apamaeventparser.egg-info/dependency_links.txt
+apamaeventparser.egg-info/requires.txt
+apamaeventparser.egg-info/top_level.txt
