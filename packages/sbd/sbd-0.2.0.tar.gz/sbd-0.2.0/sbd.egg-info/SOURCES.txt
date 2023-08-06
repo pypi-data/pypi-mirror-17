@@ -1,0 +1,16 @@
+HISTORY.rst
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+sbd/__init__.py
+sbd/__main__.py
+sbd/sbd.py
+sbd/test.py
+sbd.egg-info/PKG-INFO
+sbd.egg-info/SOURCES.txt
+sbd.egg-info/dependency_links.txt
+sbd.egg-info/entry_points.txt
+sbd.egg-info/not-zip-safe
+sbd.egg-info/requires.txt
+sbd.egg-info/top_level.txt
