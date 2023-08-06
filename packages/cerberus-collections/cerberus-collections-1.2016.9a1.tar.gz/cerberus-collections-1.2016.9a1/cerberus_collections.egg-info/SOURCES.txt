@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.rst
+requirements.txt
+setup.cfg
+setup.py
+cerberus_collections/__init__.py
+cerberus_collections/utils.py
+cerberus_collections/versions.py
+cerberus_collections.egg-info/PKG-INFO
+cerberus_collections.egg-info/SOURCES.txt
+cerberus_collections.egg-info/dependency_links.txt
+cerberus_collections.egg-info/requires.txt
+cerberus_collections.egg-info/top_level.txt
