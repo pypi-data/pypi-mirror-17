@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: lsq_linear
+Version: 0.1.0
+Summary: Implementation of scipy.optimize.lsq_linear for old scipy version
+Home-page: https://github.com/xica/scipy-lsq_linear
+Author: xica
+Author-email: info@xica.net
+License: BSD
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development
+Classifier: Topic :: Scientific/Engineering
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
