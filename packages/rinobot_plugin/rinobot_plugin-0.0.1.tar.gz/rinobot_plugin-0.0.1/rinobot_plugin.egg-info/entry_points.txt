@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        rinobot-plugin=rinobot_plugin.scripts.cli:cli
+    
