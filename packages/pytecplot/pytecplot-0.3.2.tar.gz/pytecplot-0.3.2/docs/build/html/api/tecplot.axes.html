@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Axes and Axis Settings &mdash; PyTecplot 0.3.2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.3.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
+    <link rel="top" title="PyTecplot 0.3.2 documentation" href="../index.html" />
+    <link rel="up" title="Reference" href="../reference.html" />
+    <link rel="next" title="Legends" href="tecplot.legend.html" />
+    <link rel="prev" title="Plotting Style Manipulation" href="tecplot.plot.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/gif" href="../_static/favicon.gif" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+
+  </head>
+  <body role="document">
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../index.html">PyTecplot-0.3</a> &raquo;</li>
+          <li><a href="../reference.html" accesskey="U">Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="axes-and-axis-settings">
+<span id="axes"></span><h1>Axes and Axis Settings<a class="headerlink" href="#axes-and-axis-settings" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#field-axes" id="id1">Field Axes</a><ul>
+<li><a class="reference internal" href="#cartesian2dfieldaxes" id="id2">Cartesian2DFieldAxes</a></li>
+<li><a class="reference internal" href="#cartesian3dfieldaxes" id="id3">Cartesian3DFieldAxes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#field-axis" id="id4">Field Axis</a><ul>
+<li><a class="reference internal" href="#cartesian2dfieldaxis" id="id5">Cartesian2DFieldAxis</a></li>
+<li><a class="reference internal" href="#cartesian3dfieldaxis" id="id6">Cartesian3DFieldAxis</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#line-axes" id="id7">Line Axes</a><ul>
+<li><a class="reference internal" href="#polarlineaxes" id="id8">PolarLineAxes</a></li>
+<li><a class="reference internal" href="#xylineaxes" id="id9">XYLineAxes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#line-axis" id="id10">Line Axis</a><ul>
+<li><a class="reference internal" href="#radiallineaxis" id="id11">RadialLineAxis</a></li>
+<li><a class="reference internal" href="#polaranglelineaxis" id="id12">PolarAngleLineAxis</a></li>
+<li><a class="reference internal" href="#xylineaxis" id="id13">XYLineAxis</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sketch-axes" id="id14">Sketch Axes</a><ul>
+<li><a class="reference internal" href="#sketchaxes" id="id15">SketchAxes</a></li>
+<li><a class="reference internal" href="#sketchaxis" id="id16">SketchAxis</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<span class="target" id="module-tecplot.plot"></span><div class="section" id="field-axes">
+<span id="fieldaxes"></span><h2><a class="toc-backref" href="#id1">Field Axes</a><a class="headerlink" href="#field-axes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="cartesian2dfieldaxes">
+<h3><a class="toc-backref" href="#id2">Cartesian2DFieldAxes</a><a class="headerlink" href="#cartesian2dfieldaxes" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tecplot.plot.Cartesian2DFieldAxes">
+<em class="property">class </em><code class="descclassname">tecplot.plot.</code><code class="descname">Cartesian2DFieldAxes</code><span class="sig-paren">(</span><em>plot</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/axes.html#Cartesian2DFieldAxes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.Cartesian2DFieldAxes" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="tecplot.plot.Cartesian2DFieldAxes.axis_mode">
+<code class="descname">axis_mode</code><a class="headerlink" href="#tecplot.plot.Cartesian2DFieldAxes.axis_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Axis relations regarding functional dependency</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="tecplot.constant.html#tecplot.constant.AxisMode" title="tecplot.constant.AxisMode"><code class="xref any py py-class docutils literal"><span class="pre">AxisMode</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Possible values: <a class="reference internal" href="tecplot.constant.html#tecplot.constant.AxisMode.Independent" title="tecplot.constant.AxisMode.Independent"><code class="xref any py py-attr docutils literal"><span class="pre">Independent</span></code></a>, <a class="reference internal" href="tecplot.constant.html#tecplot.constant.AxisMode.XYDependent" title="tecplot.constant.AxisMode.XYDependent"><code class="xref any py py-attr docutils literal"><span class="pre">XYDependent</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="cartesian3dfieldaxes">
+<h3><a class="toc-backref" href="#id3">Cartesian3DFieldAxes</a><a class="headerlink" href="#cartesian3dfieldaxes" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tecplot.plot.Cartesian3DFieldAxes">
+<em class="property">class </em><code class="descclassname">tecplot.plot.</code><code class="descname">Cartesian3DFieldAxes</code><span class="sig-paren">(</span><em>plot</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/axes.html#Cartesian3DFieldAxes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.Cartesian3DFieldAxes" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="tecplot.plot.Cartesian3DFieldAxes.aspect_ratio_limit">
+<code class="descname">aspect_ratio_limit</code><a class="headerlink" href="#tecplot.plot.Cartesian3DFieldAxes.aspect_ratio_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scale limit of the axes aspect ratio.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#float" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">float</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>This is the limit above which the axes relative scales will be pegged
+to <a class="reference internal" href="#tecplot.plot.Cartesian3DFieldAxes.aspect_ratio_reset" title="tecplot.plot.Cartesian3DFieldAxes.aspect_ratio_reset"><code class="xref any py py-attr docutils literal"><span class="pre">aspect_ratio_reset</span></code></a>. The following example will set the aspect
+ratio between scales to 1 if they first exceed a ratio of 10:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">aspect_ratio_limit</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">aspect_ratio_reset</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">reset_scale</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.Cartesian3DFieldAxes.aspect_ratio_reset">
+<code class="descname">aspect_ratio_reset</code><a class="headerlink" href="#tecplot.plot.Cartesian3DFieldAxes.aspect_ratio_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Axes scale aspect ratio used when <a class="reference internal" href="#tecplot.plot.Cartesian3DFieldAxes.aspect_ratio_limit" title="tecplot.plot.Cartesian3DFieldAxes.aspect_ratio_limit"><code class="xref any py py-attr docutils literal"><span class="pre">aspect_ratio_limit</span></code></a> is exceeded.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#float" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">float</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>This is the aspect ratio used to scale the axes when the data&#8217;s aspect
+ratio exceeds the value set to <a class="reference internal" href="#tecplot.plot.Cartesian3DFieldAxes.aspect_ratio_limit" title="tecplot.plot.Cartesian3DFieldAxes.aspect_ratio_limit"><code class="xref any py py-attr docutils literal"><span class="pre">aspect_ratio_limit</span></code></a>. The following
+example will set the aspect ratio between scales to 10 if they first
+exceed a ratio of 15:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">aspect_ratio_limit</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">aspect_ratio_reset</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">reset_scale</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.Cartesian3DFieldAxes.axis_mode">
+<code class="descname">axis_mode</code><a class="headerlink" href="#tecplot.plot.Cartesian3DFieldAxes.axis_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Axis relations regarding functional dependency</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="tecplot.constant.html#tecplot.constant.AxisMode" title="tecplot.constant.AxisMode"><code class="xref any py py-class docutils literal"><span class="pre">AxisMode</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Possible values: <a class="reference internal" href="tecplot.constant.html#tecplot.constant.AxisMode.Independent" title="tecplot.constant.AxisMode.Independent"><code class="xref any py py-attr docutils literal"><span class="pre">Independent</span></code></a>, <a class="reference internal" href="tecplot.constant.html#tecplot.constant.AxisMode.XYZDependent" title="tecplot.constant.AxisMode.XYZDependent"><code class="xref any py py-attr docutils literal"><span class="pre">XYZDependent</span></code></a>, <a class="reference internal" href="tecplot.constant.html#tecplot.constant.AxisMode.XYDependent" title="tecplot.constant.AxisMode.XYDependent"><code class="xref any py py-attr docutils literal"><span class="pre">XYDependent</span></code></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.Cartesian3DFieldAxes.edge_auto_reset">
+<code class="descname">edge_auto_reset</code><a class="headerlink" href="#tecplot.plot.Cartesian3DFieldAxes.edge_auto_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable automatically choosing which edges to label.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#bool" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">bool</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">edge_auto_reset</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.Cartesian3DFieldAxes.range_aspect_ratio_limit">
+<code class="descname">range_aspect_ratio_limit</code><a class="headerlink" href="#tecplot.plot.Cartesian3DFieldAxes.range_aspect_ratio_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Range limit of the axes aspect ratio.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#float" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">float</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>This is the limit above which the axes&#8217; relative ranges will be pegged
+to <a class="reference internal" href="#tecplot.plot.Cartesian3DFieldAxes.range_aspect_ratio_reset" title="tecplot.plot.Cartesian3DFieldAxes.range_aspect_ratio_reset"><code class="xref any py py-attr docutils literal"><span class="pre">range_aspect_ratio_reset</span></code></a>. The following example will set the
+aspect ratio between ranges to 1 if they first exceed a ratio of 10:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">range_aspect_ratio_limit</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">range_aspect_ratio_reset</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">reset_ranges</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.Cartesian3DFieldAxes.range_aspect_ratio_reset">
+<code class="descname">range_aspect_ratio_reset</code><a class="headerlink" href="#tecplot.plot.Cartesian3DFieldAxes.range_aspect_ratio_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Axes range aspect ratio used <a class="reference internal" href="#tecplot.plot.Cartesian3DFieldAxes.range_aspect_ratio_limit" title="tecplot.plot.Cartesian3DFieldAxes.range_aspect_ratio_limit"><code class="xref any py py-attr docutils literal"><span class="pre">range_aspect_ratio_limit</span></code></a> is exceeded.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#float" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">float</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>This is the aspect ratio used to set the ranges of the axes when the
+axes&#8217; aspect ratios exceed the value of <a class="reference internal" href="#tecplot.plot.Cartesian3DFieldAxes.range_aspect_ratio_limit" title="tecplot.plot.Cartesian3DFieldAxes.range_aspect_ratio_limit"><code class="xref any py py-attr docutils literal"><span class="pre">range_aspect_ratio_limit</span></code></a>. The
+following example will set the aspect ratio between ranges to 10 if
+they first exceed a ratio of 15:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">range_aspect_ratio_limit</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">range_aspect_ratio_reset</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">reset_ranges</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="tecplot.plot.Cartesian3DFieldAxes.reset_scale">
+<code class="descname">reset_scale</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tecplot.plot.Cartesian3DFieldAxes.reset_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recalculate the scale factors for each axis.</p>
+<p>Aspect ratio limits are taken into account.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.Cartesian3DFieldAxes.viewport">
+<code class="descname">viewport</code><a class="headerlink" href="#tecplot.plot.Cartesian3DFieldAxes.viewport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Viewport position and extent control</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="tecplot.plot.html#tecplot.plot.ReadOnlyViewport" title="tecplot.plot.ReadOnlyViewport"><code class="xref any py py-class docutils literal"><span class="pre">ReadOnlyViewport</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">plot</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">viewport</span><span class="o">.</span><span class="n">bottom</span><span class="p">)</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.Cartesian3DFieldAxes.xz_ratio">
+<code class="descname">xz_ratio</code><a class="headerlink" href="#tecplot.plot.Cartesian3DFieldAxes.xz_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Axis scaling ratio <code class="docutils literal"><span class="pre">X/Y</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#float" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">float</span></code></a> in percent</td>
+</tr>
+</tbody>
+</table>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">xz_ratio</span> <span class="o">=</span> <span class="mi">20</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="field-axis">
+<span id="fieldaxis"></span><h2><a class="toc-backref" href="#id4">Field Axis</a><a class="headerlink" href="#field-axis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="cartesian2dfieldaxis">
+<h3><a class="toc-backref" href="#id5">Cartesian2DFieldAxis</a><a class="headerlink" href="#cartesian2dfieldaxis" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tecplot.plot.Cartesian2DFieldAxis">
+<em class="property">class </em><code class="descclassname">tecplot.plot.</code><code class="descname">Cartesian2DFieldAxis</code><span class="sig-paren">(</span><em>axes</em>, <em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/axis.html#Cartesian2DFieldAxis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.Cartesian2DFieldAxis" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="tecplot.plot.Cartesian2DFieldAxis.variable">
+<code class="descname">variable</code><a class="headerlink" href="#tecplot.plot.Cartesian2DFieldAxis.variable" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="tecplot.data.html#tecplot.data.Variable" title="tecplot.data.Variable"><code class="xref any py py-class docutils literal"><span class="pre">Variable</span></code></a> assigned to this axis.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="tecplot.data.html#tecplot.data.Variable" title="tecplot.data.Variable"><code class="xref any py py-class docutils literal"><span class="pre">Variable</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>This is the spatial variable associated with this axis
+and is usually one of <code class="docutils literal"><span class="pre">(X,</span> <span class="pre">Y,</span> <span class="pre">Z)</span></code>.</p>
+<dl class="docutils">
+<dt>Example::</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">tecplot</span> <span class="kn">as</span> <span class="nn">tp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fr</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">active_frame</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">fr</span><span class="o">.</span><span class="n">dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">axes</span> <span class="o">=</span> <span class="n">fr</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span><span class="o">.</span><span class="n">axes</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">axes</span><span class="o">.</span><span class="n">x_axis</span><span class="o">.</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">axes</span><span class="o">.</span><span class="n">y_axis</span><span class="o">.</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span>
+<span class="go">(&#39;X&#39;, &#39;Y&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">axes</span><span class="o">.</span><span class="n">x_axis</span><span class="o">.</span><span class="n">variable</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="s1">&#39;U&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">axes</span><span class="o">.</span><span class="n">y_axis</span><span class="o">.</span><span class="n">variable</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">axes</span><span class="o">.</span><span class="n">x_axis</span><span class="o">.</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">axes</span><span class="o">.</span><span class="n">y_axis</span><span class="o">.</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span>
+<span class="go">(&#39;U&#39;, &#39;V&#39;)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="cartesian3dfieldaxis">
+<h3><a class="toc-backref" href="#id6">Cartesian3DFieldAxis</a><a class="headerlink" href="#cartesian3dfieldaxis" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tecplot.plot.Cartesian3DFieldAxis">
+<em class="property">class </em><code class="descclassname">tecplot.plot.</code><code class="descname">Cartesian3DFieldAxis</code><span class="sig-paren">(</span><em>axes</em>, <em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/axis.html#Cartesian3DFieldAxis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.Cartesian3DFieldAxis" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="tecplot.plot.Cartesian3DFieldAxis.variable">
+<code class="descname">variable</code><a class="headerlink" href="#tecplot.plot.Cartesian3DFieldAxis.variable" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="tecplot.data.html#tecplot.data.Variable" title="tecplot.data.Variable"><code class="xref any py py-class docutils literal"><span class="pre">Variable</span></code></a> assigned to this axis.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="tecplot.data.html#tecplot.data.Variable" title="tecplot.data.Variable"><code class="xref any py py-class docutils literal"><span class="pre">Variable</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>This is the spatial variable associated with this axis
+and is usually one of <code class="docutils literal"><span class="pre">(X,</span> <span class="pre">Y,</span> <span class="pre">Z)</span></code>.</p>
+<dl class="docutils">
+<dt>Example::</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">tecplot</span> <span class="kn">as</span> <span class="nn">tp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fr</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">active_frame</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">fr</span><span class="o">.</span><span class="n">dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">axes</span> <span class="o">=</span> <span class="n">fr</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span><span class="o">.</span><span class="n">axes</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">axes</span><span class="o">.</span><span class="n">x_axis</span><span class="o">.</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">axes</span><span class="o">.</span><span class="n">y_axis</span><span class="o">.</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span>
+<span class="go">(&#39;X&#39;, &#39;Y&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">axes</span><span class="o">.</span><span class="n">x_axis</span><span class="o">.</span><span class="n">variable</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="s1">&#39;U&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">axes</span><span class="o">.</span><span class="n">y_axis</span><span class="o">.</span><span class="n">variable</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">axes</span><span class="o">.</span><span class="n">x_axis</span><span class="o">.</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">axes</span><span class="o">.</span><span class="n">y_axis</span><span class="o">.</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span>
+<span class="go">(&#39;U&#39;, &#39;V&#39;)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="line-axes">
+<span id="lineaxes"></span><h2><a class="toc-backref" href="#id7">Line Axes</a><a class="headerlink" href="#line-axes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="polarlineaxes">
+<h3><a class="toc-backref" href="#id8">PolarLineAxes</a><a class="headerlink" href="#polarlineaxes" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tecplot.plot.PolarLineAxes">
+<em class="property">class </em><code class="descclassname">tecplot.plot.</code><code class="descname">PolarLineAxes</code><span class="sig-paren">(</span><em>plot</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/axes.html#PolarLineAxes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.PolarLineAxes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="xylineaxes">
+<h3><a class="toc-backref" href="#id9">XYLineAxes</a><a class="headerlink" href="#xylineaxes" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tecplot.plot.XYLineAxes">
+<em class="property">class </em><code class="descclassname">tecplot.plot.</code><code class="descname">XYLineAxes</code><span class="sig-paren">(</span><em>plot</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/axes.html#XYLineAxes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.XYLineAxes" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="tecplot.plot.XYLineAxes.axis_mode">
+<code class="descname">axis_mode</code><a class="headerlink" href="#tecplot.plot.XYLineAxes.axis_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Axis relations regarding functional dependency</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="tecplot.constant.html#tecplot.constant.AxisMode" title="tecplot.constant.AxisMode"><code class="xref any py py-class docutils literal"><span class="pre">AxisMode</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Possible values: <a class="reference internal" href="tecplot.constant.html#tecplot.constant.AxisMode.Independent" title="tecplot.constant.AxisMode.Independent"><code class="xref any py py-attr docutils literal"><span class="pre">Independent</span></code></a>, <a class="reference internal" href="tecplot.constant.html#tecplot.constant.AxisMode.XYDependent" title="tecplot.constant.AxisMode.XYDependent"><code class="xref any py py-attr docutils literal"><span class="pre">XYDependent</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="line-axis">
+<span id="lineaxis"></span><h2><a class="toc-backref" href="#id10">Line Axis</a><a class="headerlink" href="#line-axis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="radiallineaxis">
+<h3><a class="toc-backref" href="#id11">RadialLineAxis</a><a class="headerlink" href="#radiallineaxis" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tecplot.plot.RadialLineAxis">
+<em class="property">class </em><code class="descclassname">tecplot.plot.</code><code class="descname">RadialLineAxis</code><span class="sig-paren">(</span><em>axes</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/axis.html#RadialLineAxis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.RadialLineAxis" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="polaranglelineaxis">
+<h3><a class="toc-backref" href="#id12">PolarAngleLineAxis</a><a class="headerlink" href="#polaranglelineaxis" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tecplot.plot.PolarAngleLineAxis">
+<em class="property">class </em><code class="descclassname">tecplot.plot.</code><code class="descname">PolarAngleLineAxis</code><span class="sig-paren">(</span><em>axes</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/axis.html#PolarAngleLineAxis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.PolarAngleLineAxis" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="tecplot.plot.PolarAngleLineAxis.mode">
+<code class="descname">mode</code><a class="headerlink" href="#tecplot.plot.PolarAngleLineAxis.mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Units used for the theta axis.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="tecplot.constant.html#tecplot.constant.ThetaMode" title="tecplot.constant.ThetaMode"><code class="xref any py py-class docutils literal"><span class="pre">ThetaMode</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Possible values: <a class="reference internal" href="tecplot.constant.html#tecplot.constant.ThetaMode.Degrees" title="tecplot.constant.ThetaMode.Degrees"><code class="xref any py py-attr docutils literal"><span class="pre">ThetaMode.Degrees</span></code></a>, <a class="reference internal" href="tecplot.constant.html#tecplot.constant.ThetaMode.Radians" title="tecplot.constant.ThetaMode.Radians"><code class="xref any py py-attr docutils literal"><span class="pre">ThetaMode.Radians</span></code></a>,
+<a class="reference internal" href="tecplot.constant.html#tecplot.constant.ThetaMode.Arbitrary" title="tecplot.constant.ThetaMode.Arbitrary"><code class="xref any py py-attr docutils literal"><span class="pre">ThetaMode.Arbitrary</span></code></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.PolarAngleLineAxis.period">
+<code class="descname">period</code><a class="headerlink" href="#tecplot.plot.PolarAngleLineAxis.period" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns or sets the theta_period property.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#float" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">float</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="xylineaxis">
+<h3><a class="toc-backref" href="#id13">XYLineAxis</a><a class="headerlink" href="#xylineaxis" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tecplot.plot.XYLineAxis">
+<em class="property">class </em><code class="descclassname">tecplot.plot.</code><code class="descname">XYLineAxis</code><span class="sig-paren">(</span><em>axes</em>, <em>name</em>, <em>index</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/axis.html#XYLineAxis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.XYLineAxis" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="sketch-axes">
+<h2><a class="toc-backref" href="#id14">Sketch Axes</a><a class="headerlink" href="#sketch-axes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="sketchaxes">
+<h3><a class="toc-backref" href="#id15">SketchAxes</a><a class="headerlink" href="#sketchaxes" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tecplot.plot.SketchAxes">
+<em class="property">class </em><code class="descclassname">tecplot.plot.</code><code class="descname">SketchAxes</code><span class="sig-paren">(</span><em>plot</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/axes.html#SketchAxes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.SketchAxes" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="tecplot.plot.SketchAxes.axis_mode">
+<code class="descname">axis_mode</code><a class="headerlink" href="#tecplot.plot.SketchAxes.axis_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Axis relations regarding functional dependency</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="tecplot.constant.html#tecplot.constant.AxisMode" title="tecplot.constant.AxisMode"><code class="xref any py py-class docutils literal"><span class="pre">AxisMode</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Possible values: <a class="reference internal" href="tecplot.constant.html#tecplot.constant.AxisMode.Independent" title="tecplot.constant.AxisMode.Independent"><code class="xref any py py-attr docutils literal"><span class="pre">Independent</span></code></a>, <a class="reference internal" href="tecplot.constant.html#tecplot.constant.AxisMode.XYDependent" title="tecplot.constant.AxisMode.XYDependent"><code class="xref any py py-attr docutils literal"><span class="pre">XYDependent</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="sketchaxis">
+<h3><a class="toc-backref" href="#id16">SketchAxis</a><a class="headerlink" href="#sketchaxis" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tecplot.plot.SketchAxis">
+<em class="property">class </em><code class="descclassname">tecplot.plot.</code><code class="descname">SketchAxis</code><span class="sig-paren">(</span><em>axes</em>, <em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/axis.html#SketchAxis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.SketchAxis" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/powered_by_tecplot.png" alt="Logo"/>
+            </a></p>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../reference.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tecplot.session.html">Session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.layout.html">Layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.data.html">Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.plot.html">Plot</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Axes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#field-axes">Field Axes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#field-axis">Field Axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#line-axes">Line Axes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#line-axis">Line Axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sketch-axes">Sketch Axes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.legend.html">Legend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.plot_style.html">Plot Style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.annotation.html">Annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.export.html">Exporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.macro.html">Macros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.extension.html">Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.constant.html">Constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.exception.html">Exceptions</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/tecplot.axes.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tecplot.legend.html" title="Legends"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tecplot.plot.html" title="Plotting Style Manipulation"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016, Tecplot, Inc..
+      Last updated on Oct 07, 2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.5.
+    </div>
+  </body>
+</html>

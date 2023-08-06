@@ -1,0 +1,2 @@
+.. automodule:: tecplot.exception
+    :members:

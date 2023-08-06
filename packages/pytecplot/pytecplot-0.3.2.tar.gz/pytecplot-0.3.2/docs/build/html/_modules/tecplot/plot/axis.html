@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>tecplot.plot.axis &mdash; PyTecplot 0.3.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.3.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    <link rel="top" title="PyTecplot 0.3.2 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/gif" href="../../../_static/favicon.gif" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    <script type="text/javascript" src="../../../_static/copybutton.js"></script>
+
+  </head>
+  <body role="document">
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../../index.html">PyTecplot-0.3</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for tecplot.plot.axis</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">super</span>
+
+<span class="kn">from</span> <span class="nn">six</span> <span class="kn">import</span> <span class="n">string_types</span>
+
+<span class="kn">from</span> <span class="nn">..constant</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">..exception</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">session</span>
+<span class="kn">from</span> <span class="nn">..tecutil</span> <span class="kn">import</span> <span class="n">Index</span><span class="p">,</span> <span class="n">log_setattr</span><span class="p">,</span> <span class="n">sv</span>
+<span class="kn">from</span> <span class="nn">.grid</span> <span class="kn">import</span> <span class="n">GridLines</span><span class="p">,</span> <span class="n">MinorGridLines</span>
+<span class="kn">from</span> <span class="nn">.ticks</span> <span class="kn">import</span> <span class="n">TickLabels</span><span class="p">,</span> <span class="n">Ticks</span>
+<span class="kn">from</span> <span class="nn">.title</span> <span class="kn">import</span> <span class="p">(</span><span class="n">Axis2DTitle</span><span class="p">,</span> <span class="n">DataAxis2DTitle</span><span class="p">,</span> <span class="n">DataAxis3DTitle</span><span class="p">,</span>
+                    <span class="n">RadialAxisTitle</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Axis</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">Style</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axes</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">kw</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">_style_attrs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">kw</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">_sv</span><span class="p">,</span> <span class="n">Axis</span><span class="o">.</span><span class="n">_sv_detail</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_sv_detail</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">string_types</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sv</span><span class="p">,</span> <span class="n">name</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;DETAIL&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">_tr</span> <span class="o">=</span> <span class="p">{</span><span class="n">sv</span><span class="o">.</span><span class="n">X</span><span class="p">:</span> <span class="n">sv</span><span class="o">.</span><span class="n">XDETAIL</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">Y</span><span class="p">:</span> <span class="n">sv</span><span class="o">.</span><span class="n">YDETAIL</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">Z</span><span class="p">:</span> <span class="n">sv</span><span class="o">.</span><span class="n">ZDETAIL</span><span class="p">,</span>
+                   <span class="n">sv</span><span class="o">.</span><span class="n">R</span><span class="p">:</span> <span class="n">sv</span><span class="o">.</span><span class="n">RDETAIL</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">THETA</span><span class="p">:</span> <span class="n">sv</span><span class="o">.</span><span class="n">THETADETAIL</span><span class="p">}</span>
+            <span class="k">return</span> <span class="n">_tr</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_style</span><span class="p">(</span><span class="nb">bool</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">SHOWAXIS</span><span class="p">)</span>
+
+    <span class="nd">@show.setter</span>
+    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_style</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">show</span><span class="p">),</span> <span class="n">sv</span><span class="o">.</span><span class="n">SHOWAXIS</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_style</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">RANGEMIN</span><span class="p">)</span>
+
+    <span class="nd">@min.setter</span>
+    <span class="k">def</span> <span class="nf">min</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_style</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">sv</span><span class="o">.</span><span class="n">RANGEMIN</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_style</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">RANGEMAX</span><span class="p">)</span>
+
+    <span class="nd">@max.setter</span>
+    <span class="k">def</span> <span class="nf">max</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_style</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">sv</span><span class="o">.</span><span class="n">RANGEMAX</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ticks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Ticks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">tick_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">TickLabels</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">grid_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">GridLines</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">minor_grid_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">MinorGridLines</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Axis2DTitle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">that</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">that</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">that</span><span class="o">.</span><span class="n">name</span> <span class="ow">and</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">axes</span> <span class="o">==</span> <span class="n">that</span><span class="o">.</span><span class="n">axes</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">that</span><span class="p">):</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span> <span class="o">==</span> <span class="n">that</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">ReversibleAxis</span><span class="p">(</span><span class="n">Axis</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    reverse</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+
+<span class="k">class</span> <span class="nc">LinearAxis</span><span class="p">(</span><span class="n">Axis</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    preserve_length</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+
+<span class="k">class</span> <span class="nc">DataAxis</span><span class="p">(</span><span class="n">Axis</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">DataAxis2DTitle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">FieldAxis</span><span class="p">(</span><span class="n">DataAxis</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">variable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The `Variable` assigned to this axis.</span>
+
+<span class="sd">        :type: `Variable`</span>
+
+<span class="sd">        This is the spatial variable associated with this axis</span>
+<span class="sd">        and is usually one of ``(X, Y, Z)``.</span>
+
+<span class="sd">        Example::</span>
+<span class="sd">            &gt;&gt;&gt; import tecplot as tp</span>
+<span class="sd">            &gt;&gt;&gt; fr = tp.active_frame()</span>
+<span class="sd">            &gt;&gt;&gt; ds = fr.dataset</span>
+<span class="sd">            &gt;&gt;&gt; axes = fr.plot().axes</span>
+<span class="sd">            &gt;&gt;&gt; axes.x_axis.variable.name, axes.y_axis.variable.name</span>
+<span class="sd">            (&#39;X&#39;, &#39;Y&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; axes.x_axis.variable = ds.variable(&#39;U&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; axes.y_axis.variable = ds.variable(&#39;V&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; axes.x_axis.variable.name, axes.y_axis.variable.name</span>
+<span class="sd">            (&#39;U&#39;, &#39;V&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">dataset</span>
+        <span class="k">return</span> <span class="n">ds</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">variable_index</span><span class="p">)</span>
+
+    <span class="nd">@variable.setter</span>
+    <span class="k">def</span> <span class="nf">variable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">variable_index</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">index</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">variable_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_style</span><span class="p">(</span><span class="n">Index</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">VARNUM</span><span class="p">)</span>
+
+    <span class="nd">@variable_index.setter</span>
+    <span class="k">def</span> <span class="nf">variable_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_style</span><span class="p">(</span><span class="n">Index</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">sv</span><span class="o">.</span><span class="n">VARNUM</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">IndexedLineAxis</span><span class="p">(</span><span class="n">DataAxis</span><span class="p">,</span> <span class="n">LinearAxis</span><span class="p">,</span> <span class="n">ReversibleAxis</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axes</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">Index</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">offset1</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">that</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">that</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">that</span><span class="o">.</span><span class="n">index</span> <span class="ow">and</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">that</span><span class="o">.</span><span class="n">name</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span> <span class="o">==</span> <span class="n">that</span><span class="o">.</span><span class="n">axes</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">that</span><span class="p">):</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span> <span class="o">==</span> <span class="n">that</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Cartesian2DFieldAxis"><a class="viewcode-back" href="../../../api/tecplot.axes.html#tecplot.plot.Cartesian2DFieldAxis">[docs]</a><span class="k">class</span> <span class="nc">Cartesian2DFieldAxis</span><span class="p">(</span><span class="n">FieldAxis</span><span class="p">,</span> <span class="n">LinearAxis</span><span class="p">,</span> <span class="n">ReversibleAxis</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="Cartesian3DFieldAxis"><a class="viewcode-back" href="../../../api/tecplot.axes.html#tecplot.plot.Cartesian3DFieldAxis">[docs]</a><span class="k">class</span> <span class="nc">Cartesian3DFieldAxis</span><span class="p">(</span><span class="n">FieldAxis</span><span class="p">,</span> <span class="n">LinearAxis</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">DataAxis3DTitle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PolarAngleLineAxis"><a class="viewcode-back" href="../../../api/tecplot.axes.html#tecplot.plot.PolarAngleLineAxis">[docs]</a><span class="k">class</span> <span class="nc">PolarAngleLineAxis</span><span class="p">(</span><span class="n">DataAxis</span><span class="p">,</span> <span class="n">ReversibleAxis</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axes</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">THETA</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Units used for the theta axis.</span>
+
+<span class="sd">        :type: `ThetaMode`</span>
+
+<span class="sd">        Possible values: `ThetaMode.Degrees`, `ThetaMode.Radians`,</span>
+<span class="sd">        `ThetaMode.Arbitrary`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_get_style</span><span class="p">(</span><span class="n">ThetaMode</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">THETAMODE</span><span class="p">)</span>
+
+    <span class="nd">@mode.setter</span>
+    <span class="k">def</span> <span class="nf">mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_set_style</span><span class="p">(</span><span class="n">ThetaMode</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">sv</span><span class="o">.</span><span class="n">THETAMODE</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">period</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns or sets the theta_period property.</span>
+
+<span class="sd">        :type: `float`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_get_style</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">THETAPERIOD</span><span class="p">)</span>
+
+    <span class="nd">@period.setter</span>
+    <span class="k">def</span> <span class="nf">period</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_set_style</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">sv</span><span class="o">.</span><span class="n">THETAPERIOD</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RadialLineAxis"><a class="viewcode-back" href="../../../api/tecplot.axes.html#tecplot.plot.RadialLineAxis">[docs]</a><span class="k">class</span> <span class="nc">RadialLineAxis</span><span class="p">(</span><span class="n">DataAxis</span><span class="p">,</span> <span class="n">LinearAxis</span><span class="p">,</span> <span class="n">ReversibleAxis</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axes</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">R</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">RadialAxisTitle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SketchAxis"><a class="viewcode-back" href="../../../api/tecplot.axes.html#tecplot.plot.SketchAxis">[docs]</a><span class="k">class</span> <span class="nc">SketchAxis</span><span class="p">(</span><span class="n">LinearAxis</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="XYLineAxis"><a class="viewcode-back" href="../../../api/tecplot.axes.html#tecplot.plot.XYLineAxis">[docs]</a><span class="k">class</span> <span class="nc">XYLineAxis</span><span class="p">(</span><span class="n">IndexedLineAxis</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">reverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_style</span><span class="p">(</span><span class="nb">bool</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">ISREVERSED</span><span class="p">)</span>
+
+    <span class="nd">@reverse.setter</span>
+    <span class="k">def</span> <span class="nf">reverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_Set_style</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">sv</span><span class="o">.</span><span class="n">ISREVERSED</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/powered_by_tecplot.png" alt="Logo"/>
+            </a></p>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference.html">Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016, Tecplot, Inc..
+      Last updated on Oct 07, 2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.5.
+    </div>
+  </body>
+</html>

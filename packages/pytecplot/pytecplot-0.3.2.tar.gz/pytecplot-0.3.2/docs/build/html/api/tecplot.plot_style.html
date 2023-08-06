@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Plot Style &mdash; PyTecplot 0.3.2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.3.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
+    <link rel="top" title="PyTecplot 0.3.2 documentation" href="../index.html" />
+    <link rel="up" title="Reference" href="../reference.html" />
+    <link rel="next" title="Annotations" href="tecplot.annotation.html" />
+    <link rel="prev" title="Legends" href="tecplot.legend.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/gif" href="../_static/favicon.gif" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+
+  </head>
+  <body role="document">
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../index.html">PyTecplot-0.3</a> &raquo;</li>
+          <li><a href="../reference.html" accesskey="U">Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="plot-style">
+<h1>Plot Style<a class="headerlink" href="#plot-style" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#contours" id="id1">Contours</a><ul>
+<li><a class="reference internal" href="#contourgroup" id="id2">ContourGroup</a></li>
+<li><a class="reference internal" href="#contourcolorcutoff" id="id3">ContourColorCutoff</a></li>
+<li><a class="reference internal" href="#contourcolormapfilter" id="id4">ContourColormapFilter</a></li>
+<li><a class="reference internal" href="#contourcolormapoverride" id="id5">ContourColormapOverride</a></li>
+<li><a class="reference internal" href="#contourcolormapzebrashade" id="id6">ContourColormapZebraShade</a></li>
+<li><a class="reference internal" href="#contourlabels" id="id7">ContourLabels</a></li>
+<li><a class="reference internal" href="#contourlevels" id="id8">ContourLevels</a></li>
+<li><a class="reference internal" href="#contourlines" id="id9">ContourLines</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#streamtraces" id="id10">Streamtraces</a><ul>
+<li><a class="reference internal" href="#streamtrace" id="id11">Streamtrace</a></li>
+<li><a class="reference internal" href="#streamtraceribbon" id="id12">StreamtraceRibbon</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<span class="target" id="module-tecplot.plot"></span><div class="section" id="contours">
+<h2><a class="toc-backref" href="#id1">Contours</a><a class="headerlink" href="#contours" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="contourgroup">
+<h3><a class="toc-backref" href="#id2">ContourGroup</a><a class="headerlink" href="#contourgroup" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tecplot.plot.ContourGroup">
+<em class="property">class </em><code class="descclassname">tecplot.plot.</code><code class="descname">ContourGroup</code><span class="sig-paren">(</span><em>index</em>, <em>plot</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/contour.html#ContourGroup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.ContourGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contouring of a variable using a colormap.</p>
+<p>This object controls the style for a specific contour group within
+a <a class="reference internal" href="tecplot.layout.html#tecplot.layout.Frame" title="tecplot.layout.Frame"><code class="xref any py py-class docutils literal"><span class="pre">Frame</span></code></a>. Contour levels, colormap and contour lines are accessed
+through this class.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">import</span> <span class="nn">tecplot</span> <span class="kn">as</span> <span class="nn">tp</span>
+<span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># load data</span>
+<span class="n">exdir</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">tecplot_examples_directory</span><span class="p">()</span>
+<span class="n">datafile</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">exdir</span><span class="p">,</span><span class="s1">&#39;2D&#39;</span><span class="p">,</span><span class="s1">&#39;polarplot.plt&#39;</span><span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">load_tecplot</span><span class="p">(</span><span class="n">datafile</span><span class="p">)</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="hll"><span class="n">plot</span><span class="o">.</span><span class="n">show_contour</span> <span class="o">=</span> <span class="bp">True</span>
+</span>
+<span class="hll"><span class="n">contour</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span class="hll"><span class="n">contour</span><span class="o">.</span><span class="n">variable</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="s1">&#39;Mix&#39;</span><span class="p">)</span>
+</span><span class="hll"><span class="n">contour</span><span class="o">.</span><span class="n">colormap_name</span> <span class="o">=</span> <span class="s1">&#39;Magma&#39;</span>
+</span>
+<span class="c1"># save image to file</span>
+<span class="n">tp</span><span class="o">.</span><span class="n">export_image</span><span class="p">(</span><span class="s1">&#39;polarplot_magma.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="figure" style="width: 300px">
+<a class="reference internal image-reference" href="../_images/polarplot_magma.png"><img alt="../_images/polarplot_magma.png" src="../_images/polarplot_magma.png" style="width: 300px;" /></a>
+</div>
+<p>There are a fixed number of contour groups available for each plot. Others
+can be enabled and modified by specifying an index other than zero:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">contour3</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">contour3</span><span class="o">.</span><span class="n">variable</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="s1">&#39;U&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Attributes</strong></p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourGroup.color_cutoff" title="tecplot.plot.ContourGroup.color_cutoff"><code class="xref py py-obj docutils literal"><span class="pre">color_cutoff</span></code></a></td>
+<td><a class="reference internal" href="#tecplot.plot.ContourColorCutoff" title="tecplot.plot.ContourColorCutoff"><code class="xref any py py-class docutils literal"><span class="pre">ContourColorCutoff</span></code></a> object controlling color cutoff min/max.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#tecplot.plot.ContourGroup.colormap_filter" title="tecplot.plot.ContourGroup.colormap_filter"><code class="xref py py-obj docutils literal"><span class="pre">colormap_filter</span></code></a></td>
+<td><a class="reference internal" href="#tecplot.plot.ContourColormapFilter" title="tecplot.plot.ContourColormapFilter"><code class="xref any py py-class docutils literal"><span class="pre">ContourColormapFilter</span></code></a> object controlling colormap style properties.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourGroup.colormap_name" title="tecplot.plot.ContourGroup.colormap_name"><code class="xref py py-obj docutils literal"><span class="pre">colormap_name</span></code></a></td>
+<td>The name of the colormap (<a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#str" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">str</span></code></a>) to be used.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#tecplot.plot.ContourGroup.default_num_levels" title="tecplot.plot.ContourGroup.default_num_levels"><code class="xref py py-obj docutils literal"><span class="pre">default_num_levels</span></code></a></td>
+<td>Default target number (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">int</span></code></a>) of levels used when resetting.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourGroup.labels" title="tecplot.plot.ContourGroup.labels"><code class="xref py py-obj docutils literal"><span class="pre">labels</span></code></a></td>
+<td><a class="reference internal" href="#tecplot.plot.ContourLabels" title="tecplot.plot.ContourLabels"><code class="xref any py py-class docutils literal"><span class="pre">ContourLabels</span></code></a> object controlling contour line labels.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#tecplot.plot.ContourGroup.levels" title="tecplot.plot.ContourGroup.levels"><code class="xref py py-obj docutils literal"><span class="pre">levels</span></code></a></td>
+<td><a class="reference internal" href="#tecplot.plot.ContourLevels" title="tecplot.plot.ContourLevels"><code class="xref any py py-class docutils literal"><span class="pre">ContourLevels</span></code></a> holding the list of contour levels.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourGroup.lines" title="tecplot.plot.ContourGroup.lines"><code class="xref py py-obj docutils literal"><span class="pre">lines</span></code></a></td>
+<td><a class="reference internal" href="#tecplot.plot.ContourLines" title="tecplot.plot.ContourLines"><code class="xref any py py-class docutils literal"><span class="pre">ContourLines</span></code></a> object controlling contour line style.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#tecplot.plot.ContourGroup.variable" title="tecplot.plot.ContourGroup.variable"><code class="xref py py-obj docutils literal"><span class="pre">variable</span></code></a></td>
+<td>The <a class="reference internal" href="tecplot.data.html#tecplot.data.Variable" title="tecplot.data.Variable"><code class="xref any py py-class docutils literal"><span class="pre">Variable</span></code></a> being contoured.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourGroup.variable_index" title="tecplot.plot.ContourGroup.variable_index"><code class="xref py py-obj docutils literal"><span class="pre">variable_index</span></code></a></td>
+<td>Zero-based index of the <a class="reference internal" href="tecplot.data.html#tecplot.data.Variable" title="tecplot.data.Variable"><code class="xref any py py-class docutils literal"><span class="pre">Variable</span></code></a> being contoured.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourGroup.color_cutoff">
+<code class="descclassname">ContourGroup.</code><code class="descname">color_cutoff</code><a class="headerlink" href="#tecplot.plot.ContourGroup.color_cutoff" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#tecplot.plot.ContourColorCutoff" title="tecplot.plot.ContourColorCutoff"><code class="xref any py py-class docutils literal"><span class="pre">ContourColorCutoff</span></code></a> object controlling color cutoff min/max.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#tecplot.plot.ContourColorCutoff" title="tecplot.plot.ContourColorCutoff"><code class="xref any py py-class docutils literal"><span class="pre">ContourColorCutoff</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cutoff</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">color_cutoff</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cutoff</span><span class="o">.</span><span class="n">min</span> <span class="o">=</span> <span class="mf">3.14</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourGroup.colormap_filter">
+<code class="descclassname">ContourGroup.</code><code class="descname">colormap_filter</code><a class="headerlink" href="#tecplot.plot.ContourGroup.colormap_filter" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#tecplot.plot.ContourColormapFilter" title="tecplot.plot.ContourColormapFilter"><code class="xref any py py-class docutils literal"><span class="pre">ContourColormapFilter</span></code></a> object controlling colormap style properties.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#tecplot.plot.ContourColormapFilter" title="tecplot.plot.ContourColormapFilter"><code class="xref any py py-class docutils literal"><span class="pre">ContourColormapFilter</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">colormap_filter</span><span class="o">.</span><span class="n">reverse</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourGroup.colormap_name">
+<code class="descclassname">ContourGroup.</code><code class="descname">colormap_name</code><a class="headerlink" href="#tecplot.plot.ContourGroup.colormap_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the colormap (<a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#str" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">str</span></code></a>) to be used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#str" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">string</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">colormap_name</span> <span class="o">=</span> <span class="s1">&#39;Sequential - Yellow/Green/Blue&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourGroup.default_num_levels">
+<code class="descclassname">ContourGroup.</code><code class="descname">default_num_levels</code><a class="headerlink" href="#tecplot.plot.ContourGroup.default_num_levels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default target number (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">int</span></code></a>) of levels used when resetting.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">integer</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">default_num_levels</span> <span class="o">=</span> <span class="mi">20</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourGroup.labels">
+<code class="descclassname">ContourGroup.</code><code class="descname">labels</code><a class="headerlink" href="#tecplot.plot.ContourGroup.labels" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#tecplot.plot.ContourLabels" title="tecplot.plot.ContourLabels"><code class="xref any py py-class docutils literal"><span class="pre">ContourLabels</span></code></a> object controlling contour line labels.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#tecplot.plot.ContourLabels" title="tecplot.plot.ContourLabels"><code class="xref any py py-class docutils literal"><span class="pre">ContourLabels</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Lines must be turned on through the associated fieldmap object
+for style changes to be meaningful:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">fieldmap</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">contour</span><span class="o">.</span><span class="n">contour_type</span> <span class="o">=</span> <span class="n">ContourType</span><span class="o">.</span><span class="n">Lines</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourGroup.levels">
+<code class="descclassname">ContourGroup.</code><code class="descname">levels</code><a class="headerlink" href="#tecplot.plot.ContourGroup.levels" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#tecplot.plot.ContourLevels" title="tecplot.plot.ContourLevels"><code class="xref any py py-class docutils literal"><span class="pre">ContourLevels</span></code></a> holding the list of contour levels.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#tecplot.plot.ContourLevels" title="tecplot.plot.ContourLevels"><code class="xref any py py-class docutils literal"><span class="pre">ContourLevels</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>This object controls the values of the contour lines. Values can
+be added, deleted or overridden completely:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">levels</span><span class="o">.</span><span class="n">reset_to_nice</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourGroup.lines">
+<code class="descclassname">ContourGroup.</code><code class="descname">lines</code><a class="headerlink" href="#tecplot.plot.ContourGroup.lines" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#tecplot.plot.ContourLines" title="tecplot.plot.ContourLines"><code class="xref any py py-class docutils literal"><span class="pre">ContourLines</span></code></a> object controlling contour line style.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#tecplot.plot.ContourLines" title="tecplot.plot.ContourLines"><code class="xref any py py-class docutils literal"><span class="pre">ContourLines</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Lines must be turned on through the associated fieldmap object
+for style changes to be meaningful:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">fieldmap</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">contour</span><span class="o">.</span><span class="n">contour_type</span> <span class="o">=</span> <span class="n">ContourType</span><span class="o">.</span><span class="n">Lines</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">lines</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">ContourLineMode</span><span class="o">.</span><span class="n">DashNegative</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourGroup.variable">
+<code class="descclassname">ContourGroup.</code><code class="descname">variable</code><a class="headerlink" href="#tecplot.plot.ContourGroup.variable" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="tecplot.data.html#tecplot.data.Variable" title="tecplot.data.Variable"><code class="xref any py py-class docutils literal"><span class="pre">Variable</span></code></a> being contoured.</p>
+<p>The variable must belong to the <a class="reference internal" href="tecplot.data.html#tecplot.data.Dataset" title="tecplot.data.Dataset"><code class="xref any py py-class docutils literal"><span class="pre">Dataset</span></code></a> attached to the <a class="reference internal" href="tecplot.layout.html#tecplot.layout.Frame" title="tecplot.layout.Frame"><code class="xref any py py-class docutils literal"><span class="pre">Frame</span></code></a>
+that holds this <a class="reference internal" href="#tecplot.plot.ContourGroup" title="tecplot.plot.ContourGroup"><code class="xref any py py-class docutils literal"><span class="pre">ContourGroup</span></code></a>. Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">variable</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourGroup.variable_index">
+<code class="descclassname">ContourGroup.</code><code class="descname">variable_index</code><a class="headerlink" href="#tecplot.plot.ContourGroup.variable_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zero-based index of the <a class="reference internal" href="tecplot.data.html#tecplot.data.Variable" title="tecplot.data.Variable"><code class="xref any py py-class docutils literal"><span class="pre">Variable</span></code></a> being contoured.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">variable_index</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="tecplot.data.html#tecplot.data.Dataset" title="tecplot.data.Dataset"><code class="xref any py py-class docutils literal"><span class="pre">Dataset</span></code></a> attached to this contour group&#8217;s <a class="reference internal" href="tecplot.layout.html#tecplot.layout.Frame" title="tecplot.layout.Frame"><code class="xref any py py-class docutils literal"><span class="pre">Frame</span></code></a> is used:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">contour</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">contour_var</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="n">contour</span><span class="o">.</span><span class="n">variable_index</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">contour_var</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">contour</span><span class="o">.</span><span class="n">variable_index</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="contourcolorcutoff">
+<h3><a class="toc-backref" href="#id3">ContourColorCutoff</a><a class="headerlink" href="#contourcolorcutoff" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tecplot.plot.ContourColorCutoff">
+<em class="property">class </em><code class="descclassname">tecplot.plot.</code><code class="descname">ContourColorCutoff</code><span class="sig-paren">(</span><em>contour</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/contour.html#ContourColorCutoff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.ContourColorCutoff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Color-mapped value limits to display.</p>
+<p>This lets you specify a range within which contour flooding and
+multi-colored objects, such as scatter symbols, are displayed.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">import</span> <span class="nn">tecplot</span> <span class="kn">as</span> <span class="nn">tp</span>
+<span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="n">PlotType</span><span class="p">,</span> <span class="n">SurfacesToPlot</span>
+
+<span class="n">examples_dir</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">tecplot_examples_directory</span><span class="p">()</span>
+<span class="n">datafile</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">examples_dir</span><span class="p">,</span><span class="s1">&#39;3D&#39;</span><span class="p">,</span><span class="s1">&#39;pyramid.plt&#39;</span><span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">load_tecplot</span><span class="p">(</span><span class="n">datafile</span><span class="p">)</span>
+
+<span class="n">plot</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">active_frame</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">surfaces</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">fieldmap</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">surfaces</span>
+<span class="n">surfaces</span><span class="o">.</span><span class="n">surfaces_to_plot</span> <span class="o">=</span> <span class="n">SurfacesToPlot</span><span class="o">.</span><span class="n">BoundaryFaces</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">show_contour</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="hll"><span class="n">cutoff</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">color_cutoff</span>
+</span><span class="hll"><span class="n">cutoff</span><span class="o">.</span><span class="n">min</span> <span class="o">=</span> <span class="mf">0.5</span>
+</span><span class="hll"><span class="n">cutoff</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="mf">1.0</span>
+</span><span class="hll"><span class="n">cutoff</span><span class="o">.</span><span class="n">inverted</span> <span class="o">=</span> <span class="bp">True</span>
+</span>
+<span class="n">tp</span><span class="o">.</span><span class="n">export_image</span><span class="p">(</span><span class="s1">&#39;contour_color_cutoff.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="figure" style="width: 300px">
+<a class="reference internal image-reference" href="../_images/contour_color_cutoff.png"><img alt="../_images/contour_color_cutoff.png" src="../_images/contour_color_cutoff.png" style="width: 300px;" /></a>
+</div>
+<p><strong>Attributes</strong></p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourColorCutoff.inverted" title="tecplot.plot.ContourColorCutoff.inverted"><code class="xref py py-obj docutils literal"><span class="pre">inverted</span></code></a></td>
+<td>Cuts values outside the range instead of inside.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#tecplot.plot.ContourColorCutoff.max" title="tecplot.plot.ContourColorCutoff.max"><code class="xref py py-obj docutils literal"><span class="pre">max</span></code></a></td>
+<td>Sets and enables or disables the maximum cutoff value.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourColorCutoff.min" title="tecplot.plot.ContourColorCutoff.min"><code class="xref py py-obj docutils literal"><span class="pre">min</span></code></a></td>
+<td>Sets and enables or disables the minimum cutoff value.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourColorCutoff.min">
+<code class="descclassname">ContourColorCutoff.</code><code class="descname">min</code><a class="headerlink" href="#tecplot.plot.ContourColorCutoff.min" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets and enables or disables the minimum cutoff value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#float" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">float</span></code></a> or <a class="reference external" href="https://docs.python.org/3.5/library/constants.html#None" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">None</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">color_cutoff</span><span class="o">.</span><span class="n">min</span> <span class="o">=</span> <span class="mf">3.14</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourColorCutoff.max">
+<code class="descclassname">ContourColorCutoff.</code><code class="descname">max</code><a class="headerlink" href="#tecplot.plot.ContourColorCutoff.max" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets and enables or disables the maximum cutoff value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#float" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">float</span></code></a> or <a class="reference external" href="https://docs.python.org/3.5/library/constants.html#None" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">None</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># turn off maximum cutoff:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">color_cutoff</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="bp">None</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourColorCutoff.inverted">
+<code class="descclassname">ContourColorCutoff.</code><code class="descname">inverted</code><a class="headerlink" href="#tecplot.plot.ContourColorCutoff.inverted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cuts values outside the range instead of inside.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#bool" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">bool</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">color_cutoff</span><span class="o">.</span><span class="n">inverted</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="contourcolormapfilter">
+<h3><a class="toc-backref" href="#id4">ContourColormapFilter</a><a class="headerlink" href="#contourcolormapfilter" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tecplot.plot.ContourColormapFilter">
+<em class="property">class </em><code class="descclassname">tecplot.plot.</code><code class="descname">ContourColormapFilter</code><span class="sig-paren">(</span><em>contour</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/contour.html#ContourColormapFilter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.ContourColormapFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Controls how the colormap is rendered for a given contour.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">import</span> <span class="nn">tecplot</span> <span class="kn">as</span> <span class="nn">tp</span>
+<span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># load the data</span>
+<span class="n">exdir</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">tecplot_examples_directory</span><span class="p">()</span>
+<span class="n">datafile</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">exdir</span><span class="p">,</span><span class="s1">&#39;2D&#39;</span><span class="p">,</span><span class="s1">&#39;MultiPoly2D.plt&#39;</span><span class="p">)</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">load_tecplot</span><span class="p">(</span><span class="n">datafile</span><span class="p">)</span>
+
+<span class="c1"># set plot type to 2D field plot</span>
+<span class="n">frame</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">active_frame</span><span class="p">()</span>
+<span class="n">frame</span><span class="o">.</span><span class="n">plot_type</span> <span class="o">=</span> <span class="n">PlotType</span><span class="o">.</span><span class="n">Cartesian2D</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="c1"># show boundary faces and contours</span>
+<span class="n">surfaces</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">fieldmap</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">surfaces</span>
+<span class="n">surfaces</span><span class="o">.</span><span class="n">surfaces_to_plot</span> <span class="o">=</span> <span class="n">SurfacesToPlot</span><span class="o">.</span><span class="n">BoundaryFaces</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">show_contour</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="c1"># by default, contour 0 is the one that&#39;s shown,</span>
+<span class="c1"># set the contour&#39;s variable, colormap and number of levels</span>
+<span class="n">contour</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">contour</span><span class="o">.</span><span class="n">variable</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">)</span>
+
+<span class="c1"># cycle through the colormap three times and reversed</span>
+<span class="c1"># show a faithful (non-approximate) continuous distribution</span>
+<span class="hll"><span class="n">contour_filter</span> <span class="o">=</span> <span class="n">contour</span><span class="o">.</span><span class="n">colormap_filter</span>
+</span><span class="hll"><span class="n">contour_filter</span><span class="o">.</span><span class="n">num_cycles</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span class="hll"><span class="n">contour_filter</span><span class="o">.</span><span class="n">reversed</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class="hll"><span class="n">contour_filter</span><span class="o">.</span><span class="n">fast_continuous_flood</span> <span class="o">=</span> <span class="bp">False</span>
+</span><span class="hll"><span class="n">contour_filter</span><span class="o">.</span><span class="n">distribution</span> <span class="o">=</span> <span class="n">ColorMapDistribution</span><span class="o">.</span><span class="n">Continuous</span>
+</span>
+<span class="c1"># save image to file</span>
+<span class="n">tp</span><span class="o">.</span><span class="n">export_image</span><span class="p">(</span><span class="s1">&#39;poly2d_filtered.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="figure" style="width: 300px">
+<a class="reference internal image-reference" href="../_images/poly2d_filtered.png"><img alt="../_images/poly2d_filtered.png" src="../_images/poly2d_filtered.png" style="width: 300px;" /></a>
+</div>
+<p><strong>Attributes</strong></p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourColormapFilter.distribution" title="tecplot.plot.ContourColormapFilter.distribution"><code class="xref py py-obj docutils literal"><span class="pre">distribution</span></code></a></td>
+<td>Rendering style of the colormap.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#tecplot.plot.ContourColormapFilter.fast_continuous_flood" title="tecplot.plot.ContourColormapFilter.fast_continuous_flood"><code class="xref py py-obj docutils literal"><span class="pre">fast_continuous_flood</span></code></a></td>
+<td>Use a fast approximation to continuously flood the colormap.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourColormapFilter.num_cycles" title="tecplot.plot.ContourColormapFilter.num_cycles"><code class="xref py py-obj docutils literal"><span class="pre">num_cycles</span></code></a></td>
+<td>Number of cycles to repeat the colormap.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#tecplot.plot.ContourColormapFilter.reversed" title="tecplot.plot.ContourColormapFilter.reversed"><code class="xref py py-obj docutils literal"><span class="pre">reversed</span></code></a></td>
+<td>Reverse the colormap.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourColormapFilter.show_overrides" title="tecplot.plot.ContourColormapFilter.show_overrides"><code class="xref py py-obj docutils literal"><span class="pre">show_overrides</span></code></a></td>
+<td>Enable the colormap overrides in this contour group.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#tecplot.plot.ContourColormapFilter.zebra_shade" title="tecplot.plot.ContourColormapFilter.zebra_shade"><code class="xref py py-obj docutils literal"><span class="pre">zebra_shade</span></code></a></td>
+<td>Returns a <a class="reference internal" href="#tecplot.plot.ContourColormapZebraShade" title="tecplot.plot.ContourColormapZebraShade"><code class="xref any py py-class docutils literal"><span class="pre">ContourColormapZebraShade</span></code></a> filtering object.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Methods</strong></p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourColormapFilter.override" title="tecplot.plot.ContourColormapFilter.override"><code class="xref py py-obj docutils literal"><span class="pre">override</span></code></a>(index)</td>
+<td>Returns a <a class="reference internal" href="#tecplot.plot.ContourColormapOverride" title="tecplot.plot.ContourColormapOverride"><code class="xref any py py-class docutils literal"><span class="pre">ContourColormapOverride</span></code></a> object by index.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourColormapFilter.show_overrides">
+<code class="descclassname">ContourColormapFilter.</code><code class="descname">show_overrides</code><a class="headerlink" href="#tecplot.plot.ContourColormapFilter.show_overrides" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable the colormap overrides in this contour group.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#bool" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">boolean</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>The overrides themselves must be turned on as well for this
+to have an effect on the resulting plot:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">contour</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cmap_filter</span> <span class="o">=</span> <span class="n">contour</span><span class="o">.</span><span class="n">colormap_filter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cmap_filter</span><span class="o">.</span><span class="n">show_overrides</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cmap_filter</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourColormapFilter.distribution">
+<code class="descclassname">ContourColormapFilter.</code><code class="descname">distribution</code><a class="headerlink" href="#tecplot.plot.ContourColormapFilter.distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rendering style of the colormap.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="tecplot.constant.html#tecplot.constant.ColorMapDistribution" title="tecplot.constant.ColorMapDistribution"><code class="xref any py py-class docutils literal"><span class="pre">ColorMapDistribution</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Possible values:</p>
+<dl class="docutils">
+<dt><a class="reference internal" href="tecplot.constant.html#tecplot.constant.ColorMapDistribution.Banded" title="tecplot.constant.ColorMapDistribution.Banded"><code class="xref any py py-attr docutils literal"><span class="pre">Banded</span></code></a></dt>
+<dd>A solid color is assigned for all values within the band between
+two levels.</dd>
+<dt><a class="reference internal" href="tecplot.constant.html#tecplot.constant.ColorMapDistribution.Continuous" title="tecplot.constant.ColorMapDistribution.Continuous"><code class="xref any py py-attr docutils literal"><span class="pre">Continuous</span></code></a></dt>
+<dd>The color distribution assigns linearly varying colors to all
+multi-colored objects or contour flooded regions.</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="n">ColorMapDistribution</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cmap_filter</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">colormap_filter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cmap_filter</span><span class="o">.</span><span class="n">distribution</span> <span class="o">=</span> <span class="n">ColorMapDistribution</span><span class="o">.</span><span class="n">Banded</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourColormapFilter.fast_continuous_flood">
+<code class="descclassname">ContourColormapFilter.</code><code class="descname">fast_continuous_flood</code><a class="headerlink" href="#tecplot.plot.ContourColormapFilter.fast_continuous_flood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use a fast approximation to continuously flood the colormap.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#bool" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">bool</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Causes each cell to be flooded using interpolation between the color
+values at each node. When the transition from a color at one node to
+another node crosses over the boundary between control points in the
+color spectrum, fast flooding may produce colors not in the spectrum.
+Setting this to <a class="reference external" href="https://docs.python.org/3.5/library/constants.html#False" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">False</span></code></a> is slower, but more accurate:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cmap_filter</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">colormap_filter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cmap_filter</span><span class="o">.</span><span class="n">fast_continuous_flood</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourColormapFilter.num_cycles">
+<code class="descclassname">ContourColormapFilter.</code><code class="descname">num_cycles</code><a class="headerlink" href="#tecplot.plot.ContourColormapFilter.num_cycles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of cycles to repeat the colormap.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">integer</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">colormap_filter</span><span class="o">.</span><span class="n">num_cycles</span> <span class="o">=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourColormapFilter.reversed">
+<code class="descclassname">ContourColormapFilter.</code><code class="descname">reversed</code><a class="headerlink" href="#tecplot.plot.ContourColormapFilter.reversed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverse the colormap.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#bool" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">bool</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">colormap_filter</span><span class="o">.</span><span class="n">reversed</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourColormapFilter.zebra_shade">
+<code class="descclassname">ContourColormapFilter.</code><code class="descname">zebra_shade</code><a class="headerlink" href="#tecplot.plot.ContourColormapFilter.zebra_shade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a <a class="reference internal" href="#tecplot.plot.ContourColormapZebraShade" title="tecplot.plot.ContourColormapZebraShade"><code class="xref any py py-class docutils literal"><span class="pre">ContourColormapZebraShade</span></code></a> filtering object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#tecplot.plot.ContourColormapZebraShade" title="tecplot.plot.ContourColormapZebraShade"><code class="xref any py py-class docutils literal"><span class="pre">ContourColormapZebraShade</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">zebra</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">colormap_filter</span><span class="o">.</span><span class="n">zebra_shade</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zebra</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="tecplot.plot.ContourColormapFilter.override">
+<code class="descclassname">ContourColormapFilter.</code><code class="descname">override</code><span class="sig-paren">(</span><em>index</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/contour.html#ContourColormapFilter.override"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.ContourColormapFilter.override" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a <a class="reference internal" href="#tecplot.plot.ContourColormapOverride" title="tecplot.plot.ContourColormapOverride"><code class="xref any py py-class docutils literal"><span class="pre">ContourColormapOverride</span></code></a> object by index.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">int</span></code></a>) &#8211; The index of the colormap override object.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference internal" href="#tecplot.plot.ContourColormapOverride" title="tecplot.plot.ContourColormapOverride"><code class="xref any py py-class docutils literal"><span class="pre">ContourColormapOverride</span></code></a> &#8211; The class controlling the specific
+contour colormap override requested by index.</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cmap_override</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">colormap_filter</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cmap_override</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="contourcolormapoverride">
+<h3><a class="toc-backref" href="#id5">ContourColormapOverride</a><a class="headerlink" href="#contourcolormapoverride" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tecplot.plot.ContourColormapOverride">
+<em class="property">class </em><code class="descclassname">tecplot.plot.</code><code class="descname">ContourColormapOverride</code><span class="sig-paren">(</span><em>index</em>, <em>colormap_filter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/contour.html#ContourColormapOverride"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.ContourColormapOverride" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assigns contour bands to specific color.</p>
+<p>Specific contour bands can be assigned a unique basic color. This is useful
+for forcing a particular region to use blue, for example, to designate an
+area of water. You can define up to 16 color overrides.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">import</span> <span class="nn">tecplot</span> <span class="kn">as</span> <span class="nn">tp</span>
+<span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># load the data</span>
+<span class="n">exdir</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">tecplot_examples_directory</span><span class="p">()</span>
+<span class="n">datafile</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">exdir</span><span class="p">,</span><span class="s1">&#39;2D&#39;</span><span class="p">,</span><span class="s1">&#39;cstream.plt&#39;</span><span class="p">)</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">load_tecplot</span><span class="p">(</span><span class="n">datafile</span><span class="p">)</span>
+
+<span class="c1"># set plot type to 2D field plot</span>
+<span class="n">frame</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">active_frame</span><span class="p">()</span>
+<span class="n">frame</span><span class="o">.</span><span class="n">plot_type</span> <span class="o">=</span> <span class="n">PlotType</span><span class="o">.</span><span class="n">Cartesian2D</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="c1"># show boundary faces and contours</span>
+<span class="n">surfaces</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">fieldmap</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">surfaces</span>
+<span class="n">surfaces</span><span class="o">.</span><span class="n">surfaces_to_plot</span> <span class="o">=</span> <span class="n">SurfacesToPlot</span><span class="o">.</span><span class="n">BoundaryFaces</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">show_contour</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="c1"># by default, contour 0 is the one that&#39;s shown,</span>
+<span class="c1"># set the contour&#39;s variable, colormap and number of levels</span>
+<span class="n">contour</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">contour</span><span class="o">.</span><span class="n">variable</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="s1">&#39;v3&#39;</span><span class="p">)</span>
+<span class="n">contour</span><span class="o">.</span><span class="n">colormap_name</span> <span class="o">=</span> <span class="s1">&#39;Sequential - Yellow/Green/Blue&#39;</span>
+<span class="n">contour</span><span class="o">.</span><span class="n">levels</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># turn on colormap overrides for this contour</span>
+<span class="n">contour_filter</span> <span class="o">=</span> <span class="n">contour</span><span class="o">.</span><span class="n">colormap_filter</span>
+<span class="hll"><span class="n">contour_filter</span><span class="o">.</span><span class="n">show_overrides</span> <span class="o">=</span> <span class="bp">True</span>
+</span>
+<span class="c1"># turn on override 0, coloring the first 4 levels red</span>
+<span class="hll"><span class="n">contour_override</span> <span class="o">=</span> <span class="n">contour_filter</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span class="hll"><span class="n">contour_override</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class="hll"><span class="n">contour_override</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">Red</span>
+</span><span class="hll"><span class="n">contour_override</span><span class="o">.</span><span class="n">start_level</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class="hll"><span class="n">contour_override</span><span class="o">.</span><span class="n">end_level</span> <span class="o">=</span> <span class="mi">4</span>
+</span>
+<span class="c1"># save image to file</span>
+<span class="n">tp</span><span class="o">.</span><span class="n">export_image</span><span class="p">(</span><span class="s1">&#39;cstream_contours.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="figure" style="width: 300px">
+<a class="reference internal image-reference" href="../_images/cstream_contours.png"><img alt="../_images/cstream_contours.png" src="../_images/cstream_contours.png" style="width: 300px;" /></a>
+</div>
+<p><strong>Attributes</strong></p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourColormapOverride.color" title="tecplot.plot.ContourColormapOverride.color"><code class="xref py py-obj docutils literal"><span class="pre">color</span></code></a></td>
+<td>Color which will override the colormap.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#tecplot.plot.ContourColormapOverride.end_level" title="tecplot.plot.ContourColormapOverride.end_level"><code class="xref py py-obj docutils literal"><span class="pre">end_level</span></code></a></td>
+<td>Last level to override.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourColormapOverride.show" title="tecplot.plot.ContourColormapOverride.show"><code class="xref py py-obj docutils literal"><span class="pre">show</span></code></a></td>
+<td>Include this colormap override when filter is shown.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#tecplot.plot.ContourColormapOverride.start_level" title="tecplot.plot.ContourColormapOverride.start_level"><code class="xref py py-obj docutils literal"><span class="pre">start_level</span></code></a></td>
+<td>First level to override.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourColormapOverride.show">
+<code class="descclassname">ContourColormapOverride.</code><code class="descname">show</code><a class="headerlink" href="#tecplot.plot.ContourColormapOverride.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Include this colormap override when filter is shown.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#bool" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">boolean</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">colormap_filter</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">colormap_filter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cmap_override</span> <span class="o">=</span> <span class="n">colormap_filter</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cmap_override</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourColormapOverride.color">
+<code class="descclassname">ContourColormapOverride.</code><code class="descname">color</code><a class="headerlink" href="#tecplot.plot.ContourColormapOverride.color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Color which will override the colormap.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="tecplot.constant.html#tecplot.constant.Color" title="tecplot.constant.Color"><code class="xref any py py-class docutils literal"><span class="pre">Color</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="n">Color</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">colormap_filter</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">colormap_filter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cmap_override</span> <span class="o">=</span> <span class="n">colormap_filter</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cmap_override</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">Blue</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourColormapOverride.start_level">
+<code class="descclassname">ContourColormapOverride.</code><code class="descname">start_level</code><a class="headerlink" href="#tecplot.plot.ContourColormapOverride.start_level" title="Permalink to this definition">¶</a></dt>
+<dd><p>First level to override.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">integer</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">colormap_filter</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">colormap_filter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cmap_override</span> <span class="o">=</span> <span class="n">colormap_filter</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cmap_override</span><span class="o">.</span><span class="n">start_level</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourColormapOverride.end_level">
+<code class="descclassname">ContourColormapOverride.</code><code class="descname">end_level</code><a class="headerlink" href="#tecplot.plot.ContourColormapOverride.end_level" title="Permalink to this definition">¶</a></dt>
+<dd><p>Last level to override.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">integer</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">colormap_filter</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">colormap_filter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cmap_override</span> <span class="o">=</span> <span class="n">colormap_filter</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cmap_override</span><span class="o">.</span><span class="n">end_level</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="contourcolormapzebrashade">
+<h3><a class="toc-backref" href="#id6">ContourColormapZebraShade</a><a class="headerlink" href="#contourcolormapzebrashade" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tecplot.plot.ContourColormapZebraShade">
+<em class="property">class </em><code class="descclassname">tecplot.plot.</code><code class="descname">ContourColormapZebraShade</code><span class="sig-paren">(</span><em>colormap_filter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/contour.html#ContourColormapZebraShade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.ContourColormapZebraShade" title="Permalink to this definition">¶</a></dt>
+<dd><p>This filter sets a uniform color for every other band.</p>
+<p>Setting the color to <a class="reference external" href="https://docs.python.org/3.5/library/constants.html#None" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">None</span></code></a> turns the bands off and makes them
+transparent:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">tecplot</span> <span class="kn">as</span> <span class="nn">tp</span>
+<span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="n">Color</span><span class="p">,</span> <span class="n">SurfacesToPlot</span>
+
+<span class="c1"># load the data</span>
+<span class="n">examples_dir</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">tecplot_examples_directory</span><span class="p">()</span>
+<span class="n">datafile</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">examples_dir</span><span class="p">,</span><span class="s1">&#39;3D&#39;</span><span class="p">,</span><span class="s1">&#39;pyramid.plt&#39;</span><span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">load_tecplot</span><span class="p">(</span><span class="n">datafile</span><span class="p">)</span>
+
+<span class="c1"># show boundary faces and contours</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">active_frame</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">surfaces</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">fieldmap</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">surfaces</span>
+<span class="n">surfaces</span><span class="o">.</span><span class="n">surfaces_to_plot</span> <span class="o">=</span> <span class="n">SurfacesToPlot</span><span class="o">.</span><span class="n">BoundaryFaces</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">show_contour</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">show_shade</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="c1"># set zebra filter on and make the zebra contours transparent</span>
+<span class="n">cont0</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">zebra</span> <span class="o">=</span> <span class="n">cont0</span><span class="o">.</span><span class="n">colormap_filter</span><span class="o">.</span><span class="n">zebra_shade</span>
+<span class="n">zebra</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">zebra</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="n">tp</span><span class="o">.</span><span class="n">export_image</span><span class="p">(</span><span class="s1">&#39;contour_zebra.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="figure" style="width: 300px">
+<a class="reference internal image-reference" href="../_images/contour_zebra.png"><img alt="../_images/contour_zebra.png" src="../_images/contour_zebra.png" style="width: 300px;" /></a>
+</div>
+<p><strong>Attributes</strong></p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourColormapZebraShade.color" title="tecplot.plot.ContourColormapZebraShade.color"><code class="xref py py-obj docutils literal"><span class="pre">color</span></code></a></td>
+<td>Color of the zebra shading.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#tecplot.plot.ContourColormapZebraShade.show" title="tecplot.plot.ContourColormapZebraShade.show"><code class="xref py py-obj docutils literal"><span class="pre">show</span></code></a></td>
+<td>Show zebra shading in this <a class="reference internal" href="#tecplot.plot.ContourGroup" title="tecplot.plot.ContourGroup"><code class="xref any py py-class docutils literal"><span class="pre">ContourGroup</span></code></a>.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourColormapZebraShade.show">
+<code class="descclassname">ContourColormapZebraShade.</code><code class="descname">show</code><a class="headerlink" href="#tecplot.plot.ContourColormapZebraShade.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show zebra shading in this <a class="reference internal" href="#tecplot.plot.ContourGroup" title="tecplot.plot.ContourGroup"><code class="xref any py py-class docutils literal"><span class="pre">ContourGroup</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#bool" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">boolean</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cmap_filter</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">colormap_filter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cmap_filter</span><span class="o">.</span><span class="n">zebra_shade</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourColormapZebraShade.color">
+<code class="descclassname">ContourColormapZebraShade.</code><code class="descname">color</code><a class="headerlink" href="#tecplot.plot.ContourColormapZebraShade.color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Color of the zebra shading.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="tecplot.constant.html#tecplot.constant.Color" title="tecplot.constant.Color"><code class="xref any py py-class docutils literal"><span class="pre">Color</span></code></a> or <a class="reference external" href="https://docs.python.org/3.5/library/constants.html#None" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">None</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>The zebra bands will be transparent when setting the color to <a class="reference external" href="https://docs.python.org/3.5/library/constants.html#None" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">None</span></code></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="n">Color</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Set the first contour group&#39;s zebra shading to be transparent</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filter0</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">colormap_filter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zebra0</span> <span class="o">=</span> <span class="n">filter0</span><span class="o">.</span><span class="n">zebra_shade</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zebra0</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zebra0</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Make second contour group&#39;s zebra shading blue</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filter1</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">colormap_filter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zebra1</span> <span class="o">=</span> <span class="n">filter1</span><span class="o">.</span><span class="n">zebra_shade</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zebra1</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zebra1</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">Blue</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="contourlabels">
+<h3><a class="toc-backref" href="#id7">ContourLabels</a><a class="headerlink" href="#contourlabels" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tecplot.plot.ContourLabels">
+<em class="property">class </em><code class="descclassname">tecplot.plot.</code><code class="descname">ContourLabels</code><span class="sig-paren">(</span><em>contour</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/contour.html#ContourLabels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.ContourLabels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contour line label style, position and alignment control.</p>
+<p>These are labels that identify particular contour levels either by value or
+optionally, by number starting from one. The plot type must be lines or
+lines and flood in order to see them:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">import</span> <span class="nn">tecplot</span> <span class="kn">as</span> <span class="nn">tp</span>
+<span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="n">Color</span><span class="p">,</span> <span class="n">ContourType</span><span class="p">,</span> <span class="n">SurfacesToPlot</span>
+
+<span class="c1"># load the data</span>
+<span class="n">examples_dir</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">tecplot_examples_directory</span><span class="p">()</span>
+<span class="n">datafile</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">examples_dir</span><span class="p">,</span><span class="s1">&#39;3D&#39;</span><span class="p">,</span><span class="s1">&#39;pyramid.plt&#39;</span><span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">load_tecplot</span><span class="p">(</span><span class="n">datafile</span><span class="p">)</span>
+
+<span class="c1"># show boundary faces and contours</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">active_frame</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">fieldmap</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">contour</span><span class="o">.</span><span class="n">contour_type</span> <span class="o">=</span> <span class="n">ContourType</span><span class="o">.</span><span class="n">Lines</span>
+<span class="n">surfaces</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">fieldmap</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">surfaces</span>
+<span class="n">surfaces</span><span class="o">.</span><span class="n">surfaces_to_plot</span> <span class="o">=</span> <span class="n">SurfacesToPlot</span><span class="o">.</span><span class="n">BoundaryFaces</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">show_contour</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="c1"># set contour label style</span>
+<span class="n">contour_labels</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span>
+<span class="hll"><span class="n">contour_labels</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class="hll"><span class="n">contour_labels</span><span class="o">.</span><span class="n">auto_align</span> <span class="o">=</span> <span class="bp">False</span>
+</span><span class="hll"><span class="n">contour_labels</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">Blue</span>
+</span><span class="hll"><span class="n">contour_labels</span><span class="o">.</span><span class="n">background_color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">White</span>
+</span><span class="hll"><span class="n">contour_labels</span><span class="o">.</span><span class="n">margin</span> <span class="o">=</span> <span class="mi">20</span>
+</span><span class="hll">
+</span><span class="n">tp</span><span class="o">.</span><span class="n">export_image</span><span class="p">(</span><span class="s1">&#39;contour_labels.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="figure" style="width: 300px">
+<a class="reference internal image-reference" href="../_images/contour_labels.png"><img alt="../_images/contour_labels.png" src="../_images/contour_labels.png" style="width: 300px;" /></a>
+</div>
+<p><strong>Attributes</strong></p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourLabels.auto_generate" title="tecplot.plot.ContourLabels.auto_generate"><code class="xref py py-obj docutils literal"><span class="pre">auto_generate</span></code></a></td>
+<td>Automatically generate labels along contour lines.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#tecplot.plot.ContourLabels.auto_align" title="tecplot.plot.ContourLabels.auto_align"><code class="xref py py-obj docutils literal"><span class="pre">auto_align</span></code></a></td>
+<td>Automatically align the labels with the contour lines.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourLabels.background_color" title="tecplot.plot.ContourLabels.background_color"><code class="xref py py-obj docutils literal"><span class="pre">background_color</span></code></a></td>
+<td>Background fill color behind the text labels.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#tecplot.plot.ContourLabels.color" title="tecplot.plot.ContourLabels.color"><code class="xref py py-obj docutils literal"><span class="pre">color</span></code></a></td>
+<td>Text color of the labels.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourLabels.label_by_level" title="tecplot.plot.ContourLabels.label_by_level"><code class="xref py py-obj docutils literal"><span class="pre">label_by_level</span></code></a></td>
+<td>Use the contour numbers as the label instead of the data value.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#tecplot.plot.ContourLabels.margin" title="tecplot.plot.ContourLabels.margin"><code class="xref py py-obj docutils literal"><span class="pre">margin</span></code></a></td>
+<td>Spacing around the text and the filled background area.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourLabels.show" title="tecplot.plot.ContourLabels.show"><code class="xref py py-obj docutils literal"><span class="pre">show</span></code></a></td>
+<td>Show the contour line labels.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#tecplot.plot.ContourLabels.spacing" title="tecplot.plot.ContourLabels.spacing"><code class="xref py py-obj docutils literal"><span class="pre">spacing</span></code></a></td>
+<td>Spacing between labels along the contour lines.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourLabels.step" title="tecplot.plot.ContourLabels.step"><code class="xref py py-obj docutils literal"><span class="pre">step</span></code></a></td>
+<td>Number of contour lines from one label to the next.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourLabels.show">
+<code class="descclassname">ContourLabels.</code><code class="descname">show</code><a class="headerlink" href="#tecplot.plot.ContourLabels.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the contour line labels.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#bool" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">bool</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Contour lines must be on for this to have any effect:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="n">ContourType</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">fieldmap</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">contour</span><span class="o">.</span><span class="n">contour_type</span> <span class="o">=</span> <span class="n">ContourType</span><span class="o">.</span><span class="n">Lines</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourLabels.label_by_level">
+<code class="descclassname">ContourLabels.</code><code class="descname">label_by_level</code><a class="headerlink" href="#tecplot.plot.ContourLabels.label_by_level" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use the contour numbers as the label instead of the data value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#bool" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">bool</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Contour level numbers start from one when drawn. Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="n">Color</span><span class="p">,</span> <span class="n">ContourType</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">fieldmap</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">contour</span><span class="o">.</span><span class="n">contour_type</span> <span class="o">=</span> <span class="n">ContourType</span><span class="o">.</span><span class="n">Lines</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">label_by_level</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourLabels.auto_generate">
+<code class="descclassname">ContourLabels.</code><code class="descname">auto_generate</code><a class="headerlink" href="#tecplot.plot.ContourLabels.auto_generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Automatically generate labels along contour lines.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#bool" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">bool</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>This causes a new set of contour labels to be created at each redraw:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="n">Color</span><span class="p">,</span> <span class="n">ContourType</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">fieldmap</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">contour</span><span class="o">.</span><span class="n">contour_type</span> <span class="o">=</span> <span class="n">ContourType</span><span class="o">.</span><span class="n">Lines</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">auto_generate</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourLabels.auto_align">
+<code class="descclassname">ContourLabels.</code><code class="descname">auto_align</code><a class="headerlink" href="#tecplot.plot.ContourLabels.auto_align" title="Permalink to this definition">¶</a></dt>
+<dd><p>Automatically align the labels with the contour lines.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#bool" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">bool</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>This causes the flow of the text to be aligned with the contour lines.
+Otherwise, the labels are aligned with the frame:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="n">ContourType</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">fieldmap</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">contour</span><span class="o">.</span><span class="n">contour_type</span> <span class="o">=</span> <span class="n">ContourType</span><span class="o">.</span><span class="n">Lines</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">auto_align</span> <span class="o">=</span> <span class="bp">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourLabels.step">
+<code class="descclassname">ContourLabels.</code><code class="descname">step</code><a class="headerlink" href="#tecplot.plot.ContourLabels.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of contour lines from one label to the next.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">int</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>This is the number of contour bands between lines that are to be
+labeled:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="n">ContourType</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">fieldmap</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">contour</span><span class="o">.</span><span class="n">contour_type</span> <span class="o">=</span> <span class="n">ContourType</span><span class="o">.</span><span class="n">Lines</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">step</span> <span class="o">=</span> <span class="mi">4</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourLabels.spacing">
+<code class="descclassname">ContourLabels.</code><code class="descname">spacing</code><a class="headerlink" href="#tecplot.plot.ContourLabels.spacing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spacing between labels along the contour lines.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#float" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">float</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>This is the distance between each label along each contour line
+in percentage of the frame height:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="n">ContourType</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">fieldmap</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">contour</span><span class="o">.</span><span class="n">contour_type</span> <span class="o">=</span> <span class="n">ContourType</span><span class="o">.</span><span class="n">Lines</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">spacing</span> <span class="o">=</span> <span class="mi">20</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourLabels.margin">
+<code class="descclassname">ContourLabels.</code><code class="descname">margin</code><a class="headerlink" href="#tecplot.plot.ContourLabels.margin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spacing around the text and the filled background area.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#float" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">float</span></code></a> in percentage of the text height.</td>
+</tr>
+</tbody>
+</table>
+<p>Contour numbers start from one when drawn. Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="n">Color</span><span class="p">,</span> <span class="n">ContourType</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">fieldmap</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">contour</span><span class="o">.</span><span class="n">contour_type</span> <span class="o">=</span> <span class="n">ContourType</span><span class="o">.</span><span class="n">Lines</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">background_color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">Yellow</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">margin</span> <span class="o">=</span> <span class="mi">20</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourLabels.color">
+<code class="descclassname">ContourLabels.</code><code class="descname">color</code><a class="headerlink" href="#tecplot.plot.ContourLabels.color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Text color of the labels.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="tecplot.constant.html#tecplot.constant.Color" title="tecplot.constant.Color"><code class="xref any py py-class docutils literal"><span class="pre">Color</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="n">Color</span><span class="p">,</span> <span class="n">ContourType</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">fieldmap</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">contour</span><span class="o">.</span><span class="n">contour_type</span> <span class="o">=</span> <span class="n">ContourType</span><span class="o">.</span><span class="n">Lines</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">color</span> <span class="n">Color</span><span class="o">.</span><span class="n">Blue</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourLabels.background_color">
+<code class="descclassname">ContourLabels.</code><code class="descname">background_color</code><a class="headerlink" href="#tecplot.plot.ContourLabels.background_color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Background fill color behind the text labels.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="tecplot.constant.html#tecplot.constant.Color" title="tecplot.constant.Color"><code class="xref any py py-class docutils literal"><span class="pre">Color</span></code></a> or <a class="reference external" href="https://docs.python.org/3.5/library/constants.html#None" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">None</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>The background can be filled with a color or disabled (made
+transparent) by setting this property to <a class="reference external" href="https://docs.python.org/3.5/library/constants.html#None" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">None</span></code></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="n">Color</span><span class="p">,</span> <span class="n">ContourType</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">fieldmap</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">contour</span><span class="o">.</span><span class="n">contour_type</span> <span class="o">=</span> <span class="n">ContourType</span><span class="o">.</span><span class="n">Lines</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">background_color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">Blue</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">background_color</span> <span class="o">=</span> <span class="bp">None</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="contourlevels">
+<h3><a class="toc-backref" href="#id8">ContourLevels</a><a class="headerlink" href="#contourlevels" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tecplot.plot.ContourLevels">
+<em class="property">class </em><code class="descclassname">tecplot.plot.</code><code class="descname">ContourLevels</code><span class="sig-paren">(</span><em>contour</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/contour.html#ContourLevels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.ContourLevels" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of contour level values.</p>
+<p>A contour level is a value at which contour lines are drawn, or for banded
+contour flooding, the border between different colors of flooding.
+Initially, each contour group consists of approximately 10 levels evenly
+spaced over the <em>z</em> coordinate in the <a class="reference internal" href="tecplot.layout.html#tecplot.layout.Frame" title="tecplot.layout.Frame"><code class="xref any py py-class docutils literal"><span class="pre">Frame</span></code></a>&#8216;s <a class="reference internal" href="tecplot.data.html#tecplot.data.Dataset" title="tecplot.data.Dataset"><code class="xref any py py-class docutils literal"><span class="pre">Dataset</span></code></a>. These values can
+be manipulated with the <a class="reference internal" href="#tecplot.plot.ContourLevels" title="tecplot.plot.ContourLevels"><code class="xref any py py-class docutils literal"><span class="pre">ContourLevels</span></code></a> object obtained via the
+<a class="reference internal" href="#tecplot.plot.ContourGroup.levels" title="tecplot.plot.ContourGroup.levels"><code class="xref any py py-attr docutils literal"><span class="pre">ContourGroup.levels</span></code></a> attribute.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">tecplot</span> <span class="kn">as</span> <span class="nn">tp</span>
+
+<span class="c1"># load layout</span>
+<span class="n">examples_dir</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">tecplot_examples_directory</span><span class="p">()</span>
+<span class="n">example_layout</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">examples_dir</span><span class="p">,</span><span class="s1">&#39;2D&#39;</span><span class="p">,</span><span class="s1">&#39;3element.lpk&#39;</span><span class="p">)</span>
+<span class="n">tp</span><span class="o">.</span><span class="n">load_layout</span><span class="p">(</span><span class="n">example_layout</span><span class="p">)</span>
+<span class="n">frame</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">active_frame</span><span class="p">()</span>
+
+<span class="hll"><span class="n">levels</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">levels</span>
+</span><span class="hll"><span class="n">levels</span><span class="o">.</span><span class="n">reset_levels</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">55000</span><span class="p">,</span><span class="mi">115000</span><span class="p">,</span><span class="mi">61</span><span class="p">))</span>
+</span>
+<span class="c1"># save image to file</span>
+<span class="n">tp</span><span class="o">.</span><span class="n">export_image</span><span class="p">(</span><span class="s1">&#39;3element_adjusted_levels.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="figure" style="width: 300px">
+<a class="reference internal image-reference" href="../_images/3element_adjusted_levels.png"><img alt="../_images/3element_adjusted_levels.png" src="../_images/3element_adjusted_levels.png" style="width: 300px;" /></a>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The streamtraces in the plot above is a side-effect of settings in
+layout file used. For more information about streamtraces, see the
+<a class="reference internal" href="#tecplot.plot.Streamtrace" title="tecplot.plot.Streamtrace"><code class="xref any py py-class docutils literal"><span class="pre">plot.Streamtrace</span></code></a> class reference.</p>
+</div>
+<p><strong>Methods</strong></p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourLevels.add" title="tecplot.plot.ContourLevels.add"><code class="xref py py-obj docutils literal"><span class="pre">add</span></code></a>(*values)</td>
+<td>Adds new levels to the existing list.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#tecplot.plot.ContourLevels.delete_nearest" title="tecplot.plot.ContourLevels.delete_nearest"><code class="xref py py-obj docutils literal"><span class="pre">delete_nearest</span></code></a>(value)</td>
+<td>Removes the level closest to the specified value.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourLevels.delete_range" title="tecplot.plot.ContourLevels.delete_range"><code class="xref py py-obj docutils literal"><span class="pre">delete_range</span></code></a>(min_value,&nbsp;max_value)</td>
+<td>Inclusively, deletes all levels within a specified range.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#tecplot.plot.ContourLevels.reset" title="tecplot.plot.ContourLevels.reset"><code class="xref py py-obj docutils literal"><span class="pre">reset</span></code></a>([num_levels])</td>
+<td>Resets the levels to the number specified.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourLevels.reset_levels" title="tecplot.plot.ContourLevels.reset_levels"><code class="xref py py-obj docutils literal"><span class="pre">reset_levels</span></code></a>(*values)</td>
+<td>Resets the levels to the values specified.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#tecplot.plot.ContourLevels.reset_to_nice" title="tecplot.plot.ContourLevels.reset_to_nice"><code class="xref py py-obj docutils literal"><span class="pre">reset_to_nice</span></code></a>([num_levels])</td>
+<td>Approximately resets the levels to the number specified.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tecplot.plot.ContourLevels.reset">
+<code class="descclassname">ContourLevels.</code><code class="descname">reset</code><span class="sig-paren">(</span><em>num_levels=15</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/contour.html#ContourLevels.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.ContourLevels.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the levels to the number specified.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>num_levels</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">integer</span></code></a>) &#8211; Number of levels. (default: 10)</td>
+</tr>
+</tbody>
+</table>
+<p>This will reset the contour levels to a set of evenly
+distributed values spanning the entire range of the currently
+selected contouring variable:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">levels</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="tecplot.plot.ContourLevels.reset_levels">
+<code class="descclassname">ContourLevels.</code><code class="descname">reset_levels</code><span class="sig-paren">(</span><em>*values</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/contour.html#ContourLevels.reset_levels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.ContourLevels.reset_levels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the levels to the values specified.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*values</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#float" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">floats</span></code></a>) &#8211; The level values to be added to the
+<a class="reference internal" href="#tecplot.plot.ContourGroup" title="tecplot.plot.ContourGroup"><code class="xref any py py-class docutils literal"><span class="pre">ContourGroup</span></code></a>.</td>
+</tr>
+</tbody>
+</table>
+<p>This method replaces the current set of contour levels with a new set.
+Here, we set the levels to go from 0 to 100 in steps of 5:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">levels</span><span class="o">.</span><span class="n">reset_levels</span><span class="p">(</span><span class="o">*</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="tecplot.plot.ContourLevels.reset_to_nice">
+<code class="descclassname">ContourLevels.</code><code class="descname">reset_to_nice</code><span class="sig-paren">(</span><em>num_levels=15</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/contour.html#ContourLevels.reset_to_nice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.ContourLevels.reset_to_nice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Approximately resets the levels to the number specified.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>num_levels</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">integer</span></code></a>) &#8211; Approximate number of levels to
+create. (default: 10)</td>
+</tr>
+</tbody>
+</table>
+<p>This will reset the contour levels to a set of evenly distributed
+values that approximately spans the range of the currently selected
+contouring variable. Exact range and number of levels will be
+adjusted to make the contour levels have &#8220;nice&#8221; values:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">levels</span><span class="o">.</span><span class="n">reset_to_nice</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="tecplot.plot.ContourLevels.add">
+<code class="descclassname">ContourLevels.</code><code class="descname">add</code><span class="sig-paren">(</span><em>*values</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/contour.html#ContourLevels.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.ContourLevels.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds new levels to the existing list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*values</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#float" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">floats</span></code></a>) &#8211; The level values to be added to the
+<a class="reference internal" href="#tecplot.plot.ContourGroup" title="tecplot.plot.ContourGroup"><code class="xref any py py-class docutils literal"><span class="pre">ContourGroup</span></code></a>.</td>
+</tr>
+</tbody>
+</table>
+<p>The values added are inserted into the list of levels in ascending
+order:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">levels</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">levels</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">levels</span><span class="p">)</span>
+<span class="go">[0.0, 1.0, 2.0, 3.0, 4.0, 5.0]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">levels</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mf">3.14159</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">levels</span><span class="p">)</span>
+<span class="go">[0.0, 1.0, 2.0, 3.0, 3.14159, 4.0, 5.0]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="tecplot.plot.ContourLevels.delete_nearest">
+<code class="descclassname">ContourLevels.</code><code class="descname">delete_nearest</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/contour.html#ContourLevels.delete_nearest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.ContourLevels.delete_nearest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the level closest to the specified value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#float" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">float</span></code></a>) &#8211; Value of the level to remove.</td>
+</tr>
+</tbody>
+</table>
+<p>This method deletes the contour level with the value nearest the
+supplied value:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">levels</span><span class="o">.</span><span class="n">delete_nearest</span><span class="p">(</span><span class="mf">3.14</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="tecplot.plot.ContourLevels.delete_range">
+<code class="descclassname">ContourLevels.</code><code class="descname">delete_range</code><span class="sig-paren">(</span><em>min_value</em>, <em>max_value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/contour.html#ContourLevels.delete_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.ContourLevels.delete_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inclusively, deletes all levels within a specified range.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>min_value</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#float" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">float</span></code></a>) &#8211; Minimum value to remove.</li>
+<li><strong>max_value</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#float" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">float</span></code></a>) &#8211; Maximum value to remove.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>This method deletes all contour levels between the specified minimum
+and maximum values of the contour variable (inclusive):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">levels</span><span class="o">.</span><span class="n">delete_range</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="contourlines">
+<h3><a class="toc-backref" href="#id9">ContourLines</a><a class="headerlink" href="#contourlines" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tecplot.plot.ContourLines">
+<em class="property">class </em><code class="descclassname">tecplot.plot.</code><code class="descname">ContourLines</code><span class="sig-paren">(</span><em>contour</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tecplot/plot/contour.html#ContourLines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.ContourLines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contour line style.</p>
+<p>This object sets the style of the contour lines once turned on.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">import</span> <span class="nn">tecplot</span> <span class="kn">as</span> <span class="nn">tp</span>
+<span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="p">(</span><span class="n">ContourLineMode</span><span class="p">,</span> <span class="n">ContourType</span><span class="p">,</span>
+                              <span class="n">SurfacesToPlot</span><span class="p">)</span>
+
+<span class="c1"># load the data</span>
+<span class="n">examples_dir</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">tecplot_examples_directory</span><span class="p">()</span>
+<span class="n">datafile</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">examples_dir</span><span class="p">,</span><span class="s1">&#39;3D&#39;</span><span class="p">,</span><span class="s1">&#39;pyramid.plt&#39;</span><span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">load_tecplot</span><span class="p">(</span><span class="n">datafile</span><span class="p">)</span>
+
+<span class="c1"># show boundary faces and contours</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">active_frame</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">fieldmap</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">contour</span><span class="o">.</span><span class="n">contour_type</span> <span class="o">=</span> <span class="n">ContourType</span><span class="o">.</span><span class="n">Lines</span>
+<span class="n">surfaces</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">fieldmap</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">surfaces</span>
+<span class="n">surfaces</span><span class="o">.</span><span class="n">surfaces_to_plot</span> <span class="o">=</span> <span class="n">SurfacesToPlot</span><span class="o">.</span><span class="n">BoundaryFaces</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">show_contour</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="c1"># set contour line style</span>
+<span class="hll"><span class="n">contour_lines</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">lines</span>
+</span><span class="hll"><span class="n">contour_lines</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">ContourLineMode</span><span class="o">.</span><span class="n">SkipToSolid</span>
+</span><span class="hll"><span class="n">contour_lines</span><span class="o">.</span><span class="n">step</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span class="hll"><span class="n">contour_lines</span><span class="o">.</span><span class="n">pattern_length</span> <span class="o">=</span> <span class="mi">2</span>
+</span>
+<span class="n">tp</span><span class="o">.</span><span class="n">export_image</span><span class="p">(</span><span class="s1">&#39;contour_lines.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="figure" style="width: 300px">
+<a class="reference internal image-reference" href="../_images/contour_lines.png"><img alt="../_images/contour_lines.png" src="../_images/contour_lines.png" style="width: 300px;" /></a>
+</div>
+<p><strong>Attributes</strong></p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourLines.mode" title="tecplot.plot.ContourLines.mode"><code class="xref py py-obj docutils literal"><span class="pre">mode</span></code></a></td>
+<td>Type of lines to draw on the plot (<a class="reference internal" href="tecplot.constant.html#tecplot.constant.ContourLineMode" title="tecplot.constant.ContourLineMode"><code class="xref any py py-class docutils literal"><span class="pre">ContourLineMode</span></code></a>).</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#tecplot.plot.ContourLines.pattern_length" title="tecplot.plot.ContourLines.pattern_length"><code class="xref py py-obj docutils literal"><span class="pre">pattern_length</span></code></a></td>
+<td>Length of dashed lines and space between dashes (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#float" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">float</span></code></a>).</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#tecplot.plot.ContourLines.step" title="tecplot.plot.ContourLines.step"><code class="xref py py-obj docutils literal"><span class="pre">step</span></code></a></td>
+<td>Number of lines to step for <a class="reference internal" href="tecplot.constant.html#tecplot.constant.ContourLineMode.SkipToSolid" title="tecplot.constant.ContourLineMode.SkipToSolid"><code class="xref any py py-attr docutils literal"><span class="pre">SkipToSolid</span></code></a> line mode (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">int</span></code></a>).</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourLines.mode">
+<code class="descclassname">ContourLines.</code><code class="descname">mode</code><a class="headerlink" href="#tecplot.plot.ContourLines.mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type of lines to draw on the plot (<a class="reference internal" href="tecplot.constant.html#tecplot.constant.ContourLineMode" title="tecplot.constant.ContourLineMode"><code class="xref any py py-class docutils literal"><span class="pre">ContourLineMode</span></code></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="tecplot.constant.html#tecplot.constant.ContourLineMode" title="tecplot.constant.ContourLineMode"><code class="xref any py py-class docutils literal"><span class="pre">ContourLineMode</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Possible values:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt><a class="reference internal" href="tecplot.constant.html#tecplot.constant.ContourLineMode.UseZoneLineType" title="tecplot.constant.ContourLineMode.UseZoneLineType"><code class="xref any py py-attr docutils literal"><span class="pre">UseZoneLineType</span></code></a></dt>
+<dd>For each zone, draw the contour lines using the line pattern
+and pattern length specified in the <a class="reference internal" href="tecplot.plot.html#tecplot.plot.FieldmapContour" title="tecplot.plot.FieldmapContour"><code class="xref any py py-class docutils literal"><span class="pre">FieldmapContour</span></code></a> for the
+parent <a class="reference internal" href="tecplot.plot.html#fieldmap"><span class="std std-ref">Fieldmaps</span></a>. If you are adding contour lines to
+polyhedral zones, the patterns will not be continuous from one
+cell to the next and the pattern will restart at every cell
+boundary.</dd>
+<dt><a class="reference internal" href="tecplot.constant.html#tecplot.constant.ContourLineMode.SkipToSolid" title="tecplot.constant.ContourLineMode.SkipToSolid"><code class="xref any py py-attr docutils literal"><span class="pre">SkipToSolid</span></code></a></dt>
+<dd>Draw dashed lines between each pair of solid lines which are
+spaced out by the <a class="reference internal" href="#tecplot.plot.ContourLines.step" title="tecplot.plot.ContourLines.step"><code class="xref any py py-attr docutils literal"><span class="pre">ContourLines.step</span></code></a> property. This will
+override any line pattern or thickness setting in the parent
+<a class="reference internal" href="tecplot.plot.html#fieldmap"><span class="std std-ref">Fieldmaps</span></a>&#8216;s <a class="reference internal" href="tecplot.plot.html#tecplot.plot.FieldmapContour" title="tecplot.plot.FieldmapContour"><code class="xref any py py-class docutils literal"><span class="pre">FieldmapContour</span></code></a> object.</dd>
+<dt><a class="reference internal" href="tecplot.constant.html#tecplot.constant.ContourLineMode.DashNegative" title="tecplot.constant.ContourLineMode.DashNegative"><code class="xref any py py-attr docutils literal"><span class="pre">DashNegative</span></code></a></dt>
+<dd>Draw lines of positive contour variable value as solid lines
+and lines of negative contour variable value as dashed lines.
+This will override any line pattern or thickness setting in the
+parent <a class="reference internal" href="tecplot.plot.html#fieldmap"><span class="std std-ref">Fieldmaps</span></a>&#8216;s <a class="reference internal" href="tecplot.plot.html#tecplot.plot.FieldmapContour" title="tecplot.plot.FieldmapContour"><code class="xref any py py-class docutils literal"><span class="pre">FieldmapContour</span></code></a> object.</dd>
+</dl>
+</div></blockquote>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="n">ContourLineMode</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lines</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">lines</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lines</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">ContourLineMode</span><span class="o">.</span><span class="n">DashNegative</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourLines.step">
+<code class="descclassname">ContourLines.</code><code class="descname">step</code><a class="headerlink" href="#tecplot.plot.ContourLines.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of lines to step for <a class="reference internal" href="tecplot.constant.html#tecplot.constant.ContourLineMode.SkipToSolid" title="tecplot.constant.ContourLineMode.SkipToSolid"><code class="xref any py py-attr docutils literal"><span class="pre">SkipToSolid</span></code></a> line mode (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">int</span></code></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">int</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="n">ContourLineMode</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lines</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">lines</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lines</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">ContourLineMode</span><span class="o">.</span><span class="n">SkipToSolid</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lines</span><span class="o">.</span><span class="n">step</span> <span class="o">=</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tecplot.plot.ContourLines.pattern_length">
+<code class="descclassname">ContourLines.</code><code class="descname">pattern_length</code><a class="headerlink" href="#tecplot.plot.ContourLines.pattern_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Length of dashed lines and space between dashes (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#float" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">float</span></code></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#float" title="(in Python v3.5)"><code class="xref any docutils literal"><span class="pre">float</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>The length is in percentage of the frame height:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tecplot.constant</span> <span class="kn">import</span> <span class="n">ContourLineMode</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lines</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">lines</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lines</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">ContourLineMode</span><span class="o">.</span><span class="n">SkipToSolid</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lines</span><span class="o">.</span><span class="n">step</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lines</span><span class="o">.</span><span class="n">pattern_length</span> <span class="o">=</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="streamtraces">
+<h2><a class="toc-backref" href="#id10">Streamtraces</a><a class="headerlink" href="#streamtraces" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="streamtrace">
+<h3><a class="toc-backref" href="#id11">Streamtrace</a><a class="headerlink" href="#streamtrace" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tecplot.plot.Streamtrace">
+<em class="property">class </em><code class="descclassname">tecplot.plot.</code><code class="descname">Streamtrace</code><a class="reference internal" href="../_modules/tecplot/plot/streamtrace.html#Streamtrace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.Streamtrace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Streamtraces</p>
+</dd></dl>
+
+</div>
+<div class="section" id="streamtraceribbon">
+<h3><a class="toc-backref" href="#id12">StreamtraceRibbon</a><a class="headerlink" href="#streamtraceribbon" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tecplot.plot.StreamtraceRibbon">
+<em class="property">class </em><code class="descclassname">tecplot.plot.</code><code class="descname">StreamtraceRibbon</code><a class="reference internal" href="../_modules/tecplot/plot/streamtrace.html#StreamtraceRibbon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tecplot.plot.StreamtraceRibbon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Streamtrace ribbons</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/powered_by_tecplot.png" alt="Logo"/>
+            </a></p>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../reference.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tecplot.session.html">Session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.layout.html">Layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.data.html">Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.plot.html">Plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.axes.html">Axes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.legend.html">Legend</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Plot Style</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#contours">Contours</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#streamtraces">Streamtraces</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.annotation.html">Annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.export.html">Exporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.macro.html">Macros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.extension.html">Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.constant.html">Constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tecplot.exception.html">Exceptions</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/tecplot.plot_style.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tecplot.annotation.html" title="Annotations"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tecplot.legend.html" title="Legends"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016, Tecplot, Inc..
+      Last updated on Oct 07, 2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.5.
+    </div>
+  </body>
+</html>

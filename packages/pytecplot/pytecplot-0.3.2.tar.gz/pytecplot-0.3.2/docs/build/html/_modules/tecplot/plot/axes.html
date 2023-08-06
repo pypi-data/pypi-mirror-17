@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>tecplot.plot.axes &mdash; PyTecplot 0.3.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.3.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    <link rel="top" title="PyTecplot 0.3.2 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/gif" href="../../../_static/favicon.gif" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    <script type="text/javascript" src="../../../_static/copybutton.js"></script>
+
+  </head>
+  <body role="document">
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../../index.html">PyTecplot-0.3</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for tecplot.plot.axes</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">super</span>
+
+<span class="kn">from</span> <span class="nn">..tecutil</span> <span class="kn">import</span> <span class="n">_tecutil</span>
+<span class="kn">from</span> <span class="nn">..constant</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">session</span>
+<span class="kn">from</span> <span class="nn">..tecutil</span> <span class="kn">import</span> <span class="n">log_setattr</span><span class="p">,</span> <span class="n">sv</span>
+<span class="kn">from</span> <span class="nn">.axis</span> <span class="kn">import</span> <span class="p">(</span><span class="n">Cartesian2DFieldAxis</span><span class="p">,</span> <span class="n">Cartesian3DFieldAxis</span><span class="p">,</span>
+                   <span class="n">PolarAngleLineAxis</span><span class="p">,</span> <span class="n">RadialLineAxis</span><span class="p">,</span> <span class="n">SketchAxis</span><span class="p">,</span> <span class="n">XYLineAxis</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.grid</span> <span class="kn">import</span> <span class="n">PreciseGrid</span>
+<span class="kn">from</span> <span class="nn">.view</span> <span class="kn">import</span> <span class="n">Cartesian2DViewport</span><span class="p">,</span> <span class="n">ReadOnlyViewport</span><span class="p">,</span> <span class="n">Viewport</span>
+
+
+<span class="k">class</span> <span class="nc">Axes</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">Style</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="p">,</span> <span class="o">*</span><span class="n">svargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot</span> <span class="o">=</span> <span class="n">plot</span>
+        <span class="n">kw</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">uniqueid</span><span class="o">=</span><span class="n">plot</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">uid</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">svargs</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">that</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">that</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plot</span> <span class="o">==</span> <span class="n">that</span><span class="o">.</span><span class="n">plot</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">that</span><span class="p">):</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span> <span class="o">==</span> <span class="n">that</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">grid_area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">GridArea</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">preserve_scale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_style</span><span class="p">(</span><span class="nb">bool</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">PRESERVICEAXISSCALE</span><span class="p">)</span>
+
+    <span class="nd">@preserve_scale.setter</span>
+    <span class="k">def</span> <span class="nf">preserve_scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_style</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">sv</span><span class="o">.</span><span class="n">PRESERVICEAXISSCALE</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">viewport</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Viewport</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Axes2D</span><span class="p">(</span><span class="n">Axes</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">precise_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">PreciseGrid</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">CartesianAxes</span><span class="p">(</span><span class="n">Axes</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">auto_adjust_ranges</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_style</span><span class="p">(</span><span class="nb">bool</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">AUTOADJUSTRANGESTONICEVALUES</span><span class="p">)</span>
+
+    <span class="nd">@auto_adjust_ranges.setter</span>
+    <span class="k">def</span> <span class="nf">auto_adjust_ranges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_style</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">sv</span><span class="o">.</span><span class="n">AUTOADJUSTRANGESTONICEVALUES</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Cartesian2DAxes</span><span class="p">(</span><span class="n">CartesianAxes</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">xy_ratio</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_style</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">DEPXTOYRATIO</span><span class="p">)</span>
+
+    <span class="nd">@xy_ratio.setter</span>
+    <span class="k">def</span> <span class="nf">xy_ratio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_style</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">sv</span><span class="o">.</span><span class="n">DEPXTOYRATIO</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">axis_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Axis relations regarding functional dependency</span>
+
+<span class="sd">        :type: `AxisMode`</span>
+
+<span class="sd">        Possible values: `Independent`, `XYDependent`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_style</span><span class="p">(</span><span class="n">AxisMode</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">AXISMODE</span><span class="p">)</span>
+
+    <span class="nd">@axis_mode.setter</span>
+    <span class="k">def</span> <span class="nf">axis_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_style</span><span class="p">(</span><span class="n">AxisMode</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">sv</span><span class="o">.</span><span class="n">AXISMODE</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">viewport</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Cartesian2DViewport</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Cartesian3DAxes</span><span class="p">(</span><span class="n">Cartesian2DAxes</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">xz_ratio</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Axis scaling ratio ``X/Y``.</span>
+
+<span class="sd">        :type: `float` in percent</span>
+
+<span class="sd">        Example usage::</span>
+
+<span class="sd">            &gt;&gt;&gt; plot.axes.xz_ratio = 20</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_style</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">DEPXTOZRATIO</span><span class="p">)</span>
+
+    <span class="nd">@xz_ratio.setter</span>
+    <span class="k">def</span> <span class="nf">xz_ratio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_style</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">sv</span><span class="o">.</span><span class="n">DEPXTOZRATIO</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">axis_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Axis relations regarding functional dependency</span>
+
+<span class="sd">        :type: `AxisMode`</span>
+
+<span class="sd">        Possible values: `Independent`, `XYZDependent`, `XYDependent`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">axis_mode</span>
+
+    <span class="nd">@axis_mode.setter</span>
+    <span class="k">def</span> <span class="nf">axis_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">)</span><span class="o">.</span><span class="n">axis_mode</span><span class="o">.</span><span class="n">fset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">aspect_ratio_limit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Scale limit of the axes aspect ratio.</span>
+
+<span class="sd">        :type: `float`</span>
+
+<span class="sd">        This is the limit above which the axes relative scales will be pegged</span>
+<span class="sd">        to `aspect_ratio_reset`. The following example will set the aspect</span>
+<span class="sd">        ratio between scales to 1 if they first exceed a ratio of 10::</span>
+
+<span class="sd">            &gt;&gt;&gt; plot.axes.aspect_ratio_limit = 10</span>
+<span class="sd">            &gt;&gt;&gt; plot.axes.aspect_ratio_reset = 1</span>
+<span class="sd">            &gt;&gt;&gt; plot.axes.reset_scale()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_style</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">ASPECTRATIOLIMIT</span><span class="p">)</span>
+
+    <span class="nd">@aspect_ratio_limit.setter</span>
+    <span class="k">def</span> <span class="nf">aspect_ratio_limit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_style</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">sv</span><span class="o">.</span><span class="n">ASPECTRATIOLIMIT</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">aspect_ratio_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Axes scale aspect ratio used when `aspect_ratio_limit` is exceeded.</span>
+
+<span class="sd">        :type: `float`</span>
+
+<span class="sd">        This is the aspect ratio used to scale the axes when the data&#39;s aspect</span>
+<span class="sd">        ratio exceeds the value set to `aspect_ratio_limit`. The following</span>
+<span class="sd">        example will set the aspect ratio between scales to 10 if they first</span>
+<span class="sd">        exceed a ratio of 15::</span>
+
+<span class="sd">            &gt;&gt;&gt; plot.axes.aspect_ratio_limit = 15</span>
+<span class="sd">            &gt;&gt;&gt; plot.axes.aspect_ratio_reset = 10</span>
+<span class="sd">            &gt;&gt;&gt; plot.axes.reset_scale()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_style</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">ASPECTRATIORESET</span><span class="p">)</span>
+
+    <span class="nd">@aspect_ratio_reset.setter</span>
+    <span class="k">def</span> <span class="nf">aspect_ratio_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_style</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">sv</span><span class="o">.</span><span class="n">ASPECTRATIORESET</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">range_aspect_ratio_limit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Range limit of the axes aspect ratio.</span>
+
+<span class="sd">        :type: `float`</span>
+
+<span class="sd">        This is the limit above which the axes&#39; relative ranges will be pegged</span>
+<span class="sd">        to `range_aspect_ratio_reset`. The following example will set the</span>
+<span class="sd">        aspect ratio between ranges to 1 if they first exceed a ratio of 10::</span>
+
+<span class="sd">            &gt;&gt;&gt; plot.axes.range_aspect_ratio_limit = 10</span>
+<span class="sd">            &gt;&gt;&gt; plot.axes.range_aspect_ratio_reset = 1</span>
+<span class="sd">            &gt;&gt;&gt; plot.axes.reset_ranges()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_style</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">BOXASPECTRATIOLIMIT</span><span class="p">)</span>
+
+    <span class="nd">@range_aspect_ratio_limit.setter</span>
+    <span class="k">def</span> <span class="nf">range_aspect_ratio_limit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_style</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">sv</span><span class="o">.</span><span class="n">BOXASPECTRATIOLIMIT</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">range_aspect_ratio_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Axes range aspect ratio used `range_aspect_ratio_limit` is exceeded.</span>
+
+<span class="sd">        :type: `float`</span>
+
+<span class="sd">        This is the aspect ratio used to set the ranges of the axes when the</span>
+<span class="sd">        axes&#39; aspect ratios exceed the value of `range_aspect_ratio_limit`. The</span>
+<span class="sd">        following example will set the aspect ratio between ranges to 10 if</span>
+<span class="sd">        they first exceed a ratio of 15::</span>
+
+<span class="sd">            &gt;&gt;&gt; plot.axes.range_aspect_ratio_limit = 15</span>
+<span class="sd">            &gt;&gt;&gt; plot.axes.range_aspect_ratio_reset = 10</span>
+<span class="sd">            &gt;&gt;&gt; plot.axes.reset_ranges()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_style</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">BOXASPECTRATIORESET</span><span class="p">)</span>
+
+    <span class="nd">@range_aspect_ratio_reset.setter</span>
+    <span class="k">def</span> <span class="nf">range_aspect_ratio_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_style</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">sv</span><span class="o">.</span><span class="n">BOXASPECTRATIORESET</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">edge_auto_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Enable automatically choosing which edges to label.</span>
+
+<span class="sd">        :type: `bool`</span>
+
+<span class="sd">        Example usage::</span>
+
+<span class="sd">            &gt;&gt;&gt; plot.axes.edge_auto_reset = True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_style</span><span class="p">(</span><span class="nb">bool</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">EDGEAUTORESET</span><span class="p">)</span>
+
+    <span class="nd">@edge_auto_reset.setter</span>
+    <span class="k">def</span> <span class="nf">edge_auto_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_style</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">sv</span><span class="o">.</span><span class="n">EDGEAUTORESET</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">viewport</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Viewport position and extent control</span>
+
+<span class="sd">        :type: `ReadOnlyViewport`</span>
+
+<span class="sd">        Example usage::</span>
+
+<span class="sd">            &gt;&gt;&gt; print(plot.axes.viewport.bottom)</span>
+<span class="sd">            5</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ReadOnlyViewport</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">reset_scale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Recalculate the scale factors for each axis.</span>
+
+<span class="sd">        Aspect ratio limits are taken into account.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">plot</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">activated</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">_tecutil</span><span class="o">.</span><span class="n">Reset3DScaleFactors</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="n">TecplotSystemError</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="SketchAxes"><a class="viewcode-back" href="../../../api/tecplot.axes.html#tecplot.plot.SketchAxes">[docs]</a><span class="k">class</span> <span class="nc">SketchAxes</span><span class="p">(</span><span class="n">Cartesian2DAxes</span><span class="p">,</span> <span class="n">Axes2D</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">plot</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">SKETCHAXIS</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">x_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">SketchAxis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">y_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">SketchAxis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Cartesian2DFieldAxes"><a class="viewcode-back" href="../../../api/tecplot.axes.html#tecplot.plot.Cartesian2DFieldAxes">[docs]</a><span class="k">class</span> <span class="nc">Cartesian2DFieldAxes</span><span class="p">(</span><span class="n">Cartesian2DAxes</span><span class="p">,</span> <span class="n">Axes2D</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">plot</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">TWODAXIS</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">x_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Cartesian2DFieldAxis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">y_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Cartesian2DFieldAxis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Cartesian3DFieldAxes"><a class="viewcode-back" href="../../../api/tecplot.axes.html#tecplot.plot.Cartesian3DFieldAxes">[docs]</a><span class="k">class</span> <span class="nc">Cartesian3DFieldAxes</span><span class="p">(</span><span class="n">Cartesian3DAxes</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">plot</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">THREEDAXIS</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">x_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Cartesian3DFieldAxis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">y_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Cartesian3DFieldAxis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">z_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Cartesian3DFieldAxis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">Z</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PolarLineAxes"><a class="viewcode-back" href="../../../api/tecplot.axes.html#tecplot.plot.PolarLineAxes">[docs]</a><span class="k">class</span> <span class="nc">PolarLineAxes</span><span class="p">(</span><span class="n">Axes2D</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">plot</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">POLARAXIS</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">r_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">RadialLineAxis</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">theta_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">PolarAngleLineAxis</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XYLineAxes"><a class="viewcode-back" href="../../../api/tecplot.axes.html#tecplot.plot.XYLineAxes">[docs]</a><span class="k">class</span> <span class="nc">XYLineAxes</span><span class="p">(</span><span class="n">Cartesian2DAxes</span><span class="p">,</span> <span class="n">Axes2D</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">plot</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">XYLINEAXIS</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">x_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">XYLineAxis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">y_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">XYLineAxis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/powered_by_tecplot.png" alt="Logo"/>
+            </a></p>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference.html">Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016, Tecplot, Inc..
+      Last updated on Oct 07, 2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.5.
+    </div>
+  </body>
+</html>
