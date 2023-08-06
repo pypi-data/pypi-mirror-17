@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        jira-term=jira_term.cli:cli
+    
