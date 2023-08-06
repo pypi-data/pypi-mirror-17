@@ -1,0 +1,25 @@
+Metadata-Version: 2.0
+Name: epifx
+Version: 0.4.3
+Summary: Epidemic forecasting with mechanistic infection models
+Home-page: https://bitbucket.org/robmoss/epidemic-forecasting-for-python/
+Author: Rob Moss
+Author-email: rgmoss@unimelb.edu.au
+License: BSD 3-Clause License
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Requires-Dist: h5py (>=2.2)
+Requires-Dist: numpy (>=1.8)
+Requires-Dist: pypfilt (>=0.4.3)
+Requires-Dist: scipy (>=0.11)
+
+UNKNOWN
+
+
