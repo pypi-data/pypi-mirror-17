@@ -1,0 +1,13 @@
+{% extends "wallet/base.html" %}
+
+{% block main %}
+<div class="row">
+  <div class="small-12 columns">
+    <div class="callout" style="margin-top:20px;">
+      <a class="float-right" href="{% url 'wallet:log_list' %}">交易记录</a>
+      <h5>我的钱包</h5>
+      <div class="stat">￥{{ object.balance }}</div>
+    </div>
+  </div>
+</div>
+{% endblock %}

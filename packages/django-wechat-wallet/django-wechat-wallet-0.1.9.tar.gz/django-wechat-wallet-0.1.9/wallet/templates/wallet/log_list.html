@@ -1,0 +1,19 @@
+{% extends "wallet/base.html" %}
+
+{% block main %}
+<div class="row">
+  <div class="small-12 columns">
+  <table style="margin-top:20px;">
+    {% for log in object_list %}
+    <tr>
+      <td>{{ log.description }}</td>
+      <td>{{ log.money }}</td>
+      <td>{{ log.created|date:"Y/m/d H:i" }}</td>
+    </tr>
+    {% empty %}
+    <h2>交易记录为空</h2>
+    {% endfor %}
+  </table>
+  </div>
+</div>
+{% endblock %}
