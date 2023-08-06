@@ -1,0 +1,36 @@
+{% extends "admin/base_site.html" %}
+{% load i18n l10n admin_static %}
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}">
+{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+     <a href="../../">{% trans "Home" %}</a> &rsaquo;
+     <a href="/admin/medlem/giro/">Giro</a> &rsaquo;
+     {% trans "Manuell giroregistrering" %}
+</div>
+
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">{% csrf_token %}
+
+    <fieldset class="module aligned">
+    <div class=form-row>
+      <div>
+        <label for=search_data class=required>Søkestrenger for giroer</label>
+        <textarea name=search_data class=vLargeTextField rows=25></textarea>
+        <p class=help>Søkjer etter KID-kode, fakturanummer og medlemsnummer i den rekkjefylgja.
+      </div>
+    </div>
+    </fieldset>
+
+    <input type=hidden name=action value=manuell_giroregistrering>
+    <input type=hidden name=post value=yes>
+    <div class=submit-row>
+      <input type=submit value="Søk etter giroar" class=default>
+    </div>
+    </form>
+{% endblock %}
