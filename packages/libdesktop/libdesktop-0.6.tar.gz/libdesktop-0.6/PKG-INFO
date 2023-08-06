@@ -1,0 +1,30 @@
+Metadata-Version: 1.1
+Name: libdesktop
+Version: 0.6
+Summary: A cross-platform library for miscellaneous OS functions and conveniences.
+Home-page: https://github.com/bharadwaj-raju/libdesktop
+Author: Bharadwaj Raju
+Author-email: bharadwaj.raju@keemail.me
+License: UNKNOWN
+Download-URL: https://github.com/bharadwaj-raju/libdesktop/archive/master.tar.gz
+Description: UNKNOWN
+Keywords: desktop,library,os,operating,system
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Classifier: Topic :: System
+Classifier: Topic :: Desktop Environment
