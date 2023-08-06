@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README
+setup.py
+qiniuManager.egg-info/PKG-INFO
+qiniuManager.egg-info/SOURCES.txt
+qiniuManager.egg-info/dependency_links.txt
+qiniuManager.egg-info/entry_points.txt
+qiniuManager.egg-info/requires.txt
+qiniuManager.egg-info/top_level.txt
+qiniu_manager/__init__.py
+qiniu_manager/manager.py
+qiniu_manager/private_dealer.py
+qiniu_manager/conf/qiniu.conf.example

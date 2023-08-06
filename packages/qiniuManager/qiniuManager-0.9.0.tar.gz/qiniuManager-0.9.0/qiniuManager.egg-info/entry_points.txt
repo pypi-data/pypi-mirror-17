@@ -1,0 +1,3 @@
+[console_scripts]
+qiniu = qiniu_manager.manager:main
+
