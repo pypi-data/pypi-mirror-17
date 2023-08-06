@@ -1,0 +1,5 @@
+graft docs
+graft plone
+include *.rst
+global-exclude *.pyc
+exclude rebuild_i18n.sh
