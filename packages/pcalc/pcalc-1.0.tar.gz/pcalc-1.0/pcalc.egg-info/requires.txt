@@ -1,0 +1,11 @@
+click
+
+[all]
+pytest>=3
+pytest-cov
+coveralls
+
+[dev]
+pytest>=3
+pytest-cov
+coveralls
