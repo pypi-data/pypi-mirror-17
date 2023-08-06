@@ -1,0 +1,14 @@
+Metadata-Version: 2.0
+Name: mpcorbget
+Version: 1.0.0a6
+Summary: A tool for observing minor planets
+Home-page: https://github.com/davenporta/mpcorbget
+Author: Alexander Davenport
+Author-email: alexhdavenport@gmail.com
+License: MIT
+Requires-Dist: ephem
+Requires-Dist: requests
+
+mpcorbget v1.0.0a6
+
+
