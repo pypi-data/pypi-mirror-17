@@ -1,0 +1,465 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "description": "Core schema for HornOk Inspection",
+    "type": "object",
+    "definitions": {
+        "private": {
+            "type": "boolean",
+            "description": "Private fields"
+        }
+    },
+    "properties": {
+        "location": {
+            "type": "string",
+            "description": "Current location of vehicle"
+        },
+        "inspector": {
+            "type": "string",
+            "description": "Name of inspector"
+        },
+        "make": {
+            "type": "string",
+            "description": "Make of vehicle"
+        },
+        "year": {
+            "type": "integer",
+            "description": "Year of manufacturing"
+        },
+        "model_number": {
+            "type": "string",
+            "description": "Model number of vehicle"
+        },
+        "gvw_and_payload": {
+            "type": "integer",
+            "description": "GVW in metric tonnes"
+        },
+        "registration_number": {
+            "type": "string",
+            "description": "Registration number of vehicle",
+            "private": true
+        },
+        "chassis_number": {
+            "type": "string",
+            "description": "Chassis number of vehicle",
+            "private": true
+        },
+        "engine_number": {
+            "type": "string",
+            "description": "Engine number of vehicle",
+            "private": true
+        },
+        "registering_authority": {
+            "type": "string",
+            "description": "Registerting authority (location) of vehicle"
+        },
+        "insurance_vendor": {
+            "type": "string",
+            "description": "Insurance vendor",
+            "private": true
+        },
+        "insurance_policy_number": {
+            "type": "string",
+            "description": "Policy number",
+            "private": true
+        },
+        "insurance_expiry_date": {
+            "type": "string",
+            "description": "Expiration date of policy"
+        },
+        "percaentage_of_ncb": {
+            "type": "integer",
+            "description": "Percentage of No Claim Bonus",
+            "private": true
+        },
+        "insurance_premium": {
+            "type": "integer",
+            "description": "Insurance premium",
+            "private": true
+        },
+        "hypothecation_tenure": {
+            "type": "string",
+            "description": "Tenure of hypothecation",
+            "private": true
+        },
+        "hypothecation_amount": {
+            "type": "integer",
+            "description": "Amount of hypothecation",
+            "private": true
+        },
+        "tax_1_validity": {
+            "type": "string",
+            "description": "Tax 1 valid until",
+            "private": true
+        },
+        "tax_2_validity": {
+            "type": "string",
+            "description": "Tax 2 valid until",
+            "private": true
+        },
+        "national_permit": {
+            "type": "boolean",
+            "description": "Does the vehicle have national permit?",
+            "private": true
+        },
+        "national_permit_validity": {
+            "type": "string",
+            "description": "Validity (date) of national permit",
+            "private": true
+        },
+        "cf": {
+            "type": "boolean",
+            "description": "Does the vehicle have certificate of fitness?"
+        },
+        "cf_validity": {
+            "type": "string",
+            "description": "Validity (date) of CF"
+        },
+        "availability_of_noc": {
+            "type": "boolean",
+            "description": "Does the vehicle have No Objection Certificate?"
+        },
+        "engine_oil": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "coolant": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "brake_oil": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "fan_belt": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "engine_mount": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "air_filter": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "mobile_filter": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "diesel_filter": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "ac_filter_if_any": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "fuel_and_water_separator": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "accelerator_linkage": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "radiator_mount": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "radiator_lines": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "radiator_panel": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "water_level_and_heat_when_engine_starts": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "air_system": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "tie_rod": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "steering_box_power_steering": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "column": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "battery_age": {
+            "type": "string"
+        },
+        "battery_condition": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "springs": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "hydraulic_filters": {
+            "type": "string",
+            "enum": ["good", "ok", "bad", "N/A"]
+        },
+        "hydraulic_operation": {
+            "type": "string",
+            "enum": ["good", "ok", "bad", "N/A"]
+        },
+        "left_front_indicator": {
+            "type": "string",
+            "enum": ["working", "not working"]
+        },
+        "front_indicator": {
+            "type": "string",
+            "enum": ["working", "not working"]
+        },
+        "left_rear_indicator": {
+            "type": "string",
+            "enum": ["working", "not working"]
+        },
+        "right_rear_indicator": {
+            "type": "string",
+            "enum": ["working", "not working"]
+        },
+        "left_head_light": {
+            "type": "string",
+            "enum": ["working", "not working"]
+        },
+        "right_head_light": {
+            "type": "string",
+            "enum": ["working", "not working"]
+        },
+        "left_back_light": {
+            "type": "string",
+            "enum": ["working", "not working"]
+        },
+        "right_back_light": {
+            "type": "string",
+            "enum": ["working", "not working"]
+        },
+        "left_crane_light": {
+            "type": "string",
+            "enum": ["working", "not working"]
+        },
+        "right_crane_light": {
+            "type": "string",
+            "enum": ["working", "not working"]
+        },
+        "parking_light": {
+            "type": "string",
+            "enum": ["working", "not working"]
+        },
+        "brake_lamps": {
+            "type": "string",
+            "enum": ["working", "not working"]
+        },
+        "heat_indicator": {
+            "type": "string",
+            "enum": ["working", "not working"]
+        },
+        "rpm": {
+            "type": "string",
+            "enum": ["working", "not working"]
+        },
+        "speedometer": {
+            "type": "string",
+            "enum": ["working", "not working"]
+        },
+        "odometer": {
+            "type": "string",
+            "enum": ["working", "not working"]
+        },
+        "fuel_indicator": {
+            "type": "string",
+            "enum": ["working", "not working"]
+        },
+        "cabin_light": {
+            "type": "string",
+            "enum": ["working", "not working"]
+        },
+        "wiper_operation": {
+            "type": "string",
+            "enum": ["working", "not working"]
+        },
+        "horn": {
+            "type": "string",
+            "enum": ["working", "not working"]
+        },
+        "cab_area": {
+            "type": "string",
+            "enum": ["good", "bad"]
+        },
+        "pilot_seat": {
+            "type": "string",
+            "enum": ["good", "bad"]
+        },
+        "helper_seat": {
+            "type": "string",
+            "enum": ["good", "bad"]
+        },
+        "bed_rack": {
+            "type": "string",
+            "enum": ["good", "bad"]
+        },
+        "seat_belt": {
+            "type": "string",
+            "enum": ["good", "bad"]
+        },
+        "roof_hatch": {
+            "type": "string",
+            "enum": ["good", "bad"]
+        },
+        "door_window_locks_handles": {
+            "type": "string",
+            "enum": ["good", "bad"]
+        },
+        "engine_noise": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "steering_noise": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "engine_idle_warm": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "engine_shutdown": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "owner_guide_book": {
+            "type": "string",
+            "enum": ["yes", "no"]
+        },
+        "original_key": {
+            "type": "string",
+            "enum": ["yes", "no"]
+        },
+        "duplicate_key": {
+            "type": "string",
+            "enum": ["yes", "no"]
+        },
+        "first_aid_kit": {
+            "type": "string",
+            "enum": ["yes", "no"]
+        },
+        "fire_extinguisher": {
+            "type": "string",
+            "enum": ["yes", "no"]
+        },
+        "left_front_tyre": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "right_front_tyre": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "left_middle_tyre": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "right_middle_tyre": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "left_2_nd_middle_tyre": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "right_2_nd_middle_tyre": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "left_3_rd_middle_tyre": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "right_3_rd_middle_tyre": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "left_4_th_middle_tyre": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "right_4_th_middle_tyre": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "left_rear_tyre": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "right_rear_tyre": {
+            "type": "string",
+            "enum": ["good", "ok", "bad"]
+        },
+        "windshield": {
+            "type": "string",
+            "enum": ["good", "bad"]
+        },
+        "doors": {
+            "type": "string",
+            "enum": ["good", "bad"]
+        },
+        "windows": {
+            "type": "string",
+            "enum": ["good", "bad"]
+        },
+        "wiper_blades": {
+            "type": "string",
+            "enum": ["good", "bad"]
+        },
+        "ladder_racks": {
+            "type": "string",
+            "enum": ["good", "bad"]
+        },
+        "rear_view_mirror": {
+            "type": "string",
+            "enum": ["good", "bad"]
+        },
+        "fuel_tank_condition": {
+            "type": "string",
+            "enum": ["good", "bad"]
+        },
+        "number_plate": {
+            "type": "string",
+            "enum": ["good", "bad"]
+        },
+        "front_bumper": {
+            "type": "string",
+            "enum": ["good", "bad"]
+        },
+        "rear_bumper": {
+            "type": "string",
+            "enum": ["good", "bad"]
+        },
+        "left_side_deck": {
+            "type": "string",
+            "enum": ["good", "bad"]
+        },
+        "right_side_deck": {
+            "type": "string",
+            "enum": ["good", "bad"]
+        },
+        "reflector": {
+            "type": "string",
+            "enum": ["good", "bad"]
+        },
+        "nuts_bolts": {
+            "type": "string",
+            "enum": ["good", "bad"]
+        }
+    }
+}
