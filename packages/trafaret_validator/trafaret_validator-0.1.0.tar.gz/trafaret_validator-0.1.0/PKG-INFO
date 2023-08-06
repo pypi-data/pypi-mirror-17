@@ -1,0 +1,40 @@
+Metadata-Version: 1.1
+Name: trafaret_validator
+Version: 0.1.0
+Summary: trafaret validator wrapper
+Home-page: https://github.com/Lex0ne/trafaret_validator
+Author: Valeriy Morkovyn
+Author-email: minouts@gmail.com
+License: UNKNOWN
+Description: ====================
+        TrafaretValidator
+        ====================
+        
+        
+        :Status: Beta
+        
+        This is a wrapper that validate request using trafaret_.
+        
+        Usage:
+        
+        .. code-block:: python
+        
+            class RequestValidator(TrafaretValidator):
+                ids = t.List(t.Int)
+                payload = t.Dict(x=t.String)
+        
+            validator = RequestValidator(ids=ids, payload=payload)
+            if not validator.validate():
+                return validator.errors
+Platform: any
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Utilities
