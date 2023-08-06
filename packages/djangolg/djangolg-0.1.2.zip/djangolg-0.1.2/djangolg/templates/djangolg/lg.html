@@ -1,0 +1,18 @@
+{% extends base_template %}
+
+{% block modal %}
+{% include "djangolg/modal.html" %}
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 full-height" id="controls">
+                {% include "djangolg/controls.html" %}
+            </div>
+            <div class="col-md-9 full-height" id="output">
+                {% include "djangolg/output.html" %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
