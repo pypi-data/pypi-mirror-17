@@ -1,0 +1,298 @@
+Metadata-Version: 1.1
+Name: pyramid_jitt
+Version: 0.1.1
+Summary: A Just-In-Time compilation and packaging of JavaScript templates for Pyramid.
+Home-page: http://github.com/canaryhealth/pyramid_jitt
+Author: Philip J Grabner, Canary Health Inc
+Author-email: oss@canary.md
+License: MIT (http://opensource.org/licenses/MIT)
+Description: ===============================
+        Pyramid Just-In-Time Templating
+        ===============================
+        
+        .. WARNING::
+        
+          This package is an early beta. Although certain features are fully
+          functional (and being used by the authors in production!), some of
+          the most interesting aspects of the package (such as deferred
+          template loading) are currently (as of 2016/09/27) still vaporware.
+        
+        The `pyramid_jitt` package is a wrapper around the `jstc`_ JavaScript
+        template compiler that allows client-side templates to be defined in
+        disparate server-side files and be assembled, pre-compiled, packaged,
+        cached, and access-controlled for inline, deferred, and restricted
+        delivery.
+        
+        
+        Project
+        =======
+        
+        * Homepage: https://github.com/canaryhealth/pyramid_jitt
+        * Bugs: https://github.com/canaryhealth/pyramid_jitt/issues
+        
+        
+        Installation
+        ============
+        
+        .. code:: bash
+        
+          $ pip install pyramid_jitt
+        
+        
+        Usage
+        =====
+        
+        Enable the package either in your INI file via:
+        
+        .. code:: ini
+        
+          pyramid.includes =
+            pyramid_beaker
+            pyramid_jitt
+        
+        
+        (it is highly recommended to use `pyramid_beaker`_ for caching of
+        rendered templates) or in code in your package's application
+        initialization via:
+        
+        .. code:: python
+        
+          def main(global_config, **settings):
+            # ...
+            config.include('pyramid_beaker')
+            config.include('pyramid_jitt')
+            # ...
+        
+        
+        Configure pyramid_jitt's behaviour by setting the various
+        `Configuration`_ options in your INI file, for example:
+        
+        .. code:: ini
+        
+          # use pyramid_beaker for caching!
+          cache.type                    = memory
+          cache.regions                 = pyramid_jitt
+          cache.pyramid_jitt.expire     = 3600
+        
+          # define where the "webapp" templates (Handlebars, in this case) are located
+          jitt.@webapp.assets           = myapp:static/scripts/**.hbs
+        
+        
+        Then, add the delivery payload to your HTML file, here a `Mako`_
+        example:
+        
+        .. code:: mako
+        
+          <html>
+            <body>
+        
+              ${request.registry.jitt.render('webapp')|n}
+        
+              <script type="text/javascript">
+                $(document).ready(function() {
+                  // start your client-side app that uses your templates here!...
+                });
+              </script>
+            </body>
+          </html>
+        
+        
+        More Involved Example
+        =====================
+        
+        Here is a more complex configuration example, with multiple configs
+        with different caching rules, asset locations, etc:
+        
+        .. code:: ini
+        
+          # pyramid_beaker caching configuration
+          cache.type                    = memory
+          cache.regions                 = jitt-webapp jitt-admin
+          cache.jitt-webapp.expire      = 3600
+          cache.jitt-admin.expire       = 300
+        
+          # pyramid_jitt "default" config parameters
+          jitt.style                    = {display: none}
+          jitt.defaults.trim            = true
+          jitt.defaults.precompile      = false
+          jitt.overrides.inline         = true
+        
+          # pyramid_jitt "webapp" config parameters
+          jitt.@webapp.cache-region     = jitt-webapp
+          jitt.@webapp.assets           =
+            myapp:static/scripts/common/**.hbs
+            myapp:static/scripts/webapp/**.hbs
+          jitt.@webapp.roots            =
+            static/scripts
+            static/scripts/webapp
+        
+          # pyramid_jitt "admin" config parameters
+          jitt.@admin.cache-region      = jitt-admin
+          jitt.@admin.assets            =
+            myapp:static/scripts/common/**.hbs
+            myapp:static/scripts/admin/**.hbs
+          jitt.@admin.roots             =
+            static/scripts
+            static/scripts/admin
+        
+        
+        Configuration
+        =============
+        
+        The rendering of templates is grouped into "configs" that all inherit
+        from the "default" config. Parameters are defined in the application
+        settings, typically loaded from your application's ``.ini`` file.
+        
+        All `pyramid_jitt` parameter names are prefixed with ``jitt.``,
+        optionally followed by an ``@`` and the config name that it applies
+        to, then followed by a specific parameter. If not config name is
+        specified, it is applied to the ``default`` config.
+        
+        For example, the parameter ``jitt.compiler`` sets the default's
+        "compiler" value, and the parameter ``jitt.@foobar.compiler`` sets the
+        "foobar" config's "compiler" value. All parameters can be defaulted
+        and overriden per-config in this manner.
+        
+        The following parameters are supported:
+        
+        * ``jitt.id`` : str, default: Templates
+        
+          Specifies the "id" attribute of the top-level HTML element that
+          contains the JavaScript templates.
+        
+        * ``jitt.style`` : yaml, default: (see documentation)
+        
+          Specifies the "style" attribute (as a YAML dictionary) of the
+          top-level HTML element that contains the JavaScript templates.  The
+          default sets a series of CSS values that intend to hide the element
+          from display as much as possible. This includes such settings as
+          `display` to "none", `visibility` to "hidden", and `opacity` to 0.
+        
+        * ``jitt.compiler`` : asset-spec, default: "jstc:Compiler"
+        
+          Specifies the `jstc` compiler path that will be used to actually
+          compile the JS templates.
+        
+        * ``jitt.assets`` : asset-spec | list(asset-spec)
+        
+          Specifies a list of globre asset-spec's of which assets to include
+          in the config. For example, the following will recursively search
+          for all files that end in ``.mustache`` in the ``static/common`` and
+          ``static/webapp`` directories of the ``myapp`` package for the
+          ``webapp`` config:
+        
+          .. code:: ini
+        
+            jitt.@webapp.assets =
+              myapp:static/common/**.mustache
+              myapp:static/webapp/**.mustache
+        
+        
+          See `jitt.roots` for details on how to map an asset name to a
+          template name.
+        
+        * ``jitt.roots`` : str | list(str)
+        
+          Specifies a list of prefixes to be chopped from an asset name to
+          arrive at the template name that it contains. For example, if
+          an asset's name is ``static/common/segment/filename.hbs`` and the
+          respective root is ``static/common``, then the name will be
+          interpreted as ``segment/filename``.
+        
+          See `jitt.name_transform` for a higher level of control than simple
+          prefix-chopping.
+        
+        * ``jitt.cache-region`` : str, default: pyramid_jitt
+        
+          Sets the `beaker` cache region to use for this config. To disable
+          caching (bad idea!) set this to an empty string.
+        
+        * ``jitt.asset_filter`` : asset-spec
+        
+          Sets the `jstc.render_assets` `asset_filter` parameter.
+        
+        * ``jitt.name_transform`` : asset-spec
+        
+          Sets the `jstc.render_assets` `name_transform` parameter.
+        
+        * ``jitt.template_transform`` : asset-spec
+        
+          Sets the `jstc.render_assets` `template_transform` parameter.
+        
+        * ``jitt.template_filter`` : asset-spec
+        
+          Sets the `jstc.render_assets` `template_filter` parameter.
+        
+        * ``jitt.script_wrapper`` : asset-spec
+        
+          Sets the `jstc.render_assets` `script_wrapper` parameter.
+        
+        * ``jitt.defaults.{ATTRIBUTE}`` : yaml
+        
+          Sets a default value for a template attribute that will be passed to
+          the `defaults` parameter of the jstc.Compiler constructor. For
+          example, to disable the default whitespace trimming and
+          pre-compilation that jstc does, add:
+        
+          .. code:: ini
+        
+            jitt.defaults.trim       = false
+            jitt.defaults.precompile = false
+        
+        
+          See the `jstc`_ package for a full listing of supported template
+          attributes.
+        
+        * ``jitt.overrides.{ATTRIBUTE}`` : yaml
+        
+          Sets an override value for a template attribute that will be passed
+          to the `overrides` parameter of the jstc.Compiler constructor. For
+          example, to force all templates to be inlined and trimmed, but
+          force "admin" templates to not be trimmed, add:
+        
+          .. code:: ini
+        
+            jitt.overrides.trim        = true
+            jitt.overrides.inline      = true
+            jitt.@admin.overrides.trim = true
+        
+        
+          See the `jstc`_ package for a full listing of supported template
+          attributes.
+        
+        
+        .. IMPORTANT::
+        
+          Please note that the impact of the callbacks (asset_filter,
+          name_transform, template_transform, template_filter) should be
+          consistent for a given `cache-region` since the cache key will be
+          dependent on ``cache-region + configuration + channel`` only.
+        
+        
+        .. IMPORTANT::
+        
+          Currently, non-inline templates are not supported by `pyramid_jitt`.
+          "Coming Soon!"...
+        
+        
+        .. _jstc: https://pypi.python.org/pypi/jstc
+        .. _pyramid_beaker: https://pypi.python.org/pypi/pyramid_beaker
+        .. _Mako: http://www.makotemplates.org/
+        
+Keywords: web wsgi pyramid tween javascript compiler packager
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Framework :: Pyramid
+Classifier: Environment :: Console
+Classifier: Environment :: Web Environment
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Internet
+Classifier: Topic :: Software Development
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: License :: Public Domain
