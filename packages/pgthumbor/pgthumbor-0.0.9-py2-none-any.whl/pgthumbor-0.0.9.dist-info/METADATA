@@ -1,0 +1,25 @@
+Metadata-Version: 2.0
+Name: pgthumbor
+Version: 0.0.9
+Summary: Postgres Storage for Thumbor
+Home-page: https://github.com/Maethorin/pgthumbor
+Author: Marcio Duarte
+Author-email: maethorin@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Internet
+Requires-Dist: distribute
+Requires-Dist: psycopg2
+Requires-Dist: sqlalchemy
+Requires-Dist: thumbor
+
+UNKNOWN
+
+
