@@ -1,0 +1,11 @@
+setup.cfg
+setup.py
+netmagus/__init__.py
+netmagus/form.py
+netmagus/netop.py
+netmagus/rpc.py
+netmagus.egg-info/PKG-INFO
+netmagus.egg-info/SOURCES.txt
+netmagus.egg-info/dependency_links.txt
+netmagus.egg-info/requires.txt
+netmagus.egg-info/top_level.txt
