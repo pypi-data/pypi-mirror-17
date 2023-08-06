@@ -1,0 +1,40 @@
+Metadata-Version: 2.0
+Name: kafka-log-handler
+Version: 1.2
+Summary: Simple python logging handler for forwarding logs to a kafka server.
+Home-page: https://github.com/damienkilgannon/kafka-log-handler.git
+Author: Damien Kilgannon
+Author-email: kilgannon.damien@gmail.com
+License: Apache 2.0
+Keywords: python,logging,handler,example,kafka,logs,logstash,formatter
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Requires-Dist: kafka-python (==1.3.1)
+Requires-Dist: logstash-formatter (==0.5.8)
+
+===============================
+Python Kafka Logging Handler
+===============================
+
+Simple python logging handler for forwarding logs to a kafka server.
+
+The handler uses a logstash formatter.
+
+
+Installing
+==========
+
+.. code-block:: shell
+
+	$ pip install kafka_log_handler
+
+
+
+
+
+
+
