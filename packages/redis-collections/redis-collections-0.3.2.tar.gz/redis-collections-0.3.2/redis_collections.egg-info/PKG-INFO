@@ -1,0 +1,83 @@
+Metadata-Version: 1.1
+Name: redis-collections
+Version: 0.3.2
+Summary: Set of basic Python collections backed by Redis.
+Home-page: https://github.com/honzajavorek/redis-collections
+Author: Honza Javorek
+Author-email: mail@honzajavorek.cz
+License: Copyright (c) 2013-?, Honza Javorek <mail@honzajavorek.cz>
+
+Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+Description: 
+        Redis Collections
+        =================
+        
+        .. image:: https://travis-ci.org/honzajavorek/redis-collections.svg?branch=master
+           :target: https://travis-ci.org/honzajavorek/redis-collections
+        
+        .. image:: https://coveralls.io/repos/github/honzajavorek/redis-collections/badge.svg?branch=master
+           :target: https://coveralls.io/github/honzajavorek/redis-collections?branch=master
+        
+        
+        Set of basic Python collections backed by Redis.
+        
+        Installation
+        ------------
+        
+        .. code:: shell
+        
+           pip install redis-collections
+        
+        Example
+        -------
+        
+        Redis Collections are a simple, pythonic way how to access Redis structures:
+        
+        .. code:: python
+        
+          >>> from redis_collections import Dict
+          >>> d = Dict()
+          >>> d['answer'] = 42
+          >>> d
+          <redis_collections.Dict at fe267c1dde5d4f648e7bac836a0168fe {'answer': 42}>
+          >>> d.items()
+          [('answer', 42)]
+          >>> d.update({'hasek': 39, 'jagr': 68})
+          >>> d
+          <redis_collections.Dict at fe267c1dde5d4f648e7bac836a0168fe {'answer': 42, 'jagr': 68, 'hasek': 39}>
+          >>> del d['answer']
+          >>> d
+          <redis_collections.Dict at fe267c1dde5d4f648e7bac836a0168fe {'jagr': 68, 'hasek': 39}>
+        
+        Available collections are ``Dict``, ``List``, ``Set``, ``Counter``, and ``DefaultDict``.
+        
+        Documentation
+        -------------
+        
+        **→** `redis-collections.readthedocs.io <https://redis-collections.readthedocs.io/>`_
+        
+        Maintainers
+        -----------
+        
+        - Bo Bayles (`@bbayles <http://github.com/bbayles>`_)
+        - Honza Javorek (`@honzajavorek <http://github.com/honzajavorek>`_)
+        
+        License: ISC
+        ------------
+        
+        © 2013-? Honza Javorek <mail@honzajavorek>
+        
+        This work is licensed under `ISC license <https://en.wikipedia.org/wiki/ISC_license>`_.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: ISC License (ISCL)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Database
