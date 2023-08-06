@@ -1,0 +1,15 @@
+Metadata-Version: 1.0
+Name: paml
+Version: 0.8.2
+Summary: A Pythonic transpiler for HTML/XML
+Home-page: http://www.github.com/sebastien/paml
+Author: Sebastien Pierre
+Author-email: sebastien.pierre@gmail.com
+License: Revised BSD License
+Description: PAML is a simple HTML/XML shorthand syntax in the same spirit as HAML or SLIP.
+        It was designed to be faithful to the HTML/XML syntax while reducing the
+        opportunities for errors (like forgetting to close a block). PAML also
+        supports advanced formatting options to get exactly the HTML you want to have.
+        
+Keywords: XML,HTML,syntax,pre-processor,web
+Platform: UNKNOWN
