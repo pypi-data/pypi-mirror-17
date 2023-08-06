@@ -1,0 +1,16 @@
+README.rst
+setup.cfg
+setup.py
+djangorestframework_queryfields.egg-info/PKG-INFO
+djangorestframework_queryfields.egg-info/SOURCES.txt
+djangorestframework_queryfields.egg-info/dependency_links.txt
+djangorestframework_queryfields.egg-info/requires.txt
+djangorestframework_queryfields.egg-info/top_level.txt
+drf_queryfields/__init__.py
+drf_queryfields/mixins.py
+tests/app/__init__.py
+tests/app/data.py
+tests/app/models.py
+tests/app/serializers.py
+tests/app/urls.py
+tests/app/views.py

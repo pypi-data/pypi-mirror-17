@@ -1,0 +1,8 @@
+
+[dev]
+setuptools
+wheel
+pytest-django
+djangorestframework
+django
+mock_django
