@@ -1,0 +1,25 @@
+0.4.0
+-----
+
+- add has_plugin(name) method to pluginmanager.  thanks Bruno Oliveira.
+
+- fix issue11: make plugin parsing more resilient against exceptions
+  from __getattr__ functions. Thanks Bruno Oliveira.
+
+- fix issue #4: specific HookCallError exception for when a hook call 
+  provides not enough arguments.
+
+- better error message when loading setuptools entrypoints fails
+  due to a VersionConflict.  Thanks Daniel Hahler.
+
+0.3.1
+-----
+
+- avoid using deprecated-in-python3.5 getargspec method. Thanks 
+  Michael Droettboom.
+
+
+0.3.0
+-----
+
+initial release
