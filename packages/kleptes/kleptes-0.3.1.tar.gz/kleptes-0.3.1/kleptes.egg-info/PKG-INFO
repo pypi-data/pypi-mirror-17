@@ -1,0 +1,24 @@
+Metadata-Version: 1.1
+Name: kleptes
+Version: 0.3.1
+Summary: Goodies to mine world data
+Home-page: UNKNOWN
+Author: myyc
+Author-email: UNKNOWN
+License: BSD
+Description: 
+        World data mining that sucks a bit less.
+        
+        Currently available data sets:
+        
+        * World Bank
+        * OECD
+        * WHO
+        
+        Code and (minimal) documentation `here <https://github.com/myyc/kleptes/>`_.
+        
+Keywords: data mining python pandas who oecd
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: BSD License
