@@ -1,0 +1,3 @@
+[console_scripts]
+scrumotron = scrumotron.cli:main
+
