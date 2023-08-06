@@ -1,0 +1,30 @@
+Metadata-Version: 2.0
+Name: plainform
+Version: 0.10.0
+Summary: Formidable forms formed with WTForms.
+Home-page: UNKNOWN
+Author: Guillaume Ayoub
+Author-email: guillaume.ayoub@kozea.fr
+License: GNU GPL v3
+Download-URL: http://pypi.python.org/packages/source/p/plainform/plainform-0.10.0.tar.gz
+Keywords: html,forms
+Platform: Any
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Provides: plainform
+Requires-Dist: wtforms (>=2.1)
+
+
+PlainForm
+=========
+
+Formidable forms formed with WTForms.
+
+
+
