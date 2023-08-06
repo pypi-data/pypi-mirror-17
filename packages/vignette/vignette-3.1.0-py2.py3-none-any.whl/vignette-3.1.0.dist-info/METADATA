@@ -1,0 +1,31 @@
+Metadata-Version: 2.0
+Name: vignette
+Version: 3.1.0
+Summary: Library to create FreeDesktop-compatible thumbnails
+Home-page: https://github.com/hydrargyrum/vignette
+Author: Hg
+Author-email: dev+pip@indigo.re
+License: WTFPLv2
+Keywords: freedesktop xdg image thumbnail
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: Public Domain
+Classifier: Topic :: Desktop Environment
+Classifier: Topic :: Multimedia :: Graphics
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Provides-Extra: PIL
+Requires-Dist: PIL; extra == 'PIL'
+
+UNKNOWN
+
+
