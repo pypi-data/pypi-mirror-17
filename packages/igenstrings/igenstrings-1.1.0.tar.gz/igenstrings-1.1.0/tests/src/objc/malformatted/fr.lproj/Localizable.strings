@@ -1,0 +1,2 @@
+/* title without escaping the double quotes inside the key */
+"Hi "%@" !" = "Bonjour %@ !";
