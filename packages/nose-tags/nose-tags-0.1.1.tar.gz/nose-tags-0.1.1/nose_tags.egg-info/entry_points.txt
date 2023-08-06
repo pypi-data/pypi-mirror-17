@@ -1,0 +1,4 @@
+[nose.plugins]
+tagcollector = tag.plugin:TagCollector
+tagselector = tag.plugin:TagSelector
+
