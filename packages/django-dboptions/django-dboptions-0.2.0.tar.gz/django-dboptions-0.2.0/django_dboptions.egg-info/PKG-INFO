@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: django-dboptions
+Version: 0.2.0
+Summary: The missing dead simple Django database configuration options
+Home-page: https://github.com/FZambia/django-dboptions
+Author: Alexandr Emelin <frvzmb@gmail.com>
+Author-email: frvzmb@gmail.com
+License: MIT
+Description: The missing dead simple Django database configuration options
+Keywords: django,database,configuration,options,settings
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Framework :: Django
+Classifier: Environment :: Web Environment
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
