@@ -1,0 +1,15 @@
+Metadata-Version: 2.0
+Name: retain
+Version: 1.2.0
+Summary: Delete all but the specified files/directories
+Home-page: http://github.com/bmc/retain
+Author: Brian Clapper
+Author-email: bmc@clapper.org
+License: BSD-style license
+Platform: UNKNOWN
+Requires-Dist: docopt (>=0.6.2)
+Requires-Dist: future (>=0.15.2)
+
+UNKNOWN
+
+
