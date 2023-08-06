@@ -1,0 +1,3 @@
+[nodeconductor_extensions]
+nodeconductor_auth_valimo = nodeconductor_auth_valimo.extension:AuthValimoExtension
+
