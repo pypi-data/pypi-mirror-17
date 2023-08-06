@@ -1,0 +1,156 @@
+To-Do for package GTW.RST
+=========================
+
+- Versioning
+
+  * Root: one per API version
+
+- Representation
+
+  * representation specific URIs (see RiR07)
+
+    + language
+
+    + data foramat
+
+- URI structure for E_Type
+
+  * .../
+
+    GET     list of E_Types
+
+  * .../{type_name}
+
+    GET      list (of pids) of instances
+
+    POST     create new instance, return its pid
+
+  * .../{type_name}?key=value&...
+
+    GET     list of all matches for the query
+
+    + attribute query syntax: AQ=name,op,value
+
+        .../{type_name}?AQ=last_name,STARTS_WITH,tan&AQ=lifetime.start,GE,1997
+
+  * .../{type_name}/{pid} one Account instance with `pid`
+
+    GET      returns instance `pid` (pid, attribute values, last_cid)
+
+    HEAD     returns header X-last-cid
+
+    PUT      change object
+
+    POST     change object
+
+    DELETE   delete object
+
+  ? .../{type_name}/{pid}/{name}
+
+    GET      value of attribute `name` of instance `pid`
+
+    PUT      change value of attribute `name` of instance `pid`
+
+    DELETE   reset value of attribute `name` of instance `pid`, if possible
+
+  ? .../Meta/{type_name}
+
+    GET     list of attribute descriptions
+
+  ? .../Meta/{type_name}/doc
+
+    GET     documentation for E_Type
+
+- HTTP
+
+  * Request headers
+
+    + Accept
+
+    + Accept-Encoding
+
+    + Authorization
+
+    + Date
+
+    + Host
+
+    + If-Match                [use ETag value]
+
+    + If-Modified-Since       [use Last-Modified value]
+
+    + If-None-Match           [use ETag value]
+
+    + If-Unmodified-Since     [use Last-Modified value]
+
+  * Response headers
+
+    + Allow
+
+    + Content-Encoding
+
+    + Content-Length
+
+    + Content-Location
+
+    + Content-Type
+
+    + Date
+
+    + ETag
+
+    + Expires
+
+    + Last-Modified
+
+    + Location
+
+    + Vary                    [lists request headers that change representation]
+
+    + WWW-Authenticate        [401]
+
+  * Response codes
+
+    + 200 OK
+
+    + 201 Created             [`Location` response header required]
+
+    + 202 Accepted ??? triggers asynchronous action
+
+    + 204 No content          [no body allowed]
+
+    + 205 Reset content       [no body allowed]
+
+    + 301 Moved permanently
+
+    + 303 See other
+
+    + 304 Not modified
+
+    + 307 Temporary redirect
+
+    + 400 Bad request
+
+    + 401 Unauthorized        [`WWW-Authenticate` response header required]
+
+    + 403 Forbidden
+
+    + 404 Not found
+
+    + 405 Method not allowed  [`Allow` response header required]
+
+    + 409 Conflict
+
+    + 410 Gone
+
+    + 412 Precondition failed [e.g., request header If-Unmodified-Since]
+
+    + 415 Unsupported media type
+
+    + 500 Internal server error
+
+    + 501 Not Implemented
+
+    + 503 Service unavailable [`Retry-After` response header would be nice]
+
+### __END__ _GTW/_RST/To-Do

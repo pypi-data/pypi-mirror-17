@@ -1,0 +1,79 @@
+GTW To-Do
+=========
+
+- csrf / xrsf protection: cf. xsrf_cookies in  tornado
+
+x GTW.NAV.E_Type.Admin: restrict urls to Ascii
+
+- GTW.Tornado.Error vs. GTW.Werkzeug.Error: refactor
+
+x GTW.NAV.Robots: Answer to url `/robots.txt`
+
+  x Disallow for various directories/pages
+    (NAV.E_Type, NAV.Sitemap, NAV.Auth, ...)
+
+  x http://www.robotstxt.org/robotstxt.html
+
+x GTW.NAV.E_Type.Admin
+
+  x allow grouping of E_Type specific Admin pages under a Admin Group
+
+  x Change GTW.NAV.Site_Admin
+
+- OMP (Object Model Part)
+
+  x PAP: Person, Address, Phone
+
+  * SRM: Regatta
+
+- Nav
+
+  x Etype
+
+    x templates
+
+  x Admin
+
+    x templates
+
+  x Permission
+
+  x Error templates
+
+  * CAO
+
+- Forms
+
+  x `widget` : (template, macro) or "template.macro"
+
+  x `fields`: list of fields/field_groups
+
+    + for a Etype-Form, each field is a attribute (property)
+
+    + each field has a `widget`
+
+  x `action`: uri for submit
+
+  x `instance`: None or a life instance of some object model
+
+  x `request_data`: dictionary with GET- or POST-data
+
+  x get_value (field) :
+
+    + get value from `request_data` or `field.get_value (instance)`
+
+  * get_errors () : errors of form
+
+  * get_errors (field) : field-specific errors
+
+  * each error has a `widget`
+
+x Account management
+
+  x Change password
+
+  x Forgotten password
+
+  x Force password change
+
+### __END__ to-do
