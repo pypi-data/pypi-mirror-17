@@ -1,0 +1,1044 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>formbar.form &mdash; Formbar 0.20.3 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.20.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Formbar 0.20.3 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Formbar 0.20.3 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for formbar.form</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="k">as</span> <span class="nn">sa</span>
+<span class="kn">from</span> <span class="nn">formbar.renderer</span> <span class="k">import</span> <span class="n">FormRenderer</span><span class="p">,</span> <span class="n">get_renderer</span>
+<span class="kn">from</span> <span class="nn">formbar.rules</span> <span class="k">import</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Expression</span>
+<span class="kn">from</span> <span class="nn">formbar.converters</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">DeserializeException</span><span class="p">,</span> <span class="n">from_python</span><span class="p">,</span> <span class="n">to_python</span>
+<span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">config</span>
+
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">remove_ws</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Helper function which removes trailing and leading whitespaces</span>
+<span class="sd">    for all values in the given dictionary. The dictionary usually</span>
+<span class="sd">    contains the submitted data.&quot;&quot;&quot;</span>
+    <span class="n">clean</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">unicode</span><span class="p">):</span>
+            <span class="c1"># This may happen for lists e.g when sumitting multiple</span>
+            <span class="c1"># selection in checkboxes.</span>
+            <span class="n">clean</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">clean</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">clean</span>
+
+
+<span class="k">def</span> <span class="nf">get_attributes</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">prop</span><span class="o">.</span><span class="n">key</span> <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">sa</span><span class="o">.</span><span class="n">orm</span><span class="o">.</span><span class="n">class_mapper</span><span class="p">(</span><span class="n">cls</span><span class="p">)</span><span class="o">.</span><span class="n">iterate_properties</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">sa</span><span class="o">.</span><span class="n">orm</span><span class="o">.</span><span class="n">ColumnProperty</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">sa</span><span class="o">.</span><span class="n">orm</span><span class="o">.</span><span class="n">RelationshipProperty</span><span class="p">)]</span>
+
+
+<span class="k">def</span> <span class="nf">get_relations</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">prop</span><span class="o">.</span><span class="n">key</span> <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">sa</span><span class="o">.</span><span class="n">orm</span><span class="o">.</span><span class="n">class_mapper</span><span class="p">(</span><span class="n">cls</span><span class="p">)</span><span class="o">.</span><span class="n">iterate_properties</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">sa</span><span class="o">.</span><span class="n">orm</span><span class="o">.</span><span class="n">RelationshipProperty</span><span class="p">)]</span>
+
+
+<span class="k">class</span> <span class="nc">Error</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for exceptions in this module.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">StateError</span><span class="p">(</span><span class="n">Error</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Exception raised for state errors while processing the form.</span>
+
+<span class="sd">        :msg:  explanation of the error</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span>
+
+
+<span class="k">class</span> <span class="nc">Validator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Validator class for external validators. External validators can</span>
+<span class="sd">    be used to implement more complicated validations on the converted</span>
+<span class="sd">    data in the form. The validator has access to all submitted values</span>
+<span class="sd">    of the form. Validation happens on the converted pythonic values</span>
+<span class="sd">    from the submitted formdata. Additionally a context can be provided</span>
+<span class="sd">    to the validator to provide additional data needed for the</span>
+<span class="sd">    validation.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">triggers</span><span class="o">=</span><span class="s2">&quot;error&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a new Validator</span>
+
+<span class="sd">        :field: Name of the field which should be validated.</span>
+<span class="sd">        :error: Error message which should be show at the field when</span>
+<span class="sd">                validation fails.</span>
+<span class="sd">        :callback: Python callable which actually will do the check.</span>
+<span class="sd">        :context: Add additional data which can be provided to the callback.</span>
+<span class="sd">        :triggers: Set what kind of error message will be generated.</span>
+<span class="sd">                   Everything else than &quot;error&quot; will trigger a warning</span>
+<span class="sd">                   message. Default to error.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_field</span> <span class="o">=</span> <span class="n">field</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_error</span> <span class="o">=</span> <span class="n">error</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_callback</span> <span class="o">=</span> <span class="n">callback</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_context</span> <span class="o">=</span> <span class="n">context</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_triggers</span> <span class="o">=</span> <span class="n">triggers</span>
+
+    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Checker method which will call the callback of the validator</span>
+<span class="sd">        to actually do the validation on the provided data. Will return</span>
+<span class="sd">        True or False.&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_field</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_field</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Form"><a class="viewcode-back" href="../../api.html#formbar.form.Form">[docs]</a><span class="k">class</span> <span class="nc">Form</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Class for forms. The form will take care for rendering the form,</span>
+<span class="sd">    validating the submitted data and saving the data back to the</span>
+<span class="sd">    item.</span>
+
+<span class="sd">    The form must be instanciated with an instance of an ``Form``</span>
+<span class="sd">    configuration and optional an SQLAlchemy mapped item.</span>
+
+<span class="sd">    If an SQLAlchemy mapped item is provided there are some basic</span>
+<span class="sd">    validation is done based on the defintion in the database. Further</span>
+<span class="sd">    the save method will save the values directly into the database.</span>
+
+<span class="sd">    If no item was provided than a dummy item will be created with the</span>
+<span class="sd">    attributes of the configured fields in the form.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">item</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dbsession</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">translate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">change_page_callback</span><span class="o">=</span><span class="p">{},</span> <span class="n">renderers</span><span class="o">=</span><span class="p">{},</span> <span class="n">request</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">csrf_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">url_prefix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">locale</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize the form with ``Form`` configuration instance and</span>
+<span class="sd">        optional an SQLAlchemy mapped object.</span>
+
+<span class="sd">        :config: FormConfiguration.</span>
+<span class="sd">        :item: SQLAlchemy mapped instance</span>
+<span class="sd">        :dbsession: dbsession</span>
+<span class="sd">        :translate: Translation function which returns a translated</span>
+<span class="sd">        string for a given msgid</span>
+<span class="sd">        :set_page_callback: Url which will be called when the user</span>
+<span class="sd">        changes the currently selected page.</span>
+<span class="sd">        :renderers: A optional dictionary of custom renderers which are</span>
+<span class="sd">        provided to the form to render specific form elements. The key</span>
+<span class="sd">        is the type of the renderer as named in the formular</span>
+<span class="sd">        configuration.</span>
+<span class="sd">        :request: Current request (See</span>
+<span class="sd">        http://docs.pylonsproject.org/projects/pyramid/en/latest/api/request.html</span>
+<span class="sd">        when using in connection with ringo)</span>
+<span class="sd">        :csrf_token: Token to which will be included as hidden field in</span>
+<span class="sd">        the form to prevent CSRF attacks.</span>
+<span class="sd">        :eval_url: External URL for rule evaluation. If defined this URL is</span>
+<span class="sd">        called to evaluate client side rules with a AJAX request. The rule</span>
+<span class="sd">        to evaluate is provided in a GET request in the &quot;rule&quot; paramenter.</span>
+<span class="sd">        The return Value is a JSON response with success attribute set</span>
+<span class="sd">        depending on the result of the evaluation and the error message in</span>
+<span class="sd">        the data attribute in case the evaluation fails.</span>
+<span class="sd">        :url_prefix: Prefix which can be used for all URL in the form.</span>
+<span class="sd">        :locale: String of the locale of the form. Used for proper</span>
+<span class="sd">        display of the date and number functions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_item</span> <span class="o">=</span> <span class="n">item</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dbsession</span> <span class="o">=</span> <span class="n">dbsession</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_request</span> <span class="o">=</span> <span class="n">request</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_csrf_token</span> <span class="o">=</span> <span class="n">csrf_token</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_url_prefix</span> <span class="o">=</span> <span class="n">url_prefix</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_eval_url</span> <span class="o">=</span> <span class="n">eval_url</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_url_prefix</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_eval_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_url_prefix</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eval_url</span>
+
+        <span class="k">if</span> <span class="n">locale</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_locale</span> <span class="o">=</span> <span class="n">locale</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_locale</span> <span class="o">=</span> <span class="s2">&quot;en&quot;</span>
+
+        <span class="k">if</span> <span class="n">translate</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_translate</span> <span class="o">=</span> <span class="n">translate</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_translate</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">msgid</span><span class="p">:</span> <span class="n">msgid</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">validated</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="sd">&quot;&quot;&quot;Flag to indicate if the form has been validated. Init value</span>
+<span class="sd">        is False.  which means no validation has been done.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">external_validators</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="sd">&quot;&quot;&quot;List with external validators. Will be called an form validation.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_page</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="sd">&quot;&quot;&quot;Number of the currently selected page&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">change_page_callback</span> <span class="o">=</span> <span class="n">change_page_callback</span>
+        <span class="sd">&quot;&quot;&quot;Dictionary with some parameters used to call an URL when the</span>
+<span class="sd">        user changes the currently selected page. The dictionary has the</span>
+<span class="sd">        following keys:</span>
+<span class="sd">         * url: Name of the URL which will be called</span>
+<span class="sd">         * item (optional): A string which is send to the URL as GET</span>
+<span class="sd">           paramenter. Often this is the name of the element (clazzname)</span>
+<span class="sd">         * itemid (optional): The id of the currently editied element.</span>
+<span class="sd">        The url will have the additional parameter &quot;page&quot; which holds</span>
+<span class="sd">        the currently selected page.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">external_renderers</span> <span class="o">=</span> <span class="n">renderers</span>
+        <span class="sd">&quot;&quot;&quot;Dictionary with external provided custom renderers.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_fields</span><span class="p">()</span>
+        <span class="sd">&quot;&quot;&quot;Dictionary with fields.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="sd">&quot;&quot;&quot;After submission this Dictionary will contain the</span>
+<span class="sd">        validated data on successfull validation. Else this Dictionary</span>
+<span class="sd">        will be empty&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">submitted_data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="sd">&quot;&quot;&quot;The submitted data from the user. If validation fails, then</span>
+<span class="sd">        this values are used to rerender the form.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loaded_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_data_from_item</span><span class="p">()</span>
+        <span class="sd">&quot;&quot;&quot;This is the initial data loaded from the given item. Used to</span>
+<span class="sd">        render the readonly forms&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">merged_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loaded_data</span>
+        <span class="sd">&quot;&quot;&quot;This is merged date from the initial data loaded from the</span>
+<span class="sd">        given item. And userprovied data. The user defined values are</span>
+<span class="sd">        merged on render time&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warnings</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="sd">&quot;&quot;&quot;Form wide warnings. This list contains warnings which affect</span>
+<span class="sd">        the entire form and not specific fields. These warnings are show</span>
+<span class="sd">        at the top of evere page.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="sd">&quot;&quot;&quot;Form wide errors. This list contains errors which affect</span>
+<span class="sd">        the entire form and not specific fields. These errors are show</span>
+<span class="sd">        at the top of evere page.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_set_current_field_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+                <span class="n">field</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="n">field</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_previous_field_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+                <span class="n">field</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="n">field</span><span class="o">.</span><span class="n">set_previous_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_data_from_item</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_item</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">values</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">get_fields</span><span class="p">()</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">values</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_item</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                <span class="n">values</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">values</span>
+
+    <span class="k">def</span> <span class="nf">_filter_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Will return a filtered dictionary of the given values</span>
+<span class="sd">        dictionary which only contains values which are actually part of</span>
+<span class="sd">        the current form.</span>
+
+<span class="sd">        :values: Dicionary with unfilterd values</span>
+<span class="sd">        :returns: Dicionary with filtered values</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">filtered</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">fieldname</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">fieldname</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+                <span class="n">filtered</span><span class="p">[</span><span class="n">fieldname</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">fieldname</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">filtered</span>
+
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a dictionary with pythonized data data. Usually this</span>
+<span class="sd">        is the submitted data coming from a form. The dictionary will</span>
+<span class="sd">        include all values provided in the initial data dictionary</span>
+<span class="sd">        converted into python datatype.</span>
+
+<span class="sd">        :data: Dictionary with serialized data</span>
+<span class="sd">        :returns: Dictionary with deserialized data</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">deserialized</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Load relations of the item. Those are needed to deserialize</span>
+        <span class="c1"># the relations.</span>
+        <span class="n">relation_names</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mapper</span> <span class="o">=</span> <span class="n">sa</span><span class="o">.</span><span class="n">orm</span><span class="o">.</span><span class="n">object_mapper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_item</span><span class="p">)</span>
+            <span class="n">relation_properties</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">p</span><span class="p">,</span>
+                                     <span class="n">sa</span><span class="o">.</span><span class="n">orm</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">RelationshipProperty</span><span class="p">),</span>
+                <span class="n">mapper</span><span class="o">.</span><span class="n">iterate_properties</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">relation_properties</span><span class="p">:</span>
+                <span class="n">relation_names</span><span class="p">[</span><span class="n">prop</span><span class="o">.</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">prop</span>
+        <span class="k">except</span> <span class="n">sa</span><span class="o">.</span><span class="n">orm</span><span class="o">.</span><span class="n">exc</span><span class="o">.</span><span class="n">UnmappedInstanceError</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_item</span><span class="p">:</span>
+                <span class="k">pass</span>  <span class="c1"># The form is not mapped to an item.</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span>
+
+        <span class="k">for</span> <span class="n">fieldname</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filter_values</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="n">field</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">fieldname</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">serialized</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="n">deserialized</span><span class="p">[</span><span class="n">fieldname</span><span class="p">]</span> <span class="o">=</span> <span class="n">to_python</span><span class="p">(</span><span class="n">field</span><span class="p">,</span>
+                                                    <span class="n">serialized</span><span class="p">,</span>
+                                                    <span class="n">relation_names</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">DeserializeException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_add_error</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">_translate</span><span class="p">(</span><span class="n">ex</span><span class="o">.</span><span class="n">message</span><span class="p">)</span> <span class="o">%</span> <span class="n">ex</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Deserialized values: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">deserialized</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">deserialized</span>
+
+    <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a dictionary with serialized data from the forms</span>
+<span class="sd">        item.  The dictionary will include all attributes</span>
+<span class="sd">        and relations values of the items. The key in the dictionary is</span>
+<span class="sd">        the name of the relation/attribute. In case of relations the</span>
+<span class="sd">        value in the dictionary is the &quot;id&quot; value of the related item.</span>
+<span class="sd">        If no item is present then return a empty dict.</span>
+
+<span class="sd">        :returns: Dictionary with serialized values of the item.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">serialized</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">fieldname</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filter_values</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="n">field</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">fieldname</span><span class="p">)</span>
+            <span class="n">serialized</span><span class="p">[</span><span class="n">fieldname</span><span class="p">]</span> <span class="o">=</span> <span class="n">from_python</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Serialized values: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">serialized</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">serialized</span>
+
+    <span class="k">def</span> <span class="nf">_build_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a dictionary with all Field instances which are</span>
+<span class="sd">        configured for this form.</span>
+<span class="sd">        :returns: Dictionary with Field instances</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">get_fields</span><span class="p">()</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="n">fields</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_translate</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fields</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">pages</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">get_pages</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">has_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns True if one of the fields in the form has errors&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">get_errors</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">errors</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">has_warnings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns True if one of the fields in the form has warnings&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">get_warnings</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">warnings</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
+
+<div class="viewcode-block" id="Form.get_errors"><a class="viewcode-back" href="../../api.html#formbar.form.Form.get_errors">[docs]</a>    <span class="k">def</span> <span class="nf">get_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">page</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a dictionary of all errors in the form. If page</span>
+<span class="sd">        parameter is given, then only the errors for fields on the given</span>
+<span class="sd">        page are returned. This dictionary will contain the errors if</span>
+<span class="sd">        the validation fails. The key of the dictionary is the fieldname</span>
+<span class="sd">        of the field.  As a field can have more than one error the value</span>
+<span class="sd">        is a list.</span>
+
+<span class="sd">        :page: Dictionary with errors</span>
+<span class="sd">        :returns: Dictionary with errors</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">page</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fields_on_page</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">get_fields</span><span class="p">(</span><span class="n">page</span><span class="p">)</span>
+
+        <span class="n">errors</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">page</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">field</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fields_on_page</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">get_errors</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">errors</span><span class="p">[</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">get_errors</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">errors</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">page</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">errors</span><span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">errors</span>
+        <span class="k">return</span> <span class="n">errors</span></div>
+
+<div class="viewcode-block" id="Form.get_warnings"><a class="viewcode-back" href="../../api.html#formbar.form.Form.get_warnings">[docs]</a>    <span class="k">def</span> <span class="nf">get_warnings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">page</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a dictionary of all warnings in the form. If page</span>
+<span class="sd">        parameter is given, then only the warnings for fields on the given</span>
+<span class="sd">        page are returned. This dictionary will contain the warnings if</span>
+<span class="sd">        the validation fails. The key of the dictionary is the fieldname</span>
+<span class="sd">        of the field.  As a field can have more than one warning the value</span>
+<span class="sd">        is a list.</span>
+
+<span class="sd">        :page: Name of the page</span>
+<span class="sd">        :returns: Dictionary with warnings</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">page</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fields_on_page</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">get_fields</span><span class="p">(</span><span class="n">page</span><span class="p">)</span>
+
+        <span class="n">warnings</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">page</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">field</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fields_on_page</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">get_warnings</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="p">[</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">get_warnings</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">warnings</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">page</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">warnings</span>
+        <span class="k">return</span> <span class="n">warnings</span></div>
+
+    <span class="k">def</span> <span class="nf">get_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">add_validator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">validator</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">external_validators</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">validator</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Form.render"><a class="viewcode-back" href="../../api.html#formbar.form.Form.render">[docs]</a>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="p">{},</span> <span class="n">page</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">buttons</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+               <span class="n">previous_values</span><span class="o">=</span><span class="p">{},</span> <span class="n">outline</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the rendererd form as an HTML string.</span>
+
+<span class="sd">        :values: Dictionary with values to be prefilled/overwritten in</span>
+<span class="sd">                 the rendered form.</span>
+<span class="sd">        :previous_values: Dictionary of values of the last saved state</span>
+<span class="sd">                          of the item. If provided a diff between the</span>
+<span class="sd">                          current and previous values will be renderered</span>
+<span class="sd">                          in readonly mode.</span>
+<span class="sd">        :outline: Boolean flag to indicate that the outline for pages</span>
+<span class="sd">                  should be rendered. Defaults to true.</span>
+<span class="sd">        :returns: Rendered form.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_page</span> <span class="o">=</span> <span class="n">page</span>
+
+        <span class="c1"># Merge the items_values with the extra provided values. Extra</span>
+        <span class="c1"># values will overwrite the item_values.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">merged_data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loaded_data</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="o">+</span> <span class="n">values</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+
+        <span class="c1"># Set current and previous values of the fields in the form. In</span>
+        <span class="c1"># case of errors in the form the submitted_data dictionary will</span>
+        <span class="c1"># contain the submitted values which should be displayed in the</span>
+        <span class="c1"># form again.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">submitted_data</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_set_current_field_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">submitted_data</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_set_current_field_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">merged_data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_previous_field_data</span><span class="p">(</span><span class="n">previous_values</span><span class="p">)</span>
+
+        <span class="c1"># Add csrf_token to the values dictionary</span>
+        <span class="n">values</span><span class="p">[</span><span class="s1">&#39;csrf_token&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_csrf_token</span>
+
+        <span class="n">renderer</span> <span class="o">=</span> <span class="n">FormRenderer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_translate</span><span class="p">)</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">renderer</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">buttons</span><span class="o">=</span><span class="n">buttons</span><span class="p">,</span> <span class="n">outline</span><span class="o">=</span><span class="n">outline</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">form</span></div>
+
+    <span class="k">def</span> <span class="nf">_add_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fieldname</span><span class="p">,</span> <span class="n">error</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">fieldname</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">field</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_field</span><span class="p">(</span><span class="n">fieldname</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">err</span> <span class="ow">in</span> <span class="n">error</span><span class="p">:</span>
+                    <span class="n">field</span><span class="o">.</span><span class="n">add_error</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">field</span><span class="o">.</span><span class="n">add_error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_add_warning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fieldname</span><span class="p">,</span> <span class="n">warning</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">fieldname</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warnings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">warning</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">field</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_field</span><span class="p">(</span><span class="n">fieldname</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">warning</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">war</span> <span class="ow">in</span> <span class="n">warning</span><span class="p">:</span>
+                    <span class="n">field</span><span class="o">.</span><span class="n">add_warning</span><span class="p">(</span><span class="n">war</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">field</span><span class="o">.</span><span class="n">add_warning</span><span class="p">(</span><span class="n">warning</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Form.validate"><a class="viewcode-back" href="../../api.html#formbar.form.Form.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">submitted</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns True if the validation succeeds else False.</span>
+<span class="sd">        Validation of the data happens in three stages:</span>
+
+<span class="sd">        1. Prevalidation. Custom rules that are checked before any</span>
+<span class="sd">        datatype checks on type conversations are made.</span>
+<span class="sd">        2. Basic type checks and type conversation. Type checks and type</span>
+<span class="sd">        conversation is done based on the data type of the field and</span>
+<span class="sd">        further constraint defined in the database if the form is</span>
+<span class="sd">        instanciated with an SQLAlchemy mapped item.</span>
+<span class="sd">        3. Postvalidation. Custom rules that are checked after the type</span>
+<span class="sd">        conversation was done. Note: Postevaluation is only done for</span>
+<span class="sd">        successfull converted values.</span>
+<span class="sd">        4. External Validators. External defined checks done on teh</span>
+<span class="sd">        converted values. Note: Validators are only called for</span>
+<span class="sd">        successfull converted values</span>
+
+<span class="sd">        All errors are stored in the errors dictionary through the</span>
+<span class="sd">        process of validation. After the validation finished the values</span>
+<span class="sd">        are stored in the data dictionary. In case there has been errors</span>
+<span class="sd">        the dictionary will contain the origin submitted data.</span>
+
+<span class="sd">        :submitted: Dictionary with submitted values.</span>
+<span class="sd">        :returns: True or False</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">submitted</span><span class="p">:</span>
+            <span class="n">unvalidated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loaded_data</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">unvalidated</span> <span class="o">=</span> <span class="n">submitted</span><span class="o">.</span><span class="n">mixed</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                <span class="n">unvalidated</span> <span class="o">=</span> <span class="n">submitted</span>
+            <span class="n">unvalidated</span> <span class="o">=</span> <span class="n">remove_ws</span><span class="p">(</span><span class="n">unvalidated</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Submitted data: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">unvalidated</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">submitted_data</span> <span class="o">=</span> <span class="n">unvalidated</span>
+        <span class="n">converted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">unvalidated</span><span class="p">)</span>
+
+        <span class="c1"># Validate the fields. Ignore fields which are disabled in</span>
+        <span class="c1"># conditionals First get list of fields which are still in the</span>
+        <span class="c1"># form after conditionals has be evaluated</span>
+        <span class="n">fields_to_check</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">get_fields</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">converted</span><span class="p">,</span>
+                                                  <span class="n">evaluate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">fieldname</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields_to_check</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="n">field</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="n">fieldname</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">field</span><span class="o">.</span><span class="n">get_rules</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">rule</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;pre&quot;</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">rule</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">unvalidated</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">fieldname</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">converted</span><span class="p">:</span>
+                    <span class="c1"># Ignore rule if the value can&#39;t be converted.</span>
+                    <span class="k">continue</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">rule</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">converted</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">rule</span><span class="o">.</span><span class="n">triggers</span> <span class="o">==</span> <span class="s2">&quot;warning&quot;</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_add_warning</span><span class="p">(</span><span class="n">fieldname</span><span class="p">,</span> <span class="n">rule</span><span class="o">.</span><span class="n">msg</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_add_error</span><span class="p">(</span><span class="n">fieldname</span><span class="p">,</span> <span class="n">rule</span><span class="o">.</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="c1"># Custom validation. User defined external validators.</span>
+        <span class="k">for</span> <span class="n">validator</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">external_validators</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">validator</span><span class="o">.</span><span class="n">_field</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">converted</span>
+                    <span class="ow">and</span> <span class="n">validator</span><span class="o">.</span><span class="n">_field</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+                <span class="c1"># Ignore validator if the value can&#39;t be converted.</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">validator</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">converted</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">validator</span><span class="o">.</span><span class="n">_triggers</span> <span class="o">==</span> <span class="s2">&quot;error&quot;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_add_error</span><span class="p">(</span><span class="n">validator</span><span class="o">.</span><span class="n">_field</span><span class="p">,</span> <span class="n">validator</span><span class="o">.</span><span class="n">_error</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_add_warning</span><span class="p">(</span><span class="n">validator</span><span class="o">.</span><span class="n">_field</span><span class="p">,</span> <span class="n">validator</span><span class="o">.</span><span class="n">_error</span><span class="p">)</span>
+
+        <span class="c1"># If the form is valid. Save the converted and validated data</span>
+        <span class="c1"># into the data dictionary.</span>
+        <span class="n">has_errors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_errors</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">has_errors</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">converted</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validated</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="n">has_errors</span></div>
+
+<div class="viewcode-block" id="Form.save"><a class="viewcode-back" href="../../api.html#formbar.form.Form.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Will save the validated data back into the item. In case of</span>
+<span class="sd">        an SQLAlchemy mapped item the data will be stored into the</span>
+<span class="sd">        database.</span>
+<span class="sd">        :returns: Item with validated data.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">validated</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">StateError</span><span class="p">(</span><span class="s1">&#39;Saving is not possible without prior validation&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_errors</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">StateError</span><span class="p">(</span><span class="s1">&#39;Saving is not possible if form has errors&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Only save if there is actually an item.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_item</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># TODO: Iterate over fields here. Fields should know their value</span>
+            <span class="c1"># and if they are a relation or not (torsten) &lt;2013-07-24 23:24&gt;</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_item</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="c1"># If the item has no id, then we assume it is a new item. So</span>
+            <span class="c1"># add it to the database session.</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_item</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_dbsession</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_item</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_item</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">field</span><span class="p">):</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">name</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span>
+            <span class="n">errors</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">has_errors</span>
+            <span class="n">warnings</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">has_warnings</span>
+            <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">:</span><span class="se">\t</span><span class="si">{}</span><span class="s2"> </span><span class="se">\t</span><span class="s2">errors: </span><span class="si">{}</span><span class="s2"> warnings: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">warnings</span><span class="p">)</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()]</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
+        <span class="n">lines</span> <span class="o">+=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">has errors: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">has_errors</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">lines</span></div>
+
+
+<span class="k">class</span> <span class="nc">Field</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Wrapper for fields in the form. The purpose of this class is to</span>
+<span class="sd">    provide a common interface for the renderer independent to the</span>
+<span class="sd">    underlying implementation detail of the field.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize the field with the given field configuration.</span>
+
+<span class="sd">        :config: Field configuration</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_form</span> <span class="o">=</span> <span class="n">form</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sa_property</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sa_property</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_translate</span> <span class="o">=</span> <span class="n">translate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">renderer</span> <span class="o">=</span> <span class="n">get_renderer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_errors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_warnings</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># Set default value</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
+
+        <span class="c1"># If value begins with &#39;%&#39; then consider the following string as</span>
+        <span class="c1"># a brabbel expression and set the value of the default value to</span>
+        <span class="c1"># the result of the evaluation of the expression.</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">and</span> <span class="n">value</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;%&quot;</span><span class="p">):</span>
+            <span class="n">form_values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_get_data_from_item</span><span class="p">()</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;%&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">form_values</span><span class="p">)</span>
+        <span class="c1"># If value begins with &#39;$&#39; then consider the string as attribute</span>
+        <span class="c1"># name of the item in the form and get the value</span>
+        <span class="k">elif</span> <span class="n">value</span> <span class="ow">and</span> <span class="n">value</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;$&quot;</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Special logic for ringo items.</span>
+                <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">render_type</span> <span class="o">==</span> <span class="s2">&quot;info&quot;</span>
+                   <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_item</span><span class="p">,</span> <span class="s2">&quot;get_value&quot;</span><span class="p">)):</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_item</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;$&quot;</span><span class="p">),</span>
+                                                       <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_item</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;$&quot;</span><span class="p">))</span>
+            <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">),</span> <span class="n">e</span><span class="p">:</span>
+                <span class="c1"># In case we are currently creating an item a access to</span>
+                <span class="c1"># values of the item may fail because the are not</span>
+                <span class="c1"># existing yet. This is especially true for items in</span>
+                <span class="c1"># relations as relations are added to the item after the</span>
+                <span class="c1"># creation has finished. So we expect such errors in</span>
+                <span class="c1"># case of creation and will not log those errors. A way</span>
+                <span class="c1"># to identify an item which is not fully created is the</span>
+                <span class="c1"># absence of its id value.</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_item</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_item</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+                    <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Error while accessing attribute &#39;</span><span class="si">%s</span><span class="s2">&#39;: </span><span class="si">%s</span><span class="s2">&quot;</span>
+                              <span class="o">%</span> <span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">e</span><span class="p">))</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">previous_value</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="sd">&quot;&quot;&quot;Value as string of the field. Will be set on rendering the</span>
+<span class="sd">        form&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">rules_to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s2">u&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rules</span><span class="p">()]</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">rules</span> <span class="o">=</span> <span class="s2">&quot;rules: </span><span class="se">\n\t\t</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rules_to_string</span><span class="p">))</span>
+        <span class="n">field</span> <span class="o">=</span> <span class="s2">u&quot;field:</span><span class="se">\t\t</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="s2">u&quot;value:</span><span class="se">\t\t</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_value</span><span class="p">(),</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_value</span><span class="p">()))</span>
+        <span class="n">required</span> <span class="o">=</span> <span class="s2">&quot;required:</span><span class="se">\t</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">is_required</span><span class="p">)</span>
+        <span class="n">desired</span> <span class="o">=</span> <span class="s2">&quot;desired:</span><span class="se">\t</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">is_desired</span><span class="p">)</span>
+        <span class="n">validated</span> <span class="o">=</span> <span class="s2">&quot;validated:</span><span class="se">\t</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">is_validated</span><span class="p">)</span>
+        <span class="n">_type</span> <span class="o">=</span> <span class="s2">&quot;type:</span><span class="se">\t\t</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_type</span><span class="p">())</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">field</span><span class="p">,</span> <span class="n">required</span><span class="p">,</span> <span class="n">desired</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">_type</span><span class="p">,</span> <span class="n">validated</span><span class="p">,</span> <span class="n">rules</span><span class="p">])</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Make attributes from the configuration directly available&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_sa_mapped_class</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># TODO: Raise Exception if this field is not a relation. (None)</span>
+        <span class="c1"># &lt;2013-07-25 07:44&gt;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sa_property</span><span class="o">.</span><span class="n">mapper</span><span class="o">.</span><span class="n">class_</span>
+
+    <span class="k">def</span> <span class="nf">_get_sa_property</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_item</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">mapper</span> <span class="o">=</span> <span class="n">sa</span><span class="o">.</span><span class="n">orm</span><span class="o">.</span><span class="n">object_mapper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_item</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">mapper</span><span class="o">.</span><span class="n">iterate_properties</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">prop</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">prop</span>
+
+    <span class="k">def</span> <span class="nf">get_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the datatype of the field.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">type</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">type</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sa_property</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">column</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sa_property</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">dtype</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">column</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;TEXT&quot;</span> <span class="ow">or</span> <span class="n">dtype</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;VARCHAR&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="s2">&quot;string&quot;</span>
+                <span class="k">elif</span> <span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;DATE&quot;</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="s2">&quot;date&quot;</span>
+                <span class="k">elif</span> <span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;INTEGER&quot;</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="s2">&quot;integer&quot;</span>
+                <span class="k">elif</span> <span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;BOOLEAN&quot;</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="s2">&quot;boolean&quot;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Unhandled datatype: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sa_property</span><span class="o">.</span><span class="n">direction</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">return</span> <span class="s2">&quot;string&quot;</span>
+
+    <span class="k">def</span> <span class="nf">get_rules</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a list of configured rules for the field.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">get_rules</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_warning_rules</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rules</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">triggers</span> <span class="o">==</span> <span class="s2">&quot;warning&quot;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_error_rules</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rules</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">triggers</span> <span class="o">==</span> <span class="s2">&quot;error&quot;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">has_warning_rules</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a True if there is at least on rule that can trigger</span>
+<span class="sd">        a warning.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_warning_rules</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">has_error_rules</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a True if there is at least on rule that can trigger</span>
+<span class="sd">        a error.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_error_rules</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_type</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;integer&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_value</span><span class="p">())</span> <span class="ow">is</span> <span class="kc">False</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">empty_message</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_required</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">config</span><span class="o">.</span><span class="n">required_msg</span>
+        <span class="k">return</span> <span class="n">config</span><span class="o">.</span><span class="n">desired_msg</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">has_warnings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_warnings</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">has_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_errors</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">get_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_errors</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_warnings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_warnings</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">is_missing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return True if this field is a desired or required field and</span>
+<span class="sd">        the value of the fields is actually missing in the current</span>
+<span class="sd">        context after all rules have been evaluated. Note the rules the</span>
+<span class="sd">        are not evaluated because the field is in an inactive</span>
+<span class="sd">        conditional will have the result==None which means the rule is</span>
+<span class="sd">        not evaluated.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_value</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rules</span><span class="p">():</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">rule</span><span class="o">.</span><span class="n">desired</span> <span class="ow">or</span> <span class="n">rule</span><span class="o">.</span><span class="n">required</span><span class="p">)</span> <span class="ow">and</span> <span class="n">rule</span><span class="o">.</span><span class="n">result</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">set_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">set_previous_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">previous_value</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">expand</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_previous_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">previous_value</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">expand</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">expand</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">expand</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="p">[</span><span class="n">value</span><span class="p">]</span>
+            <span class="n">ex_values</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_options</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">opt</span> <span class="ow">in</span> <span class="n">options</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">unicode</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">==</span> <span class="n">unicode</span><span class="p">(</span><span class="n">opt</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                        <span class="n">ex_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">opt</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">return</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ex_values</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">from_python</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">default</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">default</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">_build_filter_rule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr_str</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">expr_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+        <span class="c1"># The filter expression may reference values of the form using $</span>
+        <span class="c1"># variables. To have access to these values we extract the</span>
+        <span class="c1"># values from the given item if available.</span>
+        <span class="c1"># TODO: Access to the item is usally no good idea as formbar can</span>
+        <span class="c1"># be used in environments where no item is available.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_item</span><span class="p">:</span>
+            <span class="n">item_values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_item</span><span class="o">.</span><span class="n">get_values</span><span class="p">()</span>
+            <span class="n">item_values</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">merged_data</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">item_values</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+            <span class="c1"># % marks the options in the selection field. It is used to</span>
+            <span class="c1"># iterate over the options in the selection. I case the</span>
+            <span class="c1"># options are SQLAlchemy based options the variable can be</span>
+            <span class="c1"># used to access a attribute of the item. E.g. %id will</span>
+            <span class="c1"># access the id of the current option item. For user defined</span>
+            <span class="c1"># options &quot;%&quot; can be used to iterate over the user defined</span>
+            <span class="c1"># options. In this case %attr will access a given attribte</span>
+            <span class="c1"># in the option. A bare &quot;%&quot; will give the value of the</span>
+            <span class="c1"># option.</span>
+            <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;%&quot;</span><span class="p">):</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;%&quot;</span><span class="p">)</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span> <span class="ow">or</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
+            <span class="c1"># @ marks the item of the current fields form item.</span>
+            <span class="k">elif</span> <span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;@&quot;</span><span class="p">):</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;@&quot;</span><span class="p">)</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_item</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+            <span class="c1"># $ special attributes of the current form.</span>
+            <span class="k">elif</span> <span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;$&quot;</span><span class="p">):</span>
+                <span class="n">tmpitem</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">tokens</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">key</span> <span class="o">=</span> <span class="n">tokens</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;$&quot;</span><span class="p">)</span>
+                    <span class="n">attribute</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+                    <span class="c1"># FIXME: This is a bad assumption that there is a</span>
+                    <span class="c1"># user within a request. (ti) &lt;2014-07-09 11:18&gt;</span>
+                    <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;user&quot;</span><span class="p">:</span>
+                        <span class="n">tmpitem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_request</span><span class="o">.</span><span class="n">user</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">key</span> <span class="o">=</span> <span class="n">tokens</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;$&quot;</span><span class="p">)</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">item_values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;&#39;</span>
+                <span class="k">if</span> <span class="n">tmpitem</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">tmpitem</span><span class="p">,</span> <span class="n">attribute</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">&#39;__call__&#39;</span><span class="p">):</span>
+                        <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;[</span><span class="si">%s</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span>
+                                              <span class="o">%</span> <span class="n">unicode</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span><span class="p">)</span>
+                    <span class="n">expr_str</span> <span class="o">=</span> <span class="n">expr_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">basestring</span><span class="p">)</span> <span class="ow">and</span> <span class="n">value</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;$&quot;</span><span class="p">):</span>
+                    <span class="n">expr_str</span> <span class="o">=</span> <span class="n">expr_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">unicode</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">expr_str</span> <span class="o">=</span> <span class="n">expr_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;&#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">unicode</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">Rule</span><span class="p">(</span><span class="n">expr_str</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_load_options_from_db</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Get mapped clazz for the field</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">clazz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sa_mapped_class</span><span class="p">()</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_dbsession</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">clazz</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="c1"># Catch exception here. This exception can happen when</span>
+            <span class="c1"># rendering the form in the preview of the formeditor. In</span>
+            <span class="c1"># this case the item is None and will fail to get the mapped</span>
+            <span class="c1"># class.</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Can not get a mappend class for &#39;</span><span class="si">%s</span><span class="s2">&#39; &quot;</span>
+                      <span class="s2">&quot;to load the option from db&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">filter_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Will return a of tuples with options. The given options can</span>
+<span class="sd">        be either a list of SQLAlchemy mapped items (In case the options</span>
+<span class="sd">        come directly from the database) or a list of tuples with option</span>
+<span class="sd">        name and values. (In case of userdefined options in the form)</span>
+
+<span class="sd">        :options: List of items or tuples</span>
+<span class="sd">        :returns: List of tuples.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">filtered_options</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">renderer</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">filter</span><span class="p">:</span>
+            <span class="n">rule</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_filter_rule</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">filter</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;\$[\w\.]+&quot;</span><span class="p">)</span>
+            <span class="n">option_values</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">rule</span><span class="o">.</span><span class="n">_expression</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rule</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">options</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">option</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+                <span class="c1"># User defined options</span>
+                <span class="n">o_value</span> <span class="o">=</span> <span class="n">option</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">o_label</span> <span class="o">=</span> <span class="n">option</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Options loaded from the database</span>
+                <span class="n">o_value</span> <span class="o">=</span> <span class="n">option</span><span class="o">.</span><span class="n">id</span>
+                <span class="n">o_label</span> <span class="o">=</span> <span class="n">option</span>
+            <span class="k">if</span> <span class="n">rule</span><span class="p">:</span>
+                <span class="n">values</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">option_values</span><span class="p">:</span>
+                    <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;$&quot;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">option</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+                        <span class="n">value</span> <span class="o">=</span> <span class="n">option</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">option</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+                    <span class="n">values</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">unicode</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">rule</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+                    <span class="n">filtered_options</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">o_label</span><span class="p">,</span> <span class="n">o_value</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">filtered_options</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">o_label</span><span class="p">,</span> <span class="n">o_value</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">filtered_options</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">o_label</span><span class="p">,</span> <span class="n">o_value</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">filtered_options</span>
+
+    <span class="k">def</span> <span class="nf">get_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Will return a list of tuples containing the options of the</span>
+<span class="sd">        field. The tuple contains in the following order:</span>
+
+<span class="sd">        1. the display value of the option,</span>
+<span class="sd">        2. its value and</span>
+<span class="sd">        3. a boolean flag if the options is a filtered one and</span>
+<span class="sd">        should not be visible in the selection.</span>
+
+<span class="sd">        Options can be filtered by defining the filter attribute of the</span>
+<span class="sd">        renderer. The expression will be applied on every option in the</span>
+<span class="sd">        selection. Keyword beginning with % are handled as variable. On</span>
+<span class="sd">        rule evaluation the keyword in the expression will be replaced</span>
+<span class="sd">        with the value of the item with the name of the variable.</span>
+
+<span class="sd">        Filtering is currently actually only done for selection based on</span>
+<span class="sd">        the SQLAlchemy model and which are loaded from the database.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_translate</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_type</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;manytoone&#39;</span><span class="p">:</span>
+            <span class="n">options</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;no selection&quot;</span><span class="p">),</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+        <span class="n">user_defined_options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">options</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">user_defined_options</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+           <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">user_defined_options</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter_options</span><span class="p">(</span><span class="n">user_defined_options</span><span class="p">):</span>
+                <span class="n">options</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">option</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">option</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">option</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">user_defined_options</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">merged_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_defined_options</span><span class="p">):</span>
+                <span class="n">options</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">option</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">option</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="kc">True</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_dbsession</span><span class="p">:</span>
+            <span class="n">options</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_options</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_load_options_from_db</span><span class="p">()))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># TODO: Try to get the session from the item. Ther must be</span>
+            <span class="c1"># somewhere the already bound session. (torsten) &lt;2013-07-23 00:27&gt;</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;No db connection configured for this form. Can &#39;</span>
+                        <span class="s1">&#39;not load options&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="n">options</span>
+
+    <span class="k">def</span> <span class="nf">add_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">error</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add_warning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">warning</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_warnings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">warning</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">active</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the rendererd HTML for the field&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">_active</span> <span class="o">=</span> <span class="n">active</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">is_relation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sa_property</span><span class="p">,</span>
+                          <span class="n">sa</span><span class="o">.</span><span class="n">orm</span><span class="o">.</span><span class="n">RelationshipProperty</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_desired</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns true if field is set as desired in field configuration&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">desired</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_required</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns true if the required flag of the field configuration</span>
+<span class="sd">        is set&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">required</span>
+
+    <span class="k">def</span> <span class="nf">is_readonly</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns true if either the readonly flag of the field</span>
+<span class="sd">        configuration is set or the whole form is marked as readonly&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">readonly</span> <span class="ow">or</span> <span class="kc">False</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Formbar 0.20.3 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2013, 2014, 2015, 2016 Torsten Irländer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.5.
+    </div>
+  </body>
+</html>

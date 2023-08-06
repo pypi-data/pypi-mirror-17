@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Usage &mdash; Formbar 0.20.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.20.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Formbar 0.20.3 documentation" href="index.html" />
+    <link rel="next" title="API" href="api.html" />
+    <link rel="prev" title="Form configuration" href="config.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="api.html" title="API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="config.html" title="Form configuration"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Formbar 0.20.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="usage">
+<span id="quickstart"></span><h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<p>You will not need much code to include formbar in your application to be able
+to render nice forms. Only a few lines of code are needed:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">formbar.config</span> <span class="k">import</span> <span class="n">Config</span><span class="p">,</span> <span class="n">load</span>
+<span class="kn">from</span> <span class="nn">formbar.form</span> <span class="k">import</span> <span class="n">Form</span>
+<span class="c1"># Simple rendering here, no data submission</span>
+<span class="c1"># nor validation or saving.</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">(</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/path/to/formconfig.xml&#39;</span><span class="p">))</span>
+<span class="n">form_config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_form</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">)</span>
+<span class="n">form</span> <span class="o">=</span> <span class="n">Form</span><span class="p">(</span><span class="n">form_config</span><span class="p">)</span>
+<span class="n">form</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This is of course just a very easy configuration. See sections below for more
+options on usage.</p>
+<p>The configuration of the form happens in a XML configuration file. See
+<a class="reference internal" href="config.html#form-config"><span class="std std-ref">Form configuration</span></a> for more details on options to configura a form. Such a
+configuration file can be loaded by using the <a class="reference internal" href="api.html#formbar.config.load" title="formbar.config.load"><code class="xref py py-func docutils literal"><span class="pre">load()</span></code></a> function to create
+a form configuration <a class="reference internal" href="api.html#formbar.config.Config" title="formbar.config.Config"><code class="xref py py-class docutils literal"><span class="pre">Config</span></code></a> object.</p>
+<p>As the form configuration usually contains more than one form configuration
+(different configurations for editing, reading or creating new items) you will
+need get the form configuration for a specific form by calling the
+<code class="xref py py-func docutils literal"><span class="pre">get_form()</span></code> method.</p>
+<p>This configuration can be used to create a new <a class="reference internal" href="api.html#formbar.form.Form" title="formbar.form.Form"><code class="xref py py-class docutils literal"><span class="pre">Form</span></code></a>.</p>
+<div class="section" id="form-configuration">
+<h2>Form configuration<a class="headerlink" href="#form-configuration" title="Permalink to this headline">¶</a></h2>
+<p>There are some things which can be configured when initializing the form.</p>
+<div class="section" id="sqlalchemy-support">
+<h3>SQLAlchemy support<a class="headerlink" href="#sqlalchemy-support" title="Permalink to this headline">¶</a></h3>
+<p>Formbar can work with mapped SQLAlchemy items. You can provide such an item as
+<em>item</em> attribute while initializing the form.</p>
+</div>
+<div class="section" id="translation">
+<h3>Translation<a class="headerlink" href="#translation" title="Permalink to this headline">¶</a></h3>
+<p>Formbar support translation of the following parts of the form:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Labels</li>
+<li>Error and Warning messages</li>
+<li>Help</li>
+<li>Text</li>
+</ul>
+</div></blockquote>
+<p>To make the translation work you will need to provide a translation function
+with the <em>translate</em> parameter while initializing a <a class="reference internal" href="api.html#formbar.form.Form" title="formbar.form.Form"><code class="xref py py-class docutils literal"><span class="pre">Form</span></code></a> instance.</p>
+<p>This translation function can be any function which behaves like a <em>gettext</em>
+method.</p>
+</div>
+<div class="section" id="use-custom-renderers">
+<span id="conf-custom-renderer"></span><h3>Use Custom renderers<a class="headerlink" href="#use-custom-renderers" title="Permalink to this headline">¶</a></h3>
+<p>To use custom renderers you will need to provide the classes of the renderes
+with the <em>renderer</em> parameter while initializing a <a class="reference internal" href="api.html#formbar.form.Form" title="formbar.form.Form"><code class="xref py py-class docutils literal"><span class="pre">Form</span></code></a> instance.</p>
+<p>The renderers are provided as a dictionary:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">your.app.renderer</span> <span class="k">import</span> <span class="n">FooFieldRenderer</span><span class="p">,</span> <span class="n">BarFieldRenderer</span>
+<span class="n">renderers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;foo&quot;</span><span class="p">:</span> <span class="n">FooFieldRenderer</span>
+        <span class="s2">&quot;bar&quot;</span><span class="p">:</span> <span class="n">BarFieldRenderer</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The key of the dictionary is the name of the <cite>type</cite> form the entities renderer in the
+the form configuration.</p>
+<p>See <a class="reference internal" href="config.html#custom-renderer"><span class="std std-ref">Write custom renderes</span></a> for more details on how to create a custom renderer.</p>
+</div>
+<div class="section" id="use-custom-validators">
+<h3>Use Custom validators<a class="headerlink" href="#use-custom-validators" title="Permalink to this headline">¶</a></h3>
+<p>Write me.</p>
+</div>
+<div class="section" id="rule-evaluation">
+<h3>Rule evaluation<a class="headerlink" href="#rule-evaluation" title="Permalink to this headline">¶</a></h3>
+<p>Rule evaluation on client side is done by sending AJAX requests to a specific
+URL which takes care of evaluating the submitted rules and returning the
+correct respose. The URL to which those requests are sent can be provided with
+the <em>eval_url</em> parameter.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">Formbar can be run as server (See serve.py for more details). This server
+provides such an URL under localhost:8080/evaluate.</p>
+</div>
+</div>
+<div class="section" id="csrf-token">
+<h3>CSRF Token<a class="headerlink" href="#csrf-token" title="Permalink to this headline">¶</a></h3>
+<p>Formbar supports rendering a hidden field in its form which includes the
+string provided as the <em>csrf_token</em> parameter while initializing the form.</p>
+<p>The generated field look like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;csrf_token&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;fe84d264dc7b9f25cce309c275464c1a60f6074a&quot;</span><span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>The value can be used on the server side to to some protection against CSRF
+Attacks.</p>
+<p>If no parameter is provided no field will be generated.</p>
+</div>
+</div>
+<div class="section" id="render">
+<h2>Render<a class="headerlink" href="#render" title="Permalink to this headline">¶</a></h2>
+<p>See <code class="xref py py-func docutils literal"><span class="pre">render()</span></code> for more details on options for rendering the form.</p>
+</div>
+<div class="section" id="validation">
+<h2>Validation<a class="headerlink" href="#validation" title="Permalink to this headline">¶</a></h2>
+<p>To validate the submitted form data you can use the <code class="xref py py-func docutils literal"><span class="pre">validate()</span></code> function:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">):</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">get_errors</span><span class="p">()</span>
+    <span class="n">warnings</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">get_warnings</span><span class="p">()</span>
+    <span class="n">submitted</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">submitted_data</span>
+    <span class="c1"># Handle Error</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">warnings</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">get_warnings</span><span class="p">()</span>
+    <span class="n">validated</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">data</span>
+    <span class="c1"># Handle Success</span>
+</pre></div>
+</div>
+<p>The validation will take care of correct conversation into python types and
+rule checking.
+In case the validated succeeds, the <em>data</em> attribute of the form will hold the
+converted python data based on the fields data type.</p>
+</div>
+<div class="section" id="saving-data">
+<h2>Saving data<a class="headerlink" href="#saving-data" title="Permalink to this headline">¶</a></h2>
+<p>Saving of the converted data after validation is usually done in the
+application and <strong>not</strong> by formbar. Although formbar provides a <code class="xref py py-func docutils literal"><span class="pre">save()</span></code>
+method for mapped SQLAlchemy items but this method is deprecated.</p>
+</div>
+<div class="section" id="generate-specification">
+<h2>Generate specification<a class="headerlink" href="#generate-specification" title="Permalink to this headline">¶</a></h2>
+<p>You can generate a specification based on the form configuration and
+additional <a class="reference internal" href="config.html#metadata"><span class="std std-ref">Metadata (Specification)</span></a> by using the <cite>formspec.py</cite> command.</p>
+<p><code class="docutils literal"><span class="pre">formspec.py</span></code> parses Formbar XML configuration files in order to convert them
+to different formats.  Its main purpose is to convert the XML data into a
+human-readable form specification in RST format.</p>
+<p>A specification is generated per form. The command can be invoked like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">formbar</span><span class="o">/</span><span class="n">contrib</span><span class="o">/</span><span class="n">formspec</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">title</span> <span class="n">Foo</span> <span class="o">--</span><span class="n">form</span> <span class="n">update</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">foo</span><span class="o">.</span><span class="n">xml</span> <span class="o">&gt;</span> <span class="n">foo</span><span class="o">.</span><span class="n">rst</span>
+</pre></div>
+</div>
+<p>The <cite>&#8211;title</cite> parameter is optional. It will set the topmost heading of the
+specification to the given titel. Otherwise the name of the form will be used.</p>
+<p>The <cite>&#8211;form</cite> parameter is optional. On default the &#8220;update&#8221; form will be used
+to generate the specification.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Usage</a><ul>
+<li><a class="reference internal" href="#form-configuration">Form configuration</a><ul>
+<li><a class="reference internal" href="#sqlalchemy-support">SQLAlchemy support</a></li>
+<li><a class="reference internal" href="#translation">Translation</a></li>
+<li><a class="reference internal" href="#use-custom-renderers">Use Custom renderers</a></li>
+<li><a class="reference internal" href="#use-custom-validators">Use Custom validators</a></li>
+<li><a class="reference internal" href="#rule-evaluation">Rule evaluation</a></li>
+<li><a class="reference internal" href="#csrf-token">CSRF Token</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#render">Render</a></li>
+<li><a class="reference internal" href="#validation">Validation</a></li>
+<li><a class="reference internal" href="#saving-data">Saving data</a></li>
+<li><a class="reference internal" href="#generate-specification">Generate specification</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="config.html"
+                        title="previous chapter">Form configuration</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="api.html"
+                        title="next chapter">API</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/usage.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="api.html" title="API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="config.html" title="Form configuration"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Formbar 0.20.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2013, 2014, 2015, 2016 Torsten Irländer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.5.
+    </div>
+  </body>
+</html>

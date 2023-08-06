@@ -1,0 +1,614 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>formbar.renderer &mdash; Formbar 0.20.3 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.20.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Formbar 0.20.3 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Formbar 0.20.3 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for formbar.renderer</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">difflib</span>
+<span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="k">as</span> <span class="nn">ET</span>
+<span class="kn">from</span> <span class="nn">webhelpers.html</span> <span class="k">import</span> <span class="n">literal</span><span class="p">,</span> <span class="n">HTML</span>
+
+<span class="kn">from</span> <span class="nn">mako.lookup</span> <span class="k">import</span> <span class="n">TemplateLookup</span>
+<span class="kn">from</span> <span class="nn">formbar</span> <span class="k">import</span> <span class="n">template_dir</span>
+<span class="kn">from</span> <span class="nn">formbar.rules</span> <span class="k">import</span> <span class="n">Rule</span>
+
+
+<span class="n">template_lookup</span> <span class="o">=</span> <span class="n">TemplateLookup</span><span class="p">(</span><span class="n">directories</span><span class="o">=</span><span class="p">[</span><span class="n">template_dir</span><span class="p">],</span>
+                                 <span class="n">default_filters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;h&#39;</span><span class="p">])</span>
+
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_renderer</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a Renderer. The renderer is choosen based on the</span>
+<span class="sd">    configured renderer in the field configuration. If no renderer is</span>
+<span class="sd">    configured the default FormAlchemy-Renderer is returned.</span>
+
+<span class="sd">    :field: Field</span>
+<span class="sd">    :translate: translation function</span>
+<span class="sd">    :returns: Renderer</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">renderer</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">renderer</span>
+    <span class="k">if</span> <span class="n">renderer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># if there is a external Renderer defined for the given renderer</span>
+        <span class="c1"># type then use this one.</span>
+        <span class="k">if</span> <span class="n">renderer</span><span class="o">.</span><span class="n">render_type</span> <span class="ow">in</span> <span class="n">field</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">external_renderers</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">field</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">external_renderers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">renderer</span><span class="o">.</span><span class="n">render_type</span><span class="p">)(</span>
+                <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">renderer</span><span class="o">.</span><span class="n">render_type</span> <span class="o">==</span> <span class="s2">&quot;textarea&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">TextareaFieldRenderer</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">renderer</span><span class="o">.</span><span class="n">render_type</span> <span class="o">==</span> <span class="s2">&quot;info&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">InfoFieldRenderer</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">renderer</span><span class="o">.</span><span class="n">render_type</span> <span class="o">==</span> <span class="s2">&quot;dropdown&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">DropdownFieldRenderer</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">renderer</span><span class="o">.</span><span class="n">render_type</span> <span class="o">==</span> <span class="s2">&quot;selection&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">SelectionFieldRenderer</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">renderer</span><span class="o">.</span><span class="n">render_type</span> <span class="o">==</span> <span class="s2">&quot;radio&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">RadioFieldRenderer</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">renderer</span><span class="o">.</span><span class="n">render_type</span> <span class="o">==</span> <span class="s2">&quot;checkbox&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">CheckboxFieldRenderer</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">renderer</span><span class="o">.</span><span class="n">render_type</span> <span class="o">==</span> <span class="s2">&quot;datepicker&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">DateFieldRenderer</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">renderer</span><span class="o">.</span><span class="n">render_type</span> <span class="o">==</span> <span class="s2">&quot;password&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">PasswordFieldRenderer</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">renderer</span><span class="o">.</span><span class="n">render_type</span> <span class="o">==</span> <span class="s2">&quot;hidden&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">HiddenFieldRenderer</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">renderer</span><span class="o">.</span><span class="n">render_type</span> <span class="o">==</span> <span class="s2">&quot;html&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">HTMLRenderer</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">renderer</span><span class="o">.</span><span class="n">render_type</span> <span class="o">==</span> <span class="s2">&quot;textoption&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">TextoptionFieldRenderer</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">renderer</span><span class="o">.</span><span class="n">render_type</span> <span class="o">==</span> <span class="s2">&quot;formbareditor&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">FormbarEditorRenderer</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Try to determine the datatype of the field and set approriate</span>
+        <span class="c1"># renderer.</span>
+        <span class="n">dtype</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">get_type</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;manytoone&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">DropdownFieldRenderer</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">dtype</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;manytomany&#39;</span><span class="p">,</span> <span class="s1">&#39;onetomany&#39;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">SelectionFieldRenderer</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;date&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">DateFieldRenderer</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;file&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">FileFieldRenderer</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">TimeFieldRenderer</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;interval&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">TimeFieldRenderer</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;email&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">EmailFieldRenderer</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">TextFieldRenderer</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Renderer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Basic renderer to render Form objects.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the rendered element as string</span>
+
+<span class="sd">        :returns: Rendered string of the element</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">FormRenderer</span><span class="p">(</span><span class="n">Renderer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Renderer for forms. The renderer will build the the HTML for the</span>
+<span class="sd">    provided form instance.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;@todo: to be defined</span>
+
+<span class="sd">        :form: @todo</span>
+<span class="sd">        :translate: Function which return a translated string for a</span>
+<span class="sd">        given msgid.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">Renderer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_form</span> <span class="o">=</span> <span class="n">form</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">translate</span> <span class="o">=</span> <span class="n">translate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">template_lookup</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;form.mako&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buttons</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">outline</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the rendered form as string.</span>
+
+<span class="sd">        :buttons: Boolean flag to indicate if the form buttons should be</span>
+<span class="sd">        rendererd. Defaults to true.</span>
+<span class="sd">        :outline: Boolean flag to indicate that the outline for pages</span>
+<span class="sd">        should be rendered. Defaults to true.</span>
+<span class="sd">        :returns: rendered form.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_form_start</span><span class="p">())</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_form_body</span><span class="p">(</span><span class="n">outline</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">readonly</span> <span class="ow">and</span> <span class="n">buttons</span><span class="p">:</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_form_buttons</span><span class="p">())</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_form_end</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">literal</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_render_form_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;formbar-form&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;form&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                             <span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                             <span class="n">role</span><span class="o">=</span><span class="s2">&quot;form&quot;</span><span class="p">,</span>
+                             <span class="n">class_</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">css</span><span class="p">,</span>
+                             <span class="n">action</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">action</span><span class="p">,</span>
+                             <span class="n">method</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+                             <span class="n">autocomplete</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">autocomplete</span><span class="p">,</span>
+                             <span class="n">enctype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">enctype</span><span class="p">,</span>
+                             <span class="n">evalurl</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_eval_url</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
+        <span class="c1"># Add hidden field with csrf_token if this is not None.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_csrf_token</span><span class="p">:</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span>
+                                 <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span><span class="p">,</span>
+                                 <span class="n">name</span><span class="o">=</span><span class="s2">&quot;csrf_token&quot;</span><span class="p">,</span>
+                                 <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_csrf_token</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">literal</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_render_form_body</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">render_outline</span><span class="p">):</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;form&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="p">,</span>
+                  <span class="s1">&#39;_&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">translate</span><span class="p">,</span>
+                  <span class="s1">&#39;render_outline&#39;</span><span class="p">:</span> <span class="n">render_outline</span><span class="p">,</span>
+                  <span class="s1">&#39;ElementTree&#39;</span><span class="p">:</span> <span class="n">ET</span><span class="p">,</span>
+                  <span class="s1">&#39;Rule&#39;</span><span class="p">:</span> <span class="n">Rule</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">literal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="o">**</span><span class="n">values</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_render_form_buttons</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">translate</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;row row-fluid&quot;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">get_pages</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span>
+                                 <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;col-sm-3 span3 button-pane&quot;</span><span class="p">))</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                 <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;col-sm-9 span9 button-pane&quot;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;col-sm-12 span12 button-pane well-small&quot;</span><span class="p">))</span>
+
+        <span class="c1"># Render default buttons if no buttons have been defined for the</span>
+        <span class="c1"># form.</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">_buttons</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;button&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span><span class="p">,</span>
+                                 <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;btn btn-default hidden-print&quot;</span><span class="p">,</span>
+                                 <span class="n">c</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;Submit&#39;</span><span class="p">)))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">_buttons</span><span class="p">:</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;button&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                            <span class="nb">type</span><span class="o">=</span><span class="n">b</span><span class="o">.</span><span class="n">attrib</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;submit&quot;</span><span class="p">,</span>
+                            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">b</span><span class="o">.</span><span class="n">attrib</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;submit&quot;</span><span class="p">,</span>
+                            <span class="n">value</span><span class="o">=</span><span class="n">b</span><span class="o">.</span><span class="n">attrib</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                            <span class="n">class_</span><span class="o">=</span><span class="n">b</span><span class="o">.</span><span class="n">attrib</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">)</span>
+                            <span class="ow">or</span> <span class="s2">&quot;btn btn-default hidden-print&quot;</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">b</span><span class="o">.</span><span class="n">attrib</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;icon&quot;</span><span class="p">):</span>
+                    <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;i&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="n">b</span><span class="o">.</span><span class="n">attrib</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;icon&quot;</span><span class="p">),</span>
+                                         <span class="n">c</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">text</span><span class="p">)))</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;/div&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;/div&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">literal</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_render_form_end</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;/form&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;/div&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">literal</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="FieldRenderer"><a class="viewcode-back" href="../../api.html#formbar.renderer.FieldRenderer">[docs]</a><span class="k">class</span> <span class="nc">FieldRenderer</span><span class="p">(</span><span class="n">Renderer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Renderer for fields. The renderer will build the the HTML for the</span>
+<span class="sd">    provided field.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize the Renderer with the field instance.</span>
+
+<span class="sd">        :field: Field instance</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">Renderer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_field</span> <span class="o">=</span> <span class="n">field</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_active</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">renderer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">translate</span> <span class="o">=</span> <span class="n">translate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1">#self.values = self._get_template_values()</span>
+
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Give access to the config values of the renderer&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_render_label</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">template</span> <span class="o">=</span> <span class="n">template_lookup</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;label.mako&quot;</span><span class="p">)</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;field&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_field</span><span class="p">,</span>
+                  <span class="s1">&#39;_&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">translate</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">literal</span><span class="p">(</span><span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="o">**</span><span class="n">values</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_render_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">template</span> <span class="o">=</span> <span class="n">template_lookup</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;errors.mako&quot;</span><span class="p">)</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;field&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_field</span><span class="p">,</span>
+                  <span class="s1">&#39;_&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">translate</span><span class="p">,</span>
+                  <span class="s1">&#39;active&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_active</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">literal</span><span class="p">(</span><span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="o">**</span><span class="n">values</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_render_help</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">template</span> <span class="o">=</span> <span class="n">template_lookup</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;help.mako&quot;</span><span class="p">)</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;field&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_field</span><span class="p">,</span>
+                  <span class="s1">&#39;_&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">translate</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">literal</span><span class="p">(</span><span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="o">**</span><span class="n">values</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_render_diff</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newvalue</span><span class="p">,</span> <span class="n">oldvalue</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Will return a HTML string showing the differences between the old</span>
+<span class="sd">        and the new string.</span>
+
+<span class="sd">        The new string will have some markup to show the differences between</span>
+<span class="sd">        the given strings. Words which has been deleted in the new string</span>
+<span class="sd">        are marked with a *span* tag with the class *formed-deleted-value*.</span>
+<span class="sd">        Elements which are new in the new string are marked with a span tag</span>
+<span class="sd">        having the class *formed-new-value*.</span>
+
+<span class="sd">        :old: Old string</span>
+<span class="sd">        :new: New string</span>
+<span class="sd">        :returns: A HTML string showing the differences.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">mode</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">difflib</span><span class="o">.</span><span class="n">Differ</span><span class="p">()</span>
+        <span class="n">old</span> <span class="o">=</span> <span class="n">unicode</span><span class="p">(</span><span class="n">newvalue</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+        <span class="n">new</span> <span class="o">=</span> <span class="n">unicode</span><span class="p">(</span><span class="n">oldvalue</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">diff</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;+ &quot;</span> <span class="ow">and</span> <span class="n">mode</span> <span class="o">!=</span> <span class="s2">&quot;new&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">mode</span><span class="p">:</span>
+                    <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;/span&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+                    <span class="n">mode</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                    <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;formbar-new-value&quot;</span><span class="p">))</span>
+                <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;new&quot;</span>
+            <span class="k">elif</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;- &quot;</span> <span class="ow">and</span> <span class="n">mode</span> <span class="o">!=</span> <span class="s2">&quot;del&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">mode</span><span class="p">:</span>
+                    <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;/span&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+                    <span class="n">mode</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                    <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;formbar-del-value&quot;</span><span class="p">))</span>
+                <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;del&quot;</span>
+            <span class="k">elif</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;  &quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">mode</span><span class="p">:</span>
+                    <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;/span&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+                    <span class="n">mode</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">elif</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;? &quot;</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">::]))</span>
+        <span class="k">if</span> <span class="n">mode</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;/span&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">literal</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_template_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;field&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_field</span><span class="p">,</span>
+                  <span class="s1">&#39;renderer&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="p">,</span>
+                  <span class="s1">&#39;_&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">translate</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">values</span>
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># TODO: Split rendering in four parts: label, fieldbody, errors,</span>
+        <span class="c1"># help. Each in its own template.</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">has_errors</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_field</span><span class="o">.</span><span class="n">get_errors</span><span class="p">())</span>
+        <span class="n">has_warnings</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_field</span><span class="o">.</span><span class="n">get_warnings</span><span class="p">())</span>
+        <span class="n">active</span> <span class="o">=</span> <span class="s1">&#39;active&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_active</span> <span class="k">else</span> <span class="s1">&#39;inactive&#39;</span>
+        <span class="c1"># Handle indent. Set indent_with css only if the elements are</span>
+        <span class="c1"># actually have an indent and the lable position allows an</span>
+        <span class="c1"># indent.</span>
+        <span class="n">indent_width</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements_indent</span> \
+           <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_position</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">]:</span>
+            <span class="n">indent_width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">indent_width</span>
+        <span class="n">class_options</span> <span class="o">=</span> <span class="p">((</span><span class="n">has_errors</span> <span class="ow">and</span> <span class="s1">&#39;has-error&#39;</span><span class="p">),</span>
+                         <span class="p">(</span><span class="n">has_warnings</span> <span class="ow">and</span> <span class="s1">&#39;has-warning&#39;</span><span class="p">),</span>
+                         <span class="p">(</span><span class="n">active</span><span class="p">),</span>
+                         <span class="n">indent_width</span><span class="p">)</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="n">rules</span><span class="o">=</span><span class="s2">u&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_field</span><span class="o">.</span><span class="n">rules_to_string</span><span class="p">)),</span>
+                    <span class="n">formgroup</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_field</span><span class="o">.</span><span class="n">name</span><span class="p">),</span>
+                    <span class="n">desired</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_field</span><span class="o">.</span><span class="n">desired</span><span class="p">),</span>
+                    <span class="n">required</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_field</span><span class="o">.</span><span class="n">required</span><span class="p">),</span>
+                    <span class="n">class_</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;form-group </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">class_options</span><span class="p">)))</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_template_values</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_width</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_position</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">]:</span>
+            <span class="n">label_width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_width</span>
+            <span class="n">label_align</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_align</span>
+            <span class="n">field_width</span> <span class="o">=</span> <span class="mi">12</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_width</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;row&quot;</span><span class="p">))</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_position</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                     <span class="n">class_</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;col-sm-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">label_width</span><span class="p">),</span>
+                                     <span class="n">align</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">label_align</span><span class="p">)))</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_label</span><span class="p">())</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;/div&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                     <span class="n">class_</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;col-sm-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">field_width</span><span class="p">)))</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">literal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="o">**</span><span class="n">values</span><span class="p">)))</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_errors</span><span class="p">())</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_help</span><span class="p">())</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;/div&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                     <span class="n">class_</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;col-sm-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">field_width</span><span class="p">)))</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">literal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="o">**</span><span class="n">values</span><span class="p">)))</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_errors</span><span class="p">())</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_help</span><span class="p">())</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;/div&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                     <span class="n">class_</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;col-sm-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">label_width</span><span class="p">),</span>
+                                     <span class="n">align</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">label_align</span><span class="p">)))</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_label</span><span class="p">())</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;/div&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;/div&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_label</span><span class="p">())</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">literal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="o">**</span><span class="n">values</span><span class="p">)))</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_errors</span><span class="p">())</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_help</span><span class="p">())</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HTML</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;/div&quot;</span><span class="p">,</span> <span class="n">_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">literal</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">html</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="InfoFieldRenderer"><a class="viewcode-back" href="../../api.html#formbar.renderer.InfoFieldRenderer">[docs]</a><span class="k">class</span> <span class="nc">InfoFieldRenderer</span><span class="p">(</span><span class="n">FieldRenderer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Renderer to render simple fa_field elements&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+        <span class="n">FieldRenderer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">template_lookup</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;infofield.mako&quot;</span><span class="p">)</span></div>
+
+
+<span class="k">class</span> <span class="nc">TextFieldRenderer</span><span class="p">(</span><span class="n">FieldRenderer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Renderer to render simple fa_field elements&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+        <span class="n">FieldRenderer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">template_lookup</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;textfield.mako&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">TimeFieldRenderer</span><span class="p">(</span><span class="n">FieldRenderer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Renderer to render simple fa_field elements&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+        <span class="n">FieldRenderer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">template_lookup</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;timefield.mako&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">EmailFieldRenderer</span><span class="p">(</span><span class="n">FieldRenderer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Renderer to render email fields&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+        <span class="n">FieldRenderer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">template_lookup</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;email.mako&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">FileFieldRenderer</span><span class="p">(</span><span class="n">FieldRenderer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Renderer to render simple fa_field elements&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+        <span class="n">FieldRenderer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">template_lookup</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;filefield.mako&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">TextareaFieldRenderer</span><span class="p">(</span><span class="n">FieldRenderer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Renderer to render simple fa_field elements&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+        <span class="n">FieldRenderer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">template_lookup</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;textarea.mako&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">DateFieldRenderer</span><span class="p">(</span><span class="n">FieldRenderer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Renderer to render simple fa_field elements&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+        <span class="n">FieldRenderer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">template_lookup</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;datefield.mako&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">PasswordFieldRenderer</span><span class="p">(</span><span class="n">FieldRenderer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Renderer to render passwordfield elements&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+        <span class="n">FieldRenderer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">template_lookup</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;password.mako&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">HiddenFieldRenderer</span><span class="p">(</span><span class="n">FieldRenderer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Renderer to render hidden elements&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+        <span class="n">FieldRenderer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">template_lookup</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;hidden.mako&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_template_values</span><span class="p">()</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">literal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="o">**</span><span class="n">values</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="n">literal</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">HTMLRenderer</span><span class="p">(</span><span class="n">FieldRenderer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Renderer to render generic HTML&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+        <span class="n">FieldRenderer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">template_lookup</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;html.mako&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_template_values</span><span class="p">()</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_render_label</span><span class="p">())</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">literal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="o">**</span><span class="n">values</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="n">literal</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">OptionFieldRenderer</span><span class="p">(</span><span class="n">FieldRenderer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Superclass for fields element which supports selecting one or</span>
+<span class="sd">    more options from a selection&quot;&quot;&quot;</span>
+    <span class="c1"># TODO: Implement filtering of items here if possible. See Plorma</span>
+    <span class="c1"># implementation of the ListingFieldRenderer to see how this</span>
+    <span class="c1"># ignoring is implemented. (ti) &lt;2013-10-11 22:39&gt;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+        <span class="n">FieldRenderer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cache_options</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_get_template_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">FieldRenderer</span><span class="o">.</span><span class="n">_get_template_values</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="c1"># Add the options to the values dictionary</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache_options</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cache_options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_field</span><span class="o">.</span><span class="n">get_options</span><span class="p">()</span>
+        <span class="n">values</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache_options</span>
+        <span class="k">return</span> <span class="n">values</span>
+
+
+<span class="k">class</span> <span class="nc">DropdownFieldRenderer</span><span class="p">(</span><span class="n">OptionFieldRenderer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Renderer to render dropdown list&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+        <span class="n">OptionFieldRenderer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">template_lookup</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;dropdown.mako&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">SelectionFieldRenderer</span><span class="p">(</span><span class="n">OptionFieldRenderer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Renderer to render selection field&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+        <span class="n">OptionFieldRenderer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">template_lookup</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;selection.mako&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">RadioFieldRenderer</span><span class="p">(</span><span class="n">OptionFieldRenderer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Renderer to render selection field&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+        <span class="n">OptionFieldRenderer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">template_lookup</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;radio.mako&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">CheckboxFieldRenderer</span><span class="p">(</span><span class="n">OptionFieldRenderer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Renderer to render selection field&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+        <span class="n">OptionFieldRenderer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">template_lookup</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;checkbox.mako&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">TextoptionFieldRenderer</span><span class="p">(</span><span class="n">OptionFieldRenderer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Renderer to render textoption field. A textoption field is a</span>
+<span class="sd">    mixture of a selection field and a text field. The value can be as</span>
+<span class="sd">    comma separated list into the text field while the actual values are</span>
+<span class="sd">    selected in the background.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+        <span class="n">OptionFieldRenderer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">template_lookup</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;textoption.mako&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">FormbarEditorRenderer</span><span class="p">(</span><span class="n">FieldRenderer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Renderer to render the formbar editor widget used to edit</span>
+<span class="sd">    formbar form definitons.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+        <span class="n">FieldRenderer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">template_lookup</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;formbareditor.mako&quot;</span><span class="p">)</span>
+
+<span class="c1"># TODO: Check which of the following Renderers are needed (ti). It looks</span>
+<span class="c1"># like they are outdated as they are using old FormAlchemy fa_*.mako</span>
+<span class="c1"># templates &lt;2013-10-11 22:31&gt;</span>
+
+
+<span class="k">class</span> <span class="nc">ListFieldRenderer</span><span class="p">(</span><span class="n">FieldRenderer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Renderer to render selection list&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">):</span>
+        <span class="n">FieldRenderer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">template_lookup</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;fa_field.mako&quot;</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Formbar 0.20.3 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2013, 2014, 2015, 2016 Torsten Irländer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.5.
+    </div>
+  </body>
+</html>
