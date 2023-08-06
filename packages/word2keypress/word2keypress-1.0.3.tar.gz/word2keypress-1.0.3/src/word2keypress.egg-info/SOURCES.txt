@@ -1,0 +1,12 @@
+setup.cfg
+setup.py
+src/word2keypress/__init__.py
+src/word2keypress/_keyboard.c
+src/word2keypress/_keyboard.pyx
+src/word2keypress/adjacency_graphs.py
+src/word2keypress.egg-info/PKG-INFO
+src/word2keypress.egg-info/SOURCES.txt
+src/word2keypress.egg-info/dependency_links.txt
+src/word2keypress.egg-info/not-zip-safe
+src/word2keypress.egg-info/top_level.txt
+test/test_keyboard.py
