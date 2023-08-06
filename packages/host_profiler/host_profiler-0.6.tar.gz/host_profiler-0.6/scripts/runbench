@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import sys
+from host_profiler.bench import bench
+from host_profiler.bench import benchproc
+
+if __name__ == '__main__':
+    p = []
+    f = ''
+    if '-p' in sys.argv:
+        check = False
+        for v in sys.argv:
+            if a:
+                if not v.startswith('-'):
+                    p.append(v)
+                else:
+                    a = False
+            if v == '-p':
+                a = True
+            if v == '-d':
+                f = k + 1
+    if f == '':
+        print('error usage: runbench -f result_folder ')
+
+    if len(p) == 0:
+        bench(f)
+    else:
+        for i in  p:
+            benchproc(f, i)
+
