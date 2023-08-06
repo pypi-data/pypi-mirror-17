@@ -1,0 +1,15 @@
+setup.py
+discgen/__init__.py
+discgen/classifier.py
+discgen/interface.py
+discgen/utils.py
+discgen/vae.py
+discgen.egg-info/PKG-INFO
+discgen.egg-info/SOURCES.txt
+discgen.egg-info/dependency_links.txt
+discgen.egg-info/requires.txt
+discgen.egg-info/top_level.txt
+discgen/bin/__init__.py
+discgen/bin/run_classifier.py
+discgen/bin/train_classifier.py
+discgen/bin/train_vae.py
