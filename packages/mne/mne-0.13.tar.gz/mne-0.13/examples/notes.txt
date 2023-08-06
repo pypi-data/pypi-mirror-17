@@ -1,0 +1,15 @@
+regions param??
+regions='selection'?
+
+raw.copy().pick_types(meg='grad', eeg=False).plot_sensors(regions='position')
+
+raw.copy().pick_types(meg=False, eeg=True).plot_sensors(regions='position')
+
+
+raw.plot_sensors(ch_type='grad', regions='position')  # crashes on SPM dataset
+# returns:
+RuntimeError: Did not find any digitization points of kind FIFFV_POINT_EEG (3) in the info.
+
+but this works
+
+raw.plot_sensors(regions='position')
