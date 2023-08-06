@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+python_gyg/GetYourGuide.py
+python_gyg/__init__.py
+python_gyg.egg-info/PKG-INFO
+python_gyg.egg-info/SOURCES.txt
+python_gyg.egg-info/dependency_links.txt
+python_gyg.egg-info/not-zip-safe
+python_gyg.egg-info/requires.txt
+python_gyg.egg-info/top_level.txt

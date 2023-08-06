@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: python-gyg
+Version: 0.1
+Summary: Python library for GetYourGuide API
+Home-page: http://github.com//fukac99/python_gyg.git
+Author: Lukas Toma
+Author-email: toma.lukas@gmail.com
+License: MIT
+Description: 
+              This is a pure Python library, handling all the connections to the GetYourGuide APIv1. It
+        supports searches for locations and tours by different parameters. Fro further information
+        on GetYourGuide API and for obtaining the api key checkout http://getyourguide.com
+        
+Keywords: getyourguide,travel,api,tours
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
