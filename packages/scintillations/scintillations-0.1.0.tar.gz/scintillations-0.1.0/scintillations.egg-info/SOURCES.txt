@@ -1,0 +1,12 @@
+MANIFEST.in
+setup.py
+scintillations/__init__.py
+scintillations/common.py
+scintillations/sequence.py
+scintillations/stream.py
+scintillations.egg-info/PKG-INFO
+scintillations.egg-info/SOURCES.txt
+scintillations.egg-info/dependency_links.txt
+scintillations.egg-info/not-zip-safe
+scintillations.egg-info/requires.txt
+scintillations.egg-info/top_level.txt
