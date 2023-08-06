@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: falcon-rethinkdb
+Version: 0.2.1
+Summary: Falcon extension to easily use RethinkDB
+Home-page: https://github.com/lucidfrontier45/falcon_rethinkdb
+Author: Shiqiao Du
+Author-email: lucidfrontier.45@gmail.com
+License: Apache License version 2
+Description: # falcon-rethinkdb
+        Falcon extension to easily use RethinkDB
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
