@@ -1,0 +1,16 @@
+MANIFEST.in
+README.rst
+setup.py
+cubes/celery/__init__.py
+cubes/celery/__pkginfo__.py
+cubes/celery/sobjects.py
+cubes/celery/migration/postcreate.py
+cubes/celery/test/test_celery.py
+cubes/celery/test/data/celeryconfig.py
+cubes/celery/test/data/sobjects.py
+cubicweb_celery/__init__.py
+cubicweb_celery.egg-info/PKG-INFO
+cubicweb_celery.egg-info/SOURCES.txt
+cubicweb_celery.egg-info/dependency_links.txt
+cubicweb_celery.egg-info/requires.txt
+cubicweb_celery.egg-info/top_level.txt
