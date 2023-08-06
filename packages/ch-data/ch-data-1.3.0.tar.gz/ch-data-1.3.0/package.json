@@ -1,0 +1,22 @@
+{
+  "name": "ch-data",
+  "version": "1.3.0",
+  "description": "Data files for ch-frontend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Diwank Singh <diwank.singh@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "babel-preset-es2015": "^6.16.0",
+    "jquery": "^2.2.4",
+    "lodash": "^4.16.4"
+  },
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.16.0",
+    "babel-core": "^6.17.0",
+    "babel-preset-stage-0": "^6.16.0"
+  }
+}
