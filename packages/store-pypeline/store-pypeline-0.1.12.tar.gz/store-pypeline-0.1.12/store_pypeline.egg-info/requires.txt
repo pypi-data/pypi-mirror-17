@@ -1,0 +1,13 @@
+exec-pypeline>=0.4.0,<0.5.0
+six
+
+[tests]
+mock
+nose
+coverage
+yanc
+preggy
+tox
+ipdb
+coveralls
+sphinx
