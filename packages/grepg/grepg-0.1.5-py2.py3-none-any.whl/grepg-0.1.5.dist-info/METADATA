@@ -1,0 +1,27 @@
+Metadata-Version: 2.0
+Name: grepg
+Version: 0.1.5
+Summary: GrepPage Command Line Client
+Home-page: https://github.com/evidanary/grepg-python
+Author: ['Yash Ranadive', 'Tejal Desai']
+Author-email: yash@greppage.com
+License: MIT
+Keywords: greppage,client,cli
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Requires-Dist: PyYAML (==3.12)
+Requires-Dist: termcolor (==1.1.0)
+
+UNKNOWN
+
+
