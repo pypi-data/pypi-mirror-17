@@ -1,0 +1,66 @@
+Metadata-Version: 1.1
+Name: reqwise
+Version: 0.0.1.dev5
+Summary: Python requirements analysis for RHEL/Fedora/CentOS
+Home-page: UNKNOWN
+Author: Arie Bregman
+Author-email: bregman.arie@gmail.com
+License: Apache License, Version 2.0
+Description: ReqWise
+        =======
+        
+        Requirements analysis for Python projects on RHEL/Fedora/CentOS
+        
+        Install
+        -------
+        
+        To install reqwise on your system, run the following command:
+        
+            sudo pip install .
+        
+        ### Configuration
+        
+        Can be set in your current working directory (reqwise.conf) or
+        in '/etc/reqwise/reqwise.conf'
+        
+        The configuration file consists of sources. Source is where reqwise
+        will look for your requirement
+        
+        An example for configration file:
+        
+            [copr]
+            el7-rhos9-test-deps
+            el7-rhos10-test-deps
+        
+            [koji]
+            disabled=True
+        
+            [yum]
+            repos=my_repo,another_repo
+        
+        
+        Supported Sources
+        -----------------
+        
+        None ATM :D
+        
+        
+        Examples
+        --------
+        
+        To analyse the default requirements files in your current directory:
+        
+            reqwise
+        
+        
+Platform: UNKNOWN
+Classifier: Topic :: Utilities
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
