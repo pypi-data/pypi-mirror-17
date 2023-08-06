@@ -1,0 +1,13 @@
+README.rst
+setup.py
+test/test_parse.py
+tpfd/__init__.py
+tpfd/parser.py
+tpfd/rules.py
+tpfd.egg-info/PKG-INFO
+tpfd.egg-info/SOURCES.txt
+tpfd.egg-info/dependency_links.txt
+tpfd.egg-info/not-zip-safe
+tpfd.egg-info/pbr.json
+tpfd.egg-info/requires.txt
+tpfd.egg-info/top_level.txt
