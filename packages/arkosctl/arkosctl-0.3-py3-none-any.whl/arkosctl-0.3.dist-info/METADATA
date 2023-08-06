@@ -1,0 +1,15 @@
+Metadata-Version: 2.0
+Name: arkosctl
+Version: 0.3
+Summary: arkOS command-line interface
+Home-page: https://arkos.io/
+Author: CitizenWeb
+Author-email: info@citizenweb.io
+License: GPLv3
+Platform: UNKNOWN
+Requires-Dist: click (==6.0)
+Requires-Dist: pyarkosclient (>=0.3)
+
+UNKNOWN
+
+
