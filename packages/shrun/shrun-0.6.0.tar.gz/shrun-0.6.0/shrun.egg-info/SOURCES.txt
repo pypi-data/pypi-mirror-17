@@ -1,0 +1,14 @@
+setup.cfg
+setup.py
+bin/shrun
+shrun/__init__.py
+shrun/command.py
+shrun/main.py
+shrun/parser.py
+shrun/runner.py
+shrun/version.py
+shrun.egg-info/PKG-INFO
+shrun.egg-info/SOURCES.txt
+shrun.egg-info/dependency_links.txt
+shrun.egg-info/requires.txt
+shrun.egg-info/top_level.txt
