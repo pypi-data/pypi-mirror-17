@@ -1,0 +1,16 @@
+MANIFEST.in
+README
+setup.py
+bin/versioner-cli
+versioner_cli/api/__init__.py
+versioner_cli/api/enums.py
+versioner_cli/cli/__init__.py
+versioner_cli/cli/config.py
+versioner_cli/cli/constants.py
+versioner_cli/cli/exceptions.py
+versioner_cli/cli/tasks.py
+versioner_cli/versioner_cli.egg-info/PKG-INFO
+versioner_cli/versioner_cli.egg-info/SOURCES.txt
+versioner_cli/versioner_cli.egg-info/dependency_links.txt
+versioner_cli/versioner_cli.egg-info/requires.txt
+versioner_cli/versioner_cli.egg-info/top_level.txt
