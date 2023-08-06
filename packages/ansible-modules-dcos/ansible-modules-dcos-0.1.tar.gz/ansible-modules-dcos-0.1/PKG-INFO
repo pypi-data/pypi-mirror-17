@@ -1,0 +1,29 @@
+Metadata-Version: 1.0
+Name: ansible-modules-dcos
+Version: 0.1
+Summary: DCOS Ansible Modules
+Home-page: https://github.com/TerryHowe/ansible-modules-dcos
+Author: Kevin Wood
+Author-email: kevin.wood@example.com
+License: MIT
+Description: 
+        
+        Ansible modules for Mesospher DC/OS.
+        
+        Usage
+        -----
+        
+        The following example creates user bob::
+        
+            ---
+            - hosts: localhost
+              tasks:
+                - dcos_user: 
+                    uid: "bob"
+                    description: 'bob'
+                    password: 'fooBar123ASDF'
+                    state: present
+                    dcos_credentials: "{{ dcos_facts.ansible_facts.dcos_credentials }}"
+        
+        
+Platform: UNKNOWN
