@@ -1,0 +1,13 @@
+CONTRIBUTORS.txt
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.py
+django_ifo/__init__.py
+django_ifo.egg-info/PKG-INFO
+django_ifo.egg-info/SOURCES.txt
+django_ifo.egg-info/dependency_links.txt
+django_ifo.egg-info/top_level.txt
+django_ifo/templates/admin/change_form.html
+django_ifo/templatetags/__init__.py
+django_ifo/templatetags/admin_extras.py
