@@ -1,0 +1,47 @@
+#!/usr/bin/env python
+import subprocess
+import argparse
+
+import yaml
+import json
+import sys
+
+# support Python 2 or 3
+if sys.version_info[0] == 3:
+  import urllib.request as request
+else:
+  import urllib2 as request
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument('-f')
+
+(v, extras) = parser.parse_known_args()
+
+dc_file = v.f or 'docker-compose.yml'
+
+resp = request.urlopen('http://localhost:3476/docker/cli/json').read().decode()
+cuda_config = json.loads(resp)
+
+volume = cuda_config['Volumes'][0].split(':')[0]
+
+with open(dc_file, 'r') as f:
+    config = yaml.load(f)
+
+volumes = config.setdefault('volumes', {})
+volumes[volume] = {'external': True}
+
+for service, sconf in config['services'].items():
+    sconf.setdefault('volumes', []).extend(cuda_config['Volumes'])
+    sconf.setdefault('devices', []).extend(cuda_config['Devices'])
+
+with open('nvidia-docker-compose.yml', 'w') as f:
+    yaml.safe_dump(config, f, default_flow_style=False)
+
+command = ['docker-compose','-f', 'nvidia-docker-compose.yml'] + extras
+
+try:
+    subprocess.call(command)
+except:
+    print('Terminating')
+
