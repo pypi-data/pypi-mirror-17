@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container">
+        <form class="form-inline" role="form" action="" method="post">
+            <label for="maxDays">Max. Days:</label>
+            <input type="number" class="form-control" id="maxDays" placeholder="Max. Days">
+
+            <label for="maxJobs"> Max. Jobs:</label>
+            <input type="number" class="form-control" id="maxJobs" placeholder="Max. Jobs">
+
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="radioCount" value="count"> Count
+            </label>
+
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="radioPercent" value="percent"> Percent
+            </label>
+
+            <input type="button" class="btn btn-default" id="agentChartRefreshButton"
+                   onclick="refreshAgentChart()" value="Refresh chart">
+        </form>
+    </div>
+    <p></p>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div id="agent_bar_chart" style="width:1000px;height:700px;"></div>
+
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-3">
+                <a type="button" class="btn btn-info btn-lg btn-block pull-left" href="{{ application_root }}">
+                    <span class="glyphicon glyphicon-circle-arrow-left pull-left" aria-hidden="true"></span>
+                        Back to index
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('gocddash.static', filename='plotly-latest.min.js') }}"></script>
+
+    <script>
+        function refreshAgentChart() {
+            var y_axis = "percent";
+            if (document.getElementById('radioCount').checked) {
+                y_axis = "count";
+            };
+            var limit_days = "0";
+            if (document.getElementById('maxDays').value != '') {
+                limit_days = document.getElementById('maxDays').value;
+            };
+            var limit_cnt = 0;
+            if (document.getElementById('maxJobs').value != '') {
+                limit_cnt = document.getElementById('maxJobs').value;
+            };
+
+            var url = '{{ application_root }}/agents/success_rate/'+limit_days+'/'+limit_cnt+'/'+y_axis+'/*';
+
+            Plotly.d3.json(url, function(figure) {
+                Plotly.newPlot('agent_bar_chart', figure.data, figure.layout);
+             });
+        };
+
+        refreshAgentChart();
+    </script>
+
+{% endblock %}

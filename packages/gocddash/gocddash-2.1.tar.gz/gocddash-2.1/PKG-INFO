@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: gocddash
+Version: 2.1
+Summary: A status dashboard for Go.CD.
+Home-page: https://github.com/magnus-lycka/gocddash
+Author: Magnus Lyckå, Emily Bache
+Author-email: magnus@thinkware.se, emily.bache@pagero.com
+License: MIT
+Description: UNKNOWN
+Keywords: continuous deployment integration build automation go.cd monitoring dashboard
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.4
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Environment :: Web Environment
