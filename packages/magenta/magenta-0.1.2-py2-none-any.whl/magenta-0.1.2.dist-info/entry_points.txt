@@ -1,0 +1,13 @@
+[console_scripts]
+attention_rnn_create_dataset = magenta.models.attention_rnn.attention_rnn_create_dataset:console_entry_point
+attention_rnn_generate = magenta.models.attention_rnn.attention_rnn_generate:console_entry_point
+attention_rnn_train = magenta.models.attention_rnn.attention_rnn_train:console_entry_point
+basic_rnn_create_dataset = magenta.models.basic_rnn.basic_rnn_create_dataset:console_entry_point
+basic_rnn_generate = magenta.models.basic_rnn.basic_rnn_generate:console_entry_point
+basic_rnn_train = magenta.models.basic_rnn.basic_rnn_train:console_entry_point
+convert_midi_dir_to_note_sequences = magenta.scripts.convert_midi_dir_to_note_sequences:console_entry_point
+lookback_rnn_create_dataset = magenta.models.lookback_rnn.lookback_rnn_create_dataset:console_entry_point
+lookback_rnn_generate = magenta.models.lookback_rnn.lookback_rnn_generate:console_entry_point
+lookback_rnn_train = magenta.models.lookback_rnn.lookback_rnn_train:console_entry_point
+magenta_midi = magenta.interfaces.midi.magenta_midi:console_entry_point
+
