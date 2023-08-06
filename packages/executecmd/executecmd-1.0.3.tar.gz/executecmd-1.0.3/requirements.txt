@@ -1,0 +1,5 @@
+# This is an implicit value, here for clarity
+--index-url https://pypi.python.org/simple/
+
+paramiko==2.0.2
+multi-thread-closing==1.0.1
