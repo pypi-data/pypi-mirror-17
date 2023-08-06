@@ -1,0 +1,18 @@
+#!/usr/bin/python2
+import sys
+from opendank import diashow
+from opendank import sources
+
+def main():
+    if len(sys.argv) < 2:
+        print "Usage: opendank [config-file]"
+        return
+
+    dia = diashow.Diashow()
+    with file(sys.argv[1]) as f:
+        for line in f:
+            dia.add_source(sources.CustomSource(line.strip("\n")))
+    dia.start()
+
+if __name__ == "__main__":
+    main()

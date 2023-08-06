@@ -1,0 +1,12 @@
+setup.cfg
+setup.py
+bin/opendank
+opendank/__init__.py
+opendank/diashow.py
+opendank/sources.py
+opendank.egg-info/PKG-INFO
+opendank.egg-info/SOURCES.txt
+opendank.egg-info/dependency_links.txt
+opendank.egg-info/not-zip-safe
+opendank.egg-info/requires.txt
+opendank.egg-info/top_level.txt
