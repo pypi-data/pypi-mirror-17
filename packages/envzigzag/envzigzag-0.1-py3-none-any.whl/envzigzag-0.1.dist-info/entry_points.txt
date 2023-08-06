@@ -1,0 +1,4 @@
+[console_scripts]
+envzag = envzigzag:zag_main
+envzig = envzigzag:zig_main
+

@@ -1,0 +1,38 @@
+Metadata-Version: 1.2
+Name: envzigzag
+Version: 0.1
+Summary: Compare environment variables in the terminal.
+Home-page: https://gitlab.com/takluyver/envzigzag
+License: UNKNOWN
+Author: Thomas Kluyver
+Author-email: thomas@kluyver.me.uk
+Requires-Python: >=3.5
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Environment :: Console
+
+Install::
+
+    pip install envzigzag
+
+Usage::
+
+    # Snapshot one state
+    envzig
+
+    # Change things, or switch to a different terminal, then compare:
+    envzag
+
+When you run the second command, it shows what has changed. It might look
+something like this::
+
+    Removed [in zig, not zag]:
+      CONDA_DEFAULT_ENV=envzig-test
+
+    Added   [in zag, not zig]:
+      OLDPWD=/home/me/Code
+
+    Changed:
+      PWD=
+      ├zig: /home/takluyver/Code/flit
+      └zag: /home/takluyver/Code/envzigzag
+
