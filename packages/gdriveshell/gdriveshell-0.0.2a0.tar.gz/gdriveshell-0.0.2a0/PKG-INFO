@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: gdriveshell
+Version: 0.0.2a0
+Summary: An FTP-style client for Google Drive
+Home-page: https://github.com/thingol/gdriveshell
+Author: Marius Hårstad Bauer-Kjerkreit
+Author-email: mkjerkreit@gmail.com
+License: BSD 2-Clause
+Download-URL: https://github.com/thingol/gdriveshell/archive/0.0.2a0.tar.gz
+Description: UNKNOWN
+Keywords: google,drive,ftp,shell
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3.5
