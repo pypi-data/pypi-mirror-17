@@ -1,0 +1,44 @@
+default:
+  CI:
+    cell: gitlabci
+    server: http://framagit.org
+    user: spalax
+  Coverage:
+    cell: gitlabcoverage
+    server: http://framagit.org
+    user: spalax
+cells:
+  - color
+  - homepage
+  - pypiversion
+  - pypimdownloads
+  - pypiwdownloads
+  - pypiddownloads
+  - readthedocs
+  - CI
+  - Coverage
+packages:
+  argdispatch:
+  cahier:
+  chval:
+    readthedocs:
+      branch: next
+  clachievements:
+  devoir:
+  dummypdf:
+  evariste:
+  fullcoverage:
+  jouets:
+  mklog:
+  papersize:
+  pdfautonup:
+  pdfimpose:
+  pypimonitor:
+  scal:
+  sphinxcontrib-packages:
+    readthedocs:
+      slug: packages
+  sphinxcontrib-proof:
+  srsync:
+    readthedocs:
+      branch: python3
