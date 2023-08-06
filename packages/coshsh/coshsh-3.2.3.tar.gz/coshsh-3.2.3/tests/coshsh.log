@@ -1,0 +1,347 @@
+2016-10-09 21:48:04,518 - INFO - Logger initialised.
+2016-10-09 21:48:04,589 - INFO - Logger initialised.
+2016-10-09 21:48:05,327 - INFO - Logger initialised.
+2016-10-09 21:48:06,726 - INFO - Logger initialised.
+2016-10-09 21:48:06,726 - INFO - recipe test4a init
+2016-10-09 21:48:06,727 - INFO - recipe test4a classes_dir /home/lausser/git/coshsh/tests/recipes/mycorp/classes,/home/lausser/git/coshsh/tests/recipes/test4/classes,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:06,728 - INFO - recipe test4a templates_dir /home/lausser/git/coshsh/tests/recipes/test4/templates,/home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:06,902 - INFO - recipe test4a objects_dir /home/lausser/git/coshsh/tests/var/objects/test1
+2016-10-09 21:48:06,903 - INFO - read items from simplesample
+2016-10-09 21:48:06,914 - INFO - Logger initialised.
+2016-10-09 21:48:06,915 - INFO - recipe test4 init
+2016-10-09 21:48:06,916 - INFO - recipe test4 classes_dir /home/lausser/git/coshsh/tests/recipes/test4/classes,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:06,917 - INFO - recipe test4 templates_dir /home/lausser/git/coshsh/tests/recipes/test4/templates,/home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:06,973 - INFO - recipe test4 objects_dir /home/lausser/git/coshsh/tests/var/objects/test1
+2016-10-09 21:48:06,984 - INFO - Logger initialised.
+2016-10-09 21:48:06,986 - INFO - recipe test7 init
+2016-10-09 21:48:06,987 - INFO - recipe test7 classes_dir /opt/coshsh/recipes/test7/classes,/opt/zisch/tmp,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:06,987 - INFO - recipe test7 templates_dir /home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:07,042 - INFO - recipe test7 objects_dir /opt/coshsh/var/objects/test7
+2016-10-09 21:48:07,051 - INFO - Logger initialised.
+2016-10-09 21:48:07,052 - INFO - recipe test4 init
+2016-10-09 21:48:07,053 - INFO - recipe test4 classes_dir /home/lausser/git/coshsh/tests/recipes/test4/classes,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:07,054 - INFO - recipe test4 templates_dir /home/lausser/git/coshsh/tests/recipes/test4/templates,/home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:07,110 - INFO - recipe test4 objects_dir /home/lausser/git/coshsh/tests/var/objects/test1
+2016-10-09 21:48:07,111 - INFO - read items from simplesample
+2016-10-09 21:48:07,120 - INFO - Logger initialised.
+2016-10-09 21:48:07,121 - INFO - recipe test4 init
+2016-10-09 21:48:07,122 - INFO - recipe test4 classes_dir /home/lausser/git/coshsh/tests/recipes/test4/classes,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:07,122 - INFO - recipe test4 templates_dir /home/lausser/git/coshsh/tests/recipes/test4/templates,/home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:07,178 - INFO - recipe test4 objects_dir /home/lausser/git/coshsh/tests/var/objects/test1
+2016-10-09 21:48:07,179 - INFO - recipe datarecipient_coshsh_default dynamic_dir ./var/objects/test1/dynamic does not exist
+2016-10-09 21:48:07,179 - INFO - recipient datarecipient_coshsh_default dynamic_dir ./var/objects/test1/dynamic
+2016-10-09 21:48:07,180 - INFO - read items from simplesample
+2016-10-09 21:48:07,180 - INFO - recipe test4 read from datasource simplesample 2 applications, 1 hosts
+2016-10-09 21:48:07,273 - INFO - load template host
+2016-10-09 21:48:07,340 - INFO - load template os_linux_default
+2016-10-09 21:48:07,372 - INFO - load template os_windows_default
+2016-10-09 21:48:07,392 - INFO - load template os_windows_kaas
+2016-10-09 21:48:07,393 - INFO - load items to datarecipient_coshsh_default
+2016-10-09 21:48:07,393 - INFO - recipe datarecipient_coshsh_default remove dynamic_dir ./var/objects/test1/dynamic
+2016-10-09 21:48:07,395 - INFO - recipient datarecipient_coshsh_default dynamic_dir ./var/objects/test1/dynamic
+2016-10-09 21:48:07,417 - INFO - number of files before: 0 hosts, 0 applications
+2016-10-09 21:48:07,418 - INFO - number of files after:  1 hosts, 3 applications
+2016-10-09 21:48:07,433 - INFO - Logger initialised.
+2016-10-09 21:48:07,433 - INFO - recipe test4 init
+2016-10-09 21:48:07,434 - INFO - recipe test4 classes_dir /home/lausser/git/coshsh/tests/recipes/mycorp/classes,/home/lausser/git/coshsh/tests/recipes/test9/classes,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:07,434 - INFO - recipe test4 templates_dir /home/lausser/git/coshsh/tests/recipes/test4/templates,/home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:07,586 - INFO - recipe simplesample dynamic_dir ./var/objects/test1/dynamic does not exist
+2016-10-09 21:48:07,586 - INFO - recipient simplesample dynamic_dir ./var/objects/test1/dynamic
+2016-10-09 21:48:07,587 - INFO - read items from simplesample
+2016-10-09 21:48:07,588 - INFO - recipe test4 read from datasource simplesample 2 applications, 1 hosts
+2016-10-09 21:48:07,603 - INFO - load template host
+2016-10-09 21:48:07,616 - INFO - load template os_linux_default
+2016-10-09 21:48:07,626 - INFO - load template os_windows_default
+2016-10-09 21:48:07,633 - INFO - load template os_windows_kaas
+2016-10-09 21:48:07,634 - INFO - load items to simplesample
+2016-10-09 21:48:07,635 - INFO - recipe simplesample remove dynamic_dir ./var/objects/test1/dynamic
+2016-10-09 21:48:07,637 - INFO - recipient simplesample dynamic_dir ./var/objects/test1/dynamic
+2016-10-09 21:48:07,638 - INFO - write items to simplesample
+2016-10-09 21:48:07,638 - INFO - writing...
+2016-10-09 21:48:07,648 - INFO - number of files before: 0 hosts, 0 applications
+2016-10-09 21:48:07,648 - INFO - number of files after:  1 hosts, 3 applications
+2016-10-09 21:48:07,665 - INFO - Logger initialised.
+2016-10-09 21:48:07,666 - INFO - recipe test4 init
+2016-10-09 21:48:07,667 - INFO - recipe test4 classes_dir /home/lausser/git/coshsh/tests/recipes/test4/classes,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:07,667 - INFO - recipe test4 templates_dir /home/lausser/git/coshsh/tests/recipes/test4/templates,/home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:07,726 - INFO - recipe test4 objects_dir /home/lausser/git/coshsh/tests/var/objects/test1
+2016-10-09 21:48:07,738 - INFO - Logger initialised.
+2016-10-09 21:48:07,738 - INFO - recipe test8 init
+2016-10-09 21:48:07,739 - INFO - recipe test8 classes_dir /home/lausser/git/coshsh/tests/recipes/test8/classes,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:07,739 - INFO - recipe test8 templates_dir /home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:07,814 - INFO - recipe test8 objects_dir /home/lausser/git/coshsh/tests/var/objects/test8
+2016-10-09 21:48:07,814 - INFO - read items from handshake
+2016-10-09 21:48:07,815 - INFO - read items from handshake
+2016-10-09 21:48:07,815 - INFO - datasource handshake is is not current
+2016-10-09 21:48:07,815 - INFO - aborting collection phase
+2016-10-09 21:48:08,384 - INFO - Logger initialised.
+2016-10-09 21:48:08,385 - INFO - recipe test9 init
+2016-10-09 21:48:08,386 - INFO - recipe test9 classes_dir /home/lausser/git/coshsh/tests/recipes/test9/classes,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:08,386 - INFO - recipe test9 templates_dir /home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:08,504 - INFO - Logger initialised.
+2016-10-09 21:48:08,504 - INFO - recipe test9 init
+2016-10-09 21:48:08,505 - INFO - recipe test9 classes_dir /home/lausser/git/coshsh/tests/recipes/test9/classes,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:08,505 - INFO - recipe test9 templates_dir /home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:08,565 - INFO - read items from simplesample
+2016-10-09 21:48:08,566 - INFO - recipe test9 read from datasource simplesample 2 applications, 1 hosts
+2016-10-09 21:48:08,596 - INFO - load items to simplesample
+2016-10-09 21:48:08,596 - INFO - recipe simplesample remove dynamic_dir /tmp/dynamic
+2016-10-09 21:48:08,606 - INFO - recipient simplesample dynamic_dir /tmp/dynamic
+2016-10-09 21:48:08,607 - INFO - write items to simplesample
+2016-10-09 21:48:08,607 - INFO - writing...
+2016-10-09 21:48:08,609 - INFO - number of files before: 1 hosts, 0 applications
+2016-10-09 21:48:08,609 - INFO - number of files after:  1 hosts, 0 applications
+2016-10-09 21:48:08,621 - INFO - Logger initialised.
+2016-10-09 21:48:08,622 - INFO - recipe test9a init
+2016-10-09 21:48:08,622 - INFO - recipe test9a classes_dir /home/lausser/git/coshsh/tests/recipes/test9/classes,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:08,623 - INFO - recipe test9a templates_dir /home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:08,689 - INFO - recipe test9a objects_dir /home/lausser/git/coshsh/tests/var/objects/test9
+2016-10-09 21:48:08,700 - INFO - Logger initialised.
+2016-10-09 21:48:08,701 - INFO - recipe test9a init
+2016-10-09 21:48:08,701 - INFO - recipe test9a classes_dir /home/lausser/git/coshsh/tests/recipes/test9/classes,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:08,701 - INFO - recipe test9a templates_dir /home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:08,761 - INFO - recipe test9a objects_dir /home/lausser/git/coshsh/tests/var/objects/test9
+2016-10-09 21:48:08,762 - INFO - read items from simplesample
+2016-10-09 21:48:08,762 - INFO - recipe test9a read from datasource simplesample 2 applications, 1 hosts
+2016-10-09 21:48:08,781 - INFO - load template host
+2016-10-09 21:48:08,798 - INFO - load template os_linux_default
+2016-10-09 21:48:08,826 - INFO - load template os_windows_default
+2016-10-09 21:48:08,827 - ERROR - cannot find template os_windows_kaas
+2016-10-09 21:48:08,827 - INFO - load items to datarecipient_coshsh_default
+2016-10-09 21:48:08,828 - INFO - recipe datarecipient_coshsh_default dynamic_dir ./var/objects/test9/dynamic does not exist
+2016-10-09 21:48:08,828 - INFO - recipient datarecipient_coshsh_default dynamic_dir ./var/objects/test9/dynamic
+2016-10-09 21:48:08,846 - INFO - number of files before: 0 hosts, 0 applications
+2016-10-09 21:48:08,846 - INFO - number of files after:  1 hosts, 2 applications
+2016-10-09 21:48:08,861 - INFO - Logger initialised.
+2016-10-09 21:48:08,862 - INFO - recipe test9 init
+2016-10-09 21:48:08,862 - INFO - recipe test9 classes_dir /home/lausser/git/coshsh/tests/recipes/test9/classes,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:08,862 - INFO - recipe test9 templates_dir /home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:08,937 - INFO - Logger initialised.
+2016-10-09 21:48:08,938 - INFO - recipe recp init
+2016-10-09 21:48:08,939 - INFO - recipe recp classes_dir /home/lausser/git/coshsh/tests/recipes/test9/classes,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:08,939 - INFO - recipe recp templates_dir /home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:09,003 - INFO - read items from simplesample
+2016-10-09 21:48:09,003 - INFO - recipe recp read from datasource datasource 2 applications, 1 hosts
+2016-10-09 21:48:09,018 - INFO - load template host
+2016-10-09 21:48:09,030 - INFO - load template os_linux_default
+2016-10-09 21:48:09,039 - INFO - load template os_windows_default
+2016-10-09 21:48:09,041 - ERROR - cannot find template os_windows_kaas
+2016-10-09 21:48:09,041 - INFO - load items to datarcv
+2016-10-09 21:48:09,041 - INFO - recipe datarcv dynamic_dir ./var/objects/test9/dynamic does not exist
+2016-10-09 21:48:09,041 - INFO - recipient datarcv dynamic_dir ./var/objects/test9/dynamic
+2016-10-09 21:48:09,043 - INFO - write items to simplesample
+2016-10-09 21:48:09,043 - INFO - writing...
+2016-10-09 21:48:09,049 - INFO - number of files before: 0 hosts, 0 applications
+2016-10-09 21:48:09,049 - INFO - number of files after:  2 hosts, 0 applications
+2016-10-09 21:48:09,596 - INFO - Logger initialised.
+2016-10-09 21:48:09,597 - INFO - recipe test6 init
+2016-10-09 21:48:09,597 - INFO - recipe test6 classes_dir /home/lausser/git/coshsh/tests/recipes/test6/classes,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:09,598 - INFO - recipe test6 templates_dir /home/lausser/git/coshsh/tests/recipes/test6/templates,/home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:09,776 - INFO - recipe test6 objects_dir /home/lausser/git/coshsh/tests/var/objects/test6
+2016-10-09 21:48:09,781 - INFO - read hosts from ./recipes/test6/data/test6_hosts.csv
+2016-10-09 21:48:09,786 - INFO - read applications from ./recipes/test6/data/test6_applications.csv
+2016-10-09 21:48:09,791 - INFO - read appdetails from ./recipes/test6/data/test6_applicationdetails.csv
+2016-10-09 21:48:09,814 - INFO - load template host
+2016-10-09 21:48:09,848 - INFO - load template app_generic_web
+2016-10-09 21:48:09,861 - INFO - load template os_linux_default
+2016-10-09 21:48:09,862 - INFO - load items to datarecipient_coshsh_default
+2016-10-09 21:48:09,862 - INFO - recipe datarecipient_coshsh_default remove dynamic_dir ./var/objects/test6/dynamic
+2016-10-09 21:48:09,864 - INFO - recipient datarecipient_coshsh_default dynamic_dir ./var/objects/test6/dynamic
+2016-10-09 21:48:09,901 - INFO - number of files before: 0 hosts, 0 applications
+2016-10-09 21:48:09,902 - INFO - number of files after:  2 hosts, 3 applications
+2016-10-09 21:48:09,925 - INFO - Logger initialised.
+2016-10-09 21:48:09,926 - INFO - recipe test6 init
+2016-10-09 21:48:09,926 - INFO - recipe test6 classes_dir /home/lausser/git/coshsh/tests/recipes/test6/classes,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:09,926 - INFO - recipe test6 templates_dir /home/lausser/git/coshsh/tests/recipes/test6/templates,/home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:09,986 - INFO - recipe test6 objects_dir /home/lausser/git/coshsh/tests/var/objects/test6
+2016-10-09 21:48:09,986 - INFO - read hosts from ./recipes/test6/data/test6_hosts.csv
+2016-10-09 21:48:09,987 - INFO - read applications from ./recipes/test6/data/test6_applications.csv
+2016-10-09 21:48:09,987 - INFO - read appdetails from ./recipes/test6/data/test6_applicationdetails.csv
+2016-10-09 21:48:09,998 - INFO - Logger initialised.
+2016-10-09 21:48:09,999 - INFO - recipe test6 init
+2016-10-09 21:48:10,000 - INFO - recipe test6 classes_dir /home/lausser/git/coshsh/tests/recipes/test6/classes,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:10,000 - INFO - recipe test6 templates_dir /home/lausser/git/coshsh/tests/recipes/test6/templates,/home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:10,054 - INFO - recipe test6 objects_dir /home/lausser/git/coshsh/tests/var/objects/test6
+2016-10-09 21:48:10,106 - INFO - Logger initialised.
+2016-10-09 21:48:10,106 - INFO - recipe test6 init
+2016-10-09 21:48:10,107 - INFO - recipe test6 classes_dir /home/lausser/git/coshsh/tests/recipes/test6/classes,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:10,107 - INFO - recipe test6 templates_dir /home/lausser/git/coshsh/tests/recipes/test6/templates,/home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:10,164 - INFO - recipe test6 objects_dir /home/lausser/git/coshsh/tests/var/objects/test6
+2016-10-09 21:48:11,606 - INFO - Logger initialised.
+2016-10-09 21:48:12,434 - INFO - Logger initialised.
+2016-10-09 21:48:12,434 - ERROR - skipping recipe test1. pid file /var/tmp/coshsh.pid.test1 contains garbage
+2016-10-09 21:48:12,444 - INFO - recipe test1 init
+2016-10-09 21:48:12,444 - INFO - recipe test1 classes_dir /home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:12,445 - INFO - recipe test1 templates_dir /home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:12,493 - INFO - recipe test1 objects_dir /home/lausser/git/coshsh/tests/var/objects/test1
+2016-10-09 21:48:12,499 - INFO - Logger initialised.
+2016-10-09 21:48:12,501 - INFO - load items to datarecipient_coshsh_default
+2016-10-09 21:48:12,502 - INFO - recipe datarecipient_coshsh_default dynamic_dir ./var/objects/test1/dynamic does not exist
+2016-10-09 21:48:12,502 - INFO - recipient datarecipient_coshsh_default dynamic_dir ./var/objects/test1/dynamic
+2016-10-09 21:48:12,506 - INFO - number of files before: 0 hosts, 0 applications
+2016-10-09 21:48:12,506 - INFO - number of files after:  0 hosts, 0 applications
+2016-10-09 21:48:12,528 - INFO - recipe test1 init
+2016-10-09 21:48:12,529 - INFO - recipe test1 classes_dir /home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:12,529 - INFO - recipe test1 templates_dir /home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:12,578 - INFO - recipe test1 objects_dir /home/lausser/git/coshsh/tests/var/objects/test1
+2016-10-09 21:48:12,585 - INFO - removing stale (pid 23406) pidfile /var/tmp/coshsh.pid.test1
+2016-10-09 21:48:12,595 - INFO - recipe test1 init
+2016-10-09 21:48:12,596 - INFO - recipe test1 classes_dir /home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:12,596 - INFO - recipe test1 templates_dir /home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:12,649 - INFO - recipe test1 objects_dir /home/lausser/git/coshsh/tests/var/objects/test1
+2016-10-09 21:48:12,656 - INFO - Logger initialised.
+2016-10-09 21:48:12,659 - INFO - load items to datarecipient_coshsh_default
+2016-10-09 21:48:12,659 - INFO - recipe datarecipient_coshsh_default dynamic_dir ./var/objects/test1/dynamic does not exist
+2016-10-09 21:48:12,659 - INFO - recipient datarecipient_coshsh_default dynamic_dir ./var/objects/test1/dynamic
+2016-10-09 21:48:12,664 - INFO - number of files before: 0 hosts, 0 applications
+2016-10-09 21:48:12,665 - INFO - number of files after:  0 hosts, 0 applications
+2016-10-09 21:48:13,236 - INFO - Logger initialised.
+2016-10-09 21:48:13,237 - INFO - recipe test12 init
+2016-10-09 21:48:13,238 - INFO - recipe test12 classes_dir /home/lausser/git/coshsh/tests/recipes/test12/classes,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:13,238 - INFO - recipe test12 templates_dir /home/lausser/git/coshsh/tests/recipes/test12/templates,/home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:13,403 - INFO - open datasource csv1
+2016-10-09 21:48:13,404 - INFO - read hosts from ./recipes/test10/data/csv1_hosts.csv
+2016-10-09 21:48:13,408 - INFO - read applications from ./recipes/test10/data/csv1_applications.csv
+2016-10-09 21:48:13,414 - INFO - read appdetails from ./recipes/test10/data/csv1_applicationdetails.csv
+2016-10-09 21:48:13,415 - INFO - recipe test12 read from datasource csv1 2 applications, 2 hosts, 3 details
+2016-10-09 21:48:13,415 - INFO - open datasource csv2
+2016-10-09 21:48:13,420 - INFO - read hosts from ./recipes/test10/data/csv2_hosts.csv
+2016-10-09 21:48:13,424 - INFO - read applications from ./recipes/test10/data/csv2_applications.csv
+2016-10-09 21:48:13,427 - INFO - recipe test12 read from datasource csv2 3 applications, 2 hosts
+2016-10-09 21:48:13,427 - INFO - open datasource csv3
+2016-10-09 21:48:13,431 - INFO - read hosts from ./recipes/test10/data/csv3_hosts.csv
+2016-10-09 21:48:13,435 - INFO - read applications from ./recipes/test10/data/csv3_applications.csv
+2016-10-09 21:48:13,441 - INFO - read appdetails from ./recipes/test10/data/csv3_applicationdetails.csv
+2016-10-09 21:48:13,442 - INFO - recipe test12 read from datasource csv3 2 applications, 2 hosts, 4 details
+2016-10-09 21:48:13,463 - INFO - load template host
+2016-10-09 21:48:13,476 - INFO - load template os_windows_default
+2016-10-09 21:48:13,502 - INFO - load template os_windows_fs
+2016-10-09 21:48:13,509 - INFO - load template nrpe_os_windows_fs
+2016-10-09 21:48:13,522 - INFO - load template os_linux_default
+2016-10-09 21:48:13,523 - INFO - load items to simplesample
+2016-10-09 21:48:13,524 - INFO - recipe simplesample remove dynamic_dir /tmp/dynamic
+2016-10-09 21:48:13,526 - INFO - recipient simplesample dynamic_dir /tmp/dynamic
+2016-10-09 21:48:13,527 - INFO - write items to simplesample
+2016-10-09 21:48:13,528 - INFO - writing...
+2016-10-09 21:48:13,608 - INFO - number of files before: 1 hosts, 0 applications
+2016-10-09 21:48:13,609 - INFO - number of files after:  6 hosts, 6 applications
+2016-10-09 21:48:13,609 - INFO - load items to simplesample2
+2016-10-09 21:48:13,609 - INFO - recipe simplesample2 dynamic_dir ./var/objects/test1/dynamic does not exist
+2016-10-09 21:48:13,610 - INFO - recipient simplesample2 dynamic_dir ./var/objects/test1/dynamic
+2016-10-09 21:48:13,611 - INFO - write items to simplesample
+2016-10-09 21:48:13,611 - INFO - writing...
+2016-10-09 21:48:13,649 - INFO - number of files before: 0 hosts, 0 applications
+2016-10-09 21:48:13,649 - INFO - number of files after:  6 hosts, 6 applications
+2016-10-09 21:48:13,650 - INFO - load items to default
+2016-10-09 21:48:13,651 - INFO - recipe default dynamic_dir ./var/objects/test12/dynamic does not exist
+2016-10-09 21:48:13,651 - INFO - recipient default dynamic_dir ./var/objects/test12/dynamic
+2016-10-09 21:48:13,683 - INFO - number of files before: 0 hosts, 0 applications
+2016-10-09 21:48:13,683 - INFO - number of files after:  6 hosts, 6 applications
+2016-10-09 21:48:13,719 - INFO - Logger initialised.
+2016-10-09 21:48:13,720 - INFO - recipe test12a init
+2016-10-09 21:48:13,720 - INFO - recipe test12a classes_dir /home/lausser/git/coshsh/tests/recipes/test12/classes,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:13,721 - INFO - recipe test12a templates_dir /home/lausser/git/coshsh/tests/recipes/test12/templates,/home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:13,782 - INFO - open datasource csv1
+2016-10-09 21:48:13,783 - INFO - read hosts from ./recipes/test10/data/csv1_hosts.csv
+2016-10-09 21:48:13,783 - INFO - read applications from ./recipes/test10/data/csv1_applications.csv
+2016-10-09 21:48:13,784 - INFO - read appdetails from ./recipes/test10/data/csv1_applicationdetails.csv
+2016-10-09 21:48:13,784 - INFO - recipe test12a read from datasource csv1 2 applications, 2 hosts, 3 details
+2016-10-09 21:48:13,785 - INFO - open datasource csv2
+2016-10-09 21:48:13,785 - INFO - read hosts from ./recipes/test10/data/csv2_hosts.csv
+2016-10-09 21:48:13,786 - INFO - read applications from ./recipes/test10/data/csv2_applications.csv
+2016-10-09 21:48:13,789 - INFO - recipe test12a read from datasource csv2 3 applications, 2 hosts
+2016-10-09 21:48:13,789 - INFO - open datasource csv3
+2016-10-09 21:48:13,790 - INFO - read hosts from ./recipes/test10/data/csv3_hosts.csv
+2016-10-09 21:48:13,790 - INFO - read applications from ./recipes/test10/data/csv3_applications.csv
+2016-10-09 21:48:13,791 - INFO - read appdetails from ./recipes/test10/data/csv3_applicationdetails.csv
+2016-10-09 21:48:13,792 - INFO - recipe test12a read from datasource csv3 2 applications, 2 hosts, 4 details
+2016-10-09 21:48:13,807 - INFO - load template host
+2016-10-09 21:48:13,816 - INFO - load template os_windows_default
+2016-10-09 21:48:13,822 - INFO - load template os_windows_fs
+2016-10-09 21:48:13,826 - INFO - load template nrpe_os_windows_fs
+2016-10-09 21:48:13,840 - INFO - load template os_linux_default
+2016-10-09 21:48:13,841 - INFO - load items to datarecipient_coshsh_default
+2016-10-09 21:48:13,842 - INFO - recipe datarecipient_coshsh_default dynamic_dir ./var/objects/test12/dynamic does not exist
+2016-10-09 21:48:13,842 - INFO - recipient datarecipient_coshsh_default dynamic_dir ./var/objects/test12/dynamic
+2016-10-09 21:48:13,870 - INFO - number of files before: 0 hosts, 0 applications
+2016-10-09 21:48:13,871 - INFO - number of files after:  6 hosts, 6 applications
+2016-10-09 21:48:13,873 - INFO - load items to simplesample
+2016-10-09 21:48:13,874 - INFO - recipe simplesample remove dynamic_dir /tmp/dynamic
+2016-10-09 21:48:13,884 - INFO - recipient simplesample dynamic_dir /tmp/dynamic
+2016-10-09 21:48:13,887 - INFO - write items to simplesample
+2016-10-09 21:48:13,887 - INFO - writing...
+2016-10-09 21:48:13,919 - INFO - number of files before: 6 hosts, 6 applications
+2016-10-09 21:48:13,919 - INFO - number of files after:  6 hosts, 6 applications
+2016-10-09 21:48:13,920 - INFO - load items to simplesample2
+2016-10-09 21:48:13,920 - INFO - recipe simplesample2 dynamic_dir ./var/objects/test1/dynamic does not exist
+2016-10-09 21:48:13,920 - INFO - recipient simplesample2 dynamic_dir ./var/objects/test1/dynamic
+2016-10-09 21:48:13,922 - INFO - write items to simplesample
+2016-10-09 21:48:13,922 - INFO - writing...
+2016-10-09 21:48:13,948 - INFO - number of files before: 0 hosts, 0 applications
+2016-10-09 21:48:13,949 - INFO - number of files after:  6 hosts, 6 applications
+2016-10-09 21:48:14,509 - INFO - Logger initialised.
+2016-10-09 21:48:14,509 - INFO - recipe test10 init
+2016-10-09 21:48:14,510 - INFO - recipe test10 classes_dir /home/lausser/git/coshsh/tests/recipes/test10/classes,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:14,510 - INFO - recipe test10 templates_dir /home/lausser/git/coshsh/tests/recipes/test10/templates,/home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:14,602 - INFO - recipe test10 objects_dir /home/lausser/git/coshsh/tests/var/objects/test10
+2016-10-09 21:48:14,606 - INFO - recipe datarecipient_coshsh_default remove dynamic_dir ./var/objects/test10/dynamic
+2016-10-09 21:48:14,665 - INFO - recipient datarecipient_coshsh_default dynamic_dir ./var/objects/test10/dynamic
+2016-10-09 21:48:14,667 - INFO - open datasource csv1
+2016-10-09 21:48:14,667 - INFO - read hosts from ./recipes/test10/data/csv1_hosts.csv
+2016-10-09 21:48:14,668 - INFO - read applications from ./recipes/test10/data/csv1_applications.csv
+2016-10-09 21:48:14,669 - INFO - read appdetails from ./recipes/test10/data/csv1_applicationdetails.csv
+2016-10-09 21:48:14,670 - INFO - recipe test10 read from datasource csv1 2 applications, 2 hosts, 3 details
+2016-10-09 21:48:14,670 - INFO - open datasource csv2
+2016-10-09 21:48:14,671 - INFO - read hosts from ./recipes/test10/data/csv2_hosts.csv
+2016-10-09 21:48:14,671 - INFO - read applications from ./recipes/test10/data/csv2_applications.csv
+2016-10-09 21:48:14,672 - INFO - recipe test10 read from datasource csv2 3 applications, 2 hosts
+2016-10-09 21:48:14,672 - INFO - open datasource csv3
+2016-10-09 21:48:14,673 - INFO - read hosts from ./recipes/test10/data/csv3_hosts.csv
+2016-10-09 21:48:14,673 - INFO - read applications from ./recipes/test10/data/csv3_applications.csv
+2016-10-09 21:48:14,674 - INFO - read appdetails from ./recipes/test10/data/csv3_applicationdetails.csv
+2016-10-09 21:48:14,675 - INFO - recipe test10 read from datasource csv3 2 applications, 2 hosts, 4 details
+2016-10-09 21:48:14,694 - INFO - load template host
+2016-10-09 21:48:14,703 - INFO - load template os_windows_default
+2016-10-09 21:48:14,738 - INFO - load template os_windows_fs
+2016-10-09 21:48:14,751 - INFO - load template os_linux_default
+2016-10-09 21:48:14,789 - INFO - load template app_db_mysql_default
+2016-10-09 21:48:14,790 - INFO - load items to datarecipient_coshsh_default
+2016-10-09 21:48:14,790 - INFO - recipe datarecipient_coshsh_default remove dynamic_dir ./var/objects/test10/dynamic
+2016-10-09 21:48:14,793 - INFO - recipient datarecipient_coshsh_default dynamic_dir ./var/objects/test10/dynamic
+2016-10-09 21:48:14,851 - INFO - number of files before: 0 hosts, 0 applications
+2016-10-09 21:48:14,851 - INFO - number of files after:  6 hosts, 8 applications
+2016-10-09 21:48:14,866 - INFO - Logger initialised.
+2016-10-09 21:48:14,867 - INFO - recipe recp init
+2016-10-09 21:48:14,868 - INFO - recipe recp classes_dir /tmp,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:14,868 - INFO - recipe recp templates_dir /tmp,/home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:14,917 - CRITICAL - could not load datarecipient datarecipient_mcid.py from /tmp: No module named host
+2016-10-09 21:48:14,956 - INFO - recipe recp objects_dir /tmp
+2016-10-09 21:48:14,967 - INFO - Logger initialised.
+2016-10-09 21:48:14,967 - INFO - recipe recp init
+2016-10-09 21:48:14,968 - INFO - recipe recp classes_dir /tmp,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:14,968 - INFO - recipe recp templates_dir /tmp,/home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:14,993 - CRITICAL - could not load datarecipient datarecipient_mcid.py from /tmp: No module named host
+2016-10-09 21:48:15,032 - INFO - recipe recp objects_dir /tmp
+2016-10-09 21:48:15,041 - INFO - Logger initialised.
+2016-10-09 21:48:15,041 - INFO - recipe recp init
+2016-10-09 21:48:15,042 - INFO - recipe recp classes_dir /tmp,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:15,042 - INFO - recipe recp templates_dir /tmp,/home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:15,072 - CRITICAL - could not load datarecipient datarecipient_mcid.py from /tmp: No module named host
+2016-10-09 21:48:15,111 - INFO - recipe recp objects_dir /tmp
+2016-10-09 21:48:15,681 - INFO - Logger initialised.
+2016-10-09 21:48:15,682 - INFO - recipe test11 init
+2016-10-09 21:48:15,683 - INFO - recipe test11 classes_dir /home/lausser/git/coshsh/tests/recipes/test11/classes,/home/lausser/git/coshsh/recipes/default/classes
+2016-10-09 21:48:15,683 - INFO - recipe test11 templates_dir /home/lausser/git/coshsh/tests/recipes/test11/templates,/home/lausser/git/coshsh/recipes/default/templates
+2016-10-09 21:48:15,824 - INFO - recipe test11 objects_dir /home/lausser/git/coshsh/tests/var/objects/test11
+2016-10-09 21:48:15,825 - INFO - read items from simplesample
+2016-10-09 21:48:15,826 - INFO - recipe test11 read from datasource simplesample 2 applications, 1 hosts, 2 details
+2016-10-09 21:48:15,845 - INFO - load template host
+2016-10-09 21:48:15,859 - INFO - load template os_linux_default
+2016-10-09 21:48:15,884 - INFO - load template os_windows_default
+2016-10-09 21:48:15,890 - INFO - load template os_windows_fs
+2016-10-09 21:48:15,894 - INFO - load template nrpe_os_windows_fs
+2016-10-09 21:48:15,895 - INFO - load items to datarecipient_coshsh_default
+2016-10-09 21:48:15,895 - INFO - recipe datarecipient_coshsh_default dynamic_dir ./var/objects/test11/dynamic does not exist
+2016-10-09 21:48:15,895 - INFO - recipient datarecipient_coshsh_default dynamic_dir ./var/objects/test11/dynamic
+2016-10-09 21:48:15,919 - INFO - number of files before: 0 hosts, 0 applications
+2016-10-09 21:48:15,919 - INFO - number of files after:  1 hosts, 4 applications
