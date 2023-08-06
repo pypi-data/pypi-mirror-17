@@ -1,0 +1,3 @@
+include *.txt *.cfg *.rst
+graft pyramid_jitt/res
+graft doc
