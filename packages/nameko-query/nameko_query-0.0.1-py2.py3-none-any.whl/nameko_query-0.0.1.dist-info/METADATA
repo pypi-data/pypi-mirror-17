@@ -1,0 +1,31 @@
+Metadata-Version: 2.0
+Name: nameko-query
+Version: 0.0.1
+Summary: Query extension for nameko.
+Home-page: https://github.com/kundo/nameko-query
+Author: Kundo team
+Author-email: dev@kundo.se
+License: MIT
+Keywords: sample setuptools development
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Provides-Extra: dev
+Requires-Dist: check-manifest; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: coverage; extra == 'test'
+Requires-Dist: pytest; extra == 'test'
+Requires-Dist: tox; extra == 'test'
+
+Nameko query
+============
+
+Nameko extension for support of running queries.
+
+
