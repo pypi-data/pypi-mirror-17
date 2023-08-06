@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main style="max-width: 640px; margin: 0 auto;">
+  <h1>Årsmelding for {{ lokallag }} for {{ year }}</h1>
+  <p>Laget hadde {{ teljande|length }} teljande medlemar.
+  <table>
+   <tr> <td> <th>{{ previous_year }} <th>{{ year }}
+   <tr>
+     <th>Betalande (teljande)
+     <td>{{ previous_betalande|length }} ({{ previous_teljande|length }})
+     <td>{{ betalande|length }} ({{ teljande|length }})
+   <tr>
+     <th>Nye (teljande)
+     <td>{{ previous_nye|length }} ({{ previous_teljande_nye|length }})
+     <td>{{ nye|length }} ({{ teljande_nye|length }})
+  </table>
+
+  <h1>Styret {{ year }}</h1>
+  {% for r in lokallag.rolle_set.all %}
+    <b>{{ r.rolletype }}:</b> {{ r.medlem }}<br>
+  {% endfor %}
+
+</main>
+{% endblock %}
