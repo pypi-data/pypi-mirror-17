@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: fluster
+Version: 0.0.2
+Summary: Redis Cluster with Some Features
+Home-page: https://github.com/Parsely/redis-fluster
+Author: Keith Bourgoin
+Author-email: hello@parsely.com
+License: Apache License 2.0
+Description: UNKNOWN
+Keywords: redis cluster
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Database
+Classifier: Topic :: Database :: Front-Ends
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
