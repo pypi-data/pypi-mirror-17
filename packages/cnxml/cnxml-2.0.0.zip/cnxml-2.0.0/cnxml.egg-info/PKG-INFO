@@ -1,0 +1,21 @@
+Metadata-Version: 1.0
+Name: cnxml
+Version: 2.0.0
+Summary: Connexions CNXML Library
+Home-page: https://github.com/connexions/cnxml
+Author: Connexions team
+Author-email: info@cnx.org
+License: LGPL, See also LICENSE.txt
+Description: CNXML Library
+        =============
+        
+        This is a python library for working with CNXML content, which includes the CNXML and COLLXML formats.
+        
+        License
+        -------
+        
+        This software is subject to the provisions of the GNU Affero General
+        Public License Version 3.0 (AGPL). See license.txt for details.
+        Copyright (c) 2016 Rice University
+        
+Platform: UNKNOWN
