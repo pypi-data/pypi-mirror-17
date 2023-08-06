@@ -1,0 +1,16 @@
+README.rst
+setup.cfg
+setup.py
+weedi/__init__.py
+weedi/config.py
+weedi/exc.py
+weedi/loadable.py
+weedi/loadables_repository.py
+weedi.egg-info/PKG-INFO
+weedi.egg-info/SOURCES.txt
+weedi.egg-info/dependency_links.txt
+weedi.egg-info/requires.txt
+weedi.egg-info/top_level.txt
+weedi/tests/__init__.py
+weedi/tests/test_loadable.py
+weedi/tests/test_loadables_repository.py
