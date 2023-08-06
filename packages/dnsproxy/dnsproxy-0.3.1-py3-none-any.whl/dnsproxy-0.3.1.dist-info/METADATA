@@ -1,0 +1,22 @@
+Metadata-Version: 2.0
+Name: dnsproxy
+Version: 0.3.1
+Summary: Secure DNS proxy
+Home-page: https://github.com/blurrcat/dnsproxy
+Author: Harry Liang
+Author-email: blurrcat@gmail.com
+License: BSD
+Keywords: dns,proxy
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: dnslib
+Requires-Dist: falcon
+Requires-Dist: gevent
+Requires-Dist: requests
+
+dnsproxy
+########
+
+
