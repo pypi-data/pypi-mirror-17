@@ -1,0 +1,24 @@
+{% load tri_table %}
+
+{% if not table.data and invalid_form_message %}
+    {{ invalid_form_message }}
+{% elif not table.data and empty_message %}
+    {{ empty_message }}
+{% else %}
+
+        <table{{ table.render_attrs }}>
+
+            {% if table.header.template %}
+                {% include  table.header.template %}
+            {% endif %}
+
+            <tbody>
+               {{ table.render_tbody|safe }}
+            </tbody>
+        </table>
+
+        {% if is_paginated %}
+          <div class="paginator">{% paginator %}</div>
+        {% endif %}
+
+{% endif %}
