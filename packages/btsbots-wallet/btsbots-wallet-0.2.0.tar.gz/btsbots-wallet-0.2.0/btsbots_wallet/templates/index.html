@@ -1,0 +1,115 @@
+{% extends "layout.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block head %}
+    <script src="js/underscore-min.js"></script>
+    <script type="text/javascript" src="https://pusher.btsbots.com/autobahn.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+    var pusher = get_pusher();
+    var g_session;
+    var init_done = false;
+
+    init_list = function() {
+        function on_op_all(args) {
+            refresh_trx(args[0]);
+        }
+        g_session.subscribe('bts.op.all', on_op_all).then(
+            function(subscription) {
+                current_subscription.push(subscription);
+            }
+        );
+        if (init_done == false) {
+            g_session.call('pusher.get_history', ['bts.op.all', 50]).then(
+                    function (res) {
+                         for (index in res) {
+                           data = res[index];
+                           refresh_trx(data.args[0]);
+                         } 
+                    });
+            init_done = true;
+        }
+
+    }
+
+    $(document).ready(function(){
+        pusher.onopen = function (session) {
+            g_session = session;
+            init_list()
+            console.log("session open");
+        };
+        pusher.open();
+ 
+    });
+    </script>
+  {{ super() }}
+{% endblock %}
+{% block page %}{{title}}{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                  <h1 class="page-header"></h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <div class="row">
+                <div id="balance">
+                </div>
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-exchange fa-fw"></i> {{ _("Transaction history") }}
+                        </div>
+                        <!-- .panel-heading -->
+                        <div class="panel-body">
+                            <div class="panel-group" id="transaction_history">
+                            </div>
+                            <!-- /.list-group -->
+                        </div>
+                        <!-- .panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+    <script type="text/javascript" charset="utf-8">
+    var current_subscription = [];
+
+    refresh_trx = function (text) {
+        html_transaction = document.getElementById("transaction_history").innerHTML
+            if(text.search("sent")>=0){
+                style = 'style="color:BLUE"';
+            }else if(text.search("bought")>=0){
+                style = 'style="color:GREEN"';
+            }else {
+                style = 'style="color:RED"';
+            }
+
+                html_newtrx = '<div class="panel panel-default"> \
+                                    <div class="panel-heading"> \
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#" '+style+'> \
+                                        '+text+'\
+                                    </span> \
+                                    </a> \
+                                    </div> \
+                                    <div id="'+"trx_id"+'" class="panel-collapse collapse"> \
+                                        <div class="panel-body"> \
+                                            Detail \
+                                        </div> \
+                                    </div> \
+                                </div>'
+                html_transaction = html_newtrx+html_transaction
+        document.getElementById("transaction_history").innerHTML = html_transaction
+    };
+    </script>
+{% endblock %}
+
+
