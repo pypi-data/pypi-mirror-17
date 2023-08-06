@@ -1,0 +1,37 @@
+Metadata-Version: 1.1
+Name: xpython
+Version: 1.0.0a2
+Summary: xPython provides a python-like syntax and converters to any language.
+Home-page: https://github.com/1st/xpython
+Author: Anton Danilchenko
+Author-email: anton@danilchenko.me
+License: MIT
+Description: 
+        xPython
+        ====================
+        
+        **xPython** provides a python-like syntax and converters to any language.
+        
+        In other words - you write code on xPython and then convert it to
+        Python, JavaScript, Java, Swift, PHP and other languages.
+        
+        
+        Quick start
+        -------------
+        
+        Read `Quick Start <https://github.com/1st/xpython>`_ on GitHub.
+        
+Keywords: python,compiler,xpython
+Platform: any
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
