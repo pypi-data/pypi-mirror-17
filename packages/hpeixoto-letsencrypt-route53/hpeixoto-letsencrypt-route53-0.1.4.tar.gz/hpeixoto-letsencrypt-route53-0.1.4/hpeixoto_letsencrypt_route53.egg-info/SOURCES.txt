@@ -1,0 +1,13 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+hpeixoto_letsencrypt_route53.egg-info/PKG-INFO
+hpeixoto_letsencrypt_route53.egg-info/SOURCES.txt
+hpeixoto_letsencrypt_route53.egg-info/dependency_links.txt
+hpeixoto_letsencrypt_route53.egg-info/entry_points.txt
+hpeixoto_letsencrypt_route53.egg-info/requires.txt
+hpeixoto_letsencrypt_route53.egg-info/top_level.txt
+letsencrypt_route53/__init__.py
+letsencrypt_route53/authenticator.py
