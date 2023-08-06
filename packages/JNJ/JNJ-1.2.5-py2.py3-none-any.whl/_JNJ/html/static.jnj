@@ -1,0 +1,34 @@
+{%- extends "html/base.jnj" %}
+{#- jinja template: static.jnj -#}
+{#
+## Copyright (C) 2010-2014 Mag. Christian Tanzer All rights reserved
+## Glasauergasse 32, A--1130 Wien, Austria. tanzer@swing.co.at
+## ****************************************************************************
+## This template is part of the package JNJ.
+##
+## This module is licensed under the terms of the BSD 3-Clause License
+## <http://www.c-tanzer.at/license/bsd_3c.html>.
+## ****************************************************************************
+##
+##++
+## Name
+##    static
+##
+## Purpose
+##    Template for pages with static content
+##
+## Revision Dates
+##    27-Jan-2010 (CT) Creation
+##    14-Mar-2014 (CT) Add `rel_nav_buttons`
+##    ««revision-date»»···
+##--
+#}
+
+{%- import "STD::html/navigation.jnj" as NT with context %}
+
+{%- block document -%}
+  {{ page.contents|safe }}
+  {{ NT.rel_nav_buttons (page) -}}
+{%- endblock document -%}
+
+{#- __END__ jinja template: static.jnj -#}
