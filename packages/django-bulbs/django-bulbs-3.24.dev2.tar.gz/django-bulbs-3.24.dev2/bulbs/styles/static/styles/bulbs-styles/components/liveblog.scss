@@ -1,0 +1,354 @@
+@import "../mixins/buttons";
+@import "../mixins/figures";
+@import "../mixins/flexbox";
+@import "../mixins/positioning";
+@import "../variables/breakpoints";
+@import "../variables/global-colors";
+@import "../variables/numbers";
+
+$liveblog-gutter: 20px;
+$separator-color: #d6d6d6;
+$liveblog-grey: #9b9b9b;
+
+%article-summary {
+  $summary-gutter: 20px;
+
+  background: white;
+  border-top: 4px solid black;
+  padding: 10px;
+  margin-top: $summary-gutter;
+  margin-bottom: $summary-gutter;
+
+  > a {
+    @include flexbox;
+  }
+}
+
+%article-summary-title {
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+%article-summary-image {
+  width: 75px;
+  min-width: 75px;
+  margin-right: 10px;
+}
+
+%article-summary-excerpt {
+  font-size: 14px;
+  line-height: 18px;
+  font-style: italic;
+  font-weight: 100;
+}
+
+%liveblog-body {
+  font-size: 14px;
+  line-height: 25px;
+}
+
+.liveblog-wrapper {
+  @include flexbox;
+  @include flex-wrap (wrap);
+}
+
+.liveblog-new-entries {
+  @include button-no-style;
+  @include center-x-only;
+
+  background-color: $darkish-blue;
+  border-radius: 3px;
+  color: $white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px;
+  position: fixed;
+  text-align: center;
+  top: 65px;
+  width: 280px;
+  z-index: $z-index-max;
+}
+
+.liveblog-entry-reset {
+  background: transparent;
+  border: 0;
+  color: $liveblog-grey;
+  display: none;
+  float: right;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.liveblog-entry-shared .liveblog-entry-reset {
+  display: block;
+}
+
+bulbs-liveblog {
+  display: block;
+  padding: $liveblog-gutter;
+  width: 100%;
+}
+
+.liveblog-entries {
+  @include flexbox;
+  @include flex-direction(column);
+
+  > * {
+    order: 1;
+  }
+
+  > .liveblog-entry-shared {
+    order: 0;
+  }
+}
+
+.liveblog-entries-ad-container .dfp {
+  box-shadow: none;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+
+  > div {
+    border-top: 1px solid $separator-color !important;
+    margin-top: 30px;
+    padding-top: 30px;
+  }
+}
+
+bulbs-liveblog-entry {
+  display: block;
+}
+
+.liveblog-cover {
+  width: 100%;
+
+  .image {
+    @include crop-3x1;
+  }
+}
+
+.liveblog-super-title {
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.liveblog-title {
+  font-size: 30px;
+  line-height: 38px;
+  margin-top: 5px;
+}
+
+.liveblog-entry {
+  border-top: 1px solid $separator-color;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  padding-top: 25px;
+}
+
+.liveblog-pinned-article {
+  @extend %article-summary;
+}
+
+.liveblog-pinned-image {
+  @extend %article-summary-image;
+}
+
+.liveblog-pinned-title {
+  @extend %article-summary-title;
+
+  > i.fa {
+    float: right;
+    transform: rotate(22deg);
+    font-size: 26px;
+    color: #bed1e3;
+    margin-left: 15px;
+  }
+}
+
+.liveblog-pinned-meta {
+  @include flex-grow(1);
+}
+
+.liveblog-pinned-excerpt {
+  @extend %article-summary-excerpt;
+}
+
+.liveblog-entry-header {
+  @include flexbox;
+
+  margin-bottom: 20px;
+}
+
+.liveblog-avatar {
+  $liveblog-avatar-size: 50px;
+
+  height: $liveblog-avatar-size;
+
+  .image {
+    @include crop-1x1;
+
+    height: $liveblog-avatar-size;
+    width: $liveblog-avatar-size;
+  }
+}
+
+.liveblog-entry-meta {
+  @include flexbox;
+  @include flex-direction(column);
+
+  color: $liveblog-grey;
+  font-size: 12px;
+  line-height: 18px;
+  margin-left: $liveblog-gutter;
+  text-transform: uppercase;
+}
+
+.liveblog-author-name {
+  font-weight: bold;
+}
+
+.liveblog-entry-headline {
+  color: #1a1a1a;
+  font-size: 21px;
+  line-height: 28px;
+  margin-top: 0;
+}
+
+.liveblog-entry-body {
+  @extend %liveblog-body;
+
+  margin-bottom: 40px;
+  max-width: 575px;
+}
+
+.liveblog-response {
+  @include flexbox;
+}
+
+.liveblog-response-content {
+  margin-left: $liveblog-gutter;
+}
+
+.liveblog-response-body {
+  @extend %liveblog-body;
+  margin-bottom: 20px;
+  margin-top: -10px;
+}
+
+.liveblog-related-header {
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.liveblog-related-article {
+  @extend %article-summary;
+  margin-top: 0;
+}
+
+.liveblog-related-image {
+  @extend %article-summary-image;
+}
+
+.liveblog-related-title {
+  @extend %article-summary-title;
+}
+
+.liveblog-related-excerpt {
+  @extend %article-summary-excerpt;
+}
+
+.liveblog-more {
+  @include flexbox;
+  @include justify-content(space-around);
+}
+
+.liveblog-more-button {
+  @include button-no-style;
+  @include center-x-only;
+
+  background-color: $darkish-blue;
+  border-radius: 3px;
+  color: $white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 25px;
+}
+
+.liveblog-dismiss-new-entries {
+  @include center-y-only;
+  position: absolute;
+  right: 10px;
+}
+
+@media (min-width: $screen-md) {
+
+  .liveblog-title {
+    margin-top: 10px;
+  }
+
+  bulbs-liveblog {
+    padding: 45px 45px 60px 60px;
+  }
+
+  bulbs-liveblog-entry {
+    overflow: auto;
+  }
+
+  .liveblog-entry-header {
+    $header-row-spacing: 20px;
+
+    display: block;
+    float: left;
+    margin-bottom: $header-row-spacing;
+    padding-right: $header-row-spacing;
+    text-align: right;
+    width: 20%;
+
+    ~ * {
+      margin-left: 20%;
+    }
+
+    .liveblog-avatar {
+      margin-bottom: $header-row-spacing;
+      width: 100%;
+
+      .image {
+        float: right;
+      }
+    }
+
+    .liveblog-entry-meta {
+      @include flexbox;
+      @include flex-direction(column);
+
+      margin: 0;
+      line-height: 1.3;
+
+      .liveblog-author-name {
+        margin-bottom: $header-row-spacing;
+      }
+    }
+  }
+}
+
+@media (min-width: $screen-xlg) {
+  $sidebar-width: 300px;
+
+  bulbs-liveblog{
+    width: calc(100% - #{$sidebar-width});
+  }
+
+  .liveblog-sidebar {
+    width: $sidebar-width;
+  }
+
+  .liveblog-recirc {
+    width: 100%;
+  }
+}

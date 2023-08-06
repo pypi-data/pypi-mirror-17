@@ -1,0 +1,80 @@
+///////////////////////////////
+// ************************* //
+//        VIDEO RECIRC       //
+// ************************* //
+///////////////////////////////
+
+@import '../variables/breakpoints';
+
+.end-of-article-video {
+
+  overflow: hidden;
+
+  bulbs-video {
+
+    .bulbs-video-meta-copy {
+      bottom: 15px;
+      color: #FFFFFF;
+      left: 70px;
+      line-height: 1.17;
+      opacity: .9;
+      position: absolute;
+      text-shadow: 0 0 8px rgba(0, 0, 0, .8);
+      width: 75%;
+      z-index: 1;
+
+      .bulbs-video-mobile-title {
+        display: none;
+      }
+
+      @media (max-width: $screen-md) {
+        .bulbs-video-meta-series-name, .bulbs-video-meta-title {
+          display: none;
+        }
+      }
+
+      @media (min-width: $screen-sm) {
+        bottom: 20px;
+      }
+
+      @media(min-width: $screen-md) {
+        left: 110px;
+        bottom: 20px;
+      }
+
+      @media(min-width: $screen-xlg) {
+        left: 135px;
+        bottom: 25px;
+      }
+
+      @media(min-width: $screen-xlg) {
+        left: 155px;
+        bottom: 27px;
+      }
+    }
+  }
+
+  .mobile-meta {
+    display: none;
+
+    @media (max-width: $screen-md) {
+      display: block;
+      position: relative;
+    }
+
+  }
+
+  .bulbs-video-meta-copy {
+    font-size: 15px;
+    font-weight: bold;
+
+    h1, h2 {
+      margin: 10px 0;
+    }
+
+    h1 {
+      font-size: 20px;
+    }
+
+  }
+}
