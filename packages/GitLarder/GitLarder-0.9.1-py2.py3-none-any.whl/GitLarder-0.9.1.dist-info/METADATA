@@ -1,0 +1,15 @@
+Metadata-Version: 2.0
+Name: GitLarder
+Version: 0.9.1
+Summary: Python NoSQL Implementation on top of git
+Home-page: https://github.com/aawilson/git-larder
+Author: Aaron Wilson
+Author-email: aaron@olark.com
+License: Apache Software License
+Requires-Dist: GitPython (>=0.3.0)
+Provides-Extra: test
+Requires-Dist: nosetests; extra == 'test'
+
+# Git Larder
+
+
