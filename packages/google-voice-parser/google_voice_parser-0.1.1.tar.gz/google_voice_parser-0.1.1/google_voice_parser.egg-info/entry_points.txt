@@ -1,0 +1,3 @@
+[console_scripts]
+parse_sms = google_voice_parser.parse_google_sms:cmd
+
