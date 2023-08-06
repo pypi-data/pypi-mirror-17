@@ -1,0 +1,14 @@
+syntax: glob
+*.pyc
+.idea/*
+*.so
+.kdev*
+*.lib
+*.pyd
+Makefile
+cryio.kdev4
+*.kate-swp
+MANIFEST
+build/*
+dist/*
+cryio.egg-info/*
