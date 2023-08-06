@@ -1,0 +1,25 @@
+Metadata-Version: 2.0
+Name: particle-wait
+Version: 0.2.0
+Summary: wait for particle.io events on the command line
+Home-page: https://github.com/trehn/particle-wait
+Author: Torsten Rehn
+Author-email: torsten@rehn.email
+License: GPLv3
+Keywords: button,console,curses,delay,event,iot,particle,terminal
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console :: Curses
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Utilities
+Requires-Dist: requests (>=1.0.0)
+
+UNKNOWN
+
+
