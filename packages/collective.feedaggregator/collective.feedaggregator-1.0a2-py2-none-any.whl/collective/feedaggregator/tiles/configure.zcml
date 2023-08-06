@@ -1,0 +1,21 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="collective.feedaggregator">
+
+  <include package="plone.tiles" file="meta.zcml" />
+
+  <plone:tile
+      add_permission="cmf.ModifyPortalContent"
+      class=".feedaggregator.FeedAggregatorTile"
+      description="A tile that shows entries from a feed aggregator."
+      for="*"
+      icon="++resource++collective.feedaggregator/tile-feedaggregator.png"
+      name="collective.feedaggregator"
+      permission="zope2.View"
+      schema=".feedaggregator.IFeedAggregatorTile"
+      title="Feed Aggregator Tile"
+      />
+
+</configure>

@@ -1,0 +1,102 @@
+*************************
+Feed Aggregator for Plone
+*************************
+
+.. contents:: Table of Contents
+
+Life, the Universe, and Everything
+==================================
+
+This package defines a Feed Aggregator content type that shows all entries on a list of feeds.
+External content is not indexed in any way.
+
+TODO:
+
+* [ ] deal with shorter timeouts
+* [ ] honor privacy settings on byline
+* [ ] lead image support
+
+Mostly Harmless
+===============
+
+.. image:: http://img.shields.io/pypi/v/collective.feedaggregator.svg
+   :target: https://pypi.python.org/pypi/collective.feedaggregator
+
+.. image:: https://img.shields.io/travis/hvelarde/collective.feedaggregator/master.svg
+    :target: http://travis-ci.org/hvelarde/collective.feedaggregator
+
+.. image:: https://img.shields.io/coveralls/hvelarde/collective.feedaggregator/master.svg
+    :target: https://coveralls.io/r/hvelarde/collective.feedaggregator
+
+Don't Panic
+===========
+
+Installation
+------------
+
+To enable this package in a buildout-based installation:
+
+#. Edit your buildout.cfg and add add the following to it::
+
+    [buildout]
+    ...
+    eggs =
+        collective.feedaggregator
+
+After updating the configuration you need to run ''bin/buildout'',
+which will take care of updating your system.
+
+Go to the 'Site Setup' page in a Plone site and click on the 'Add-ons' link.
+
+Check the box next to ``collective.feedaggregator`` and click the 'Activate' button.
+
+How does it work
+----------------
+
+Every Feed Aggregator includes a list of feeds to be processed.
+The entries in the feeds are parsed in parallel using multiprocessing.
+Results are cached for 15 minutes on an instance base.
+If a Feed Aggregator is modified in any way, caching is invalidated.
+
+Not entirely unlike
+===================
+
+`Products.feedfeeder <https://pypi.python.org/pypi/Products.feedfeeder>`_
+    Archetypes-based folder that turns external feed entries into content items.
+    Works in Plone 4.3 and 5.
+
+Share and Enjoy
+===============
+
+This package would not have been possible without the contribution of the following people:
+
+- Héctor Velarde
+- Font Awesome (`icon`_)
+
+You can find an updated list of package contributors on `GitHub`_.
+
+The development of this package was sponsored by UNESCO.
+
+.. _`GitHub`: https://github.com/collective/collective.feedaggregator/contributors
+.. _`icon`: http://fontawesome.io/icon/rss/
+
+Changelog
+=========
+
+1.0a2 (2016-09-26)
+------------------
+
+- Entries are now limited and sorted by the selected key in the specified order;
+  batching is also enabled.
+  [hvelarde]
+
+- Fix ``LocationError`` on RSS feeds.
+  [hvelarde]
+
+
+1.0a1 (2016-09-19)
+------------------
+
+- Initial release.
+
+

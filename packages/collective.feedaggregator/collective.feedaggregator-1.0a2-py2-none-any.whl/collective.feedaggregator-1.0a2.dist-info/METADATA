@@ -1,0 +1,150 @@
+Metadata-Version: 2.0
+Name: collective.feedaggregator
+Version: 1.0a2
+Summary: A feed aggregator content type for Plone.
+Home-page: https://github.com/hvelarde/collective.feedaggregator
+Author: Hector Velarde
+Author-email: hector.velarde@gmail.com
+License: UNKNOWN
+Keywords: plone rss atom dexterity feed
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Plone
+Classifier: Framework :: Plone :: 4.3
+Classifier: Framework :: Plone :: 5.0
+Classifier: Framework :: Plone :: 5.1
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: Products.CMFPlone (>=4.3)
+Requires-Dist: Products.GenericSetup
+Requires-Dist: feedparser
+Requires-Dist: plone.api
+Requires-Dist: plone.app.content
+Requires-Dist: plone.app.dexterity
+Requires-Dist: plone.app.uuid
+Requires-Dist: plone.dexterity
+Requires-Dist: plone.memoize
+Requires-Dist: plone.supermodel
+Requires-Dist: profilehooks
+Requires-Dist: setuptools
+Requires-Dist: zope.globalrequest
+Requires-Dist: zope.i18nmessageid
+Requires-Dist: zope.interface
+Requires-Dist: zope.schema
+Provides-Extra: test
+Requires-Dist: lxml; extra == 'test'
+Requires-Dist: mock; extra == 'test'
+Requires-Dist: plone.app.robotframework; extra == 'test'
+Requires-Dist: plone.app.testing[robot]; extra == 'test'
+Requires-Dist: plone.browserlayer; extra == 'test'
+Requires-Dist: plone.testing; extra == 'test'
+Requires-Dist: robotsuite; extra == 'test'
+Requires-Dist: zope.component; extra == 'test'
+
+*************************
+Feed Aggregator for Plone
+*************************
+
+.. contents:: Table of Contents
+
+Life, the Universe, and Everything
+==================================
+
+This package defines a Feed Aggregator content type that shows all entries on a list of feeds.
+External content is not indexed in any way.
+
+TODO:
+
+* [ ] deal with shorter timeouts
+* [ ] honor privacy settings on byline
+* [ ] lead image support
+
+Mostly Harmless
+===============
+
+.. image:: http://img.shields.io/pypi/v/collective.feedaggregator.svg
+   :target: https://pypi.python.org/pypi/collective.feedaggregator
+
+.. image:: https://img.shields.io/travis/hvelarde/collective.feedaggregator/master.svg
+    :target: http://travis-ci.org/hvelarde/collective.feedaggregator
+
+.. image:: https://img.shields.io/coveralls/hvelarde/collective.feedaggregator/master.svg
+    :target: https://coveralls.io/r/hvelarde/collective.feedaggregator
+
+Don't Panic
+===========
+
+Installation
+------------
+
+To enable this package in a buildout-based installation:
+
+#. Edit your buildout.cfg and add add the following to it::
+
+    [buildout]
+    ...
+    eggs =
+        collective.feedaggregator
+
+After updating the configuration you need to run ''bin/buildout'',
+which will take care of updating your system.
+
+Go to the 'Site Setup' page in a Plone site and click on the 'Add-ons' link.
+
+Check the box next to ``collective.feedaggregator`` and click the 'Activate' button.
+
+How does it work
+----------------
+
+Every Feed Aggregator includes a list of feeds to be processed.
+The entries in the feeds are parsed in parallel using multiprocessing.
+Results are cached for 15 minutes on an instance base.
+If a Feed Aggregator is modified in any way, caching is invalidated.
+
+Not entirely unlike
+===================
+
+`Products.feedfeeder <https://pypi.python.org/pypi/Products.feedfeeder>`_
+    Archetypes-based folder that turns external feed entries into content items.
+    Works in Plone 4.3 and 5.
+
+Share and Enjoy
+===============
+
+This package would not have been possible without the contribution of the following people:
+
+- Héctor Velarde
+- Font Awesome (`icon`_)
+
+You can find an updated list of package contributors on `GitHub`_.
+
+The development of this package was sponsored by UNESCO.
+
+.. _`GitHub`: https://github.com/collective/collective.feedaggregator/contributors
+.. _`icon`: http://fontawesome.io/icon/rss/
+
+Changelog
+=========
+
+1.0a2 (2016-09-26)
+------------------
+
+- Entries are now limited and sorted by the selected key in the specified order;
+  batching is also enabled.
+  [hvelarde]
+
+- Fix ``LocationError`` on RSS feeds.
+  [hvelarde]
+
+
+1.0a1 (2016-09-19)
+------------------
+
+- Initial release.
+
+
