@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: nexus-uploader
+Version: 1.0.4
+Summary: CLI tool to upload Python packages listed in a requirements.txt file into a Sonatype Nexus (from Pypi), and return the list of the artifact URLs
+Home-page: http://github.com/voyages-sncf-technologies/nexus_uploader
+Author: Lucas Cimon
+Author-email: UNKNOWN
+License: Apache License 2.0
+Description: UNKNOWN
+Keywords: nexus artifacts packages upload requirements pip-compile
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Utilities
