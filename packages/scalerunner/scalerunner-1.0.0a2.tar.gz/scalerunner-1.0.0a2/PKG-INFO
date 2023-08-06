@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: scalerunner
+Version: 1.0.0a2
+Summary: PyScale plugin for remote programs running
+Home-page: https://github.com/pyscale/scalerunner
+Author: PyScale team
+Author-email: wedonthaveemailyet@pyscale.com
+License: MIT
+Description: ScaleRunner
+        ==================
+        
+        Simple runner for PyScale framework
+        -----------------------------------
+        
+Keywords: testing automation
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Testing
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
