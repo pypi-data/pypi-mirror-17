@@ -1,0 +1,4 @@
+[console_scripts]
+shelley = autolycus.sync:main
+shelley_legacy = autolycus.legacy:main
+
