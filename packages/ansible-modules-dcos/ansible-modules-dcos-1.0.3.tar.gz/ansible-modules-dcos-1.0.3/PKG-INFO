@@ -1,0 +1,41 @@
+Metadata-Version: 1.1
+Name: ansible-modules-dcos
+Version: 1.0.3
+Summary: DCOS Ansible Modules
+Home-page: https://github.com/TerryHowe/ansible-modules-dcos
+Author: Kevin Wood
+Author-email: kevin.wood@example.com
+License: MIT
+Description: Ansible Modules for DC/OS
+        =========================
+        
+        Ansible modules for Hashicorp Vault.
+        
+        .. image:: https://img.shields.io/pypi/v/ansible-modules-dcos.svg
+           :alt: Latest version
+           :target: https://pypi.python.org/pypi/ansible-modules-dcos/
+        
+        Usage
+        -----
+        
+        Create a user::
+        
+            ---
+            - hosts: localhost
+              tasks:
+                - dcos_user: 
+                    uid: "bobslydell"
+                    description: 'bobslydell'
+                    password: 'fooBar123ASDF'
+                    state: present
+                    dcos_credentials: "{{ dcos_facts.ansible_facts.dcos_credentials }}"
+        
+        License
+        -------
+        
+        MIT
+        
+Platform: UNKNOWN
+Requires: ansible (>2.0.0)
+Requires: dcoscli (>0.4.5)
+Requires: toml
