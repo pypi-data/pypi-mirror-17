@@ -1,0 +1,7 @@
+include kryptal/gui/*.ui
+include kryptal/gui/view/*.ui
+include kryptal/gui/view/widgets/*.ui
+include kryptal/gui/view/dialogs/*.ui
+include kryptal/gui/view/icons/*
+include kryptal/plugins/filesystems/*.kryptal-plugin
+include kryptal/plugins/storageproviders/*.kryptal-plugin
