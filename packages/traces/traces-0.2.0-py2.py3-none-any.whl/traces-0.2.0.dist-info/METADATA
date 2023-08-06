@@ -1,0 +1,25 @@
+Metadata-Version: 2.0
+Name: traces
+Version: 0.2.0
+Summary: A library for unevenly-spaced time series analysis.
+Home-page: https://github.com/datascopeanalytics/traces
+Author: Mike Stringer
+Author-email: mike.stringer@datascopeanalytics.com
+License: MIT license
+Keywords: traces
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: arrow
+Requires-Dist: future
+Requires-Dist: intervals
+Requires-Dist: sortedcontainers
+
+View on github: https://github.com/datascopeanalytics/traces
+
+
