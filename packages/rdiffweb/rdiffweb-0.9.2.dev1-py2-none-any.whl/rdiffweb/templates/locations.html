@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+{% set active_page='repo' %}
+{% block title %}{% trans %}Repositories{% endtrans %}{% endblock %}
+{% block body %}
+<div class="container" id="locations">
+    <h2>{% trans %}Repositories{% endtrans %} ({{ repos|length }})</h2>
+    {% for t in templates_before_content %}
+    {% include t ignore missing with context %}
+    {% endfor %}
+    {% if repos|length == 0 %}
+	    {% set message = _("You don't have any repositories configured.") %}
+	    {% include 'message.html' %}
+    {% else %}
+	<ul class="list-group" itemscope itemtype="http://schema.org/ItemList">
+		{% for repo in repos %}
+		<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"
+            {% if repo.failed %}
+	            class="list-group-item list-group-item-danger clearfix"
+	            {% elif repo.in_progress%}
+	            class="list-group-item list-group-item-warning clearfix"
+	            {% else %}
+	            class="list-group-item clearfix"
+	            {% endif %}>
+			<span class="h4">
+				{% if repo.failed %}
+		            <i class="icon-cube"></i>
+		            <span itemprop="name">{{ repo.name }}</span>
+	            {% else %}
+		            <a itemprop="item" href="{{ url_for_browse(repo.path) }}">
+	                <i class="icon-cube"></i>
+	                <span itemprop="name">{{ repo.name }}</span>
+		            </a>
+	            {% endif %}
+            </span>
+            
+            <div class="pull-right">
+			<span class="light">
+				{% if repo.failed %}{% trans %}Error{% endtrans %}
+	            {% elif repo.in_progress %}{% trans %}In progress{% endtrans %}
+	            {% else %}{% trans %}Last backup: {% endtrans %}
+	            <time datetime="{{ repo.last_backup_date | datetime }}" itemprop="lastBackupDate">{{ repo.last_backup_date | datetime }}</time>
+	            {% endif %}
+			</span>
+			</div>
+		</li>
+		{% endfor %}
+	</ul>
+    {% endif %}
+</div>
+{% endblock %}
