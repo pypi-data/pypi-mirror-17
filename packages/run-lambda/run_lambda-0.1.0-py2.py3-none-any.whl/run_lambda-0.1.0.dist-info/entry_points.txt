@@ -1,0 +1,3 @@
+[console_scripts]
+run_lambda = run_lambda.__main__:main
+
