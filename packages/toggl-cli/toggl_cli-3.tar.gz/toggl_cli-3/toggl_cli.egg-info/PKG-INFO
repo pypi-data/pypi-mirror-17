@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: toggl-cli
+Version: 3
+Summary: Command line interface for toggl timer app 
+Home-page: https://bitbucket.org/gouravnema/toggl_cli
+Author: Gourav Nema
+Author-email: toggl_cli@gourav.info
+License: MIT
+Description: Toggl ClI provides access to multiple account using there api keys for granting access to common operations
+Keywords: toggl cli timer time tracker
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Topic :: Office/Business :: Scheduling
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
