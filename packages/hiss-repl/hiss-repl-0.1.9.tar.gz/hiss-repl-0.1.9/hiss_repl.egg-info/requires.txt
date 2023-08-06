@@ -1,0 +1,11 @@
+Click>=6.0
+
+[:python_version<'3.4']
+enum34
+
+[:python_version=='2.6']
+IPython<=0.13
+
+[:python_version>='2.7']
+IPython>=5
+traitlets
