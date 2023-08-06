@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: popuparchive
+Version: 1.1.0
+Summary: Python client for interacting with the Pop Up Archive API.
+Home-page: https://github.com/popuparchive/pua-sdk-python
+Author: Pop Up Archive
+Author-email: edison@popuparchive.com
+License: Apache License 2.0
+Download-URL:  https://github.com/popuparchive/pua-sdk-python/tarball/1.0.0
+Description: UNKNOWN
+Keywords: transcription,audio,archives,mp3,radio,podcasts
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
