@@ -1,0 +1,3 @@
+[console_scripts]
+rf_estimator = learn2map.rf_estimator:main
+
