@@ -1,0 +1,3 @@
+[console_scripts]
+os-shell = os_shell.main:run
+
