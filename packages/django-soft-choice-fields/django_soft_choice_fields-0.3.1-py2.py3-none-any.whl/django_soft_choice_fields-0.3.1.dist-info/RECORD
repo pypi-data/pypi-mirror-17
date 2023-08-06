@@ -1,0 +1,17 @@
+django_soft_choice_fields-0.3.1.dist-info/DESCRIPTION.rst,sha256=OCTuuN6LcWulhHS3d5rfjdsQtW22n7HENFRh6jC6ego,10
+django_soft_choice_fields-0.3.1.dist-info/METADATA,sha256=dzPAq_21hVvQmQAmA1Y0sZ0VkkxPosVj9ToZR4BkYX8,194
+django_soft_choice_fields-0.3.1.dist-info/RECORD,,
+django_soft_choice_fields-0.3.1.dist-info/WHEEL,sha256=GrqQvamwgBV4nLoJe0vhYRSWzWsx7xjlt74FT0SWYfE,110
+django_soft_choice_fields-0.3.1.dist-info/metadata.json,sha256=gS9Tm_LQzKQ_XBjfcaSShFUD5MjlXHT4PHcJpGqLl-8,333
+django_soft_choice_fields-0.3.1.dist-info/top_level.txt,sha256=G_NwzOp1zNeqpsCSd8RZr1Gydk3AsYWpdl32RiF5f2Q,17
+softchoice/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+softchoice/fields/__init__.py,sha256=kRnTtm0q0XRwWmJQQM3R-y1iXnJsctPfBSWJO63124I,891
+softchoice/fields/currency.py,sha256=ez8nn_d7udCmhosVMtYK6VnrnF8QiuPqBf_Y4LiRC-A,888
+softchoice/fields/language.py,sha256=McEq4V1aWSdVnKxcBn-rAvb-uf6jG9aP-ObdVBDMY6M,1390
+softchoice/fields/timezone.py,sha256=rJVlsj210xJo-h1oz-X6syx3jhIf72gD-5q2ZAYcBCg,1017
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/models.py,sha256=T0g2WqZil108DABAAo1612f_gDkSJ8Y-_pGUGFwqbos,670
+tests/settings.py,sha256=L0iws_0rCSLsGc48BPZR94EAxwr326xjZRV6os--a30,1347
+tests/test_stuff.py,sha256=9hFZiBJDsYb6a9pNe1z4gRl-k6foXZ4Dtde1R07kokI,1737
+tests/urls.py,sha256=SAgAkBlPm8EwHerLvtYSb3vxYDXetnbPzZ6wA6Vz934,200
+tests/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
