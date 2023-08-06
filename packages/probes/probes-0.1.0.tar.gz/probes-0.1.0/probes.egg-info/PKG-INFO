@@ -1,0 +1,29 @@
+Metadata-Version: 1.1
+Name: probes
+Version: 0.1.0
+Summary: Python library to manage probes on network devices
+Home-page: https://github.com/mirceaulinic/probes
+Author: Mircea Ulinic
+Author-email: mircea@cloudflare.com
+License: Apache 2.0
+Download-URL: https://github.com/mirceaulinic/probes/tarball/0.1.0
+Description: UNKNOWN
+Keywords: network,automation,CLI,monitor
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: Telecommunications Industry
+Classifier: Intended Audience :: Telecommunications Industry
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: System :: Networking
+Classifier: Topic :: Utilities
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Text Processing :: Markup :: XML
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
