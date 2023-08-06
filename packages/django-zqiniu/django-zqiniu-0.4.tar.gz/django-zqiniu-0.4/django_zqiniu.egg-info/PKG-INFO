@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: django-zqiniu
+Version: 0.4
+Summary: 在Django中集成七牛服务
+Home-page: https://github.com/hunter007/django-zqiniu
+Author: hunter007
+Author-email: wentao79@gmail.com
+License: MIT
+Description: 这里完整实现了`django.core.files.storage.Storage`。在任何需要使用七牛服务的地方都可以使用本类。
+        
+Platform: any
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
