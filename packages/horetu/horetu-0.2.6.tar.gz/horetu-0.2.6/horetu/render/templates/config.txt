@@ -1,0 +1,4 @@
+{% for section_name, kwarg_defaults in sections %}
+[{{ section_name }}]{% for kwarg, default in kwarg_defaults %}
+{{ section_name }}.{{ kwarg }} = {{ default }}
+{% endfor %}
