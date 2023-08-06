@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+google/__init__.py
+google/iam/__init__.py
+google/iam/admin/__init__.py
+google/iam/admin/v1/__init__.py
+google/iam/admin/v1/iam_pb2.py
+grpc_google_iam_admin_v1.egg-info/PKG-INFO
+grpc_google_iam_admin_v1.egg-info/SOURCES.txt
+grpc_google_iam_admin_v1.egg-info/dependency_links.txt
+grpc_google_iam_admin_v1.egg-info/namespace_packages.txt
+grpc_google_iam_admin_v1.egg-info/requires.txt
+grpc_google_iam_admin_v1.egg-info/top_level.txt
