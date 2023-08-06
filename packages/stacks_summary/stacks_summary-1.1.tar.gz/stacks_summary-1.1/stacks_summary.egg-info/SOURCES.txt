@@ -1,0 +1,12 @@
+MANIFEST.in
+setup.cfg
+setup.py
+stacks_summary.py
+stacks/__init__.py
+stacks/stacks_summary.py
+stacks/stacks_summary_tpl.html
+stacks_summary.egg-info/PKG-INFO
+stacks_summary.egg-info/SOURCES.txt
+stacks_summary.egg-info/dependency_links.txt
+stacks_summary.egg-info/requires.txt
+stacks_summary.egg-info/top_level.txt
