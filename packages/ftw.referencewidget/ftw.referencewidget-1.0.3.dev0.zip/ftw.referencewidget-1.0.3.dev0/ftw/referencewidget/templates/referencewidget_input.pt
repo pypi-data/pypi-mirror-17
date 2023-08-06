@@ -1,0 +1,58 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="ftw.referencewidget">
+
+<div class="referencewidget" tal:attributes="name view/name;
+                                             data-url view/form_url;
+                                             data-type view/is_list;
+                                             data-trans view/translations">
+<div class="selected_items" tal:attributes="data-select view/js_value"><ul class="sortable"></ul></div>
+<input type="hidden" tal:attributes="name view/name" />
+<button type="button" tal:attributes="id string:browse-${view/id};
+                                      name string:browse-${view/name};
+                                      class string:context browse-${view/klass};"
+                        i18n:translate="">Browse</button>
+</div>
+
+<script id="refbrowser-template" type="text/x-handlebars-template">
+    <div class="refbrowser overlay">
+            <div class="pathbar">
+                <div class="path"></div>
+                <div class="search">
+                    <input class="searchField" name="refbrowser-search" type="text" />
+                    <button class="searchButton" name="refbrowser-search" type="submit">{{search}}</button>
+                </div>
+            </div>
+            <div class="listing">
+                <ul></ul>
+            </div>
+            <div class="formcontrols">
+                <div class="closecontainer">
+                 <button type="cancel" class="cancel" i18n:translate="">{{close}}</button>
+                </div>
+                <div class="batchingcontainer" />
+            </div>
+    </div>
+</script>
+
+<script id="node-template" type="text/x-handlebars-template">
+    <a data-path="{{path}}" href="#" data-clickable={{clickable}}>{{title}}</a>
+</script>
+
+<script id="listing-template" type="text/x-handlebars-template">
+    <li class="ref_list_entry {{addclass}}" data-traversable="{{traversable}}" data-path="{{path}}" data-id="{{id}}">
+        {{{checkbox}}}
+        <{{{tag}}} class="{{content-type}}" {{{extras}}}> {{title}} </{{{tag}}}>
+    </li>
+</script>
+
+<script id="checkbox-template" type="text/x-handlebars-template">
+        <input type="{{type}}" class="ref-checkbox" {{{selected}}} name="{{name}}" value="{{path}}" />
+</script>
+
+<script id="batch_template" type="text/x-handlebars-template">
+        <div class="refbrowser_batching">
+            {{{batching}}}
+        </div>
+</script>
+</html>
