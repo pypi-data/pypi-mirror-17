@@ -1,0 +1,45 @@
+{% extends 'layout/login.html' %}
+{% block body %}
+		
+
+ 	<style type="text/css">
+        .content{
+            text-align: center;
+            margin-top: 20%;
+        }
+    </style>
+    <h1><div id="time"></div></h1>
+	<h1 style="color: white;">Ecran bloqué</h1>
+
+	<div class="row">	
+
+	<div class="input-field">
+	<form action="" method=post class="form-horizontal">
+   	<div class="control-group">
+        <div class="controls">
+		<i class="large fa fa-lock prefix" aria-hidden="true"></i>
+          <input style="color: white;" type="password" id="password" name="password" class="input-xlarge"
+            placeholder="Enter Password" value="{{ request.form.password }}"
+            required>
+            <button type="submit" class="btn btn-success suffix">Connexion</button>
+        </div>
+    </div>
+    </div>
+	</div>
+
+
+  </form>
+
+
+
+
+<script type="text/javascript">
+function hours() {
+  var offsetUTC = +12,
+  lD = new Date();
+  document.getElementById('time').innerHTML =  lD.toLocaleTimeString();
+  setInterval(hours,1000);
+}
+ 
+</script>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "layout/default.html" %}
+
+{% block body %}
+  <div class="card-panel grey lighten-3">
+		        <h2>Mes Réveils</h2>
+
+		        <a href="{{ url_for('reveil') }}" class="btn {{ buttonColor }}">Créer un Reveil</a>
+		        <h4>{{ error }}</h4>
+			<table  class="table table-striped">	
+				 <tbody id="table_alarmes">
+				<tr>
+					<th>Heure</th>
+					<th>Réveil</th>
+					<th>Statut</th>
+					<th>Répéter</th>
+					<th>Id</th>
+					<th>Supprimer</th>
+				</tr>
+				<tr>
+		
+					<td>{% for tab in heure %}
+							{{ tab }}</br>
+						{% endfor %}
+					</td>
+					<td>{% for tab in ring %}
+							{{ tab }}</br>
+						{% endfor %}
+					</td>
+					<td>{% for tab in statut %}
+							{{ formateStatut(tab) }}</br>
+						{% endfor %}
+					</td>
+					<td>{% for tab in day %}
+							{{ formateDay(tab) }}</br>
+						{% endfor %}
+					</td>
+					<td>{% for tab in id %}
+							{{ tab }}</br>
+						{% endfor %}
+					</td>
+					<td>
+					{% for tab in id %}
+					<a href="{{ url_for('delete_reveil' , id_delete=tab) }}"><i class="fa fa-times " aria-hidden="true"></i></a></br>
+					{% endfor %}
+					</td>
+
+
+
+
+				
+				</tr>
+			</tbody>
+			</table>
+		        
+		    
+		   
+		 </div>
+
+		
+
+
+
+
+   
+{% endblock %}
