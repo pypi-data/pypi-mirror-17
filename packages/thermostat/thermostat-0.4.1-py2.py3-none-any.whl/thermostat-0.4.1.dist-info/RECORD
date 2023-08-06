@@ -1,0 +1,25 @@
+thermostat/.DS_Store,sha256=GzfyWIJA9WnWTB94OFrs4VQXuJeT-HaZf_56sWX4ejc,6148
+thermostat/__init__.py,sha256=2WA-03zWMkylVTgjPFb_FS7WT0Uyun2vaqDPL1pEWoU,409
+thermostat/baseline.py,sha256=cT42-MTZ0Ihe1uLkr11o6AMvb6ccXKjqN0DBt3mfej8,7815
+thermostat/core.py,sha256=QOsJIJg_BcwBgj3ULDBiC0rCuaNKbIMoVnKz43BuYQw,91414
+thermostat/demand.py,sha256=nztD73kG-QMCdanmbZleIbJrimCVmKiv6qWAjiUyGoU,7663
+thermostat/exporters.py,sha256=_bjUfOXQ8JcGtATZSpYZhDY4yLOrNs5UMEV7a-uk25o,8711
+thermostat/importers.py,sha256=MF5V_9D_5L_Bmvjid18t4jNeLfURLoyTvZ_bwFsZS1I,6927
+thermostat/metrics.py,sha256=IpTaf_q8s3jeMkJbIQKNMbD2ZbXJvucvryEAfotYqNs,15952
+thermostat/parallel.py,sha256=Nhxnq26le9Isx6flq8N19TDq9sQXsbtaTNiMgk8ngec,4139
+thermostat/regression.py,sha256=uG4c9TJj9MBbVgVIhrp_KNrobLgShSPzQzAOAAjvVbk,1796
+thermostat/savings.py,sha256=PDKOZ0Eu8k8DqSARuXUC1W-j5fram-mpnVwM93JTmNc,1625
+thermostat/stats.py,sha256=u9rnz2cWMdlUwml8QhhfWkeGeYTcjVRNARBXLeRBpHQ,40324
+thermostat/resources/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+thermostat/resources/Building America Climate Zone to Zipcode Database_Rev2_2016.09.08.csv,sha256=sA0rlsKL0U6Aa6-3Qx1noj6BaZpyPMxLAJfBNmrF200,729203
+thermostat/resources/NationalAverageClimateZoneWeightings.csv,sha256=M6Zap06p3iny7i--TlH_0KKSMXWqkhpyY_SwytDCfw4,165
+thermostat/resources/regional_baselines.csv,sha256=pIC_HO2k5elN7VaRr1j3khmNUURLsuBPU5MqocCVa6w,162
+thermostat/util/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+thermostat/util/testing.py,sha256=h4yH5vLEC4dUnws6QKfXJbYoBEHRUdxRB4DPzdkC8EA,402
+thermostat-0.4.1.dist-info/DESCRIPTION.rst,sha256=T3_ztYyt4bHAke4RrE7atpw740E_ftSf8iJu97_ei-c,63
+thermostat-0.4.1.dist-info/METADATA,sha256=w-Ir7xTfypv0Y3nz6gR4axCmbbEkYmTVh6HStJ2FgPA,578
+thermostat-0.4.1.dist-info/metadata.json,sha256=Xu5voveLRpdubgDnk150o3NgU3lseL6AEEm07_R0FSk,699
+thermostat-0.4.1.dist-info/pbr.json,sha256=2IBEAApyYprHIBQzELa5Fw9qQARES1u1RJT43qVzOOY,47
+thermostat-0.4.1.dist-info/RECORD,,
+thermostat-0.4.1.dist-info/top_level.txt,sha256=8zUGvv8p7DXah7LLKUJ8IQ94DBX9L2oyUpCKJENyqJc,11
+thermostat-0.4.1.dist-info/WHEEL,sha256=AvR0WeTpDaxT645bl5FQxUK6NPsTls2ttpcGJg3j1Xg,110
