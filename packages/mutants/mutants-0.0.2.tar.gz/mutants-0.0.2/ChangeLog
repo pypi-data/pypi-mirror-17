@@ -1,0 +1,21 @@
+CHANGES
+=======
+
+0.0.2
+-----
+
+* Disable several tests from test_many_objects
+* Test against many objects: gc.get_objects()
+* Stop overriding __del__
+* Fix proxying class attributes
+* Remove a misleading comment
+* add .landscape.yml; limit landscape.io to python 3
+* fix a typo in mutants/__init__.py
+* CI: split pip install into 3 commands
+* change hacks link from pypi to github
+* fix a typo in README.md
+
+0.0.1
+-----
+
+* Initial commit of mutants
