@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+django_monitor_client.egg-info/PKG-INFO
+django_monitor_client.egg-info/SOURCES.txt
+django_monitor_client.egg-info/dependency_links.txt
+django_monitor_client.egg-info/top_level.txt
+monitor_client/__init__.py
+monitor_client/admin.py
+monitor_client/apps.py
+monitor_client/models.py
+monitor_client/tests.py
+monitor_client/urls.py
+monitor_client/views/__init__.py
+monitor_client/views/base.py
