@@ -1,0 +1,6 @@
+[antispoofing.utils.db]
+replaymobile = bob.db.replaymobile.spoofing:Database
+
+[bob.db]
+replaymobile = bob.db.replaymobile.driver:Interface
+
