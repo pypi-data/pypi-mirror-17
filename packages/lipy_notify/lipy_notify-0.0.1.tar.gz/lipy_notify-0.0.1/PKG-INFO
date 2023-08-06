@@ -1,0 +1,40 @@
+Metadata-Version: 1.1
+Name: lipy_notify
+Version: 0.0.1
+Summary: Post message to LINE.app from python
+Home-page: https://github.com/butsugiri
+Author: shunk52
+Author-email: shunk52@gmail.com
+License: MIT
+Description: lipy\_notify
+        ============
+        
+        Send message to your Line.app from Python
+        
+        Installation
+        ============
+        
+        ``pip install lipy_notify``
+        
+        Usage
+        =====
+        
+        Firstly, get your personal access token from `LINE Notiy My
+        Page <https://notify-bot.line.me/my/>`__.
+        
+        Then:
+        
+        .. code:: python
+        
+            from lipy_notify import LipyNotify
+        
+            line = LipyNotify
+            line.set_token("your_personal_access_token")
+            line.send("message")
+        
+        ...and you are good to go!
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: License :: OSI Approved :: MIT License
