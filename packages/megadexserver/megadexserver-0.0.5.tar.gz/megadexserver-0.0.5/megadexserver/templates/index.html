@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+</head>
+<style>
+</style>
+
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+	  <div class="container">
+
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsible">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+		  </button>
+		  <a class="navbar-brand" href="#">Megadex</a>
+		</div>
+
+		<div class="navbar-collapse collapse" id="navbar-collapsible">
+
+		  <form id="search" class="navbar-form">
+			<div class="form-group" style="display:inline;">
+			  <div class="input-group">
+				<input id="searchInput" type="text" class="form-control" autofocus>
+				<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+			  </div>
+			</div>
+		  </form>
+
+		</div>
+
+	  </div>
+	</nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <div id="results" class="results">
+          </div>
+          <div id="pages" class="pages">
+			<ul class="pagination"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<script>
+var isSearching = false;
+var total = 0;
+var lastPage = 0;
+var firstPage = 1;
+
+{% if page is not none %}
+	var page = {{page}};
+{% else %}
+	var page = 1;
+{% endif %}
+
+{% if count is not none %}
+	var defaultCount = {{count}};
+{% else %}
+	var defaultCount = 15;
+{% endif %}
+
+var onPdfResult = function (result) {
+	var path = result._source.filename;
+	$("#results").append(
+		"<h4><a href='" + path + "'>" + path + "</a></h4>" +
+		"<p class='meta'>page: " + result._source.page + "</p>" +
+		"<p class='meta'>" + result._source.text.substring(0, 300) + " …</p>"
+	);
+};
+
+var onResult = function (result) {
+	var path = result._source.filename;
+	$("#results").append(
+		"<h4><a href='" + path + "'>" + path + "</a></h4>"
+	);
+}
+
+var doSearch = function(q, count, page){
+    count = (typeof count !== 'undefined') ? count : defaultCount;
+    page = (typeof page !== 'undefined') ? page : 0;
+
+    if (typeof q == 'undefined' || q == '') {
+		return
+	}
+
+	url = "/search?q=" + q + "*&count=" + count + "&page=" + page;
+
+	$("#results").empty();
+	$("#pages ul").empty();
+
+	$.getJSON(url, function( data ) {
+		console.log(data);
+		total = data.hits.total;
+		data.hits.hits.forEach(function(entry){
+			try {
+				switch(entry._type) {
+					case "pdf":
+						onPdfResult(entry);
+						break;
+					default:
+						onResult(entry);
+				}
+			}
+			catch(err) {
+				console.log(err);
+			}
+		});
+
+		lastPage = Math.ceil(total / count);
+
+		if (total > 10) {
+            if ( page > 1) {
+                $("#pages ul").append('<li><a id="prevSkip" href="#">«</a></li>');
+                $("#pages ul").append('<li><a id="prevPage" href="#">‹</a></li>');
+            }
+
+			if ( page > 10) {
+				$("#pages ul").append('<li><a id="firstPage" href="#">1</a></li>');
+
+				$("#prevPage").click(function(event){
+					event.preventDefault();
+					doSearch(q, count, page-1);
+				});
+
+				$("#prevSkip").click(function(event){
+					event.preventDefault();
+					doSearch(q, count, page-10);
+				});
+
+				$("#firstPage").click(function(event){
+					event.preventDefault();
+					doSearch(q, count, firstPage);
+				});
+            }
+
+			var start = page;
+			var _end = start + 10;
+
+			if (page == lastPage){
+				start = start - 10;
+				_end = lastPage;
+			}
+			if (_end > lastPage) {
+                start -=  _end - lastPage;
+				_end = lastPage;
+			}
+            if ( page < 10 ) {
+                start = 1;
+                _end = 10;
+            }
+
+			_.range(start, _end).forEach(function(i, _){
+				if  ( i == page) {
+					$("#pages ul").append(
+						'<li class="active pageResult" page="' + i + '"><a href="#">' + i + '</a></li>'
+					);
+				} else {
+					$("#pages ul").append(
+						'<li class="pageResult" page="' + i + '"><a href="#">' + i + '</a></li>'
+					);
+				}
+				if (i > _end) {
+					return
+				}
+			});
+
+			if (page < lastPage) {
+				$("#pages ul").append('<li><a id="nextPage" href="#">›</a></li>');
+				if (page < lastPage - 10) {
+					$("#pages ul").append('<li><a id="nextSkip" href="#">»</a></li>');
+
+					$("#nextSkip").click(function(event){
+						event.preventDefault();
+						doSearch(q, count, page+10);
+					});
+				}
+
+				$("#pages ul").append('<li><a id="lastPage" href="#">' + lastPage + '</a></li>');
+
+				$("#nextPage").click(function(event){
+					event.preventDefault();
+					doSearch(q, count, page+1);
+				});
+			}
+
+			if (page == lastPage) {
+				$("#pages ul").append('<li class="active"><a id="lastPage" href="#">' + lastPage + '</a></li>');
+			}
+
+
+			$("#lastPage").click(function(event){
+				event.preventDefault();
+				doSearch(q, defaultCount, lastPage);
+			});
+
+		} else {
+
+			_.range(1, total).forEach(function(i, _){
+				if  (i == page) {
+					$("#pages ul").append('<li class="active pageResult" page="' + i + '"><a href="#">' + i + '</a></li>');
+				} else {
+					$("#pages ul").append('<li class="pageResult" page="' + i + '"><a href="#">' + i + '</a></li>');
+				}
+			});
+
+		}
+
+		$(".pageResult").click(function(event){
+			event.preventDefault();
+			doSearch(q, defaultCount, Math.round($(this).attr('page')));
+		});
+	})
+
+}
+
+$("#searchInput").keyup(
+	_.debounce(function(){
+		q = $( "#searchInput" ).val();
+		if (!q) {
+			return
+		}
+		doSearch(q, defaultCount);
+	}, 500)
+);
+
+
+$("#search").submit(function( event ) {
+	event.preventDefault();
+
+	q = $( "#searchInput" ).val();
+	if (!q) {
+		return
+	}
+
+    doSearch(q, defaultCount);
+});
+
+{% if q is not none %}
+  {% if count is not none %}
+    {% if page is not none %}
+      doSearch('{{q}}', {{count}}, {{page}}); 
+    {% else %}
+      doSearch('{{q}}', {{count}}); 
+    {% endif %}
+  {% else %}
+    {% if page is not none %}
+      doSearch('{{q}}', defaultCount, {{page}}); 
+    {% else %}
+      doSearch('{{q}}', defaultCount); 
+    {% endif %}
+  {% endif %}
+{% endif %}
+</script>
+
+  </body>
+</html>

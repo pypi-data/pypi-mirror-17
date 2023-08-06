@@ -1,0 +1,108 @@
+#!/usr/bin/env python
+from gevent import monkey
+monkey.patch_all()
+import argparse
+import os
+from gevent.wsgi import WSGIServer
+from megadexserver import app
+
+parser = argparse.ArgumentParser(description='Megadex Server')
+
+parser.add_argument(
+    '--log-level',
+    default = os.environ.get('MEGADEX_LOG_LEVEL', 'info'),
+    choices = ('info', 'debug', 'error', 'warning', 'critical'),
+    dest    = 'log_level',
+    help    = 'log level'
+)
+
+parser.add_argument(
+    '--log-file',
+    default = os.environ.get('MEGADEX_LOG_FILE', '-'),
+    dest    = 'log_file',
+    help    = 'log file (- for STDOUT)'
+)
+
+hosts = os.environ.get('ES_HOSTS', ['http://127.0.0.1:9200'])
+if len(hosts) > 0 and isinstance(hosts, basestring):
+    hosts = filter(None, hosts.split(','))
+
+parser.add_argument(
+    '--es-host',
+    action  = 'append',
+    default = hosts,
+    dest    = 'es_hosts',
+    help    = 'Elasticsearch host(s) ES_HOSTS'
+)
+
+parser.add_argument(
+    '--port', '-p',
+    default = os.environ.get('ES_PORT', 7000),
+    help    = 'Elasticsearch port ES_PORT'
+)
+
+parser.add_argument(
+    '--ssl',
+    action  = 'store_true',
+    default = False,
+    help    = 'Elasticsearch SSL'
+)
+
+parser.add_argument(
+    '--verify-certs',
+    action  = 'store_true',
+    default = False,
+    dest    = 'verify_certs',
+    help    = 'Elasticsearch verify certificates'
+)
+
+parser.add_argument(
+    '--http-user',
+    default = os.environ.get('ES_USER', ''),
+    dest    = 'http_user',
+    help    = 'Elasticsearch HTTP user ES_USER'
+)
+
+parser.add_argument(
+    '--http-password',
+    default = os.environ.get('ES_PASSWORD', ''),
+    dest    = 'http_password',
+    help    = 'Elasticsearch HTTP password ES_PASSWORD'
+)
+
+parser.add_argument(
+    '--ca-certs',
+    default = '',
+    dest    = 'ca_certs',
+    help    = 'Elasticsearch HTTP password'
+)
+
+parser.add_argument(
+    '--es-cert',
+    default = '',
+    dest    = 'es_cert',
+    help    = 'Elasticsearch client cert file'
+)
+
+parser.add_argument(
+    '--es-key',
+    default = '',
+    dest    = 'es_key',
+    help    = 'Elasticsearch client key file'
+)
+
+args = parser.parse_args()
+
+app.config['ES_SETTINGS'] = {
+    'hosts': args.es_hosts,
+    'kwargs':{
+	'use_ssl': args.ssl,
+	'verify_certs': args.verify_certs,
+	'ca_certs=': args.ca_certs,
+	'client_cert': args.es_cert,
+	'client_key': args.es_key,
+    }
+}
+
+http_server = WSGIServer(('', args.port), app)
+http_server.serve_forever()
