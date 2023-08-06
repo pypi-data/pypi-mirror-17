@@ -1,0 +1,79 @@
+Metadata-Version: 1.1
+Name: alignak_module_nsca
+Version: 0.2.5
+Summary: Alignak - Receiver module to collect and decode NSCA checks
+Home-page: https://github.com/Alignak-monitoring-contrib/alignak-module-nsca
+Author: Alignak team
+Author-email: frederic.mohier@gmail.com
+License: GNU Affero General Public License, version 3
+Description: Alignak NSCA receiver Module
+        ============================
+        
+        *Alignak NSCA module for the Alignak Receiver*
+        
+        Short description
+        -------------------
+        
+        This module for Alignak receiver reads and decodes NSCA passive notifications to dispatch them into the Alignak framework.
+        
+        
+        Features / Known limitations
+        ----------------------------
+        
+        Handles NSCA version 3 protocol
+        
+        Check the NSCA packet timestamp for staled data (older than a certain amount of time) or 'future' data (future timestamp).
+        
+        Consider the `host_check` service received data as a passive host check. Useful if your NSCA client does not handle correctly the passive host check syntax ;)
+        
+        The NSCA module implementation is currently limited to the "xor" obfuscation/encryption.
+        
+        
+        Configuration
+        -------------------
+        
+        Once installed, this module has its own configuration file in the */usr/local/etc/alignak/arbiter_cfg/modules* directory.
+        The default configuration file is *mod-nsca.cfg*. This file is commented to help configure all the parameters.
+        
+        The default configuration is convenient for 'recent' NSCA client implementing NSCA version 3.
+        
+        This configuration has been tested with Linux send_nsca 2.9.1 and Windows NSClient most recent versions (from 0.4.1).
+        
+        **Note:**  Received NSCA packets which are not containing version 3 information are dropped by the module!
+        
+        To configure Alignak receiver to use this module:
+        
+            - edit your receiver daemon configuration file
+            - add the `module_alias` parameter value (`nsca`) to the `modules` parameter of the daemon
+        
+        To set up several NSCA listeners:
+        
+            - copy the default configuration to another file,
+            - change the module alias parameter (`nsca_bis`)
+            - change the listening port
+            - edit your receiver daemon configuration file
+            - add the new `module_alias` parameter value (`nsca_bis`) to the `modules` parameter of the daemon
+        
+        
+        Bugs, issues and contributing
+        ----------------------------------------
+        
+        Please report any issue using the project `GitHub repository: <https://github.com/Alignak-monitoring-contrib/alignak-module-nsca/issues>`_.
+        
+        License
+        ----------------------------------------
+        
+        Alignak Backend Modules is available under the `GPL version 3 <http://opensource.org/licenses/GPL-3.0>`_.
+        
+        
+Keywords: a,l,i,g,n,a,k, ,m,o,n,i,t,o,r,i,n,g, ,m,o,d,u,l,e, ,n,s,c,a
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python
+Classifier: Topic :: System :: Monitoring
+Classifier: Topic :: System :: Systems Administration
