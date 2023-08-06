@@ -1,0 +1,3 @@
+[console_scripts]
+apex = apex.cli:main
+
