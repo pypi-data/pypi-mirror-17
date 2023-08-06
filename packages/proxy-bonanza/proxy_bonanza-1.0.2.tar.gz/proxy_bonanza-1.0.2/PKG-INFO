@@ -1,0 +1,26 @@
+Metadata-Version: 1.1
+Name: proxy_bonanza
+Version: 1.0.2
+Summary: A lightweight python client for Proxy Bonanza service
+Home-page: http://github.com/victormartinez/python_proxy_bonanza
+Author: Victor Martinez
+Author-email: vcrmartinez@gmail.com
+License: MIT License
+Description: # python-proxy-bonanza
+        
+        A lightweight client to get proxies from Proxy Bonanza service
+        
+        
+        Home Page and Doc:
+        
+        http://github.com/victormartinez/python-proxy-bonanza
+Keywords: proxy,bonanza
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: Public Domain
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
