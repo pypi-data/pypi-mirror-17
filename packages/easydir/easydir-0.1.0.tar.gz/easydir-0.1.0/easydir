@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+import os
+import sys
+cwd = os.getcwd()
+cwdc = cwd.split('/')
+if len(sys.argv) > 1:
+    n = int(sys.argv[1])
+    if n == 0:
+        sys.stdout.write('/\n')
+    else:
+        sys.stdout.write('/'.join(cwdc[:(1 + n)]) + '\n')
+else:
+    sys.stdout.write(cwd + '\n')
+    sys.stderr.write(''.join([
+        ('{:<' + str(len(x) + 1) + '}').format(i)
+        for i, x in enumerate(cwdc[1:])]) + '\n')
