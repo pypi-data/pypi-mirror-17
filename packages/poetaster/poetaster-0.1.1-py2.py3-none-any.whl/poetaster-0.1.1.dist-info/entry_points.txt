@@ -1,0 +1,3 @@
+[console_scripts]
+poetaster = poetaster.cli:main
+
