@@ -1,0 +1,14 @@
+MANIFEST.in
+setup.cfg
+setup.py
+versioneer.py
+kai/__init__.py
+kai/_version.py
+kai/extractors.py
+kai/kai.py
+kai.egg-info/PKG-INFO
+kai.egg-info/SOURCES.txt
+kai.egg-info/dependency_links.txt
+kai.egg-info/entry_points.txt
+kai.egg-info/requires.txt
+kai.egg-info/top_level.txt
