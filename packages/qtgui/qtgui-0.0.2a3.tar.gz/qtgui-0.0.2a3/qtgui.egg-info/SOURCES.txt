@@ -1,0 +1,10 @@
+setup.py
+qtgui/__init__.py
+qtgui/__version__.py
+qtgui/qtgui.py
+qtgui/textparser.py
+qtgui/widgets.py
+qtgui.egg-info/PKG-INFO
+qtgui.egg-info/SOURCES.txt
+qtgui.egg-info/dependency_links.txt
+qtgui.egg-info/top_level.txt
