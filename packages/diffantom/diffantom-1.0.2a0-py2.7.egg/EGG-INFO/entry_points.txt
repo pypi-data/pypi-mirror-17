@@ -1,0 +1,4 @@
+[console_scripts]
+diffantom = diffantom.scripts.diffantom:main
+sticks2dwis = diffantom.scripts.sticks2dwis:main
+
