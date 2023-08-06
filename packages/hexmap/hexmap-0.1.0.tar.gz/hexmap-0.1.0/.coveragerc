@@ -1,0 +1,16 @@
+[paths]
+source =
+   src/hexmap
+   */site-packages/hexmap
+
+[run]
+branch = true
+source =
+    hexmap
+    tests
+parallel = true
+
+[report]
+show_missing = true
+precision = 2
+omit = *migrations*

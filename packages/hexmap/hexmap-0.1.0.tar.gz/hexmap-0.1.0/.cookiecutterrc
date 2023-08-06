@@ -1,0 +1,49 @@
+# This file exists so you can easily regenerate your project.
+#
+# `cookiepatcher` is a convenient shim around `cookiecutter`
+# for regenerating projects (it will generate a .cookiecutterrc
+# automatically for any template). To use it:
+#
+#    pip install cookiepatcher
+#    cookiepatcher gh:ionelmc/cookiecutter-pylibrary project-path
+#
+# See:
+#    https://pypi.python.org/pypi/cookiecutter
+#
+# Alternatively, you can run:
+#
+#    cookiecutter --overwrite-if-exists --config-file=project-path/.cookiecutterrc gh:ionelmc/cookiecutter-pylibrary
+
+default_context:
+
+    appveyor:                  'no'
+    c_extension_cython:        'no'
+    c_extension_optional:      'no'
+    c_extension_support:       'yes'
+    codacy:                    'no'
+    codeclimate:               'no'
+    codecov:                   'no'
+    command_line_interface:    'no'
+    command_line_interface_bin_name: 'hexmap'
+    coveralls:                 'yes'
+    distribution_name:         'hexmap'
+    email:                     'taylor@uncannypacket.com'
+    full_name:                 'Taylor McKinnon'
+    github_username:           'tmacro'
+    landscape:                 'no'
+    package_name:              'hexmap'
+    project_name:              'hexmap'
+    project_short_description: 'A library for hexagonal grid storage and manipulation.'
+    release_date:              'today'
+    repo_name:                 'hexmap'
+    requiresio:                'no'
+    scrutinizer:               'no'
+    sphinx_doctest:            'no'
+    sphinx_theme:              'sphinx-rtd-theme'
+    test_matrix_configurator:  'no'
+    test_matrix_separate_coverage: 'no'
+    test_runner:               'pytest'
+    travis:                    'yes'
+    version:                   '0.0.0'
+    website:                   'https://github.com/tmacro'
+    year:                      'now'
