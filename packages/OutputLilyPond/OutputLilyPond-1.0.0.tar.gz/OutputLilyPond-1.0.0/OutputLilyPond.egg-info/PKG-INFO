@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: OutputLilyPond
+Version: 1.0.0
+Summary: An HTTP server that executes Python code.
+Home-page: https://github.com/crantila/outputlilypond
+Author: Christopher Antila
+Author-email: christopher@antila.ca
+License: GPLv3+
+Description: UNKNOWN
+Keywords: lilypond
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
