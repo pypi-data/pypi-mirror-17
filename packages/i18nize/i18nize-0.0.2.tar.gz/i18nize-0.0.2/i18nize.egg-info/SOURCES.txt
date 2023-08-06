@@ -1,0 +1,16 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+i18nize/__init__.py
+i18nize/client.py
+i18nize/config.py
+i18nize/run.py
+i18nize/test.py
+i18nize/utils.py
+i18nize.egg-info/PKG-INFO
+i18nize.egg-info/SOURCES.txt
+i18nize.egg-info/dependency_links.txt
+i18nize.egg-info/not-zip-safe
+i18nize.egg-info/top_level.txt
