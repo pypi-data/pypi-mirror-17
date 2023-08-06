@@ -1,0 +1,6 @@
+include README.rst
+include LICENSE
+include packaging/VERSION
+recursive-include packaging *.txt
+include prngmgr_inventory/prngmgr_inventory.ini.example
+recursive-include prngmgr_inventory/tests *.ini *.json

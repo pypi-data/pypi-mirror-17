@@ -1,0 +1,25 @@
+Metadata-Version: 1.1
+Name: ansible-prngmgr-inventory
+Version: 0.1.0.dev1
+Summary: An ansible dynamic inventory module to fetch peering session data from prngmgr
+Home-page: https://github.com/wolcomm/ansible-prngmgr-inventory
+Author: Workonline Communications
+Author-email: communications@workonkonline.co.za
+License: LICENSE
+Download-URL: https://github.com/wolcomm/ansible-prngmgr-inventory/0.1.0.dev1
+Description: .. image:: https://travis-ci.org/wolcomm/ansible-prngmgr-inventory.svg?branch=master
+            :target: https://travis-ci.org/wolcomm/ansible-prngmgr-inventory
+        
+        ansible-prngmgr-inventory
+        =========================
+        
+        An ansible dynamic inventory module to fetch peering session data from `prngmgr`_
+        
+        .. _prngmgr: https://github.com/wolcomm/prngmgr
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Internet

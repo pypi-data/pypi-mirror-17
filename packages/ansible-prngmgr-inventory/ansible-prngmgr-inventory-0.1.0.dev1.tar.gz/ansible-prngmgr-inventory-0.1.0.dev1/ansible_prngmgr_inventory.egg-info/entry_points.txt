@@ -1,0 +1,3 @@
+[console_scripts]
+prngmgr-inventory = prngmgr_inventory.command_line:main
+
