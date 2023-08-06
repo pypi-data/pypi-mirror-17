@@ -1,0 +1,69 @@
+Metadata-Version: 2.0
+Name: django-templateaddons3
+Version: 1.0
+Summary: A set of tools for use with templates of the Django framework: additional template tags, context processors and utilities for template tag development.
+Home-page: https://github.com/django-templateaddons/django-templateaddons3
+Author: django-templateaddons
+Author-email: django-templateaddons@github.com
+License: BSD
+Download-URL: https://github.com/django-templateaddons/django-templateaddons3/releases
+Platform: Any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Framework :: Django
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: JavaScript
+Classifier: Topic :: Internet :: WWW/HTTP :: Site Management
+Requires-Dist: Django (>=1.8)
+
+######################
+django-templateaddons3
+######################
+
+.. image:: https://travis-ci.org/django-templateaddons/django-templateaddons3.svg?branch=master
+   :target: https://travis-ci.org/django-templateaddons/django-templateaddons3
+.. image:: https://coveralls.io/repos/github/django-templateaddons/django-templateaddons3/badge.svg?branch=master
+   :target: https://coveralls.io/github/django-templateaddons/django-templateaddons3?branch=master
+
+
+A fork of https://bitbucket.org/benoitbryon/django-templateaddons/src
+
+django-templateaddons is a set of tools for use with Django's templates,
+template tags and context processors. It provides additional template tags,
+context processors and utilities for template tag development.
+
+*****
+Links
+*****
+
+HTML documentation
+  Browse the HTML documentation online at
+  http://django-templateaddons3.readthedocs.io/en/latest/
+
+RestructuredText documentation
+  Read the RestructuredText documentation in the docs/ folder in the source
+  code
+
+Source code repository
+  Follow the project on GitHub at
+  https://github.com/django-templateaddons/django-templateaddons3/
+
+Pypi
+  The project is known as "django-templateaddons" in the Python package index.
+  See http://pypi.python.org/pypi/django-templateaddons3
+
+*******************
+Credits and license
+*******************
+
+This application is published under the BSD license. See docs/LICENSE.txt for
+details.
+
+
