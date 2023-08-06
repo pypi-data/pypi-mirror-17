@@ -1,0 +1,18 @@
+Metadata-Version: 1.0
+Name: johansen
+Version: 0.0.4
+Summary: Python implementation of the Johansen test for cointegration
+Home-page: https://github.com/iisayoo/johansen
+Author: Isaiah Yoo
+Author-email: yoo.isaiah@gmail.com
+License: MIT License
+Description: Python implementation of the Johansen test for cointegration
+        
+        Installation notes:
+        
+        This package requires scipy, which in turn  requires blas, lapack, atlas, and
+        gfortran. These can be installed on a Ubuntu system with:
+        
+            sudo apt-get install libblas-dev liblapack-dev libatlas-base-dev gfortran
+        
+Platform: UNKNOWN
