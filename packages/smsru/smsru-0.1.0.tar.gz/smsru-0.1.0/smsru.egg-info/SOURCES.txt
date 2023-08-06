@@ -1,0 +1,11 @@
+setup.cfg
+setup.py
+smsru/__init__.py
+smsru/exceptions.py
+smsru.egg-info/PKG-INFO
+smsru.egg-info/SOURCES.txt
+smsru.egg-info/dependency_links.txt
+smsru.egg-info/requires.txt
+smsru.egg-info/top_level.txt
+tests/__init__.py
+tests/simple.py
