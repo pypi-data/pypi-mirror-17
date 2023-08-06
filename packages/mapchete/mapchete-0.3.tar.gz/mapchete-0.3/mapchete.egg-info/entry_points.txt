@@ -1,0 +1,6 @@
+[console_scripts]
+mapchete = cli.main:main
+mapchete_execute = cli.execute:main
+mapchete_serve = cli.serve:main
+raster2pyramid = cli.pyramid:main
+
