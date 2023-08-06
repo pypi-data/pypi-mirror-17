@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+setup.py
+djangopatchy.egg-info/PKG-INFO
+djangopatchy.egg-info/SOURCES.txt
+djangopatchy.egg-info/dependency_links.txt
+djangopatchy.egg-info/not-zip-safe
+djangopatchy.egg-info/top_level.txt
+patchy/__init__.py
+patchy/middleware.py
+patchy/utils.py
