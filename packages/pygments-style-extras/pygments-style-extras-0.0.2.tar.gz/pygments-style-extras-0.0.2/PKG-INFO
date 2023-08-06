@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: pygments-style-extras
+Version: 0.0.2
+Summary: A Collection of Custom Pygments Styles
+Home-page: https://github.com/thecodechef/pygments-style-extras
+Author: Jeremy Bolding
+Author-email: cyberchefjay@gmail.com
+License: MIT
+Download-URL: https://github.com/thecodechef/pygments-style-extras/tarball/0.0.2
+Description: A Collection of Custom Pygments Styles
+Keywords: pygments style extras
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Plugins
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
