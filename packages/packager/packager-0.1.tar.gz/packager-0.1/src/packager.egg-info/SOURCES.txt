@@ -1,0 +1,13 @@
+setup.cfg
+setup.py
+src/packager.egg-info/PKG-INFO
+src/packager.egg-info/SOURCES.txt
+src/packager.egg-info/dependency_links.txt
+src/packager.egg-info/entry_points.txt
+src/packager.egg-info/top_level.txt
+src/pkgr/__init__.py
+src/pkgr/common.py
+src/pkgr/dependency.py
+src/pkgr/gyp_warp.py
+src/pkgr/install.py
+src/pkgr/package.py
