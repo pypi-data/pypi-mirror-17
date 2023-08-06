@@ -1,0 +1,48 @@
+Metadata-Version: 2.0
+Name: vaex
+Version: 1.0.0b3
+Summary: Vaex is a graphical tool to visualize and explore large tabular datasets.
+Home-page: https://www.astro.rug.nl/~breddels/vaex
+Author: Maarten A. Breddels
+Author-email: maartenbreddels@gmail.com
+License: MIT
+Keywords: visualization exploration data analysis
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Intended Audience :: Science/Research
+Classifier: Environment :: MacOS X
+Classifier: Environment :: X11 Applications
+Requires-Dist: numpy (>=1.7.2)
+Requires-Dist: scipy (>=0.1)
+Requires-Dist: astropy (>=0.3)
+Requires-Dist: matplotlib (>=1.3.1)
+Requires-Dist: h5py (>=2.2.1)
+Requires-Dist: PyOpenGL (>=3.1.0)
+Requires-Dist: aplus
+Requires-Dist: tornado (>4.1)
+Requires-Dist: futures (>=2.2.0)
+Requires-Dist: future (>=0.15.2)
+Requires-Dist: pyyaml
+Requires-Dist: kapteyn
+Requires-Dist: cachetools
+Requires-Dist: progressbar2
+Requires-Dist: psutil (>=1.2.1)
+Requires-Dist: pandas
+Requires-Dist: pillow
+Requires-Dist: requests
+
+UNKNOWN
+
+
