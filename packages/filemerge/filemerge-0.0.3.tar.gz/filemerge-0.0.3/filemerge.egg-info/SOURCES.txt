@@ -1,0 +1,12 @@
+README.rst
+setup.cfg
+setup.py
+filemerge/__init__.py
+filemerge/filemerge.py
+filemerge/templates.py
+filemerge.egg-info/PKG-INFO
+filemerge.egg-info/SOURCES.txt
+filemerge.egg-info/dependency_links.txt
+filemerge.egg-info/top_level.txt
+unit_tests/__init__.py
+unit_tests/test_filemerge.py
