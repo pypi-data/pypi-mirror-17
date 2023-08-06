@@ -1,0 +1,3 @@
+[console_scripts]
+dbx-unittest2pytest = dbx_unittest2pytest.main:main
+
