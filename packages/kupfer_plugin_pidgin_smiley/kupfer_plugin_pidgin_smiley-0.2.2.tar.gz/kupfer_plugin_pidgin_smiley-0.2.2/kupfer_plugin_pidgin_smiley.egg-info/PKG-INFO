@@ -1,0 +1,46 @@
+Metadata-Version: 1.1
+Name: kupfer-plugin-pidgin-smiley
+Version: 0.2.2
+Summary: Index pidgin smiley theme
+Home-page: https://github.com/hugosenari/pidgin_smiley
+Author: Hugo Sena Ribeiro
+Author-email: hugosenari@gmail.com
+License: ISC license
+Description: ===============================
+        Pidgin Smiley
+        ===============================
+        
+        
+        Index pidgin smiley theme
+        
+        
+        * Free software: ISC license
+        
+        
+        Install
+        -------
+        
+        pip install kupfer_plugin_Pidgin Smiley
+        
+        
+        Credits
+        ---------
+        
+        This package was created with Cookiecutter_ and the `cookiecutter-kupfer-plugin-package`_ project template.
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _`cookiecutter-kupfer-plugin-package`: https://github.com/hugosenari/cookiecutter-kupfer-plugin-package
+        
+        
+Keywords: kupfer pidgin_smiley
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: ISC License (ISCL)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
