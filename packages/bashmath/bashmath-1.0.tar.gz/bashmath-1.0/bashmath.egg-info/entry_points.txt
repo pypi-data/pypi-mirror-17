@@ -1,0 +1,7 @@
+[console_scripts]
+variance = bashmath.command_tools:variance
+stddiv = bashmath.command_tools:stddiv
+median = bashmath.command_tools:median
+sumtotal = bashmath.command_tools:sumtotal
+mean = bashmath.command_tools:mean
+
