@@ -1,0 +1,113 @@
+**doing**
+
+Hierarchical command lines in python.
+
+`doing` enables the simple creation of simple hierarchical command lines
+in Python programs.
+
+It was originally designed to make it easy to create small Python tools
+that took the place of `bash` scripts in system maintenance, so the
+library assumes that packages and modules with names that do not start
+with an underscore are either commands or containers of sub-commands.
+
+**Contents**
+
+[TOC]
+
+
+# This is what you _do_
+
+If the `doing` distribution is uncompressed to a directory, you'll find
+a sample command-line program n the Python executable package called...
+`sample`.
+
+This is the source code for `sample/__main__.py`:
+
+```
+#!/usr/bin/env python3
+import doing
+import sample
+
+if __name__ == '__main__':
+    doing.do_main(sample)
+```
+
+And this is what `doing` enables:
+
+```
+$ python -m sample
+sample v1.0.0rc1 a sample hierarchical command line created with the doing package
+
+    sample greet ...        greet in several languages
+    sample version          display the version
+```
+
+Issuing a sub-command:
+
+```
+$ python -m sample version
+version 1.0.0rc1
+```
+
+As sub-command with sub-sub-commands:
+
+```
+$ python -m sample greet
+sample.greet  greet in several languages
+
+    sample greet english    greet in English
+    sample greet spanish    greet in Spanish
+```
+
+Finally:
+
+```
+$ python -m sample greet english
+Hello!
+$ python -m sample greet spanish
+Hola!
+```
+
+Adding an executable script called `do`, with contents like those of
+`__main__.py` will let you do:
+
+```
+$ ./do greet english
+Hello!
+$ ./do greet spanish
+Hola!
+```
+
+
+# Implementing the _doing_ command line
+
+`doing` assumes that all packages and modules are potential commands or
+sub-commands. The description of the command is taken from the modules
+doc-comment (in `mymodule.py` or `mypackage/__init__.py`.
+
+To enable `doing` for a top-level package, either provide a
+`__main__.py` or a `do` (or any other script name) as described in the
+introduction.
+
+For modules and packages that execute some action, write a `def do():`
+method in the module or in the packages `__init__.py`.
+
+This is the contents of `sample/greet/spanish.py`:
+
+```
+"""
+greet in Spanish
+"""
+
+def do():
+    print('Hola!')
+```
+
+If `doing` finds that a command has modules implementing sub-commands,
+it will indicate so on the command help with an ellipsis:
+
+```
+sample greet ...        greet in several languages
+```
+
+# end
