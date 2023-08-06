@@ -1,0 +1,17 @@
+README.rst
+setup.py
+xblock_openedx_utils.egg-info/PKG-INFO
+xblock_openedx_utils.egg-info/SOURCES.txt
+xblock_openedx_utils.egg-info/dependency_links.txt
+xblock_openedx_utils.egg-info/requires.txt
+xblock_openedx_utils.egg-info/top_level.txt
+xblockutils/__init__.py
+xblockutils/base_test.py
+xblockutils/helpers.py
+xblockutils/publish_event.py
+xblockutils/resources.py
+xblockutils/settings.py
+xblockutils/studio_editable.py
+xblockutils/studio_editable_test.py
+xblockutils/public/studio_edit.js
+xblockutils/templates/studio_edit.html
