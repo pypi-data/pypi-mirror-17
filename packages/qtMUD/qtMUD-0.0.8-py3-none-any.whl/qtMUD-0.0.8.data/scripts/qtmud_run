@@ -1,0 +1,89 @@
+#!python
+""" qtmud startup script
+"""
+
+import argparse
+import configparser
+import sys
+
+import logging
+
+if __name__ == '__main__':
+    conf_locations = ['./qtmud.conf', './.qtmud.conf', '~/qtmud.conf',
+                      '~/.qtmud.conf']
+    count = 0
+    conf_file = None
+    config = configparser.ConfigParser()
+    parser = argparse.ArgumentParser(description='https://qtmud.rtfd.io')
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('-v', '--verbose',
+                       help='show all logging messages',
+                       action="store_true")
+    group.add_argument('-q', '--quiet',
+                       help='show only warning & more severe messages',
+                       action="store_true")
+    parser.add_argument('--conf',
+                        help=('config file to use, example: '
+                              'qtmud_run --conf fireside.conf'))
+    parser.add_argument('--sourcedir',
+                        help=('where the qtmud files are, relative to this '
+                              'executable. try "../qtmud" '))
+    parser.add_argument('--logdir',
+                        help='where logs will go.')
+    parser.add_argument('--datadir',
+                        help='where client account pickle goes')
+
+    args = parser.parse_args()
+    if args.sourcedir:
+        sys.path.append(args.sourcedir)
+        try:
+            import qtmud
+        except Exception as err:
+            print('%s at %s', err, args.sourcedir)
+            raise SystemExit
+
+    else:
+        try:
+            import qtmud
+        except Exception as err:
+            print('qtMUD not installed as local Python package, if you have '
+                  'got this from Github try "qtmud --sourcedir ../qtmud"')
+            raise SystemExit
+    print('qtmud_run preparing to start {qtmud.NAME} {qtmud.__version__}'
+          ''.format(**locals()))
+    if args.quiet:
+        qtmud.console.setLevel(logging.WARNING)
+    elif args.verbose:
+        qtmud.console.setLevel(logging.DEBUG)
+    if args.conf:
+        config.read(str(args.conf))
+    while not config.sections():
+        try:
+            config.read(conf_locations[count])
+        except IndexError:
+            break
+        count += 1
+    if not config.sections():
+        qtmud.log.warning('No valid config found, using default values')
+    else:
+        for section in config.sections():
+            for key in config[section]:
+                qtmud.__dict__[key] = config[section][key]
+                qtmud.log.debug('{} set to {} from config file'
+                                ''.format(key, config[section][key]))
+    if args.datadir:
+        qtmud.DATA_DIR = args.datadir
+        print(qtmud.DATA_DIR)
+    if args.logdir:
+        qtmud.LOG_DIR = args.logdir
+    if qtmud.load():
+        if qtmud.start():
+            qtmud.run()
+        else:
+            qtmud.log.warning('qtmud failed to start()')
+            qtmud.log.critical('exit()ing')
+            exit()
+    else:
+        qtmud.log.warning('qtmud failed to load()')
+        qtmud.log.critical('exit()ing')
+        exit()
