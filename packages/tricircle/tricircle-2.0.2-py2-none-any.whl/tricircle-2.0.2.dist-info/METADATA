@@ -1,0 +1,103 @@
+Metadata-Version: 2.0
+Name: tricircle
+Version: 2.0.2
+Summary: the Tricircle provides an OpenStack API gateway and networking automation to allow multiple OpenStack instances, spanning in one site or multiple sites or in hybrid cloud, to be managed as a single OpenStack cloud
+Home-page: http://www.openstack.org/
+Author: OpenStack
+Author-email: openstack-dev@lists.openstack.org
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Environment :: OpenStack
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Requires-Dist: pbr (>=1.6)
+Requires-Dist: Babel (>=2.3.4)
+Requires-Dist: Paste
+Requires-Dist: PasteDeploy (>=1.5.0)
+Requires-Dist: debtcollector (>=1.2.0)
+Requires-Dist: eventlet (!=0.18.3,>=0.18.2)
+Requires-Dist: pecan (!=1.2,>=1.0.0,!=1.0.4,!=1.0.3,!=1.0.2)
+Requires-Dist: greenlet (>=0.3.2)
+Requires-Dist: httplib2 (>=0.7.5)
+Requires-Dist: requests (>=2.10.0)
+Requires-Dist: Jinja2 (>=2.8)
+Requires-Dist: keystonemiddleware (!=4.5.0,>=4.2.0)
+Requires-Dist: netaddr (>=0.7.13,!=0.7.16)
+Requires-Dist: netifaces (>=0.10.4)
+Requires-Dist: neutron-lib (>=0.4.0)
+Requires-Dist: retrying (>=1.2.3,!=1.3.0)
+Requires-Dist: SQLAlchemy (>=1.0.10,<1.1.0)
+Requires-Dist: WebOb (>=1.2.3)
+Requires-Dist: python-cinderclient (!=1.7.0,>=1.6.0,!=1.7.1)
+Requires-Dist: python-glanceclient (>=2.5.0)
+Requires-Dist: python-keystoneclient (!=2.1.0,>=2.0.0)
+Requires-Dist: python-neutronclient (>=5.1.0)
+Requires-Dist: python-novaclient (>=2.29.0,!=2.33.0)
+Requires-Dist: alembic (>=0.8.4)
+Requires-Dist: six (>=1.9.0)
+Requires-Dist: stevedore (>=1.16.0)
+Requires-Dist: oslo.concurrency (>=3.8.0)
+Requires-Dist: oslo.config (>=3.14.0)
+Requires-Dist: oslo.context (>=2.9.0)
+Requires-Dist: oslo.db (!=4.13.1,!=4.13.2,>=4.10.0)
+Requires-Dist: oslo.i18n (>=2.1.0)
+Requires-Dist: oslo.log (>=3.11.0)
+Requires-Dist: oslo.messaging (>=5.2.0)
+Requires-Dist: oslo.middleware (>=3.0.0)
+Requires-Dist: oslo.policy (>=1.9.0)
+Requires-Dist: oslo.rootwrap (>=5.0.0)
+Requires-Dist: oslo.serialization (>=1.10.0)
+Requires-Dist: oslo.service (>=1.10.0)
+Requires-Dist: oslo.utils (>=3.16.0)
+Requires-Dist: oslo.versionedobjects (>=1.13.0)
+Requires-Dist: sqlalchemy-migrate (>=0.9.6)
+Requires-Dist: Routes (>=1.12.3,!=2.0,!=2.3.0); (python_version!='2.7')
+Requires-Dist: Routes (>=1.12.3,!=2.0,!=2.1,!=2.3.0); (python_version=='2.7')
+
+=========
+Tricircle
+=========
+
+The Tricircle provides an OpenStack API gateway and networking automation
+funtionality to allow multiple OpenStack instances, spanning in one site or
+multiple sites or in hybrid cloud, to be managed as a single OpenStack cloud.
+
+The Tricircle and these managed OpenStack instances will use shared KeyStone
+(with centralized or distributed deployment) or federated KeyStones for
+identity management.
+
+The Tricircle presents one big region to the end user in KeyStone. And each
+OpenStack instance called a pod is a sub-region of the Tricircle in
+KeyStone, and usually not visible to end user directly.
+
+The Tricircle acts as OpenStack API gateway, can handle OpenStack API calls,
+schedule one proper OpenStack instance if needed during the API calls handling,
+forward the API calls to the appropriate OpenStack instance, and deal with
+tenant level L2/L3 networking across OpenStack instances automatically. So it
+doesn't matter on which bottom OpenStack instance the VMs for the tenant are
+running, they can communicate with each other via L2 or L3.
+
+The end user can see avaialbility zone(AZ) and use AZ to provision
+VM, Volume, even Network through the Tricircle. One AZ can include many
+OpenStack instances, the Tricircle can schedule and bind OpenStack instance
+for the tenant inside one AZ. A tenant's resources could be bound to multiple
+specific bottom OpenStack instances in one or multiple AZs automatically.
+
+* Free software: Apache license
+* Design documentation: `Tricircle Design Blueprint <https://docs.google.com/document/d/18kZZ1snMOCD9IQvUKI5NVDzSASpw-QKj7l2zNqMEd3g/>`_
+* Wiki: https://wiki.openstack.org/wiki/tricircle
+* Installation with DevStack: https://github.com/openstack/tricircle/blob/stable/newton/doc/source/installation.rst
+* Tricircle Admin API documentation: https://github.com/openstack/tricircle/blob/stable/newton/doc/source/api_v1.rst
+* Source: https://github.com/openstack/tricircle
+* Bugs: http://bugs.launchpad.net/tricircle
+* Blueprints: https://launchpad.net/tricircle
+
+
+
