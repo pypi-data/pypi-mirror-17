@@ -1,0 +1,277 @@
+countries.country_code
+countries.country_desc
+sample.Year
+sample.Customer_id
+sample.Age
+sample.Name
+sample.Country
+sample.Details
+sample.Amount"
+notes.Date
+notes.Tags
+notes.Note Contents"
+contacts.Year_met
+contacts.Customer_id
+contacts.Age
+contacts.First Name
+contacts.Last Name
+contacts.Country
+contacts.Amount"
+tasks.Assigned to
+tasks.Priority
+tasks.Task"
+names.Name
+names.Name_meaning
+finance_categories.finance_categories
+finance_categories.
+diary.DATE
+diary.Name
+diary.Location
+diary.Details"
+nouns.noun
+pim.pim_types.CAT
+pim.pim_types.PIM_TYPE_SHORT
+pim.pim_types.PIM_TYPE_DESC
+pim.file_types.Source Code
+games.classes.name
+games.classes.STA
+games.classes.STR
+games.classes.INT
+games.classes.CON
+games.classes.AGI
+games.classes.Health
+games.classes.max_health
+games.materials.type
+games.materials.name
+games.materials.drop_rate
+games.materials.extract_method
+games.materials.buy_price
+games.materials.sell_price
+games.materials.found_in
+games.materials.description
+games.monsters.area
+games.monsters.name
+games.monsters.health
+games.monsters.dmg
+games.monsters.con
+games.monsters.str
+games.monsters.speed
+games.monsters.desc
+games.stats.stat
+games.stats.name
+games.stats.increase_via
+games.stats.decrease_via
+games.stats.affects
+games.races.name
+games.races.STA
+games.races.STR
+games.races.INT
+games.races.AGI
+games.races.CON
+games.races.Health
+games.races.max_health
+games.skills.area
+games.skills.type
+games.skills.name
+games.skills.cost
+games.skills.description
+text.sentiment.type
+text.sentiment.word
+text.sentiment.POS
+text.sentiment.stemmed
+text.sentiment.polarity
+text.sentiment.
+text.sentiment.
+food.food_desc.NDB_No
+food.food_desc.FdGrp_Cd
+food.food_desc.Long_Desc
+food.food_desc.Shrt_Desc
+food.food_desc.ComName
+food.food_desc.ManufacName
+food.food_desc.Survey
+food.food_desc.Ref_Desc
+food.food_desc.Refuse
+food.food_desc.SciName
+food.food_desc.N_Factor
+food.food_desc.Pro_Factor
+food.food_desc.Fat_Factor
+food.food_desc.CHO_Factor"
+food.combinations.ingredient1
+food.combinations.ingredient2
+food.combinations.tastiness
+food.combinations.comment
+food.food_groups.0100
+food.food_groups.Dairy and Egg Products
+food.garden_produce.method
+food.garden_produce.type
+food.garden_produce.name
+building.materials_specific_strength.Material_name
+building.materials_specific_strength.Tensile strength_Mpa
+building.materials_specific_strength.Density_g_per_cm_cubed
+building.materials_specific_strength.Specific_strength_kN_m_per_kg 
+building.materials_specific_strength.Breaking length_km
+building.materials_common.type
+building.materials_common.name
+building.materials_common.cost_1_9
+building.materials_common.strength_1_9
+building.workers.First Name
+building.workers.Surname"
+building.tools.type
+building.tools.name
+building.tools.avg_price
+building.tools.avg_weight_kg
+building.actions.action
+building.actions.material
+building.actions.cost_time
+building.actions.cost_material
+building.actions.method
+people.fav_hobbies.hobby_name
+people.fav_hobbies.effect_name
+people.fav_hobbies.effect_value
+people.spending_type.spending_type
+people.spending_type.effect_name
+people.spending_type.effect_value
+finance.mining_copper_rent.Country Code
+finance.mining_copper_rent.Country Name
+finance.mining_copper_rent.1970
+finance.mining_copper_rent.1971
+finance.mining_copper_rent.1972
+finance.mining_copper_rent.1973
+finance.mining_copper_rent.1974
+finance.mining_copper_rent.1975
+finance.mining_copper_rent.1976
+finance.mining_copper_rent.1977
+finance.mining_copper_rent.1978
+finance.mining_copper_rent.1979
+finance.mining_copper_rent.1980
+finance.mining_copper_rent.1981
+finance.mining_copper_rent.1982
+finance.mining_copper_rent.1983
+finance.mining_copper_rent.1984
+finance.mining_copper_rent.1985
+finance.mining_copper_rent.1986
+finance.mining_copper_rent.1987
+finance.mining_copper_rent.1988
+finance.mining_copper_rent.1989
+finance.mining_copper_rent.1990
+finance.mining_copper_rent.1991
+finance.mining_copper_rent.1992
+finance.mining_copper_rent.1993
+finance.mining_copper_rent.1994
+finance.mining_copper_rent.1995
+finance.mining_copper_rent.1996
+finance.mining_copper_rent.1997
+finance.mining_copper_rent.1998
+finance.mining_copper_rent.1999
+finance.mining_copper_rent.2000
+finance.mining_copper_rent.2001
+finance.mining_copper_rent.2002
+finance.mining_copper_rent.2003
+finance.mining_copper_rent.2004
+finance.mining_copper_rent.2005
+finance.mining_copper_rent.2006
+finance.mining_copper_rent.2007
+finance.mining_copper_rent.2008
+shopping.Paper Goods.;Paper Goods
+shopping.Canned Fruit.;Canned Fruit
+shopping.Laundry.;Laundry
+shopping.Frozen Vegetables.;Frozen Vegetables
+shopping.Baby Food.;Baby Food
+shopping.Electrical.;Electrical
+shopping.Cleaning Products.;Cleaning Products
+shopping.Biscuits.;Biscuits
+shopping.Oils - Cooking.;Oils - Cooking
+shopping.Dinner Bases.;Dinner Bases
+shopping.Canned Foods - Other.;Other Canned Foods
+shopping.Canned Fish.;Canned Fish
+shopping.Meat.;Meat
+shopping.Self Service Delicatessen.;Self Service Delicatessen
+shopping.Packet Soup.;Packet Soup
+shopping.Rice - Pasta - Noodles.;Noodles / Pasta / Rice
+shopping.DAIRY.;Dairy
+shopping.Canned Vegetables.;Canned Vegetables
+shopping.HEADINGS.;VERSION 2.1
+shopping.Pet Supplies.;Pet Supplies
+shopping.Desserts.;Desserts
+shopping.Household Cleaning.;Household Cleaning
+shopping.Miscellaneous.;Miscellaneous
+shopping.Dried Fruits - Nuts.;Dried Fruit & Nuts
+shopping.Cold Meats.;Cold Meats
+shopping.Toiletries.;Toiletries
+shopping.Canned Baked Beans.;Baked Beans
+shopping.Cereals.;Cereals
+shopping.Confectionery.;Confectionery
+shopping.beverages.;Beverages
+shopping.Insecticides.;Insecticides
+shopping.Mexican Food.;Mexican Food
+shopping.Cheeses - Unchilled.;Cheeses - Unchilled
+shopping.Baking Needs.;Baking Products
+shopping.Herbs - Spices.;Herbs & Spices
+shopping.InstantMeals.;Instant Meals
+shopping.Dairy - Butter - Margarine.;Butter
+shopping.Dairy - Butter - Margarine.Margarine etc
+shopping.Lollies.;Lollies
+shopping.HERBS.;Herbs
+shopping.HERBS.Spices and Stocks
+shopping.CLEANING.;Cleaning Products
+shopping.Vitamins.;Vitamins
+shopping.Frozen.;Frozen Food
+shopping.Medicinal.;Medicinal
+shopping.Baby Needs.;Baby Needs
+shopping.Beauty Aids.;Beauty Aids
+shopping.Breakfast Cereals.;Breakfast Cereals
+shopping.Small Appliances.;Small Appliances
+shopping.First Aid.;First Aid
+shopping.Asian Foods.;Asian Foods
+shopping.Hardware.;Hardware
+shopping.Soups.;Canned Soup
+shopping.Sugars - Sweeteners.;Sugars / Sweeteners
+shopping.Cordials.;Cordials
+shopping.Stationery.;Stationery
+shopping.Indian Foods.;Indian Food
+shopping.Snacks.;Snacks
+shopping.Jams - Spreads.;Jams & Spreads
+shopping.Frozen Meals.;Frozen Meals
+shopping.Gravy - Salts - Seasonings.;Gravy / Salt / Seasoning
+shopping.Bread.;Bread
+shopping.Eggs.Eggs - Free Range
+shopping.Soft Drinks.;Soft Drinks
+shopping.Dried Vegetables.;Dried Vegetables
+shopping.Kitchen Utensils.;Kitchen Utensils
+shopping.Shoe Care.;Shoe Care
+shopping.Condiments.;Condiments
+shopping.Fruit - Vegetables.;Fruit & Vegetables
+shopping.Side Dishes.;Side Dishes - Pasta & Sauce/Rice
+world.landmarks.location_area
+world.landmarks.landmark_name
+world.country.CountryCode
+world.country.Long Name
+world.country.Income Group
+world.country.Region
+world.country.Lending category
+world.country.Other groups
+world.country.Currency Unit
+world.country.Latest population census
+world.country.Latest household survey
+world.country.Special Notes
+world.country.National accounts base year
+world.country.National accounts reference year
+world.country.System of National Accounts
+world.country.SNA price valuation
+world.country.Alternative conversion factor
+world.country.PPP survey year
+world.country.Balance of Payments Manual in use
+world.country.External debt Reporting status
+world.country.System of trade
+world.country.Government Accounting concept
+world.country.IMF data dissemination standard
+world.country.Source of most recent Income and expenditure data
+world.country.Vital registration complete
+world.country.Latest agricultural census
+world.country.Latest industrial data
+world.country.Latest trade data
+world.country.Latest water withdrawal data
+world.country.2-alpha code
+world.country.WB-2 code
+world.country.Table Name
+world.country.Short Name

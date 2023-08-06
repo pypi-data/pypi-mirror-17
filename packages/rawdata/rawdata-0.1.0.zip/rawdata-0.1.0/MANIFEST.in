@@ -1,0 +1,6 @@
+include *.rst
+include rawdata/data/*.*
+include rawdata/data/games/*.*
+include rawdata/data/pim/*.*
+include rawdata/data/finance/*.*
+include rawdata/data/food/*.*
