@@ -1,0 +1,17 @@
+README.rst
+setup.py
+LI_AWS_Deploy.egg-info/PKG-INFO
+LI_AWS_Deploy.egg-info/SOURCES.txt
+LI_AWS_Deploy.egg-info/dependency_links.txt
+LI_AWS_Deploy.egg-info/entry_points.txt
+LI_AWS_Deploy.egg-info/requires.txt
+LI_AWS_Deploy.egg-info/top_level.txt
+deploy/__init__.py
+deploy/__main__.py
+deploy/compress.py
+deploy/config.py
+deploy/messages.py
+deploy/run.py
+deploy/tests.py
+deploy/utils.py
+test_files/__init__.py
