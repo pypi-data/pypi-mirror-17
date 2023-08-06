@@ -1,0 +1,97 @@
+#!/usr/bin/env python
+# The MIT License (MIT)
+# 
+# Copyright (c) 2016 GRyCAP
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+import sys
+import ConfigParser
+import io
+import os
+from cpyutils.parameters import *
+
+if __name__ == '__main__':
+    p = CmdLineParser("configupd", desc = "This command updates a config file with the values that are in other file (or that come from the standard input)", arguments = [
+            Argument("config file", "name of the config file", mandatory = True, count = 1),
+            Argument("new config file", "name of the file that contains the new values", mandatory = False, count = 1),
+            Parameter("-n", "--new-file", "create a new file; otherwise is output to the standard output", mandatory = False, count = 1),
+            Parameter("-b", "--backup-file", "backup the current file into a new file and overwrite the original one", mandatory = False, count = 1),
+            Flag("-c", "--clear-sections", desc = "sections that appear in the new config file are completely wiped in the config file, and only those new values will appear")
+        ])
+    
+    parsed, result, info = p.parse(sys.argv[1:])
+    if not parsed:
+        if (result is None):
+            print "Error:", info
+            sys.exit(-1)
+        else:
+            print info
+            sys.exit(0)
+    
+    if (result.values['new config file'] is None) or (result.values['new config file'][0] == '-'):
+        data = sys.stdin.readlines()
+        config1 = ConfigParser.RawConfigParser(allow_no_value=True)
+        config1.readfp(io.BytesIO("\n".join(data)))
+    else:
+        if os.path.exists(result.values['new config file'][0]):
+            config1 = ConfigParser.RawConfigParser()
+            config1.read(result.values['new config file'][0])
+        else:
+            raise Exception("file %s does not exist" % result.values['new config file'][0])
+    
+    if os.path.exists(result.values['config file'][0]):
+        config2 = ConfigParser.RawConfigParser()
+        config2.read(result.values['config file'][0])
+    else:
+        raise Exception("file %s does not exist" % result.values['config file'][0])
+    
+    for section in config1.sections():
+        if result.values['-c'] and (section in config2.sections()):
+            for option in config2.options(section):
+                config2.remove_option(section, option)
+        
+        if section not in config2.sections():
+            config2.add_section(section)
+        
+        for option in config1.options(section):
+            config2.set(section, option, config1.get(section, option))
+
+    # This is to avoid the problem of the "[DEFAULT]" section that does not appear as-is in sections()
+    if len(config1._defaults) > 0:
+        if result.values['-c'] and (len(config2._defaults) > 0):
+            for k in config2._defaults.keys():
+                del config2._defaults[k]
+        for k,v in config1._defaults.items():
+            config2._defaults[k] = v
+    
+    if result.values['-n'] is None:
+        config2.write(sys.stdout)
+    else:
+        fout = open(result.values['-n'][0], "wt")
+        config2.write(fout)
+        fout.close()
+        
+    if result.values['-b'] is None:
+        pass
+    else:
+        import shutil
+        shutil.copyfile(result.values['config file'][0], result.values['-b'][0])
+        fout = open(result.values['config file'][0], "wt")
+        config2.write(fout)
+        fout.close()        
