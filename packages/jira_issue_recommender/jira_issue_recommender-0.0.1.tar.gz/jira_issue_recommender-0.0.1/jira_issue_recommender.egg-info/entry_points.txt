@@ -1,0 +1,3 @@
+[console_scripts]
+jira-issue-recommender = jira_issue_recommender.main:main
+
