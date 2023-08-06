@@ -1,0 +1,17 @@
+Metadata-Version: 2.0
+Name: wcpan.worker
+Version: 1.0.0.dev2
+Summary: UNKNOWN
+Home-page: https://github.com/legnaleurc/wcpan.worker
+Author: Wei-Cheng Pan
+Author-email: legnaleurc@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: tornado
+Requires-Dist: wcpan.logger
+
+UNKNOWN
+
+
