@@ -1,0 +1,92 @@
+Metadata-Version: 2.0
+Name: timberjack
+Version: 0.1.0
+Summary: Logging toolbox for Python services at Mobify.
+Home-page: https://timberjack.readthedocs.org
+Author: Sebastian Vetter
+Author-email: seb@mobify.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Requires-Dist: structlog
+Provides-Extra: dev
+Requires-Dist: bumpversion; extra == 'dev'
+Requires-Dist: django; extra == 'dev'
+Requires-Dist: flask; extra == 'dev'
+Requires-Dist: pytest; extra == 'dev'
+Requires-Dist: pytest-cache; extra == 'dev'
+Requires-Dist: pytest-cov; extra == 'dev'
+Requires-Dist: pytest-django; extra == 'dev'
+Requires-Dist: rstcheck; extra == 'dev'
+Requires-Dist: twine; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: django; extra == 'test'
+Requires-Dist: flask; extra == 'test'
+Requires-Dist: pytest; extra == 'test'
+Requires-Dist: pytest-cache; extra == 'test'
+Requires-Dist: pytest-cov; extra == 'test'
+Requires-Dist: pytest-django; extra == 'test'
+Requires-Dist: rstcheck; extra == 'test'
+
+.. image:: https://travis-ci.org/mobify/timberjack.svg?branch=master
+   :target: https://travis-ci.org/mobify/timberjack
+   :alt: Travis CI Status Badge
+
+timberjack
+##########
+
+.. image:: http://lakequip.com/wp-content/uploads/2014/05/IMG_3865.jpg
+   :alt: Timberjack Tractor
+
+
+Install
+-------
+
+You can install ``timberjack`` directly from the Github repo using::
+
+    $ pip install https://github.com/mobify/timberjack/archive/master.zip
+
+
+Setup in Django
+---------------
+
+TBD.
+
+
+Setup in Flask
+--------------
+
+The timberjack logging tools come with a convenience class that allows the easy
+configuration of a Flask application to use logging::
+
+    from timberjack.contrib.flask import Timberjack
+
+    ...
+
+    app = Flask(__name__)
+    timberjack = Timberjack(app)
+
+    ...
+
+    log = timberjack.get_logger('my.logger')
+
+
+
+License
+-------
+
+This code is licensed under the `MIT License`_.
+
+.. _`MIT License`: https://github.com/mobify/timberjack/blob/master/LICENSE
+
+
