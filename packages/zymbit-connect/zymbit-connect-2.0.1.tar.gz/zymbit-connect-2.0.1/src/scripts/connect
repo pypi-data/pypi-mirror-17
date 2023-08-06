@@ -1,0 +1,10 @@
+#!/usr/bin/env python
+from cmdline import setup_logging
+
+from zymbit.connect import Proxy
+
+
+setup_logging()
+
+proxy = Proxy()
+proxy.run()
