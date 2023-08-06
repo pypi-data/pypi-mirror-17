@@ -1,0 +1,12 @@
+setup.py
+droigo.egg-info/PKG-INFO
+droigo.egg-info/SOURCES.txt
+droigo.egg-info/dependency_links.txt
+droigo.egg-info/entry_points.txt
+droigo.egg-info/top_level.txt
+droigotools/__init__.py
+droigotools/cmdengine.py
+droigotools/cmdgolangproj.py
+droigotools/defaultconf.py
+droigotools/rootcmd.py
+droigotools/scmsupport.py
