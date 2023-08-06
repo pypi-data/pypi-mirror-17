@@ -1,0 +1,12 @@
+Metadata-Version: 1.1
+Name: m3ull
+Version: 0.1
+Summary: M3U link lister
+Home-page: http://bitbucket.org/fabian/m3ull
+Author: Fabian Topfstedt
+Author-email: topfstedt@schneevonmorgen.com
+License: MIT license
+Description: Pass the URL of a M3U playlist to m3ull as the m3u-argument and it returns a list of links to the playlist itself and all contained segments.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
