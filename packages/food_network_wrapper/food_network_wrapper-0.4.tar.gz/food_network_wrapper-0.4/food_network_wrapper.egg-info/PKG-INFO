@@ -1,0 +1,51 @@
+Metadata-Version: 1.1
+Name: food-network-wrapper
+Version: 0.4
+Summary: Allows you to easily search and scrape recipes from http://foodnetwork.com
+Home-page: https://github.com/benawad/food_network_wrapper
+Author: Ben Awad
+Author-email: benawad97@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/benawad/food_network_wrapper/tarball/0.4
+Description: # food_network_wrapper
+        
+        [![Build Status](https://travis-ci.org/benawad/food_network_wrapper.svg?branch=master)](https://travis-ci.org/benawad/food_network_wrapper)
+        [![Coverage Status](https://coveralls.io/repos/github/benawad/food_network_wrapper/badge.svg?branch=master)](https://coveralls.io/github/benawad/food_network_wrapper?branch=master)
+        [![PyPI version](https://badge.fury.io/py/food_network_wrapper.svg)](https://badge.fury.io/py/food_network_wrapper)
+        [![PyPI](https://img.shields.io/pypi/pyversions/Django.svg?maxAge=2592000)]()
+        
+        Search your favorite recipes from [Food Network](http://foodnetwork.com) and then scrape the recipes contents.
+        
+        ## Installation
+        
+        ```
+        pip install food_network_wrapper
+        ```
+        
+        ## Usage
+        
+        Search recipes
+        
+        ```
+        rthumbnails = recipe_search("pad thai")
+        ```
+        
+        Returns up to 10 `RThumbnail` objects in a list
+        
+        To get more recipes you have to increment the `page` parameter
+        
+        ```
+        rthumbnails = recipe_search("pad thai", page=2)
+        ```
+        
+        
+        
+Keywords: cooking,recipes,recipe,python,harvest,foodnetwork,scrape,scraping
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Internet :: WWW/HTTP
