@@ -1,0 +1,72 @@
+Metadata-Version: 1.1
+Name: epipylib
+Version: 0.1.0-2
+Summary: Epidemic model library for fitting epidemic models.
+Home-page: https://github.com/ckaus/epipylib
+Author: Christian Kaus
+Author-email: christian.kaus@hotmail.de
+License: MIT License
+Download-URL: http://pypi.python.org/pypi/epipylib
+Description: ========
+        EpiPylib
+        ========
+        
+        EpiPylib is a collection of different epidemic models and fitting functions.
+        
+        * Features_
+        * Documentation_
+        * Installation_
+        * Example_
+        * Changelog_
+        * License_
+        
+        .. _Features: https://github.com/ckaus/epipylib#features
+        .. _Documentation: http://pythonhosted.org/epipylib
+        .. _Installation: https://github.com/ckaus/epipylib/blob/master/INSTALL.rst
+        .. _Example: https://github.com/ckaus/epipylib/blob/master/EXAMPLE.rst
+        .. _Changelog: https://github.com/ckaus/epipylib/blob/master/CHANGELOG
+        .. _License: https://github.com/ckaus/epipylib#license
+        
+        Features
+        --------
+        
+        Fitting functions:
+        
+        - Manual and optimized manipulation epidemic model parameters
+        
+        Epidemic models:
+        
+        - **S**\usceptible **I**\nfected **R**\ecovered (Simple, With births and deaths, With Vaccine)
+        - **S**\usceptible **I**\nfected **R**\ecovered **S**\usceptible (Simple, With births and deaths)
+        - **S**\usceptible **E**\xposed **I**\nfected **R**\ecovered (Simple)
+        
+        License
+        -------
+        
+        MIT_ license
+        
+        .. _MIT: https://github.com/ckaus/epipylib/blob/master/LICENSE
+        
+Keywords: epidemic
+Platform: Linux
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft
+Classifier: Operating System :: Microsoft :: Windows :: Windows 7
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Documentation
+Classifier: Topic :: Documentation :: Sphinx
+Classifier: Topic :: Education
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Scientific/Engineering :: Medical Science Apps.

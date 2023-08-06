@@ -1,0 +1,16 @@
+README.rst
+setup.py
+epipylib/__init__.py
+epipylib.egg-info/PKG-INFO
+epipylib.egg-info/SOURCES.txt
+epipylib.egg-info/dependency_links.txt
+epipylib.egg-info/not-zip-safe
+epipylib.egg-info/requires.txt
+epipylib.egg-info/top_level.txt
+epipylib/core/__init__.py
+epipylib/core/fit.py
+epipylib/core/utils.py
+epipylib/model/__init__.py
+epipylib/model/seir.py
+epipylib/model/sir.py
+epipylib/model/sirs.py
