@@ -1,0 +1,24 @@
+Metadata-Version: 2.0
+Name: growler-sass
+Version: 0.1.0
+Summary: An extension providing a SASS CSS renderer for Growler web applications
+Home-page: https://github.com/pygrowler/growler-sass
+Author: Andrew Kubera
+Author-email: andrewkubera@gmail.com
+License: MIT
+Download-URL: https://github.com/pygrowler/growler-sass/archive/v0.1.0.tar.gz
+Platform: all
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Web Environment
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Natural Language :: English
+Requires-Dist: libsass
+
+UNKNOWN
+
+
