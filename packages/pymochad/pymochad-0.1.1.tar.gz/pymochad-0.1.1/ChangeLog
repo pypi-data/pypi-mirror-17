@@ -1,0 +1,21 @@
+CHANGES
+=======
+
+0.1.1
+-----
+
+* Always use SOCK_STREAM for mochad sockets
+
+0.1.0
+-----
+
+* Add device method to get on/off status
+* Fix typos and oversights
+* Update the readme a bit
+* Add a device class to pymochad
+* Update controller to separate read and write
+* Update gpl header with pymochad
+* Remove pycmus refs from readme
+* Add status function
+* Add docs and testing setup
+* Initial commit
