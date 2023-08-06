@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: binfootprint
+Version: 0.1.0
+Summary: binary representation for simple data structured
+Home-page: https://github.com/cimatosa/binfootprint
+Author: Richard Hartmann
+Author-email: richard.hartmann@tu-dresden.de
+License: BSD (3 clause)
+Description: UNKNOWN
+Keywords: binary,footprint,pickle,key
+Platform: ALL
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Intended Audience :: Developers
