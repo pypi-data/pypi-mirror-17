@@ -1,0 +1,9 @@
+include LICENSE.md
+recursive-include docs *
+recursive-include utphy_richdocument/migrations *
+recursive-include utphy_richdocument/static *
+recursive-include utphy_richdocument/templates *
+recursive-exclude * .git
+recursive-exclude * .gitignore
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
