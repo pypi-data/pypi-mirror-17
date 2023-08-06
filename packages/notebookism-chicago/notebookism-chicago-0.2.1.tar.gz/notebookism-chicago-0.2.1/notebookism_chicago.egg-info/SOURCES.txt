@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+readme.rst
+setup.cfg
+setup.py
+notebookism/__init__.py
+notebookism/app.py
+notebookism/histories.py
+notebookism/tiny_app.py
+notebookism_chicago.egg-info/PKG-INFO
+notebookism_chicago.egg-info/SOURCES.txt
+notebookism_chicago.egg-info/dependency_links.txt
+notebookism_chicago.egg-info/requires.txt
+notebookism_chicago.egg-info/top_level.txt
